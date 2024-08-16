@@ -1,0 +1,91 @@
+// Copyright 2024 Scape Agency BV
+// Licensed under the Apache License, Version 2.0 (the "License");
+// You may not use this file except in compliance with the License.
+// You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// ============================================================================
+// StyleScape | Animations | Float
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "base" as *;
+
+// Float Animation
+// ----------------------------------------------------------------------------
+@mixin animate_float(
+    $start_position: 0,
+    $mid_position: 10px,
+    $end_position: 0,
+    $duration: $animate_base_duration_slow,
+    $timing_function: ease-in-out,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_float,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_float {
+        0%, 100% { transform: translateY($start_position); }
+        50% { transform: translateY($mid_position); }
+    }
+}
+
+.animate_float {
+    @include animate_float();
+}
+
+// Float with Horizontal Movement
+// ----------------------------------------------------------------------------
+@mixin animate_float_horizontal(
+    $horizontal-distance: 10px,
+    $duration: $animate_base_duration_slow,
+    $timing_function: ease-in-out,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_float_horizontal,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_float_horizontal {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX($horizontal-distance); }
+    }
+}
+
+.animate_float_horizontal {
+    @include animate_float_horizontal();
+}
+
+// Float with Rotation
+// ----------------------------------------------------------------------------
+@mixin animate_float_rotate(
+    $rotation_angle: 15deg,
+    $duration: $animate_base_duration_slow,
+    $timing_function: ease-in-out,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_float_rotate,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_float_rotate {
+        0%, 100% { transform: translateY(0) rotate(0); }
+        50% { transform: translateY(-10px) rotate($rotation_angle); }
+    }
+}
+
+.animate_float_rotate {
+    @include animate_float_rotate();
+}
