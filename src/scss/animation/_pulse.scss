@@ -1,0 +1,174 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// StyleScape | Animations | Pulse
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "base" as *;
+
+
+// Pulse Animation
+// ----------------------------------------------------------------------------
+
+@mixin animate_pulse(
+    $scale_min: 1, 
+    $scale_max: 1.1, 
+    $duration: $animate_base_duration, 
+    $timing_function: linear, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_pulse,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @keyframes animate_pulse {
+        0%, 100% { transform: scale($scale_min); }
+        50% { transform: scale($scale_max); }
+    }
+}
+
+.animate_pulse {
+    @include animate_pulse();
+}
+
+
+// Slow Pulse Animation
+// ----------------------------------------------------------------------------
+
+@mixin animate_pulse_slow(
+    $scale_min: 0.95, 
+    $scale_max: 1.05, 
+    $duration: $animate_base_duration_slow,
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_pulse_slow,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @keyframes animate_pulse_slow {
+        0%, 100% { transform: scale($scale_min); }
+        50% { transform: scale($scale_max); }
+    }
+}
+
+.animate_pulse_slow {
+    @include animate_pulse_slow();
+}
+
+
+// Rapid Pulse Animation
+// ----------------------------------------------------------------------------
+
+@mixin animate_pulse_fast(
+    $scale_min: 0.9, 
+    $scale_max: 1.2, 
+    $duration: $animate_base_duration_fast,
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_pulse_fast,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @keyframes animate_pulse_fast {
+        0%, 100% { transform: scale($scale_min); }
+        50% { transform: scale($scale_max); }
+    }
+}
+
+.animate_pulse_fast {
+    @include animate_pulse_fast();
+}
+
+
+// Color Pulse Animation
+// ----------------------------------------------------------------------------
+
+@mixin animate_pulse_color(
+    $color_start: $animate_base_color_start, 
+    $color_end: $animate_base_color_end, 
+    $duration: $animate_base_duration, 
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_pulse_color,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @keyframes animate_pulse_color {
+        0%, 100% { background-color: $color_start; }
+        50% { background-color: $color_end; }
+    }
+}
+
+.animate_pulse_color {
+    @include animate_pulse_color();
+}
+
+
+
+// originally authored by Nick Pettit - https://github.com/nickpettit/glide
+
+// @-webkit-keyframes pulse {
+//     from {
+//       -webkit-transform: scale3d(1, 1, 1);
+//       transform: scale3d(1, 1, 1);
+//     }
+  
+//     50% {
+//       -webkit-transform: scale3d(1.05, 1.05, 1.05);
+//       transform: scale3d(1.05, 1.05, 1.05);
+//     }
+  
+//     100% {
+//       -webkit-transform: scale3d(1, 1, 1);
+//       transform: scale3d(1, 1, 1);
+//     }
+//   }
+  
+//   @keyframes pulse {
+//     from {
+//       -webkit-transform: scale3d(1, 1, 1);
+//       transform: scale3d(1, 1, 1);
+//     }
+  
+//     50% {
+//       -webkit-transform: scale3d(1.05, 1.05, 1.05);
+//       transform: scale3d(1.05, 1.05, 1.05);
+//     }
+  
+//     100% {
+//       -webkit-transform: scale3d(1, 1, 1);
+//       transform: scale3d(1, 1, 1);
+//     }
+//   }
+  
+//   .pulse {
+//     -webkit-animation-name: pulse;
+//     animation-name: pulse;
+//   }
+  
