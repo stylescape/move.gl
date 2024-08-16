@@ -1,0 +1,134 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// StyleScape | Animations | Glow
+// ============================================================================
+
+@use "sass:math";
+@use "../dev" as *;
+@use "../variables" as *;
+@use "base" as *;
+
+
+
+// Glow Animation
+// ----------------------------------------------------------------------------
+@mixin animate_glow(
+    $color: $animate_base_color_glow_01, 
+    $start-shadow_size: 5px, 
+    $end-shadow_size: 15px, 
+    $duration: $animate_base_duration, 
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_glow,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_glow {
+        0%, 100% { box-shadow: 0 0 $start-shadow-size 0 $color; }
+        50% { box-shadow: 0 0 $end-shadow-size 5px $color; }
+    }
+}
+
+.animate_glow {
+    @include animate_glow($animate_base_color_glow_01);
+}
+
+// Pulse Glow Animation
+// ----------------------------------------------------------------------------
+@mixin animate_glow_pulse(
+    $color: $animate_base_color_glow_01,
+    $duration: $animate_base_duration,
+    $timing_function: ease-in-out,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_glow_pulse,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_glow_pulse {
+        0%, 100% { box-shadow: 0 0 10px -5px $color; }
+        50% { box-shadow: 0 0 20px 0 $color; }
+    }
+}
+
+.animate_glow_pulse {
+    @include animate_glow_pulse($animate_base_color_glow_01);
+}
+
+// Soft Glow Animation
+// ----------------------------------------------------------------------------
+@mixin animate_glow_soft(
+    $color: $animate_base_color_glow_01, 
+    $duration: $animate_base_duration_slow,
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_glow_soft,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_glow_soft {
+        0%, 100% { box-shadow: 0 0 10px 0 rgba($color, 0.5); }
+        50% { box-shadow: 0 0 20px 5px rgba($color, 0.8); }
+    }
+}
+
+.animate_glow_soft {
+    @include animate_glow_soft($animate_base_color_glow_01);
+}
+
+// Multi-Color Glow Animation
+// ----------------------------------------------------------------------------
+@mixin animate_glow_multicolor(
+    $colors: (
+        $animate_base_color_glow_01,
+        $animate_base_color_glow_02,
+        $animate_base_color_glow_03,
+    ),
+    $duration: $animate_base_duration_slow,
+    $timing_function: linear,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_glow_multicolor,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    $total_colors: length($colors);
+    @keyframes animate_glow_multicolor {
+        @for $i from 1 through $total_colors {
+            // #{percentage(($i - 1) / $total_colors)}, 
+            // #{percentage($i / $total_colors)} {
+            #{percentage(math.div(($i - 1), $total_colors))}, 
+            #{percentage(math.div($i, $total-colors))} {
+                    box-shadow: 0 0 10px 5px nth($colors, $i);
+            }
+        }
+    }
+}
+
+.animate_glow_multicolor {
+    @include animate_glow_multicolor();
+}
