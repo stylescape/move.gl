@@ -1,0 +1,152 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// StyleScape | Animations | Flash
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "base" as *;
+
+
+
+// Flash Animation
+// ----------------------------------------------------------------------------
+
+@mixin animate_flash(
+    $start_opacity: 1,
+    $mid_opacity: 0,
+    $end_opacity: 1,
+    $duration: $animate_base_duration,
+    $timing_function: ease-in-out,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_flash,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_flash {
+        0%, 100% { opacity: $start-opacity; }
+        50% { opacity: $mid-opacity; }
+    }
+}
+
+.animate_flash {
+    @include animate_flash();
+}
+
+
+// Flash Fade In and Out
+// ----------------------------------------------------------------------------
+
+@mixin animate_flash_fade(
+    $duration: 2s,
+    $timing_function: ease-in-out
+) {
+    @include animate_base(
+        animate_flash_fade,
+        $duration,
+        $timing_function, infinite
+    );
+    @keyframes animate_flash_fade {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 1; }
+    }
+}
+
+.animate_flash_fade {
+    @include animate_flash_fade();
+}
+
+
+// Strobe Flash Animation
+// ----------------------------------------------------------------------------
+
+@mixin animate_flash_strobe(
+    $frequency: 0.1s,
+    $duration: $animate_base_duration,
+    $timing_function: steps(1, end)
+) {
+    @include animate_base(
+        animate_flash_strobe,
+        $duration,
+        $timing_function,
+        infinite
+    );
+    @keyframes animate_flash_strobe {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+    animation-duration: $frequency;
+}
+
+.animate_flash_strobe {
+    @include animate_flash_strobe();
+}
+
+
+// Slow Fade Flash
+// ----------------------------------------------------------------------------
+
+@mixin animate_flash_fade_slow(
+    $duration: $animate_base_duration_slow,
+    $timing_function: ease-in-out
+) {
+    @include animate_base(
+        animate_flash_fade_slow,
+        $duration,
+        $timing_function,
+        infinite
+    );
+    @keyframes animate_flash_fade_slow {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+}
+
+.animate_flash_fade_slow {
+    @include animate_flash_fade_slow();
+}
+
+
+
+// @-webkit-keyframes flash {
+//     from, 50%, 100% {
+//       opacity: 1;
+//     }
+  
+//     25%, 75% {
+//       opacity: 0;
+//     }
+//   }
+  
+//   @keyframes flash {
+//     from, 50%, 100% {
+//       opacity: 1;
+//     }
+  
+//     25%, 75% {
+//       opacity: 0;
+//     }
+//   }
+  
+//   .flash {
+//     -webkit-animation-name: flash;
+//     animation-name: flash;
+//   }
+  
