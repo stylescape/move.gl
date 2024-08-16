@@ -1,0 +1,423 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// StyleScape | Animations | Flip
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "base" as *;
+
+
+// Flip Animation with Customizable Parameters
+// ----------------------------------------------------------------------------
+
+@mixin animate_flip(
+    $duration: $animate_base_duration,
+    $timing_function: ease-in-out,
+    $iteration_count: $animate_base_iteration_count,
+    $rotate_x: 0,
+    $rotate_y: 1,
+    $rotate_z: 0,
+    $rotate_start-angle: 0,
+    $rotate_end-angle: 360deg
+) {
+    @include animate_base(
+        animate_flip,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_flip {
+        0% { transform: rotate3d($rotate_x, $rotate_y, $rotate_z, $rotate_start-angle); }
+        100% { transform: rotate3d($rotate_x, $rotate_y, $rotate_z, $rotate_end-angle); }
+    }
+}
+
+.animate_flip {
+    @include animate_flip();
+}
+
+
+// Flip Horizontal Animation
+// ----------------------------------------------------------------------------
+
+.animate_flip_horizontal {
+    @include animate_flip(1s, ease-in-out, infinite, 0, 1, 0, 0, 360deg);
+}
+
+
+// Flip Vertical Animation
+// ----------------------------------------------------------------------------
+
+.animate_flip_vertical {
+    @include animate_flip(1s, ease-in-out, infinite, 1, 0, 0, 0, 360deg);
+}
+
+
+// Flip Diagonal Animation
+// ----------------------------------------------------------------------------
+
+.animate_flip_diagonal {
+    @include animate_flip(1s, ease-in-out, infinite, 1, 1, 0, 0, 360deg);
+}
+
+
+// 180-degree Flip Animation Variants
+// ----------------------------------------------------------------------------
+
+.animate_flip_180_horizontal {
+    @include animate_flip(1s, ease-in-out, infinite, 0, 1, 0, 0, -180deg);
+}
+
+.animate_flip_180_vertical {
+    @include animate_flip(1s, ease-in-out, infinite, 1, 0, 0, 0, -180deg);
+}
+
+.animate_flip_180_diagonal {
+    @include animate_flip(1s, ease-in-out, infinite, 1, 1, 0, 0, -180deg);
+}
+
+
+
+
+// .animated.flipOutX,
+// .animated.flipOutY {
+//   -webkit-animation-duration: .75s;
+//   animation-duration: .75s;
+// }
+
+
+
+
+
+
+// @-webkit-keyframes flip {
+//     from {
+//       -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+//       transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+//       -webkit-animation-timing-function: ease-out;
+//       animation-timing-function: ease-out;
+//     }
+  
+//     40% {
+//       -webkit-transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+//       transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+//       -webkit-animation-timing-function: ease-out;
+//       animation-timing-function: ease-out;
+//     }
+  
+//     50% {
+//       -webkit-transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+//       transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+//       -webkit-animation-timing-function: ease-in;
+//       animation-timing-function: ease-in;
+//     }
+  
+//     80% {
+//       -webkit-transform: perspective(400px) scale3d(.95, .95, .95);
+//       transform: perspective(400px) scale3d(.95, .95, .95);
+//       -webkit-animation-timing-function: ease-in;
+//       animation-timing-function: ease-in;
+//     }
+  
+//     100% {
+//       -webkit-transform: perspective(400px);
+//       transform: perspective(400px);
+//       -webkit-animation-timing-function: ease-in;
+//       animation-timing-function: ease-in;
+//     }
+//   }
+  
+//   @keyframes flip {
+//     from {
+//       -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+//       transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+//       -webkit-animation-timing-function: ease-out;
+//       animation-timing-function: ease-out;
+//     }
+  
+//     40% {
+//       -webkit-transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+//       transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+//       -webkit-animation-timing-function: ease-out;
+//       animation-timing-function: ease-out;
+//     }
+  
+//     50% {
+//       -webkit-transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+//       transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+//       -webkit-animation-timing-function: ease-in;
+//       animation-timing-function: ease-in;
+//     }
+  
+//     80% {
+//       -webkit-transform: perspective(400px) scale3d(.95, .95, .95);
+//       transform: perspective(400px) scale3d(.95, .95, .95);
+//       -webkit-animation-timing-function: ease-in;
+//       animation-timing-function: ease-in;
+//     }
+  
+//     100% {
+//       -webkit-transform: perspective(400px);
+//       transform: perspective(400px);
+//       -webkit-animation-timing-function: ease-in;
+//       animation-timing-function: ease-in;
+//     }
+//   }
+  
+//   .animated.flip {
+//     -webkit-backface-visibility: visible;
+//     backface-visibility: visible;
+//     -webkit-animation-name: flip;
+//     animation-name: flip;
+//   }
+  
+//   @-webkit-keyframes flipInX {
+//     from {
+//       -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+//       transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+//       -webkit-animation-timing-function: ease-in;
+//       animation-timing-function: ease-in;
+//       opacity: 0;
+//     }
+  
+//     40% {
+//       -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+//       transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+//       -webkit-animation-timing-function: ease-in;
+//       animation-timing-function: ease-in;
+//     }
+  
+//     60% {
+//       -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+//       transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+//       opacity: 1;
+//     }
+  
+//     80% {
+//       -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+//       transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+//     }
+  
+//     100% {
+//       -webkit-transform: perspective(400px);
+//       transform: perspective(400px);
+//     }
+//   }
+  
+//   @keyframes flipInX {
+//     from {
+//       -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+//       transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+//       -webkit-animation-timing-function: ease-in;
+//       animation-timing-function: ease-in;
+//       opacity: 0;
+//     }
+  
+//     40% {
+//       -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+//       transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+//       -webkit-animation-timing-function: ease-in;
+//       animation-timing-function: ease-in;
+//     }
+  
+//     60% {
+//       -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+//       transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+//       opacity: 1;
+//     }
+  
+//     80% {
+//       -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+//       transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+//     }
+  
+//     100% {
+//       -webkit-transform: perspective(400px);
+//       transform: perspective(400px);
+//     }
+//   }
+  
+//   .flipInX {
+//     -webkit-backface-visibility: visible !important;
+//     backface-visibility: visible !important;
+//     -webkit-animation-name: flipInX;
+//     animation-name: flipInX;
+//   }
+  
+//   @-webkit-keyframes flipInY {
+//     from {
+//       -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+//       transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+//       -webkit-animation-timing-function: ease-in;
+//       animation-timing-function: ease-in;
+//       opacity: 0;
+//     }
+  
+//     40% {
+//       -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+//       transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+//       -webkit-animation-timing-function: ease-in;
+//       animation-timing-function: ease-in;
+//     }
+  
+//     60% {
+//       -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+//       transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+//       opacity: 1;
+//     }
+  
+//     80% {
+//       -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+//       transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+//     }
+  
+//     100% {
+//       -webkit-transform: perspective(400px);
+//       transform: perspective(400px);
+//     }
+//   }
+  
+//   @keyframes flipInY {
+//     from {
+//       -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+//       transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+//       -webkit-animation-timing-function: ease-in;
+//       animation-timing-function: ease-in;
+//       opacity: 0;
+//     }
+  
+//     40% {
+//       -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+//       transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+//       -webkit-animation-timing-function: ease-in;
+//       animation-timing-function: ease-in;
+//     }
+  
+//     60% {
+//       -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+//       transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+//       opacity: 1;
+//     }
+  
+//     80% {
+//       -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+//       transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+//     }
+  
+//     100% {
+//       -webkit-transform: perspective(400px);
+//       transform: perspective(400px);
+//     }
+//   }
+  
+//   .flipInY {
+//     -webkit-backface-visibility: visible !important;
+//     backface-visibility: visible !important;
+//     -webkit-animation-name: flipInY;
+//     animation-name: flipInY;
+//   }
+  
+//   @-webkit-keyframes flipOutX {
+//     from {
+//       -webkit-transform: perspective(400px);
+//       transform: perspective(400px);
+//     }
+  
+//     30% {
+//       -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+//       transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+//       opacity: 1;
+//     }
+  
+//     100% {
+//       -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+//       transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+//       opacity: 0;
+//     }
+//   }
+  
+//   @keyframes flipOutX {
+//     from {
+//       -webkit-transform: perspective(400px);
+//       transform: perspective(400px);
+//     }
+  
+//     30% {
+//       -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+//       transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+//       opacity: 1;
+//     }
+  
+//     100% {
+//       -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+//       transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+//       opacity: 0;
+//     }
+//   }
+  
+//   .flipOutX {
+//     -webkit-animation-name: flipOutX;
+//     animation-name: flipOutX;
+//     -webkit-backface-visibility: visible !important;
+//     backface-visibility: visible !important;
+//   }
+  
+//   @-webkit-keyframes flipOutY {
+//     from {
+//       -webkit-transform: perspective(400px);
+//       transform: perspective(400px);
+//     }
+  
+//     30% {
+//       -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -15deg);
+//       transform: perspective(400px) rotate3d(0, 1, 0, -15deg);
+//       opacity: 1;
+//     }
+  
+//     100% {
+//       -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+//       transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+//       opacity: 0;
+//     }
+//   }
+  
+//   @keyframes flipOutY {
+//     from {
+//       -webkit-transform: perspective(400px);
+//       transform: perspective(400px);
+//     }
+  
+//     30% {
+//       -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -15deg);
+//       transform: perspective(400px) rotate3d(0, 1, 0, -15deg);
+//       opacity: 1;
+//     }
+  
+//     100% {
+//       -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+//       transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+//       opacity: 0;
+//     }
+//   }
+  
+//   .flipOutY {
+//     -webkit-backface-visibility: visible !important;
+//     backface-visibility: visible !important;
+//     -webkit-animation-name: flipOutY;
+//     animation-name: flipOutY;
+//   }
