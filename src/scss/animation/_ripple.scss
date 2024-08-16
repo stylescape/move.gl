@@ -1,0 +1,132 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// StyleScape | Animations | Ripple
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "base" as *;
+
+
+// Ripple Animation
+// ----------------------------------------------------------------------------
+
+@mixin animate_ripple(
+    $scale_start: 1, 
+    $scale_end: 1.5, 
+    $opacity_start: 1, 
+    $opacity_end: 0, 
+    $duration: $animate_base_duration, 
+    $timing_function: ease-out
+) {
+    @include animate_base(
+        animate_ripple,
+        $duration,
+        $timing_function,
+        infinite,
+    );
+    @keyframes animate_ripple {
+        0% { transform: scale($scale_start); opacity: $opacity_start; }
+        100% { transform: scale($scale_end); opacity: $opacity_end; }
+    }
+}
+
+.animate_ripple {
+    @include animate_ripple();
+}
+
+
+// Slow Ripple Animation
+// ----------------------------------------------------------------------------
+
+@mixin animate_ripple_slow(
+    $scale_end: 1.5, 
+    $opacity_end: 0, 
+    $duration: 2s, 
+    $timing_function: ease-out
+) {
+    @include animate_base(
+        animate_ripple_slow,
+        $duration,
+        $timing_function,
+        infinite,
+    );
+    @keyframes animate_ripple_slow {
+        0% { transform: scale(1); opacity: 1; }
+        100% { transform: scale($scale_end); opacity: $opacity_end; }
+    }
+}
+
+.animate_ripple_slow {
+    @include animate_ripple_slow();
+}
+
+
+// Multi-Ripple Animation
+// ----------------------------------------------------------------------------
+
+@mixin animate_ripple_multi(
+    $scale_first: 1.2,
+    $scale_second: 1.5,
+    $opacity_end: 0,
+    $duration: $animate_base_duration,
+    $timing_function: ease-out
+) {
+    @include animate_base(
+        animate_ripple_multi,
+        $duration,
+        $timing_function,
+        infinite,
+    );
+    @keyframes animate_ripple_multi {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale($scale_first); opacity: 0.5; }
+        100% { transform: scale($scale_second); opacity: $opacity_end; }
+    }
+}
+
+.animate_ripple_multi {
+    @include animate_ripple_multi();
+}
+
+
+// Ripple with Color Change
+// ----------------------------------------------------------------------------
+
+@mixin animate_ripple_color(
+    $scale_end: 1.5, 
+    $opacity_end: 0,
+    $color_start: $animate_base_color_start,
+    $color_end: $animate_base_color_end,
+    $duration: $animate_base_duration, 
+    $timing_function: ease-out
+) {
+    @include animate_base(
+        animate_ripple_color,
+        $duration,
+        $timing_function,
+        infinite,
+    );
+    @keyframes animate_ripple_color {
+        0% { transform: scale(1); opacity: 1; background-color: $color_start; }
+        100% { transform: scale($scale_end); opacity: $opacity_end; background-color: $color_end; }
+    }
+}
+
+.animate_ripple_color {
+    @include animate_ripple_color();
+}
