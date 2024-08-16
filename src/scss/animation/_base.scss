@@ -1,0 +1,252 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// StyleScape | Animations | Base
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+
+
+
+
+// Base Mixin
+// ----------------------------------------------------------------------------
+
+@mixin animate_base(
+    $name: none,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function,
+    $iteration_count: $animate_base_iteration_count,
+    $delay: $animate_base_delay,
+    $direction: $animate_base_direction,
+) {
+    // animation: $name $duration $timing_function $iteration_count $delay $direction;
+    animation-name: $name;
+    animation-duration: $duration;
+    animation-timing-function: $timing_function;
+    animation-iteration-count: $iteration_count;
+    animation-delay: $delay;
+    animation-direction: $direction;
+}
+
+// General Animation Classes
+// ----------------------------------------------------------------------------
+
+// // Base classes for animations
+// [class^="#{$icongl_prefix}animate_"],
+// [class*=" #{$icongl_prefix}animate_"] {
+//     // Base animation properties
+//     display: inline-block;
+//     backface-visibility: hidden;
+//     perspective: 1000px; // Improve 3D animations
+// }
+
+// Reduced Motion Preference
+// ----------------------------------------------------------------------------
+
+// if agent or operating system prefers reduced motion, disable animations
+// see: https://www.smashingmagazine.com/2020/09/design-reduced-motion-sensitivities/
+// see: https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
+
+@media (prefers-reduced-motion: reduce) {
+
+    // Apply to specific animated classes
+    .animate_beat,
+    .animate_bounce,
+    .animate_fade,
+    .animate_beat_fade,
+    .animate_flip,
+    .animate_pulse,
+    .animate_shake,
+    .animate_spin,
+    .animate_spin-pulse {
+        animation-delay: -1ms;
+        animation-duration: 1ms;
+        animation-iteration-count: 1;
+        transition-delay: 0s;
+        transition-duration: 0s;
+    }
+
+    // Global animation disabling
+    .animation {
+        animation: none;
+        transition: none;
+    }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    // Target all elements with a class starting with 'animate_'
+    [class*="animate_"] {
+        // Reset basic animation and transition properties
+        animation: none;
+        transition: none;
+    }
+
+    // Alternatively, if animations are tied to a specific attribute
+    [data-animation] {
+        // Apply the same reset
+        animation: none;
+        transition: none;
+    }
+
+    // Additional option for targeting any animated element
+    // This targets any element with animation or transition properties set
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+
+
+
+
+
+
+// .animated {
+//     -webkit-animation-duration: 3s;
+//     animation-duration: 3s;
+//     -webkit-animation-fill-mode: both;
+//     animation-fill-mode: both;
+//   }
+  
+//   .animated-middle {
+//     -webkit-animation-duration: 1.2s;
+//     animation-duration: 1.2s;
+//     -webkit-animation-fill-mode: both;
+//     animation-fill-mode: both;
+//   }
+  
+//   .animated-quick {
+//     -webkit-animation-duration: 0.6s;
+//     animation-duration: 0.6s;
+//     -webkit-animation-fill-mode: both;
+//     animation-fill-mode: both;
+//   }
+  
+//   .animated.infinite {
+//     -webkit-animation-iteration-count: infinite;
+//     animation-iteration-count: infinite;
+//   }
+  
+
+
+
+// Animations
+//
+
+$transition_duration_00:    0.5s;
+$transition_duration_01:    1.0s;
+$transition_duration_02:    1.5s;
+$transition_duration_03:    2.0s;
+
+
+
+$slideshow-time: 6s;
+
+
+
+@mixin transition_hover_opacity {
+  @include transition_duration_00;
+  opacity: 1.00; 
+  :hover {
+    @include transition_duration_00;
+    opacity: 0.50; 
+  } 
+}
+
+@mixin transition_duration($val) {
+  transition:                     all $val ease-in-out;
+  -moz-transition:                all $val ease-in-out;
+  -ms-transition:                 all $val ease-in-out;
+  -o-transition:                  all $val ease-in-out;
+  -webkit-transition:             all $val ease-in-out;
+  transition-duration:            all $val ease-in-out;
+  -moz-transition-duration:       all $val ease-in-out;
+  -ms-transition-duration:        all $val ease-in-out;
+  -o-transition-duration:         all $val ease-in-out;
+  -webkit-transition-duration:    all $val ease-in-out;
+}
+
+
+
+@mixin transition_duration_00 {
+  transition:                     all $transition_duration_00 ease-in-out;
+  -moz-transition:                all $transition_duration_00 ease-in-out;
+  -ms-transition:                 all $transition_duration_00 ease-in-out;
+  -o-transition:                  all $transition_duration_00 ease-in-out;
+  -webkit-transition:             all $transition_duration_00 ease-in-out;
+  transition-duration:            all $transition_duration_00 ease-in-out;
+  -moz-transition-duration:       all $transition_duration_00 ease-in-out;
+  -ms-transition-duration:        all $transition_duration_00 ease-in-out;
+  -o-transition-duration:         all $transition_duration_00 ease-in-out;
+  -webkit-transition-duration:    all $transition_duration_00 ease-in-out;  
+}
+
+@mixin transition_duration_01 {
+  transition:                     all $transition_duration_01 ease-in-out;
+  -moz-transition:                all $transition_duration_01 ease-in-out;
+  -ms-transition:                 all $transition_duration_01 ease-in-out;
+  -o-transition:                  all $transition_duration_01 ease-in-out;
+  -webkit-transition:             all $transition_duration_01 ease-in-out;
+  transition-duration:            all $transition_duration_01 ease-in-out;
+  -moz-transition-duration:       all $transition_duration_01 ease-in-out;
+  -ms-transition-duration:        all $transition_duration_01 ease-in-out;
+  -o-transition-duration:         all $transition_duration_01 ease-in-out;
+  -webkit-transition-duration:    all $transition_duration_01 ease-in-out;  
+}
+
+@mixin transition_duration_02 {
+  transition:                     all $transition_duration_02 ease-in-out;
+  -moz-transition:                all $transition_duration_02 ease-in-out;
+  -ms-transition:                 all $transition_duration_02 ease-in-out;
+  -o-transition:                  all $transition_duration_02 ease-in-out;
+  -webkit-transition:             all $transition_duration_02 ease-in-out;
+  transition-duration:            all $transition_duration_02 ease-in-out;
+  -moz-transition-duration:       all $transition_duration_02 ease-in-out;
+  -ms-transition-duration:        all $transition_duration_02 ease-in-out;
+  -o-transition-duration:         all $transition_duration_02 ease-in-out;
+  -webkit-transition-duration:    all $transition_duration_02 ease-in-out;  
+}
+
+@mixin transition_duration_03 {
+  transition:                     all $transition_duration_03 ease-in-out;
+  -moz-transition:                all $transition_duration_03 ease-in-out;
+  -ms-transition:                 all $transition_duration_03 ease-in-out;
+  -o-transition:                  all $transition_duration_03 ease-in-out;
+  -webkit-transition:             all $transition_duration_03 ease-in-out;
+  transition-duration:            all $transition_duration_03 ease-in-out;
+  -moz-transition-duration:       all $transition_duration_03 ease-in-out;
+  -ms-transition-duration:        all $transition_duration_03 ease-in-out;
+  -o-transition-duration:         all $transition_duration_03 ease-in-out;
+  -webkit-transition-duration:    all $transition_duration_03 ease-in-out;  
+}
+
+@mixin transition_duration_04 {
+  transition:                     all $transition_duration_04 ease-in-out;
+  -moz-transition:                all $transition_duration_04 ease-in-out;
+  -ms-transition:                 all $transition_duration_04 ease-in-out;
+  -o-transition:                  all $transition_duration_04 ease-in-out;
+  -webkit-transition:             all $transition_duration_04 ease-in-out;
+  transition-duration:            all $transition_duration_04 ease-in-out;
+  -moz-transition-duration:       all $transition_duration_04 ease-in-out;
+  -ms-transition-duration:        all $transition_duration_04 ease-in-out;
+  -o-transition-duration:         all $transition_duration_04 ease-in-out;
+  -webkit-transition-duration:    all $transition_duration_04 ease-in-out;
+}
+
