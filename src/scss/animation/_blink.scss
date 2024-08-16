@@ -1,0 +1,124 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// StyleScape | Animations | Blink
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "base" as *;
+
+
+// Blink Animation
+// ----------------------------------------------------------------------------
+
+@mixin animate_blink(
+    $duration: $animate_base_duration,
+    $timing_function: step-end, 
+    $iteration_count: $animate_base_iteration_count,
+    $start_opacity: 1,
+    $blink_opacity: 0
+) {
+    @include animate_base(
+        animate_blink,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @keyframes animate_blink {
+        0%, 100% { opacity: $start-opacity; }
+        50% { opacity: $blink-opacity; }
+    }
+}
+
+.animate_blink {
+    @include animate_blink();
+}
+
+
+// Rapid Blink Animation
+// ----------------------------------------------------------------------------
+
+@mixin animate_blink_rapid(
+    $duration: $animate_base_duration_fast,
+    $timing_function: steps(2, end),
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_blink_rapid,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @keyframes animate_blink_rapid {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+}
+
+.animate_blink_rapid {
+    @include animate_blink_rapid();
+}
+
+
+// Soft Blink Animation
+// ----------------------------------------------------------------------------
+
+@mixin animate_blink_soft(
+    $duration: $animate_base_duration_slow,
+    $timing_function: ease-in-out,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_blink_soft,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @keyframes animate_blink_soft {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+    }
+}
+
+.animate_blink_soft {
+    @include animate_blink_soft();
+}
+
+
+// Alternating Blink Animation
+// ----------------------------------------------------------------------------
+
+@mixin animate_blink_alternate(
+    $duration: $animate_base_duration,
+    $timing_function: linear,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_blink_alternate,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @keyframes animate_blink_alternate {
+        0%, 100% { opacity: 1; }
+        25%, 75% { opacity: 0; }
+    }
+}
+
+.animate_blink_alternate {
+    @include animate_blink_alternate();
+}
