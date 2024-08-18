@@ -1,0 +1,869 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// StyleScape | Animations | Bounce
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "base" as *;
+
+
+// Bounce Animation
+// ----------------------------------------------------------------------------
+
+/**
+ * Bounce Animation
+ *
+ * Creates a simple bounce animation where the element moves up and down.
+ *
+ * @mixin animate_bounce
+ * @param {Number|String} $duration [$animate_base_duration] - The duration of the bounce animation.
+ * @param {String} $timing_function [cubic-bezier(0.280, 0.840, 0.420, 1)] - The timing function for the bounce animation.
+ * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+ * @param {Number|String} $bounce_height [-20%] - The height of the bounce.
+ */
+@mixin animate_bounce(
+    $duration: $animate_base_duration,
+    $timing_function: cubic-bezier(0.280, 0.840, 0.420, 1),
+    $iteration_count: $animate_base_iteration_count,
+    $bounce_height: -20%
+) {
+    @include animate_base(
+        animate_bounce,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @keyframes animate_bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY($bounce_height); }
+    }
+}
+
+.animate_bounce {
+    @include animate_bounce();
+}
+
+// @keyframes bounce {
+// 	0%,100% {
+// 		-webkit-transform: translate3d(0,-30px,0);
+// 		transform: translate3d(0,-30px,0);
+// 	}
+// 	50% {
+// 		-webkit-transform: translate3d(0,-4px,0);
+// 		transform: translate3d(0,-4px,0);
+// 	}
+// }
+
+
+// Extended Bounce Animation
+// ----------------------------------------------------------------------------
+
+/**
+ * Extended Bounce Animation
+ *
+ * Creates an extended bounce animation with multiple stages of scaling and bouncing.
+ *
+ * @mixin animate_bounce_extended
+ * @param {Number} $start-scale_x [1.1] - Initial scale in the X direction.
+ * @param {Number} $start-scale_y [0.9] - Initial scale in the Y direction.
+ * @param {Number} $jump_scale_x [0.9] - Scale in the X direction during the jump.
+ * @param {Number} $jump_scale_y [1.1] - Scale in the Y direction during the jump.
+ * @param {Number|String} $bounce_height [-0.5em] - The height of the bounce.
+ * @param {Number} $land_scale_x [1.05] - Scale in the X direction upon landing.
+ * @param {Number} $land_scale_y [0.95] - Scale in the Y direction upon landing.
+ * @param {Number|String} $rebound_height [-0.125em] - The height of the rebound.
+ * @param {Number|String} $duration [$animate_base_duration] - The duration of the bounce animation.
+ * @param {String} $timing_function [cubic-bezier(0.280, 0.840, 0.420, 1)] - The timing function for the bounce animation.
+ * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+ */
+@mixin animate_bounce_extended(
+    $start-scale_x: 1.1,
+    $start-scale_y: 0.9,
+    $jump_scale_x: 0.9,
+    $jump_scale_y: 1.1,
+    $bounce_height: -0.5em,
+    $land_scale_x: 1.05,
+    $land_scale_y: 0.95,
+    $rebound_height: -0.125em,
+    $duration: $animate_base_duration,
+    $timing_function: cubic-bezier(0.280, 0.840, 0.420, 1),
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_bounce,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_bounce {
+        0%   { transform: scale(1,1) translateY(0); }
+        10%  { transform: scale($start-scale_x, $start-scale_y) translateY(0); }
+        30%  { transform: scale($jump_scale_x, $jump_scale_y) translateY($bounce_height); }
+        50%  { transform: scale($land_scale_x, $land_scale_y) translateY(0); }
+        57%  { transform: scale(1,1) translateY($rebound_height); }
+        64%  { transform: scale(1,1) translateY(0); }
+        100% { transform: scale(1,1) translateY(0); }
+    }
+}
+
+.animate_bounce_extended {
+    @include animate_bounce_extended();
+}
+
+
+// Bounce with Rotation
+// ----------------------------------------------------------------------------
+
+/**
+ * Bounce with Rotation Animation
+ *
+ * Creates a bounce animation that includes a rotation as the element moves up and down.
+ *
+ * @mixin animate_bounce_rotate
+ * @param {Number|String} $rotation_angle [360deg] - The angle of rotation during the bounce.
+ * @param {Number|String} $duration [$animate_base_duration] - The duration of the bounce animation.
+ * @param {String} $timing_function [cubic-bezier(0.280, 0.840, 0.420, 1)] - The timing function for the bounce animation.
+ * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+ */
+@mixin animate_bounce_rotate(
+    $rotation_angle: 360deg,
+    $duration: $animate_base_duration,
+    $timing_function: cubic-bezier(0.280, 0.840, 0.420, 1),
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_bounce_rotate,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_bounce_rotate {
+        0%, 100% { transform: translateY(0) rotate(0); }
+        50% { transform: translateY(-20%) rotate($rotation_angle); }
+    }
+}
+
+.animate_bounce_rotate {
+    @include animate_bounce_rotate();
+}
+
+
+// Multi-Directional Bounce
+// ----------------------------------------------------------------------------
+
+/**
+ * Multi-Directional Bounce Animation
+ *
+ * Creates a bounce animation that moves the element in multiple directions (X and Y).
+ *
+ * @mixin animate_bounce_multi
+ * @param {Number|String} $duration [$animate_base_duration] - The duration of the bounce animation.
+ * @param {String} $timing_function [cubic-bezier(0.280, 0.840, 0.420, 1)] - The timing function for the bounce animation.
+ * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+ * @param {Number|String} $bounce_x [-10%] - The distance the element moves along the X-axis during the bounce.
+ * @param {Number|String} $bounce_y [-20%] - The distance the element moves along the Y-axis during the bounce.
+ */
+@mixin animate_bounce_multi(
+    $duration: $animate_base_duration,
+    $timing_function: cubic-bezier(0.280, 0.840, 0.420, 1),
+    $iteration_count: $animate_base_iteration_count,
+    $bounce_x: -10%,
+    $bounce_y: -20%
+) {
+    @include animate_base(
+        animate_bounce_multi,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_bounce_multi {
+        0%, 100% { transform: translate(0, 0); }
+        25% { transform: translate($bounce_x, 0); }
+        50% { transform: translate(0, $bounce_y); }
+        75% { transform: translate($bounce_x, 0); }
+    }
+}
+
+.animate_bounce_multi {
+    @include animate_bounce_multi();
+}
+
+
+// .animated.bounceIn,
+// .animated.bounceOut {
+//   -webkit-animation-duration: .75s;
+//   animation-duration: .75s;
+// }
+
+// @-webkit-keyframes bounce {
+//     from, 20%, 53%, 80%, 100% {
+//       -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//       animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//       -webkit-transform: translate3d(0,0,0);
+//       transform: translate3d(0,0,0);
+//     }
+  
+//     40%, 43% {
+//       -webkit-animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+//       animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+//       -webkit-transform: translate3d(0, -30px, 0);
+//       transform: translate3d(0, -30px, 0);
+//     }
+  
+//     70% {
+//       -webkit-animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+//       animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+//       -webkit-transform: translate3d(0, -15px, 0);
+//       transform: translate3d(0, -15px, 0);
+//     }
+  
+//     90% {
+//       -webkit-transform: translate3d(0,-4px,0);
+//       transform: translate3d(0,-4px,0);
+//     }
+//   }
+  
+//   @keyframes bounce {
+//     from, 20%, 53%, 80%, 100% {
+//       -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//       animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//       -webkit-transform: translate3d(0,0,0);
+//       transform: translate3d(0,0,0);
+//     }
+  
+//     40%, 43% {
+//       -webkit-animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+//       animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+//       -webkit-transform: translate3d(0, -30px, 0);
+//       transform: translate3d(0, -30px, 0);
+//     }
+  
+//     70% {
+//       -webkit-animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+//       animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+//       -webkit-transform: translate3d(0, -15px, 0);
+//       transform: translate3d(0, -15px, 0);
+//     }
+  
+//     90% {
+//       -webkit-transform: translate3d(0,-4px,0);
+//       transform: translate3d(0,-4px,0);
+//     }
+//   }
+  
+//   .bounce {
+//     -webkit-animation-name: bounce;
+//     animation-name: bounce;
+//     -webkit-transform-origin: center bottom;
+//     transform-origin: center bottom;
+//   }
+
+
+
+// @-webkit-keyframes bounceIn {
+//     from, 20%, 40%, 60%, 80%, 100% {
+//       -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//       animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//     }
+  
+//     0% {
+//       opacity: 0;
+//       -webkit-transform: scale3d(.3, .3, .3);
+//       transform: scale3d(.3, .3, .3);
+//     }
+  
+//     20% {
+//       -webkit-transform: scale3d(1.1, 1.1, 1.1);
+//       transform: scale3d(1.1, 1.1, 1.1);
+//     }
+  
+//     40% {
+//       -webkit-transform: scale3d(.9, .9, .9);
+//       transform: scale3d(.9, .9, .9);
+//     }
+  
+//     60% {
+//       opacity: 1;
+//       -webkit-transform: scale3d(1.03, 1.03, 1.03);
+//       transform: scale3d(1.03, 1.03, 1.03);
+//     }
+  
+//     80% {
+//       -webkit-transform: scale3d(.97, .97, .97);
+//       transform: scale3d(.97, .97, .97);
+//     }
+  
+//     100% {
+//       opacity: 1;
+//       -webkit-transform: scale3d(1, 1, 1);
+//       transform: scale3d(1, 1, 1);
+//     }
+//   }
+  
+//   @keyframes bounceIn {
+//     from, 20%, 40%, 60%, 80%, 100% {
+//       -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//       animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//     }
+  
+//     0% {
+//       opacity: 0;
+//       -webkit-transform: scale3d(.3, .3, .3);
+//       transform: scale3d(.3, .3, .3);
+//     }
+  
+//     20% {
+//       -webkit-transform: scale3d(1.1, 1.1, 1.1);
+//       transform: scale3d(1.1, 1.1, 1.1);
+//     }
+  
+//     40% {
+//       -webkit-transform: scale3d(.9, .9, .9);
+//       transform: scale3d(.9, .9, .9);
+//     }
+  
+//     60% {
+//       opacity: 1;
+//       -webkit-transform: scale3d(1.03, 1.03, 1.03);
+//       transform: scale3d(1.03, 1.03, 1.03);
+//     }
+  
+//     80% {
+//       -webkit-transform: scale3d(.97, .97, .97);
+//       transform: scale3d(.97, .97, .97);
+//     }
+  
+//     100% {
+//       opacity: 1;
+//       -webkit-transform: scale3d(1, 1, 1);
+//       transform: scale3d(1, 1, 1);
+//     }
+//   }
+  
+//   .bounceIn {
+//     -webkit-animation-name: bounceIn;
+//     animation-name: bounceIn;
+//   }
+  
+//   @-webkit-keyframes bounceInDown {
+//     from, 60%, 75%, 90%, 100% {
+//       -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//       animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//     }
+  
+//     0% {
+//       opacity: 0;
+//       -webkit-transform: translate3d(0, -3000px, 0);
+//       transform: translate3d(0, -3000px, 0);
+//     }
+  
+//     60% {
+//       opacity: 1;
+//       -webkit-transform: translate3d(0, 25px, 0);
+//       transform: translate3d(0, 25px, 0);
+//     }
+  
+//     75% {
+//       -webkit-transform: translate3d(0, -10px, 0);
+//       transform: translate3d(0, -10px, 0);
+//     }
+  
+//     90% {
+//       -webkit-transform: translate3d(0, 5px, 0);
+//       transform: translate3d(0, 5px, 0);
+//     }
+  
+//     100% {
+//       -webkit-transform: none;
+//       transform: none;
+//     }
+//   }
+  
+//   @keyframes bounceInDown {
+//     from, 60%, 75%, 90%, 100% {
+//       -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//       animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//     }
+  
+//     0% {
+//       opacity: 0;
+//       -webkit-transform: translate3d(0, -3000px, 0);
+//       transform: translate3d(0, -3000px, 0);
+//     }
+  
+//     60% {
+//       opacity: 1;
+//       -webkit-transform: translate3d(0, 25px, 0);
+//       transform: translate3d(0, 25px, 0);
+//     }
+  
+//     75% {
+//       -webkit-transform: translate3d(0, -10px, 0);
+//       transform: translate3d(0, -10px, 0);
+//     }
+  
+//     90% {
+//       -webkit-transform: translate3d(0, 5px, 0);
+//       transform: translate3d(0, 5px, 0);
+//     }
+  
+//     100% {
+//       -webkit-transform: none;
+//       transform: none;
+//     }
+//   }
+  
+//   .bounceInDown {
+//     -webkit-animation-name: bounceInDown;
+//     animation-name: bounceInDown;
+//   }
+  
+//   @-webkit-keyframes bounceInLeft {
+//     from, 60%, 75%, 90%, 100% {
+//       -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//       animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//     }
+  
+//     0% {
+//       opacity: 0;
+//       -webkit-transform: translate3d(-3000px, 0, 0);
+//       transform: translate3d(-3000px, 0, 0);
+//     }
+  
+//     60% {
+//       opacity: 1;
+//       -webkit-transform: translate3d(25px, 0, 0);
+//       transform: translate3d(25px, 0, 0);
+//     }
+  
+//     75% {
+//       -webkit-transform: translate3d(-10px, 0, 0);
+//       transform: translate3d(-10px, 0, 0);
+//     }
+  
+//     90% {
+//       -webkit-transform: translate3d(5px, 0, 0);
+//       transform: translate3d(5px, 0, 0);
+//     }
+  
+//     100% {
+//       -webkit-transform: none;
+//       transform: none;
+//     }
+//   }
+  
+//   @keyframes bounceInLeft {
+//     from, 60%, 75%, 90%, 100% {
+//       -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//       animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//     }
+  
+//     0% {
+//       opacity: 0;
+//       -webkit-transform: translate3d(-3000px, 0, 0);
+//       transform: translate3d(-3000px, 0, 0);
+//     }
+  
+//     60% {
+//       opacity: 1;
+//       -webkit-transform: translate3d(25px, 0, 0);
+//       transform: translate3d(25px, 0, 0);
+//     }
+  
+//     75% {
+//       -webkit-transform: translate3d(-10px, 0, 0);
+//       transform: translate3d(-10px, 0, 0);
+//     }
+  
+//     90% {
+//       -webkit-transform: translate3d(5px, 0, 0);
+//       transform: translate3d(5px, 0, 0);
+//     }
+  
+//     100% {
+//       -webkit-transform: none;
+//       transform: none;
+//     }
+//   }
+  
+//   .bounceInLeft {
+//     -webkit-animation-name: bounceInLeft;
+//     animation-name: bounceInLeft;
+//   }
+  
+//   @-webkit-keyframes bounceInRight {
+//     from, 60%, 75%, 90%, 100% {
+//       -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//       animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//     }
+  
+//     from {
+//       opacity: 0;
+//       -webkit-transform: translate3d(3000px, 0, 0);
+//       transform: translate3d(3000px, 0, 0);
+//     }
+  
+//     60% {
+//       opacity: 1;
+//       -webkit-transform: translate3d(-25px, 0, 0);
+//       transform: translate3d(-25px, 0, 0);
+//     }
+  
+//     75% {
+//       -webkit-transform: translate3d(10px, 0, 0);
+//       transform: translate3d(10px, 0, 0);
+//     }
+  
+//     90% {
+//       -webkit-transform: translate3d(-5px, 0, 0);
+//       transform: translate3d(-5px, 0, 0);
+//     }
+  
+//     100% {
+//       -webkit-transform: none;
+//       transform: none;
+//     }
+//   }
+  
+//   @keyframes bounceInRight {
+//     from, 60%, 75%, 90%, 100% {
+//       -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//       animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//     }
+  
+//     from {
+//       opacity: 0;
+//       -webkit-transform: translate3d(3000px, 0, 0);
+//       transform: translate3d(3000px, 0, 0);
+//     }
+  
+//     60% {
+//       opacity: 1;
+//       -webkit-transform: translate3d(-25px, 0, 0);
+//       transform: translate3d(-25px, 0, 0);
+//     }
+  
+//     75% {
+//       -webkit-transform: translate3d(10px, 0, 0);
+//       transform: translate3d(10px, 0, 0);
+//     }
+  
+//     90% {
+//       -webkit-transform: translate3d(-5px, 0, 0);
+//       transform: translate3d(-5px, 0, 0);
+//     }
+  
+//     100% {
+//       -webkit-transform: none;
+//       transform: none;
+//     }
+//   }
+  
+//   .bounceInRight {
+//     -webkit-animation-name: bounceInRight;
+//     animation-name: bounceInRight;
+//   }
+  
+//   @-webkit-keyframes bounceInUp {
+//     from, 60%, 75%, 90%, 100% {
+//       -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//       animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//     }
+  
+//     from {
+//       opacity: 0;
+//       -webkit-transform: translate3d(0, 3000px, 0);
+//       transform: translate3d(0, 3000px, 0);
+//     }
+  
+//     60% {
+//       opacity: 1;
+//       -webkit-transform: translate3d(0, -20px, 0);
+//       transform: translate3d(0, -20px, 0);
+//     }
+  
+//     75% {
+//       -webkit-transform: translate3d(0, 10px, 0);
+//       transform: translate3d(0, 10px, 0);
+//     }
+  
+//     90% {
+//       -webkit-transform: translate3d(0, -5px, 0);
+//       transform: translate3d(0, -5px, 0);
+//     }
+  
+//     100% {
+//       -webkit-transform: translate3d(0, 0, 0);
+//       transform: translate3d(0, 0, 0);
+//     }
+//   }
+  
+//   @keyframes bounceInUp {
+//     from, 60%, 75%, 90%, 100% {
+//       -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//       animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+//     }
+  
+//     from {
+//       opacity: 0;
+//       -webkit-transform: translate3d(0, 3000px, 0);
+//       transform: translate3d(0, 3000px, 0);
+//     }
+  
+//     60% {
+//       opacity: 1;
+//       -webkit-transform: translate3d(0, -20px, 0);
+//       transform: translate3d(0, -20px, 0);
+//     }
+  
+//     75% {
+//       -webkit-transform: translate3d(0, 10px, 0);
+//       transform: translate3d(0, 10px, 0);
+//     }
+  
+//     90% {
+//       -webkit-transform: translate3d(0, -5px, 0);
+//       transform: translate3d(0, -5px, 0);
+//     }
+  
+//     100% {
+//       -webkit-transform: translate3d(0, 0, 0);
+//       transform: translate3d(0, 0, 0);
+//     }
+//   }
+  
+//   .bounceInUp {
+//     -webkit-animation-name: bounceInUp;
+//     animation-name: bounceInUp;
+//   }
+  
+//   @-webkit-keyframes bounceOut {
+//     20% {
+//       -webkit-transform: scale3d(.9, .9, .9);
+//       transform: scale3d(.9, .9, .9);
+//     }
+  
+//     50%, 55% {
+//       opacity: 1;
+//       -webkit-transform: scale3d(1.1, 1.1, 1.1);
+//       transform: scale3d(1.1, 1.1, 1.1);
+//     }
+  
+//     100% {
+//       opacity: 0;
+//       -webkit-transform: scale3d(.3, .3, .3);
+//       transform: scale3d(.3, .3, .3);
+//     }
+//   }
+  
+//   @keyframes bounceOut {
+//     20% {
+//       -webkit-transform: scale3d(.9, .9, .9);
+//       transform: scale3d(.9, .9, .9);
+//     }
+  
+//     50%, 55% {
+//       opacity: 1;
+//       -webkit-transform: scale3d(1.1, 1.1, 1.1);
+//       transform: scale3d(1.1, 1.1, 1.1);
+//     }
+  
+//     100% {
+//       opacity: 0;
+//       -webkit-transform: scale3d(.3, .3, .3);
+//       transform: scale3d(.3, .3, .3);
+//     }
+//   }
+  
+//   .bounceOut {
+//     -webkit-animation-name: bounceOut;
+//     animation-name: bounceOut;
+//   }
+  
+//   @-webkit-keyframes bounceOutDown {
+//     20% {
+//       -webkit-transform: translate3d(0, 10px, 0);
+//       transform: translate3d(0, 10px, 0);
+//     }
+  
+//     40%, 45% {
+//       opacity: 1;
+//       -webkit-transform: translate3d(0, -20px, 0);
+//       transform: translate3d(0, -20px, 0);
+//     }
+  
+//     100% {
+//       opacity: 0;
+//       -webkit-transform: translate3d(0, 2000px, 0);
+//       transform: translate3d(0, 2000px, 0);
+//     }
+//   }
+  
+//   @keyframes bounceOutDown {
+//     20% {
+//       -webkit-transform: translate3d(0, 10px, 0);
+//       transform: translate3d(0, 10px, 0);
+//     }
+  
+//     40%, 45% {
+//       opacity: 1;
+//       -webkit-transform: translate3d(0, -20px, 0);
+//       transform: translate3d(0, -20px, 0);
+//     }
+  
+//     100% {
+//       opacity: 0;
+//       -webkit-transform: translate3d(0, 2000px, 0);
+//       transform: translate3d(0, 2000px, 0);
+//     }
+//   }
+  
+//   .bounceOutDown {
+//     -webkit-animation-name: bounceOutDown;
+//     animation-name: bounceOutDown;
+//   }
+  
+//   @-webkit-keyframes bounceOutLeft {
+//     20% {
+//       opacity: 1;
+//       -webkit-transform: translate3d(20px, 0, 0);
+//       transform: translate3d(20px, 0, 0);
+//     }
+  
+//     100% {
+//       opacity: 0;
+//       -webkit-transform: translate3d(-2000px, 0, 0);
+//       transform: translate3d(-2000px, 0, 0);
+//     }
+//   }
+  
+//   @keyframes bounceOutLeft {
+//     20% {
+//       opacity: 1;
+//       -webkit-transform: translate3d(20px, 0, 0);
+//       transform: translate3d(20px, 0, 0);
+//     }
+  
+//     100% {
+//       opacity: 0;
+//       -webkit-transform: translate3d(-2000px, 0, 0);
+//       transform: translate3d(-2000px, 0, 0);
+//     }
+//   }
+  
+//   .bounceOutLeft {
+//     -webkit-animation-name: bounceOutLeft;
+//     animation-name: bounceOutLeft;
+//   }
+  
+//   @-webkit-keyframes bounceOutRight {
+//     20% {
+//       opacity: 1;
+//       -webkit-transform: translate3d(-20px, 0, 0);
+//       transform: translate3d(-20px, 0, 0);
+//     }
+  
+//     100% {
+//       opacity: 0;
+//       -webkit-transform: translate3d(2000px, 0, 0);
+//       transform: translate3d(2000px, 0, 0);
+//     }
+//   }
+  
+//   @keyframes bounceOutRight {
+//     20% {
+//       opacity: 1;
+//       -webkit-transform: translate3d(-20px, 0, 0);
+//       transform: translate3d(-20px, 0, 0);
+//     }
+  
+//     100% {
+//       opacity: 0;
+//       -webkit-transform: translate3d(2000px, 0, 0);
+//       transform: translate3d(2000px, 0, 0);
+//     }
+//   }
+  
+//   .bounceOutRight {
+//     -webkit-animation-name: bounceOutRight;
+//     animation-name: bounceOutRight;
+//   }
+  
+//   @-webkit-keyframes bounceOutUp {
+//     20% {
+//       -webkit-transform: translate3d(0, -10px, 0);
+//       transform: translate3d(0, -10px, 0);
+//     }
+  
+//     40%, 45% {
+//       opacity: 1;
+//       -webkit-transform: translate3d(0, 20px, 0);
+//       transform: translate3d(0, 20px, 0);
+//     }
+  
+//     100% {
+//       opacity: 0;
+//       -webkit-transform: translate3d(0, -2000px, 0);
+//       transform: translate3d(0, -2000px, 0);
+//     }
+//   }
+  
+//   @keyframes bounceOutUp {
+//     20% {
+//       -webkit-transform: translate3d(0, -10px, 0);
+//       transform: translate3d(0, -10px, 0);
+//     }
+  
+//     40%, 45% {
+//       opacity: 1;
+//       -webkit-transform: translate3d(0, 20px, 0);
+//       transform: translate3d(0, 20px, 0);
+//     }
+  
+//     100% {
+//       opacity: 0;
+//       -webkit-transform: translate3d(0, -2000px, 0);
+//       transform: translate3d(0, -2000px, 0);
+//     }
+//   }
+  
+//   .bounceOutUp {
+//     -webkit-animation-name: bounceOutUp;
+//     animation-name: bounceOutUp;
+//   }
+  
+//   @-webkit-keyframes fadeIn {
+//     from {
+//       opacity: 0;
+//     }
+  
+//     100% {
+//       opacity: 1;
+//     }
+//   }
+  
+//   @keyframes fadeIn {
+//     from {
+//       opacity: 0;
+//     }
+  
+//     100% {
+//       opacity: 1;
+//     }
+//   }
+  
