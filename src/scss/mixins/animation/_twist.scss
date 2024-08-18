@@ -1,0 +1,188 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// StyleScape | Animations | Twist
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "base" as *;
+
+
+// Twist Animation
+// ----------------------------------------------------------------------------
+
+/**
+ * Twist Animation
+ *
+ * Creates a twist effect with scaling and rotating.
+ *
+ * @mixin animate_twist
+ * @param {Number} $scale_end [0.9] - The scale factor at the midpoint of the animation.
+ * @param {Angle} $rotation [10deg] - The rotation angle at the midpoint of the animation.
+ * @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
+ * @param {String} $timing_function [ease-in-out] - The timing function for the animation.
+ * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+ */
+@mixin animate_twist(
+    $scale_end: 0.9, 
+    $rotation: 10deg, 
+    $duration: $animate_base_duration, 
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_twist,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_twist {
+        0%, 100% { transform: scale(1) rotate(0deg); }
+        50% { transform: scale($scale_end) rotate($rotation); }
+    }
+}
+
+.animate_twist {
+    @include animate_twist();
+}
+
+
+// Gentle Twist Animation
+// ----------------------------------------------------------------------------
+
+/**
+ * Gentle Twist Animation
+ *
+ * A slower and subtler version of the Twist animation.
+ *
+ * @mixin animate_twist_slow
+ * @param {Number} $scale_end [0.95] - The scale factor at the midpoint of the animation.
+ * @param {Angle} $rotation [5deg] - The rotation angle at the midpoint of the animation.
+ * @param {Duration} $duration [$animate_base_duration_slow] - The duration of the animation.
+ * @param {String} $timing_function [ease-in-out] - The timing function for the animation.
+ * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+ */
+@mixin animate_twist_slow(
+    $scale_end: 0.95, 
+    $rotation: 5deg, 
+    $duration: $animate_base_duration_slow,
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_twist_slow,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_twist_slow {
+        0%, 100% { transform: scale(1) rotate(0deg); }
+        50% { transform: scale($scale_end) rotate($rotation); }
+    }
+}
+
+.animate_twist_slow {
+    @include animate_twist_slow();
+}
+
+
+// Rapid Twist Animation
+// ----------------------------------------------------------------------------
+
+/**
+ * Rapid Twist Animation
+ *
+ * A faster and more intense version of the Twist animation.
+ *
+ * @mixin animate_twist_fast
+ * @param {Number} $scale_end [0.85] - The scale factor at the midpoint of the animation.
+ * @param {Angle} $rotation [15deg] - The rotation angle at the midpoint of the animation.
+ * @param {Duration} $duration [$animate_base_duration_fast] - The duration of the animation.
+ * @param {String} $timing_function [ease-in-out] - The timing function for the animation.
+ * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+ */
+@mixin animate_twist_fast(
+    $scale_end: 0.85, 
+    $rotation: 15deg, 
+    $duration: $animate_base_duration_fast, 
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_twist_fast,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_twist_fast {
+        0%, 100% { transform: scale(1) rotate(0deg); }
+        50% { transform: scale($scale_end) rotate($rotation); }
+    }
+}
+
+.animate_twist_fast {
+    @include animate_twist_fast();
+}
+
+
+// Twist with Color Change
+// ----------------------------------------------------------------------------
+
+/**
+ * Twist with Color Change Animation
+ *
+ * Adds a color transition to the Twist animation.
+ *
+ * @mixin animate_twist_color
+ * @param {Number} $scale_end [0.9] - The scale factor at the midpoint of the animation.
+ * @param {Angle} $rotation [10deg] - The rotation angle at the midpoint of the animation.
+ * @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
+ * @param {String} $timing_function [ease-in-out] - The timing function for the animation.
+ * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+ * @param {Color} $color_start [$animate_base_color_start] - The starting color of the animation.
+ * @param {Color} $color_end [$animate_base_color_end] - The ending color of the animation.
+ */
+@mixin animate_twist_color(
+    $scale_end: 0.9, 
+    $rotation: 10deg, 
+    $duration: $animate_base_duration, 
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count,
+    $color_start: $animate_base_color_start,
+    $color_end: $animate_base_color_end,
+) {
+    @include animate_base(
+        animate_twist_color,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_twist_color {
+        0%, 100% { 
+            transform: scale(1) rotate(0deg); 
+            color: $color_start;
+        }
+        50% { 
+            transform: scale($scale_end) rotate($rotation); 
+            color: $color_end;
+        }
+    }
+}
+
+.animate_twist_color {
+    @include animate_twist_color();
+}
