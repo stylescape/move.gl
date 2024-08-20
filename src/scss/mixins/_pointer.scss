@@ -1,0 +1,68 @@
+
+// ============================================================================
+// Pinters
+// ============================================================================
+
+@use "../variables" as *;
+@use "../mixins" as *;
+
+// Mixin for setting pointer-events property with support for global and
+// ----------------------------------------------------------------------------
+// keyword values.
+@mixin pointer_events($state: auto) {
+    pointer-events: $state;
+}
+
+.interactive-element {
+    @include pointer-events(auto); // Enable pointer events
+}
+  
+.non-interactive-element {
+    @include pointer-events(none); // Disable pointer events
+}
+  
+.custom-element {
+    @include pointer-events(visiblePainted); // Use for SVG elements
+}
+
+  
+// Global Values
+@mixin pointer_inherit { pointer-events: inherit; }
+@mixin pointer_initial { pointer-events: initial; }
+@mixin pointer_revert { pointer-events: revert; }
+@mixin pointer_revert_layer { pointer-events: revert-layer; }
+@mixin pointer_unset { pointer-events: unset; }
+
+
+// Keyword Values
+@mixin pointer_auto { pointer-events: auto; }
+@mixin pointer_none { pointer-events: none; }
+@mixin pointer_all { pointer-events: all; } // SVG Only
+
+@mixin pointer_fill { pointer-events: fill; } // SVG Only
+@mixin pointer_painted { pointer-events: painted; } // SVG Only
+@mixin pointer_stroke { pointer-events: stroke; } // SVG Only
+
+@mixin pointer_visible { pointer-events: visible; } // SVG Only
+@mixin pointer_visible_fill { pointer-events: visibleFill; } // SVG Only
+@mixin pointer_visible_painted { pointer-events: visiblePainted; } // SVG Only
+@mixin pointer_visible_stroke { pointer-events: visibleStroke; } // SVG Only
+
+
+// Mixin for hover styles that only apply when pointer events are enabled.
+// This ensures hover styles are not applied if the element is non-interactive.
+@mixin hover-style-with-pointer-check {
+    @if pointer-events != 'none' {
+        &:hover { @content; }
+    }
+}
+
+// Simplified mixins for commonly used pointer-events values.
+// Accepts 'inherit', 'initial', 'revert', 'revert-layer', 'unset'
+@mixin pointer-global($value) {
+    @include pointer-events($value);
+}
+
+@mixin pointer-keyword($value) {
+    @include pointer-events($value); // Accepts 'auto', 'none', 'all' and SVG-specific values
+}
