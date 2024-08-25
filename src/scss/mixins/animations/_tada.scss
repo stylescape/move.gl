@@ -1,0 +1,243 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// StyleScape | Animations | Tada
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "base" as *;
+
+
+// Tada Animation
+// ----------------------------------------------------------------------------
+
+/**
+ * Tada Animation
+ *
+ * Creates a "tada" effect with scaling and rotating.
+ *
+ * @mixin animate_tada
+ * @param {Number} $scale [1.1] - The scale factor for the animation.
+ * @param {Duration} $duration [$animate_base_duration * 2] - The duration of the animation.
+ * @param {String} $timing_function [ease-in-out] - The timing function for the animation.
+ * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+ */
+@mixin animate_tada(
+    $scale: 1.1, 
+    $duration: $animate_base_duration * 2,
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_tada,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_tada {
+        0%, 100% { transform: scale(1); }
+        10%, 20% { transform: scale(0.9) rotate(-3deg); }
+        30%, 50%, 70%, 90% { transform: scale($scale) rotate(3deg); }
+        40%, 60%, 80% { transform: scale($scale) rotate(-3deg); }
+    }
+}
+
+.animate_tada {
+    @include animate_tada();
+}
+
+
+// Gentle Tada Animation
+// ----------------------------------------------------------------------------
+
+/**
+ * Gentle Tada Animation
+ *
+ * A more subtle version of the Tada animation.
+ *
+ * @mixin animate_tada_slow
+ * @param {Number} $scale [1.05] - The scale factor for the animation.
+ * @param {Duration} $duration [$animate_base_duration_slow * 2] - The duration of the animation.
+ * @param {String} $timing_function [ease-in-out] - The timing function for the animation.
+ * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+ */
+@mixin animate_tada_slow(
+    $scale: 1.05, 
+    $duration: $animate_base_duration_slow * 2,
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_tada_slow,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_tada_slow {
+        0%, 100% { transform: scale(1); }
+        10%, 20% { transform: scale(0.95) rotate(-2deg); }
+        30%, 50%, 70%, 90% { transform: scale($scale) rotate(2deg); }
+        40%, 60%, 80% { transform: scale($scale) rotate(-2deg); }
+    }
+}
+
+.animate_tada_slow {
+    @include animate_tada_slow();
+}
+
+
+// Rapid Tada Animation
+// ----------------------------------------------------------------------------
+
+/**
+ * Rapid Tada Animation
+ *
+ * A faster and more exaggerated version of the Tada animation.
+ *
+ * @mixin animate_tada_fast
+ * @param {Number} $scale [1.15] - The scale factor for the animation.
+ * @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
+ * @param {String} $timing_function [ease-in-out] - The timing function for the animation.
+ * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+ */
+@mixin animate_tada_fast(
+    $scale: 1.15, 
+    $duration: $animate_base_duration, 
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_tada_fast,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_tada_fast {
+        0%, 100% { transform: scale(1); }
+        10%, 20% { transform: scale(0.85) rotate(-4deg); }
+        30%, 50%, 70%, 90% { transform: scale($scale) rotate(4deg); }
+        40%, 60%, 80% { transform: scale($scale) rotate(-4deg); }
+    }
+}
+
+.animate_tada_fast {
+    @include animate_tada_fast();
+}
+
+
+// Tada with Fade Animation
+// ----------------------------------------------------------------------------
+
+/**
+ * Tada with Fade Animation
+ *
+ * Adds a fading effect to the Tada animation.
+ *
+ * @mixin animate_tada_fade
+ * @param {Number} $scale [1.1] - The scale factor for the animation.
+ * @param {Duration} $duration [$animate_base_duration * 2] - The duration of the animation.
+ * @param {String} $timing_function [ease-in-out] - The timing function for the animation.
+ * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+ */
+@mixin animate_tada_fade(
+    $scale: 1.1, 
+    $duration: $animate_base_duration * 2,
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_tada_fade,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_tada_fade {
+        0%, 100% { 
+            transform: scale(1); 
+            opacity: 1;
+        }
+        50% { 
+            transform: scale($scale) rotate(3deg); 
+            opacity: 0.5;
+        }
+    }
+}
+
+.animate_tada_fade {
+    @include animate_tada_fade();
+}
+
+
+
+// @-webkit-keyframes tada {
+//     from {
+//       -webkit-transform: scale3d(1, 1, 1);
+//       transform: scale3d(1, 1, 1);
+//     }
+  
+//     10%, 20% {
+//       -webkit-transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+//       transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+//     }
+  
+//     30%, 50%, 70%, 90% {
+//       -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+//       transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+//     }
+  
+//     40%, 60%, 80% {
+//       -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+//       transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+//     }
+  
+//     100% {
+//       -webkit-transform: scale3d(1, 1, 1);
+//       transform: scale3d(1, 1, 1);
+//     }
+//   }
+  
+//   @keyframes tada {
+//     from {
+//       -webkit-transform: scale3d(1, 1, 1);
+//       transform: scale3d(1, 1, 1);
+//     }
+  
+//     10%, 20% {
+//       -webkit-transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+//       transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+//     }
+  
+//     30%, 50%, 70%, 90% {
+//       -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+//       transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+//     }
+  
+//     40%, 60%, 80% {
+//       -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+//       transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+//     }
+  
+//     100% {
+//       -webkit-transform: scale3d(1, 1, 1);
+//       transform: scale3d(1, 1, 1);
+//     }
+//   }
+  
+//   .tada {
+//     -webkit-animation-name: tada;
+//     animation-name: tada;
+//   }
