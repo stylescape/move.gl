@@ -1,0 +1,238 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// StyleScape | Animations | Spin
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "base" as *;
+
+
+// Spin Animation
+// ----------------------------------------------------------------------------
+
+/**
+ * Spin Animation
+ *
+ * Creates a continuous spinning animation.
+ *
+ * @mixin animate_spin
+ * @param {Angle} $start_angle [0deg] - The starting angle for the spin.
+ * @param {Angle} $end_angle [360deg] - The ending angle for the spin.
+ * @param {Duration} $duration [$animate_base_duration] - The duration of the spin animation.
+ * @param {String} $timing_function [linear] - The timing function for the spin animation.
+ * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+ */
+@mixin animate_spin(
+    $start_angle: 0deg,
+    $end_angle: 360deg,
+    $duration: $animate_base_duration,
+    $timing_function: linear,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_spin,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_spin {
+        from { transform: rotate($start_angle); }
+        to { transform: rotate($end_angle); }
+    }
+}
+
+.animate_spin {
+    @include animate_spin();
+}
+
+// .spin {
+//     // position: absolute;
+//     // top: 50%;
+//     // left: 50%;
+//     // width: 120px;
+//     // height: 120px;
+//     // margin:-60px 0 0 -60px;
+//     -webkit-animation:spin 4s linear infinite;
+//     -moz-animation:spin 4s linear infinite;
+//     animation:spin 4s linear infinite;
+// }
+// @-moz-keyframes spin { 
+//     100% { -moz-transform: rotate(360deg); } 
+// }
+// @-webkit-keyframes spin { 
+//     100% { -webkit-transform: rotate(360deg); } 
+// }
+// @keyframes spin { 
+//     100% { 
+//         -webkit-transform: rotate(360deg); 
+//         transform:rotate(360deg); 
+//     } 
+// }
+
+// Spin Reverse Animation
+// ----------------------------------------------------------------------------
+
+/**
+ * Spin Reverse Animation
+ *
+ * Creates a reverse spinning animation.
+ *
+ * @mixin animate_spin_reverse
+ * @param {Angle} $start_angle [360deg] - The starting angle for the reverse spin.
+ * @param {Angle} $end_angle [0deg] - The ending angle for the reverse spin.
+ * @param {Duration} $duration [$animate_base_duration] - The duration of the spin animation.
+ * @param {String} $timing_function [linear] - The timing function for the spin animation.
+ */
+@mixin animate_spin_reverse(
+    $start_angle: 360deg, 
+    $end_angle: 0deg, 
+    $duration: $animate_base_duration,
+    $timing_function: linear
+) {
+    @include animate_base(
+        animate_spin_reverse,
+        $duration,
+        $timing_function,
+        infinite,
+    );
+    @keyframes animate_spin_reverse {
+        from { transform: rotate($start_angle); }
+        to { transform: rotate($end_angle); }
+    }
+}
+
+.animate_spin_reverse {
+    @include animate_spin_reverse();
+}
+
+
+// Spin and Grow Animation
+// ----------------------------------------------------------------------------
+
+/**
+ * Spin and Grow Animation
+ *
+ * Creates a spinning animation with a scaling effect.
+ *
+ * @mixin animate_spin_grow
+ * @param {Number} $scale [1.2] - The scale factor for the grow effect.
+ * @param {Duration} $duration [$animate_base_duration_slow] - The duration of the animation.
+ * @param {String} $timing_function [ease-in-out] - The timing function for the animation.
+ * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+ */
+@mixin animate_spin_grow(
+    $scale: 1.2, 
+    $duration: $animate_base_duration_slow,
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_spin_grow,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @keyframes animate_spin_grow {
+        0%, 100% { transform: scale(1) rotate(0deg); }
+        50% { transform: scale($scale) rotate(180deg); }
+    }
+}
+
+.animate_spin_grow {
+    @include animate_spin_grow();
+}
+
+
+// Spin Pulse Animation
+// ----------------------------------------------------------------------------
+
+/**
+ * Spin Pulse Animation
+ *
+ * Creates a spinning animation with a pulsing scale effect.
+ *
+ * @mixin animate_spin_pulse
+ * @param {Number} $scale_min [1] - The minimum scale for the pulse effect.
+ * @param {Number} $scale_max [1.1] - The maximum scale for the pulse effect.
+ * @param {Angle} $rotation_angle [360deg] - The angle for the rotation.
+ * @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
+ * @param {String} $timing_function [linear] - The timing function for the animation.
+ * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+ */
+@mixin animate_spin_pulse(
+    $scale_min: 1, 
+    $scale_max: 1.1, 
+    $rotation_angle: 360deg, 
+    $duration: $animate_base_duration, 
+    $timing_function: linear, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_spin_pulse,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_spin_pulse {
+        0%, 100% { transform: rotate(0deg) scale($scale_min); }
+        50% { transform: rotate($rotation_angle) scale($scale_max); }
+    }
+}
+
+.animate_spin_pulse {
+    @include animate_spin_pulse();
+}
+
+
+// Spin and Flip Animation
+// ----------------------------------------------------------------------------
+
+/**
+ * Spin and Flip Animation
+ *
+ * Creates a spinning animation with a flipping effect.
+ *
+ * @mixin animate_spin_flip
+ * @param {Angle} $rotation_angle [360deg] - The angle for the rotation.
+ * @param {Angle} $flip_angle [180deg] - The angle for the flip effect.
+ * @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
+ * @param {String} $timing_function [ease-in-out] - The timing function for the animation.
+ * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+ */
+@mixin animate_spin_flip(
+    $rotation_angle: 360deg, 
+    $flip-angle: 180deg, 
+    $duration: $animate_base_duration, 
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_spin_flip,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_spin_flip {
+        0%, 100% { transform: rotateY(0deg) rotate($rotation_angle); }
+        50% { transform: rotateY($flip-angle) rotate($rotation_angle); }
+    }
+}
+
+.animate_spin_flip {
+    @include animate_spin_flip();
+}
