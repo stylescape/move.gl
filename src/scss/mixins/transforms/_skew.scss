@@ -1,0 +1,13 @@
+
+///
+/// Mixin for skewing elements by specified angles along X and Y axes.
+/// 
+/// @mixin skew
+/// @param {Number} $x [$default-skew] - The angle to skew along the X-axis.
+/// @param {Number} $y [$default-skew] - The angle to skew along the Y-axis.
+/// @example scss - Usage
+///   .icon-skew { @include skew(10deg, 5deg); } // Skews the element 10deg on X-axis and 5deg on Y-axis
+///
+@mixin skew($x: $default-skew, $y: $default-skew) {
+    transform: skew($x, $y);
+}
