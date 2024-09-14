@@ -1,0 +1,69 @@
+
+
+
+// ============================================================================
+// Accessibility
+// ============================================================================
+@use "../variables" as *;
+@use "../mixins" as *;
+
+/// Set the progress cursor for elements with `aria-busy="true"`.
+[aria-busy='true'] {
+    cursor: progress;
+}
+
+/// Set the pointer cursor for elements that control other elements, indicated
+/// by `aria-controls`.
+[aria-controls] {
+    cursor: pointer;
+}
+
+/// Set the default cursor for disabled or non-interactive elements, indicated
+/// by `aria-disabled="true"`.
+[aria-disabled='true'] {
+    cursor: default;
+}
+
+
+
+
+
+// Accessibility Enhancements
+// Using ARIA attributes to improve cursor semantics for better user experience
+// in assistive technologies and for users with disabilities.
+
+/// Mixin to apply cursor styles based on ARIA attributes.
+/// @param {String} $property - The ARIA property (without 'aria-' prefix).
+/// @param {String} $value - The value of the ARIA property.
+/// @param {String} $cursor - The cursor style to apply.
+/// @group Accessibility
+@mixin cursor_style($property, $value, $cursor) {
+    [#{'aria-' + $property}='#{ $value }'] {
+        cursor: $cursor;
+    }
+}
+
+/// Progress cursor for elements that are updating or being processed.
+/// Applied to `aria-busy="true"` elements.
+/// @group Accessibility
+@include cursor_style('busy', 'true', progress);
+
+/// Pointer cursor for interactive elements that control other elements.
+/// Applied to elements with the `aria-controls` attribute.
+/// @group Accessibility
+@include cursor_style('controls', '', pointer);
+
+/// Default cursor for elements that are disabled or non-interactive.
+/// Applied to `aria-disabled="true"` elements.
+/// @group Accessibility
+@include cursor_style('disabled', 'true', default);
+
+/// Not-allowed cursor for elements in an invalid state.
+/// Example use case: form inputs with `aria-invalid="true"`.
+/// @group Accessibility
+@include cursor_style('invalid', 'true', not-allowed);
+
+/// Help cursor for elements that provide additional information or guidance.
+/// Example use case: elements with `aria-haspopup="true"`.
+/// @group Accessibility
+@include cursor_style('haspopup', 'true', help);
