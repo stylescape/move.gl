@@ -1,43 +1,51 @@
-// Copyright 2024 Scape Agency BV
+// ============================================================================
+// Poster
+// ============================================================================
 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+////
+/// 
+/// Ripple Animations Mixin Module
+/// ===========================================================================
+/// 
+/// This module ...
+/// 
+/// 
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
 
 
 // ============================================================================
-// StyleScape | Animations | Ripple
+// Use
 // ============================================================================
 
 @use "../dev" as *;
 @use "../variables" as *;
+@use "../keyframes" as *;
 @use "base" as *;
 
 
-// Ripple Animation
-// ----------------------------------------------------------------------------
+// ============================================================================
+// Mixins
+// ============================================================================
 
-/**
- * Ripple Animation
- *
- * Creates a ripple effect where the element scales up and fades out.
- *
- * @mixin animate_ripple
- * @param {Number} $scale_start [1] - The initial scale of the ripple.
- * @param {Number} $scale_end [1.5] - The final scale of the ripple.
- * @param {Number} $opacity_start [1] - The initial opacity of the ripple.
- * @param {Number} $opacity_end [0] - The final opacity of the ripple.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the ripple animation.
- * @param {String} $timing_function [ease-out] - The timing function for the ripple animation.
- */
+
+///
+/// Ripple Animation
+/// Creates a ripple effect where the element scales up and fades out.
+/// @name animate_ripple
+/// @param {Number} $scale_start [1] - The initial scale of the ripple.
+/// @param {Number} $scale_end [1.5] - The final scale of the ripple.
+/// @param {Number} $opacity_start [1] - The initial opacity of the ripple.
+/// @param {Number} $opacity_end [0] - The final opacity of the ripple.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the ripple animation.
+/// @param {String} $timing_function [ease-out] - The timing function for the ripple animation.
+///
 @mixin animate_ripple(
     $scale_start: 1, 
     $scale_end: 1.5, 
@@ -58,25 +66,21 @@
     }
 }
 
-.animate_ripple {
-    @include animate_ripple();
-}
 
 
 // Slow Ripple Animation
 // ----------------------------------------------------------------------------
 
-/**
- * Slow Ripple Animation
- *
- * Creates a slower ripple effect where the element scales up and fades out.
- *
- * @mixin animate_ripple_slow
- * @param {Number} $scale_end [1.5] - The final scale of the ripple.
- * @param {Number} $opacity_end [0] - The final opacity of the ripple.
- * @param {Number|String} $duration [2s] - The duration of the ripple animation.
- * @param {String} $timing_function [ease-out] - The timing function for the ripple animation.
- */
+///
+/// Slow Ripple Animation
+/// Creates a slower ripple effect where the element scales up and fades out.
+/// 
+/// @name animate_ripple_slow
+/// @param {Number} $scale_end [1.5] - The final scale of the ripple.
+/// @param {Number} $opacity_end [0] - The final opacity of the ripple.
+/// @param {Number|String} $duration [2s] - The duration of the ripple animation.
+/// @param {String} $timing_function [ease-out] - The timing function for the ripple animation.
+///
 @mixin animate_ripple_slow(
     $scale_end: 1.5, 
     $opacity_end: 0, 
@@ -95,26 +99,20 @@
     }
 }
 
-.animate_ripple_slow {
-    @include animate_ripple_slow();
-}
-
 
 // Multi-Ripple Animation
 // ----------------------------------------------------------------------------
 
-/**
- * Multi-Ripple Animation
- *
- * Creates a ripple effect with multiple stages of scaling and fading.
- *
- * @mixin animate_ripple_multi
- * @param {Number} $scale_first [1.2] - The scale of the ripple at the first stage.
- * @param {Number} $scale_second [1.5] - The scale of the ripple at the second stage.
- * @param {Number} $opacity_end [0] - The final opacity of the ripple.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the ripple animation.
- * @param {String} $timing_function [ease-out] - The timing function for the ripple animation.
- */
+///
+/// Multi-Ripple Animation
+/// Creates a ripple effect with multiple stages of scaling and fading.
+/// @name animate_ripple_multi
+/// @param {Number} $scale_first [1.2] - The scale of the ripple at the first stage.
+/// @param {Number} $scale_second [1.5] - The scale of the ripple at the second stage.
+/// @param {Number} $opacity_end [0] - The final opacity of the ripple.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the ripple animation.
+/// @param {String} $timing_function [ease-out] - The timing function for the ripple animation.
+///
 @mixin animate_ripple_multi(
     $scale_first: 1.2,
     $scale_second: 1.5,
@@ -135,27 +133,21 @@
     }
 }
 
-.animate_ripple_multi {
-    @include animate_ripple_multi();
-}
-
 
 // Ripple with Color Change
 // ----------------------------------------------------------------------------
 
-/**
- * Ripple with Color Change
- *
- * Creates a ripple effect where the element scales up, fades out, and changes color.
- *
- * @mixin animate_ripple_color
- * @param {Number} $scale_end [1.5] - The final scale of the ripple.
- * @param {Number} $opacity_end [0] - The final opacity of the ripple.
- * @param {Color} $color_start [$animate_base_color_start] - The starting color of the ripple.
- * @param {Color} $color_end [$animate_base_color_end] - The ending color of the ripple.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the ripple animation.
- * @param {String} $timing_function [ease-out] - The timing function for the ripple animation.
- */
+///
+/// Ripple with Color Change
+/// Creates a ripple effect where the element scales up, fades out, and changes color.
+/// @name animate_ripple_color
+/// @param {Number} $scale_end [1.5] - The final scale of the ripple.
+/// @param {Number} $opacity_end [0] - The final opacity of the ripple.
+/// @param {Color} $color_start [$animate_base_color_start] - The starting color of the ripple.
+/// @param {Color} $color_end [$animate_base_color_end] - The ending color of the ripple.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the ripple animation.
+/// @param {String} $timing_function [ease-out] - The timing function for the ripple animation.
+///
 @mixin animate_ripple_color(
     $scale_end: 1.5, 
     $opacity_end: 0,
@@ -174,8 +166,4 @@
         0% { transform: scale(1); opacity: 1; background-color: $color_start; }
         100% { transform: scale($scale_end); opacity: $opacity_end; background-color: $color_end; }
     }
-}
-
-.animate_ripple_color {
-    @include animate_ripple_color();
 }
