@@ -1,70 +1,51 @@
-// Copyright 2024 Scape Agency BV
+// ============================================================================
+// Poster
+// ============================================================================
 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+////
+/// 
+/// Heartbeat Animations Mixin Module
+/// ===========================================================================
+/// 
+/// This module ...
+/// 
+/// 
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
 
 
 // ============================================================================
-// StyleScape | Animations | Heartbeat
+// Use
 // ============================================================================
 
 @use "../dev" as *;
 @use "../variables" as *;
+@use "../keyframes" as *;
 @use "base" as *;
 
-// Heartbeat Animation
-// ----------------------------------------------------------------------------
 
-// @mixin animate_heartbeat(
-//     $scale: 1.1,
-//     $duration: $animate_base_duration,
-//     $timing_function: ease-in-out,
-//     $iteration_count: $animate_base_iteration_count
-// ) {
-//     @include animate_base(
-//         animate_heartbeat,
-//         $duration,
-//         $timing_function,
-//         $iteration_count
-//     );
-//     @keyframes animate_heartbeat {
-//         0%, 100% { transform: scale(1); }
-//         14%, 80% { transform: scale($scale); }
-//         28%, 70% { transform: scale(1); }
-//         42% { transform: scale($scale); }
-//         56% { transform: scale(1); }
-//     }
-// }
-
-// .#{$icongl_prefix}animate_heartbeat {
-//     @include animate_heartbeat();
-// }
+// ============================================================================
+// Mixins
+// ============================================================================
 
 
-// Heartbeat Animation
-// ----------------------------------------------------------------------------
-
-/**
- * Heartbeat Animation
- *
- * Creates a heartbeat animation where the element scales up and down.
- *
- * @mixin animate_heartbeat
- * @param {Number} $scale_min [0.9] - The minimum scale of the heartbeat.
- * @param {Number} $scale_max [1.1] - The maximum scale of the heartbeat.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the heartbeat animation.
- * @param {String} $timing_function [linear] - The timing function for the heartbeat animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+///
+/// Heartbeat Animation
+/// Creates a heartbeat animation where the element scales up and down.
+/// 
+/// @name animate_heartbeat
+/// @param {Number} $scale_min [0.9] - The minimum scale of the heartbeat.
+/// @param {Number} $scale_max [1.1] - The maximum scale of the heartbeat.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the heartbeat animation.
+/// @param {String} $timing_function [linear] - The timing function for the heartbeat animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_heartbeat(
     $scale_min: 0.9, 
     $scale_max: 1.1, 
@@ -86,26 +67,19 @@
     }
 }
 
-.animate_heartbeat {
-    @include animate_heartbeat();
-}
 
 
-// Rapid Heartbeat Animation
-// ----------------------------------------------------------------------------
-
-/**
- * Rapid Heartbeat Animation
- *
- * Creates a rapid heartbeat animation with faster scaling transitions.
- *
- * @mixin animate_heartbeat_fast
- * @param {Number} $scale_min [0.85] - The minimum scale of the heartbeat.
- * @param {Number} $scale_max [1.15] - The maximum scale of the heartbeat.
- * @param {Number|String} $duration [$animate_base_duration_fast] - The duration of the heartbeat animation.
- * @param {String} $timing_function [linear] - The timing function for the heartbeat animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+///
+/// Rapid Heartbeat Animation
+/// Creates a rapid heartbeat animation with faster scaling transitions.
+/// 
+/// @name animate_heartbeat_fast
+/// @param {Number} $scale_min [0.85] - The minimum scale of the heartbeat.
+/// @param {Number} $scale_max [1.15] - The maximum scale of the heartbeat.
+/// @param {Number|String} $duration [$animate_base_duration_fast] - The duration of the heartbeat animation.
+/// @param {String} $timing_function [linear] - The timing function for the heartbeat animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_heartbeat_fast(
     $scale_min: 0.85, 
     $scale_max: 1.15, 
@@ -127,26 +101,17 @@
     }
 }
 
-.animate_heartbeat_fast {
-    @include animate_heartbeat_fast();
-}
 
-
-// Slow Heartbeat Animation
-// ----------------------------------------------------------------------------
-
-/**
- * Slow Heartbeat Animation
- *
- * Creates a slow heartbeat animation with more gradual scaling transitions.
- *
- * @mixin animate_heartbeat_slow
- * @param {Number} $scale_min [0.95] - The minimum scale of the heartbeat.
- * @param {Number} $scale_max [1.05] - The maximum scale of the heartbeat.
- * @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the heartbeat animation.
- * @param {String} $timing_function [ease-in-out] - The timing function for the heartbeat animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+///
+/// Slow Heartbeat Animation
+/// Creates a slow heartbeat animation with more gradual scaling transitions.
+/// @name animate_heartbeat_slow
+/// @param {Number} $scale_min [0.95] - The minimum scale of the heartbeat.
+/// @param {Number} $scale_max [1.05] - The maximum scale of the heartbeat.
+/// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the heartbeat animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the heartbeat animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_heartbeat_slow(
     $scale_min: 0.95, 
     $scale_max: 1.05, 
@@ -168,28 +133,20 @@
     }
 }
 
-.animate_heartbeat_slow {
-    @include animate_heartbeat_slow();
-}
 
 
-// Heartbeat with Color Change
-// ----------------------------------------------------------------------------
-
-/**
- * Heartbeat with Color Change
- *
- * Creates a heartbeat animation that includes a color transition.
- *
- * @mixin animate_heartbeat_color
- * @param {Number} $scale_min [0.9] - The minimum scale of the heartbeat.
- * @param {Number} $scale_max [1.1] - The maximum scale of the heartbeat.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the heartbeat animation.
- * @param {String} $timing_function [linear] - The timing function for the heartbeat animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- * @param {Color} $color_start [$animate_base_color_start] - The starting color of the element.
- * @param {Color} $color_end [$animate_base_color_end] - The ending color of the element.
- */
+///
+/// Heartbeat with Color Change
+/// Creates a heartbeat animation that includes a color transition.
+/// @name animate_heartbeat_color
+/// @param {Number} $scale_min [0.9] - The minimum scale of the heartbeat.
+/// @param {Number} $scale_max [1.1] - The maximum scale of the heartbeat.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the heartbeat animation.
+/// @param {String} $timing_function [linear] - The timing function for the heartbeat animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Color} $color_start [$animate_base_color_start] - The starting color of the element.
+/// @param {Color} $color_end [$animate_base_color_end] - The ending color of the element.
+///
 @mixin animate_heartbeat_color(
     $scale_min: 0.9, 
     $scale_max: 1.1, 
@@ -215,8 +172,4 @@
             color: $color_end;
         }
     }
-}
-
-.animate_heartbeat_color {
-    @include animate_heartbeat_color();
 }
