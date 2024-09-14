@@ -1,0 +1,62 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// StyleScape | Effects | Opacity
+// ============================================================================
+
+@use "../variables" as *;
+@use "../mixins" as *;
+// Base Opacity Mixin
+// ----------------------------------------------------------------------------
+
+@mixin set_opacity($opacity-level) {
+    opacity: $opacity-level !important;
+    visibility: if($opacity-level > 0, visible, hidden);
+}
+
+
+// Predefined Opacity Levels
+// ----------------------------------------------------------------------------
+
+.opacity_00 { @include set_opacity(0.0); }
+.opacity_01 { @include set_opacity(0.1); }
+.opacity_02 { @include set_opacity(0.2); }
+.opacity_03 { @include set_opacity(0.3); }
+.opacity_04 { @include set_opacity(0.4); }
+.opacity_05 { @include set_opacity(0.5); }
+.opacity_06 { @include set_opacity(0.6); }
+.opacity_07 { @include set_opacity(0.7); }
+.opacity_08 { @include set_opacity(0.8); }
+.opacity_09 { @include set_opacity(0.9); }
+.opacity_10 { @include set_opacity(1.0); }
+
+
+// ----------------------------------------------------------------------------
+
+$hover_opacity: 0.75;
+
+// Opacity Transition Mixin
+@mixin opacity_transition($duration: 0.3s, $hover_opacity: 0.75) {
+    transition: opacity $duration ease;
+    &:hover {
+        opacity: $hover_opacity;
+    }
+}
+
+// Example Usage of Opacity Transition
+.opacity_hover {
+    @include opacity_transition(0.3s, 0.75);
+}
