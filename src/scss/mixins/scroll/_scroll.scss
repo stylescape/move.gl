@@ -1,32 +1,104 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
 /// 
-/// Enables smooth scrolling for a container.
+/// Scroll Mixins
+/// ===========================================================================
+///
+/// This module provides mixins to enable smooth scrolling and scroll snapping 
+/// features for containers, enhancing user interaction and navigation within 
+/// scrollable elements.
+///
 /// 
-/// @name scroll_smooth
+/// 
+/// @group Mouse
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @see https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../variables" as *;
+@use "../mixins" as *;
+
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+/// 
+/// Mixin to enable smooth scrolling for a container.
+/// Provides a smooth scroll behavior for elements that overflow.
+/// 
+/// @mixin scroll_smooth
+/// @param {Boolean} $enable [true] - Enables smooth scrolling if true, disables otherwise.
+/// @param {Boolean} $touch_scrolling [true] - Enables WebKit touch scrolling if true.
 /// 
 /// @example scss - Usage
-///   @include smooth-scroll;
+///   .scrollable-container {
+///       @include scroll_smooth(true, true);
+///   }
 /// 
-@mixin scroll_smooth() {
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+@mixin scroll_smooth(
+    $enable: true,
+    $touch_scrolling: true
+) {
+    @if $enable {
+        scroll-behavior: smooth;
+    } @else {
+        scroll-behavior: auto;
+    }
+
+    @if $touch_scrolling {
+        -webkit-overflow-scrolling: touch;
+    } @else {
+        -webkit-overflow-scrolling: auto;
+    }
 }
 
-
 /// 
-/// Sets up scroll snapping for a container.
+/// Mixin to set up scroll snapping for a container.
+/// Configures scroll snapping for elements, useful for creating carousels or 
+/// step-by-step guides with smooth navigation between sections.
 /// 
-/// @name scroll_snap
-/// @param {String} $type - The type of scroll snapping (default: y mandatory).
-/// @param {String} $align - How items are aligned in the snap (default: start).
+/// @mixin scroll_snap
+/// @param {String} $type [y mandatory] - The scroll snapping type ('x' or 'y', and 'mandatory' or 'proximity').
+/// @param {String} $align [start] - Alignment of the snapped items (start, center, end, or none).
+/// @param {String} $stop [normal] - Specifies the scroll-snap-stop behavior (normal, always).
 /// 
 /// @example scss - Usage
-///   @include scroll-_snap(x mandatory, center);
+///   .snap-container {
+///       @include scroll_snap('x mandatory', 'center', 'always');
+///   }
 /// 
 @mixin scroll_snap(
     $type: y mandatory,
-    $align: start
+    $align: start,
+    $stop: normal
 ) {
     scroll-snap-type: $type;
     scroll-snap-align: $align;
+    scroll-snap-stop: $stop;
 }
-    
+
+
+/// Example usage
+.scrollable-container {
+    @include scroll_smooth(); // Enables smooth scrolling with default settings
+}
+
+.snap-container {
+    @include scroll_snap(x mandatory, center); // Sets up horizontal snapping to center
+}
