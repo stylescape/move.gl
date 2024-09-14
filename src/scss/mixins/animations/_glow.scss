@@ -1,45 +1,55 @@
-// Copyright 2024 Scape Agency BV
+// ============================================================================
+// Poster
+// ============================================================================
 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+////
+/// 
+/// Glow Animations Mixin Module
+/// ===========================================================================
+/// 
+/// This module ...
+/// 
+/// 
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
 
 
 // ============================================================================
-// StyleScape | Animations | Glow
+// Use
 // ============================================================================
 
 @use "sass:math";
 @use "../dev" as *;
 @use "../variables" as *;
+@use "../keyframes" as *;
 @use "base" as *;
 
 
+// ============================================================================
+// Mixins
+// ============================================================================
 
-// Glow Animation
-// ----------------------------------------------------------------------------
 
-/**
- * Glow Animation
- *
- * Creates a glowing effect by animating the box shadow of the element.
- *
- * @mixin animate_glow
- * @param {Color} $color [$animate_base_color_glow_01] - The color of the glow.
- * @param {Number|String} $start-shadow_size [5px] - The initial size of the shadow.
- * @param {Number|String} $end-shadow_size [15px] - The maximum size of the shadow.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the glow animation.
- * @param {String} $timing_function [ease-in-out] - The timing function for the glow animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+
+
+
+///
+/// Glow Animation
+/// Creates a glowing effect by animating the box shadow of the element.
+/// @name animate_glow
+/// @param {Color} $color [$animate_base_color_glow_01] - The color of the glow.
+/// @param {Number|String} $start-shadow_size [5px] - The initial size of the shadow.
+/// @param {Number|String} $end-shadow_size [15px] - The maximum size of the shadow.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the glow animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the glow animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_glow(
     $color: $animate_base_color_glow_01, 
     $start-shadow_size: 5px, 
@@ -60,24 +70,19 @@
     }
 }
 
-.animate_glow {
-    @include animate_glow($animate_base_color_glow_01);
-}
 
 // Pulse Glow Animation
 // ----------------------------------------------------------------------------
 
-/**
- * Pulse Glow Animation
- *
- * Creates a pulsing glow effect where the glow size changes over time.
- *
- * @mixin animate_glow_pulse
- * @param {Color} $color [$animate_base_color_glow_01] - The color of the glow.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the glow animation.
- * @param {String} $timing_function [ease-in-out] - The timing function for the glow animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+///
+/// Pulse Glow Animation
+/// Creates a pulsing glow effect where the glow size changes over time.
+/// @name animate_glow_pulse
+/// @param {Color} $color [$animate_base_color_glow_01] - The color of the glow.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the glow animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the glow animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_glow_pulse(
     $color: $animate_base_color_glow_01,
     $duration: $animate_base_duration,
@@ -96,24 +101,19 @@
     }
 }
 
-.animate_glow_pulse {
-    @include animate_glow_pulse($animate_base_color_glow_01);
-}
 
 // Soft Glow Animation
 // ----------------------------------------------------------------------------
 
-/**
- * Soft Glow Animation
- *
- * Creates a soft glow effect with a slower and subtler animation.
- *
- * @mixin animate_glow_soft
- * @param {Color} $color [$animate_base_color_glow_01] - The color of the glow.
- * @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the glow animation.
- * @param {String} $timing_function [ease-in-out] - The timing function for the glow animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+///
+/// Soft Glow Animation
+/// Creates a soft glow effect with a slower and subtler animation.
+/// @name animate_glow_soft
+/// @param {Color} $color [$animate_base_color_glow_01] - The color of the glow.
+/// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the glow animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the glow animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_glow_soft(
     $color: $animate_base_color_glow_01, 
     $duration: $animate_base_duration_slow,
@@ -140,17 +140,15 @@
 // ----------------------------------------------------------------------------
 
 
-/**
- * Multi-Color Glow Animation
- *
- * Creates a glow animation that cycles through multiple colors.
- *
- * @mixin animate_glow_multicolor
- * @param {List} $colors [($animate_base_color_glow_01, $animate_base_color_glow_02, $animate_base_color_glow_03)] - A list of colors for the glow animation.
- * @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the glow animation.
- * @param {String} $timing_function [linear] - The timing function for the glow animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+///
+/// Multi-Color Glow Animation
+/// Creates a glow animation that cycles through multiple colors.
+/// @name animate_glow_multicolor
+/// @param {List} $colors [($animate_base_color_glow_01, $animate_base_color_glow_02, $animate_base_color_glow_03)] - A list of colors for the glow animation.
+/// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the glow animation.
+/// @param {String} $timing_function [linear] - The timing function for the glow animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_glow_multicolor(
     $colors: (
         $animate_base_color_glow_01,
@@ -178,8 +176,4 @@
             }
         }
     }
-}
-
-.animate_glow_multicolor {
-    @include animate_glow_multicolor();
 }
