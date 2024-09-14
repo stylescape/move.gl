@@ -1,44 +1,52 @@
-// Copyright 2024 Scape Agency BV
+// ============================================================================
+// Poster
+// ============================================================================
 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+////
+/// 
+/// Shake Animations Mixin Module
+/// ===========================================================================
+/// 
+/// This module ...
+/// 
+/// 
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
 
 
 // ============================================================================
-// StyleScape | Animations | Shake
+// Use
 // ============================================================================
 
 @use "sass:math";
 @use "../dev" as *;
 @use "../variables" as *;
+@use "../keyframes" as *;
 @use "base" as *;
 
 
+// ============================================================================
+// Mixins
+// ============================================================================
 
-// Shake Animation
-// ----------------------------------------------------------------------------
 
-/**
- * Shake Animation
- *
- * Creates a shake animation with configurable amplitude, duration, timing function,
- * and iteration count.
- *
- * @mixin animate_shake
- * @param {Number} $amplitude [15deg] - The maximum angle of the shake.
- * @param {Number} $duration [math.div($animate_base_duration, 2)] - The duration of the animation.
- * @param {String} $timing_function [ease-in-out] - The timing function to use for the animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of times the animation should run.
- */
+
+///
+/// Shake Animation
+/// Creates a shake animation with configurable amplitude, duration, timing function,
+/// and iteration count.
+/// @name animate_shake
+/// @param {Number} $amplitude [15deg] - The maximum angle of the shake.
+/// @param {Number} $duration [math.div($animate_base_duration, 2)] - The duration of the animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function to use for the animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of times the animation should run.
+///
 @mixin animate_shake(
     $amplitude: 15deg, 
     $duration: math.div($animate_base_duration, 2),
@@ -64,26 +72,20 @@
     }
 }
 
-.animate_shake {
-    @include animate_shake();
-}
-
 
 // Gentle Shake Animation
 // ----------------------------------------------------------------------------
 
-/**
- * Gentle Shake Animation
- *
- * Creates a gentle shake animation with a smaller amplitude, designed for
- * slower and less intense shaking effects.
- *
- * @mixin animate_shake_slow
- * @param {Number} $amplitude [10deg] - The maximum angle of the shake.
- * @param {Number} $duration [math.div($animate_base_duration_slow, 2)] - The duration of the animation.
- * @param {String} $timing_function [ease-in-out] - The timing function to use for the animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of times the animation should run.
- */
+///
+/// Gentle Shake Animation
+/// Creates a gentle shake animation with a smaller amplitude, designed for
+/// slower and less intense shaking effects.
+/// @name animate_shake_slow
+/// @param {Number} $amplitude [10deg] - The maximum angle of the shake.
+/// @param {Number} $duration [math.div($animate_base_duration_slow, 2)] - The duration of the animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function to use for the animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of times the animation should run.
+///
 @mixin animate_shake_slow(
     $amplitude: 10deg, 
     $duration: math.div($animate_base_duration_slow, 2),
@@ -103,25 +105,21 @@
     }
 }
 
-.animate_shake_slow {
-    @include animate_shake_slow();
-}
+
 
 // Horizontal Shake Animation
 // ----------------------------------------------------------------------------
 
-/**
- * Horizontal Shake Animation
- *
- * Creates a horizontal shake animation, moving the element side to side
- * by a configurable distance.
- *
- * @mixin animate_shake_horizontal
- * @param {Number} $distance [10px] - The distance to move the element.
- * @param {Number} $duration [math.div($animate_base_duration, 2)] - The duration of the animation.
- * @param {String} $timing_function [ease-in-out] - The timing function to use for the animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of times the animation should run.
- */
+///
+/// Horizontal Shake Animation
+/// Creates a horizontal shake animation, moving the element side to side
+/// by a configurable distance.
+/// @name animate_shake_horizontal
+/// @param {Number} $distance [10px] - The distance to move the element.
+/// @param {Number} $duration [math.div($animate_base_duration, 2)] - The duration of the animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function to use for the animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of times the animation should run.
+///
 @mixin animate_shake_horizontal(
     $distance: 10px, 
     $duration: math.div($animate_base_duration, 2),
@@ -140,11 +138,6 @@
         50% { transform: translateX($distance); }
     }
 }
-
-.animate_shake_horizontal {
-    @include animate_shake_horizontal();
-}
-
 
 
 
