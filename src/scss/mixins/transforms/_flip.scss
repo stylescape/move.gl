@@ -72,5 +72,5 @@
 ///   .transform_flip_both { @include transform_flip_both(); }
 ///
 @mixin transform_flip_both {
-    transform: scale(1, -1);
+    transform: scale(-1, -1);
 }
