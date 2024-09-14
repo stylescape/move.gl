@@ -1,416 +1,71 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Cursors Mixin Module
+/// ===========================================================================
+///
+/// This module provides a comprehensive set of mixins for managing cursor
+/// styles in CSS. It includes utility mixins for common cursor types, 
+/// custom cursors with fallback options, animated cursors, and advanced 
+/// use cases involving state-based and responsive cursor handling.
+/// 
+/// 
+/// @group Mouse
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @see https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
 
 @use "../variables" as *;
+@use "../maps" as *;
 @use "../mixins" as *;
 
-// ============================================================================
-// Cursors
-// ============================================================================
-// https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
 
 
-/// Cursor Styles Map
-/// ----------------------------------------------------------------------------
-/// Defines a map of cursor styles for easy reference and extensibility
-/// @group Cursors
-$cursor_styles: (
-
-    // General
-    "auto": auto,                   // Default cursor
-    "default": default,             // The platform-dependent default cursor. Typically an arrow.
-    "none": none,                   // No cursor is rendered.
-
-    // Links & Status
-    "context-menu": context-menu,   // Indicates a context menu is available
-    "help": help,                   // Can be used for elements that provide additional information
-    "pointer": pointer,             // Indicates a link. Typically an image of a pointing hand.
-    "progress": progress,           // Indicates progress
-    "wait": wait,                   // Indicates a waiting state, often used for loading
-
-    // Selection
-    "cell": cell,                   // Indicates a cell or selectable item
-    "crosshair": crosshair,         // Useful for precision elements, like in a drawing tool
-    "text": text,                   // The text can be selected. Typically the shape of an I-beam.
-    "vertical-text": vertical-text, // The vertical text can be selected. Typically the shape of a sideways I-beam.
-
-    // Drag & drop
-    "alias": alias,                 // Can indicate an alias of/shortcut to something
-    "copy": copy,                   // Indicates something can be copied
-    "move": move,                   // Something is to be moved.
-    "no-drop": no-drop,             // Indicates that dropping is not allowed
-    "not-allowed": not-allowed,     // Indicates an action is not allowed
-    "grab": grab,                   // Something can be grabbed (dragged to be moved).
-    "grabbing": grabbing,           // Something is being grabbed (dragged to be moved).
-
-    // Resizing & Scrolling
-    "all-scroll": all-scroll,       // Indicates scrolling in any direction
-    "col-resize": col-resize,       // Indicates that a column can be resized
-    "row-resize": row-resize,       // Indicates that a row can be resized
-    "n-resize": n-resize,           // thin long arrow pointing towards the top    Some edge is to be moved. For example, the se-resize cursor is used when the movement starts from the south-east corner of the box.
-    // In some environments, an equivalent bidirectional resize cursor is shown. For example, n-resize and s-resize are the same as ns-resize.
-    "e-resize": e-resize,           // thin long arrow pointing towards the right
-    "s-resize": s-resize,           // thin long arrow pointing down
-    "w-resize": w-resize,           // thin long arrow pointing towards the left
-    "ne-resize": ne-resize,         // thin long arrow pointing top-right
-    "nw-resize": nw-resize,         // thin long arrow pointing top-left
-    "se-resize": se-resize,         // thin long arrow pointing bottom-right
-    "sw-resize": sw-resize,
-    "ew-resize": ew-resize,         // thin long arrow pointing left and right    Bidirectional resize cursor.
-    "ns-resize": ns-resize,         // thin long arrow pointing up and down
-    "nesw-resize": nesw-resize,     // thin long arrow pointing both to the top-right and bottom-left
-    "nwse-resize": nwse-resize,
-
-    // Zooming
-    "zoom-in": zoom-in, // Indicates that something can be zoomed in
-    "zoom-out": zoom-out, // Indicates that something can be zoomed out
-
-    // Additions start here
-    "disabled": not-allowed,
-    "resize-vertical": ns-resize, // For vertical resizing
-    "resize-horizontal": ew-resize, // For horizontal resizing
-    "resize-diagonal-1": nwse-resize, // For diagonal resizing (top-left to bottom-right)
-    "resize-diagonal-2": nesw-resize, // For diagonal resizing (top-right to bottom-left)
-
-);
 
 
-/// @mixin custom-cursor
-/// Sets a custom cursor image or style for an element.
-/// @param {String} $url - The URL of the cursor image.
-/// @param {String} $fallback - The fallback cursor style if the image is not available (default: pointer).
+
+
+///
+/// Mixin for applying a cursor style using predefined cursor types from the map.
+/// 
+/// @mixin cursor_style
+/// @param {String} $type ['default'] - The cursor style to apply.
 /// @example scss - Usage
-///   @include custom-cursor('path/to/cursor.png', 'pointer');
-@mixin custom-cursor($url, $fallback: pointer) {
-    cursor: url(#{$url}), #{$fallback};
-}
-
-/// Basic Cursor Mixin
-/// ----------------------------------------------------------------------------
-/// Versatile cursor mixin using the map. Allows for quickly applying a cursor style to an element
-/// @param {String} $type - The cursor type, defaults to "default"
-/// @group Cursors
+///   .element { @include cursor_style('pointer'); } // Applies pointer cursor
+///
 @mixin cursor_style($type: "default") {
     @if map-has-key($cursor_styles, $type) {
         cursor: map-get($cursor_styles, $type);
     } @else {
-        // Fallback to the provided value if it's not in the map
-        cursor: $type;
+        cursor: $type; // Fallback if type is not in map
     }
 }
 
-// Using Loops for Cursor Classes
-// ----------------------------------------------------------------------------
-// SCSS loops can be used to generate utility classes for different
-// cursor styles, simplifying the process of applying cursors directly
-// in your HTML.
-
-/// Generate utility classes for common cursor types using SCSS loops.
-/// @group Cursors
-$cursors: ('pointer', 'text', 'wait', 'crosshair', 'not-allowed', 'zoom-in', 'grab');
-
-@each $cursor in $cursors {
-    .cursor-#{$cursor} {
-        cursor: $cursor;
-    }
-}
-
-// Utility Mixins for Cursors
-// ----------------------------------------------------------------------------
-// These mixins provide quick access to common cursor styles, making your
-// stylesheets more readable and easier to maintain.
-
-}
-
-/// Utility Mixin for Pointer Cursor
-/// ----------------------------------------------------------------------------
-/// Sets the cursor to pointer
-/// @group Cursors
-@mixin cursor_pointer {
-    cursor: pointer;
-}
-
-/// Utility Mixin for Text Cursor
-/// ----------------------------------------------------------------------------
-/// Sets the cursor to text
-/// @group Cursors
-@mixin cursor_text {
-    cursor: text;
-}
-
-/// Utility Mixin for Disabled Cursor
-/// ----------------------------------------------------------------------------
-/// Sets the cursor to not-allowed
-/// @group Cursors
-@mixin cursor_disabled {
-    cursor: not-allowed;
-}
-
-/// Utility Mixin for Move Cursor
-/// ----------------------------------------------------------------------------
-/// Sets the cursor to move
-/// @group Cursors
-@mixin cursor_move {
-    cursor: move;
-}
-
-/// Utility Mixin for Grab Cursor
-/// ----------------------------------------------------------------------------
-/// Sets the cursor to grab
-/// @group Cursors
-@mixin cursor_grab {
-    cursor: grab;
-}
-
-/// Utility Mixin for Grabbing Cursor
-/// ----------------------------------------------------------------------------
-/// Sets the cursor to grabbing
-/// @group Cursors
-@mixin cursor_grabbing {
-    cursor: grabbing;
-}
-
-
-
-/// Mixin for Custom Cursors
-/// ----------------------------------------------------------------------------
-/// For custom cursor images, create a mixin that includes fallbacks in case the custom cursor cannot be loaded
-/// @param {String} $url - The URL of the custom cursor image
-/// @param {String} $fallback - The fallback cursor type, defaults to pointer
-/// @group Cursors
+///
+/// Mixin for custom cursor images with fallback options.
+/// 
+/// @mixin cursor_custom
+/// @param {String} $url - URL of the custom cursor image.
+/// @param {String} $fallback ['pointer'] - Fallback cursor style.
+/// @example scss - Usage
+///   .element { @include cursor_custom('path/to/cursor.png', 'pointer'); }
+///
 @mixin cursor_custom($url, $fallback: pointer) {
     cursor: url($url), $fallback;
-}
-
-/// Mixin with Hover Effect
-/// ----------------------------------------------------------------------------
-/// Combines cursor changes with other hover effects
-/// @param {String} $cursor-type - The cursor type on hover
-/// @param {Color} $background-color - The background color on hover, defaults to #ccc
-/// @group Cursors
-@mixin cursor_hover($cursor-type: pointer, $background-color: #ccc) {
-    &:hover {
-        cursor: $cursor-type;
-        background-color: $background-color;
-    }
-}
-
-
-/// Advanced Cursor Mixin with Multiple Parameters
-/// ----------------------------------------------------------------------------
-/// Allows for different cursor styles based on state or condition
-/// @param {String} $normal - The default cursor
-/// @param {String} $hover - The cursor on hover
-/// @param {String} $active - The cursor on active
-/// @group Cursors
-@mixin cursor_advanced($normal: default, $hover: pointer, $active: move) {
-    cursor: $normal;
-    &:hover {
-        cursor: $hover;
-    }
-    &:active {
-        cursor: $active;
-    }
-}
-
-/// Responsive Cursor Mixin
-/// ----------------------------------------------------------------------------
-/// Adjusts the cursor based on screen size, useful for desktop vs. touch devices
-/// @param {String} $desktop - The cursor on desktop devices
-/// @param {String} $touch - The cursor on touch devices
-/// @group Cursors
-@mixin cursor_responsive($desktop: pointer, $touch: default) {
-    @media (pointer: fine) {
-        cursor: $desktop;
-    }
-    @media (pointer: coarse) {
-        cursor: $touch;
-    }
-}
-
-/// Function for Dynamic Cursor
-/// ----------------------------------------------------------------------------
-/// Returns a cursor value based on a condition
-/// @param {Boolean} $condition - The condition to evaluate
-/// @return {String} The cursor style
-/// @group Cursors
-@function cursor_dynamic($condition: true) {
-    @if $condition == true {
-        @return pointer;
-    } @else {
-        @return default;
-    }
-}
-
-
-
-/// Mixin for Complex Hover Effects with Cursors
-/// ----------------------------------------------------------------------------
-/// Combines cursor changes with background color, border, and shadow effects
-/// @param {String} $cursor - The cursor type on hover
-/// @param {Color} $bg-color - The background color on hover, defaults to #eee
-/// @param {Color} $border-color - The border color on hover, defaults to darken(#eee, 10%)
-/// @param {String} $shadow - The box-shadow on hover, defaults to 0 2px 4px rgba(0,0,0,0.1)
-/// @group Cursors
-@mixin complex-hover(
-    $cursor: pointer,
-    $bg-color: #eee,
-    $border-color: darken(#eee, 10%),
-    $shadow: 0 2px 4px rgba(0,0,0,0.1)
-) {
-    &:hover {
-        cursor: $cursor;
-        background-color: $bg-color;
-        border-color: $border-color;
-        box-shadow: $shadow;
-    }
-}
-
-
-
-/// Conditional Cursor Mixin
-/// ––––––––––––––––––––––––––––––––––––––
-/// Applies different cursor styles based on passed parameters
-/// @param {Boolean} $isClickable - Determines if the element is clickable
-/// @param {Boolean} $isEnabled - Determines if the element is enabled
-/// @group Cursors
-@mixin cursor_conditional(
-    $isClickable: true,
-    $isEnabled: true
-) {
-    @if $isClickable and $isEnabled {
-        cursor: pointer;
-    } @else if not $isEnabled {
-        cursor: not-allowed;
-    } @else {
-        cursor: default;
-    }
-}
-
-// Applying custom cursors to body and interactive elements
-body {
-    cursor: url('../cursor/default-white-20.png') 10 10, auto;  
-}
-
-a, button { 
-    cursor: url('../cursor/pointer-white-20.png') 10 10, auto;
-}
-
-// p {
-//     //cursor: url('static/cursor/text-white-20.png'), auto;
-// }
-
-
-
-// Mixin for Drag-and-Drop Cursors
-// ----------------------------------------------------------------------------
-// This mixin provides a simple way to switch between grab and grabbing
-// cursors, ideal for drag-and-drop interfaces.
-
-// @mixin drag-and-drop-cursor($isDragging: false) {
-//     cursor: $isDragging ? 'grabbing' : 'grab';
-// }
-
-// Usage:
-// .draggable-item {
-//     @include drag-and-drop-cursor($isDragging);
-// }
-
-/// Mixin for Resizable Elements with Direction
-/// ––––––––––––––––––––––––––––––––––––––
-/// For elements that can be resized, indicating the resize direction
-/// @param {String} $direction - The direction of resizing (e.g., ‘vertical’, ‘horizontal’)
-/// @group Cursors
-@mixin cursor_resizable(
-    $direction: all
-) {
-    @if $direction == 'vertical' {
-        cursor: ns-resize;
-    } @else if $direction == 'horizontal' {
-        cursor: ew-resize;
-    } @else {
-        cursor: nwse-resize;
-    }
-}
-
-.resizable-vertical {
-    @include cursor_resizable(vertical);
-}
-
-.resizable-horizontal {
-    @include cursor_resizable(horizontal);
-}
-
-
-
-/// Animated Cursor Mixin
-/// ––––––––––––––––––––––––––––––––––––––
-/// This mixin allows for the creation of animated cursors using a series of
-/// images or SVGs, providing a unique interaction experience.
-/// @param {List} $images - A list of image URLs for the animation frames
-/// @param {Time} $interval - The interval between frames, defaults to 0.5s
-/// @group Cursors
-@mixin cursor_animated(
-    $images,
-    $interval: 0.5s
-) {
-    $animation-frames: ();
-    $index: 0;
-
-    @each $image in $images {
-        $index: $index + 1;
-        $percentage: percentage($index / length($images));
-
-        $animation-frames: append($animation-frames, ($percentage $image), comma);
-    }
-
-    @keyframes cursor-animation {
-        @each $frame in $animation-frames {
-        #{nth($frame, 1)} {
-            cursor: url(#{nth($frame, 2)}), auto;
-        }
-        }
-    }
-
-    animation: cursor-animation $interval infinite;
-}
-
-// Usage:
-
-
-.cursor_animated-element {
-    @include cursor_animated(('image1.png', 'image2.png', 'image3.png'));
-}
-
-
-// Mixin for Conditional Cursors Based on Device Capability
-// ----------------------------------------------------------------------------
-// This mixin adjusts the cursor based on the device's capabilities, such as
-// touchscreens where a pointer cursor might not be as relevant.
-
-@mixin cursor_adaptive($nonTouch: pointer, $touch: default) {
-    cursor: $nonTouch;
-    @media (hover: none) and (pointer: coarse) {
-        cursor: $touch;
-    }
-}
-
-// Usage:
-
-.button {
-    @include cursor_adaptive(pointer, default);
-}
-
-
-// Utility Class Generator for Cursors
-// ----------------------------------------------------------------------------
-// This snippet generates a series of utility classes for different cursor
-// types, making it easy to apply cursor styles directly in your HTML.
-
-$cursor-types: ('default', 'pointer', 'wait', 'text', 'move', 'not-allowed', 'zoom-in', 'zoom-out', 'grab', 'grabbing');
-
-@each $type in $cursor-types {
-    .cursor-#{$type} {
-        cursor: $type;
-    }
+    // cursor: url(#{$url}), #{$fallback};
 }
 
 
@@ -418,286 +73,110 @@ $cursor-types: ('default', 'pointer', 'wait', 'text', 'move', 'not-allowed', 'zo
 
 
 
-// Mixin for Link/Button Cursor with Accessibility Enhancement
-// ----------------------------------------------------------------------------
-// This mixin is tailored for links or buttons, ensuring a pointer cursor
-// for mouse devices and an appropriate alternative for touch devices,
-// enhancing accessibility.
+// ============================================================================
+// Utility Mixins for Common Cursor Styles
+// ============================================================================
 
-@mixin cursor_interactive($touchCursor: default) {
-    cursor: pointer;
-    @media (hover: none) and (pointer: coarse) {
-        cursor: $touchCursor;
-    }
-}
+@mixin cursor_pointer { @include cursor_style('pointer'); }
+@mixin cursor_text { @include cursor_style('text'); }
+@mixin cursor_disabled { @include cursor_style('not-allowed'); }
+@mixin cursor_move { @include cursor_style('move'); }
+@mixin cursor_grab { @include cursor_style('grab'); }
+@mixin cursor_grabbing { @include cursor_style('grabbing'); }
+@mixin cursor_help { @include cursor_style('help'); }
+@mixin cursor_wait { @include cursor_style('wait'); }
+@mixin cursor_crosshair { @include cursor_style('crosshair'); }
+@mixin cursor_zoom_in { @include cursor_style('zoom-in'); }
+@mixin cursor_zoom_out { @include cursor_style('zoom-out'); }
 
-// Usage:
+// ============================================================================
+// Advanced Mixins
+// ============================================================================
 
-
-.link, .button {
-  @include cursor_interactive;
-}
-
-
-// Mixin for Custom Animated Cursors with Steps
-// ----------------------------------------------------------------------------
-// This mixin creates a custom animated cursor using a sprite sheet, allowing
-// for more complex cursor animations divided into steps.
-
-@mixin sprite-cursor($spriteUrl, $width, $height, $steps, $speed: 1s) {
-    @keyframes sprite-cursor-animation {
-        0% { background-position: 0 0; }
-        100% { background-position: 0 -#{$height * $steps}px; }
-    }
-
-    cursor: url($spriteUrl), auto;
-    animation: sprite-cursor-animation $speed steps($steps) infinite;
-}
-
-// Usage:
-
-.custom-cursor {
-  width: 32px; // Width of one frame
-  height: 32px; // Height of one frame
-  @include sprite-cursor('path/to/sprite.png', 32, 32, 10, 0.8s);
-}
-
-
-/// Mixin for Contextual Cursors
-/// ––––––––––––––––––––––––––––––––––––––
-/// This mixin applies different cursor styles based on the element's state or
-/// context, such as disabled, loading, or in a specific mode (like edit mode).
-/// @param {String} $default - Default cursor style
-/// @param {String} $disabled - Cursor style when disabled
-/// @param {String} $loading - Cursor style when loading
-/// @param {String} $edit - Cursor style in edit mode
-/// @group Cursors
-@mixin cursor_contextual($default: pointer, $disabled: not-allowed, $loading: progress, $edit: text) {
-    cursor: $default;
-    &.disabled {
-        cursor: $disabled;
-    }
-    &.loading {
-        cursor: $loading;
-    }
-    &.edit-mode {
-        cursor: $edit;
-    }
-}
-
-// Usage:
-
-
-.interactive-element {
-  @include contextual-cursor;
-}
-
-
-
-/// Mixin for Hover and Focus Cursors
-/// ––––––––––––––––––––––––––––––––––––––
-/// Enhances the visual feedback for hover and focus states
-/// This mixin enhances the visual feedback for hover and focus states,
-/// particularly useful for improving navigation for keyboard and mouse
-/// users alike.
-/// @param {String} $hover - Cursor style on hover
-/// @param {String} $focus - Cursor style on focus
-/// @group Cursors
-@mixin hover-focus-cursor($hover: pointer, $focus: pointer) {
-    &:hover {
-        cursor: $hover;
-    }
+///
+/// Mixin for hover and focus cursor effects.
+/// 
+/// @mixin hover_focus_cursor
+/// @param {String} $hover ['pointer'] - Cursor style on hover.
+/// @param {String} $focus ['pointer'] - Cursor style on focus.
+///
+@mixin hover_focus_cursor($hover: pointer, $focus: pointer) {
+    &:hover { cursor: $hover; }
     &:focus {
         cursor: $focus;
         outline: none; // Customize focus styles as needed
     }
 }
 
-// Usage:
-
-.navigable-item {
-    @include hover-focus-cursor;
+///
+/// Mixin for responsive cursor handling based on device capability.
+/// 
+/// @mixin cursor_responsive
+/// @param {String} $desktop ['pointer'] - Cursor for desktop devices.
+/// @param {String} $touch ['default'] - Cursor for touch devices.
+///
+@mixin cursor_responsive($desktop: pointer, $touch: default) {
+    @media (pointer: fine) { cursor: $desktop; }
+    @media (pointer: coarse) { cursor: $touch; }
 }
 
+///
+/// Mixin for animated cursors using a series of images.
+/// 
+/// @mixin cursor_animated
+/// @param {List} $images - A list of image URLs for animation frames.
+/// @param {Time} $interval ['0.5s'] - Interval between frames.
+///
+@mixin cursor_animated($images, $interval: 0.5s) {
+    $animation-frames: ();
+    $index: 0;
 
+    @each $image in $images {
+        $index: $index + 1;
+        $percentage: percentage($index / length($images));
+        $animation-frames: append($animation-frames, ($percentage $image), comma);
+    }
 
-/// Utility Mixins for Common Cursor Styles
-/// ––––––––––––––––––––––––––––––––––––––
-/// These utility mixins can be used to quickly apply common cursor styles to elements, further simplifying your stylesheet.
-/// @group Cursors
-@mixin cursor_help { cursor: help; }
-@mixin cursor_wait { cursor: wait; }
-@mixin cursor_crosshair { cursor: crosshair; }
-@mixin cursor_not-allowed { cursor: not-allowed; }
-@mixin cursor_zoom-in { cursor: zoom-in; }
-@mixin cursor_zoom-out { cursor: zoom-out; }
-
-// Usage
-.element-needing-help {
-    @include cursor-help;
-}
-
-.loading-element {
-    @include cursor-wait;
-}
-
-
-
-/// Mixin for Multi-State Cursors
-/// ––––––––––––––––––––––––––––––––––––––
-/// This mixin allows for defining a series of cursor states based on different
-/// classes or pseudo-classes, providing a granular level of control for
-/// various UI states.
-/// @param {Map} $states - A map of states and corresponding cursor styles
-/// @group Cursors
-@mixin multi-state-cursor($states) {
-    @each $state, $cursor in $states {
-        &#{$state} {
-        cursor: $cursor;
+    @keyframes cursor-animation {
+        @each $frame in $animation-frames {
+            #{nth($frame, 1)} {
+                cursor: url(#{nth($frame, 2)}), auto;
+            }
         }
     }
+
+    animation: cursor-animation $interval infinite;
 }
 
-// Usage:
+// ============================================================================
+// Utility Class Generator for Common Cursors
+// ============================================================================
 
-.button {
-    @include multi-state-cursor((
-        ':hover': pointer,
-        '.disabled': not-allowed,
-        '.dragging': grabbing,
-        ':focus': pointer
-    ));
-}
+// $cursors: ('pointer', 'text', 'wait', 'crosshair', 'not-allowed', 'zoom-in', 'grab', 'grabbing');
 
-
-
-
-/// Mixin for Cursor Transitions
-/// ––––––––––––––––––––––––––––––––––––––
-/// While CSS doesn't support transitions on the cursor property directly, you
-/// can simulate cursor transitions using a combination of pseudo-elements
-/// and opacity changes. This mixin provides a creative way to transition
-/// between cursor states.
-/// @param {String} $default - Default cursor style
-/// @param {String} $hover - Cursor style on hover
-/// @group Cursors
-@mixin cursor_transition($default: default, $hover: pointer) {
-    position: relative;
-
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        cursor: $hover;
-        opacity: 0;
-        transition: opacity 0.3s;
-    }
-
-    &:hover::after {
-        opacity: 1;
-    }
-
-    cursor: $default;
-}
-
-
-// Usage:
-
-.transition-cursor-element {
-  @include cursor-transition(default, pointer);
-}
-
-
-
-
-/// Mixin for Image Cursors with Fallback
-/// ––––––––––––––––––––––––––––––––––––––
-/// This mixin allows the use of image-based cursors with a specified fallback
-/// cursor. It's particularly useful for custom designs or branding elements
-/// that enhance the user experience.
-/// @param {String} $imageUrl - The URL of the image cursor
-/// @param {String} $fallback - Fallback cursor style
-/// @param {Number} $x - X-offset for the cursor hotspot
-/// @param {Number} $y - Y-offset for the cursor hotspot
-/// @group Cursors
-@mixin cursor_image($imageUrl, $fallback: pointer, $x: 0, $y: 0) {
-    cursor: url($imageUrl) #{$x} #{$y}, $fallback;
-}
-
-
-// Usage:
-
-
-.brand-cursor {
-    @include cursor_image('path/to/brand-cursor.png', pointer, 16, 16);
-}
-
-
-/// Mixin for Content-Based Cursors
-/// ––––––––––––––––––––––––––––––––––––––
-/// This mixin changes the cursor based on the content type, such as text,
-/// links, or editable content, enhancing content discoverability and
-/// interaction.
-/// @group Cursors
-@mixin content-cursor {
-    &:not(input):not(textarea) {
-        cursor: text;
-
-        a {
-            cursor: pointer;
-        }
-
-        [contenteditable="true"] {
-            cursor: text;
-        }
+@each $cursor in $cursors {
+    .cursor-#{$cursor} {
+        @include cursor_style($cursor);
     }
 }
 
+// ============================================================================
+// Examples of Using Advanced Mixins
+// ============================================================================
 
-// Usage:
+// /// Example: Advanced hover and focus with cursor change and background effect
+// .interactive-element {
+//     @include hover_focus_cursor(pointer, pointer);
+//     &:hover { background-color: lighten($primaryColor, 5%); }
+//     &:focus { background-color: lighten($primaryColor, 10%); }
+// }
 
-.text-content {
-    @include content-cursor;
-}
+// /// Example: Responsive cursor handling for different devices
+// .button {
+//     @include cursor_responsive(pointer, default);
+// }
 
-
-
-/// Advanced Hover and Focus Mixin with Cursors
-/// ––––––––––––––––––––––––––––––––––––––
-/// Combines hover and focus states with specific cursor styles and color effects
-/// This advanced mixin combines hover and focus states with specific cursor
-// styles, providing a cohesive interaction design for navigable elements.
-/// @param {String} $hoverCursor - Cursor style on hover
-/// @param {String} $focusCursor - Cursor style on focus
-/// @param {Color} $hoverColor - Background color on hover, defaults to #ccc
-/// @param {Color} $focusColor - Background color on focus, defaults to #bbb
-/// @group Cursors
-@mixin advanced-hover-focus(
-    $hoverCursor: pointer,
-    $focusCursor: pointer,
-    $hoverColor: #ccc,
-    $focusColor: #bbb
-) {
-    &:hover, &:focus {
-        outline: none;
-    }
-
-    &:hover {
-        cursor: $hoverCursor;
-        background-color: $hoverColor;
-    }
-
-    &:focus {
-        cursor: $focusCursor;
-        background-color: $focusColor;
-    }
-}
-
-// Usage:
-
-.interactive-element {
-  @include advanced-hover-focus(pointer, pointer, lighten($primaryColor, 5%), lighten($primaryColor, 10%));
-}
+// /// Example: Using animated cursor with a series of images
+// .cursor-animated-element {
+//     @include cursor_animated(('image1.png', 'image2.png', 'image3.png'));
+// }
