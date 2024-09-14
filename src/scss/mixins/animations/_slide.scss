@@ -1,42 +1,53 @@
-// Copyright 2024 Scape Agency BV
+// ============================================================================
+// Poster
+// ============================================================================
 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+////
+/// 
+/// Slide Animations Mixin Module
+/// ===========================================================================
+/// 
+/// This module ...
+/// 
+/// 
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
 
 
 // ============================================================================
-// StyleScape | Animations | Slide
+// Use
 // ============================================================================
 
 @use "../dev" as *;
 @use "../variables" as *;
+@use "../keyframes" as *;
 @use "base" as *;
 
 
-// Slide Animation
-// ----------------------------------------------------------------------------
+// ============================================================================
+// Mixins
+// ============================================================================
 
-/**
- * Slide Animation
- *
- * Creates a sliding animation in a specified direction.
- *
- * @mixin animate_slide
- * @param {String} $direction [left] - The direction in which the element slides (left, right).
- * @param {Number|String} $distance [100%] - The distance the element slides.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the slide animation.
- * @param {String} $timing_function [$animate_base_timing_function] - The timing function for the slide animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+
+
+
+
+///
+/// Slide Animation
+/// Creates a sliding animation in a specified direction.
+/// @name animate_slide
+/// @param {String} $direction [left] - The direction in which the element slides (left, right).
+/// @param {Number|String} $distance [100%] - The distance the element slides.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the slide animation.
+/// @param {String} $timing_function [$animate_base_timing_function] - The timing function for the slide animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_slide(
     $direction: left, 
     $distance: 100%, 
@@ -59,25 +70,19 @@
     }
 }
 
-.animate_slide {
-    @include animate_slide(left, 100%);
-}
-
 
 // Slide Up Animation
 // ----------------------------------------------------------------------------
 
-/**
- * Slide Up Animation
- *
- * Creates a slide up animation.
- *
- * @mixin animate_slide_up
- * @param {Number|String} $distance [20px] - The distance the element slides up.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the slide up animation.
- * @param {String} $timing_function [ease-in-out] - The timing function for the slide up animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+///
+/// Slide Up Animation
+/// Creates a slide up animation.
+/// @name animate_slide_up
+/// @param {Number|String} $distance [20px] - The distance the element slides up.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the slide up animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the slide up animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_slide_up(
     $distance: 20px, 
     $duration: $animate_base_duration, 
@@ -96,25 +101,19 @@
     }
 }
 
-.animate_slide_up {
-    @include animate_slide_up();
-}
-
 
 // Slide Down Animation
 // ----------------------------------------------------------------------------
 
-/**
- * Slide Down Animation
- *
- * Creates a slide down animation.
- *
- * @mixin animate_slide_down
- * @param {Number|String} $distance [20px] - The distance the element slides down.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the slide down animation.
- * @param {String} $timing_function [ease-in-out] - The timing function for the slide down animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+///
+/// Slide Down Animation
+/// Creates a slide down animation.
+/// @name animate_slide_down
+/// @param {Number|String} $distance [20px] - The distance the element slides down.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the slide down animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the slide down animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_slide_down(
     $distance: 20px, 
     $duration: $animate_base_duration, 
@@ -133,24 +132,18 @@
     }
 }
 
-.animate_slide_down {
-    @include animate_slide_down();
-}
-
 
 // Slide In Left Animation
 // ----------------------------------------------------------------------------
 
-/**
- * Slide In Left Animation
- *
- * Creates a slide in animation from the left.
- *
- * @mixin animate_slide_in_left
- * @param {Number|String} $distance [100%] - The distance the element slides in from the left.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the slide in animation.
- * @param {String} $timing_function [ease-out] - The timing function for the slide in animation.
- */
+///
+/// Slide In Left Animation
+/// Creates a slide in animation from the left.
+/// @name animate_slide_in_left
+/// @param {Number|String} $distance [100%] - The distance the element slides in from the left.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the slide in animation.
+/// @param {String} $timing_function [ease-out] - The timing function for the slide in animation.
+///
 @mixin animate_slide_in_left(
     $distance: 100%,
     $duration:
@@ -169,24 +162,18 @@
     }
 }
 
-.animate_slide_in_left {
-    @include animate_slide_in_left();
-}
-
 
 // Slide In Right Animation
 // ----------------------------------------------------------------------------
 
-/**
- * Slide In Right Animation
- *
- * Creates a slide in animation from the right.
- *
- * @mixin animate_slide_in_right
- * @param {Number|String} $distance [100%] - The distance the element slides in from the right.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the slide in animation.
- * @param {String} $timing_function [ease-out] - The timing function for the slide in animation.
- */
+///
+/// Slide In Right Animation
+/// Creates a slide in animation from the right.
+/// @name animate_slide_in_right
+/// @param {Number|String} $distance [100%] - The distance the element slides in from the right.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the slide in animation.
+/// @param {String} $timing_function [ease-out] - The timing function for the slide in animation.
+///
 @mixin animate_slide_in_right(
     $distance: 100%,
     $duration: $animate_base_duration,
@@ -204,24 +191,17 @@
     }
 }
 
-.animate_slide_in_right {
-    @include animate_slide_in_right();
-}
-
-
 // Slide Out Left Animation:
 // ----------------------------------------------------------------------------
 
-/**
- * Slide Out Left Animation
- *
- * Creates a slide out animation to the left.
- *
- * @mixin animate_slide_out_left
- * @param {Number|String} $distance [100%] - The distance the element slides out to the left.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the slide out animation.
- * @param {String} $timing_function [ease-in] - The timing function for the slide out animation.
- */
+///
+/// Slide Out Left Animation
+/// Creates a slide out animation to the left.
+/// @name animate_slide_out_left
+/// @param {Number|String} $distance [100%] - The distance the element slides out to the left.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the slide out animation.
+/// @param {String} $timing_function [ease-in] - The timing function for the slide out animation.
+///
 @mixin animate_slide_out_left(
     $distance: 100%,
     $duration: $animate_base_duration,
@@ -239,24 +219,20 @@
     }
 }
 
-.animate_slide_out_left {
-    @include animate_slide_out_left();
-}
+
 
 
 // Slide Out Right Animation:
 // ----------------------------------------------------------------------------
 
-/**
- * Slide Out Right Animation
- *
- * Creates a slide out animation to the right.
- *
- * @mixin animate_slide_out_right
- * @param {Number|String} $distance [100%] - The distance the element slides out to the right.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the slide out animation.
- * @param {String} $timing_function [ease-in] - The timing function for the slide out animation.
- */
+///
+/// Slide Out Right Animation
+/// Creates a slide out animation to the right.
+/// @name animate_slide_out_right
+/// @param {Number|String} $distance [100%] - The distance the element slides out to the right.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the slide out animation.
+/// @param {String} $timing_function [ease-in] - The timing function for the slide out animation.
+///
 @mixin animate_slide_out_right(
     $distance: 100%,
     $duration: $animate_base_duration,
@@ -274,25 +250,21 @@
     }
 }
 
-.animate_slide_out_right {
-    @include animate_slide_out_right();
-}
+
 
 
 // Slide In Fade Animation
 // ----------------------------------------------------------------------------
 
-/**
- * Slide In Fade Animation
- *
- * Creates a sliding animation with a fade-in effect.
- *
- * @mixin animate_slide_in_fade
- * @param {String} $direction [left] - The direction from which the element slides in.
- * @param {Number|String} $distance [100%] - The distance the element slides.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the slide in fade animation.
- * @param {String} $timing_function [ease-out] - The timing function for the slide in fade animation.
- */
+///
+/// Slide In Fade Animation
+/// Creates a sliding animation with a fade-in effect.
+/// @name animate_slide_in_fade
+/// @param {String} $direction [left] - The direction from which the element slides in.
+/// @param {Number|String} $distance [100%] - The distance the element slides.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the slide in fade animation.
+/// @param {String} $timing_function [ease-out] - The timing function for the slide in fade animation.
+///
 @mixin animate_slide_in_fade(
     $direction: left, 
     $distance: 100%, 
@@ -320,467 +292,3 @@
         }
     }
 }
-
-.animate_slide_in_fade {
-    @include animate_slide_in_fade(left, 100%);
-}
-
-
-
-.slideInDown {
-  -webkit-animation-name: slideInDown;
-  animation-name: slideInDown;
-}
-
-@-webkit-keyframes slideInLeft {
-  from {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-    visibility: visible;
-  }
-
-  100% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-    visibility: visible;
-  }
-
-  100% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-.slideInLeft {
-  -webkit-animation-name: slideInLeft;
-  animation-name: slideInLeft;
-}
-
-@-webkit-keyframes slideInRight {
-  from {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
-    visibility: visible;
-  }
-
-  100% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
-    visibility: visible;
-  }
-
-  100% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-.slideInRight {
-  -webkit-animation-name: slideInRight;
-  animation-name: slideInRight;
-}
-
-@-webkit-keyframes slideInUp {
-  from {
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-    visibility: visible;
-  }
-
-  100% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes slideInUp {
-  from {
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-    visibility: visible;
-  }
-
-  100% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-.slideInUp {
-  -webkit-animation-name: slideInUp;
-  animation-name: slideInUp;
-}
-
-@-webkit-keyframes slideOutDown {
-  from {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-
-  100% {
-    visibility: hidden;
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-  }
-}
-
-@keyframes slideOutDown {
-  from {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-
-  100% {
-    visibility: hidden;
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-  }
-}
-
-.slideOutDown {
-  -webkit-animation-name: slideOutDown;
-  animation-name: slideOutDown;
-}
-
-@-webkit-keyframes slideOutLeft {
-  from {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-
-  100% {
-    visibility: hidden;
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-  }
-}
-
-@keyframes slideOutLeft {
-  from {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-
-  100% {
-    visibility: hidden;
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-  }
-}
-
-.slideOutLeft {
-  -webkit-animation-name: slideOutLeft;
-  animation-name: slideOutLeft;
-}
-
-@-webkit-keyframes slideOutRight {
-  from {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-
-  100% {
-    visibility: hidden;
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
-  }
-}
-
-@keyframes slideOutRight {
-  from {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-
-  100% {
-    visibility: hidden;
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
-  }
-}
-
-.slideOutRight {
-  -webkit-animation-name: slideOutRight;
-  animation-name: slideOutRight;
-}
-
-@-webkit-keyframes slideOutUp {
-  from {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-
-  100% {
-    visibility: hidden;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-}
-
-@keyframes slideOutUp {
-  from {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-
-  100% {
-    visibility: hidden;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-}
-
-.slideOutUp {
-  -webkit-animation-name: slideOutUp;
-  animation-name: slideOutUp;
-}
-
-
-// @keyframes slideInDown {
-//     from {
-//       -webkit-transform: translate3d(0, -100%, 0);
-//       transform: translate3d(0, -100%, 0);
-//       visibility: visible;
-//     }
-  
-//     100% {
-//       -webkit-transform: translate3d(0, 0, 0);
-//       transform: translate3d(0, 0, 0);
-//     }
-//   }
-  
-//   .slideInDown {
-//     -webkit-animation-name: slideInDown;
-//     animation-name: slideInDown;
-//   }
-  
-//   @-webkit-keyframes slideInLeft {
-//     from {
-//       -webkit-transform: translate3d(-100%, 0, 0);
-//       transform: translate3d(-100%, 0, 0);
-//       visibility: visible;
-//     }
-  
-//     100% {
-//       -webkit-transform: translate3d(0, 0, 0);
-//       transform: translate3d(0, 0, 0);
-//     }
-//   }
-  
-//   @keyframes slideInLeft {
-//     from {
-//       -webkit-transform: translate3d(-100%, 0, 0);
-//       transform: translate3d(-100%, 0, 0);
-//       visibility: visible;
-//     }
-  
-//     100% {
-//       -webkit-transform: translate3d(0, 0, 0);
-//       transform: translate3d(0, 0, 0);
-//     }
-//   }
-  
-//   .slideInLeft {
-//     -webkit-animation-name: slideInLeft;
-//     animation-name: slideInLeft;
-//   }
-  
-//   @-webkit-keyframes slideInRight {
-//     from {
-//       -webkit-transform: translate3d(100%, 0, 0);
-//       transform: translate3d(100%, 0, 0);
-//       visibility: visible;
-//     }
-  
-//     100% {
-//       -webkit-transform: translate3d(0, 0, 0);
-//       transform: translate3d(0, 0, 0);
-//     }
-//   }
-  
-//   @keyframes slideInRight {
-//     from {
-//       -webkit-transform: translate3d(100%, 0, 0);
-//       transform: translate3d(100%, 0, 0);
-//       visibility: visible;
-//     }
-  
-//     100% {
-//       -webkit-transform: translate3d(0, 0, 0);
-//       transform: translate3d(0, 0, 0);
-//     }
-//   }
-  
-//   .slideInRight {
-//     -webkit-animation-name: slideInRight;
-//     animation-name: slideInRight;
-//   }
-  
-//   @-webkit-keyframes slideInUp {
-//     from {
-//       -webkit-transform: translate3d(0, 100%, 0);
-//       transform: translate3d(0, 100%, 0);
-//       visibility: visible;
-//     }
-  
-//     100% {
-//       -webkit-transform: translate3d(0, 0, 0);
-//       transform: translate3d(0, 0, 0);
-//     }
-//   }
-  
-//   @keyframes slideInUp {
-//     from {
-//       -webkit-transform: translate3d(0, 100%, 0);
-//       transform: translate3d(0, 100%, 0);
-//       visibility: visible;
-//     }
-  
-//     100% {
-//       -webkit-transform: translate3d(0, 0, 0);
-//       transform: translate3d(0, 0, 0);
-//     }
-//   }
-  
-//   .slideInUp {
-//     -webkit-animation-name: slideInUp;
-//     animation-name: slideInUp;
-//   }
-  
-//   @-webkit-keyframes slideOutDown {
-//     from {
-//       -webkit-transform: translate3d(0, 0, 0);
-//       transform: translate3d(0, 0, 0);
-//     }
-  
-//     100% {
-//       visibility: hidden;
-//       -webkit-transform: translate3d(0, 100%, 0);
-//       transform: translate3d(0, 100%, 0);
-//     }
-//   }
-  
-//   @keyframes slideOutDown {
-//     from {
-//       -webkit-transform: translate3d(0, 0, 0);
-//       transform: translate3d(0, 0, 0);
-//     }
-  
-//     100% {
-//       visibility: hidden;
-//       -webkit-transform: translate3d(0, 100%, 0);
-//       transform: translate3d(0, 100%, 0);
-//     }
-//   }
-  
-//   .slideOutDown {
-//     -webkit-animation-name: slideOutDown;
-//     animation-name: slideOutDown;
-//   }
-  
-//   @-webkit-keyframes slideOutLeft {
-//     from {
-//       -webkit-transform: translate3d(0, 0, 0);
-//       transform: translate3d(0, 0, 0);
-//     }
-  
-//     100% {
-//       visibility: hidden;
-//       -webkit-transform: translate3d(-100%, 0, 0);
-//       transform: translate3d(-100%, 0, 0);
-//     }
-//   }
-  
-//   @keyframes slideOutLeft {
-//     from {
-//       -webkit-transform: translate3d(0, 0, 0);
-//       transform: translate3d(0, 0, 0);
-//     }
-  
-//     100% {
-//       visibility: hidden;
-//       -webkit-transform: translate3d(-100%, 0, 0);
-//       transform: translate3d(-100%, 0, 0);
-//     }
-//   }
-  
-//   .slideOutLeft {
-//     -webkit-animation-name: slideOutLeft;
-//     animation-name: slideOutLeft;
-//   }
-  
-//   @-webkit-keyframes slideOutRight {
-//     from {
-//       -webkit-transform: translate3d(0, 0, 0);
-//       transform: translate3d(0, 0, 0);
-//     }
-  
-//     100% {
-//       visibility: hidden;
-//       -webkit-transform: translate3d(100%, 0, 0);
-//       transform: translate3d(100%, 0, 0);
-//     }
-//   }
-  
-//   @keyframes slideOutRight {
-//     from {
-//       -webkit-transform: translate3d(0, 0, 0);
-//       transform: translate3d(0, 0, 0);
-//     }
-  
-//     100% {
-//       visibility: hidden;
-//       -webkit-transform: translate3d(100%, 0, 0);
-//       transform: translate3d(100%, 0, 0);
-//     }
-//   }
-  
-//   .slideOutRight {
-//     -webkit-animation-name: slideOutRight;
-//     animation-name: slideOutRight;
-//   }
-  
-//   @-webkit-keyframes slideOutUp {
-//     from {
-//       -webkit-transform: translate3d(0, 0, 0);
-//       transform: translate3d(0, 0, 0);
-//     }
-  
-//     100% {
-//       visibility: hidden;
-//       -webkit-transform: translate3d(0, -100%, 0);
-//       transform: translate3d(0, -100%, 0);
-//     }
-//   }
-  
-//   @keyframes slideOutUp {
-//     from {
-//       -webkit-transform: translate3d(0, 0, 0);
-//       transform: translate3d(0, 0, 0);
-//     }
-  
-//     100% {
-//       visibility: hidden;
-//       -webkit-transform: translate3d(0, -100%, 0);
-//       transform: translate3d(0, -100%, 0);
-//     }
-//   }
-  
-//   .slideOutUp {
-//     -webkit-animation-name: slideOutUp;
-//     animation-name: slideOutUp;
-//   }
