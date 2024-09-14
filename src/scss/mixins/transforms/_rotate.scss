@@ -1,0 +1,67 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Transforms Mixin Module
+/// ===========================================================================
+/// This module provides reusable mixins for applying transformations such as 
+/// rotations and flips to elements. It includes mixins for rotating elements 
+/// by a specified degree, as well as predefined classes for common rotation 
+/// angles. This module is designed to facilitate the application of CSS 
+/// transforms in a consistent and maintainable manner throughout your project.
+/// 
+/// @group Transforms
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../keyframes" as *;
+@use "base" as *;
+
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+///
+/// Mixin for rotating elements by a specified degree.
+/// Applies a CSS rotation transform to the element.
+///
+/// @name transform_rotate
+/// @param {Number} $degrees [0deg] - The degree to rotate the element.
+/// @example scss - Usage
+///   .icon_rotate { @include transform_rotate(90deg); } // Rotates icon by 90 degrees
+///
+@mixin transform_rotate($degrees: 0deg) {
+    transform: rotate($degrees);
+}
+
+///
+/// Mixin for rotating elements based on a dynamic value from a CSS variable.
+/// This allows for rotations that can be adjusted at runtime using CSS variables.
+///
+/// @name transform_rotate_dynamic
+/// @param {String} $variable [--rotation-angle] - The CSS variable to use for dynamic rotation.
+/// @example scss - Usage
+///   .transform_rotate_dynamic { @include transform_rotate_dynamic('--my_custom_rotation'); }
+///
+@mixin transform_rotate_dynamic($variable: '--rotation_angle') {
+    transform: rotate(var(#{$variable}));
+}
+
+
