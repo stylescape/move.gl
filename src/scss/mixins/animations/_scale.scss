@@ -1,42 +1,50 @@
-// Copyright 2024 Scape Agency BV
+// ============================================================================
+// Poster
+// ============================================================================
 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+////
+/// 
+/// Scale Animations Mixin Module
+/// ===========================================================================
+/// 
+/// This module ...
+/// 
+/// 
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
 
 
 // ============================================================================
-// StyleScape | Animations | Expand
+// Use
 // ============================================================================
 
 @use "../dev" as *;
 @use "../variables" as *;
+@use "../keyframes" as *;
 @use "base" as *;
 
 
-// Expand Animation
-// ----------------------------------------------------------------------------
+// ============================================================================
+// Mixins
+// ============================================================================
 
-/**
- * Expand Animation
- *
- * Creates an expand animation where the element scales up and down.
- *
- * @mixin animate_scale_expand
- * @param {Number|String} $scale_start [1] - The initial scale of the element.
- * @param {Number|String} $scale_end [1.2] - The scale of the element at its maximum size.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the expand animation.
- * @param {String} $timing_function [ease-out] - The timing function for the expand animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+
+///
+/// Expand Animation
+/// Creates an expand animation where the element scales up and down.
+/// @name animate_scale_expand
+/// @param {Number|String} $scale_start [1] - The initial scale of the element.
+/// @param {Number|String} $scale_end [1.2] - The scale of the element at its maximum size.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the expand animation.
+/// @param {String} $timing_function [ease-out] - The timing function for the expand animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_scale_expand(
     $scale_start: 1, 
     $scale_end: 1.2, 
@@ -56,9 +64,6 @@
     }
 }
 
-.animate_scale_expand {
-    @include animate_scale_expand();
-}
 
 //   // Scale transition
 // .scale-transition {
@@ -78,18 +83,16 @@
 // Expand and Shrink Animation
 // ----------------------------------------------------------------------------
 
-/**
- * Expand and Shrink Animation
- *
- * Creates an animation where the element alternates between expanding and shrinking.
- *
- * @mixin animate_scale_shrink
- * @param {Number|String} $scale_min [0.8] - The minimum scale of the element during the animation.
- * @param {Number|String} $scale_max [1.2] - The maximum scale of the element during the animation.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the expand and shrink animation.
- * @param {String} $timing_function [ease-in-out] - The timing function for the expand and shrink animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+///
+/// Expand and Shrink Animation
+/// Creates an animation where the element alternates between expanding and shrinking.
+/// @name animate_scale_shrink
+/// @param {Number|String} $scale_min [0.8] - The minimum scale of the element during the animation.
+/// @param {Number|String} $scale_max [1.2] - The maximum scale of the element during the animation.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the expand and shrink animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the expand and shrink animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_scale_shrink(
     $scale_min: 0.8, 
     $scale_max: 1.2, 
@@ -107,8 +110,4 @@
         0%, 100% { transform: scale($scale_min); }
         50% { transform: scale($scale_max); }
     }
-}
-
-.animate_scale_shrink {
-    @include animate_scale_shrink();
 }
