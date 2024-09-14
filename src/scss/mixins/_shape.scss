@@ -1,3 +1,35 @@
+
+
+// ============================================================================
+// Shapes
+// ============================================================================
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../mixins" as *;
+
+
+
+// Shapes | Basic
+// ============================================================================
+
+// Shapes | Basic | Circle
+// ----------------------------------------------------------------------------
+// A circle created by setting the border-radius to 50% and ensuring the
+// element has equal width and height.
+
+/// Creates a circular shape by setting the border-radius to 50%
+/// and ensuring the element has equal width and height.
+/// @group Shapes
+@mixin shape_circle {
+// @mixin shape_circle($size) {
+    @include ratio_1x1;
+    // width: $size;
+    // height: $size;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+
 ///
 /// Creates a circular element with a given size.
 /// 
@@ -11,6 +43,86 @@
     height: $size;
     border-radius: 50%;
 }
+
+
+
+// Shapes | Basic | Square
+// ----------------------------------------------------------------------------
+// A straightforward square, defined by equal width and height.
+
+/// Creates a square shape by setting equal width and height.
+/// @group Shapes
+@mixin shape_square {
+// @mixin shape_square($size) {
+//     width: $size;
+//     height: $size;
+    @include ratio_1x1;
+    display: inline-block;
+}
+
+// Shapes | Basic | Diamond
+// ----------------------------------------------------------------------------
+// A diamond shape, created by rotating a square element.
+
+/// Creates a diamond shape by rotating a square element.
+/// @param {Number} $size - The size of the diamond.
+/// @param {Color} $color - The background color of the diamond.
+/// @group Shapes
+@mixin shape_diamond($size, $color) {
+    width: $size;
+    height: $size;
+    background-color: $color;
+    transform: rotate(45deg);
+    display: inline-block;
+}
+
+// Shapes | Basic | Rectangle
+// ----------------------------------------------------------------------------
+// A rectangle can vary in width and height.
+
+/// Creates a rectangle shape with specified width and height.
+/// @param {Number} $width - The width of the rectangle.
+/// @param {Number} $height - The height of the rectangle.
+/// @group Shapes
+@mixin shape_rectangle($width, $height) {
+    width: $width;
+    height: $height;
+    display: inline-block;
+}
+
+// Shapes | Basic | Triangle
+// ----------------------------------------------------------------------------
+// Triangles, created using the border property and making the width and
+// height of the element 0.
+
+/// Creates a triangle shape using the border property.
+/// The direction can be up, down, left, or right.
+/// @param {Number} $size - The size of the triangle.
+/// @param {Color} $color - The color of the triangle.
+/// @param {String} $direction - The direction of the triangle (up, down, left, right).
+/// @group Shapes
+@mixin shape_triangle($size, $color, $direction) {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    @if $direction == 'up' {
+        border-width: 0 $size $size $size;
+        border-color: transparent transparent $color transparent;
+    } @else if $direction == 'down' {
+        border-width: $size $size 0 $size;
+        border-color: $color transparent transparent transparent;
+    } @else if $direction == 'left' {
+        border-width: $size $size $size 0;
+        border-color: transparent $color transparent transparent;
+    } @else if $direction == 'right' {
+        border-width: $size 0 $size $size;
+        border-color: transparent transparent transparent $color;
+    }
+    display: inline-block;
+}
+
+
+
 
 
 /// 
@@ -40,5 +152,164 @@
     } @else if $direction == right {
         border-width: $size 0 $size $size;
         border-color: transparent transparent transparent $color;
+    }
+}
+
+
+// Shapes | Advanced
+// ============================================================================
+
+
+
+// Shapes | Advanced | Hexagon
+// ----------------------------------------------------------------------------
+
+/// Creates a hexagon shape using the CSS `clip-path` property.
+/// @param {Number} $size - The size of the hexagon.
+/// @param {Color} $color - The background color of the hexagon.
+/// @group Shapes
+@mixin shape_hexagon($size, $color) {
+    width: $size;
+    height: calc(#{$size} / 1.73205); // Height for hexagon
+    background-color: $color;
+    clip-path: polygon(
+        25% 0%,
+        75% 0%,
+        100% 50%,
+        75% 100%,
+        25% 100%,
+        0% 50%
+    );
+    display: inline-block;
+}
+
+// Shapes | Advanced | Star
+// ----------------------------------------------------------------------------
+// Stars using CSS clip-path property.
+// The mixin below is procides a simplified for a 5-point star, but you can
+// adjust the clip-path for more points.
+
+/// Creates a star shape using the CSS `clip-path` property.
+/// @param {Number} $size - The size of the star.
+/// @param {Color} $color - The background color of the star.
+/// @group Shapes
+@mixin shape_star($size, $color) {
+    width: $size;
+    height: $size;
+    display: inline-block;
+    background-color: #f1c40f;
+    background-color: $color;
+    clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+    );
+}
+
+
+// Shapes | Advanced | Heart
+// ----------------------------------------------------------------------------
+// Creating a heart shape involves using the ::before and ::after
+// pseudo-elements along with the border-radius property to craft
+// the curves of the heart.
+
+/// Creates a heart shape using the `::before` and `::after` pseudo-elements.
+/// @param {Number} $size - The size of the heart.
+/// @param {Color} $color - The background color of the heart.
+/// @group Shapes
+@mixin shape_heart($size, $color) {
+    position: relative;
+    width: $size;
+    height: $size;
+    background-color: $color;
+    transform: rotate(45deg);
+    margin: $size / 4;
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        width: $size;
+        height: $size;
+        border-radius: 50%;
+        background-color: $color;
+    }
+    &:before {
+        top: -$size / 2;
+        left: 0;
+    }
+    &:after {
+        top: 0;
+        left: -$size / 2;
+    }
+}
+
+// Shapes | Advanced | Arrow
+// ----------------------------------------------------------------------------
+// An arrow shape can be created using borders of a transparent element,
+// similar to the triangle, but with adjustments to create the arrow's tail.
+
+/// Creates an arrow shape using borders of a transparent element.
+/// @param {Number} $width - The width of the arrow.
+/// @param {Number} $height - The height of the arrow.
+/// @param {Color} $color - The color of the arrow.
+/// @param {String} $direction - The direction of the arrow (up, down, left, right).
+/// @group Shapes
+@mixin shape_arrow($width, $height, $color, $direction) {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    @if $direction == 'up' {
+        border-width: 0 $width / 2 $height $width / 2;
+        border-color: transparent transparent $color transparent;
+    } @else if $direction == 'down' {
+        border-width: $height $width / 2 0 $width / 2;
+        border-color: $color transparent transparent transparent;
+    } @else if $direction == 'left' {
+        border-width: $width / 2 $height $width / 2 0;
+        border-color: transparent $color transparent transparent;
+    } @else if $direction == 'right' {
+        border-width: $width / 2 0 $width / 2 $height;
+        border-color: transparent transparent transparent $color;
+    }
+    display: inline-block;
+}
+
+// Shapes | Advanced | Speech Bubble
+// ----------------------------------------------------------------------------
+// A speech bubble can be created using ::after to form the tail. You can
+// adjust the position and size of the tail as needed.
+
+/// Creates a speech bubble shape with an optional directional tail.
+/// @param {Color} $background - The background color of the bubble.
+/// @param {String} $tail-direction - The direction of the bubble's tail (bottom, top).
+/// @group Shapes
+@mixin shape_bubble($background: #ecf0f1, $tail-direction: 'bottom') {
+    position: relative;
+    padding: 10px;
+    background: $background;
+    border-radius: 10px;
+    &:after {
+        content: '';
+        position: absolute;
+        border-style: solid;
+        @if $tail-direction == 'bottom' {
+            border-width: 0 10px 10px;
+            border-color: transparent transparent $background transparent;
+            bottom: -10px;
+            left: 20px;
+        } @else if $tail-direction == 'top' {
+            border-width: 10px 10px 0;
+            border-color: $background transparent transparent transparent;
+            top: -10px;
+            left: 20px;
+        }
+        // Add more conditions for 'left' and 'right' if needed
     }
 }
