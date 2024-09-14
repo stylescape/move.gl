@@ -40,6 +40,8 @@
 
 /// 
 /// Mixin to enable smooth scrolling for a container.
+/// ---------------------------------------------------------------------------
+/// 
 /// Provides a smooth scroll behavior for elements that overflow.
 /// 
 /// @mixin scroll_smooth
@@ -69,6 +71,7 @@
 }
 
 /// 
+/// ---------------------------------------------------------------------------
 /// Mixin to set up scroll snapping for a container.
 /// Configures scroll snapping for elements, useful for creating carousels or 
 /// step-by-step guides with smooth navigation between sections.
