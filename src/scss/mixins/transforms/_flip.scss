@@ -6,6 +6,7 @@
 /// 
 /// Flip Transforms Mixin Module
 /// ===========================================================================
+/// 
 /// This module provides mixins for flipping elements in various directions,
 /// such as horizontally, vertically, or both. These mixins can be used to 
 /// easily apply flip transforms throughout your project.
@@ -39,6 +40,8 @@
 
 ///
 /// Mixin for flipping elements horizontally.
+/// ---------------------------------------------------------------------------
+/// 
 /// Applies a horizontal flip by scaling the element along the X-axis.
 /// 
 /// @name transform_flip_horizontal
@@ -52,6 +55,8 @@
 
 ///
 /// Mixin for flipping elements vertically.
+/// ---------------------------------------------------------------------------
+/// 
 /// Applies a vertical flip by scaling the element along the Y-axis.
 /// 
 /// @name transform_flip_vertical
@@ -65,6 +70,8 @@
 
 ///
 /// Mixin for flipping elements both horizontally and vertically.
+/// ---------------------------------------------------------------------------
+/// 
 /// Combines horizontal and vertical flips to mirror the element.
 /// 
 /// @name transform_flip_both
