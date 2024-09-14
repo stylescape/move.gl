@@ -1,37 +1,52 @@
-// Copyright 2024 Scape Agency BV
-// Licensed under the Apache License, Version 2.0 (the "License");
-// You may not use this file except in compliance with the License.
-// You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Float Animations Mixin Module
+/// ===========================================================================
+/// 
+/// This module ...
+/// 
+/// 
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
 
 // ============================================================================
-// StyleScape | Animations | Float
+// Use
 // ============================================================================
 
 @use "../dev" as *;
 @use "../variables" as *;
+@use "../keyframes" as *;
 @use "base" as *;
 
-// Float Animation
-// ----------------------------------------------------------------------------
 
-/**
- * Float Animation
- *
- * Creates a floating animation where the element moves up and down smoothly.
- *
- * @mixin animate_float
- * @param {Number|String} $start_position [0] - The starting position of the float animation.
- * @param {Number|String} $mid_position [10px] - The mid-position of the float animation.
- * @param {Number|String} $end_position [0] - The ending position of the float animation.
- * @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the float animation.
- * @param {String} $timing_function [ease-in-out] - The timing function for the float animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+///
+/// Float Animation
+/// Creates a floating animation where the element moves up and down smoothly.
+/// 
+/// @name animate_float
+/// @param {Number|String} $start_position [0] - The starting position of the float animation.
+/// @param {Number|String} $mid_position [10px] - The mid-position of the float animation.
+/// @param {Number|String} $end_position [0] - The ending position of the float animation.
+/// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the float animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the float animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_float(
     $start_position: 0,
     $mid_position: 10px,
@@ -52,24 +67,16 @@
     }
 }
 
-.animate_float {
-    @include animate_float();
-}
-
-// Float with Horizontal Movement
-// ----------------------------------------------------------------------------
-
-/**
- * Float with Horizontal Movement
- *
- * Creates a floating animation where the element moves horizontally.
- *
- * @mixin animate_float_horizontal
- * @param {Number|String} $horizontal-distance [10px] - The distance the element moves horizontally.
- * @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the float animation.
- * @param {String} $timing_function [ease-in-out] - The timing function for the float animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+///
+/// Float with Horizontal Movement
+/// Creates a floating animation where the element moves horizontally.
+/// 
+/// @name animate_float_horizontal
+/// @param {Number|String} $horizontal-distance [10px] - The distance the element moves horizontally.
+/// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the float animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the float animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_float_horizontal(
     $horizontal-distance: 10px,
     $duration: $animate_base_duration_slow,
@@ -88,24 +95,18 @@
     }
 }
 
-.animate_float_horizontal {
-    @include animate_float_horizontal();
-}
 
-// Float with Rotation
-// ----------------------------------------------------------------------------
-
-/**
- * Float with Rotation
- *
- * Creates a floating animation where the element moves up and down with a rotation.
- *
- * @mixin animate_float_rotate
- * @param {Number|String} $rotation_angle [15deg] - The angle of rotation during the float animation.
- * @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the float animation.
- * @param {String} $timing_function [ease-in-out] - The timing function for the float animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+///
+/// Float with Rotation
+/// Creates a floating animation where the element moves up and down with a
+/// rotation.
+/// 
+/// @name animate_float_rotate
+/// @param {Number|String} $rotation_angle [15deg] - The angle of rotation during the float animation.
+/// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the float animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the float animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_float_rotate(
     $rotation_angle: 15deg,
     $duration: $animate_base_duration_slow,
@@ -122,8 +123,4 @@
         0%, 100% { transform: translateY(0) rotate(0); }
         50% { transform: translateY(-10px) rotate($rotation_angle); }
     }
-}
-
-.animate_float_rotate {
-    @include animate_float_rotate();
 }
