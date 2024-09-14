@@ -1,0 +1,150 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Pop Animations Mixin Module
+/// ===========================================================================
+/// 
+/// This module ...
+/// 
+/// 
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../keyframes" as *;
+@use "base" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+///
+/// Pop Animation
+/// Creates a pop animation where the element scales up and then back down.
+/// @name animate_pop
+/// @param {Number} $scale [1.2] - The scale factor for the pop effect.
+/// @param {Number|String} $duration [$animate_base_duration_fast] - The duration of the pop animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the pop animation.
+///
+@mixin animate_pop(
+    $scale: 1.2, 
+    $duration: $animate_base_duration_fast, 
+    $timing_function: ease-in-out
+) {
+    @include animate_base(
+        animate_pop,
+        $duration,
+        $timing_function,
+        1,
+    );
+    @keyframes animate_pop {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale($scale); }
+    }
+}
+
+
+// Rapid Pop Animation
+// ----------------------------------------------------------------------------
+
+///
+/// Rapid Pop Animation
+/// Creates a rapid pop animation with a quick scaling effect.
+/// @name animate_pop_fast
+/// @param {Number} $scale [1.2] - The scale factor for the pop effect.
+/// @param {Number|String} $duration [$animate_base_duration_fast] - The duration of the pop animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the pop animation.
+///
+@mixin animate_pop_fast(
+    $scale: 1.2, 
+    $duration: $animate_base_duration_fast,
+    $timing_function: ease-in-out
+) {
+    @include animate_base(
+        animate_pop_fast,
+        $duration,
+        $timing_function,
+        1,
+    );
+    @keyframes animate_pop_fast {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale($scale); }
+    }
+}
+
+
+// Gentle Pop Animation
+// ----------------------------------------------------------------------------
+
+///
+/// Gentle Pop Animation
+/// Creates a gentler pop animation with a slower scaling effect.
+/// @name animate_pop_slow
+/// @param {Number} $scale [1.1] - The scale factor for the pop effect.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the pop animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the pop animation.
+///
+@mixin animate_pop_slow(
+    $scale: 1.1, 
+    $duration: $animate_base_duration, 
+    $timing_function: ease-in-out
+) {
+    @include animate_base(
+        animate_pop_slow,
+        $duration,
+        $timing_function,
+        1,
+);
+    @keyframes animate_pop_slow {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale($scale); }
+    }
+}
+
+
+// Pop with Rotation
+// ----------------------------------------------------------------------------
+
+///
+/// Pop with Rotation
+/// Creates a pop animation combined with a rotation effect.
+/// @name animate_pop_rotate
+/// @param {Number} $scale [1.2] - The scale factor for the pop effect.
+/// @param {Number|String} $rotation_angle [10deg] - The rotation angle during the pop effect.
+/// @param {Number|String} $duration [$animate_base_duration_fast] - The duration of the pop animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the pop animation.
+///
+@mixin animate_pop_rotate(
+    $scale: 1.2, 
+    $rotation_angle: 10deg, 
+    $duration: $animate_base_duration_fast, 
+    $timing_function: ease-in-out
+) {
+    @include animate_base(
+        animate_pop_rotate,
+        $duration,
+        $timing_function,
+        1,
+    );
+    @keyframes animate_pop_rotate {
+        0%, 100% { transform: scale(1) rotate(0); }
+        50% { transform: scale($scale) rotate($rotation_angle); }
+    }
+}

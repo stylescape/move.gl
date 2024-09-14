@@ -1,0 +1,44 @@
+///
+/// Creates a circular element with a given size.
+/// 
+/// @name circle
+/// @param {Number|Unit} $size - The diameter of the circle.
+/// @example scss - Usage
+///   @include circle(50px);
+/// 
+@mixin circle($size) {
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+}
+
+
+/// 
+/// Creates a triangle using only CSS borders.
+/// 
+/// @name triangle
+/// @param {Number|Unit} $size - The size of the triangle.
+/// @param {Color} $color - The color of the triangle.
+/// @param {String} $direction - The direction the triangle points (default: up).
+/// @example scss - Usage
+///   @include triangle(10px, #ff5722, down);
+/// 
+@mixin triangle($size, $color, $direction: up) {
+    width: 0;
+    height: 0;
+    border-style: solid;
+
+    @if $direction == up {
+        border-width: 0 $size $size $size;
+        border-color: transparent transparent $color transparent;
+    } @else if $direction == down {
+        border-width: $size $size 0 $size;
+        border-color: $color transparent transparent transparent;
+    } @else if $direction == left {
+        border-width: $size $size $size 0;
+        border-color: transparent $color transparent transparent;
+    } @else if $direction == right {
+        border-width: $size 0 $size $size;
+        border-color: transparent transparent transparent $color;
+    }
+}

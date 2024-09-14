@@ -1,0 +1,65 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Elastic Animations Mixin Module
+/// ===========================================================================
+/// 
+/// This module ...
+/// 
+/// 
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../keyframes" as *;
+@use "base" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+///
+/// Elastic Animation
+/// Creates an elastic animation where the element scales up and down in a spring-like motion.
+/// @name animate_elastic
+/// @param {Number} $scale-start [0.5] - The starting scale of the element.
+/// @param {Number} $scale-end [1.25] - The scale of the element at the midpoint of the animation.
+/// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the elastic animation.
+/// @param {String} $timing_function [cubic-bezier(0.68, -0.55, 0.27, 1.55)] - The timing function for the elastic animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
+@mixin animate_elastic(
+    $scale-start: 0.5, 
+    $scale-end: 1.25, 
+    $duration: $animate_base_duration_slow,
+    $timing_function: cubic-bezier(0.68, -0.55, 0.27, 1.55), 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_elastic,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_elastic {
+        0%, 100% { transform: scale($scale-start); }
+        50% { transform: scale($scale-end); }
+    }
+}

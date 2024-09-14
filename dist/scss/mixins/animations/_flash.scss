@@ -1,0 +1,177 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Flash Animations Mixin Module
+/// ===========================================================================
+/// 
+/// This module ...
+/// 
+/// 
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../keyframes" as *;
+@use "base" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+///
+/// Flash Animation
+/// Creates a flash animation that transitions between different opacity
+/// levels.
+/// 
+/// @name animate_flash
+/// @param {Number} $start_opacity [1] - The initial opacity of the element.
+/// @param {Number} $mid_opacity [0] - The opacity at the midpoint of the animation.
+/// @param {Number} $end_opacity [1] - The final opacity of the element.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function to use for the animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of times the animation should run.
+///
+@mixin animate_flash(
+    $start_opacity: 1,
+    $mid_opacity: 0,
+    $end_opacity: 1,
+    $duration: $animate_base_duration,
+    $timing_function: ease-in-out,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_flash,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_flash {
+        0%, 100% { opacity: $start-opacity; }
+        50% { opacity: $mid-opacity; }
+    }
+}
+
+
+///
+/// Flash Fade In and Out
+/// Creates a flash fade effect that smoothly transitions in and out of view.
+/// 
+/// @name animate_flash_fade
+/// @param {Number|String} $duration [2s] - The duration of the animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function to use for the animation.
+///
+@mixin animate_flash_fade(
+    $duration: 2s,
+    $timing_function: ease-in-out
+) {
+    @include animate_base(
+        animate_flash_fade,
+        $duration,
+        $timing_function, infinite
+    );
+    @keyframes animate_flash_fade {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 1; }
+    }
+}
+
+
+///
+/// Strobe Flash Animation
+/// Creates a strobe flash effect with a configurable frequency.
+/// 
+/// @name animate_flash_strobe
+/// @param {Number|String} $frequency [0.1s] - The frequency of the strobe effect.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the animation.
+/// @param {String} $timing_function [steps(1, end)] - The timing function to use for the animation.
+///
+@mixin animate_flash_strobe(
+    $frequency: 0.1s,
+    $duration: $animate_base_duration,
+    $timing_function: steps(1, end)
+) {
+    @include animate_base(
+        animate_flash_strobe,
+        $duration,
+        $timing_function,
+        infinite
+    );
+    @keyframes animate_flash_strobe {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+    animation-duration: $frequency;
+}
+
+
+///
+/// Slow Fade Flash
+/// ---------------------------------------------------------------------------
+/// Creates a slow fading flash effect, fading in and out of view.
+/// 
+/// @name animate_flash_fade_slow
+/// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function to use for the animation.
+///
+@mixin animate_flash_fade_slow(
+    $duration: $animate_base_duration_slow,
+    $timing_function: ease-in-out
+) {
+    @include animate_base(
+        animate_flash_fade_slow,
+        $duration,
+        $timing_function,
+        infinite
+    );
+    @keyframes animate_flash_fade_slow {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+}
+
+
+
+
+
+// @-webkit-keyframes flash {
+//     from, 50%, 100% {
+//       opacity: 1;
+//     }
+  
+//     25%, 75% {
+//       opacity: 0;
+//     }
+//   }
+  
+//   @keyframes flash {
+//     from, 50%, 100% {
+//       opacity: 1;
+//     }
+  
+//     25%, 75% {
+//       opacity: 0;
+//     }
+//   }
+  
+//   .flash {
+//     -webkit-animation-name: flash;
+//     animation-name: flash;
+//   }
+  

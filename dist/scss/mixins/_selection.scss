@@ -1,0 +1,321 @@
+
+
+
+// ============================================================================
+// Selection
+// ============================================================================
+
+
+@use "../variables" as *;
+@use "../mixins" as *;
+
+
+@mixin selection {
+    ::selection { @content; }    /*** Works on common browsers ***/
+    ::-moz-selection { @content; }   /*** Works on common browsers ***/
+    ::-o-selection { @content; }   /***For Other Browsers ***/
+    ::-webkit-selection { @content; }   /*** For Webkit ***/
+    ::-ms-selection { @content; }
+}
+
+@include selection {
+    background-color: $color_04;
+    color: $color_02;
+}
+
+
+::-moz-selection
+{
+    color: var(--ptf-color-white);
+    background-color: var(--ptf-accent-1);
+}
+
+::selection
+{
+    color: var(--ptf-color-white);
+    background-color: var(--ptf-accent-1);
+}
+
+::-moz-selection { background: #272727; color: #fff; }
+	 ::selection { background: #272727; color: #fff; }
+
+
+    
+
+
+
+
+// SCSS Mixin for Custom Text Selection
+// ----------------------------------------------------------------------------
+// conditionalThis mixin allows you to define custom colors for text selection,
+// including the background color of the selection and the color of the text
+// within the selection.
+
+@mixin custom-selection($bg-color: #b3d4fc, $text-color: #fff) {
+    &::selection {
+        background-color: $bg-color; // Color of the background
+        color: $text-color; // Color of the text
+    }
+    
+    // For compatibility with Mozilla Firefox
+    &::-moz-selection {
+        background-color: $bg-color; // Color of the background
+        color: $text-color; // Color of the text
+    }
+}
+
+// Usage Example
+// You can use this mixin to apply custom selection styles globally or to specific elements.
+
+// Global Custom Selection
+// ----------------------------------------------------------------------------
+// To apply a custom selection style globally, you can include the mixin
+// within the html or body selector.
+
+
+body {
+    @include custom-selection(#009688, #ffffff); // Teal background with white text
+}
+// Element-Specific Custom Selection
+// To apply custom selection styles to specific elements, include the mixin within the specific element's selector.
+
+
+p.custom-text-selection {
+    @include custom-selection(#ffeb3b, #000); // Yellow background with black text for paragraphs with the .custom-text-selection class
+}
+// Applying to Multiple Elements
+// You can also apply the mixin to multiple elements by grouping selectors.
+
+
+h1, h2, .highlight-text {
+  @include custom-selection(#673ab7, #fff); // Deep purple background with white text for all h1, h2, and .highlight-text class elements
+}
+
+
+// Conditional Text Selection Based on Parent or State
+// You can conditionally apply text selection styles based on a parent element or a specific state, such as a class being applied to a parent element. This is useful for applying different selection styles in different sections of a page or in different components.
+
+
+// Mixin for custom selection
+// ----------------------------------------------------------------------------
+@mixin custom-selection($bg-color, $text-color) {
+    &::selection {
+        background-color: $bg-color;
+        color: $text-color;
+    }
+    &::-moz-selection {
+        background-color: $bg-color;
+        color: $text-color;
+    }
+}
+
+// Applying conditional selection styles
+.dark-mode {
+    .text {
+        @include custom-selection(#666, #eee); // Dark mode selection
+
+        &:hover {
+            @include custom-selection(#555, #fff); // Darker selection on hover
+        }
+    }
+}
+
+.light-mode {
+    .text {
+            @include custom-selection(#ddd, #333); // Light mode selection
+
+        &:hover {
+            @include custom-selection(#ccc, #222); // Lighter selection on hover
+        }
+    }
+}
+
+
+// Theming Support with SCSS Maps
+// ----------------------------------------------------------------------------
+// Leverage SCSS maps and loops to apply selection styles based on a theme
+// system. This allows for easy theming and customization across your
+// application.
+
+$themes: (
+    "light": (
+        "selection-bg": #e0f7fa,
+        "selection-text": #00796b
+    ),
+    "dark": (
+        "selection-bg": #004d40,
+        "selection-text": #b2dfdb
+    )
+);
+
+@each $theme-name, $theme-properties in $themes {
+    .#{$theme-name}-theme {
+        @include custom-selection(map-get($theme-properties, "selection-bg"), map-get($theme-properties, "selection-text"));
+    }
+}
+
+
+// Dynamic Color Adjustments
+// ----------------------------------------------------------------------------
+// Utilize SCSS color functions to dynamically adjust selection colors based
+// on a base color. This can be useful for creating selection styles that
+// are always readable and maintain good contrast with the text.
+
+@mixin dynamic-selection($base-color) {
+    $adjusted-bg-color: lighten($base-color, 20%);
+    $adjusted-text-color: darken($base-color, 50%);
+
+    &::selection {
+        background-color: $adjusted-bg-color;
+        color: $adjusted-text-color;
+    }
+    &::-moz-selection {
+        background-color: $adjusted-bg-color;
+        color: $adjusted-text-color;
+    }
+}
+
+.element {
+    @include dynamic-selection(#007bff); // Adjusts selection colors based on the provided base color
+}
+
+
+// Applying to Specific Elements with a Mixin
+// ----------------------------------------------------------------------------
+// Create a mixin that accepts both colors and a list of elements to apply
+// the selection styles to. This approach reduces repetition and increases
+// maintainability.
+
+@mixin apply-selection-to-elements($elements, $bg-color, $text-color) {
+    @each $element in $elements {
+        #{$element}::selection {
+            background-color: $bg-color;
+            color: $text-color;
+        }
+        #{$element}::-moz-selection {
+            background-color: $bg-color;
+            color: $text-color;
+        }
+    }
+}
+
+@include apply-selection-to-elements(('p', 'h1', '.custom-class'), #ffcc80, #f44336);
+
+
+
+// Animated Text Selection Background
+// ----------------------------------------------------------------------------
+// You can create a subtle animation effect for the text selection background using keyframes. This can add a dynamic visual cue when text is selected.
+
+@mixin animated-selection($start-color, $end-color) {
+    @keyframes selectionBackground {
+        0% { background-color: $start-color; }
+        100% { background-color: $end-color; }
+    }
+
+    &::selection {
+        animation: selectionBackground 1s infinite alternate;
+        color: contrast($end-color);
+    }
+    &::-moz-selection {
+        animation: selectionBackground 1s infinite alternate;
+        color: contrast($end-color);
+    }
+}
+
+body {
+    @include animated-selection(lighten($primary-color, 40%), lighten($primary-color, 20%));
+}
+
+
+// Gradient Text Selection
+// ----------------------------------------------------------------------------
+// Applying a gradient to the text selection background can align with modern
+// design trends. Note that this effect might not be consistent across all
+// browsers due to rendering limitations.
+
+@mixin gradient-selection($color1, $color2) {
+    &::selection {
+        background: linear-gradient(45deg, $color1, $color2);
+        color: mix($color1, $color2, 50%);
+    }
+    &::-moz-selection {
+        background: linear-gradient(45deg, $color1, $color2);
+        color: mix($color1, $color2, 50%);
+    }
+}
+
+.element {
+  @include gradient-selection(#FFD54F, #D500F9);
+}
+
+
+// Using Global Variables for Theme Consistency
+// Defining global variables for your theme colors allows for consistent and maintainable style application across your project, including text selection.
+
+
+// Define global theme colors
+$theme-colors: (
+  primary: #6200ea,
+  secondary: #03dac6,
+  selection-bg: #B388FF,
+  selection-text: #6200ea,
+);
+
+@mixin theme-selection {
+    &::selection {
+        background-color: map-get($theme-colors, selection-bg);
+        color: map-get($theme-colors, selection-text);
+    }
+    &::-moz-selection {
+        background-color: map-get($theme-colors, selection-bg);
+        color: map-get($theme-colors, selection-text);
+    }
+}
+
+// Apply globally or to specific elements
+body, .custom-text {
+    @include theme-selection;
+}
+
+
+// Pseudo-Element Selection Styles
+// While the ::selection pseudo-element is primarily used for text, you
+// can get creative by applying similar styles to other pseudo-elements
+// for a cohesive look.
+.element {
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: $primary-color;
+        bottom: -5px;
+        left: 0;
+    }
+
+    &:hover::after {
+        @include gradient-selection(#FFD54F, #D500F9); // Apply gradient to the pseudo-element on hover
+    }
+}
+
+// Scoped Selection Styles with Mixins
+// Creating a mixin to apply scoped selection styles can help manage different
+// selection themes within various parts of your application.
+
+
+@mixin scoped-selection($scope, $bg-color, $text-color) {
+    #{$scope}::selection {
+        background-color: $bg-color;
+        color: $text-color;
+    }
+    #{$scope}::-moz-selection {
+        background-color: $bg-color;
+        color: $text-color;
+    }
+}
+
+@include scoped-selection('.light-theme-text', #e0e0e0, #000);
+@include scoped-selection('.dark-theme-text', #333, #fff);

@@ -1,0 +1,13 @@
+
+///
+/// Mixin for translating elements by a specified distance along X and Y axes.
+/// 
+/// @mixin translate
+/// @param {Number} $x [$default-translate] - The distance to translate along the X-axis.
+/// @param {Number} $y [$default-translate] - The distance to translate along the Y-axis.
+/// @example scss - Usage
+///   .icon-translate { @include translate(10px, 20px); } // Moves the element 10px right and 20px down
+///
+@mixin translate($x: $default-translate, $y: $default-translate) {
+    transform: translate($x, $y);
+}

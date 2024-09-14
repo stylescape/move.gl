@@ -1,0 +1,101 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Rotate Transforms Mixin Module
+/// ===========================================================================
+///
+/// @group Transforms
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../keyframes" as *;
+@use "base" as *;
+
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+///
+/// Mixin for rotating elements by a specified degree.
+/// Applies a CSS rotation transform to the element.
+///
+/// @name transform_rotate
+/// @param {Number} $degrees [0deg] - The degree to rotate the element.
+/// @example scss - Usage
+///   .icon_rotate { @include transform_rotate(90deg); } // Rotates icon by 90 degrees
+///
+@mixin transform_rotate($degrees: 0deg) {
+    transform: rotate($degrees);
+}
+
+
+///
+/// Mixin for rotating elements based on a dynamic value from a CSS variable.
+/// This allows for rotations that can be adjusted at runtime using CSS variables.
+///
+/// @name transform_rotate_dynamic
+/// @param {String} $variable [--rotation-angle] - The CSS variable to use for dynamic rotation.
+/// @example scss - Usage
+///   .transform_rotate_dynamic { @include transform_rotate_dynamic('--my_custom_rotation'); }
+///
+@mixin transform_rotate_dynamic($variable: '--rotation_angle') {
+    transform: rotate(var(#{$variable}));
+}
+
+
+
+
+///
+/// Mixin for rotating elements along the X-axis.
+/// 
+/// @name transform_rotate_x
+/// @param {Number} $degrees [$default-rotation] - The degree to rotate the element along the X-axis.
+/// @example scss - Usage
+///   .icon-transform_rotate_x { @include transform_rotate_x(45deg); } // Rotates the element 45 degrees along the X-axis
+///
+@mixin transform_rotate_x($degrees: $default-rotation) {
+    transform: rotateX($degrees);
+}
+
+///
+/// Mixin for rotating elements along the Y-axis.
+/// 
+/// @name transform_rotate_y
+/// @param {Number} $degrees [$default-rotation] - The degree to rotate the element along the Y-axis.
+/// @example scss - Usage
+///   .icon-transform_rotate_y { @include transform_rotate_y(45deg); } // Rotates the element 45 degrees along the Y-axis
+///
+@mixin transform_rotate_y($degrees: $default-rotation) {
+    transform: rotateY($degrees);
+}
+
+///
+/// Mixin for rotating elements along the Z-axis.
+/// 
+/// @name transform_rotate_z
+/// @param {Number} $degrees [$default-rotation] - The degree to rotate the element along the Z-axis.
+/// @example scss - Usage
+///   .icon-transform_rotate_z { @include transform_rotate_z(45deg); } // Rotates the element 45 degrees along the Z-axis
+///
+@mixin transform_rotate_z($degrees: $default-rotation) {
+    transform: rotateZ($degrees);
+}

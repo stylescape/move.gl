@@ -1,0 +1,55 @@
+{
+  "name": "move.gl",
+  "version": "0.0.1",
+  "description": "move.gl is a ...",
+  "keywords": [
+    "move.gl",
+    "stylescape"
+  ],
+  "license": "MIT",
+  "homepage": "https://www.move.gl/",
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/scape-foundation"
+    }
+  ],
+  "main": "js/index.js",
+  "types": "js/index.d.ts",
+  "files": [
+    "code-snippets/**/*.code-snippets",
+    "css/**/*.{css,map}",
+    "font/**/*.{eot,otf,ttf,woff,woff2}",
+    "inkscape/**/*.inkscape",
+    "jinja/**/*.jinja",
+    "js/**/*.d.ts",
+    "js/**/*.{js,map}",
+    "less/**/*.less",
+    "md/**/*.md",
+    "oco/**/*.oco",
+    "png/**/*.png",
+    "py/**/*.py",
+    "rcpx/**/*.rcpx",
+    "scss/**/*.scss",
+    "sketchpalette/**/*.sketchpalette",
+    "styl/**/*.styl",
+    "svg/**/*.svg",
+    "tex/**/*.tex",
+    "ts/**/*.ts",
+    "!.DS_Store"
+  ],
+  "author": "Lars van Vianen",
+  "contributors": [
+    "Scape Agency"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stylescape/move.gl.git"
+  },
+  "exports": {
+    ".": {
+      "sass": "./scss/index.scss",
+      "typescript": "./ts/index.scss"
+    }
+  }
+}

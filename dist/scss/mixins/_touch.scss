@@ -1,0 +1,95 @@
+  
+
+// ============================================================================
+// Touch
+// ============================================================================
+@use "../variables" as *;
+@use "../mixins" as *;
+
+
+.touch_scroll {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+  // Increase Touch Area
+  // Ensure interactive elements are easy to tap by increasing their size or padding, especially for smaller elements like buttons and links.
+
+  // @mixin touch-target($min-size: 44px) {
+  //   min-width: $min-size;
+  //   min-height: $min-size;
+  //   padding: 10px;
+  //   box-sizing: border-box; // Include padding in the element's size
+  // }
+  
+  // .button, .link {
+  //   @include touch-target;
+  //   // Additional styling for buttons and links
+  // }
+  // Visual Feedback for Touch
+  // Provide visual feedback for touch interactions such as color change, scale, or shadow to indicate an active state.
+  
+
+  // @mixin touch-feedback {
+  //   transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  
+  //   &:active {
+  //     background-color: darken($primary-color, 10%);
+  //     transform: scale(0.95);
+  //     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  //   }
+  // }
+  
+  // .interactive-element {
+  //   @include touch-feedback;
+  //   // Base styling for the element
+  // }
+  // Hover States with Touch Consideration
+  // Since touch devices generally don't support hover in the traditional sense, ensure that styles relying on hover also have equivalent styles for focus or active states to accommodate touch interactions.
+  
+
+  // @mixin hover-touch-styles {
+  //   &:hover, &:focus, &:active {
+  //     // Shared styles for hover, focus, and active states
+  //     background-color: lighten($secondary-color, 5%);
+  //     outline: none; // Remove focus outline if not desired
+  //   }
+  // }
+  
+  // .interactive-element {
+  //   @include hover-touch-styles;
+  //   // Base styling
+  // }
+  // Disable Zoom on Form Element Focus
+  // On touch devices, focusing on an input field can cause the viewport to zoom. You can control this behavior with the font-size property, ensuring it's above the threshold that triggers zooming, typically around 16px.
+  
+
+  // @mixin no-zoom-input {
+  //   font-size: 16px; // Prevent zoom on focus on most mobile browsers
+  //   &:focus {
+  //     outline: none; // Optionally remove the outline
+  //   }
+  // }
+  
+  // input, select, textarea {
+  //   @include no-zoom-input;
+  // }
+  // Gestures and Swipes
+  // For elements that use swipe gestures, ensure that the touch area is large enough and that the visual cues indicate swipeability.
+  
+
+  // .swipeable-element {
+  //   @include touch-target(60px); // Larger touch target for easier swiping
+  //   // Additional visual cues to indicate swipeability
+  // }
+  // Responsive Touch Styles
+  // Use media queries within your SCSS to apply touch-specific styles only on devices that support touch, keeping desktop styles unaffected.
+  
+
+  // @media (hover: none) and (pointer: coarse) {
+  //   .button, .link {
+  //     @include touch-target(50px); // Larger touch targets for touch devices
+  //     @include touch-feedback; // Visual feedback on touch
+  //   }
+  // }

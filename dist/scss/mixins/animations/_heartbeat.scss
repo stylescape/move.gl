@@ -1,0 +1,175 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Heartbeat Animations Mixin Module
+/// ===========================================================================
+/// 
+/// This module ...
+/// 
+/// 
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../keyframes" as *;
+@use "base" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+///
+/// Heartbeat Animation
+/// Creates a heartbeat animation where the element scales up and down.
+/// 
+/// @name animate_heartbeat
+/// @param {Number} $scale_min [0.9] - The minimum scale of the heartbeat.
+/// @param {Number} $scale_max [1.1] - The maximum scale of the heartbeat.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the heartbeat animation.
+/// @param {String} $timing_function [linear] - The timing function for the heartbeat animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
+@mixin animate_heartbeat(
+    $scale_min: 0.9, 
+    $scale_max: 1.1, 
+    $duration: $animate_base_duration, 
+    $timing_function: linear, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_heartbeat,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_heartbeat {
+        0%, 100% { transform: scale(1); }
+        25% { transform: scale($scale_min); }
+        50% { transform: scale($scale_max); }
+        75% { transform: scale($scale_min); }
+    }
+}
+
+
+
+///
+/// Rapid Heartbeat Animation
+/// Creates a rapid heartbeat animation with faster scaling transitions.
+/// 
+/// @name animate_heartbeat_fast
+/// @param {Number} $scale_min [0.85] - The minimum scale of the heartbeat.
+/// @param {Number} $scale_max [1.15] - The maximum scale of the heartbeat.
+/// @param {Number|String} $duration [$animate_base_duration_fast] - The duration of the heartbeat animation.
+/// @param {String} $timing_function [linear] - The timing function for the heartbeat animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
+@mixin animate_heartbeat_fast(
+    $scale_min: 0.85, 
+    $scale_max: 1.15, 
+    $duration: $animate_base_duration_fast, 
+    $timing_function: linear, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_heartbeat_fast,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_heartbeat_fast {
+        0%, 100% { transform: scale(1); }
+        14%, 86% { transform: scale($scale_min); }
+        28%, 72% { transform: scale($scale_max); }
+        42%, 58% { transform: scale($scale_min); }
+    }
+}
+
+
+///
+/// Slow Heartbeat Animation
+/// Creates a slow heartbeat animation with more gradual scaling transitions.
+/// @name animate_heartbeat_slow
+/// @param {Number} $scale_min [0.95] - The minimum scale of the heartbeat.
+/// @param {Number} $scale_max [1.05] - The maximum scale of the heartbeat.
+/// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the heartbeat animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the heartbeat animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
+@mixin animate_heartbeat_slow(
+    $scale_min: 0.95, 
+    $scale_max: 1.05, 
+    $duration: $animate_base_duration_slow,
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_heartbeat_slow,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @keyframes animate_heartbeat_slow {
+        0%, 100% { transform: scale(1); }
+        25% { transform: scale($scale_min); }
+        50% { transform: scale($scale_max); }
+        75% { transform: scale($scale_min); }
+    }
+}
+
+
+
+///
+/// Heartbeat with Color Change
+/// Creates a heartbeat animation that includes a color transition.
+/// @name animate_heartbeat_color
+/// @param {Number} $scale_min [0.9] - The minimum scale of the heartbeat.
+/// @param {Number} $scale_max [1.1] - The maximum scale of the heartbeat.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the heartbeat animation.
+/// @param {String} $timing_function [linear] - The timing function for the heartbeat animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Color} $color_start [$animate_base_color_start] - The starting color of the element.
+/// @param {Color} $color_end [$animate_base_color_end] - The ending color of the element.
+///
+@mixin animate_heartbeat_color(
+    $scale_min: 0.9, 
+    $scale_max: 1.1, 
+    $duration: $animate_base_duration, 
+    $timing_function: linear, 
+    $iteration_count: $animate_base_iteration_count,
+    $color_start: $animate_base_color_start, 
+    $color_end: $animate_base_color_end,
+) {
+    @include animate_base(
+        animate_heartbeat_color,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_heartbeat_color {
+        0%, 100% { 
+            transform: scale(1); 
+            color: $color_start;
+        }
+        50% { 
+            transform: scale($scale_max); 
+            color: $color_end;
+        }
+    }
+}

@@ -1,0 +1,161 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Nod Animations Mixin Module
+/// ===========================================================================
+/// 
+/// This module ...
+/// 
+/// 
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../keyframes" as *;
+@use "base" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+///
+/// Nod Animation
+/// Creates a nodding animation where the element rotates back and forth on the X-axis.
+/// @name animate_nod
+/// @param {Number|String} $angle [10deg] - The angle of rotation for the nod.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the nod animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the nod animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
+@mixin animate_nod(
+    $angle: 10deg, 
+    $duration: $animate_base_duration, 
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_nod,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @keyframes animate_nod {
+        0%, 100% { transform: rotateX(0deg); }
+        50% { transform: rotateX($angle); }
+    }
+}
+
+
+
+
+// Slow Nod Animation
+// ----------------------------------------------------------------------------
+
+///
+/// Slow Nod Animation
+/// Creates a slower nodding animation with a more gradual movement on the X-axis.
+/// @name animate_nod_slow
+/// @param {Number|String} $angle [10deg] - The angle of rotation for the nod.
+/// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the nod animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the nod animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
+@mixin animate_nod_slow(
+    $angle: 10deg, 
+    $duration: $animate_base_duration_slow,
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_nod_slow,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @keyframes animate_nod_slow {
+        0%, 100% { transform: rotateX(0deg); }
+        50% { transform: rotateX($angle); }
+    }
+}
+
+
+
+// Nod with Bounce
+// ----------------------------------------------------------------------------
+
+///
+/// Nod with Bounce
+/// Creates a nodding animation combined with a bounce effect.
+/// @name animate_nod_bounce
+/// @param {Number|String} $angle [10deg] - The angle of rotation for the nod.
+/// @param {Number|String} $bounce-height [5px] - The height of the bounce during the nod.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the nod animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the nod animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
+@mixin animate_nod_bounce(
+    $angle: 10deg, 
+    $bounce-height: 5px,
+    $duration: $animate_base_duration, 
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_nod_bounce,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @keyframes animate_nod_bounce {
+        0%, 100% { transform: rotateX(0deg) translateY(0); }
+        50% { transform: rotateX($angle) translateY(-$bounce-height); }
+    }
+}
+
+
+///
+/// Continuous Nod
+/// Creates a continuous nodding animation where the element rotates back and
+/// forth without stopping.
+/// 
+/// @name animate_nod_continuous
+/// @param {Number|String} $angle [10deg] - The angle of rotation for the nod.
+/// @param {Number|String} $duration [$animate_base_duration_fast] - The duration of the nod animation.
+/// @param {String} $timing_function [linear] - The timing function for the nod animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
+@mixin animate_nod_continuous(
+    $angle: 10deg, 
+    $duration: $animate_base_duration_fast, 
+    $timing_function: linear, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_nod_continuous,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @keyframes animate_nod_continuous {
+        0% { transform: rotateX(0deg); }
+        25%, 75% { transform: rotateX($angle); }
+        50%, 100% { transform: rotateX(-$angle); }
+    }
+}

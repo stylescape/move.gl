@@ -1,0 +1,119 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Hinge Animations Mixin Module
+/// ===========================================================================
+/// 
+/// This module ...
+/// 
+/// 
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../keyframes" as *;
+@use "base" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+
+
+
+// .animated.hinge {
+//     -webkit-animation-duration: 2s;
+//     animation-duration: 2s;
+//   }
+  
+  
+//   @-webkit-keyframes hinge {
+//     0% {
+//       -webkit-transform-origin: top left;
+//       transform-origin: top left;
+//       -webkit-animation-timing-function: ease-in-out;
+//       animation-timing-function: ease-in-out;
+//     }
+  
+//     20%, 60% {
+//       -webkit-transform: rotate3d(0, 0, 1, 80deg);
+//       transform: rotate3d(0, 0, 1, 80deg);
+//       -webkit-transform-origin: top left;
+//       transform-origin: top left;
+//       -webkit-animation-timing-function: ease-in-out;
+//       animation-timing-function: ease-in-out;
+//     }
+  
+//     40%, 80% {
+//       -webkit-transform: rotate3d(0, 0, 1, 60deg);
+//       transform: rotate3d(0, 0, 1, 60deg);
+//       -webkit-transform-origin: top left;
+//       transform-origin: top left;
+//       -webkit-animation-timing-function: ease-in-out;
+//       animation-timing-function: ease-in-out;
+//       opacity: 1;
+//     }
+  
+//     100% {
+//       -webkit-transform: translate3d(0, 700px, 0);
+//       transform: translate3d(0, 700px, 0);
+//       opacity: 0;
+//     }
+//   }
+  
+//   @keyframes hinge {
+//     0% {
+//       -webkit-transform-origin: top left;
+//       transform-origin: top left;
+//       -webkit-animation-timing-function: ease-in-out;
+//       animation-timing-function: ease-in-out;
+//     }
+  
+//     20%, 60% {
+//       -webkit-transform: rotate3d(0, 0, 1, 80deg);
+//       transform: rotate3d(0, 0, 1, 80deg);
+//       -webkit-transform-origin: top left;
+//       transform-origin: top left;
+//       -webkit-animation-timing-function: ease-in-out;
+//       animation-timing-function: ease-in-out;
+//     }
+  
+//     40%, 80% {
+//       -webkit-transform: rotate3d(0, 0, 1, 60deg);
+//       transform: rotate3d(0, 0, 1, 60deg);
+//       -webkit-transform-origin: top left;
+//       transform-origin: top left;
+//       -webkit-animation-timing-function: ease-in-out;
+//       animation-timing-function: ease-in-out;
+//       opacity: 1;
+//     }
+  
+//     100% {
+//       -webkit-transform: translate3d(0, 700px, 0);
+//       transform: translate3d(0, 700px, 0);
+//       opacity: 0;
+//     }
+//   }
+  
+//   .hinge {
+//     -webkit-animation-name: hinge;
+//     animation-name: hinge;
+//   }
+  

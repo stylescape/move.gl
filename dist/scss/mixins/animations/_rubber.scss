@@ -1,0 +1,116 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Rubber Animations Mixin Module
+/// ===========================================================================
+/// 
+/// This module ...
+/// 
+/// 
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../keyframes" as *;
+@use "base" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+
+// @-webkit-keyframes rubberBand {
+//     from {
+//       -webkit-transform: scale3d(1, 1, 1);
+//       transform: scale3d(1, 1, 1);
+//     }
+  
+//     30% {
+//       -webkit-transform: scale3d(1.25, 0.75, 1);
+//       transform: scale3d(1.25, 0.75, 1);
+//     }
+  
+//     40% {
+//       -webkit-transform: scale3d(0.75, 1.25, 1);
+//       transform: scale3d(0.75, 1.25, 1);
+//     }
+  
+//     50% {
+//       -webkit-transform: scale3d(1.15, 0.85, 1);
+//       transform: scale3d(1.15, 0.85, 1);
+//     }
+  
+//     65% {
+//       -webkit-transform: scale3d(.95, 1.05, 1);
+//       transform: scale3d(.95, 1.05, 1);
+//     }
+  
+//     75% {
+//       -webkit-transform: scale3d(1.05, .95, 1);
+//       transform: scale3d(1.05, .95, 1);
+//     }
+  
+//     100% {
+//       -webkit-transform: scale3d(1, 1, 1);
+//       transform: scale3d(1, 1, 1);
+//     }
+//   }
+  
+//   @keyframes rubberBand {
+//     from {
+//       -webkit-transform: scale3d(1, 1, 1);
+//       transform: scale3d(1, 1, 1);
+//     }
+  
+//     30% {
+//       -webkit-transform: scale3d(1.25, 0.75, 1);
+//       transform: scale3d(1.25, 0.75, 1);
+//     }
+  
+//     40% {
+//       -webkit-transform: scale3d(0.75, 1.25, 1);
+//       transform: scale3d(0.75, 1.25, 1);
+//     }
+  
+//     50% {
+//       -webkit-transform: scale3d(1.15, 0.85, 1);
+//       transform: scale3d(1.15, 0.85, 1);
+//     }
+  
+//     65% {
+//       -webkit-transform: scale3d(.95, 1.05, 1);
+//       transform: scale3d(.95, 1.05, 1);
+//     }
+  
+//     75% {
+//       -webkit-transform: scale3d(1.05, .95, 1);
+//       transform: scale3d(1.05, .95, 1);
+//     }
+  
+//     100% {
+//       -webkit-transform: scale3d(1, 1, 1);
+//       transform: scale3d(1, 1, 1);
+//     }
+//   }
+  
+//   .rubberBand {
+//     -webkit-animation-name: rubberBand;
+//     animation-name: rubberBand;
+//   }

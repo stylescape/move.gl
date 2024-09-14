@@ -1,0 +1,175 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// StyleScape | Effects | Shadow
+// ============================================================================
+@use "../variables" as *;
+@use "../mixins" as *;
+
+// Base Shadow Mixin
+// ----------------------------------------------------------------------------
+
+@mixin box_shadow(
+    $offset_horizontal: 0,
+    $offset_vertical: 0,
+    $blur: 3px,
+    $spread: 0,
+    $color: rgba(0,0,0, .2)
+) {
+    box_shadow: $offset_horizontal $offset_vertical $blur $spread $color;
+}
+
+
+// Predefined Shadow Styles
+// ----------------------------------------------------------------------------
+
+.btn_shadow { @include box_shadow(0, 0, 6px, 0, rgba(0,0,0, .3)); }
+.box_shadow_light { @include box_shadow(0, 0, 3px, 0, rgba(0,0,0, .1)); }
+.box_shadow { @include box_shadow(0, 0, 3px, 0, rgba(0,0,0, .2)); }
+.box_shadow_dark { @include box_shadow(0, 0, 4px, 0, rgba(0,0,0, .4)); }
+.box_shadow_large { @include box_shadow(0, 0, 12px, 0, rgba(0,0,0, .1)); }
+
+
+// Extended Shadow Styles
+// ----------------------------------------------------------------------------
+
+.box_shadow_intense { @include box_shadow(0, 2px, 4px, 0, rgba(0,0,0, .5)); }
+.box_shadow_soft { @include box_shadow(0, 2px, 10px, 0, rgba(0,0,0, .05)); }
+.box_shadow_colored { @include box_shadow(0, 0, 5px, 0, rgba(255,0,0, .2)); } /* Example with color */
+.box_shadow_inset { @include box_shadow(inset 0 0 6px rgba(0,0,0, .3)); } /* Inset shadow */
+
+
+// Directional Box Shadows
+// ----------------------------------------------------------------------------
+
+.drop_shadow_top { @include box_shadow(0, -4px, 2px, -2px, rgba(0,0,0,0.4)); }
+.drop_shadow_right { @include box_shadow(4px, 0, 2px, -2px, rgba(0,0,0,0.4)); }
+.drop_shadow_bottom { @include box_shadow(0, 4px, 2px, -2px, rgba(0,0,0,0.4)); }
+.drop_shadow_left { @include box_shadow(-4px, 0, 2px, -2px, rgba(0,0,0,0.4)); }
+
+
+// Emphasized Box Shadows
+// ----------------------------------------------------------------------------
+
+.emphasize_dark { @include box_shadow(0, 0, 5px, 2px, rgba(0,0,0,.35)); }
+.emphasize_light { @include box_shadow(0, 0, 0, 10px, rgba(255,255,255,.25)); }
+.emphasize_inset { @include box_shadow(inset 0, 0, 7px, 4px, rgba(255,255,255,.5)); }
+.emphasize_border { @include box_shadow(inset 0, 0, 0, 7px, rgba(255,255,255,.5)); }
+
+
+// Embossed Box Shadows
+// ----------------------------------------------------------------------------
+
+.embossed_light {
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+}
+
+.embossed_heavy {
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 
+        inset 0 2px 3px rgba(255,255,255,0.3),
+        inset 0 -2px 3px rgba(0,0,0,0.3),
+        0 1px 1px rgba(255,255,255,0.9);
+}
+
+
+// Shadow Border Mixin:
+// Add a shadow to mimic a border effect.
+@mixin shadow-border($shadow: 0 0 5px rgba(0,0,0,0.3)) {
+    box-shadow: $shadow;
+}
+
+.border-shadow-effect {
+    @include shadow-border();
+}
+
+
+
+// Hover Shadow Animation:
+// Adds a shadow effect on hover to make elements appear elevated.
+
+
+// @mixin hover-shadow-animation($hover-shadow: 0 4px 8px rgba(0,0,0,0.2)) {
+//     transition: box-shadow 0.3s ease;
+//     &:hover {
+//         box-shadow: $hover-shadow;
+//     }
+// }
+
+// .btn-hover-shadow {
+//     @include hover-shadow-animation();
+// }
+// Shadow Transition Mixin:
+// Smoothly transitions shadow effects on hover or focus.
+
+
+// @mixin shadow-transition($default-shadow, $hover-shadow) {
+//     box-shadow: $default-shadow;
+//     transition: box-shadow 0.3s ease;
+//     &:hover, &:focus {
+//         box-shadow: $hover-shadow;
+//     }
+// }
+
+// .card-transition {
+//     @include shadow-transition(0 2px 4px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.2));
+// }
+// Multi-layered Shadow:
+// Creates a more complex shadow by layering multiple shadows.
+
+
+// @mixin multi-layered-shadow($shadows...) {
+//     box-shadow: $shadows;
+// }
+
+// .multi-shadow {
+//     @include multi-layered-shadow(0 1px 2px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.2));
+// }
+// Inset Shadow:
+// Creates an inner shadow for a "cut-in" effect.
+
+
+// @mixin inset-shadow($horizontal: 0, $vertical: 0, $blur: 3px, $spread: 0, $color: rgba(0,0,0,0.5)) {
+//     box-shadow: inset $horizontal $vertical $blur $spread $color;
+// }
+
+// .inset-shadow-box {
+//     @include inset-shadow(0, 0, 5px, 0, rgba(0,0,0,0.25));
+// }
+// Soft Edge Shadow:
+// Generates a soft, diffuse shadow around an element.
+
+
+// @mixin soft-edge-shadow($blur: 10px, $color: rgba(0,0,0,0.2)) {
+//     box-shadow: 0 0 $blur $color;
+// }
+
+// .soft-edge {
+//     @include soft-edge-shadow();
+// }
+
+
+// Neomorphic Shadow:
+// Creates a shadow effect suitable for Neomorphism design.
+
+// @mixin neomorphic-shadow($light-color: rgba(255, 255, 255, 0.7), $dark-color: rgba(0, 0, 0, 0.3)) {
+//     box-shadow: 5px 5px 10px $dark-color, -5px -5px 10px $light-color;
+// }
+
+// .neo-box {
+//     @include neomorphic-shadow();
+// }

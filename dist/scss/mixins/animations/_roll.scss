@@ -1,0 +1,261 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Roll Animations Mixin Module
+/// ===========================================================================
+/// 
+/// This module ...
+/// 
+/// 
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "base" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+///
+/// Roll Animation
+/// Creates a rolling animation where the element translates and rotates
+/// horizontally.
+/// 
+/// @name animate_roll
+/// @param {Number|String} $translate-distance [100%] - The distance to translate the element horizontally.
+/// @param {Number|String} $rotation_angle [360deg] - The rotation angle for the roll.
+/// @param {Number|String} $duration [$animate_base_duration/// 2] - The duration of the roll animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the roll animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
+@mixin animate_roll(
+    $translate-distance: 100%, 
+    $rotation_angle: 360deg, 
+    $duration: $animate_base_duration * 2,
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_roll,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_roll {
+        0% { transform: translateX(0) rotate(0deg); }
+        100% { transform: translateX($translate-distance) rotate($rotation_angle); }
+    }
+}
+
+
+// Reverse Roll Animation
+// ----------------------------------------------------------------------------
+
+///
+/// Reverse Roll Animation
+/// Creates a reverse rolling animation where the element translates and rotates horizontally in the opposite direction.
+/// @name animate_roll_reverse
+/// @param {Number|String} $translate-distance [-100%] - The distance to translate the element horizontally.
+/// @param {Number|String} $rotation_angle [-360deg] - The rotation angle for the reverse roll.
+/// @param {Number|String} $duration [$animate_base_duration/// 2] - The duration of the roll animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the roll animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
+@mixin animate_roll_reverse(
+    $translate-distance: -100%, 
+    $rotation_angle: -360deg, 
+    $duration: $animate_base_duration * 2,
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_roll_reverse,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_roll_reverse {
+        0% { transform: translateX(0) rotate(0deg); }
+        100% { transform: translateX($translate-distance) rotate($rotation_angle); }
+    }
+}
+
+
+// Slow Roll Animation
+// ----------------------------------------------------------------------------
+
+///
+/// Slow Roll Animation
+/// Creates a slower rolling animation where the element translates and rotates horizontally.
+/// @name animate_roll_slow
+/// @param {Number|String} $translate-distance [100%] - The distance to translate the element horizontally.
+/// @param {Number|String} $rotation_angle [360deg] - The rotation angle for the roll.
+/// @param {Number|String} $duration [$animate_base_duration_slow/// 2] - The duration of the roll animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the roll animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
+@mixin animate_roll_slow(
+    $translate-distance: 100%, 
+    $rotation_angle: 360deg, 
+    $duration: $animate_base_duration_slow * 2,
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_roll_slow,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_roll_slow {
+        0% { transform: translateX(0) rotate(0deg); }
+        100% { transform: translateX($translate-distance) rotate($rotation_angle); }
+    }
+}
+
+
+
+// Vertical Roll Animation
+// ----------------------------------------------------------------------------
+
+///
+/// Vertical Roll Animation
+/// Creates a rolling animation where the element translates and rotates vertically.
+/// @name animate_roll_vertical
+/// @param {Number|String} $translate-distance [100%] - The distance to translate the element vertically.
+/// @param {Number|String} $rotation_angle [360deg] - The rotation angle for the vertical roll.
+/// @param {Number|String} $duration [$animate_base_duration/// 2] - The duration of the roll animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the roll animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
+@mixin animate_roll_vertical(
+    $translate-distance: 100%, 
+    $rotation_angle: 360deg, 
+    $duration: $animate_base_duration * 2,
+    $timing_function: ease-in-out, 
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_roll_vertical,
+        $duration,
+        $timing_function,
+        $iteration_count,
+    );
+    @keyframes animate_roll_vertical {
+        0% { transform: translateY(0) rotate(0deg); }
+        100% { transform: translateY($translate-distance) rotate($rotation_angle); }
+    }
+}
+
+
+
+
+
+// originally authored by Nick Pettit - https://github.com/nickpettit/glide
+
+// @-webkit-keyframes rollIn {
+//     from {
+//       opacity: 0;
+//       -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
+//       transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
+//     }
+  
+//     100% {
+//       opacity: 1;
+//       -webkit-transform: none;
+//       transform: none;
+//     }
+//   }
+  
+//   @keyframes rollIn {
+//     from {
+//       opacity: 0;
+//       -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
+//       transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
+//     }
+  
+//     100% {
+//       opacity: 1;
+//       -webkit-transform: none;
+//       transform: none;
+//     }
+//   }
+  
+//   .rollIn {
+//     -webkit-animation-name: rollIn;
+//     animation-name: rollIn;
+//   }
+  
+//   /* originally authored by Nick Pettit - https://github.com/nickpettit/glide///
+  
+//   @-webkit-keyframes rollOut {
+//     from {
+//       opacity: 1;
+//     }
+  
+//     100% {
+//       opacity: 0;
+//       -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg);
+//       transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg);
+//     }
+//   }
+  
+//   @keyframes rollOut {
+//     from {
+//       opacity: 1;
+//     }
+  
+//     100% {
+//       opacity: 0;
+//       -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg);
+//       transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg);
+//     }
+//   }
+  
+//   .rollOut {
+//     -webkit-animation-name: rollOut;
+//     animation-name: rollOut;
+//   }
+  
+//   @-webkit-keyframes zoomIn {
+//     from {
+//       opacity: 0;
+//       -webkit-transform: scale3d(.3, .3, .3);
+//       transform: scale3d(.3, .3, .3);
+//     }
+  
+//     50% {
+//       opacity: 1;
+//     }
+//   }
+  
+//   @keyframes zoomIn {
+//     from {
+//       opacity: 0;
+//       -webkit-transform: scale3d(.3, .3, .3);
+//       transform: scale3d(.3, .3, .3);
+//     }
+  
+//     50% {
+//       opacity: 1;
+//     }
+//   }
+  
