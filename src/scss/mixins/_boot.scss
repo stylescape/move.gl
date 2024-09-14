@@ -1,0 +1,51 @@
+
+
+@use "../variables" as *;
+@use "../mixins" as *;
+
+/// Apply a fade-in animation to the `body` element using the `$boot-fadein-time` variable for the duration.
+/// This animation smoothly transitions the opacity of the `body` from `$boot-fadein-opacity-start` to `$boot-fadein-opacity-end`.
+/// @group Animation
+/// 
+body {
+  -webkit-animation: fadein $boot-fadein-time;
+     -moz-animation: fadein $boot-fadein-time;
+      -ms-animation: fadein $boot-fadein-time;
+       -o-animation: fadein $boot-fadein-time;
+          animation: fadein $boot-fadein-time;
+}
+
+/// Keyframes for the `fadein` animation, transitioning opacity from `$boot-fadein-opacity-start` to `$boot-fadein-opacity-end`.
+/// @group Animation
+@keyframes fadein {
+  from { opacity: $boot-fadein-opacity-start; }
+  to   { opacity: $boot-fadein-opacity-end; }
+}
+
+/// Webkit-specific keyframes for the `fadein` animation.
+/// @group Animation
+@-webkit-keyframes fadein {
+  from { opacity: $boot-fadein-opacity-start; }
+  to   { opacity: $boot-fadein-opacity-end; }
+}
+
+/// Mozilla-specific keyframes for the `fadein` animation.
+/// @group Animation
+@-moz-keyframes fadein {
+  from { opacity: $boot-fadein-opacity-start; }
+  to   { opacity: $boot-fadein-opacity-end; }
+}
+
+/// Microsoft-specific keyframes for the `fadein` animation.
+/// @group Animation
+@-ms-keyframes fadein {
+  from { opacity: $boot-fadein-opacity-start; }
+  to   { opacity: $boot-fadein-opacity-end; }
+}
+
+/// Opera-specific keyframes for the `fadein` animation.
+/// @group Animation
+@-o-keyframes fadein {
+  from { opacity: $boot-fadein-opacity-start; }
+  to   { opacity: $boot-fadein-opacity-end; }
+}
