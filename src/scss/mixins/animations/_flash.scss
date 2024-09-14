@@ -1,44 +1,53 @@
-// Copyright 2024 Scape Agency BV
+// ============================================================================
+// Poster
+// ============================================================================
 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+////
+/// 
+/// Flash Animations Mixin Module
+/// ===========================================================================
+/// 
+/// This module ...
+/// 
+/// 
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
 
 
 // ============================================================================
-// StyleScape | Animations | Flash
+// Use
 // ============================================================================
 
 @use "../dev" as *;
 @use "../variables" as *;
+@use "../keyframes" as *;
 @use "base" as *;
 
 
+// ============================================================================
+// Mixins
+// ============================================================================
 
-// Flash Animation
-// ----------------------------------------------------------------------------
 
-/**
- * Flash Animation
- *
- * Creates a flash animation that transitions between different opacity levels.
- *
- * @mixin animate_flash
- * @param {Number} $start_opacity [1] - The initial opacity of the element.
- * @param {Number} $mid_opacity [0] - The opacity at the midpoint of the animation.
- * @param {Number} $end_opacity [1] - The final opacity of the element.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the animation.
- * @param {String} $timing_function [ease-in-out] - The timing function to use for the animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of times the animation should run.
- */
+///
+/// Flash Animation
+/// Creates a flash animation that transitions between different opacity
+/// levels.
+/// 
+/// @name animate_flash
+/// @param {Number} $start_opacity [1] - The initial opacity of the element.
+/// @param {Number} $mid_opacity [0] - The opacity at the midpoint of the animation.
+/// @param {Number} $end_opacity [1] - The final opacity of the element.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function to use for the animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of times the animation should run.
+///
 @mixin animate_flash(
     $start_opacity: 1,
     $mid_opacity: 0,
@@ -59,23 +68,15 @@
     }
 }
 
-.animate_flash {
-    @include animate_flash();
-}
 
-
-// Flash Fade In and Out
-// ----------------------------------------------------------------------------
-
-/**
- * Flash Fade In and Out
- *
- * Creates a flash fade effect that smoothly transitions in and out of view.
- *
- * @mixin animate_flash_fade
- * @param {Number|String} $duration [2s] - The duration of the animation.
- * @param {String} $timing_function [ease-in-out] - The timing function to use for the animation.
- */
+///
+/// Flash Fade In and Out
+/// Creates a flash fade effect that smoothly transitions in and out of view.
+/// 
+/// @name animate_flash_fade
+/// @param {Number|String} $duration [2s] - The duration of the animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function to use for the animation.
+///
 @mixin animate_flash_fade(
     $duration: 2s,
     $timing_function: ease-in-out
@@ -91,24 +92,16 @@
     }
 }
 
-.animate_flash_fade {
-    @include animate_flash_fade();
-}
 
-
-// Strobe Flash Animation
-// ----------------------------------------------------------------------------
-
-/**
- * Strobe Flash Animation
- *
- * Creates a strobe flash effect with a configurable frequency.
- *
- * @mixin animate_flash_strobe
- * @param {Number|String} $frequency [0.1s] - The frequency of the strobe effect.
- * @param {Number|String} $duration [$animate_base_duration] - The duration of the animation.
- * @param {String} $timing_function [steps(1, end)] - The timing function to use for the animation.
- */
+///
+/// Strobe Flash Animation
+/// Creates a strobe flash effect with a configurable frequency.
+/// 
+/// @name animate_flash_strobe
+/// @param {Number|String} $frequency [0.1s] - The frequency of the strobe effect.
+/// @param {Number|String} $duration [$animate_base_duration] - The duration of the animation.
+/// @param {String} $timing_function [steps(1, end)] - The timing function to use for the animation.
+///
 @mixin animate_flash_strobe(
     $frequency: 0.1s,
     $duration: $animate_base_duration,
@@ -127,23 +120,16 @@
     animation-duration: $frequency;
 }
 
-.animate_flash_strobe {
-    @include animate_flash_strobe();
-}
 
-
-// Slow Fade Flash
-// ----------------------------------------------------------------------------
-
-/**
- * Slow Fade Flash
- *
- * Creates a slow fading flash effect, fading in and out of view.
- *
- * @mixin animate_flash_fade_slow
- * @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the animation.
- * @param {String} $timing_function [ease-in-out] - The timing function to use for the animation.
- */
+///
+/// Slow Fade Flash
+/// ---------------------------------------------------------------------------
+/// Creates a slow fading flash effect, fading in and out of view.
+/// 
+/// @name animate_flash_fade_slow
+/// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function to use for the animation.
+///
 @mixin animate_flash_fade_slow(
     $duration: $animate_base_duration_slow,
     $timing_function: ease-in-out
@@ -160,9 +146,7 @@
     }
 }
 
-.animate_flash_fade_slow {
-    @include animate_flash_fade_slow();
-}
+
 
 
 
