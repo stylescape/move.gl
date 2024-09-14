@@ -1,0 +1,49 @@
+// ============================================================================
+// Keyframes Mixin
+// ============================================================================
+
+///
+/// Keyframes Mixin
+/// ---------------------------------------------------------------------------
+/// 
+/// A versatile mixin for defining CSS keyframes with a customizable name.
+/// This mixin allows embedding keyframe content with the ability to specify
+/// prefixes or additional settings easily.
+///
+/// @name keyframes
+/// @param {String} $name - The name of the keyframe animation.
+/// @content - The keyframe rules defined within the mixin block.
+/// @example scss - Usage
+///   @include keyframes(animate_bounce) {
+///       0% { transform: translateY(0); }
+///       50% { transform: translateY(-30px); }
+///       100% { transform: translateY(0); }
+///   }
+///
+@mixin keyframes($name) {
+    // Output standard keyframes
+    @keyframes #{$name} {
+        @content;
+    }
+
+    // Output vendor-prefixed keyframes for better browser support
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-o-keyframes #{$name} {
+        @content;
+    }
+}
+
+// Usage example:
+@include keyframes('example-animation') {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100px);
+    }
+}
