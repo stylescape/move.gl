@@ -1,0 +1,76 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Flip Transforms Mixin Module
+/// ===========================================================================
+/// This module provides mixins for flipping elements in various directions,
+/// such as horizontally, vertically, or both. These mixins can be used to 
+/// easily apply flip transforms throughout your project.
+/// 
+/// @group Transforms
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../keyframes" as *;
+@use "base" as *;
+
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+///
+/// Mixin for flipping elements horizontally.
+/// Applies a horizontal flip by scaling the element along the X-axis.
+/// 
+/// @name transform_flip_horizontal
+/// @example scss - Usage
+///   .transform_flip_horizontal { @include transform_flip_horizontal(); }
+///
+@mixin transform_flip_horizontal {
+    transform: scale(-1, 1);
+}
+
+
+///
+/// Mixin for flipping elements vertically.
+/// Applies a vertical flip by scaling the element along the Y-axis.
+/// 
+/// @name transform_flip_vertical
+/// @example scss - Usage
+///     .transform_flip_vertical { @include transform_flip_vertical(); }
+///
+@mixin transform_flip_vertical {
+    transform: scale(1, -1);
+}
+
+
+///
+/// Mixin for flipping elements both horizontally and vertically.
+/// Combines horizontal and vertical flips to mirror the element.
+/// 
+/// @name transform_flip_both
+/// @example scss - Usage
+///   .transform_flip_both { @include transform_flip_both(); }
+///
+@mixin transform_flip_both {
+    transform: scale(1, -1);
+}
