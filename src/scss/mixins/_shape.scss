@@ -1,8 +1,11 @@
-/// @mixin circle
+///
 /// Creates a circular element with a given size.
+/// 
+/// @name circle
 /// @param {Number|Unit} $size - The diameter of the circle.
 /// @example scss - Usage
 ///   @include circle(50px);
+/// 
 @mixin circle($size) {
     width: $size;
     height: $size;
@@ -10,13 +13,16 @@
 }
 
 
-/// @mixin triangle
+/// 
 /// Creates a triangle using only CSS borders.
+/// 
+/// @name triangle
 /// @param {Number|Unit} $size - The size of the triangle.
 /// @param {Color} $color - The color of the triangle.
 /// @param {String} $direction - The direction the triangle points (default: up).
 /// @example scss - Usage
 ///   @include triangle(10px, #ff5722, down);
+/// 
 @mixin triangle($size, $color, $direction: up) {
     width: 0;
     height: 0;
