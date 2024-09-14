@@ -1,0 +1,32 @@
+/// 
+/// Enables smooth scrolling for a container.
+/// 
+/// @name scroll_smooth
+/// 
+/// @example scss - Usage
+///   @include smooth-scroll;
+/// 
+@mixin scroll_smooth() {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+/// 
+/// Sets up scroll snapping for a container.
+/// 
+/// @name scroll_snap
+/// @param {String} $type - The type of scroll snapping (default: y mandatory).
+/// @param {String} $align - How items are aligned in the snap (default: start).
+/// 
+/// @example scss - Usage
+///   @include scroll-_snap(x mandatory, center);
+/// 
+@mixin scroll_snap(
+    $type: y mandatory,
+    $align: start
+) {
+    scroll-snap-type: $type;
+    scroll-snap-align: $align;
+}
+    
