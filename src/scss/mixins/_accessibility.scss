@@ -4,6 +4,7 @@
 // ============================================================================
 // Accessibility
 // ============================================================================
+
 @use "../variables" as *;
 @use "../mixins" as *;
 
@@ -36,7 +37,7 @@
 /// @param {String} $property - The ARIA property (without 'aria-' prefix).
 /// @param {String} $value - The value of the ARIA property.
 /// @param {String} $cursor - The cursor style to apply.
-/// @group Accessibility
+///
 @mixin cursor_style($property, $value, $cursor) {
     [#{'aria-' + $property}='#{ $value }'] {
         cursor: $cursor;
