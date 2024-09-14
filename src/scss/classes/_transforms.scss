@@ -72,3 +72,53 @@
     @include transform_rotate_dynamic();
 }
 
+
+
+
+
+
+
+$default-rotation: 0deg !default;
+$rotation-90: 90deg !default;
+$rotation-180: 180deg !default;
+$rotation-270: 270deg !default;
+
+$default-scale: 1 !default;
+$scale-up: 1.2 !default;
+$scale-down: 0.8 !default;
+
+$default-translate: 0 !default;
+$translate-x: 10px !default;
+$translate-y: 10px !default;
+
+$default-skew: 0deg !default;
+$skew-x: 10deg !default;
+$skew-y: 10deg !default;
+
+///
+/// Predefined class for scaling elements up.
+///
+.scale_up {
+    @include scale($scale-up);
+}
+
+///
+/// Predefined class for scaling elements down.
+///
+.scale_down {
+    @include scale($scale-down);
+}
+
+///
+/// Predefined class for translating elements by predefined X and Y values.
+///
+.translate_xy {
+    @include translate($translate-x, $translate-y);
+}
+
+///
+/// Predefined class for skewing elements by predefined X and Y angles.
+///
+.skew_xy {
+    @include skew($skew-x, $skew-y);
+}
