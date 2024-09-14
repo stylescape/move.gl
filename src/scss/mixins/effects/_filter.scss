@@ -4,145 +4,145 @@
 /// allowing for easy reuse throughout your stylesheets:
 ///
 
-/**
- * Mixin for blur effect.
- * 
- * @param {Length} $radius [0] - The radius of the blur effect. Default is 0.
- * 
- * @example scss - Usage
- * .example {
- *   @include filter_blur(5px);
- * }
- */
+/// 
+/// Mixin for blur effect.
+/// 
+/// @param {Length} $radius [0] - The radius of the blur effect. Default is 0.
+/// 
+/// @example scss - Usage
+/// .example {
+///   @include filter_blur(5px);
+/// }
+/// 
  @mixin filter_blur($radius: 0) {
     filter: blur($radius);
 }
 
-/**
- * Mixin for grayscale effect.
- * 
- * @param {Percentage} $amount [100%] - The amount of grayscale to apply. Default is 100%.
- * 
- * @example scss - Usage
- * .example {
- *   @include filter_grayscale(50%);
- * }
- */
+/// 
+/// Mixin for grayscale effect.
+/// 
+/// @param {Percentage} $amount [100%] - The amount of grayscale to apply. Default is 100%.
+/// 
+/// @example scss - Usage
+/// .example {
+///   @include filter_grayscale(50%);
+/// }
+/// 
 @mixin filter_grayscale($amount: 100%) {
     filter: grayscale($amount);
 }
 
-/**
- * Mixin for brightness effect.
- * 
- * @param {Percentage} $amount [100%] - The amount of brightness to apply. Default is 100%.
- * 
- * @example scss - Usage
- * .example {
- *   @include filter_brightness(120%);
- * }
- */
+/// 
+/// Mixin for brightness effect.
+/// 
+/// @param {Percentage} $amount [100%] - The amount of brightness to apply. Default is 100%.
+/// 
+/// @example scss - Usage
+/// .example {
+///   @include filter_brightness(120%);
+/// }
+/// 
 @mixin filter_brightness($amount: 100%) {
     filter: brightness($amount);
 }
 
-/**
- * Mixin for contrast effect.
- * 
- * @param {Percentage} $amount [100%] - The amount of contrast to apply. Default is 100%.
- * 
- * @example scss - Usage
- * .example {
- *   @include filter_contrast(80%);
- * }
- */
+/// 
+/// Mixin for contrast effect.
+/// 
+/// @param {Percentage} $amount [100%] - The amount of contrast to apply. Default is 100%.
+/// 
+/// @example scss - Usage
+/// .example {
+///   @include filter_contrast(80%);
+/// }
+/// 
 @mixin filter_contrast($amount: 100%) {
     filter: contrast($amount);
 }
 
-/**
- * Mixin for sepia effect.
- * 
- * @param {Percentage} $amount [100%] - The amount of sepia to apply. Default is 100%.
- * 
- * @example scss - Usage
- * .example {
- *   @include filter_sepia(50%);
- * }
- */
+/// 
+/// Mixin for sepia effect.
+/// 
+/// @param {Percentage} $amount [100%] - The amount of sepia to apply. Default is 100%.
+/// 
+/// @example scss - Usage
+/// .example {
+///   @include filter_sepia(50%);
+/// }
+/// 
 @mixin filter_sepia($amount: 100%) {
     filter: sepia($amount);
 }
 
-/**
- * Mixin for invert effect.
- * 
- * @param {Percentage} $amount [100%] - The amount of inversion to apply. Default is 100%.
- * 
- * @example scss - Usage
- * .example {
- *   @include filter_invert(50%);
- * }
- */
+/// 
+/// Mixin for invert effect.
+/// 
+/// @param {Percentage} $amount [100%] - The amount of inversion to apply. Default is 100%.
+/// 
+/// @example scss - Usage
+/// .example {
+///   @include filter_invert(50%);
+/// }
+/// 
 @mixin filter_invert($amount: 100%) {
     filter: invert($amount);
 }
 
-/**
- * Mixin for hue-rotate effect.
- * 
- * @param {Angle} $angle [0deg] - The angle of hue rotation. Default is 0deg.
- * 
- * @example scss - Usage
- * .example {
- *   @include filter_hue_rotate(90deg);
- * }
- */
+/// 
+/// Mixin for hue-rotate effect.
+/// 
+/// @param {Angle} $angle [0deg] - The angle of hue rotation. Default is 0deg.
+/// 
+/// @example scss - Usage
+/// .example {
+///   @include filter_hue_rotate(90deg);
+/// }
+/// 
 @mixin filter_hue_rotate($angle: 0deg) {
     filter: hue-rotate($angle);
 }
 
-/**
- * Mixin for saturate effect.
- * 
- * @param {Percentage} $amount [100%] - The amount of saturation to apply. Default is 100%.
- * 
- * @example scss - Usage
- * .example {
- *   @include filter_saturate(200%);
- * }
- */
+/// 
+/// Mixin for saturate effect.
+/// 
+/// @param {Percentage} $amount [100%] - The amount of saturation to apply. Default is 100%.
+/// 
+/// @example scss - Usage
+/// .example {
+///   @include filter_saturate(200%);
+/// }
+/// 
 @mixin filter_saturate($amount: 100%) {
     filter: saturate($amount);
 }
 
-/**
- * Mixin for drop shadow effect.
- * 
- * @param {Length} $offsetX [0] - The horizontal offset of the shadow. Default is 0.
- * @param {Length} $offsetY [0] - The vertical offset of the shadow. Default is 0.
- * @param {Length} $blurRadius [0] - The blur radius of the shadow. Default is 0.
- * @param {Color} $color [#000] - The color of the shadow. Default is black.
- * 
- * @example scss - Usage
- * .example {
- *   @include filter_drop_shadow(10px, 10px, 5px, rgba(0, 0, 0, 0.5));
- * }
- */
+/// 
+/// Mixin for drop shadow effect.
+/// 
+/// @param {Length} $offsetX [0] - The horizontal offset of the shadow. Default is 0.
+/// @param {Length} $offsetY [0] - The vertical offset of the shadow. Default is 0.
+/// @param {Length} $blurRadius [0] - The blur radius of the shadow. Default is 0.
+/// @param {Color} $color [#000] - The color of the shadow. Default is black.
+/// 
+/// @example scss - Usage
+/// .example {
+///   @include filter_drop_shadow(10px, 10px, 5px, rgba(0, 0, 0, 0.5));
+/// }
+/// 
 @mixin filter_drop_shadow($offsetX: 0, $offsetY: 0, $blurRadius: 0, $color: #000) {
     filter: drop-shadow($offsetX $offsetY $blurRadius $color);
 }
 
-/**
- * Mixin for combining multiple filters.
- * 
- * @param {...} $filters - A list of filters to apply.
- * 
- * @example scss - Usage
- * .example {
- *   @include filter_multi(filter_blur(5px), filter_brightness(120%));
- * }
- */
+/// 
+/// Mixin for combining multiple filters.
+/// 
+/// @param {...} $filters - A list of filters to apply.
+/// 
+/// @example scss - Usage
+/// .example {
+///   @include filter_multi(filter_blur(5px), filter_brightness(120%));
+/// }
+/// 
 @mixin filter_multi($filters...) {
     filter: $filters;
 }
