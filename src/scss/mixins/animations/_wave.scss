@@ -1,41 +1,51 @@
-// Copyright 2024 Scape Agency BV
+// ============================================================================
+// Poster
+// ============================================================================
 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+////
+/// 
+/// Wave Animations Mixin Module
+/// ===========================================================================
+/// 
+/// This module ...
+/// 
+/// 
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
 
 
 // ============================================================================
-// StyleScape | Animations | Wave
+// Use
 // ============================================================================
 
 @use "../dev" as *;
 @use "../variables" as *;
+@use "../keyframes" as *;
 @use "base" as *;
 
 
-// Wave Animation
-// ----------------------------------------------------------------------------
+// ============================================================================
+// Mixins
+// ============================================================================
 
-/**
- * Wave Animation
- *
- * Creates a wave effect by rotating an element back and forth.
- *
- * @mixin animate_wave
- * @param {Angle} $angle [20deg] - The maximum rotation angle during the wave.
- * @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
- * @param {String} $timing_function [ease-in-out] - The timing function for the animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+
+
+
+///
+/// Wave Animation
+/// Creates a wave effect by rotating an element back and forth.
+/// @name animate_wave
+/// @param {Angle} $angle [20deg] - The maximum rotation angle during the wave.
+/// @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_wave(
     $angle: 20deg, 
     $duration: $animate_base_duration, 
@@ -54,25 +64,19 @@
     }
 }
 
-.animate_wave {
-    @include animate_wave();
-}
-
 
 // Gentle Wave Animation
 // ----------------------------------------------------------------------------
 
-/**
- * Gentle Wave Animation
- *
- * A slower and subtler wave animation.
- *
- * @mixin animate_wave_slow
- * @param {Angle} $angle [10deg] - The maximum rotation angle during the wave.
- * @param {Duration} $duration [$animate_base_duration_slow] - The duration of the animation.
- * @param {String} $timing_function [ease-in-out] - The timing function for the animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+///
+/// Gentle Wave Animation
+/// A slower and subtler wave animation.
+/// @name animate_wave_slow
+/// @param {Angle} $angle [10deg] - The maximum rotation angle during the wave.
+/// @param {Duration} $duration [$animate_base_duration_slow] - The duration of the animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_wave_slow(
     $angle: 10deg, 
     $duration: $animate_base_duration_slow,
@@ -91,25 +95,20 @@
     }
 }
 
-.animate_wave_slow {
-    @include animate_wave_slow();
-}
 
 
 // Rapid Wave Animation
 // ----------------------------------------------------------------------------
 
-/**
- * Rapid Wave Animation
- *
- * A faster and more intense wave animation.
- *
- * @mixin animate_wave_fast
- * @param {Angle} $angle [30deg] - The maximum rotation angle during the wave.
- * @param {Duration} $duration [$animate_base_duration_fast] - The duration of the animation.
- * @param {String} $timing_function [ease-in-out] - The timing function for the animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+///
+/// Rapid Wave Animation
+/// A faster and more intense wave animation.
+/// @name animate_wave_fast
+/// @param {Angle} $angle [30deg] - The maximum rotation angle during the wave.
+/// @param {Duration} $duration [$animate_base_duration_fast] - The duration of the animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_wave_fast(
     $angle: 30deg, 
     $duration: $animate_base_duration_fast, 
@@ -128,25 +127,20 @@
     }
 }
 
-.animate_wave_fast {
-    @include animate_wave_fast();
-}
 
 
 // Wave with Fade Animation
 // ----------------------------------------------------------------------------
 
-/**
- * Wave with Fade Animation
- *
- * A wave animation combined with a fading effect.
- *
- * @mixin animate_wave_fade
- * @param {Angle} $angle [20deg] - The maximum rotation angle during the wave.
- * @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
- * @param {String} $timing_function [ease-in-out] - The timing function for the animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+///
+/// Wave with Fade Animation
+/// A wave animation combined with a fading effect.
+/// @name animate_wave_fade
+/// @param {Angle} $angle [20deg] - The maximum rotation angle during the wave.
+/// @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_wave_fade(
     $angle: 20deg, 
     $duration: $animate_base_duration, 
@@ -169,8 +163,4 @@
             opacity: 0.5;
         }
     }
-}
-
-.animate_wave_fade {
-    @include animate_wave_fade();
 }
