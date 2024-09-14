@@ -1,5 +1,6 @@
-/// @mixin elevation
 /// Applies a material design-inspired elevation (shadow) to an element.
+/// 
+/// @name elevation
 /// @param {Number} $level - The elevation level (1-24).
 /// @example scss - Usage
 ///   @include elevation(4);
