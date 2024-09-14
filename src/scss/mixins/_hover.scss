@@ -1,0 +1,42 @@
+/// @mixin hover-scale
+/// Scales an element when hovered, with a smooth transition.
+/// @param {Number} $scale-factor - The scale factor on hover (default: 1.05).
+/// @param {Number|Unit} $duration - The duration of the scale transition (default: 0.3s).
+/// @example scss - Usage
+///   @include hover-scale(1.1, 0.4s);
+@mixin hover-scale($scale-factor: 1.05, $duration: 0.3s) {
+    transition: transform #{$duration} ease-in-out;
+
+    &:hover {
+        transform: scale(#{$scale-factor});
+    }
+}
+
+/// @mixin hover-scale
+/// Applies a scaling effect to an element on hover.
+/// @param {Number} $scale - The scaling factor (default: 1.1).
+/// @param {Number|Unit} $duration - The duration of the transition (default: 0.3s).
+/// @example scss - Usage
+///   @include hover-scale(1.2, 0.5s);
+@mixin hover-scale($scale: 1.1, $duration: 0.3s) {
+    transition: transform $duration ease-in-out;
+
+    &:hover {
+        transform: scale($scale);
+    }
+}
+
+/// @mixin hover-transition
+/// Applies a smooth transition effect on hover for specified properties.
+/// @param {List} $properties - List of properties to transition (default: all).
+/// @param {Number|Unit} $duration - Duration of the transition (default: 0.3s).
+/// @param {String} $timing-function - Timing function for the transition (default: ease).
+/// @example scss - Usage
+///   @include hover-transition(color, background-color, 0.5s, ease-in-out);
+@mixin hover-transition($properties: all, $duration: 0.3s, $timing-function: ease) {
+    transition: #{$properties} #{$duration} #{$timing-function};
+    
+    &:hover {
+        @content;
+    }
+}
