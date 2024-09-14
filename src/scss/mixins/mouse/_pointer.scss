@@ -42,6 +42,9 @@
 // ============================================================================
 
 ///
+/// 
+/// ---------------------------------------------------------------------------
+/// 
 /// Mixin for setting pointer-events property with support for both global and 
 /// keyword values. This mixin can be used to enable or disable pointer events 
 /// on an element.
@@ -64,6 +67,7 @@
 
 ///
 /// Mixin for setting pointer-events to inherit from parent element.
+/// ---------------------------------------------------------------------------
 /// 
 /// @name pointer_inherit
 /// @example scss - Usage
@@ -75,6 +79,7 @@
 
 ///
 /// Mixin for setting pointer-events to initial value.
+/// ---------------------------------------------------------------------------
 /// 
 /// @name pointer_initial
 /// @example scss - Usage
@@ -86,6 +91,7 @@
 
 ///
 /// Mixin for setting pointer-events to revert.
+/// ---------------------------------------------------------------------------
 /// 
 /// @name pointer_revert
 /// @example scss - Usage
@@ -97,6 +103,7 @@
 
 ///
 /// Mixin for setting pointer-events to revert-layer.
+/// ---------------------------------------------------------------------------
 /// 
 /// @name pointer_revert-layer
 /// @example scss - Usage
@@ -108,6 +115,7 @@
 
 ///
 /// Mixin for setting pointer-events to unset.
+/// ---------------------------------------------------------------------------
 /// 
 /// @name pointer_unset
 /// @example scss - Usage
@@ -123,6 +131,7 @@
 
 ///
 /// Mixin for setting pointer-events to auto, enabling all interactions.
+/// ---------------------------------------------------------------------------
 /// 
 /// @name pointer_auto
 /// @example scss - Usage
@@ -134,6 +143,7 @@
 
 ///
 /// Mixin for setting pointer-events to none, disabling all interactions.
+/// ---------------------------------------------------------------------------
 /// 
 /// @name pointer_none
 /// @example scss - Usage
@@ -145,6 +155,7 @@
 
 ///
 /// Mixin for setting pointer-events to all (SVG Only).
+/// ---------------------------------------------------------------------------
 /// 
 /// @name pointer_all
 /// @example scss - Usage
@@ -189,6 +200,9 @@
 // ============================================================================
 
 ///
+/// 
+/// ---------------------------------------------------------------------------
+/// 
 /// Mixin for applying hover styles only when pointer events are enabled.
 /// This ensures hover styles do not apply if the element is non-interactive.
 /// 
@@ -209,6 +223,9 @@
 }
 
 ///
+/// 
+/// ---------------------------------------------------------------------------
+/// 
 /// Simplified mixin for commonly used global pointer-events values.
 /// Accepts 'inherit', 'initial', 'revert', 'revert-layer', and 'unset'.
 /// 
@@ -222,6 +239,9 @@
 }
 
 ///
+/// 
+/// ---------------------------------------------------------------------------
+/// 
 /// Simplified mixin for commonly used keyword pointer-events values.
 /// Accepts 'auto', 'none', 'all' and SVG-specific values.
 /// 
