@@ -1,0 +1,82 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Beat Keyframes Mixins Module
+/// ===========================================================================
+/// This module defines keyframes for beat animations, including basic beat,
+/// beat with fade, and double beat animations. These keyframes can be used 
+/// to create pulsing or rhythmic effects in UI elements.
+///
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../variables" as *;
+
+
+// ============================================================================
+// Keyframes
+// ============================================================================
+
+
+@mixin keyframes_beat {
+    @include keyframes(keyframes_beat){
+        0%, 90% { 
+            transform: scale(
+                var(
+                    --animate-scale-base,
+                    #{$animate-scale-base}
+                )
+            ); 
+        }
+        45% { 
+            transform: scale(var(--animate-scale-beat, #{$animate-scale-beat})); 
+        }
+    }
+}
+
+
+@mixin keyframes_beat_fade {
+    @include keyframes(keyframes_beat_fade){
+        0%, 100% {
+            opacity: var(--animate-opacity-fade, #{$animate-opacity-fade});
+            transform: scale(var(--animate-scale-base, #{$animate-scale-base}));
+        }
+        50% {
+            opacity: 1;
+            transform: scale(var(--animate-scale-beat-fade, #{$animate-scale-beat-fade}));
+        }
+    }
+}
+
+
+
+
+
+@keyframes animate_beat_double {
+    0%, 100% { 
+        transform: scale(var(--animate-scale-base, #{$animate-scale-base})); 
+    }
+    25% { 
+        transform: scale(var(--animate-scale-beat-double-small, #{$animate-scale-beat-double-small})); 
+    }
+    50% { 
+        transform: scale(var(--animate-scale-beat-double-large, #{$animate-scale-beat-double-large})); 
+    }
+    75% { 
+        transform: scale(var(--animate-scale-beat-double-small, #{$animate-scale-beat-double-small})); 
+    }
+}
