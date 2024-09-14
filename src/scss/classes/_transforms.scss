@@ -1,0 +1,74 @@
+
+
+
+
+
+
+
+///
+/// Predefined class for horizontal flip.
+/// Applies the horizontal flip mixin.
+/// 
+.transform_flip_horizontal {
+    @include transform_flip_horizontal;
+}
+
+///
+/// Predefined class for vertical flip.
+/// Applies the vertical flip mixin.
+/// 
+.transform_flip_vertical {
+    @include transform_flip_vertical;
+}
+
+///
+/// Predefined class for both horizontal and vertical flips.
+/// Applies the mixin that combines both transformations.
+/// 
+.transform_flip_both {
+    @include transform_flip_both();
+}
+
+///
+/// Alternate combination class for both horizontal and vertical flips.
+/// Combines the horizontal and vertical flip classes.
+/// 
+.transform_flip_horizontal.transform_flip_vertical {
+    @include transform_flip_both(); // Ensures both flips are applied
+}
+
+
+
+
+///
+/// Predefined class for rotating elements by 90 degrees.
+/// Applies the 90 degrees rotation mixin.
+/// 
+.transform_rotate_90  {
+    @include transform_rotate(90deg);
+}
+
+///
+/// Predefined class for rotating elements by 180 degrees.
+/// Applies the 180 degrees rotation mixin.
+/// 
+.transform_rotate_180 {
+    @include transform_rotate(180deg);
+}
+
+///
+/// Predefined class for rotating elements by 270 degrees.
+/// Applies the 270 degrees rotation mixin.
+/// 
+.transform_rotate_270 {
+    @include transform_rotate(270deg);
+}
+
+///
+/// Predefined class for dynamic rotation using a CSS variable.
+/// Allows rotation to be controlled via the CSS variable `--rotation-angle`.
+///
+.transform_rotate_dynamic {
+    @include transform_rotate_dynamic();
+}
+
