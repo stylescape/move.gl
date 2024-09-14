@@ -34,14 +34,11 @@
 
 
 
-
-
-
-
 ///
 /// Mixin for applying a cursor style using predefined cursor types from the map.
+/// ---------------------------------------------------------------------------
 /// 
-/// @mixin cursor_style
+/// @name cursor_style
 /// @param {String} $type ['default'] - The cursor style to apply.
 /// @example scss - Usage
 ///   .element { @include cursor_style('pointer'); } // Applies pointer cursor
@@ -56,8 +53,9 @@
 
 ///
 /// Mixin for custom cursor images with fallback options.
+/// ---------------------------------------------------------------------------
 /// 
-/// @mixin cursor_custom
+/// @name cursor_custom
 /// @param {String} $url - URL of the custom cursor image.
 /// @param {String} $fallback ['pointer'] - Fallback cursor style.
 /// @example scss - Usage
@@ -95,8 +93,9 @@
 
 ///
 /// Mixin for hover and focus cursor effects.
+/// ---------------------------------------------------------------------------
 /// 
-/// @mixin hover_focus_cursor
+/// @name hover_focus_cursor
 /// @param {String} $hover ['pointer'] - Cursor style on hover.
 /// @param {String} $focus ['pointer'] - Cursor style on focus.
 ///
@@ -110,8 +109,9 @@
 
 ///
 /// Mixin for responsive cursor handling based on device capability.
-/// 
-/// @mixin cursor_responsive
+/// ---------------------------------------------------------------------------
+///
+/// @name cursor_responsive
 /// @param {String} $desktop ['pointer'] - Cursor for desktop devices.
 /// @param {String} $touch ['default'] - Cursor for touch devices.
 ///
@@ -122,8 +122,9 @@
 
 ///
 /// Mixin for animated cursors using a series of images.
+/// ---------------------------------------------------------------------------
 /// 
-/// @mixin cursor_animated
+/// @name cursor_animated
 /// @param {List} $images - A list of image URLs for animation frames.
 /// @param {Time} $interval ['0.5s'] - Interval between frames.
 ///
