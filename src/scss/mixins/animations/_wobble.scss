@@ -1,41 +1,52 @@
-// Copyright 2024 Scape Agency BV
+// ============================================================================
+// Poster
+// ============================================================================
 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+////
+/// 
+/// Wobble Animations Mixin Module
+/// ===========================================================================
+/// 
+/// This module ...
+/// 
+/// 
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
 
 
 // ============================================================================
-// StyleScape | Animations | Wobble
+// Use
 // ============================================================================
 
 @use "../dev" as *;
 @use "../variables" as *;
+@use "../keyframes" as *;
 @use "base" as *;
 
 
-// Wobble Animation
-// ----------------------------------------------------------------------------
+// ============================================================================
+// Mixins
+// ============================================================================
 
-/**
- * Wobble Animation
- *
- * Creates a wobble effect by rotating an element back and forth.
- *
- * @mixin animate_wobble
- * @param {Angle} $angle [5deg] - The maximum rotation angle during the wobble.
- * @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
- * @param {String} $timing_function [ease-in-out] - The timing function for the animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+
+
+
+
+///
+/// Wobble Animation
+/// Creates a wobble effect by rotating an element back and forth.
+/// @name animate_wobble
+/// @param {Angle} $angle [5deg] - The maximum rotation angle during the wobble.
+/// @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_wobble(
     $angle: 5deg, 
     $duration: $animate_base_duration, 
@@ -56,25 +67,19 @@
     }
 }
 
-.animate_wobble {
-    @include animate_wobble();
-}
-
 
 // Gentle Wobble Animation
 // ----------------------------------------------------------------------------
 
-/**
- * Gentle Wobble Animation
- *
- * A slower and subtler wobble animation.
- *
- * @mixin animate_wobble_slow
- * @param {Angle} $angle [3deg] - The maximum rotation angle during the wobble.
- * @param {Duration} $duration [$animate_base_duration_slow] - The duration of the animation.
- * @param {String} $timing_function [ease-in-out] - The timing function for the animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+///
+/// Gentle Wobble Animation
+/// A slower and subtler wobble animation.
+/// @name animate_wobble_slow
+/// @param {Angle} $angle [3deg] - The maximum rotation angle during the wobble.
+/// @param {Duration} $duration [$animate_base_duration_slow] - The duration of the animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_wobble_slow(
     $angle: 3deg, 
     $duration: $animate_base_duration_slow,
@@ -95,25 +100,19 @@
     }
 }
 
-.animate_wobble_slow {
-    @include animate_wobble_slow();
-}
-
 
 // Rapid Wobble Animation
 // ----------------------------------------------------------------------------
 
-/**
- * Rapid Wobble Animation
- *
- * A faster and more intense wobble animation.
- *
- * @mixin animate_wobble_fast
- * @param {Angle} $angle [10deg] - The maximum rotation angle during the wobble.
- * @param {Duration} $duration [$animate_base_duration_fast] - The duration of the animation.
- * @param {String} $timing_function [ease-in-out] - The timing function for the animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+///
+/// Rapid Wobble Animation
+/// A faster and more intense wobble animation.
+/// @name animate_wobble_fast
+/// @param {Angle} $angle [10deg] - The maximum rotation angle during the wobble.
+/// @param {Duration} $duration [$animate_base_duration_fast] - The duration of the animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_wobble_fast(
     $angle: 10deg, 
     $duration: $animate_base_duration_fast, 
@@ -134,26 +133,20 @@
     }
 }
 
-.animate_wobble_fast {
-    @include animate_wobble_fast();
-}
-
 
 // Wobble with Scale Animation
 // ----------------------------------------------------------------------------
 
-/**
- * Wobble with Scale Animation
- *
- * A wobble animation combined with a scaling effect.
- *
- * @mixin animate_wobble_scale
- * @param {Angle} $angle [5deg] - The maximum rotation angle during the wobble.
- * @param {Number} $scale [1.1] - The scale factor during the wobble.
- * @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
- * @param {String} $timing_function [ease-in-out] - The timing function for the animation.
- * @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
- */
+///
+/// Wobble with Scale Animation
+/// A wobble animation combined with a scaling effect.
+/// @name animate_wobble_scale
+/// @param {Angle} $angle [5deg] - The maximum rotation angle during the wobble.
+/// @param {Number} $scale [1.1] - The scale factor during the wobble.
+/// @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
+/// @param {String} $timing_function [ease-in-out] - The timing function for the animation.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+///
 @mixin animate_wobble_scale(
     $angle: 5deg, 
     $scale: 1.1,
@@ -175,9 +168,6 @@
     }
 }
 
-.animate_wobble_scale {
-    @include animate_wobble_scale();
-}
 
 
 
