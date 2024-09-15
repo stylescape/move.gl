@@ -46,6 +46,10 @@
     "type": "git",
     "url": "git+https://github.com/stylescape/move.gl.git"
   },
+  "dependencies": {
+    "hue.gl": "^0.0.23",
+    "unit.gl": "^0.0.40"
+  },
   "exports": {
     ".": {
       "sass": "./scss/index.scss",
