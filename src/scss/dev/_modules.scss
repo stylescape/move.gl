@@ -2,13 +2,12 @@
 // StyleScape | Development | Modules
 // ============================================================================
 
-@use "../../../../unit.gl/scss/index.scss" as *;
-@use "../../../../hue.gl/scss/index.scss" as *;
-// @use "../../../../icon.gl/scss/index.scss" as *;
+@use "pkg:unit.gl" as *;
+@use "pkg:hue.gl" as *;
 
-@forward "../../../../unit.gl/scss/index.scss";
-@forward "../../../../hue.gl/scss/index.scss";
-// @forward "../../../../icon.gl/scss/index.scss";
+
+@forward "pkg:unit.gl";
+@forward "pkg:hue.gl";
 
 
 // @include icon_face(
