@@ -1,0 +1,276 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Mouse Scrollbar Mixin Module
+/// ===========================================================================
+///
+/// ...
+/// 
+/// @group Mouse
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../variables" as *;
+@use "../../maps" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+
+/*
+::-webkit-scrollbar              {}
+::-webkit-scrollbar-button       {}
+::-webkit-scrollbar-track        {}
+::-webkit-scrollbar-track-piece  {}
+::-webkit-scrollbar-thumb        {}
+::-webkit-scrollbar-corner       {}
+::-webkit-resizer                {}
+https://gist.github.com/JuanMaRuiz/7927982
+
+
+::-webkit-scrollbar               — the entire scrollbar.
+::-webkit-scrollbar-button        — the buttons on the scrollbar (arrows pointing upwards and downwards).
+::-webkit-scrollbar-thumb         — the draggable scrolling handle.
+::-webkit-scrollbar-track         — the track (progress bar) of the scrollbar.
+::-webkit-scrollbar-track-piece   — the part of the track (progress bar) not covered by the handle.
+::-webkit-scrollbar-corner        — the bottom corner of the scrollbar, where both horizontal and vertical scrollbars meet.
+::-webkit-resizer                 — the draggable resizing handle that appears at the bottom corner of some elements.
+*/
+
+
+// width
+*::-webkit-scrollbar {
+    // width: $q * 2;
+    // //width: 0px;
+    // background: transparent;
+    // overflow: visible;
+    // background-color: transparent;
+    // display: none;
+    width: 12px;
+
+    // width: 3px !important;
+    background-color: transparent;
+}
+  
+// Track
+*::-webkit-scrollbar-track {
+    //background: $color_01; 
+    // opacity: 0.0;
+    // // opacity: 1.0;
+    // background-color: transparent;
+    // //width: 0px;
+    // //background: rgba(0, 0, 0, 0.2);
+    // display: none;
+    // -webkit-box-shadow: none;
+    
+    // display: none;
+    -webkit-box-shadow: none !important;
+    background-color: transparent;
+}
+
+// Track Piece
+*::-webkit-scrollbar-track-piece{
+    //display: none;
+    // width: 8px;
+    // display: none;
+
+    -webkit-border-radius: 6px;
+}
+
+// Handle
+*::-webkit-scrollbar-thumb {
+    //height:30px;
+    //background-color: rgba(0, 0, 0, 0.2);
+    //border: solid $color_02;
+    // border-radius: $q;
+    // opacity: 0.5;
+    //  display: block;
+    // background-color: transparent;
+
+    // background:$color_02; 
+    // -webkit-box-shadow: none;
+}
+
+*::-webkit-scrollbar-thumb:window-inactive {
+    background: none;
+}
+
+// Handle on hover
+*::-webkit-scrollbar-thumb:hover {
+  //background:$color_02; 
+  //opacity: 1;
+
+}
+
+
+::-webkit-scrollbar-thumb:vertical {
+    ///height: 50px;
+    //background-color: #333333;
+    //-webkit-border-radius: 8px;
+}
+
+
+
+
+::-webkit-scrollbar-button:start:decrement,
+body::-webkit-scrollbar-button:end:increment {
+    //display: block;
+    //height: 0;
+    //background-color: transparent;
+}
+
+
+
+
+// SCSS Mixin for Custom Scrollbars
+// This mixin allows for customization of the scrollbar's appearance. Note that scrollbar customization is primarily supported in WebKit-based browsers (like Chrome and Safari) and partially in Firefox.
+/// @name custom-scrollbar
+/// Customizes the appearance of scrollbars in WebKit browsers.
+/// @param {Color} $thumb-color - The color of the scrollbar thumb.
+/// @param {Color} $track-color - The color of the scrollbar track.
+/// @param {Number|Unit} $width - The width of the scrollbar (default: 8px).
+/// @example scss - Usage
+///   @include custom-scrollbar(#888, #ccc, 10px);
+@mixin custom-scrollbar($width: 12px, $track-color: #f1f1f1, $thumb-color: #888) {
+    // For WebKit-based browsers
+    &::-webkit-scrollbar {
+        width: $width;
+        height: $width;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $track-color;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $thumb-color;
+        border-radius: $width / 2;
+        border: 2px solid $track-color;
+        &:hover {
+        background: darken($thumb-color, 10%);
+        }
+    }
+
+    // For Firefox
+    scrollbar-width: thin;
+    scrollbar-color: $thumb-color $track-color;
+
+    // For other browsers, there's limited support for customization.
+}
+
+
+// Usage Example
+// You can apply this mixin to any element that has overflow content, such as a container with scrollable content.
+
+
+.scrollable-content {
+    @include custom-scrollbar(10px, #e0e0e0, #4A4A4A); // Customize the width, track color, and thumb color
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+
+
+
+
+// Extended Custom Scrollbar Mixin
+// This extended version includes additional styling options for the scrollbar thumb, including hover and active states, and introduces a more detailed approach to styling the scrollbar track and corner.
+
+
+@mixin extended-custom-scrollbar(
+    $width: 12px,
+    $track-color: #f1f1f1,
+    $thumb-color: #888,
+    $thumb-hover-color: darken($thumb-color, 10%),
+    $thumb-active-color: darken($thumb-color, 20%)
+) {
+    // Scrollbar track
+    &::-webkit-scrollbar {
+        width: $width;
+        height: $width; // For horizontal scrollbars
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $track-color;
+        border-radius: $width / 2;
+        box-shadow: inset 0 0 5px grey; // Optional: adds inset shadow to the track
+    }
+
+    // Scrollbar thumb
+    &::-webkit-scrollbar-thumb {
+        background: $thumb-color;
+        border-radius: $width / 2;
+        border: 3px solid $track-color; // Creates a margin between the track and thumb
+
+        &:hover {
+        background: $thumb-hover-color;
+        }
+
+        &:active {
+        background: $thumb-active-color;
+        }
+    }
+
+    // Scrollbar corner (where horizontal and vertical scrollbars meet)
+    &::-webkit-scrollbar-corner {
+        background: $track-color;
+    }
+
+    // Firefox
+    scrollbar-width: auto;
+    scrollbar-color: $thumb-color $track-color;
+
+    // More detailed styling for Firefox can be achieved with properties like `scrollbar-width` and `scrollbar-color`
+}
+// Usage Example with Extended Options
+// Apply this mixin to any scrollable element to enhance its appearance with a custom scrollbar that includes interactive states for better user engagement.
+
+
+.detailed-scrollable-content {
+    @include extended-custom-scrollbar(8px, #eaeaea, #bcbcbc, #a8a8a8, #989898);
+    max-height: 400px;
+    overflow-y: auto;
+}
+// Advanced Customization for Specific Elements
+// You can also target specific parts of the scrollbar for even more detailed customization. For instance, you might want to style only the vertical or horizontal scrollbar, or apply unique styles to the scrollbar buttons (arrows), which some browsers display.
+
+
+.unique-vertical-scrollbar {
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #ff8a00, #e52e71);
+        border-radius: 5px;
+    }
+}
+
+.unique-horizontal-scrollbar {
+    &::-webkit-scrollbar {
+        height: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: linear-gradient(90deg, #ff8a00, #e52e71);
+        border-radius: 5px;
+    }
+}
+
+
