@@ -36,6 +36,10 @@
         "build-compile": "tsc -p bin/tsconfig.json",
         "build-process": "node bin/js/index.js"
     },
+    "dependencies": {
+        "hue.gl": "^0.0.23",
+        "unit.gl": "^0.0.40"
+    },
     "devDependencies": {
         "@babel/core": "^7.23.6",
         "@babel/preset-env": "^7.25.4",
