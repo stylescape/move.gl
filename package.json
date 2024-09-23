@@ -37,7 +37,7 @@
         "build-process": "node bin/js/index.js"
     },
     "dependencies": {
-        "hue.gl": "^0.0.23",
+        "hue.gl": "^0.0.24",
         "unit.gl": "^0.0.40"
     },
     "devDependencies": {
