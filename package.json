@@ -48,7 +48,7 @@
         "@types/glob": "^8.1.0",
         "@types/node": "^22.5.4",
         "@types/webpack": "^5.28.1",
-        "pack.gl": "^0.0.63",
+        "pack.gl": "^0.1.2",
         "page.gl": "^0.0.3",
         "sass": "^1.66.1",
         "sass-loader": "^16.0.1",
