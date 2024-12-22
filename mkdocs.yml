@@ -45,7 +45,7 @@ theme:
   #   text: 'Manrope'
   #   code: 'Roboto Mono'
   logo: assets/image/stylescape-logo-transparent.png
-  favmove: assets/favmove/favmove.ico
+  favmove: assets/favicon/favicon.ico
   features:
     # - announce.dismiss
     # - content.action.edit
