@@ -7,7 +7,7 @@
     private xrSession: XRSession | null = null;
 
     constructor(private container: HTMLElement) {
-        if ('xr' in navigator) {
+        if ("xr" in navigator) {
             this.initVR();
         } else {
             console.error("WebXR not available.");
@@ -16,10 +16,10 @@
 
     private async initVR() {
         try {
-            this.xrSession = await navigator.xr.requestSession('immersive-vr', {
-                optionalFeatures: ['local-floor', 'bounded-floor']
+            this.xrSession = await navigator.xr.requestSession("immersive-vr", {
+                optionalFeatures: ["local-floor", "bounded-floor"]
             });
-            this.xrSession.addEventListener('end', this.onSessionEnded);
+            this.xrSession.addEventListener("end", this.onSessionEnded);
             this.setupXRWebGLLayer();
         } catch (error) {
             console.error("Failed to create XR Session: ", error);
@@ -27,7 +27,7 @@
     }
 
     private setupXRWebGLLayer() {
-        const gl = this.container.querySelector('canvas')!.getContext('webgl2')!;
+        const gl = this.container.querySelector("canvas")!.getContext("webgl2")!;
         this.xrSession!.updateRenderState({
             baseLayer: new XRWebGLLayer(this.xrSession, gl)
         });
@@ -52,7 +52,7 @@
         const pose = frame.getViewerPose(xrReferenceSpace);
 
         if (pose) {
-            // Update your scene's rendering based on user's position
+            // Update your scene"s rendering based on user"s position
         }
     }
 }
