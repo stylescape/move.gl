@@ -17,7 +17,7 @@
     private context: CanvasRenderingContext2D;
     private painting: boolean = false;
     private brushSize: number = 5;
-    private brushColor: string = '#000000';
+    private brushColor: string = "#000000";
     private lineOpacity: number = 1.0;
     private history: ImageData[] = [];
     private historyStep: number = 0;
@@ -28,7 +28,7 @@
      */
     constructor(canvasId: string) {
         this.canvas = document.getElementById(canvasId) as HTMLCanvasElement;
-        this.context = this.canvas.getContext('2d')!;
+        this.context = this.canvas.getContext("2d")!;
         this.setupCanvas();
         this.attachEventListeners();
     }
@@ -38,10 +38,10 @@
      */
     private setupCanvas() {
         this.context.lineWidth = this.brushSize;
-        this.context.lineCap = 'round';
+        this.context.lineCap = "round";
         this.context.strokeStyle = this.brushColor;
         this.context.globalAlpha = this.lineOpacity;
-        window.addEventListener('resize', this.resizeCanvas);
+        window.addEventListener("resize", this.resizeCanvas);
         this.resizeCanvas();
     }
 
@@ -49,12 +49,12 @@
      * Attaches necessary event listeners for mouse and touch interactions.
      */
     private attachEventListeners() {
-        this.canvas.addEventListener('mousedown', this.startPaint);
-        this.canvas.addEventListener('mouseup', this.endPaint);
-        this.canvas.addEventListener('mousemove', this.paint);
-        this.canvas.addEventListener('touchstart', this.startPaint, { passive: false });
-        this.canvas.addEventListener('touchend', this.endPaint);
-        this.canvas.addEventListener('touchmove', this.paint, { passive: false });
+        this.canvas.addEventListener("mousedown", this.startPaint);
+        this.canvas.addEventListener("mouseup", this.endPaint);
+        this.canvas.addEventListener("mousemove", this.paint);
+        this.canvas.addEventListener("touchstart", this.startPaint, { passive: false });
+        this.canvas.addEventListener("touchend", this.endPaint);
+        this.canvas.addEventListener("touchmove", this.paint, { passive: false });
     }
 
     /**
