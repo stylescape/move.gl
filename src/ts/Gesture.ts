@@ -1,6 +1,3 @@
-// Copyright 2024 Scape Agency BV
-
-
 // Touch Gesture Handler Class
 // A class for handling touch gestures can interpret user input like swipes, taps, and pinch actions, which are common in mobile and modern web applications.
 
@@ -22,9 +19,9 @@
     }
 
     private addTouchListeners() {
-        this.element.addEventListener('touchstart', this.handleTouchStart, false);
-        this.element.addEventListener('touchmove', this.handleTouchMove, false);
-        this.element.addEventListener('touchend', this.handleTouchEnd, false);
+        this.element.addEventListener("touchstart", this.handleTouchStart, false);
+        this.element.addEventListener("touchmove", this.handleTouchMove, false);
+        this.element.addEventListener("touchend", this.handleTouchEnd, false);
     }
 
     private handleTouchStart = (event: TouchEvent) => {
@@ -80,7 +77,7 @@
     }
 }
 
-new TouchGestureHandler('touchElement');
+new TouchGestureHandler("touchElement");
 
 
 
@@ -103,9 +100,9 @@ new TouchGestureHandler('touchElement');
     }
 
     private attachEventListeners() {
-        this.element.addEventListener('pointerdown', this.handleGestureStart, { passive: false });
-        this.element.addEventListener('pointermove', this.handleGestureMove, { passive: false });
-        this.element.addEventListener('pointerup', this.handleGestureEnd, { passive: false });
+        this.element.addEventListener("pointerdown", this.handleGestureStart, { passive: false });
+        this.element.addEventListener("pointermove", this.handleGestureMove, { passive: false });
+        this.element.addEventListener("pointerup", this.handleGestureEnd, { passive: false });
     }
 
     private handleGestureStart = (event: PointerEvent) => {
