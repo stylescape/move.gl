@@ -8,27 +8,27 @@
     private rotation: { yaw: number; pitch: number; roll: number } = { yaw: 0, pitch: 0, roll: 0 };
 
     constructor() {
-        document.addEventListener('keydown', this.handleKeyInput);
+        document.addEventListener("keydown", this.handleKeyInput);
     }
 
     private handleKeyInput = (event: KeyboardEvent) => {
         switch(event.key) {
-            case 'ArrowUp':
+            case "ArrowUp":
                 this.position.y += 1; // Move up
                 break;
-            case 'ArrowDown':
+            case "ArrowDown":
                 this.position.y -= 1; // Move down
                 break;
-            case 'ArrowLeft':
+            case "ArrowLeft":
                 this.rotation.yaw -= 5; // Turn left
                 break;
-            case 'ArrowRight':
+            case "ArrowRight":
                 this.rotation.yaw += 5; // Turn right
                 break;
-            case 'w':
+            case "w":
                 this.position.z += 1; // Move forward
                 break;
-            case 's':
+            case "s":
                 this.position.z -= 1; // Move backward
                 break;
             // Add more controls as needed

@@ -12,7 +12,7 @@
 
     public addContent(modelUrl: string, lat: number, lon: number) {
         console.log(`Adding AR content at [${lat}, ${lon}] from ${modelUrl}`);
-        // Here you'd add the model to the scene at the specified geolocation.
+        // Here you"d add the model to the scene at the specified geolocation.
     }
 
     public updateContent(modelId: string, properties: any) {

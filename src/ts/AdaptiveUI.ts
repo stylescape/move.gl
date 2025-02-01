@@ -9,8 +9,8 @@
     }
 
     private setupResponsiveListeners() {
-        window.addEventListener('resize', this.adjustLayout);
-        window.addEventListener('orientationchange', this.adjustLayout);
+        window.addEventListener("resize", this.adjustLayout);
+        window.addEventListener("orientationchange", this.adjustLayout);
     }
 
     private adjustLayout = () => {

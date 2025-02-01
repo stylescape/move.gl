@@ -24,14 +24,14 @@
     }
 
     private attachEventListeners() {
-        this.element.addEventListener('mousedown', this.startDrag);
-        this.element.addEventListener('touchstart', this.startDrag, { passive: false });
+        this.element.addEventListener("mousedown", this.startDrag);
+        this.element.addEventListener("touchstart", this.startDrag, { passive: false });
 
-        document.addEventListener('mouseup', this.stopDrag);
-        document.addEventListener('touchend', this.stopDrag);
+        document.addEventListener("mouseup", this.stopDrag);
+        document.addEventListener("touchend", this.stopDrag);
 
-        document.addEventListener('mousemove', this.drag);
-        document.addEventListener('touchmove', this.drag, { passive: false });
+        document.addEventListener("mousemove", this.drag);
+        document.addEventListener("touchmove", this.drag, { passive: false });
     }
 
     private startDrag = (event: MouseEvent | TouchEvent) => {
@@ -53,7 +53,7 @@
         let x = event.clientX - this.startX;
         let y = event.clientY - this.startY;
 
-        // Constrain the movement within the bounds of the element's parent
+        // Constrain the movement within the bounds of the element"s parent
         x = Math.max(this.boundRect.left, Math.min(x, this.boundRect.right - this.element.offsetWidth));
         y = Math.max(this.boundRect.top, Math.min(y, this.boundRect.bottom - this.element.offsetHeight));
 
@@ -68,4 +68,4 @@
     };
 }
 
-new Draggable('draggableElement');
+new Draggable("draggableElement");

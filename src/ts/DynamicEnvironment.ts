@@ -8,8 +8,8 @@
 
     constructor(private scene: any) {
         this.environmentSettings = {
-            lighting: 'daylight',
-            weather: 'clear'
+            lighting: "daylight",
+            weather: "clear"
         };
     }
 

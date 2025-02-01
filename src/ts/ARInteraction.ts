@@ -1,7 +1,7 @@
 /**
  * @title AR Interaction Handler
  * @notice Manages Augmented Reality overlays and interactions using the WebXR Device API.
- * @dev Provides functionalities to place and interact with virtual objects in the real world through the user's camera.
+ * @dev Provides functionalities to place and interact with virtual objects in the real world through the user"s camera.
  */
  class ARInteractionHandler {
     private xrSession: XRSession | null = null;
@@ -11,7 +11,7 @@
     }
 
     private async checkARSupport() {
-        if (navigator.xr && await navigator.xr.isSessionSupported('immersive-ar')) {
+        if (navigator.xr && await navigator.xr.isSessionSupported("immersive-ar")) {
             console.log("AR is supported.");
             this.initAR();
         } else {
@@ -20,7 +20,7 @@
     }
 
     private async initAR() {
-        this.xrSession = await navigator.xr.requestSession('immersive-ar');
+        this.xrSession = await navigator.xr.requestSession("immersive-ar");
         this.setupARSession();
     }
 
