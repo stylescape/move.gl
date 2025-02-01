@@ -3,21 +3,21 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Beat Animations Mixin Module
 /// ===========================================================================
 /// This module provides a set of SCSS mixins for creating various beat
 /// animations, including basic beat, beat with fade, and double beat effects.
 /// These mixins are designed to scale elements up and down in rhythmic
 /// patterns, enhancing the visual dynamics of your designs.
-/// 
+///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -48,9 +48,9 @@
 /// @param {Number|String} $iteration_count [$animate-base-iteration-count] - The number of iterations the animation will run.
 ///
 @mixin animate_beat(
-    $scale: $animate-scale-beat, 
+    $scale: $animate-scale-beat,
     $duration: $animate-base-duration,
-    $timing_function: $animate-base-timing-function, 
+    $timing_function: $animate-base-timing-function,
     $iteration_count: $animate-base-iteration-count
 ) {
     @include animate_base(
@@ -75,10 +75,10 @@
 /// @param {Number|String} $iteration_count [$animate-base-iteration-count] - The number of iterations the animation will run.
 ///
 @mixin animate_beat_fade(
-    $opacity: $animate-opacity-fade, 
-    $scale: $animate-scale-beat-fade, 
+    $opacity: $animate-opacity-fade,
+    $scale: $animate-scale-beat-fade,
     $duration: $animate-base-duration,
-    $timing_function: $animate-base-timing-function-fade, 
+    $timing_function: $animate-base-timing-function-fade,
     $iteration_count: $animate-base-iteration-count
 ) {
     @include animate_base(

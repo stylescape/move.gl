@@ -3,20 +3,20 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Jiggle Animations Mixin Module
 /// ===========================================================================
-/// 
+///
 /// This module ...
-/// 
-/// 
+///
+///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -39,7 +39,7 @@
 /// Jiggle Animation
 /// Creates a horizontal jiggle animation where the element moves left and
 /// right.
-/// 
+///
 /// @name animate_jiggle
 /// @param {Number|String} $amplitude [5px] - The distance the element moves during the jiggle.
 /// @param {Number|String} $duration [$animate_base_duration_fast] - The duration of the jiggle animation.
@@ -48,13 +48,13 @@
 ///
 @mixin animate_jiggle(
     $amplitude: 5px,
-    $duration: $animate_base_duration_fast, 
-    $timing_function: ease-in-out, 
+    $duration: $animate_base_duration_fast,
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
         animate_jiggle,
-        $duration, 
+        $duration,
         $timing_function,
         $iteration_count,
     );
@@ -71,7 +71,7 @@
 ///
 /// Vertical Jiggle Animation
 /// Creates a vertical jiggle animation where the element moves up and down.
-/// 
+///
 /// @name animate_jiggle_vertical
 /// @param {Number|String} $amplitude [5px] - The distance the element moves during the jiggle.
 /// @param {Number|String} $duration [$animate_base_duration_fast] - The duration of the jiggle animation.
@@ -80,8 +80,8 @@
 ///
 @mixin animate_jiggle_vertical(
     $amplitude: 5px,
-    $duration: $animate_base_duration_fast, 
-    $timing_function: ease-in-out, 
+    $duration: $animate_base_duration_fast,
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -104,7 +104,7 @@
 /// Multi-Directional Jiggle Animation
 /// Creates a jiggle animation where the element moves in both X and Y
 /// directions.
-/// 
+///
 /// @name animate_jiggle_multi
 /// @param {Number|String} $amplitude [5px] - The distance the element moves during the jiggle.
 /// @param {Number|String} $duration [$animate_base_duration_fast] - The duration of the jiggle animation.
@@ -113,8 +113,8 @@
 ///
 @mixin animate_jiggle_multi(
     $amplitude: 5px,
-    $duration: $animate_base_duration_fast, 
-    $timing_function: ease-in-out, 
+    $duration: $animate_base_duration_fast,
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -135,7 +135,7 @@
 ///
 /// Gentle Jiggle Animation
 /// Creates a gentler jiggle animation with slower transitions.
-/// 
+///
 /// @name animate_jiggle_slow
 /// @param {Number|String} $amplitude [3px] - The distance the element moves during the jiggle.
 /// @param {Number|String} $duration [$animate_base_duration] - The duration of the jiggle animation.
@@ -144,8 +144,8 @@
 ///
 @mixin animate_jiggle_slow(
     $amplitude: 3px,
-    $duration: $animate_base_duration, 
-    $timing_function: ease-in-out, 
+    $duration: $animate_base_duration,
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(

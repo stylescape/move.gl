@@ -3,20 +3,20 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Bounce Animations Mixin Module
 /// ===========================================================================
-/// 
+///
 /// This module ...
-/// 
-/// 
+///
+///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -38,7 +38,7 @@
 ///
 /// Bounce Animation
 /// Creates a simple bounce animation where the element moves up and down.
-/// 
+///
 /// @name animate_bounce
 /// @param {Number|String} $duration [$animate_base_duration] - The duration of the bounce animation.
 /// @param {String} $timing_function [cubic-bezier(0.280, 0.840, 0.420, 1)] - The timing function for the bounce animation.
@@ -81,7 +81,7 @@
 /// Extended Bounce Animation
 /// Creates an extended bounce animation with multiple stages of scaling
 /// and bouncing.
-/// 
+///
 /// @name animate_bounce_extended
 /// @param {Number} $start-scale_x [1.1] - Initial scale in the X direction.
 /// @param {Number} $start-scale_y [0.9] - Initial scale in the Y direction.
@@ -131,7 +131,7 @@
 /// Bounce with Rotation Animation
 /// Creates a bounce animation that includes a rotation as the element moves
 /// up and down.
-/// 
+///
 /// @name animate_bounce_rotate
 /// @param {Number|String} $rotation_angle [360deg] - The angle of rotation during the bounce.
 /// @param {Number|String} $duration [$animate_base_duration] - The duration of the bounce animation.
@@ -162,7 +162,7 @@
 /// Multi-Directional Bounce Animation
 /// Creates a bounce animation that moves the element in multiple
 /// directions (X and Y).
-/// 
+///
 /// @name animate_bounce_multi
 /// @param {Number|String} $duration [$animate_base_duration] - The duration of the bounce animation.
 /// @param {String} $timing_function [cubic-bezier(0.280, 0.840, 0.420, 1)] - The timing function for the bounce animation.

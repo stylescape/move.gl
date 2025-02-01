@@ -3,20 +3,20 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Elastic Animations Mixin Module
 /// ===========================================================================
-/// 
+///
 /// This module ...
-/// 
-/// 
+///
+///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -46,10 +46,10 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///
 @mixin animate_elastic(
-    $scale-start: 0.5, 
-    $scale-end: 1.25, 
+    $scale-start: 0.5,
+    $scale-end: 1.25,
     $duration: $animate_base_duration_slow,
-    $timing_function: cubic-bezier(0.68, -0.55, 0.27, 1.55), 
+    $timing_function: cubic-bezier(0.68, -0.55, 0.27, 1.55),
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(

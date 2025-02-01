@@ -3,20 +3,20 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Spin Animations Mixin Module
 /// ===========================================================================
-/// 
+///
 /// This module ...
-/// 
-/// 
+///
+///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -76,17 +76,17 @@
 //     -moz-animation:spin 4s linear infinite;
 //     animation:spin 4s linear infinite;
 // }
-// @-moz-keyframes spin { 
-//     100% { -moz-transform: rotate(360deg); } 
+// @-moz-keyframes spin {
+//     100% { -moz-transform: rotate(360deg); }
 // }
-// @-webkit-keyframes spin { 
-//     100% { -webkit-transform: rotate(360deg); } 
+// @-webkit-keyframes spin {
+//     100% { -webkit-transform: rotate(360deg); }
 // }
-// @keyframes spin { 
-//     100% { 
-//         -webkit-transform: rotate(360deg); 
-//         transform:rotate(360deg); 
-//     } 
+// @keyframes spin {
+//     100% {
+//         -webkit-transform: rotate(360deg);
+//         transform:rotate(360deg);
+//     }
 // }
 
 // Spin Reverse Animation
@@ -102,8 +102,8 @@
 /// @param {String} $timing_function [linear] - The timing function for the spin animation.
 ///
 @mixin animate_spin_reverse(
-    $start_angle: 360deg, 
-    $end_angle: 0deg, 
+    $start_angle: 360deg,
+    $end_angle: 0deg,
     $duration: $animate_base_duration,
     $timing_function: linear
 ) {
@@ -133,9 +133,9 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///
 @mixin animate_spin_grow(
-    $scale: 1.2, 
+    $scale: 1.2,
     $duration: $animate_base_duration_slow,
-    $timing_function: ease-in-out, 
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -166,11 +166,11 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///
 @mixin animate_spin_pulse(
-    $scale_min: 1, 
-    $scale_max: 1.1, 
-    $rotation_angle: 360deg, 
-    $duration: $animate_base_duration, 
-    $timing_function: linear, 
+    $scale_min: 1,
+    $scale_max: 1.1,
+    $rotation_angle: 360deg,
+    $duration: $animate_base_duration,
+    $timing_function: linear,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -200,10 +200,10 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///
 @mixin animate_spin_flip(
-    $rotation_angle: 360deg, 
-    $flip-angle: 180deg, 
-    $duration: $animate_base_duration, 
-    $timing_function: ease-in-out, 
+    $rotation_angle: 360deg,
+    $flip-angle: 180deg,
+    $duration: $animate_base_duration,
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(

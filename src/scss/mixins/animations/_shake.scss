@@ -3,20 +3,20 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Shake Animations Mixin Module
 /// ===========================================================================
-/// 
+///
 /// This module ...
-/// 
-/// 
+///
+///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -48,9 +48,9 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of times the animation should run.
 ///
 @mixin animate_shake(
-    $amplitude: 15deg, 
+    $amplitude: 15deg,
     $duration: math.div($animate_base_duration, 2),
-    $timing_function: ease-in-out, 
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -87,9 +87,9 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of times the animation should run.
 ///
 @mixin animate_shake_slow(
-    $amplitude: 10deg, 
+    $amplitude: 10deg,
     $duration: math.div($animate_base_duration_slow, 2),
-    $timing_function: ease-in-out, 
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -121,9 +121,9 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of times the animation should run.
 ///
 @mixin animate_shake_horizontal(
-    $distance: 10px, 
+    $distance: 10px,
     $duration: math.div($animate_base_duration, 2),
-    $timing_function: ease-in-out, 
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -146,37 +146,36 @@
 //       -webkit-transform: translate3d(0, 0, 0);
 //       transform: translate3d(0, 0, 0);
 //     }
-  
+
 //     10%, 30%, 50%, 70%, 90% {
 //       -webkit-transform: translate3d(-10px, 0, 0);
 //       transform: translate3d(-10px, 0, 0);
 //     }
-  
+
 //     20%, 40%, 60%, 80% {
 //       -webkit-transform: translate3d(10px, 0, 0);
 //       transform: translate3d(10px, 0, 0);
 //     }
 //   }
-  
+
 //   @keyframes shake {
 //     from, 100% {
 //       -webkit-transform: translate3d(0, 0, 0);
 //       transform: translate3d(0, 0, 0);
 //     }
-  
+
 //     10%, 30%, 50%, 70%, 90% {
 //       -webkit-transform: translate3d(-10px, 0, 0);
 //       transform: translate3d(-10px, 0, 0);
 //     }
-  
+
 //     20%, 40%, 60%, 80% {
 //       -webkit-transform: translate3d(10px, 0, 0);
 //       transform: translate3d(10px, 0, 0);
 //     }
 //   }
-  
+
 //   .shake {
 //     -webkit-animation-name: shake;
 //     animation-name: shake;
 //   }
-  

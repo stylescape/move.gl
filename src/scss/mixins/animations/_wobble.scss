@@ -3,20 +3,20 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Wobble Animations Mixin Module
 /// ===========================================================================
-/// 
+///
 /// This module ...
-/// 
-/// 
+///
+///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -48,9 +48,9 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///
 @mixin animate_wobble(
-    $angle: 5deg, 
-    $duration: $animate_base_duration, 
-    $timing_function: ease-in-out, 
+    $angle: 5deg,
+    $duration: $animate_base_duration,
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -81,9 +81,9 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///
 @mixin animate_wobble_slow(
-    $angle: 3deg, 
+    $angle: 3deg,
     $duration: $animate_base_duration_slow,
-    $timing_function: ease-in-out, 
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -114,9 +114,9 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///
 @mixin animate_wobble_fast(
-    $angle: 10deg, 
-    $duration: $animate_base_duration_fast, 
-    $timing_function: ease-in-out, 
+    $angle: 10deg,
+    $duration: $animate_base_duration_fast,
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -148,10 +148,10 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///
 @mixin animate_wobble_scale(
-    $angle: 5deg, 
+    $angle: 5deg,
     $scale: 1.1,
-    $duration: $animate_base_duration, 
-    $timing_function: ease-in-out, 
+    $duration: $animate_base_duration,
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -178,77 +178,76 @@
 //       -webkit-transform: none;
 //       transform: none;
 //     }
-  
+
 //     15% {
 //       -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
 //       transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
 //     }
-  
+
 //     30% {
 //       -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
 //       transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
 //     }
-  
+
 //     45% {
 //       -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
 //       transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
 //     }
-  
+
 //     60% {
 //       -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
 //       transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
 //     }
-  
+
 //     75% {
 //       -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
 //       transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
 //     }
-  
+
 //     100% {
 //       -webkit-transform: none;
 //       transform: none;
 //     }
 //   }
-  
+
 //   @keyframes wobble {
 //     from {
 //       -webkit-transform: none;
 //       transform: none;
 //     }
-  
+
 //     15% {
 //       -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
 //       transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
 //     }
-  
+
 //     30% {
 //       -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
 //       transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
 //     }
-  
+
 //     45% {
 //       -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
 //       transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
 //     }
-  
+
 //     60% {
 //       -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
 //       transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
 //     }
-  
+
 //     75% {
 //       -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
 //       transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
 //     }
-  
+
 //     100% {
 //       -webkit-transform: none;
 //       transform: none;
 //     }
 //   }
-  
+
 //   .wobble {
 //     -webkit-animation-name: wobble;
 //     animation-name: wobble;
 //   }
-  

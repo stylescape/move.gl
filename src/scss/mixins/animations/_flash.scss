@@ -3,20 +3,20 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Flash Animations Mixin Module
 /// ===========================================================================
-/// 
+///
 /// This module ...
-/// 
-/// 
+///
+///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -39,7 +39,7 @@
 /// Flash Animation
 /// Creates a flash animation that transitions between different opacity
 /// levels.
-/// 
+///
 /// @name animate_flash
 /// @param {Number} $start_opacity [1] - The initial opacity of the element.
 /// @param {Number} $mid_opacity [0] - The opacity at the midpoint of the animation.
@@ -72,7 +72,7 @@
 ///
 /// Flash Fade In and Out
 /// Creates a flash fade effect that smoothly transitions in and out of view.
-/// 
+///
 /// @name animate_flash_fade
 /// @param {Number|String} $duration [2s] - The duration of the animation.
 /// @param {String} $timing_function [ease-in-out] - The timing function to use for the animation.
@@ -96,7 +96,7 @@
 ///
 /// Strobe Flash Animation
 /// Creates a strobe flash effect with a configurable frequency.
-/// 
+///
 /// @name animate_flash_strobe
 /// @param {Number|String} $frequency [0.1s] - The frequency of the strobe effect.
 /// @param {Number|String} $duration [$animate_base_duration] - The duration of the animation.
@@ -125,7 +125,7 @@
 /// Slow Fade Flash
 /// ---------------------------------------------------------------------------
 /// Creates a slow fading flash effect, fading in and out of view.
-/// 
+///
 /// @name animate_flash_fade_slow
 /// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the animation.
 /// @param {String} $timing_function [ease-in-out] - The timing function to use for the animation.

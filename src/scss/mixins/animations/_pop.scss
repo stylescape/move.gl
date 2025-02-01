@@ -3,20 +3,20 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Pop Animations Mixin Module
 /// ===========================================================================
-/// 
+///
 /// This module ...
-/// 
-/// 
+///
+///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -44,8 +44,8 @@
 /// @param {String} $timing_function [ease-in-out] - The timing function for the pop animation.
 ///
 @mixin animate_pop(
-    $scale: 1.2, 
-    $duration: $animate_base_duration_fast, 
+    $scale: 1.2,
+    $duration: $animate_base_duration_fast,
     $timing_function: ease-in-out
 ) {
     @include animate_base(
@@ -73,7 +73,7 @@
 /// @param {String} $timing_function [ease-in-out] - The timing function for the pop animation.
 ///
 @mixin animate_pop_fast(
-    $scale: 1.2, 
+    $scale: 1.2,
     $duration: $animate_base_duration_fast,
     $timing_function: ease-in-out
 ) {
@@ -102,8 +102,8 @@
 /// @param {String} $timing_function [ease-in-out] - The timing function for the pop animation.
 ///
 @mixin animate_pop_slow(
-    $scale: 1.1, 
-    $duration: $animate_base_duration, 
+    $scale: 1.1,
+    $duration: $animate_base_duration,
     $timing_function: ease-in-out
 ) {
     @include animate_base(
@@ -132,9 +132,9 @@
 /// @param {String} $timing_function [ease-in-out] - The timing function for the pop animation.
 ///
 @mixin animate_pop_rotate(
-    $scale: 1.2, 
-    $rotation_angle: 10deg, 
-    $duration: $animate_base_duration_fast, 
+    $scale: 1.2,
+    $rotation_angle: 10deg,
+    $duration: $animate_base_duration_fast,
     $timing_function: ease-in-out
 ) {
     @include animate_base(

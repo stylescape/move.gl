@@ -3,20 +3,20 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Wave Animations Mixin Module
 /// ===========================================================================
-/// 
+///
 /// This module ...
-/// 
-/// 
+///
+///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -47,9 +47,9 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///
 @mixin animate_wave(
-    $angle: 20deg, 
-    $duration: $animate_base_duration, 
-    $timing_function: ease-in-out, 
+    $angle: 20deg,
+    $duration: $animate_base_duration,
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -78,9 +78,9 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///
 @mixin animate_wave_slow(
-    $angle: 10deg, 
+    $angle: 10deg,
     $duration: $animate_base_duration_slow,
-    $timing_function: ease-in-out, 
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -110,9 +110,9 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///
 @mixin animate_wave_fast(
-    $angle: 30deg, 
-    $duration: $animate_base_duration_fast, 
-    $timing_function: ease-in-out, 
+    $angle: 30deg,
+    $duration: $animate_base_duration_fast,
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -142,9 +142,9 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///
 @mixin animate_wave_fade(
-    $angle: 20deg, 
-    $duration: $animate_base_duration, 
-    $timing_function: ease-in-out, 
+    $angle: 20deg,
+    $duration: $animate_base_duration,
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -154,12 +154,12 @@
         $iteration_count,
     );
     @keyframes animate_wave_fade {
-        0%, 100% { 
-            transform: rotate(0deg); 
+        0%, 100% {
+            transform: rotate(0deg);
             opacity: 1;
         }
-        50% { 
-            transform: rotate($angle); 
+        50% {
+            transform: rotate($angle);
             opacity: 0.5;
         }
     }

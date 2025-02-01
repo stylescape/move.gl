@@ -3,20 +3,20 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Slide Animations Mixin Module
 /// ===========================================================================
-/// 
+///
 /// This module ...
-/// 
-/// 
+///
+///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -49,10 +49,10 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///
 @mixin animate_slide(
-    $direction: left, 
-    $distance: 100%, 
-    $duration: $animate_base_duration, 
-    $timing-function: $animate_base_timing_function, 
+    $direction: left,
+    $distance: 100%,
+    $duration: $animate_base_duration,
+    $timing-function: $animate_base_timing_function,
     $iteration-count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -84,9 +84,9 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///
 @mixin animate_slide_up(
-    $distance: 20px, 
-    $duration: $animate_base_duration, 
-    $timing_function: ease-in-out, 
+    $distance: 20px,
+    $duration: $animate_base_duration,
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -115,9 +115,9 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///
 @mixin animate_slide_down(
-    $distance: 20px, 
-    $duration: $animate_base_duration, 
-    $timing_function: ease-in-out, 
+    $distance: 20px,
+    $duration: $animate_base_duration,
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -266,9 +266,9 @@
 /// @param {String} $timing_function [ease-out] - The timing function for the slide in fade animation.
 ///
 @mixin animate_slide_in_fade(
-    $direction: left, 
-    $distance: 100%, 
-    $duration: $animate_base_duration, 
+    $direction: left,
+    $distance: 100%,
+    $duration: $animate_base_duration,
     $timing-function: ease-out
 ) {
     @include animate_base(
@@ -282,13 +282,13 @@
     $translate-value: if($direction == left, -1 * $distance, $distance);
 
     @keyframes animate_slide_in_fade {
-        0% { 
-            transform: translateX($translate-value); 
-            opacity: 0; 
+        0% {
+            transform: translateX($translate-value);
+            opacity: 0;
         }
-        100% { 
-            transform: translateX(0); 
-            opacity: 1; 
+        100% {
+            transform: translateX(0);
+            opacity: 1;
         }
     }
 }

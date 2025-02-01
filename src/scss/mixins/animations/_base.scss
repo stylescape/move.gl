@@ -3,20 +3,20 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Base Animations Mixin Module
 /// ===========================================================================
-/// 
+///
 /// This module ...
-/// 
-/// 
+///
+///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -38,7 +38,7 @@
 /// This mixin provides a base structure for defining animations, allowing
 /// customization of the name, duration, timing function, iteration count,
 /// delay, and direction.
-/// 
+///
 /// @name animate_base
 /// @param {String} $name [none] - The name of the animation.
 /// @param {Number|String} $duration [$animate_base_duration] - The duration of the animation.
@@ -152,26 +152,26 @@
 //     -webkit-animation-fill-mode: both;
 //     animation-fill-mode: both;
 //   }
-  
+
 //   .animated-middle {
 //     -webkit-animation-duration: 1.2s;
 //     animation-duration: 1.2s;
 //     -webkit-animation-fill-mode: both;
 //     animation-fill-mode: both;
 //   }
-  
+
 //   .animated-quick {
 //     -webkit-animation-duration: 0.6s;
 //     animation-duration: 0.6s;
 //     -webkit-animation-fill-mode: both;
 //     animation-fill-mode: both;
 //   }
-  
+
 //   .animated.infinite {
 //     -webkit-animation-iteration-count: infinite;
 //     animation-iteration-count: infinite;
 //   }
-  
+
 
 
 
@@ -189,11 +189,11 @@
 ///
 @mixin transition_hover_opacity {
     @include transition_duration_00;
-    opacity: 1.00; 
+    opacity: 1.00;
     :hover {
         @include transition_duration_00;
-        opacity: 0.50; 
-    } 
+        opacity: 0.50;
+    }
 }
 
 ///
@@ -232,7 +232,7 @@
     // -moz-transition-duration:       all $transition_duration_00 ease-in-out;
     // -ms-transition-duration:        all $transition_duration_00 ease-in-out;
     // -o-transition-duration:         all $transition_duration_00 ease-in-out;
-    // -webkit-transition-duration:    all $transition_duration_00 ease-in-out;  
+    // -webkit-transition-duration:    all $transition_duration_00 ease-in-out;
 }
 
 ///
@@ -251,7 +251,7 @@
     // -moz-transition-duration:       all $transition_duration_01 ease-in-out;
     // -ms-transition-duration:        all $transition_duration_01 ease-in-out;
     // -o-transition-duration:         all $transition_duration_01 ease-in-out;
-    // -webkit-transition-duration:    all $transition_duration_01 ease-in-out;  
+    // -webkit-transition-duration:    all $transition_duration_01 ease-in-out;
 }
 
 ///
@@ -270,7 +270,7 @@
     // -moz-transition-duration:       all $transition_duration_02 ease-in-out;
     // -ms-transition-duration:        all $transition_duration_02 ease-in-out;
     // -o-transition-duration:         all $transition_duration_02 ease-in-out;
-    // -webkit-transition-duration:    all $transition_duration_02 ease-in-out;  
+    // -webkit-transition-duration:    all $transition_duration_02 ease-in-out;
 }
 
 ///
@@ -289,7 +289,7 @@
     // -moz-transition-duration:       all $transition_duration_03 ease-in-out;
     // -ms-transition-duration:        all $transition_duration_03 ease-in-out;
     // -o-transition-duration:         all $transition_duration_03 ease-in-out;
-    // -webkit-transition-duration:    all $transition_duration_03 ease-in-out;  
+    // -webkit-transition-duration:    all $transition_duration_03 ease-in-out;
 }
 
 ///
@@ -315,7 +315,7 @@
 
 ///
 /// Generates a keyframe animation for elements.
-/// 
+///
 /// @name keyframe-animation
 /// @param {String} $name - The name of the animation.
 /// @param {Map} $keyframes - A map of keyframes, where the key is the percentage and the value is the CSS properties.

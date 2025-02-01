@@ -3,20 +3,20 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Mouse Selection Mixin Module
 /// ===========================================================================
 ///
 /// ...
-/// 
-/// 
+///
+///
 /// @group Mouse
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -64,7 +64,7 @@
 	 ::selection { background: #272727; color: #fff; }
 
 
-    
+
 
 
 
@@ -80,7 +80,7 @@
         background-color: $bg-color; // Color of the background
         color: $text-color; // Color of the text
     }
-    
+
     // For compatibility with Mozilla Firefox
     &::-moz-selection {
         background-color: $bg-color; // Color of the background

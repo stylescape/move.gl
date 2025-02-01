@@ -3,20 +3,20 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Fade Animations Mixin Module
 /// ===========================================================================
-/// 
+///
 /// This module ...
-/// 
-/// 
+///
+///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -80,7 +80,7 @@
 //       opacity: 0;
 //       transform: translate3d(0, -100%, 0);
 //     }
-  
+
 //     to {
 //       opacity: 1;
 //       transform: none;
@@ -93,12 +93,12 @@
 
 //   .fade {
 //     @include transition($transition-fade);
-  
+
 //     &:not(.show) {
 //         opacity: 0;
 //     }
 // }
-  
+
 
 // Fade Out Animation
 // ----------------------------------------------------------------------------
@@ -126,7 +126,7 @@
 //     from {
 //       opacity: 1;
 //     }
-  
+
 //     to {
 //          transform: translate3d(0, -100%, 0);
 //       opacity: 0;

@@ -3,20 +3,20 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Ripple Animations Mixin Module
 /// ===========================================================================
-/// 
+///
 /// This module ...
-/// 
-/// 
+///
+///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -47,11 +47,11 @@
 /// @param {String} $timing_function [ease-out] - The timing function for the ripple animation.
 ///
 @mixin animate_ripple(
-    $scale_start: 1, 
-    $scale_end: 1.5, 
-    $opacity_start: 1, 
-    $opacity_end: 0, 
-    $duration: $animate_base_duration, 
+    $scale_start: 1,
+    $scale_end: 1.5,
+    $opacity_start: 1,
+    $opacity_end: 0,
+    $duration: $animate_base_duration,
     $timing_function: ease-out
 ) {
     @include animate_base(
@@ -74,7 +74,7 @@
 ///
 /// Slow Ripple Animation
 /// Creates a slower ripple effect where the element scales up and fades out.
-/// 
+///
 /// @name animate_ripple_slow
 /// @param {Number} $scale_end [1.5] - The final scale of the ripple.
 /// @param {Number} $opacity_end [0] - The final opacity of the ripple.
@@ -82,9 +82,9 @@
 /// @param {String} $timing_function [ease-out] - The timing function for the ripple animation.
 ///
 @mixin animate_ripple_slow(
-    $scale_end: 1.5, 
-    $opacity_end: 0, 
-    $duration: 2s, 
+    $scale_end: 1.5,
+    $opacity_end: 0,
+    $duration: 2s,
     $timing_function: ease-out
 ) {
     @include animate_base(
@@ -149,11 +149,11 @@
 /// @param {String} $timing_function [ease-out] - The timing function for the ripple animation.
 ///
 @mixin animate_ripple_color(
-    $scale_end: 1.5, 
+    $scale_end: 1.5,
     $opacity_end: 0,
     $color_start: $animate_base_color_start,
     $color_end: $animate_base_color_end,
-    $duration: $animate_base_duration, 
+    $duration: $animate_base_duration,
     $timing_function: ease-out
 ) {
     @include animate_base(

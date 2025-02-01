@@ -3,20 +3,20 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Float Animations Mixin Module
 /// ===========================================================================
-/// 
+///
 /// This module ...
-/// 
-/// 
+///
+///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -38,7 +38,7 @@
 ///
 /// Float Animation
 /// Creates a floating animation where the element moves up and down smoothly.
-/// 
+///
 /// @name animate_float
 /// @param {Number|String} $start_position [0] - The starting position of the float animation.
 /// @param {Number|String} $mid_position [10px] - The mid-position of the float animation.
@@ -70,7 +70,7 @@
 ///
 /// Float with Horizontal Movement
 /// Creates a floating animation where the element moves horizontally.
-/// 
+///
 /// @name animate_float_horizontal
 /// @param {Number|String} $horizontal-distance [10px] - The distance the element moves horizontally.
 /// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the float animation.
@@ -100,7 +100,7 @@
 /// Float with Rotation
 /// Creates a floating animation where the element moves up and down with a
 /// rotation.
-/// 
+///
 /// @name animate_float_rotate
 /// @param {Number|String} $rotation_angle [15deg] - The angle of rotation during the float animation.
 /// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the float animation.

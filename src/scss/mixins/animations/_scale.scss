@@ -3,20 +3,20 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Scale Animations Mixin Module
 /// ===========================================================================
-/// 
+///
 /// This module ...
-/// 
-/// 
+///
+///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -46,10 +46,10 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///
 @mixin animate_scale_expand(
-    $scale_start: 1, 
-    $scale_end: 1.2, 
+    $scale_start: 1,
+    $scale_end: 1.2,
     $duration: $animate_base_duration,
-    $timing_function: ease-out, 
+    $timing_function: ease-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
@@ -94,10 +94,10 @@
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///
 @mixin animate_scale_shrink(
-    $scale_min: 0.8, 
-    $scale_max: 1.2, 
+    $scale_min: 0.8,
+    $scale_max: 1.2,
     $duration: $animate_base_duration,
-    $timing_function: ease-in-out, 
+    $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(

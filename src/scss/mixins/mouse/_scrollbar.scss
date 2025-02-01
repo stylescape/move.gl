@@ -3,19 +3,19 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Mouse Scrollbar Mixin Module
 /// ===========================================================================
 ///
 /// ...
-/// 
+///
 /// @group Mouse
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -67,10 +67,10 @@ https://gist.github.com/JuanMaRuiz/7927982
     // width: 3px !important;
     background-color: transparent;
 }
-  
+
 // Track
 *::-webkit-scrollbar-track {
-    //background: $color_01; 
+    //background: $color_01;
     // opacity: 0.0;
     // // opacity: 1.0;
     // background-color: transparent;
@@ -78,7 +78,7 @@ https://gist.github.com/JuanMaRuiz/7927982
     // //background: rgba(0, 0, 0, 0.2);
     // display: none;
     // -webkit-box-shadow: none;
-    
+
     // display: none;
     -webkit-box-shadow: none !important;
     background-color: transparent;
@@ -103,7 +103,7 @@ https://gist.github.com/JuanMaRuiz/7927982
     //  display: block;
     // background-color: transparent;
 
-    // background:$color_02; 
+    // background:$color_02;
     // -webkit-box-shadow: none;
 }
 
@@ -113,7 +113,7 @@ https://gist.github.com/JuanMaRuiz/7927982
 
 // Handle on hover
 *::-webkit-scrollbar-thumb:hover {
-  //background:$color_02; 
+  //background:$color_02;
   //opacity: 1;
 
 }

@@ -3,16 +3,16 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Mouse Cursor Mixin Module
 /// ===========================================================================
 ///
 /// This module provides a comprehensive set of mixins for managing cursor
-/// styles in CSS. It includes utility mixins for common cursor types, 
-/// custom cursors with fallback options, animated cursors, and advanced 
+/// styles in CSS. It includes utility mixins for common cursor types,
+/// custom cursors with fallback options, animated cursors, and advanced
 /// use cases involving state-based and responsive cursor handling.
-/// 
-/// 
+///
+///
 /// @group Mouse
 /// @author Scape Agency
 /// @link https://move.gl
@@ -20,7 +20,7 @@
 /// @todo None
 /// @see https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
 /// @access public
-/// 
+///
 ////
 
 
@@ -40,7 +40,7 @@
 ///
 /// Mixin for applying a cursor style using predefined cursor types from the map.
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// @name cursor_style
 /// @param {String} $type ['default'] - The cursor style to apply.
 /// @example scss - Usage
@@ -57,7 +57,7 @@
 ///
 /// Mixin for custom cursor images with fallback options.
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// @name cursor_custom
 /// @param {String} $url - URL of the custom cursor image.
 /// @param {String} $fallback ['pointer'] - Fallback cursor style.
@@ -97,7 +97,7 @@
 ///
 /// Mixin for hover and focus cursor effects.
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// @name hover_focus_cursor
 /// @param {String} $hover ['pointer'] - Cursor style on hover.
 /// @param {String} $focus ['pointer'] - Cursor style on focus.
@@ -126,7 +126,7 @@
 ///
 /// Mixin for animated cursors using a series of images.
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// @name cursor_animated
 /// @param {List} $images - A list of image URLs for animation frames.
 /// @param {Time} $interval ['0.5s'] - Interval between frames.
