@@ -30,9 +30,10 @@
 
 ---
 
-<br/>
+...
 
+---
 
-
-- [Foundation | Motion UI](https://github.com/foundation/motion-ui)
-- [Glide](https://github.com/nickpettit/glide)
+<p align="center">
+    <b>Made with ❤️ by <a href="https://www.scape.agency" target="_blank">Scape Agency</a></b>
+</p>
