@@ -1,7 +1,9 @@
 /**
  * @title Adaptive UI Elements Handler
- * @notice Dynamically adjusts UI components based on user interactions and environmental contexts.
- * @dev Utilizes event listeners and media queries to adapt the UI for different user needs and device capabilities.
+ * @notice Dynamically adjusts UI components based on user interactions and
+ * environmental contexts.
+ * @dev Utilizes event listeners and media queries to adapt the UI for
+ * different user needs and device capabilities.
  */
  class AdaptiveUIHandler {
     constructor() {
