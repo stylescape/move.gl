@@ -38,7 +38,7 @@
     },
     "dependencies": {
         "hue.gl": "^0.0.24",
-        "unit.gl": "^0.0.40"
+        "unit.gl": "^0.1.2"
     },
     "devDependencies": {
         "@babel/core": "^7.23.6",
