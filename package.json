@@ -46,7 +46,7 @@
         "@babel/preset-typescript": "^7.23.3",
         "@types/fs-extra": "^11.0.4",
         "@types/glob": "^8.1.0",
-        "@types/node": "^22.5.4",
+        "@types/node": "^24.0.10",
         "@types/webpack": "^5.28.1",
         "pack.gl": "^0.1.2",
         "page.gl": "^0.0.3",
