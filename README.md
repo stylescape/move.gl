@@ -2,8 +2,7 @@
     <img src="https://raw.githubusercontent.com/stylescape/brand/master/src/logo/logo-transparant.png" width="20%" alt="Stylescape Logo">
 </p>
 <h1 align="center" style='border-bottom: none;'>move.gl</h1>
-<h3 align="center">User eXperience Toolkit</h3>
-
+<h3 align="center">Motion & Animation Library for Web</h3>
 
 <br/>
 
@@ -30,7 +29,181 @@
 
 ---
 
-...
+## Overview
+
+**move.gl** is a comprehensive motion and animation library designed to bring life to your web applications. It provides both SCSS mixins for CSS-based animations and TypeScript classes for interactive JavaScript-driven animations.
+
+## Features
+
+### SCSS Mixins
+
+- **Animation Mixins**: Bounce, fade, slide, zoom, flip, rotate, pulse, and more
+- **Transform Mixins**: Scale, rotate, translate, skew, perspective, matrix operations
+- **Transition Mixins**: Smooth property transitions with customizable timing
+- **Effect Mixins**: Shadows, opacity, filters (blur, brightness, contrast, etc.)
+- **Mouse Interactions**: Hover effects, cursor styles, scroll behaviors
+- **Loaders**: Spinners, progress indicators, and loading animations
+- **Accessibility**: Respects `prefers-reduced-motion` settings
+
+### TypeScript Components
+
+- **Draggable**: Make any element draggable with mouse/touch support
+- **Gesture**: Touch gesture handling (tap, swipe, pinch, rotate)
+- **Keyboard**: Virtual keyboard with multiple layout support
+- **Screensaver**: Inactivity-triggered screensaver with video/audio
+- **VideoOverlay**: Transparent video overlay with fade effects
+
+## Installation
+
+```bash
+npm install move.gl
+```
+
+## Quick Start
+
+### Using SCSS Mixins
+
+```scss
+@use 'move.gl' as move;
+
+.my-element {
+    @include move.animate-bounce;
+}
+
+.fade-in {
+    @include move.animate-fade-in(0.5s, ease-in-out);
+}
+
+.hover-scale {
+    @include move.hover-scale(1.1);
+}
+```
+
+### Using TypeScript Components
+
+```typescript
+import { Draggable, TouchGestureHandler, Screensaver } from 'move.gl';
+
+// Make an element draggable
+const draggable = new Draggable('myElement');
+
+// Handle touch gestures
+const gesture = new TouchGestureHandler('gestureArea', {
+  onSwipe: (direction, dx, dy) => console.log(`Swiped ${direction}`),
+  onPinch: (scale) => console.log(`Pinch scale: ${scale}`)
+});
+
+// Create a screensaver
+const screensaver = new Screensaver({
+  videoUrl: 'screensaver.mp4',
+  inactivityTimeout: 300000 // 5 minutes
+});
+```
+
+## SCSS API Reference
+
+### Animation Mixins
+
+| Mixin                  | Description                     |
+| ---------------------- | ------------------------------- |
+| `animate-bounce`       | Bouncing animation              |
+| `animate-fade-in/out`  | Fade in/out animations          |
+| `animate-slide-in/out` | Slide in/out from any direction |
+| `animate-zoom-in/out`  | Zoom in/out effects             |
+| `animate-pulse`        | Pulsing animation               |
+| `animate-shake`        | Shake animation                 |
+| `animate-flip`         | 3D flip animation               |
+| `animate-rotate`       | Rotation animation              |
+
+### Transform Mixins
+
+| Mixin                    | Description           |
+| ------------------------ | --------------------- |
+| `scale($factor)`         | Scale transform       |
+| `rotate($angle)`         | Rotation transform    |
+| `translate($x, $y)`      | Translation transform |
+| `skew($x, $y)`           | Skew transform        |
+| `perspective($distance)` | 3D perspective        |
+
+### Effect Mixins
+
+| Mixin                 | Description              |
+| --------------------- | ------------------------ |
+| `shadow($params)`     | Box shadow               |
+| `opacity($value)`     | Opacity with transitions |
+| `blur($amount)`       | Blur filter              |
+| `brightness($amount)` | Brightness filter        |
+| `contrast($amount)`   | Contrast filter          |
+| `grayscale($amount)`  | Grayscale filter         |
+
+## TypeScript API Reference
+
+### Draggable
+
+```typescript
+const draggable = new Draggable(elementId: string);
+draggable.destroy(); // Clean up
+```
+
+### TouchGestureHandler
+
+```typescript
+const handler = new TouchGestureHandler(elementId: string, {
+  onTap?: () => void,
+  onSwipe?: (direction: SwipeDirection, dx: number, dy: number) => void,
+  onPinch?: (scale: number) => void,
+  onRotate?: (angle: number) => void
+});
+handler.destroy(); // Clean up
+```
+
+### Screensaver
+
+```typescript
+const screensaver = new Screensaver({
+  videoUrl?: string,
+  audioUrl?: string,
+  inactivityTimeout?: number,
+  fadeInDuration?: number,
+  fadeOutDuration?: number
+});
+screensaver.start();
+screensaver.stop();
+screensaver.destroy();
+```
+
+## Browser Support
+
+- Chrome 88+
+- Firefox 78+
+- Safari 14+
+- Edge 88+
+- iOS Safari 14+
+- Chrome for Android 88+
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Run tests
+npm test
+```
+
+## Contributing
+
+Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
