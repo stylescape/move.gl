@@ -24,8 +24,8 @@
 // Use
 // ============================================================================
 
-@use "../dev" as *;
-@use "../variables" as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
 
 
 // ============================================================================
@@ -132,9 +132,8 @@
         transition: none;
     }
 
-    // Additional option for targeting any animated element
-    // This targets any element with animation or transition properties set
-   /// {
+    // Target all elements for complete animation reset
+    * {
         animation: none !important;
         transition: none !important;
     }
