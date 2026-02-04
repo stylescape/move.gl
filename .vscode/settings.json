@@ -26,7 +26,7 @@
     // ========================================================================
 
 
-    "git.autofetch": true,                              
+    "git.autofetch": true,
 
     // Prettier
     // ========================================================================
@@ -132,7 +132,7 @@
     "editor.hideCursorInOverviewRuler": false,
     "editor.hover.above": true,
     "editor.hover.delay": 300,
-    "editor.hover.enabled": true,
+    "editor.hover.enabled": "on",
     "editor.hover.hidingDelay": 300,
     "editor.hover.sticky": true,
     "editor.indentSize": "tabSize",
@@ -309,7 +309,7 @@
     // Minimap
     // ========================================================================
 
-    "editor.minimap.autohide": true,
+    "editor.minimap.autohide": "mouseover",
     "editor.minimap.enabled": true,
     "editor.minimap.maxColumn": 120,
     "editor.minimap.renderCharacters": true,
@@ -449,9 +449,9 @@
 
 
 
-    "workbench.editor.enablePreview": false,            
-    "workbench.colorTheme": "Default Dark Modern",            
-    "workbench.iconTheme": "vscode-icons",              
+    "workbench.editor.enablePreview": false,
+    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.iconTheme": "vscode-icons",
 
     // ...
 
