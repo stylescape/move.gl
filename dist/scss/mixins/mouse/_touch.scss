@@ -1,0 +1,413 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+///
+/// Mouse Touch Mixin Module
+/// ===========================================================================
+///
+/// This module provides comprehensive mixins for touch interactions including
+/// touch targets, touch feedback, touch scrolling, gesture handling, and
+/// responsive touch styles for mobile and tablet devices.
+///
+/// @group Mouse
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+/// Minimum touch target size (WCAG recommendation)
+$touch-target-min: 44px !default;
+
+/// Large touch target size
+$touch-target-large: 48px !default;
+
+/// Touch feedback duration
+$touch-feedback-duration: 0.15s !default;
+
+
+// ============================================================================
+// Touch Target Mixins
+// ============================================================================
+
+///
+/// Ensure minimum touch target size for accessibility.
+///
+/// @param {Length} $min-size [44px] - Minimum touch target size.
+///
+@mixin touch_target($min-size: $touch-target-min) {
+    min-width: $min-size;
+    min-height: $min-size;
+
+    // Ensure touch area even for inline elements
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+///
+/// Increase touch area with invisible padding.
+///
+/// @param {Length} $padding [10px] - Extra padding for touch area.
+///
+@mixin touch_area_expand($padding: 10px) {
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -$padding;
+        right: -$padding;
+        bottom: -$padding;
+        left: -$padding;
+    }
+}
+
+///
+/// Touch-friendly button styles.
+///
+/// @param {Length} $min-size [44px] - Minimum size.
+/// @param {Length} $padding [12px 24px] - Button padding.
+///
+@mixin touch_button($min-size: $touch-target-min, $padding: 12px 24px) {
+    min-height: $min-size;
+    padding: $padding;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+// ============================================================================
+// Touch Feedback Mixins
+// ============================================================================
+
+///
+/// Visual feedback for touch interactions.
+///
+/// @param {Number} $scale [0.95] - Scale on press.
+/// @param {Color} $highlight [rgba(0,0,0,0.1)] - Highlight color.
+///
+@mixin touch_feedback($scale: 0.95, $highlight: rgba(0, 0, 0, 0.1)) {
+    transition: transform $touch-feedback-duration ease,
+                background-color $touch-feedback-duration ease;
+
+    &:active {
+        transform: scale($scale);
+        background-color: $highlight;
+    }
+}
+
+///
+/// Ripple effect on touch (requires JS for position).
+///
+/// @param {Color} $color [rgba(255,255,255,0.3)] - Ripple color.
+///
+@mixin touch_ripple($color: rgba(255, 255, 255, 0.3)) {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: $color;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+    }
+
+    &:active::after {
+        width: 200%;
+        height: 200%;
+        opacity: 1;
+    }
+}
+
+///
+/// Highlight effect for tapped items.
+///
+/// @param {Color} $color [rgba(0,0,0,0.05)] - Highlight color.
+///
+@mixin touch_highlight($color: rgba(0, 0, 0, 0.05)) {
+    -webkit-tap-highlight-color: $color;
+
+    &:active {
+        background-color: $color;
+    }
+}
+
+///
+/// Disable default touch highlight.
+///
+@mixin touch_highlight_none {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+
+// ============================================================================
+// Touch Scroll Mixins
+// ============================================================================
+
+///
+/// Enable smooth momentum scrolling on touch devices.
+///
+@mixin touch_scroll {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+///
+/// Horizontal touch scrolling.
+///
+@mixin touch_scroll_x {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+}
+
+///
+/// Touch-friendly scrollable container.
+///
+/// @param {Length} $max-height [none] - Maximum height.
+///
+@mixin touch_scrollable($max-height: none) {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+
+    @if $max-height != none {
+        max-height: $max-height;
+    }
+}
+
+
+// ============================================================================
+// Touch Action Mixins
+// ============================================================================
+
+///
+/// Control touch action behavior.
+///
+/// @param {String} $action [manipulation] - Touch action value.
+///
+@mixin touch_action($action: manipulation) {
+    touch-action: $action;
+}
+
+///
+/// Disable all touch actions (for custom handling).
+///
+@mixin touch_action_none {
+    touch-action: none;
+}
+
+///
+/// Allow only pan gestures.
+///
+/// @param {String} $direction [both] - pan-x, pan-y, or both.
+///
+@mixin touch_pan($direction: both) {
+    @if $direction == x {
+        touch-action: pan-x;
+    } @else if $direction == y {
+        touch-action: pan-y;
+    } @else {
+        touch-action: pan-x pan-y;
+    }
+}
+
+///
+/// Allow pinch zoom.
+///
+@mixin touch_pinch_zoom {
+    touch-action: pinch-zoom;
+}
+
+///
+/// Standard touch manipulation (disables double-tap zoom).
+///
+@mixin touch_manipulation {
+    touch-action: manipulation;
+}
+
+
+// ============================================================================
+// User Selection Mixins
+// ============================================================================
+
+///
+/// Prevent text selection on touch.
+///
+@mixin touch_no_select {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+///
+/// Allow text selection.
+///
+@mixin touch_select {
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+///
+/// Prevent all callouts on long press.
+///
+@mixin touch_no_callout {
+    -webkit-touch-callout: none;
+}
+
+
+// ============================================================================
+// Input Zoom Prevention Mixins
+// ============================================================================
+
+///
+/// Prevent zoom on input focus (iOS).
+///
+@mixin touch_no_zoom_input {
+    font-size: 16px; // Prevents auto-zoom on iOS
+
+    &:focus {
+        font-size: 16px;
+    }
+}
+
+///
+/// Touch-friendly form inputs.
+///
+/// @param {Length} $min-height [44px] - Minimum height.
+///
+@mixin touch_input($min-height: $touch-target-min) {
+    min-height: $min-height;
+    font-size: 16px; // Prevent zoom
+    padding: 12px 16px;
+    touch-action: manipulation;
+}
+
+
+// ============================================================================
+// Gesture Mixins
+// ============================================================================
+
+///
+/// Styles for swipeable elements.
+///
+/// @param {String} $direction [horizontal] - Swipe direction.
+///
+@mixin touch_swipeable($direction: horizontal) {
+    @include touch_highlight_none;
+    @include touch_no_select;
+
+    @if $direction == horizontal {
+        touch-action: pan-x;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+    } @else {
+        touch-action: pan-y;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+    }
+
+    -webkit-overflow-scrolling: touch;
+}
+
+///
+/// Draggable element styles.
+///
+@mixin touch_draggable {
+    touch-action: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    cursor: grab;
+
+    &:active {
+        cursor: grabbing;
+    }
+}
+
+///
+/// Pinch-zoomable element.
+///
+@mixin touch_zoomable {
+    touch-action: pinch-zoom pan-x pan-y;
+}
+
+
+// ============================================================================
+// Responsive Touch Mixins
+// ============================================================================
+
+///
+/// Apply styles only on touch devices.
+///
+@mixin touch_only {
+    @media (hover: none) and (pointer: coarse) {
+        @content;
+    }
+}
+
+///
+/// Apply styles only on non-touch devices.
+///
+@mixin no_touch {
+    @media (hover: hover) and (pointer: fine) {
+        @content;
+    }
+}
+
+///
+/// Hover styles that work on both touch and non-touch.
+///
+@mixin touch_hover {
+    &:hover,
+    &:focus,
+    &:active {
+        @content;
+    }
+}
+
+
+// ============================================================================
+// Utility Classes
+// ============================================================================
+
+///
+/// Generate touch utility classes.
+///
+@mixin generate_touch_utilities {
+    .touch-target { @include touch_target; }
+    .touch-target-lg { @include touch_target($touch-target-large); }
+
+    .touch-scroll { @include touch_scroll; }
+    .touch-scroll-x { @include touch_scroll_x; }
+
+    .touch-none { @include touch_action_none; }
+    .touch-manipulation { @include touch_manipulation; }
+    .touch-pan-x { @include touch_pan(x); }
+    .touch-pan-y { @include touch_pan(y); }
+
+    .touch-no-select { @include touch_no_select; }
+    .touch-no-highlight { @include touch_highlight_none; }
+
+    .touch-feedback { @include touch_feedback; }
+    .touch-draggable { @include touch_draggable; }
+}

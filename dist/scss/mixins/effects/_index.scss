@@ -1,0 +1,23 @@
+// ============================================================================
+// move.gl | Effects Mixin Index
+// ============================================================================
+// Copyright 2025 Scape Agency BV
+// Licensed under MIT License
+// ============================================================================
+
+////
+/// Effects Mixin Module
+/// ===========================================================================
+///
+/// This module provides effect mixins including shadows, filters, and opacity.
+///
+/// @group Effects
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+////
+
+@forward "filter";
+@forward "shadow";
+@forward "opacity";

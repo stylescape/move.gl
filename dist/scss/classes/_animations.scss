@@ -1,0 +1,576 @@
+// ============================================================================
+// StyleScape | Animations
+// ============================================================================
+
+@use "../dev" as *;
+
+
+
+
+// Beat Animations
+// ----------------------------------------------------------------------------
+
+.animate_beat {
+    @include animate_beat();
+}
+
+.animate_beat_fade {
+    @include animate_beat_fade();
+}
+
+.animate_beat_double {
+    @include animate_beat_double();
+}
+
+
+// Blink Animations
+// ----------------------------------------------------------------------------
+
+.animate_blink {
+    @include animate_blink();
+}
+
+.animate_blink_rapid {
+    @include animate_blink_rapid();
+}
+
+.animate_blink_soft {
+    @include animate_blink_soft();
+}
+
+.animate_blink_alternate {
+    @include animate_blink_alternate();
+}
+
+
+// Bounce Animations
+// ----------------------------------------------------------------------------
+
+.animate_bounce {
+    @include animate_bounce();
+}
+
+.animate_bounce_extended {
+    @include animate_bounce_extended();
+}
+
+.animate_bounce_rotate {
+    @include animate_bounce_rotate();
+}
+
+.animate_bounce_multi {
+    @include animate_bounce_multi();
+}
+
+
+// Elastic Animations
+// ----------------------------------------------------------------------------
+
+.animate_elastic {
+    @include animate_elastic();
+}
+
+
+// Fade Animations
+// ----------------------------------------------------------------------------
+
+.animate_fade {
+    @include animate_fade();
+}
+
+.animate_fade_in {
+    @include animate_fade_in();
+}
+
+.animate_fade_out {
+    @include animate_fade_out();
+}
+
+.animate_fade_gradual {
+    @include animate_fade_gradual();
+}
+
+
+// Flash Animations
+// ----------------------------------------------------------------------------
+
+.animate_flash {
+    @include animate_flash();
+}
+
+.animate_flash_fade {
+    @include animate_flash_fade();
+}
+
+.animate_flash_strobe {
+    @include animate_flash_strobe();
+}
+
+.animate_flash_fade_slow {
+    @include animate_flash_fade_slow();
+}
+
+
+// Flip Animations
+// ----------------------------------------------------------------------------
+
+.animate_flip {
+    @include animate_flip();
+}
+
+// Flip Horizontal Animation
+// ----------------------------------------------------------------------------
+
+///
+/// Horizontal Flip Animation
+/// Creates a flip animation that rotates the element horizontally.
+///
+.animate_flip_horizontal {
+    @include animate_flip(1s, ease-in-out, infinite, 0, 1, 0, 0, 360deg);
+}
+
+
+// Flip Vertical Animation
+// ----------------------------------------------------------------------------
+
+///
+/// Vertical Flip Animation
+/// Creates a flip animation that rotates the element vertically.
+///
+.animate_flip_vertical {
+    @include animate_flip(1s, ease-in-out, infinite, 1, 0, 0, 0, 360deg);
+}
+
+
+// Flip Diagonal Animation
+// ----------------------------------------------------------------------------
+
+///
+/// Diagonal Flip Animation
+/// Creates a flip animation that rotates the element diagonally.
+///
+.animate_flip_diagonal {
+    @include animate_flip(1s, ease-in-out, infinite, 1, 1, 0, 0, 360deg);
+}
+
+
+// 180-degree Flip Animation Variants
+// ----------------------------------------------------------------------------
+
+///
+/// 180-Degree Horizontal Flip Animation
+/// Creates a flip animation that rotates the element horizontally by 180 degrees.
+///
+.animate_flip_180_horizontal {
+    @include animate_flip(1s, ease-in-out, infinite, 0, 1, 0, 0, -180deg);
+}
+
+///
+/// 180-Degree Vertical Flip Animation
+/// Creates a flip animation that rotates the element vertically by 180 degrees.
+///
+.animate_flip_180_vertical {
+    @include animate_flip(1s, ease-in-out, infinite, 1, 0, 0, 0, -180deg);
+}
+
+///
+/// 180-Degree Diagonal Flip Animation
+/// Creates a flip animation that rotates the element diagonally by 180 degrees.
+///
+.animate_flip_180_diagonal {
+    @include animate_flip(1s, ease-in-out, infinite, 1, 1, 0, 0, -180deg);
+}
+
+
+
+
+// Float Animations
+// ----------------------------------------------------------------------------
+
+.animate_float {
+    @include animate_float();
+}
+
+.animate_float_horizontal {
+    @include animate_float_horizontal();
+}
+
+.animate_float_rotate {
+    @include animate_float_rotate();
+}
+
+
+// Glow Animations
+// ----------------------------------------------------------------------------
+
+.animate_glow {
+    @include animate_glow($animate_base_color_glow_01);
+}
+
+.animate_glow_pulse {
+    @include animate_glow_pulse($animate_base_color_glow_01);
+}
+
+.animate_glow_multicolor {
+    @include animate_glow_multicolor();
+}
+
+
+
+// Heartbeat Animation
+// ----------------------------------------------------------------------------
+
+.animate_heartbeat {
+    @include animate_heartbeat();
+}
+
+.animate_heartbeat_fast {
+    @include animate_heartbeat_fast();
+}
+
+.animate_heartbeat_slow {
+    @include animate_heartbeat_slow();
+}
+
+.animate_heartbeat_color {
+    @include animate_heartbeat_color();
+}
+
+
+// Jiggle Animations
+// ----------------------------------------------------------------------------
+
+
+.animate_jiggle {
+    @include animate_jiggle();
+}
+
+.animate_jiggle_vertical {
+    @include animate_jiggle_vertical();
+}
+
+.animate_jiggle_multi {
+    @include animate_jiggle_multi();
+}
+
+.animate_jiggle_slow {
+    @include animate_jiggle_slow();
+}
+
+
+// Nod Animations
+// ----------------------------------------------------------------------------
+
+.animate_nod {
+    @include animate_nod();
+}
+.animate_nod_slow {
+    @include animate_nod_slow();
+}
+
+.animate_nod_bounce {
+    @include animate_nod_bounce();
+}
+
+.animate_nod_continuous {
+    @include animate_nod_continuous();
+}
+
+
+// Pop Animations
+// ----------------------------------------------------------------------------
+
+.animate_pop {
+    @include animate_pop(1.2);
+}
+
+.animate_pop_fast {
+    @include animate_pop_fast(1.2);
+}
+
+.animate_pop_slow {
+    @include animate_pop_slow(1.1);
+}
+
+.animate_pop_rotate {
+    @include animate_pop_rotate(1.2, 10deg);
+}
+
+
+
+// Pulse Animations
+// ----------------------------------------------------------------------------
+
+.animate_pulse {
+    @include animate_pulse();
+}
+
+.animate_pulse_slow {
+    @include animate_pulse_slow();
+}
+
+.animate_pulse_fast {
+    @include animate_pulse_fast();
+}
+
+.animate_pulse_color {
+    @include animate_pulse_color();
+}
+
+
+
+// Ripple Animations
+// ----------------------------------------------------------------------------
+
+.animate_ripple {
+    @include animate_ripple();
+}
+
+.animate_ripple_slow {
+    @include animate_ripple_slow();
+}
+
+.animate_ripple_multi {
+    @include animate_ripple_multi();
+}
+
+.animate_ripple_color {
+    @include animate_ripple_color();
+}
+
+
+// Roll Animations
+// ----------------------------------------------------------------------------
+
+.animate_roll {
+    @include animate_roll();
+}
+
+.animate_roll_reverse {
+    @include animate_roll_reverse();
+}
+
+.animate_roll_slow {
+    @include animate_roll_slow();
+}
+
+.animate_roll_vertical {
+    @include animate_roll_vertical();
+}
+
+
+// Scale Animations
+// ----------------------------------------------------------------------------
+
+.animate_scale_expand {
+    @include animate_scale_expand();
+}
+
+.animate_scale_shrink {
+    @include animate_scale_shrink();
+}
+
+
+// Shake Animations
+// ----------------------------------------------------------------------------
+
+.animate_shake {
+    @include animate_shake();
+}
+
+.animate_shake_slow {
+    @include animate_shake_slow();
+}
+
+.animate_shake_horizontal {
+    @include animate_shake_horizontal();
+}
+
+
+// Slide Animations
+// ----------------------------------------------------------------------------
+
+.animate_slide {
+    @include animate_slide(left, 100%);
+}
+
+.animate_slide_up {
+    @include animate_slide_up();
+}
+
+.animate_slide_down {
+    @include animate_slide_down();
+}
+
+.animate_slide_in_left {
+    @include animate_slide_in_left();
+}
+
+.animate_slide_in_right {
+    @include animate_slide_in_right();
+}
+
+.animate_slide_out_left {
+    @include animate_slide_out_left();
+}
+.animate_slide_out_right {
+    @include animate_slide_out_right();
+}
+
+.animate_slide_in_fade {
+    @include animate_slide_in_fade(left, 100%);
+}
+
+
+// Spin Animations
+// ----------------------------------------------------------------------------
+
+.animate_spin {
+    @include animate_spin();
+}
+
+.animate_spin_reverse {
+    @include animate_spin_reverse();
+}
+
+.animate_spin_grow {
+    @include animate_spin_grow();
+}
+
+.animate_spin_pulse {
+    @include animate_spin_pulse();
+}
+
+.animate_spin_flip {
+    @include animate_spin_flip();
+}
+
+
+
+// Sway Animations
+// ----------------------------------------------------------------------------
+
+.animate_sway {
+    @include animate_sway();
+}
+
+.animate_sway_slow {
+    @include animate_sway_slow();
+}
+
+.animate_sway_fast {
+    @include animate_sway_fast();
+}
+
+.animate_sway_fade {
+    @include animate_sway_fade();
+}
+
+
+
+// Tada Animations
+// ----------------------------------------------------------------------------
+
+.animate_tada {
+    @include animate_tada();
+}
+
+.animate_tada_slow {
+    @include animate_tada_slow();
+}
+
+.animate_tada_fast {
+    @include animate_tada_fast();
+}
+
+.animate_tada_fade {
+    @include animate_tada_fade();
+}
+
+
+
+
+
+
+// Twist Animations
+// ----------------------------------------------------------------------------
+
+.animate_twist {
+    @include animate_twist();
+}
+
+.animate_twist_slow {
+    @include animate_twist_slow();
+}
+
+.animate_twist_fast {
+    @include animate_twist_fast();
+}
+
+.animate_twist_color {
+    @include animate_twist_color();
+}
+
+
+
+// Wave Animations
+// ----------------------------------------------------------------------------
+
+
+.animate_wave {
+    @include animate_wave();
+}
+
+.animate_wave_slow {
+    @include animate_wave_slow();
+}
+.animate_wave_fast {
+    @include animate_wave_fast();
+}
+
+.animate_wave_fade {
+    @include animate_wave_fade();
+}
+
+
+
+
+// Wobble Animations
+// ----------------------------------------------------------------------------
+
+.animate_wobble {
+    @include animate_wobble();
+}
+
+.animate_wobble_slow {
+    @include animate_wobble_slow();
+}
+
+.animate_wobble_fast {
+    @include animate_wobble_fast();
+}
+
+.animate_wobble_scale {
+    @include animate_wobble_scale();
+}
+
+
+
+// Zoom Animations
+// ----------------------------------------------------------------------------
+
+.animate_zoom {
+    @include animate_zoom(1.5);
+}
+.animate_zoom_slow {
+    @include animate_zoom_slow();
+}
+
+.animate_zoom_fast {
+    @include animate_zoom_fast();
+}
+
+.animate_zoom_fade {
+    @include animate_zoom_fade();
+}
+

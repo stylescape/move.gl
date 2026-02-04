@@ -1,0 +1,315 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+///
+/// Beat Keyframes Mixins Module
+/// ===========================================================================
+/// This module defines keyframes for beat animations, including basic beat,
+/// beat with fade, double beat, heartbeat, pulse beat, and rhythmic patterns.
+/// These keyframes create pulsing or rhythmic effects in UI elements.
+///
+/// @group Keyframes
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../variables" as *;
+@use "_base" as *;
+
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+/// Default beat scale
+$beat-scale-default: 1.1 !default;
+
+/// Beat fade opacity
+$beat-fade-opacity: 0.6 !default;
+
+
+// ============================================================================
+// Basic Beat Keyframes
+// ============================================================================
+
+///
+/// Standard beat animation - single pulse.
+///
+@mixin keyframes_beat {
+    @include keyframes(beat) {
+        0%, 90% {
+            transform: scale(
+                var(
+                    --animate-scale-base,
+                    #{$animate-scale-base}
+                )
+            );
+        }
+        45% {
+            transform: scale(var(--animate-scale-beat, #{$animate-scale-beat}));
+        }
+    }
+}
+
+///
+/// Beat with fade effect.
+///
+@mixin keyframes_beat_fade {
+    @include keyframes(beat-fade) {
+        0%, 100% {
+            opacity: var(--animate-opacity-fade, #{$animate-opacity-fade});
+            transform: scale(var(--animate-scale-base, #{$animate-scale-base}));
+        }
+        50% {
+            opacity: 1;
+            transform: scale(var(--animate-scale-beat-fade, #{$animate-scale-beat-fade}));
+        }
+    }
+}
+
+///
+/// Double beat animation - two quick pulses.
+///
+@mixin keyframes_beat_double {
+    @include keyframes(beat-double) {
+        0%, 100% {
+            transform: scale(var(--animate-scale-base, #{$animate-scale-base}));
+        }
+        25% {
+            transform: scale(var(--animate-scale-beat-double-small, #{$animate-scale-beat-double-small}));
+        }
+        50% {
+            transform: scale(var(--animate-scale-beat-double-large, #{$animate-scale-beat-double-large}));
+        }
+        75% {
+            transform: scale(var(--animate-scale-beat-double-small, #{$animate-scale-beat-double-small}));
+        }
+    }
+}
+
+
+// ============================================================================
+// Heartbeat Keyframes
+// ============================================================================
+
+///
+/// Realistic heartbeat animation.
+///
+@mixin keyframes_heartbeat {
+    @include keyframes(heartbeat) {
+        0% { transform: scale(1); }
+        14% { transform: scale(1.1); }
+        28% { transform: scale(1); }
+        42% { transform: scale(1.1); }
+        70% { transform: scale(1); }
+        100% { transform: scale(1); }
+    }
+}
+
+///
+/// Fast heartbeat - excited/urgent state.
+///
+@mixin keyframes_heartbeat_fast {
+    @include keyframes(heartbeat-fast) {
+        0% { transform: scale(1); }
+        10% { transform: scale(1.15); }
+        20% { transform: scale(1); }
+        30% { transform: scale(1.15); }
+        50% { transform: scale(1); }
+        100% { transform: scale(1); }
+    }
+}
+
+///
+/// Slow heartbeat - calm/relaxed state.
+///
+@mixin keyframes_heartbeat_slow {
+    @include keyframes(heartbeat-slow) {
+        0% { transform: scale(1); }
+        20% { transform: scale(1.08); }
+        40% { transform: scale(1); }
+        60% { transform: scale(1.08); }
+        100% { transform: scale(1); }
+    }
+}
+
+
+// ============================================================================
+// Pulse Beat Keyframes
+// ============================================================================
+
+///
+/// Pulse beat with opacity change.
+///
+@mixin keyframes_pulse_beat {
+    @include keyframes(pulse-beat) {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+    }
+}
+
+///
+/// Pulse beat with glow effect.
+///
+/// @param {Color} $color [currentColor] - Glow color.
+///
+@mixin keyframes_pulse_beat_glow($color: currentColor) {
+    @include keyframes(pulse-beat-glow) {
+        0%, 100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba($color, 0.4);
+        }
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 0 0 10px rgba($color, 0);
+        }
+    }
+}
+
+///
+/// Expanding ring pulse.
+///
+/// @param {Color} $color [currentColor] - Ring color.
+///
+@mixin keyframes_pulse_ring($color: currentColor) {
+    @include keyframes(pulse-ring) {
+        0% {
+            box-shadow: 0 0 0 0 rgba($color, 0.6);
+        }
+        100% {
+            box-shadow: 0 0 0 20px rgba($color, 0);
+        }
+    }
+}
+
+
+// ============================================================================
+// Rhythmic Beat Keyframes
+// ============================================================================
+
+///
+/// Triple beat pattern.
+///
+@mixin keyframes_beat_triple {
+    @include keyframes(beat-triple) {
+        0%, 100% { transform: scale(1); }
+        15% { transform: scale(1.1); }
+        30% { transform: scale(1); }
+        45% { transform: scale(1.1); }
+        60% { transform: scale(1); }
+        75% { transform: scale(1.1); }
+        90% { transform: scale(1); }
+    }
+}
+
+///
+/// Syncopated beat pattern.
+///
+@mixin keyframes_beat_syncopated {
+    @include keyframes(beat-syncopated) {
+        0%, 100% { transform: scale(1); }
+        10% { transform: scale(1.15); }
+        20% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        60% { transform: scale(1); }
+        80% { transform: scale(1.05); }
+        90% { transform: scale(1); }
+    }
+}
+
+
+// ============================================================================
+// Beat Animation Mixins
+// ============================================================================
+
+///
+/// Apply beat animation.
+///
+/// @param {Time} $duration [1s] - Animation duration.
+/// @param {Number} $iterations [infinite] - Number of iterations.
+///
+@mixin animate_beat($duration: 1s, $iterations: infinite) {
+    @include keyframes_beat;
+    animation: beat $duration ease-in-out $iterations;
+}
+
+///
+/// Apply heartbeat animation.
+///
+/// @param {Time} $duration [1.5s] - Animation duration.
+///
+@mixin animate_heartbeat($duration: 1.5s) {
+    @include keyframes_heartbeat;
+    animation: heartbeat $duration ease-in-out infinite;
+}
+
+///
+/// Apply pulse beat with glow.
+///
+/// @param {Color} $color [#ff0000] - Glow color.
+/// @param {Time} $duration [1.5s] - Animation duration.
+///
+@mixin animate_pulse_beat($color: #ff0000, $duration: 1.5s) {
+    @include keyframes_pulse_beat_glow($color);
+    animation: pulse-beat-glow $duration ease-in-out infinite;
+}
+
+
+// ============================================================================
+// Utility Class Generator
+// ============================================================================
+
+///
+/// Generate beat animation utility classes.
+///
+@mixin generate_beat_utilities {
+    .animate-beat {
+        @include animate_beat;
+    }
+
+    .animate-beat-fade {
+        @include keyframes_beat_fade;
+        animation: beat-fade 1s ease-in-out infinite;
+    }
+
+    .animate-beat-double {
+        @include keyframes_beat_double;
+        animation: beat-double 1.2s ease-in-out infinite;
+    }
+
+    .animate-heartbeat {
+        @include animate_heartbeat;
+    }
+
+    .animate-heartbeat-fast {
+        @include keyframes_heartbeat_fast;
+        animation: heartbeat-fast 0.8s ease-in-out infinite;
+    }
+
+    .animate-heartbeat-slow {
+        @include keyframes_heartbeat_slow;
+        animation: heartbeat-slow 2s ease-in-out infinite;
+    }
+
+    .animate-pulse-beat {
+        @include keyframes_pulse_beat;
+        animation: pulse-beat 1s ease-in-out infinite;
+    }
+}

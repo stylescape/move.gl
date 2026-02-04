@@ -1,0 +1,23 @@
+// ============================================================================
+// move.gl | Classes Index
+// ============================================================================
+// Copyright 2025 Scape Agency BV
+// Licensed under MIT License
+// ============================================================================
+
+////
+/// Classes Module Index
+/// ===========================================================================
+///
+/// This module consolidates all CSS class definitions that apply the
+/// animation and transform mixins to create ready-to-use utility classes.
+///
+/// @group Classes
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+////
+
+@forward "animations";
+@forward "transforms";

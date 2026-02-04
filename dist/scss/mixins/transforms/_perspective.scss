@@ -1,0 +1,32 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+///
+/// Transforms Mixin Module
+/// ===========================================================================
+///
+///
+/// @group Transforms
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+///
+/// ---------------------------------------------------------------------------
+///
+/// Mixin for setting perspective on elements, useful for 3D transforms.
+///
+/// @mixin perspective
+/// @param {Number} $value [$default-perspective] - The perspective value for 3D transformations.
+/// @example scss - Usage
+///   .icon-perspective { @include perspective(1000px); } // Applies a perspective of 1000px
+///
+@mixin perspective($value: $default-perspective) {
+    perspective: $value;
+}

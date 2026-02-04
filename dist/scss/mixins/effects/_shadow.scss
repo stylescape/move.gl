@@ -1,0 +1,461 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+///
+/// Shadow Effects Mixin Module
+/// ===========================================================================
+///
+/// This module provides a comprehensive set of box-shadow and text-shadow
+/// mixins for creating depth, elevation, and visual hierarchy in UI elements.
+/// Includes Material Design elevations, directional shadows, and presets.
+///
+/// @group Effects
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "sass:map";
+@use "sass:math";
+@use "sass:color";
+
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+/// Default shadow color
+$shadow-color-default: rgba(0, 0, 0, 0.2) !default;
+
+/// Shadow color for dark themes
+$shadow-color-dark: rgba(0, 0, 0, 0.4) !default;
+
+/// Shadow color for colored shadows
+$shadow-color-primary: rgba(59, 130, 246, 0.4) !default;
+
+
+// ============================================================================
+// Base Shadow Mixins
+// ============================================================================
+
+///
+/// Base box-shadow mixin with full control.
+///
+/// @param {Length} $offset-x [0] - Horizontal offset.
+/// @param {Length} $offset-y [4px] - Vertical offset.
+/// @param {Length} $blur [8px] - Blur radius.
+/// @param {Length} $spread [0] - Spread radius.
+/// @param {Color} $color [$shadow-color-default] - Shadow color.
+/// @param {Boolean} $inset [false] - Whether shadow is inset.
+///
+@mixin box_shadow(
+    $offset-x: 0,
+    $offset-y: 4px,
+    $blur: 8px,
+    $spread: 0,
+    $color: $shadow-color-default,
+    $inset: false
+) {
+    @if $inset {
+        box-shadow: inset $offset-x $offset-y $blur $spread $color;
+    } @else {
+        box-shadow: $offset-x $offset-y $blur $spread $color;
+    }
+}
+
+///
+/// Multiple box shadows combined.
+///
+/// @param {List} $shadows... - List of shadow definitions.
+///
+@mixin box_shadow_multi($shadows...) {
+    box-shadow: $shadows;
+}
+
+///
+/// Text shadow mixin.
+///
+/// @param {Length} $offset-x [1px] - Horizontal offset.
+/// @param {Length} $offset-y [1px] - Vertical offset.
+/// @param {Length} $blur [2px] - Blur radius.
+/// @param {Color} $color [rgba(0,0,0,0.3)] - Shadow color.
+///
+@mixin text_shadow($offset-x: 1px, $offset-y: 1px, $blur: 2px, $color: rgba(0, 0, 0, 0.3)) {
+    text-shadow: $offset-x $offset-y $blur $color;
+}
+
+
+// ============================================================================
+// Material Design Elevation System
+// ============================================================================
+
+/// Material Design elevation map (levels 0-24)
+$elevations: (
+    0:  none,
+    1:  (0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.24)),
+    2:  (0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23)),
+    3:  (0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23)),
+    4:  (0px 14px 28px rgba(0, 0, 0, 0.25), 0px 10px 10px rgba(0, 0, 0, 0.22)),
+    5:  (0px 19px 38px rgba(0, 0, 0, 0.30), 0px 15px 12px rgba(0, 0, 0, 0.22)),
+    6:  (0px 3px 5px rgba(0, 0, 0, 0.2), 0px 1px 18px rgba(0, 0, 0, 0.12), 0px 6px 10px rgba(0, 0, 0, 0.14)),
+    8:  (0px 5px 5px rgba(0, 0, 0, 0.2), 0px 3px 14px rgba(0, 0, 0, 0.12), 0px 8px 10px rgba(0, 0, 0, 0.14)),
+    12: (0px 7px 8px rgba(0, 0, 0, 0.2), 0px 5px 22px rgba(0, 0, 0, 0.12), 0px 12px 17px rgba(0, 0, 0, 0.14)),
+    16: (0px 8px 10px rgba(0, 0, 0, 0.2), 0px 6px 30px rgba(0, 0, 0, 0.12), 0px 16px 24px rgba(0, 0, 0, 0.14)),
+    24: (0px 11px 15px rgba(0, 0, 0, 0.2), 0px 9px 46px rgba(0, 0, 0, 0.12), 0px 24px 38px rgba(0, 0, 0, 0.14))
+) !default;
+
+///
+/// Applies a material design-inspired elevation (shadow) to an element.
+///
+/// @param {Number} $level - The elevation level (0-24).
+/// @example scss - Usage
+///   @include elevation(4);
+///
+@mixin elevation($level) {
+    @if map.has-key($elevations, $level) {
+        box-shadow: map.get($elevations, $level);
+    } @else {
+        @warn "Invalid elevation level: #{$level}. Valid levels are: 0, 1, 2, 3, 4, 5, 6, 8, 12, 16, 24.";
+    }
+}
+
+///
+/// Elevation with hover transition.
+///
+/// @param {Number} $default [1] - Default elevation level.
+/// @param {Number} $hover [4] - Hover elevation level.
+/// @param {Time} $duration [0.3s] - Transition duration.
+///
+@mixin elevation_interactive($default: 1, $hover: 4, $duration: 0.3s) {
+    @include elevation($default);
+    transition: box-shadow $duration ease;
+
+    &:hover {
+        @include elevation($hover);
+    }
+}
+
+
+// ============================================================================
+// Directional Shadow Mixins
+// ============================================================================
+
+///
+/// Shadow pointing upward (light source from below).
+///
+/// @param {Length} $distance [4px] - Shadow distance.
+/// @param {Length} $blur [8px] - Blur radius.
+/// @param {Color} $color [$shadow-color-default] - Shadow color.
+///
+@mixin shadow_top($distance: 4px, $blur: 8px, $color: $shadow-color-default) {
+    box-shadow: 0 (-$distance) $blur (-$distance * 0.5) $color;
+}
+
+///
+/// Shadow pointing rightward.
+///
+@mixin shadow_right($distance: 4px, $blur: 8px, $color: $shadow-color-default) {
+    box-shadow: $distance 0 $blur (-$distance * 0.5) $color;
+}
+
+///
+/// Shadow pointing downward (most common).
+///
+@mixin shadow_bottom($distance: 4px, $blur: 8px, $color: $shadow-color-default) {
+    box-shadow: 0 $distance $blur (-$distance * 0.5) $color;
+}
+
+///
+/// Shadow pointing leftward.
+///
+@mixin shadow_left($distance: 4px, $blur: 8px, $color: $shadow-color-default) {
+    box-shadow: (-$distance) 0 $blur (-$distance * 0.5) $color;
+}
+
+
+// ============================================================================
+// Shadow Presets
+// ============================================================================
+
+/// No shadow
+@mixin shadow_none {
+    box-shadow: none;
+}
+
+/// Extra small/subtle shadow
+@mixin shadow_xs {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/// Small shadow
+@mixin shadow_sm {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+/// Medium/default shadow
+@mixin shadow_md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+/// Large shadow
+@mixin shadow_lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+/// Extra large shadow
+@mixin shadow_xl {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+/// 2XL shadow
+@mixin shadow_2xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/// Inner/inset shadow
+@mixin shadow_inner {
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}
+
+/// Inner shadow (deeper)
+@mixin shadow_inner_deep {
+    box-shadow: inset 0 4px 8px 0 rgba(0, 0, 0, 0.15);
+}
+
+
+// ============================================================================
+// Special Effect Shadows
+// ============================================================================
+
+///
+/// Colored shadow based on element's background.
+///
+/// @param {Color} $color - The base color for the shadow.
+/// @param {Number} $opacity [0.4] - Shadow opacity.
+/// @param {Length} $blur [20px] - Blur radius.
+///
+@mixin shadow_colored($color, $opacity: 0.4, $blur: 20px) {
+    box-shadow: 0 10px $blur rgba($color, $opacity);
+}
+
+///
+/// Glow effect shadow.
+///
+/// @param {Color} $color [#3b82f6] - Glow color.
+/// @param {Number} $intensity [0.5] - Glow intensity.
+/// @param {Length} $spread [15px] - Spread radius.
+///
+@mixin shadow_glow($color: #3b82f6, $intensity: 0.5, $spread: 15px) {
+    box-shadow: 0 0 $spread rgba($color, $intensity);
+}
+
+///
+/// Neon glow effect.
+///
+/// @param {Color} $color [#00ff00] - Neon color.
+///
+@mixin shadow_neon($color: #00ff00) {
+    box-shadow:
+        0 0 5px $color,
+        0 0 10px $color,
+        0 0 20px $color,
+        0 0 40px $color;
+}
+
+///
+/// Soft diffused shadow for cards.
+///
+@mixin shadow_soft {
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.04),
+        0 4px 8px rgba(0, 0, 0, 0.04),
+        0 8px 16px rgba(0, 0, 0, 0.04),
+        0 16px 32px rgba(0, 0, 0, 0.04);
+}
+
+///
+/// Floating/lifted element shadow.
+///
+@mixin shadow_floating {
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.1),
+        0 8px 12px rgba(0, 0, 0, 0.05);
+}
+
+///
+/// Border-like shadow (creates a shadow that looks like a border).
+///
+/// @param {Length} $width [1px] - Border width.
+/// @param {Color} $color [rgba(0,0,0,0.1)] - Border color.
+///
+@mixin shadow_border($width: 1px, $color: rgba(0, 0, 0, 0.1)) {
+    box-shadow: 0 0 0 $width $color;
+}
+
+///
+/// Focus ring shadow for accessibility.
+///
+/// @param {Color} $color [#3b82f6] - Ring color.
+/// @param {Length} $width [3px] - Ring width.
+/// @param {Length} $offset [2px] - Ring offset.
+///
+@mixin shadow_focus_ring($color: #3b82f6, $width: 3px, $offset: 2px) {
+    box-shadow: 0 0 0 $offset #fff, 0 0 0 ($offset + $width) $color;
+}
+
+
+// ============================================================================
+// Embossed & Debossed Effects
+// ============================================================================
+
+///
+/// Embossed (raised) effect.
+///
+@mixin shadow_embossed {
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+        0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+///
+/// Debossed (pressed) effect.
+///
+@mixin shadow_debossed {
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.15),
+        inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+///
+/// Neumorphism raised effect.
+///
+/// @param {Color} $bg-color [#e0e0e0] - Background color for calculating light/dark.
+///
+@mixin shadow_neumorphic_raised($bg-color: #e0e0e0) {
+    $light: color.scale($bg-color, $lightness: 15%);
+    $dark: color.scale($bg-color, $lightness: -15%);
+
+    box-shadow:
+        -8px -8px 16px $light,
+        8px 8px 16px $dark;
+}
+
+///
+/// Neumorphism pressed effect.
+///
+/// @param {Color} $bg-color [#e0e0e0] - Background color.
+///
+@mixin shadow_neumorphic_pressed($bg-color: #e0e0e0) {
+    $light: color.scale($bg-color, $lightness: 15%);
+    $dark: color.scale($bg-color, $lightness: -15%);
+
+    box-shadow:
+        inset -4px -4px 8px $light,
+        inset 4px 4px 8px $dark;
+}
+
+
+// ============================================================================
+// Shadow Transition Mixins
+// ============================================================================
+
+///
+/// Smooth shadow transition.
+///
+/// @param {Time} $duration [0.3s] - Transition duration.
+/// @param {String} $timing [ease] - Timing function.
+///
+@mixin shadow_transition($duration: 0.3s, $timing: ease) {
+    transition: box-shadow $duration $timing;
+}
+
+///
+/// Shadow hover effect.
+///
+/// @param {String} $default - Default shadow (use mixin name or custom).
+/// @param {String} $hover - Hover shadow.
+/// @param {Time} $duration [0.3s] - Transition duration.
+///
+@mixin shadow_hover($duration: 0.3s) {
+    transition: box-shadow $duration ease, transform $duration ease;
+
+    &:hover {
+        @content;
+    }
+}
+
+
+// ============================================================================
+// Text Shadow Presets
+// ============================================================================
+
+/// Subtle text shadow
+@mixin text_shadow_subtle {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/// Medium text shadow
+@mixin text_shadow_md {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/// Hard text shadow (no blur)
+@mixin text_shadow_hard {
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+/// Text outline using shadow
+@mixin text_shadow_outline($color: #000) {
+    text-shadow:
+        -1px -1px 0 $color,
+        1px -1px 0 $color,
+        -1px 1px 0 $color,
+        1px 1px 0 $color;
+}
+
+/// Long shadow effect for text
+@mixin text_shadow_long($color: rgba(0, 0, 0, 0.2), $length: 10) {
+    $shadows: ();
+    @for $i from 1 through $length {
+        $shadows: append($shadows, #{$i}px #{$i}px 0 $color, comma);
+    }
+    text-shadow: $shadows;
+}
+
+
+// ============================================================================
+// Utility Classes Generator
+// ============================================================================
+
+///
+/// Generates utility classes for shadows.
+///
+@mixin generate_shadow_utilities {
+    .shadow-none { @include shadow_none; }
+    .shadow-xs { @include shadow_xs; }
+    .shadow-sm { @include shadow_sm; }
+    .shadow { @include shadow_md; }
+    .shadow-md { @include shadow_md; }
+    .shadow-lg { @include shadow_lg; }
+    .shadow-xl { @include shadow_xl; }
+    .shadow-2xl { @include shadow_2xl; }
+    .shadow-inner { @include shadow_inner; }
+
+    // Elevation utilities
+    @each $level, $value in $elevations {
+        .elevation-#{$level} {
+            box-shadow: $value;
+        }
+    }
+}

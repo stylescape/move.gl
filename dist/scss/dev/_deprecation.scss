@@ -1,0 +1,13 @@
+// ============================================================================
+// StyleScape | Development | Deprecation
+// ============================================================================
+
+// Deprecation Warning Mixin
+// This mixin can be used to mark deprecated mixins or styles, displaying a warning in the console during compilation.
+@mixin deprecate($feature, $version, $alternative: null) {
+    @if $alternative {
+        @warn 'Deprecation Warning: #{$feature} will be removed in version #{$version}. Use #{$alternative} instead.';
+    } @else {
+        @warn 'Deprecation Warning: #{$feature} will be removed in version #{$version}.';
+    }
+}
