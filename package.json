@@ -1,18 +1,24 @@
 {
     "name": "move.gl",
-    "description": "move.gl is a ...",
+    "description": "Motion and Animation Library for Stylescape.",
     "version": "0.0.1",
     "config": {
         "version_short": "0.0"
     },
     "keywords": [
         "move.gl",
-        "stylescape"
+        "stylescape",
+        "animation",
+        "motion",
+        "sass",
+        "css",
+        "transitions",
+        "keyframes"
     ],
     "homepage": "https://www.move.gl/",
-    "author": "Lars van Vianen",
+    "author": "Lars van Vianen <lars@vianen.com> (https://www.vianen.com)",
     "contributors": [
-        "Scape Agency"
+        "Scape Agency <info@scape.agency>"
     ],
     "license": "MIT",
     "repository": {
@@ -28,37 +34,33 @@
             "url": "https://github.com/sponsors/scape-foundation"
         }
     ],
-    "main": "src/scss/index.scss",
     "type": "module",
+    "main": "src/ts/index.ts",
     "sass": "src/scss/index.scss",
+    "module": "dist/js/move.gl.js",
+    "style": "dist/css/move.gl.css",
     "scripts": {
-        "build": "npm run build-compile && npm run build-process",
-        "build-compile": "tsc -p bin/tsconfig.json",
-        "build-process": "node bin/js/index.js"
+        "build": "npx kist --config ./kist.pro.yml",
+        "watch": "npx kist --config ./kist.yml --live",
+        "dev": "vite"
+    },
+    "engines": {
+        "node": ">=20.0.0"
     },
     "dependencies": {
         "hue.gl": "^0.0.36",
         "unit.gl": "^0.2.3"
     },
     "devDependencies": {
-        "@babel/core": "^7.23.6",
-        "@babel/preset-env": "^7.25.4",
-        "@babel/preset-typescript": "^7.23.3",
-        "@types/fs-extra": "^11.0.4",
-        "@types/glob": "^9.0.0",
-        "@types/node": "^25.0.10",
-        "@types/webpack": "^5.28.1",
-        "pack.gl": "^0.1.2",
-        "page.gl": "^0.0.3",
-        "sass": "^1.66.1",
-        "sass-loader": "^16.0.1",
-        "sassdoc": "^2.7.4",
-        "ts-node": "^10.9.1",
-        "typescript": "^5.3.3",
-        "webpack": "^5.94.0",
-        "webpack-cli": "^6.0.1",
-        "webpack-dev-server": "^5.0.4",
-        "webpack-merge": "^6.0.1"
+        "@types/node": "^25.2.0",
+        "kist": "^0.1.58",
+        "micromatch": "^4.0.8",
+        "nunjucks": "^3.2.4",
+        "sass": "^1.97.3",
+        "serve-static": "^1.16.2",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.9.3",
+        "vite": "^7.3.1"
     },
     "files": [
         "src/**",
@@ -67,7 +69,16 @@
     "exports": {
         ".": {
             "sass": "./scss/index.scss",
-            "typescript": "./ts/index.scss"
+            "types": "./ts/index.d.ts",
+            "import": "./js/move.gl.js",
+            "default": "./js/move.gl.js"
+        },
+        "./css/move.gl.css": "./css/move.gl.css",
+        "./css/move.gl.min.css": "./css/move.gl.min.css"
+    },
+    "typesVersions": {
+        "*": {
+            "*": ["./ts/index.d.ts"]
         }
     }
 }

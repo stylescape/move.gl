@@ -1,0 +1,93 @@
+
+---
+
+
+# =============================================================================
+# Options
+# =============================================================================
+
+options:
+
+    mode: production
+    logLevel: info
+
+
+# =============================================================================
+# Stages
+# =============================================================================
+
+stages:
+
+    # Build
+    # =========================================================================
+    -
+        name: Build
+        description: "Production build."
+
+        steps:
+
+            # Dirs Clean (tolerant - ignores missing files/dirs)
+            # -----------------------------------------------------------------
+            -
+                name: CleanBuildDirStep
+                action: DirectoryCleanAction
+                options:
+                    dirPath: "./dist"
+                    tolerant: true
+
+            # Process SCSS to CSS
+            # -----------------------------------------------------------------
+            -   name: ProcessMainStyles
+                action: StyleProcessingAction
+                options:
+                    inputFile: "./src/scss/index.scss"
+                    outputFile: "./dist/css/move.gl.min.css"
+                    styleOption: "compressed"
+            -
+                name: ProcessAdditionalStyles
+                action: StyleProcessingAction
+                options:
+                    inputFile: "./src/scss/index.scss"
+                    outputFile: "./dist/css/move.gl.css"
+                    styleOption: "expanded"
+
+            # Copy Files
+            # -----------------------------------------------------------------
+            -
+                name: CopyLICENSE
+                action: FileCopyAction
+                options:
+                    srcFile: "./LICENSE"
+                    destDir: "./dist"
+            -
+                name: CopyREADME
+                action: FileCopyAction
+                options:
+                    srcFile: "./README.md"
+                    destDir: "./dist"
+
+            # Copy Dirs
+            # -----------------------------------------------------------------
+            -
+                name: CopySrcSCSS
+                action: DirectoryCopyAction
+                options:
+                    srcDir: "./src/scss"
+                    destDir: "./dist/scss"
+            -
+                name: CopySrcTS
+                action: DirectoryCopyAction
+                options:
+                    srcDir: "./src/ts"
+                    destDir: "./dist/ts"
+
+            # Compile TS to JS
+            # -----------------------------------------------------------------
+
+            -
+                name: Compile TS to JS
+                action: TypeScriptCompilerAction
+                options:
+                    tsConfigPath: "./tsconfig.json"
+                    filePaths:
+                        - "src/ts/index.ts"
