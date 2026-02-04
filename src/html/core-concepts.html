@@ -8,7 +8,7 @@
         content="Motion and Animation Library — CSS animations, transitions, keyframes, and interactive motion effects." />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
-    <title>move.gl — Motion & Animation Library</title>
+    <title>Core Concepts — move.gl</title>
     <link rel="stylesheet" href="/css/move.gl.css" />
     <link rel="stylesheet" href="/css/move.gl.docs.css" />
     <script type="module" src="/js/move.gl.js"></script>
@@ -110,261 +110,143 @@
     </div>
 
     <div class="container">
-        <header class="headerheader--hero"><p class="eyebrow">Motion & Animation Library</p>
-<h1>move.gl</h1>
-<p class="lead">A comprehensive CSS animation and motion library for creating fluid, performant, and accessible motion
-    experiences.</p>
-<div class="hero-actions">
-    <a href="/getting-started.html" class="btn btn--primary">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-        </svg>
-        Get Started
-    </a>
-    <a href="https://github.com/stylescape/move.gl" class="btn btn--secondary">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path
-                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-        </svg>
-        View on GitHub
-    </a>
-</div>        </header>
+        <header class="header"><p class="eyebrow">Documentation</p>
+<h1>Core Concepts</h1>        </header>
 
         <main>
-<!-- Key Features -->
 <section>
-    <h2>Features</h2>
+    <h2>Animation Categories</h2>
+    <p>move.gl organizes animations into logical categories:</p>
+
     <div class="feature-grid">
         <div class="feature-card">
-            <div class="feature-card__icon">⟳</div>
-            <h3 class="feature-card__title">Keyframe Animations</h3>
-            <p class="feature-card__desc">Pre-built keyframe animations for fade, slide, bounce, zoom, flip, and more.
-                Ready to use out of the box.</p>
+            <h3 class="feature-card__title">Keyframes</h3>
+            <p class="feature-card__desc">Pre-defined @keyframes for common animation patterns like fade, slide, bounce,
+                zoom, and flip.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-card__icon">↔</div>
             <h3 class="feature-card__title">Transitions</h3>
-            <p class="feature-card__desc">Smooth state transitions with customizable timing functions and durations.</p>
+            <p class="feature-card__desc">Smooth property transitions between states with customizable timing functions.
+            </p>
         </div>
         <div class="feature-card">
-            <div class="feature-card__icon">◇</div>
             <h3 class="feature-card__title">Transforms</h3>
             <p class="feature-card__desc">2D and 3D transform utilities for rotation, scaling, skewing, and translation.
             </p>
         </div>
         <div class="feature-card">
-            <div class="feature-card__icon">⊚</div>
             <h3 class="feature-card__title">Loaders</h3>
-            <p class="feature-card__desc">Animated loading indicators: spinners, dots, bars, and custom patterns.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-card__icon">♿</div>
-            <h3 class="feature-card__title">Accessibility</h3>
-            <p class="feature-card__desc">Respects prefers-reduced-motion for users who prefer minimal animations.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-card__icon">⚡</div>
-            <h3 class="feature-card__title">Performance</h3>
-            <p class="feature-card__desc">GPU-accelerated animations using transform and opacity for 60fps smoothness.
+            <p class="feature-card__desc">Animated loading indicators including spinners, dots, bars, and pulse effects.
             </p>
         </div>
     </div>
 </section>
 
-<!-- Quick Start -->
 <section>
-    <h2>Quick Start</h2>
-    <div class="code-block"><span class="comment">// Install via npm</span>
-        npm install move.gl
+    <h2>Timing Functions</h2>
+    <p>Built-in easing functions for natural motion:</p>
 
-        <span class="comment">// Import in your SCSS</span>
-        @use "move.gl" as *;
+    <div class="code-block"><span class="comment">// Standard easings</span>
+        $ease-linear: linear;
+        $ease-in: cubic-bezier(0.4, 0, 1, 1);
+        $ease-out: cubic-bezier(0, 0, 0.2, 1);
+        $ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
-        <span class="comment">// Use animation mixins</span>
+        <span class="comment">// Custom spring-like easings</span>
+        $ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        $ease-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+        <span class="comment">// Usage</span>
         .element {
-        @include <span class="class">fade-in</span>;
+        @include fade-in($timing: $ease-bounce);
         }
-
-        .card {
-        @include <span class="class">slide-up</span>($duration: 0.5s);
-        }
-
-        <span class="comment">// Or use utility classes directly</span>
-        &lt;div class="<span class="class">animate-fade-in</span>"&gt;...&lt;/div&gt;
-        &lt;div class="<span class="class">animate-bounce</span>"&gt;...&lt;/div&gt;
-    </div>
-    <a href="/getting-started.html" class="btn btn--secondary" style="margin-top: 16px;">Full Installation Guide →</a>
-</section>
-
-<!-- Animation Demos -->
-<section>
-    <h2>Animation Showcase</h2>
-    <p style="margin-bottom: 24px;"><a href="/test_overview.html" class="btn btn--primary">View All Animations →</a></p>
-    <div class="demo-grid">
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-fade-in-loop"></div>
-            </div>
-            <h3 class="demo-card__title">Fade</h3>
-            <p class="demo-card__desc">Smooth opacity transitions</p>
-            <a href="/test_fade.html" class="demo-card__link">View Demo →</a>
-        </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-slide-loop"></div>
-            </div>
-            <h3 class="demo-card__title">Slide</h3>
-            <p class="demo-card__desc">Directional sliding animations</p>
-            <a href="/test_slide.html" class="demo-card__link">View Demo →</a>
-        </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-bounce-loop"></div>
-            </div>
-            <h3 class="demo-card__title">Bounce</h3>
-            <p class="demo-card__desc">Playful bouncing effects</p>
-            <a href="/test_bounce.html" class="demo-card__link">View Demo →</a>
-        </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-zoom-loop"></div>
-            </div>
-            <h3 class="demo-card__title">Zoom</h3>
-            <p class="demo-card__desc">Scale-based animations</p>
-            <a href="/test_zoom.html" class="demo-card__link">View Demo →</a>
-        </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-flip-loop"></div>
-            </div>
-            <h3 class="demo-card__title">Flip</h3>
-            <p class="demo-card__desc">3D rotation effects</p>
-            <a href="/test_flip.html" class="demo-card__link">View Demo →</a>
-        </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-spin-loop"></div>
-            </div>
-            <h3 class="demo-card__title">Spin & Rotate</h3>
-            <p class="demo-card__desc">Continuous rotation</p>
-            <a href="/test_spin.html" class="demo-card__link">View Demo →</a>
-        </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-pulse-demo"></div>
-            </div>
-            <h3 class="demo-card__title">Pulse</h3>
-            <p class="demo-card__desc">Scale pulsing effects</p>
-            <a href="/test_pulse.html" class="demo-card__link">View Demo →</a>
-        </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-shake-demo"></div>
-            </div>
-            <h3 class="demo-card__title">Shake & Wobble</h3>
-            <p class="demo-card__desc">Attention-grabbing shakes</p>
-            <a href="/test_shake.html" class="demo-card__link">View Demo →</a>
-        </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-tada-demo"></div>
-            </div>
-            <h3 class="demo-card__title">Attention</h3>
-            <p class="demo-card__desc">Tada, pop, flash & more</p>
-            <a href="/test_attention.html" class="demo-card__link">View Demo →</a>
-        </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-float-demo"></div>
-            </div>
-            <h3 class="demo-card__title">Special Effects</h3>
-            <p class="demo-card__desc">Elastic, lightspeed, hinge</p>
-            <a href="/test_special.html" class="demo-card__link">View Demo →</a>
-        </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-scale-in-demo"></div>
-            </div>
-            <h3 class="demo-card__title">Scale</h3>
-            <p class="demo-card__desc">Scale entrance & exit</p>
-            <a href="/test_scale.html" class="demo-card__link">View Demo →</a>
-        </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="loader loader--spinner"></div>
-            </div>
-            <h3 class="demo-card__title">Loaders</h3>
-            <p class="demo-card__desc">Loading indicators</p>
-            <a href="/test_loaders.html" class="demo-card__link">View Demo →</a>
-        </div>
     </div>
 </section>
 
-<!-- Documentation Sections -->
 <section>
-    <h2>Documentation</h2>
+    <h2>Duration Scale</h2>
+    <p>Consistent duration values for animations:</p>
 
-    <div class="doc-sections">
-        <div class="doc-section">
-            <h3>Learn</h3>
-            <ul>
-                <li><a href="/getting-started.html">Getting Started</a></li>
-                <li><a href="/core-concepts.html">Core Concepts</a></li>
-            </ul>
-        </div>
-        <div class="doc-section">
-            <h3>Overview</h3>
-            <ul>
-                <li><a href="/test_overview.html">All Animations (Looping)</a></li>
-            </ul>
-        </div>
-        <div class="doc-section">
-            <h3>Animations</h3>
-            <ul>
-                <li><a href="/test_fade.html">Fade Animations</a></li>
-                <li><a href="/test_slide.html">Slide Animations</a></li>
-                <li><a href="/test_bounce.html">Bounce Animations</a></li>
-                <li><a href="/test_zoom.html">Zoom Animations</a></li>
-                <li><a href="/test_flip.html">Flip Animations</a></li>
-                <li><a href="/test_scale.html">Scale Animations</a></li>
-                <li><a href="/test_spin.html">Spin & Rotate</a></li>
-                <li><a href="/test_pulse.html">Pulse & Heartbeat</a></li>
-                <li><a href="/test_shake.html">Shake & Wobble</a></li>
-                <li><a href="/test_attention.html">Attention Seekers</a></li>
-                <li><a href="/test_special.html">Special Effects</a></li>
-            </ul>
-        </div>
-        <div class="doc-section">
-            <h3>Effects</h3>
-            <ul>
-                <li><a href="/test_loaders.html">Loading Animations</a></li>
-                <li><a href="/test_transitions.html">Transitions</a></li>
-                <li><a href="/test_transforms.html">Transforms</a></li>
-            </ul>
-        </div>
+    <div class="code-block"><span class="comment">// Duration scale</span>
+        $duration-instant: 75ms; <span class="comment">// Nearly instant</span>
+        $duration-fast: 150ms; <span class="comment">// Quick interactions</span>
+        $duration-normal: 300ms; <span class="comment">// Default</span>
+        $duration-slow: 500ms; <span class="comment">// Deliberate motion</span>
+        $duration-slower: 700ms; <span class="comment">// Dramatic effect</span>
+        $duration-slowest: 1000ms; <span class="comment">// Very slow</span>
     </div>
 </section>
 
-<!-- Accessibility -->
 <section>
-    <h2>Accessibility First</h2>
-    <p>move.gl automatically respects the <code>prefers-reduced-motion</code> media query. Users who prefer reduced
-        motion will see static or minimal animations instead.</p>
+    <h2>Accessibility</h2>
+    <p>move.gl respects user preferences for reduced motion:</p>
 
-    <div class="code-block"><span class="comment">// Built-in reduced motion support</span>
-        @media (prefers-reduced-motion: reduce) {
-        .animate-* {
-        animation: none;
-        transition: none;
-        }
-        }
-
-        <span class="comment">// Or use the accessibility mixin</span>
+    <div class="code-block"><span class="comment">// The motion-safe mixin only applies animations when safe</span>
         .element {
-        @include <span class="class">motion-safe</span> {
+        @include motion-safe {
         @include fade-in;
         }
         }
+
+        <span class="comment">// Alternative: motion-reduced for fallback styles</span>
+        .element {
+        @include fade-in;
+
+        @include motion-reduced {
+        animation: none;
+        opacity: 1;
+        }
+        }
+    </div>
+
+    <p>Users with <code>prefers-reduced-motion: reduce</code> set in their system preferences will see static content or
+        minimal transitions.</p>
+</section>
+
+<section>
+    <h2>Performance</h2>
+    <p>move.gl uses GPU-accelerated properties for smooth 60fps animations:</p>
+
+    <ul>
+        <li><strong>transform</strong> — For position, rotation, and scale changes</li>
+        <li><strong>opacity</strong> — For visibility transitions</li>
+        <li><strong>will-change</strong> — Applied automatically for complex animations</li>
+    </ul>
+
+    <div class="code-block"><span class="comment">// GPU-accelerated animation</span>
+        @keyframes slide-up {
+        from {
+        transform: translateY(20px); <span class="comment">// GPU-accelerated</span>
+        opacity: 0; <span class="comment">// GPU-accelerated</span>
+        }
+        to {
+        transform: translateY(0);
+        opacity: 1;
+        }
+        }
+
+        <span class="comment">// Avoid animating these properties (triggers layout):</span>
+        <span class="comment">// - width, height</span>
+        <span class="comment">// - margin, padding</span>
+        <span class="comment">// - top, left, right, bottom</span>
+    </div>
+</section>
+
+<section>
+    <h2>Composing Animations</h2>
+    <p>Combine multiple animations for complex effects:</p>
+
+    <div class="code-block"><span class="comment">// Combine fade + slide</span>
+        .card-enter {
+        @include fade-in($duration: 0.5s);
+        @include slide-up($duration: 0.5s);
+        }
+
+        <span class="comment">// Sequential animations with delays</span>
+        .stagger-1 { animation-delay: 0ms; }
+        .stagger-2 { animation-delay: 100ms; }
+        .stagger-3 { animation-delay: 200ms; }
+        .stagger-4 { animation-delay: 300ms; }
     </div>
 </section>        </main>
 

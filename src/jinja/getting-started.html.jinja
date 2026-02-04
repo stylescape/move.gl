@@ -1,0 +1,108 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Getting Started — move.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Documentation</p>
+<h1>Getting Started</h1>
+{%- endblock %}
+
+{%- block content %}
+
+<section>
+    <h2>Installation</h2>
+    <p>Install move.gl via npm:</p>
+    <div class="code-block">npm install move.gl</div>
+</section>
+
+<section>
+    <h2>Import in SCSS</h2>
+    <p>Import move.gl in your main SCSS file:</p>
+    <div class="code-block"><span class="comment">// Import everything</span>
+        @use "move.gl" as *;
+
+        <span class="comment">// Or import specific modules</span>
+        @use "move.gl/mixins/animations" as animations;
+        @use "move.gl/mixins/transitions" as transitions;
+    </div>
+</section>
+
+<section>
+    <h2>Basic Usage</h2>
+    <p>Use the animation mixins in your styles:</p>
+    <div class="code-block"><span class="comment">// Fade animations</span>
+        .fade-element {
+        @include fade-in;
+        }
+
+        .fade-out-element {
+        @include fade-out($duration: 0.3s);
+        }
+
+        <span class="comment">// Slide animations</span>
+        .slide-up {
+        @include slide-up($duration: 0.5s, $distance: 20px);
+        }
+
+        .slide-down {
+        @include slide-down;
+        }
+
+        <span class="comment">// Bounce animations</span>
+        .bouncy {
+        @include bounce($duration: 1s);
+        }
+
+        <span class="comment">// Custom timing</span>
+        .custom {
+        @include fade-in($duration: 0.8s, $timing: ease-out, $delay: 0.2s);
+        }
+    </div>
+</section>
+
+<section>
+    <h2>Utility Classes</h2>
+    <p>Use utility classes directly in your HTML:</p>
+    <div class="code-block">&lt;!-- Fade animations --&gt;
+        &lt;div class="animate-fade-in"&gt;Fades in&lt;/div&gt;
+        &lt;div class="animate-fade-out"&gt;Fades out&lt;/div&gt;
+
+        &lt;!-- Slide animations --&gt;
+        &lt;div class="animate-slide-up"&gt;Slides up&lt;/div&gt;
+        &lt;div class="animate-slide-down"&gt;Slides down&lt;/div&gt;
+        &lt;div class="animate-slide-left"&gt;Slides left&lt;/div&gt;
+        &lt;div class="animate-slide-right"&gt;Slides right&lt;/div&gt;
+
+        &lt;!-- Bounce animations --&gt;
+        &lt;div class="animate-bounce"&gt;Bounces&lt;/div&gt;
+
+        &lt;!-- Zoom animations --&gt;
+        &lt;div class="animate-zoom-in"&gt;Zooms in&lt;/div&gt;
+        &lt;div class="animate-zoom-out"&gt;Zooms out&lt;/div&gt;
+
+        &lt;!-- Flip animations --&gt;
+        &lt;div class="animate-flip-x"&gt;Flips on X axis&lt;/div&gt;
+        &lt;div class="animate-flip-y"&gt;Flips on Y axis&lt;/div&gt;
+    </div>
+</section>
+
+<section>
+    <h2>Animation Delays</h2>
+    <p>Add delays to stagger animations:</p>
+    <div class="code-block">&lt;div class="animate-fade-in delay-100"&gt;Delay 100ms&lt;/div&gt;
+        &lt;div class="animate-fade-in delay-200"&gt;Delay 200ms&lt;/div&gt;
+        &lt;div class="animate-fade-in delay-300"&gt;Delay 300ms&lt;/div&gt;
+        &lt;div class="animate-fade-in delay-500"&gt;Delay 500ms&lt;/div&gt;
+    </div>
+</section>
+
+<section>
+    <h2>Next Steps</h2>
+    <ul>
+        <li><a href="/core-concepts.html">Learn the Core Concepts</a></li>
+        <li><a href="/test_fade.html">Explore Fade Animations</a></li>
+        <li><a href="/test_loaders.html">Check out Loading Animations</a></li>
+    </ul>
+</section>
+
+{%- endblock %}

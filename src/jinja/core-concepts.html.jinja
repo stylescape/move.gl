@@ -1,0 +1,148 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Core Concepts — move.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Documentation</p>
+<h1>Core Concepts</h1>
+{%- endblock %}
+
+{%- block content %}
+
+<section>
+    <h2>Animation Categories</h2>
+    <p>move.gl organizes animations into logical categories:</p>
+
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3 class="feature-card__title">Keyframes</h3>
+            <p class="feature-card__desc">Pre-defined @keyframes for common animation patterns like fade, slide, bounce,
+                zoom, and flip.</p>
+        </div>
+        <div class="feature-card">
+            <h3 class="feature-card__title">Transitions</h3>
+            <p class="feature-card__desc">Smooth property transitions between states with customizable timing functions.
+            </p>
+        </div>
+        <div class="feature-card">
+            <h3 class="feature-card__title">Transforms</h3>
+            <p class="feature-card__desc">2D and 3D transform utilities for rotation, scaling, skewing, and translation.
+            </p>
+        </div>
+        <div class="feature-card">
+            <h3 class="feature-card__title">Loaders</h3>
+            <p class="feature-card__desc">Animated loading indicators including spinners, dots, bars, and pulse effects.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Timing Functions</h2>
+    <p>Built-in easing functions for natural motion:</p>
+
+    <div class="code-block"><span class="comment">// Standard easings</span>
+        $ease-linear: linear;
+        $ease-in: cubic-bezier(0.4, 0, 1, 1);
+        $ease-out: cubic-bezier(0, 0, 0.2, 1);
+        $ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+        <span class="comment">// Custom spring-like easings</span>
+        $ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        $ease-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+        <span class="comment">// Usage</span>
+        .element {
+        @include fade-in($timing: $ease-bounce);
+        }
+    </div>
+</section>
+
+<section>
+    <h2>Duration Scale</h2>
+    <p>Consistent duration values for animations:</p>
+
+    <div class="code-block"><span class="comment">// Duration scale</span>
+        $duration-instant: 75ms; <span class="comment">// Nearly instant</span>
+        $duration-fast: 150ms; <span class="comment">// Quick interactions</span>
+        $duration-normal: 300ms; <span class="comment">// Default</span>
+        $duration-slow: 500ms; <span class="comment">// Deliberate motion</span>
+        $duration-slower: 700ms; <span class="comment">// Dramatic effect</span>
+        $duration-slowest: 1000ms; <span class="comment">// Very slow</span>
+    </div>
+</section>
+
+<section>
+    <h2>Accessibility</h2>
+    <p>move.gl respects user preferences for reduced motion:</p>
+
+    <div class="code-block"><span class="comment">// The motion-safe mixin only applies animations when safe</span>
+        .element {
+        @include motion-safe {
+        @include fade-in;
+        }
+        }
+
+        <span class="comment">// Alternative: motion-reduced for fallback styles</span>
+        .element {
+        @include fade-in;
+
+        @include motion-reduced {
+        animation: none;
+        opacity: 1;
+        }
+        }
+    </div>
+
+    <p>Users with <code>prefers-reduced-motion: reduce</code> set in their system preferences will see static content or
+        minimal transitions.</p>
+</section>
+
+<section>
+    <h2>Performance</h2>
+    <p>move.gl uses GPU-accelerated properties for smooth 60fps animations:</p>
+
+    <ul>
+        <li><strong>transform</strong> — For position, rotation, and scale changes</li>
+        <li><strong>opacity</strong> — For visibility transitions</li>
+        <li><strong>will-change</strong> — Applied automatically for complex animations</li>
+    </ul>
+
+    <div class="code-block"><span class="comment">// GPU-accelerated animation</span>
+        @keyframes slide-up {
+        from {
+        transform: translateY(20px); <span class="comment">// GPU-accelerated</span>
+        opacity: 0; <span class="comment">// GPU-accelerated</span>
+        }
+        to {
+        transform: translateY(0);
+        opacity: 1;
+        }
+        }
+
+        <span class="comment">// Avoid animating these properties (triggers layout):</span>
+        <span class="comment">// - width, height</span>
+        <span class="comment">// - margin, padding</span>
+        <span class="comment">// - top, left, right, bottom</span>
+    </div>
+</section>
+
+<section>
+    <h2>Composing Animations</h2>
+    <p>Combine multiple animations for complex effects:</p>
+
+    <div class="code-block"><span class="comment">// Combine fade + slide</span>
+        .card-enter {
+        @include fade-in($duration: 0.5s);
+        @include slide-up($duration: 0.5s);
+        }
+
+        <span class="comment">// Sequential animations with delays</span>
+        .stagger-1 { animation-delay: 0ms; }
+        .stagger-2 { animation-delay: 100ms; }
+        .stagger-3 { animation-delay: 200ms; }
+        .stagger-4 { animation-delay: 300ms; }
+    </div>
+</section>
+
+{%- endblock %}
