@@ -4,11 +4,12 @@
 
 ////
 ///
-/// Keyframes Mixin Module
+/// Flash Keyframes Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// This module provides keyframes for flash and blink animations including
+/// standard flash, strobe effects, fade flash, and various blink patterns.
+/// These are useful for attention-grabbing effects and notifications.
 ///
 /// @group Keyframes
 /// @author Scape Agency
@@ -21,30 +22,230 @@
 
 
 // ============================================================================
-// Mixins
+// Use
 // ============================================================================
 
-// @-webkit-keyframes flash {
-//     from, 50%, 100% {
-//       opacity: 1;
-//     }
+@use "_base" as *;
 
-//     25%, 75% {
-//       opacity: 0;
-//     }
-//   }
 
-//   @keyframes flash {
-//     from, 50%, 100% {
-//       opacity: 1;
-//     }
+// ============================================================================
+// Flash Keyframes
+// ============================================================================
 
-//     25%, 75% {
-//       opacity: 0;
-//     }
-//   }
+///
+/// Standard flash animation - quick opacity toggle.
+///
+@mixin keyframes_flash {
+    @include keyframes(flash) {
+        0%, 50%, 100% {
+            opacity: 1;
+        }
+        25%, 75% {
+            opacity: 0;
+        }
+    }
+}
 
-//   .flash {
-//     -webkit-animation-name: flash;
-//     animation-name: flash;
-//   }
+///
+/// Double flash animation.
+///
+@mixin keyframes_flash_double {
+    @include keyframes(flash-double) {
+        0%, 100% { opacity: 1; }
+        12.5%, 37.5% { opacity: 0; }
+        25%, 50% { opacity: 1; }
+        62.5%, 87.5% { opacity: 0; }
+        75% { opacity: 1; }
+    }
+}
+
+///
+/// Strobe flash - rapid blinking.
+///
+@mixin keyframes_strobe {
+    @include keyframes(strobe) {
+        0% { opacity: 1; }
+        10% { opacity: 0; }
+        20% { opacity: 1; }
+        30% { opacity: 0; }
+        40% { opacity: 1; }
+        50% { opacity: 0; }
+        60% { opacity: 1; }
+        70% { opacity: 0; }
+        80% { opacity: 1; }
+        90% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+}
+
+///
+/// Soft flash with fade.
+///
+@mixin keyframes_flash_fade {
+    @include keyframes(flash-fade) {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.3;
+        }
+    }
+}
+
+
+// ============================================================================
+// Blink Keyframes
+// ============================================================================
+
+///
+/// Standard blink animation.
+///
+@mixin keyframes_blink {
+    @include keyframes(blink) {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+}
+
+///
+/// Smooth blink with easing.
+///
+@mixin keyframes_blink_smooth {
+    @include keyframes(blink-smooth) {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.2; }
+    }
+}
+
+///
+/// Cursor blink (like text cursor).
+///
+@mixin keyframes_cursor_blink {
+    @include keyframes(cursor-blink) {
+        0%, 49% { opacity: 1; }
+        50%, 100% { opacity: 0; }
+    }
+}
+
+
+// ============================================================================
+// Glow Flash Keyframes
+// ============================================================================
+
+///
+/// Flash with glow effect.
+///
+/// @param {Color} $color [#fff] - Glow color.
+///
+@mixin keyframes_flash_glow($color: #fff) {
+    @include keyframes(flash-glow) {
+        0%, 100% {
+            opacity: 1;
+            box-shadow: 0 0 0 rgba($color, 0);
+        }
+        50% {
+            opacity: 0.5;
+            box-shadow: 0 0 20px rgba($color, 0.8);
+        }
+    }
+}
+
+///
+/// Neon flash effect.
+///
+/// @param {Color} $color [#0ff] - Neon color.
+///
+@mixin keyframes_neon_flash($color: #0ff) {
+    @include keyframes(neon-flash) {
+        0%, 100% {
+            text-shadow: 0 0 4px $color, 0 0 8px $color;
+            opacity: 1;
+        }
+        50% {
+            text-shadow: 0 0 2px $color;
+            opacity: 0.7;
+        }
+    }
+}
+
+
+// ============================================================================
+// Flash Animation Mixins
+// ============================================================================
+
+///
+/// Apply flash animation.
+///
+/// @param {Time} $duration [1s] - Animation duration.
+/// @param {Number} $iterations [infinite] - Number of iterations.
+///
+@mixin animate_flash($duration: 1s, $iterations: infinite) {
+    @include keyframes_flash;
+    animation: flash $duration ease-in-out $iterations;
+}
+
+///
+/// Apply blink animation.
+///
+/// @param {Time} $duration [0.8s] - Animation duration.
+///
+@mixin animate_blink($duration: 0.8s) {
+    @include keyframes_blink;
+    animation: blink $duration step-end infinite;
+}
+
+///
+/// Apply strobe animation.
+///
+/// @param {Time} $duration [0.5s] - Animation duration.
+///
+@mixin animate_strobe($duration: 0.5s) {
+    @include keyframes_strobe;
+    animation: strobe $duration linear infinite;
+}
+
+///
+/// Apply cursor blink animation.
+///
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin animate_cursor_blink($duration: 1s) {
+    @include keyframes_cursor_blink;
+    animation: cursor-blink $duration step-end infinite;
+}
+
+
+// ============================================================================
+// Utility Class Generator
+// ============================================================================
+
+///
+/// Generate flash animation utility classes.
+///
+@mixin generate_flash_utilities {
+    .animate-flash {
+        @include animate_flash;
+    }
+
+    .animate-flash-double {
+        @include keyframes_flash_double;
+        animation: flash-double 1.5s ease-in-out infinite;
+    }
+
+    .animate-blink {
+        @include animate_blink;
+    }
+
+    .animate-blink-smooth {
+        @include keyframes_blink_smooth;
+        animation: blink-smooth 1s ease-in-out infinite;
+    }
+
+    .animate-strobe {
+        @include animate_strobe;
+    }
+
+    .animate-cursor {
+        @include animate_cursor_blink;
+    }
+}

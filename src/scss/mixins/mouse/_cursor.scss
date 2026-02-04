@@ -28,6 +28,7 @@
 // Use
 // ============================================================================
 
+@use "sass:map";
 @use "../../variables" as *;
 @use "../../maps" as *;
 
@@ -47,8 +48,8 @@
 ///   .element { @include cursor_style('pointer'); } // Applies pointer cursor
 ///
 @mixin cursor_style($type: "default") {
-    @if map-has-key($cursor_styles, $type) {
-        cursor: map-get($cursor_styles, $type);
+    @if map.has-key($cursor_styles, $type) {
+        cursor: map.get($cursor_styles, $type);
     } @else {
         cursor: $type; // Fallback if type is not in map
     }
@@ -156,7 +157,7 @@
 // Utility Class Generator for Common Cursors
 // ============================================================================
 
-// $cursors: ('pointer', 'text', 'wait', 'crosshair', 'not-allowed', 'zoom-in', 'grab', 'grabbing');
+$cursors: ('pointer', 'text', 'wait', 'crosshair', 'not-allowed', 'zoom-in', 'grab', 'grabbing') !default;
 
 @each $cursor in $cursors {
     .cursor-#{$cursor} {

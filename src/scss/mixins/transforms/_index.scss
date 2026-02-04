@@ -1,23 +1,28 @@
 // ============================================================================
-// Poster
+// move.gl | Transforms Mixin Index
+// ============================================================================
+// Copyright 2025 Scape Agency BV
+// Licensed under MIT License
 // ============================================================================
 
 ////
-///
 /// Transforms Mixin Module
 /// ===========================================================================
-/// This module provides reusable mixins for applying transformations such as
-/// rotations and flips to elements. It includes mixins for rotating elements
-/// by a specified degree, as well as predefined classes for common rotation
-/// angles. This module is designed to facilitate the application of CSS
-/// transforms in a consistent and maintainable manner throughout your project.
+///
+/// This module provides CSS transform mixins for rotations, flips, scales,
+/// translations, skews, perspective, and matrix transformations.
 ///
 /// @group Transforms
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
-///
 ////
 
+@forward "flip";
+@forward "matrix";
+@forward "perspective";
+@forward "rotate";
+@forward "scale";
+@forward "skew";
+@forward "translate";

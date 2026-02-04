@@ -1,7 +1,7 @@
 
 
-@use "../variables" as *;
-@use "../mixins" as *;
+@use "../../variables" as *;
+// @use "../../mixins" as *; // Removed to avoid circular dependency
 
 /// Apply a fade-in animation to the `body` element using the `$boot-fadein-time` variable for the duration.
 /// This animation smoothly transitions the opacity of the `body` from `$boot-fadein-opacity-start` to `$boot-fadein-opacity-end`.

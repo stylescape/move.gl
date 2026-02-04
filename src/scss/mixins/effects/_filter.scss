@@ -7,8 +7,9 @@
 /// Filter Effects Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// This module provides a comprehensive set of CSS filter mixins for creating
+/// visual effects like blur, grayscale, brightness, contrast, and more.
+/// Includes individual filters, combinations, transitions, and presets.
 ///
 /// @group Effects
 /// @author Scape Agency
@@ -21,32 +22,33 @@
 
 
 // ============================================================================
-// Mixins
+// Use
+// ============================================================================
+
+@use "sass:math";
+
+
+// ============================================================================
+// Base Filter Mixins
 // ============================================================================
 
 ///
 /// Mixin for blur effect.
 ///
-/// @param {Length} $radius [0] - The radius of the blur effect. Default is 0.
-///
+/// @param {Length} $radius [0] - The radius of the blur effect.
 /// @example scss - Usage
-/// .example {
-///   @include filter_blur(5px);
-/// }
+///   .example { @include filter_blur(5px); }
 ///
- @mixin filter_blur($radius: 0) {
+@mixin filter_blur($radius: 0) {
     filter: blur($radius);
 }
 
 ///
 /// Mixin for grayscale effect.
 ///
-/// @param {Percentage} $amount [100%] - The amount of grayscale to apply. Default is 100%.
-///
+/// @param {Percentage} $amount [100%] - The amount of grayscale to apply.
 /// @example scss - Usage
-/// .example {
-///   @include filter_grayscale(50%);
-/// }
+///   .example { @include filter_grayscale(50%); }
 ///
 @mixin filter_grayscale($amount: 100%) {
     filter: grayscale($amount);
@@ -55,12 +57,9 @@
 ///
 /// Mixin for brightness effect.
 ///
-/// @param {Percentage} $amount [100%] - The amount of brightness to apply. Default is 100%.
-///
+/// @param {Percentage} $amount [100%] - The amount of brightness to apply.
 /// @example scss - Usage
-/// .example {
-///   @include filter_brightness(120%);
-/// }
+///   .example { @include filter_brightness(120%); }
 ///
 @mixin filter_brightness($amount: 100%) {
     filter: brightness($amount);
@@ -69,12 +68,9 @@
 ///
 /// Mixin for contrast effect.
 ///
-/// @param {Percentage} $amount [100%] - The amount of contrast to apply. Default is 100%.
-///
+/// @param {Percentage} $amount [100%] - The amount of contrast to apply.
 /// @example scss - Usage
-/// .example {
-///   @include filter_contrast(80%);
-/// }
+///   .example { @include filter_contrast(80%); }
 ///
 @mixin filter_contrast($amount: 100%) {
     filter: contrast($amount);
@@ -83,12 +79,9 @@
 ///
 /// Mixin for sepia effect.
 ///
-/// @param {Percentage} $amount [100%] - The amount of sepia to apply. Default is 100%.
-///
+/// @param {Percentage} $amount [100%] - The amount of sepia to apply.
 /// @example scss - Usage
-/// .example {
-///   @include filter_sepia(50%);
-/// }
+///   .example { @include filter_sepia(50%); }
 ///
 @mixin filter_sepia($amount: 100%) {
     filter: sepia($amount);
@@ -97,12 +90,9 @@
 ///
 /// Mixin for invert effect.
 ///
-/// @param {Percentage} $amount [100%] - The amount of inversion to apply. Default is 100%.
-///
+/// @param {Percentage} $amount [100%] - The amount of inversion to apply.
 /// @example scss - Usage
-/// .example {
-///   @include filter_invert(50%);
-/// }
+///   .example { @include filter_invert(50%); }
 ///
 @mixin filter_invert($amount: 100%) {
     filter: invert($amount);
@@ -111,12 +101,9 @@
 ///
 /// Mixin for hue-rotate effect.
 ///
-/// @param {Angle} $angle [0deg] - The angle of hue rotation. Default is 0deg.
-///
+/// @param {Angle} $angle [0deg] - The angle of hue rotation.
 /// @example scss - Usage
-/// .example {
-///   @include filter_hue_rotate(90deg);
-/// }
+///   .example { @include filter_hue_rotate(90deg); }
 ///
 @mixin filter_hue_rotate($angle: 0deg) {
     filter: hue-rotate($angle);
@@ -125,44 +112,362 @@
 ///
 /// Mixin for saturate effect.
 ///
-/// @param {Percentage} $amount [100%] - The amount of saturation to apply. Default is 100%.
-///
+/// @param {Percentage} $amount [100%] - The amount of saturation to apply.
 /// @example scss - Usage
-/// .example {
-///   @include filter_saturate(200%);
-/// }
+///   .example { @include filter_saturate(200%); }
 ///
 @mixin filter_saturate($amount: 100%) {
     filter: saturate($amount);
 }
 
 ///
+/// Mixin for opacity filter effect.
+///
+/// @param {Percentage} $amount [100%] - The opacity amount.
+/// @example scss - Usage
+///   .example { @include filter_opacity(50%); }
+///
+@mixin filter_opacity($amount: 100%) {
+    filter: opacity($amount);
+}
+
+///
 /// Mixin for drop shadow effect.
 ///
-/// @param {Length} $offsetX [0] - The horizontal offset of the shadow. Default is 0.
-/// @param {Length} $offsetY [0] - The vertical offset of the shadow. Default is 0.
-/// @param {Length} $blurRadius [0] - The blur radius of the shadow. Default is 0.
-/// @param {Color} $color [#000] - The color of the shadow. Default is black.
-///
+/// @param {Length} $offsetX [0] - Horizontal offset.
+/// @param {Length} $offsetY [0] - Vertical offset.
+/// @param {Length} $blurRadius [0] - Blur radius.
+/// @param {Color} $color [#000] - Shadow color.
 /// @example scss - Usage
-/// .example {
-///   @include filter_drop_shadow(10px, 10px, 5px, rgba(0, 0, 0, 0.5));
-/// }
+///   .example { @include filter_drop_shadow(10px, 10px, 5px, rgba(0, 0, 0, 0.5)); }
 ///
 @mixin filter_drop_shadow($offsetX: 0, $offsetY: 0, $blurRadius: 0, $color: #000) {
     filter: drop-shadow($offsetX $offsetY $blurRadius $color);
 }
 
+
+// ============================================================================
+// Combined Filter Mixins
+// ============================================================================
+
 ///
 /// Mixin for combining multiple filters.
 ///
-/// @param {...} $filters - A list of filters to apply.
-///
+/// @param {...} $filters - A list of filter functions.
 /// @example scss - Usage
-/// .example {
-///   @include filter_multi(filter_blur(5px), filter_brightness(120%));
-/// }
+///   .example { @include filter_combine(blur(5px), brightness(120%)); }
 ///
-@mixin filter_multi($filters...) {
+@mixin filter_combine($filters...) {
     filter: $filters;
 }
+
+///
+/// Applies multiple filters with a single mixin call.
+///
+/// @param {Length} $blur [null] - Blur radius.
+/// @param {Percentage} $brightness [null] - Brightness amount.
+/// @param {Percentage} $contrast [null] - Contrast amount.
+/// @param {Percentage} $grayscale [null] - Grayscale amount.
+/// @param {Angle} $hue-rotate [null] - Hue rotation angle.
+/// @param {Percentage} $invert [null] - Invert amount.
+/// @param {Percentage} $saturate [null] - Saturation amount.
+/// @param {Percentage} $sepia [null] - Sepia amount.
+/// @param {List} $drop-shadow [null] - Drop shadow values.
+///
+@mixin filter_multi(
+    $blur: null,
+    $brightness: null,
+    $contrast: null,
+    $grayscale: null,
+    $hue-rotate: null,
+    $invert: null,
+    $saturate: null,
+    $sepia: null,
+    $drop-shadow: null
+) {
+    $filters: ();
+
+    @if $blur { $filters: append($filters, blur($blur)); }
+    @if $brightness { $filters: append($filters, brightness($brightness)); }
+    @if $contrast { $filters: append($filters, contrast($contrast)); }
+    @if $grayscale { $filters: append($filters, grayscale($grayscale)); }
+    @if $hue-rotate { $filters: append($filters, hue-rotate($hue-rotate)); }
+    @if $invert { $filters: append($filters, invert($invert)); }
+    @if $saturate { $filters: append($filters, saturate($saturate)); }
+    @if $sepia { $filters: append($filters, sepia($sepia)); }
+    @if $drop-shadow { $filters: append($filters, drop-shadow($drop-shadow)); }
+
+    @if length($filters) > 0 {
+        filter: $filters;
+    }
+}
+
+
+// ============================================================================
+// Filter Transition Mixins
+// ============================================================================
+
+///
+/// Applies a filter with smooth transition support.
+///
+/// @param {String} $filter - The filter to apply.
+/// @param {Time} $duration [0.3s] - Transition duration.
+/// @param {String} $timing [ease] - Timing function.
+///
+@mixin filter_transition($duration: 0.3s, $timing: ease) {
+    transition: filter $duration $timing;
+}
+
+///
+/// Applies a hover filter effect with transition.
+///
+/// @param {String} $default-filter [none] - Default filter state.
+/// @param {String} $hover-filter - Filter to apply on hover.
+/// @param {Time} $duration [0.3s] - Transition duration.
+///
+@mixin filter_hover($default-filter: none, $hover-filter, $duration: 0.3s) {
+    filter: $default-filter;
+    transition: filter $duration ease;
+
+    &:hover {
+        filter: $hover-filter;
+    }
+}
+
+
+// ============================================================================
+// Backdrop Filter Mixins
+// ============================================================================
+
+///
+/// Applies backdrop blur effect (frosted glass).
+///
+/// @param {Length} $radius [10px] - Blur radius.
+/// @example scss - Usage
+///   .glass { @include backdrop_blur(20px); }
+///
+@mixin backdrop_blur($radius: 10px) {
+    backdrop-filter: blur($radius);
+    -webkit-backdrop-filter: blur($radius);
+}
+
+///
+/// Creates a frosted glass effect with multiple backdrop filters.
+///
+/// @param {Length} $blur [10px] - Blur amount.
+/// @param {Percentage} $saturation [180%] - Saturation boost.
+/// @param {Percentage} $brightness [100%] - Brightness adjustment.
+///
+@mixin backdrop_glass($blur: 10px, $saturation: 180%, $brightness: 100%) {
+    backdrop-filter: blur($blur) saturate($saturation) brightness($brightness);
+    -webkit-backdrop-filter: blur($blur) saturate($saturation) brightness($brightness);
+}
+
+///
+/// Applies backdrop grayscale effect.
+///
+/// @param {Percentage} $amount [100%] - Grayscale amount.
+///
+@mixin backdrop_grayscale($amount: 100%) {
+    backdrop-filter: grayscale($amount);
+    -webkit-backdrop-filter: grayscale($amount);
+}
+
+///
+/// Combines multiple backdrop filters.
+///
+/// @param {Length} $blur [null] - Blur radius.
+/// @param {Percentage} $brightness [null] - Brightness.
+/// @param {Percentage} $contrast [null] - Contrast.
+/// @param {Percentage} $grayscale [null] - Grayscale.
+/// @param {Angle} $hue-rotate [null] - Hue rotation.
+/// @param {Percentage} $invert [null] - Invert.
+/// @param {Percentage} $saturate [null] - Saturation.
+/// @param {Percentage} $sepia [null] - Sepia.
+///
+@mixin backdrop_multi(
+    $blur: null,
+    $brightness: null,
+    $contrast: null,
+    $grayscale: null,
+    $hue-rotate: null,
+    $invert: null,
+    $saturate: null,
+    $sepia: null
+) {
+    $filters: ();
+
+    @if $blur { $filters: append($filters, blur($blur)); }
+    @if $brightness { $filters: append($filters, brightness($brightness)); }
+    @if $contrast { $filters: append($filters, contrast($contrast)); }
+    @if $grayscale { $filters: append($filters, grayscale($grayscale)); }
+    @if $hue-rotate { $filters: append($filters, hue-rotate($hue-rotate)); }
+    @if $invert { $filters: append($filters, invert($invert)); }
+    @if $saturate { $filters: append($filters, saturate($saturate)); }
+    @if $sepia { $filters: append($filters, sepia($sepia)); }
+
+    @if length($filters) > 0 {
+        backdrop-filter: $filters;
+        -webkit-backdrop-filter: $filters;
+    }
+}
+
+
+// ============================================================================
+// Filter Presets
+// ============================================================================
+
+///
+/// Vintage photo effect preset.
+///
+@mixin filter_preset_vintage {
+    filter: sepia(50%) contrast(95%) brightness(90%) saturate(150%);
+}
+
+///
+/// Dramatic high-contrast preset.
+///
+@mixin filter_preset_dramatic {
+    filter: contrast(150%) brightness(90%) saturate(120%);
+}
+
+///
+/// Cold/cool tone preset.
+///
+@mixin filter_preset_cold {
+    filter: hue-rotate(180deg) saturate(80%) brightness(105%);
+}
+
+///
+/// Warm tone preset.
+///
+@mixin filter_preset_warm {
+    filter: sepia(30%) brightness(105%) saturate(130%);
+}
+
+///
+/// Faded/matte preset.
+///
+@mixin filter_preset_faded {
+    filter: contrast(90%) brightness(110%) saturate(80%);
+}
+
+///
+/// High saturation/vivid preset.
+///
+@mixin filter_preset_vivid {
+    filter: saturate(180%) contrast(110%) brightness(105%);
+}
+
+///
+/// Noir/black and white with contrast preset.
+///
+@mixin filter_preset_noir {
+    filter: grayscale(100%) contrast(120%) brightness(90%);
+}
+
+///
+/// Dreamy/soft focus preset.
+///
+@mixin filter_preset_dreamy {
+    filter: blur(1px) brightness(110%) saturate(120%);
+}
+
+///
+/// X-ray/inverted preset.
+///
+@mixin filter_preset_xray {
+    filter: invert(100%) hue-rotate(180deg);
+}
+
+///
+/// Duotone effect (requires additional CSS for color overlay).
+///
+/// @param {Angle} $hue [0deg] - The hue rotation for duotone color.
+///
+@mixin filter_preset_duotone($hue: 0deg) {
+    filter: grayscale(100%) brightness(110%) contrast(110%);
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: hsl($hue, 70%, 50%);
+        mix-blend-mode: multiply;
+        pointer-events: none;
+    }
+}
+
+
+// ============================================================================
+// SVG Filter Reference Mixins
+// ============================================================================
+
+///
+/// Applies an SVG filter by ID reference.
+///
+/// @param {String} $filter-id - The ID of the SVG filter element.
+/// @example scss - Usage
+///   .element { @include filter_svg('myCustomFilter'); }
+///
+@mixin filter_svg($filter-id) {
+    filter: url('##{$filter-id}');
+}
+
+
+// ============================================================================
+// Utility Classes Generator
+// ============================================================================
+
+///
+/// Generates utility classes for common filter effects.
+///
+@mixin generate_filter_utilities {
+    .filter-none { filter: none !important; }
+
+    // Blur utilities
+    @for $i from 1 through 10 {
+        .blur-#{$i} { filter: blur(#{$i}px); }
+    }
+
+    // Grayscale utilities
+    .grayscale { filter: grayscale(100%); }
+    .grayscale-50 { filter: grayscale(50%); }
+
+    // Brightness utilities
+    .brightness-50 { filter: brightness(50%); }
+    .brightness-75 { filter: brightness(75%); }
+    .brightness-90 { filter: brightness(90%); }
+    .brightness-100 { filter: brightness(100%); }
+    .brightness-110 { filter: brightness(110%); }
+    .brightness-125 { filter: brightness(125%); }
+    .brightness-150 { filter: brightness(150%); }
+
+    // Contrast utilities
+    .contrast-50 { filter: contrast(50%); }
+    .contrast-75 { filter: contrast(75%); }
+    .contrast-100 { filter: contrast(100%); }
+    .contrast-125 { filter: contrast(125%); }
+    .contrast-150 { filter: contrast(150%); }
+
+    // Saturate utilities
+    .saturate-0 { filter: saturate(0%); }
+    .saturate-50 { filter: saturate(50%); }
+    .saturate-100 { filter: saturate(100%); }
+    .saturate-150 { filter: saturate(150%); }
+    .saturate-200 { filter: saturate(200%); }
+
+    // Sepia utility
+    .sepia { filter: sepia(100%); }
+
+    // Invert utility
+    .invert { filter: invert(100%); }
+
+    // Hue rotate utilities
+    .hue-rotate-15 { filter: hue-rotate(15deg); }
+    .hue-rotate-30 { filter: hue-rotate(30deg); }
+    .hue-rotate-60 { filter: hue-rotate(60deg); }
+    .hue-rotate-90 { filter: hue-rotate(90deg); }
+    .hue-rotate-180 { filter: hue-rotate(180deg); }
+}
+

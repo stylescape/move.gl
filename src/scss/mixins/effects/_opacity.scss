@@ -7,8 +7,9 @@
 /// Opacity Effects Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// This module provides a comprehensive set of opacity-related mixins for
+/// managing element visibility, fade effects, and opacity transitions.
+/// Includes utility mixins, hover effects, and animation support.
 ///
 /// @group Effects
 /// @author Scape Agency
@@ -21,48 +22,366 @@
 
 
 // ============================================================================
-// Mixins
+// Variables
 // ============================================================================
-@use "../variables" as *;
-@use "../mixins" as *;
-// Base Opacity Mixin
-// ----------------------------------------------------------------------------
 
-@mixin set_opacity($opacity-level) {
-    opacity: $opacity-level !important;
-    visibility: if($opacity-level > 0, visible, hidden);
-}
+/// Default hover opacity
+$opacity-hover-default: 0.75 !default;
 
+/// Disabled state opacity
+$opacity-disabled: 0.5 !default;
 
-// Predefined Opacity Levels
-// ----------------------------------------------------------------------------
-
-.opacity_00 { @include set_opacity(0.0); }
-.opacity_01 { @include set_opacity(0.1); }
-.opacity_02 { @include set_opacity(0.2); }
-.opacity_03 { @include set_opacity(0.3); }
-.opacity_04 { @include set_opacity(0.4); }
-.opacity_05 { @include set_opacity(0.5); }
-.opacity_06 { @include set_opacity(0.6); }
-.opacity_07 { @include set_opacity(0.7); }
-.opacity_08 { @include set_opacity(0.8); }
-.opacity_09 { @include set_opacity(0.9); }
-.opacity_10 { @include set_opacity(1.0); }
+/// Muted/secondary opacity
+$opacity-muted: 0.6 !default;
 
 
-// ----------------------------------------------------------------------------
+// ============================================================================
+// Base Opacity Mixins
+// ============================================================================
 
-$hover_opacity: 0.75;
+///
+/// Sets opacity with optional visibility control.
+///
+/// @param {Number} $level [1] - Opacity level (0-1).
+/// @param {Boolean} $toggle-visibility [true] - Whether to toggle visibility.
+///
+@mixin set_opacity($level: 1, $toggle-visibility: true) {
+    opacity: $level;
 
-// Opacity Transition Mixin
-@mixin opacity_transition($duration: 0.3s, $hover_opacity: 0.75) {
-    transition: opacity $duration ease;
-    &:hover {
-        opacity: $hover_opacity;
+    @if $toggle-visibility {
+        @if $level == 0 {
+            visibility: hidden;
+        } @else {
+            visibility: visible;
+        }
     }
 }
 
-// Example Usage of Opacity Transition
-.opacity_hover {
-    @include opacity_transition(0.3s, 0.75);
+///
+/// Sets opacity using percentage value.
+///
+/// @param {Number} $percentage [100] - Opacity percentage (0-100).
+///
+@mixin opacity_percent($percentage: 100) {
+    opacity: calc($percentage / 100);
+}
+
+
+// ============================================================================
+// Opacity State Mixins
+// ============================================================================
+
+/// Fully visible
+@mixin opacity_visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/// Fully hidden
+@mixin opacity_hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/// Disabled state appearance
+@mixin opacity_disabled {
+    opacity: $opacity-disabled;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+/// Muted/secondary importance
+@mixin opacity_muted {
+    opacity: $opacity-muted;
+}
+
+
+// ============================================================================
+// Opacity Transition Mixins
+// ============================================================================
+
+///
+/// Smooth opacity transition.
+///
+/// @param {Time} $duration [0.3s] - Transition duration.
+/// @param {String} $timing [ease] - Timing function.
+///
+@mixin opacity_transition($duration: 0.3s, $timing: ease) {
+    transition: opacity $duration $timing, visibility $duration $timing;
+}
+
+///
+/// Opacity hover effect.
+///
+/// @param {Number} $default [1] - Default opacity.
+/// @param {Number} $hover [$opacity-hover-default] - Hover opacity.
+/// @param {Time} $duration [0.3s] - Transition duration.
+///
+@mixin opacity_hover($default: 1, $hover: $opacity-hover-default, $duration: 0.3s) {
+    opacity: $default;
+    transition: opacity $duration ease;
+
+    &:hover {
+        opacity: $hover;
+    }
+}
+
+///
+/// Reverse opacity hover (more visible on hover).
+///
+/// @param {Number} $default [0.6] - Default opacity.
+/// @param {Number} $hover [1] - Hover opacity.
+/// @param {Time} $duration [0.3s] - Transition duration.
+///
+@mixin opacity_hover_reveal($default: 0.6, $hover: 1, $duration: 0.3s) {
+    opacity: $default;
+    transition: opacity $duration ease;
+
+    &:hover {
+        opacity: $hover;
+    }
+}
+
+
+// ============================================================================
+// Fade Mixins
+// ============================================================================
+
+///
+/// Fade in from transparent.
+///
+/// @param {Time} $duration [0.3s] - Animation duration.
+/// @param {String} $timing [ease-out] - Timing function.
+///
+@mixin fade_in($duration: 0.3s, $timing: ease-out) {
+    animation: fadeIn $duration $timing forwards;
+}
+
+///
+/// Fade out to transparent.
+///
+/// @param {Time} $duration [0.3s] - Animation duration.
+/// @param {String} $timing [ease-in] - Timing function.
+///
+@mixin fade_out($duration: 0.3s, $timing: ease-in) {
+    animation: fadeOut $duration $timing forwards;
+}
+
+///
+/// Fade in keyframes definition.
+///
+@mixin keyframes_fade_in {
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            visibility: hidden;
+        }
+        to {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+///
+/// Fade out keyframes definition.
+///
+@mixin keyframes_fade_out {
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+            visibility: visible;
+        }
+        to {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+}
+
+
+// ============================================================================
+// Interactive Opacity Mixins
+// ============================================================================
+
+///
+/// Focus opacity effect.
+///
+/// @param {Number} $default [1] - Default opacity.
+/// @param {Number} $focus [0.85] - Focus opacity.
+///
+@mixin opacity_focus($default: 1, $focus: 0.85) {
+    opacity: $default;
+    transition: opacity 0.2s ease;
+
+    &:focus {
+        opacity: $focus;
+    }
+}
+
+///
+/// Active/pressed state opacity.
+///
+/// @param {Number} $active [0.7] - Active state opacity.
+///
+@mixin opacity_active($active: 0.7) {
+    transition: opacity 0.1s ease;
+
+    &:active {
+        opacity: $active;
+    }
+}
+
+///
+/// Combined interactive opacity states.
+///
+/// @param {Number} $default [1] - Default opacity.
+/// @param {Number} $hover [0.8] - Hover opacity.
+/// @param {Number} $active [0.6] - Active opacity.
+///
+@mixin opacity_interactive($default: 1, $hover: 0.8, $active: 0.6) {
+    opacity: $default;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+        opacity: $hover;
+    }
+
+    &:active {
+        opacity: $active;
+    }
+}
+
+
+// ============================================================================
+// Group/Parent Hover Opacity
+// ============================================================================
+
+///
+/// Opacity change when parent is hovered.
+///
+/// @param {String} $parent ['.group'] - Parent selector.
+/// @param {Number} $default [0] - Default opacity.
+/// @param {Number} $hover [1] - Opacity when parent is hovered.
+///
+@mixin opacity_group_hover($parent: '.group', $default: 0, $hover: 1) {
+    opacity: $default;
+    transition: opacity 0.3s ease;
+
+    #{$parent}:hover & {
+        opacity: $hover;
+    }
+}
+
+///
+/// Fade siblings when one is hovered (for galleries, menus).
+///
+/// @param {Number} $sibling-opacity [0.5] - Opacity of non-hovered siblings.
+///
+@mixin opacity_hover_fade_siblings($sibling-opacity: 0.5) {
+    transition: opacity 0.3s ease;
+
+    &:hover ~ &,
+    ~ &:not(:hover) {
+        opacity: $sibling-opacity;
+    }
+}
+
+
+// ============================================================================
+// Conditional Opacity
+// ============================================================================
+
+///
+/// Opacity based on data attribute state.
+///
+/// @param {String} $attribute - Data attribute name.
+/// @param {String} $value - Expected value.
+/// @param {Number} $opacity [0.5] - Opacity when condition is met.
+///
+@mixin opacity_data_state($attribute, $value, $opacity: 0.5) {
+    &[data-#{$attribute}="#{$value}"] {
+        opacity: $opacity;
+    }
+}
+
+///
+/// Reduced opacity for loading state.
+///
+@mixin opacity_loading {
+    opacity: 0.6;
+    pointer-events: none;
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.5);
+    }
+}
+
+
+// ============================================================================
+// Blend & Layer Opacity
+// ============================================================================
+
+///
+/// Overlay with opacity.
+///
+/// @param {Color} $color [#000] - Overlay color.
+/// @param {Number} $opacity [0.5] - Overlay opacity.
+///
+@mixin opacity_overlay($color: #000, $opacity: 0.5) {
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: $color;
+        opacity: $opacity;
+        pointer-events: none;
+    }
+}
+
+
+// ============================================================================
+// Utility Classes Generator
+// ============================================================================
+
+///
+/// Generates utility classes for opacity levels.
+///
+@mixin generate_opacity_utilities {
+    // Percentage-based utilities
+    @for $i from 0 through 10 {
+        $value: calc($i / 10);
+        .opacity-#{$i * 10} {
+            opacity: $value !important;
+        }
+    }
+
+    // Additional fine-grained values
+    .opacity-5 { opacity: 0.05 !important; }
+    .opacity-15 { opacity: 0.15 !important; }
+    .opacity-25 { opacity: 0.25 !important; }
+    .opacity-35 { opacity: 0.35 !important; }
+    .opacity-45 { opacity: 0.45 !important; }
+    .opacity-55 { opacity: 0.55 !important; }
+    .opacity-65 { opacity: 0.65 !important; }
+    .opacity-75 { opacity: 0.75 !important; }
+    .opacity-85 { opacity: 0.85 !important; }
+    .opacity-95 { opacity: 0.95 !important; }
+
+    // State utilities
+    .opacity-visible { @include opacity_visible; }
+    .opacity-hidden { @include opacity_hidden; }
+    .opacity-disabled { @include opacity_disabled; }
+    .opacity-muted { @include opacity_muted; }
+
+    // Hover utilities
+    .hover\:opacity-0:hover { opacity: 0 !important; }
+    .hover\:opacity-50:hover { opacity: 0.5 !important; }
+    .hover\:opacity-75:hover { opacity: 0.75 !important; }
+    .hover\:opacity-100:hover { opacity: 1 !important; }
 }

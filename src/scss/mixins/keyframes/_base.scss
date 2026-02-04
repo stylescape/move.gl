@@ -7,8 +7,9 @@
 /// Keyframes Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// This module provides a comprehensive set of keyframe animation mixins
+/// including the base keyframes generator and common animation patterns.
+/// Supports vendor prefixes and CSS custom properties for flexibility.
 ///
 /// @group Keyframes
 /// @author Scape Agency
@@ -21,14 +22,35 @@
 
 
 // ============================================================================
-// Mixins
+// Use
+// ============================================================================
+
+@use "sass:math";
+
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+/// Default animation duration
+$keyframe-duration-default: 1s !default;
+
+/// Default animation timing function
+$keyframe-timing-default: ease !default;
+
+/// Default animation iteration count
+$keyframe-iteration-default: 1 !default;
+
+
+// ============================================================================
+// Base Keyframes Mixin
 // ============================================================================
 
 ///
 /// Keyframes Mixin
 /// ---------------------------------------------------------------------------
 ///
-/// A versatile mixin for defining CSS keyframes with a customizable name.
+/// A versatile mixin for defining CSS keyframes with vendor prefixes.
 /// This mixin allows embedding keyframe content with the ability to specify
 /// prefixes or additional settings easily.
 ///
@@ -43,29 +65,449 @@
 ///   }
 ///
 @mixin keyframes($name) {
-    // Output standard keyframes
     @keyframes #{$name} {
         @content;
     }
 
-    // Output vendor-prefixed keyframes for better browser support
     @-webkit-keyframes #{$name} {
-        @content;
-    }
-    @-moz-keyframes #{$name} {
-        @content;
-    }
-    @-o-keyframes #{$name} {
         @content;
     }
 }
 
-// Usage example:
-@include keyframes('example-animation') {
-    0% {
-        transform: translateX(0);
+
+// ============================================================================
+// Animation Application Mixin
+// ============================================================================
+
+///
+/// Apply animation with full control.
+///
+/// @param {String} $name - Animation name.
+/// @param {Time} $duration [$keyframe-duration-default] - Duration.
+/// @param {String} $timing [$keyframe-timing-default] - Timing function.
+/// @param {Time} $delay [0s] - Delay before animation.
+/// @param {Number|String} $iteration [$keyframe-iteration-default] - Iteration count.
+/// @param {String} $direction [normal] - Direction.
+/// @param {String} $fill-mode [forwards] - Fill mode.
+/// @param {String} $play-state [running] - Play state.
+///
+@mixin animate(
+    $name,
+    $duration: $keyframe-duration-default,
+    $timing: $keyframe-timing-default,
+    $delay: 0s,
+    $iteration: $keyframe-iteration-default,
+    $direction: normal,
+    $fill-mode: forwards,
+    $play-state: running
+) {
+    animation-name: $name;
+    animation-duration: $duration;
+    animation-timing-function: $timing;
+    animation-delay: $delay;
+    animation-iteration-count: $iteration;
+    animation-direction: $direction;
+    animation-fill-mode: $fill-mode;
+    animation-play-state: $play-state;
+}
+
+///
+/// Shorthand animation mixin.
+///
+/// @param {String} $animation - Full animation shorthand value.
+///
+@mixin animation($animation) {
+    animation: $animation;
+}
+
+///
+/// Infinite looping animation.
+///
+/// @param {String} $name - Animation name.
+/// @param {Time} $duration [1s] - Duration per cycle.
+/// @param {String} $timing [linear] - Timing function.
+///
+@mixin animate_infinite($name, $duration: 1s, $timing: linear) {
+    animation: $name $duration $timing infinite;
+}
+
+
+// ============================================================================
+// Common Keyframe Definitions
+// ============================================================================
+
+///
+/// Fade in animation.
+///
+@mixin keyframes_fade_in {
+    @include keyframes(fade-in) {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
-    100% {
-        transform: translateX(100px);
+}
+
+///
+/// Fade out animation.
+///
+@mixin keyframes_fade_out {
+    @include keyframes(fade-out) {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
     }
+}
+
+///
+/// Slide in from direction.
+///
+/// @param {String} $direction [left] - Direction: left, right, top, bottom.
+/// @param {Length} $distance [100%] - Slide distance.
+///
+@mixin keyframes_slide_in($direction: left, $distance: 100%) {
+    $transform-from: null;
+
+    @if $direction == left {
+        $transform-from: translateX(-$distance);
+    } @else if $direction == right {
+        $transform-from: translateX($distance);
+    } @else if $direction == top {
+        $transform-from: translateY(-$distance);
+    } @else if $direction == bottom {
+        $transform-from: translateY($distance);
+    }
+
+    @include keyframes(slide-in-#{$direction}) {
+        from {
+            transform: $transform-from;
+            opacity: 0;
+        }
+        to {
+            transform: translate(0);
+            opacity: 1;
+        }
+    }
+}
+
+///
+/// Scale in animation (zoom in).
+///
+/// @param {Number} $from [0] - Starting scale.
+/// @param {Number} $to [1] - Ending scale.
+///
+@mixin keyframes_scale_in($from: 0, $to: 1) {
+    @include keyframes(scale-in) {
+        from {
+            transform: scale($from);
+            opacity: 0;
+        }
+        to {
+            transform: scale($to);
+            opacity: 1;
+        }
+    }
+}
+
+///
+/// Scale out animation (zoom out).
+///
+@mixin keyframes_scale_out {
+    @include keyframes(scale-out) {
+        from {
+            transform: scale(1);
+            opacity: 1;
+        }
+        to {
+            transform: scale(0);
+            opacity: 0;
+        }
+    }
+}
+
+///
+/// Spin/rotate animation.
+///
+/// @param {Angle} $degrees [360deg] - Rotation amount.
+///
+@mixin keyframes_spin($degrees: 360deg) {
+    @include keyframes(spin) {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate($degrees);
+        }
+    }
+}
+
+///
+/// Bounce animation.
+///
+@mixin keyframes_bounce {
+    @include keyframes(bounce) {
+        0%, 100% {
+            transform: translateY(0);
+            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+        }
+        50% {
+            transform: translateY(-25%);
+            animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+        }
+    }
+}
+
+///
+/// Pulse animation (scale up and down).
+///
+/// @param {Number} $scale [1.05] - Maximum scale.
+///
+@mixin keyframes_pulse($scale: 1.05) {
+    @include keyframes(pulse) {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale($scale);
+        }
+    }
+}
+
+///
+/// Shake animation.
+///
+/// @param {Length} $intensity [10px] - Shake intensity.
+///
+@mixin keyframes_shake($intensity: 10px) {
+    @include keyframes(shake) {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-$intensity); }
+        20%, 40%, 60%, 80% { transform: translateX($intensity); }
+    }
+}
+
+///
+/// Wobble animation.
+///
+@mixin keyframes_wobble {
+    @include keyframes(wobble) {
+        0%, 100% { transform: translateX(0) rotate(0); }
+        15% { transform: translateX(-25%) rotate(-5deg); }
+        30% { transform: translateX(20%) rotate(3deg); }
+        45% { transform: translateX(-15%) rotate(-3deg); }
+        60% { transform: translateX(10%) rotate(2deg); }
+        75% { transform: translateX(-5%) rotate(-1deg); }
+    }
+}
+
+///
+/// Float animation (gentle up/down movement).
+///
+/// @param {Length} $distance [10px] - Float distance.
+///
+@mixin keyframes_float($distance: 10px) {
+    @include keyframes(float) {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-$distance);
+        }
+    }
+}
+
+///
+/// Swing animation.
+///
+@mixin keyframes_swing {
+    @include keyframes(swing) {
+        20% { transform: rotate(15deg); }
+        40% { transform: rotate(-10deg); }
+        60% { transform: rotate(5deg); }
+        80% { transform: rotate(-5deg); }
+        100% { transform: rotate(0deg); }
+    }
+}
+
+///
+/// Flip animation (3D card flip).
+///
+/// @param {String} $axis [x] - Flip axis: x or y.
+///
+@mixin keyframes_flip($axis: x) {
+    @if $axis == x {
+        @include keyframes(flip-x) {
+            from { transform: perspective(400px) rotateX(0); }
+            to { transform: perspective(400px) rotateX(360deg); }
+        }
+    } @else {
+        @include keyframes(flip-y) {
+            from { transform: perspective(400px) rotateY(0); }
+            to { transform: perspective(400px) rotateY(360deg); }
+        }
+    }
+}
+
+///
+/// Rubber band animation.
+///
+@mixin keyframes_rubber_band {
+    @include keyframes(rubber-band) {
+        0% { transform: scale3d(1, 1, 1); }
+        30% { transform: scale3d(1.25, 0.75, 1); }
+        40% { transform: scale3d(0.75, 1.25, 1); }
+        50% { transform: scale3d(1.15, 0.85, 1); }
+        65% { transform: scale3d(0.95, 1.05, 1); }
+        75% { transform: scale3d(1.05, 0.95, 1); }
+        100% { transform: scale3d(1, 1, 1); }
+    }
+}
+
+///
+/// Jello animation.
+///
+@mixin keyframes_jello {
+    @include keyframes(jello) {
+        0%, 100% { transform: scale3d(1, 1, 1); }
+        30% { transform: scale3d(1.25, 0.75, 1); }
+        40% { transform: scale3d(0.75, 1.25, 1); }
+        50% { transform: scale3d(1.15, 0.85, 1); }
+        65% { transform: scale3d(0.95, 1.05, 1); }
+        75% { transform: scale3d(1.05, 0.95, 1); }
+    }
+}
+
+///
+/// Tada animation (attention seeker).
+///
+@mixin keyframes_tada {
+    @include keyframes(tada) {
+        0%, 100% { transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 0deg); }
+        10%, 20% { transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg); }
+        30%, 50%, 70%, 90% { transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg); }
+        40%, 60%, 80% { transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg); }
+    }
+}
+
+///
+/// Heart beat animation.
+///
+@mixin keyframes_heartbeat {
+    @include keyframes(heartbeat) {
+        0%, 100% { transform: scale(1); }
+        14% { transform: scale(1.3); }
+        28% { transform: scale(1); }
+        42% { transform: scale(1.3); }
+        70% { transform: scale(1); }
+    }
+}
+
+///
+/// Blink animation.
+///
+@mixin keyframes_blink {
+    @include keyframes(blink) {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+}
+
+///
+/// Typing cursor blink animation.
+///
+@mixin keyframes_cursor_blink {
+    @include keyframes(cursor-blink) {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+}
+
+
+// ============================================================================
+// Loading Animation Keyframes
+// ============================================================================
+
+///
+/// Spinner rotation.
+///
+@mixin keyframes_spinner {
+    @include keyframes(spinner) {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+}
+
+///
+/// Dots loading animation.
+///
+@mixin keyframes_dots {
+    @include keyframes(dots) {
+        0%, 80%, 100% {
+            transform: scale(0);
+            opacity: 0.5;
+        }
+        40% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+}
+
+///
+/// Progress bar animation.
+///
+@mixin keyframes_progress {
+    @include keyframes(progress) {
+        from { width: 0%; }
+        to { width: 100%; }
+    }
+}
+
+///
+/// Skeleton loading shimmer.
+///
+@mixin keyframes_shimmer {
+    @include keyframes(shimmer) {
+        from {
+            background-position: -200% 0;
+        }
+        to {
+            background-position: 200% 0;
+        }
+    }
+}
+
+
+// ============================================================================
+// Animation Control Mixins
+// ============================================================================
+
+///
+/// Pause animation.
+///
+@mixin animation_pause {
+    animation-play-state: paused;
+}
+
+///
+/// Resume animation.
+///
+@mixin animation_play {
+    animation-play-state: running;
+}
+
+///
+/// Reduce motion for accessibility.
+///
+@mixin animation_reduce_motion {
+    @media (prefers-reduced-motion: reduce) {
+        animation: none !important;
+        transition: none !important;
+    }
+}
 }

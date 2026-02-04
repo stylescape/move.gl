@@ -1,25 +1,22 @@
 // ============================================================================
-// Poster
+// move.gl | Loaders Mixin Index
+// ============================================================================
+// Copyright 2025 Scape Agency BV
+// Licensed under MIT License
 // ============================================================================
 
 ////
-///
 /// Loaders Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// This module provides loading animation mixins for spinners and progress.
 ///
 /// @group Loaders
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
-///
 ////
 
-
-// ============================================================================
-// Mixins
-// ============================================================================
+@forward "spinner";
+@forward "progress";

@@ -7,9 +7,9 @@
 /// Mouse Scroll Mixins Module
 /// ===========================================================================
 ///
-/// This module provides mixins to enable smooth scrolling and scroll snapping
-/// features for containers, enhancing user interaction and navigation within
-/// scrollable elements.
+/// This module provides comprehensive mixins for scroll behavior, scroll
+/// snapping, scroll animations, and scroll-driven effects. Enhances user
+/// interaction and navigation within scrollable elements.
 ///
 /// @group Mouse
 /// @author Scape Agency
@@ -22,86 +22,427 @@
 
 
 // ============================================================================
-// Use
+// Variables
 // ============================================================================
 
-@use "../../variables" as *;
-@use "../../maps" as *;
+/// Default scroll behavior
+$scroll-behavior-default: smooth !default;
 
+/// Default scroll padding
+$scroll-padding-default: 20px !default;
+
+/// Default snap alignment
+$scroll-snap-align-default: start !default;
 
 
 // ============================================================================
-// Mixins
+// Scroll Behavior Mixins
 // ============================================================================
 
-
 ///
-/// Scroll Smooth Mixin
-/// ---------------------------------------------------------------------------
+/// Enable smooth scrolling for a container.
 ///
-/// Mixin to enable smooth scrolling for a container.
-/// Provides a smooth scroll behavior for elements that overflow.
+/// @param {Boolean} $enable [true] - Enables smooth scrolling.
+/// @param {Boolean} $touch [true] - Enables WebKit touch scrolling.
 ///
-/// @mixin scroll_smooth
-/// @param {Boolean} $enable [true] - Enables smooth scrolling if true, disables otherwise.
-/// @param {Boolean} $touch_scrolling [true] - Enables WebKit touch scrolling if true.
-///
-/// @example scss - Usage
-///   .scrollable-container {
-///       @include scroll_smooth(true, true);
-///   }
-///
-@mixin scroll_smooth(
-    $enable: true,
-    $touch_scrolling: true
-) {
+@mixin scroll_smooth($enable: true, $touch: true) {
     @if $enable {
         scroll-behavior: smooth;
     } @else {
         scroll-behavior: auto;
     }
 
-    @if $touch_scrolling {
+    @if $touch {
         -webkit-overflow-scrolling: touch;
-    } @else {
-        -webkit-overflow-scrolling: auto;
     }
 }
 
 ///
-/// Scroll Snap Mixin
-/// ---------------------------------------------------------------------------
+/// Set scroll behavior to auto (instant).
 ///
-/// Mixin to set up scroll snapping for a container.
-/// Configures scroll snapping for elements, useful for creating carousels or
-/// step-by-step guides with smooth navigation between sections.
+@mixin scroll_instant {
+    scroll-behavior: auto;
+}
+
 ///
-/// @mixin scroll_snap
-/// @param {String} $type [y mandatory] - The scroll snapping type ('x' or 'y', and 'mandatory' or 'proximity').
-/// @param {String} $align [start] - Alignment of the snapped items (start, center, end, or none).
-/// @param {String} $stop [normal] - Specifies the scroll-snap-stop behavior (normal, always).
+/// Scroll padding for fixed headers.
 ///
-/// @example scss - Usage
-///   .snap-container {
-///       @include scroll_snap('x mandatory', 'center', 'always');
-///   }
+/// @param {Length} $top [0] - Top padding.
+/// @param {Length} $right [0] - Right padding.
+/// @param {Length} $bottom [0] - Bottom padding.
+/// @param {Length} $left [0] - Left padding.
 ///
-@mixin scroll_snap(
-    $type: y mandatory,
-    $align: start,
-    $stop: normal
-) {
+@mixin scroll_padding($top: 0, $right: 0, $bottom: 0, $left: 0) {
+    scroll-padding: $top $right $bottom $left;
+}
+
+///
+/// Scroll padding for fixed header navigation.
+///
+/// @param {Length} $header-height [60px] - Height of fixed header.
+/// @param {Length} $extra [20px] - Extra padding.
+///
+@mixin scroll_padding_header($header-height: 60px, $extra: 20px) {
+    scroll-padding-top: calc(#{$header-height} + #{$extra});
+}
+
+
+// ============================================================================
+// Scroll Snap Mixins
+// ============================================================================
+
+///
+/// Set up scroll snapping for a container.
+///
+/// @param {String} $type [y mandatory] - Snap type: x/y + mandatory/proximity.
+/// @param {String} $align [start] - Snap alignment: start, center, end.
+/// @param {String} $stop [normal] - Snap stop: normal, always.
+///
+@mixin scroll_snap($type: y mandatory, $align: start, $stop: normal) {
     scroll-snap-type: $type;
+
+    > * {
+        scroll-snap-align: $align;
+        scroll-snap-stop: $stop;
+    }
+}
+
+///
+/// Horizontal scroll snap container.
+///
+/// @param {String} $align [center] - Snap alignment.
+/// @param {Boolean} $mandatory [true] - Whether snapping is mandatory.
+///
+@mixin scroll_snap_x($align: center, $mandatory: true) {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x #{if($mandatory, mandatory, proximity)};
+
+    > * {
+        scroll-snap-align: $align;
+    }
+}
+
+///
+/// Vertical scroll snap container.
+///
+/// @param {String} $align [start] - Snap alignment.
+/// @param {Boolean} $mandatory [true] - Whether snapping is mandatory.
+///
+@mixin scroll_snap_y($align: start, $mandatory: true) {
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-type: y #{if($mandatory, mandatory, proximity)};
+
+    > * {
+        scroll-snap-align: $align;
+    }
+}
+
+///
+/// Scroll snap child/item styles.
+///
+/// @param {String} $align [start] - Alignment within parent.
+/// @param {String} $stop [normal] - Stop behavior.
+///
+@mixin scroll_snap_item($align: start, $stop: normal) {
     scroll-snap-align: $align;
     scroll-snap-stop: $stop;
 }
 
+///
+/// Full-page scroll snap sections.
+///
+@mixin scroll_snap_fullpage {
+    height: 100vh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
 
-/// Example usage
-.scrollable-container {
-    @include scroll_smooth(); // Enables smooth scrolling with default settings
+    > * {
+        height: 100vh;
+        scroll-snap-align: start;
+    }
 }
 
-.snap-container {
-    @include scroll_snap(x mandatory, center); // Sets up horizontal snapping to center
+///
+/// Carousel-style horizontal scroll snap.
+///
+/// @param {Length} $item-width [300px] - Width of each item.
+/// @param {Length} $gap [20px] - Gap between items.
+///
+@mixin scroll_snap_carousel($item-width: 300px, $gap: 20px) {
+    display: flex;
+    gap: $gap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 $gap;
+    -webkit-overflow-scrolling: touch;
+
+    > * {
+        flex: 0 0 $item-width;
+        scroll-snap-align: center;
+    }
+}
+
+
+// ============================================================================
+// Overflow & Scroll Container Mixins
+// ============================================================================
+
+///
+/// Scrollable container with auto overflow.
+///
+/// @param {String} $direction [both] - Scroll direction: x, y, or both.
+///
+@mixin scrollable($direction: both) {
+    @if $direction == x {
+        overflow-x: auto;
+        overflow-y: hidden;
+    } @else if $direction == y {
+        overflow-x: hidden;
+        overflow-y: auto;
+    } @else {
+        overflow: auto;
+    }
+
+    -webkit-overflow-scrolling: touch;
+}
+
+///
+/// Hide overflow.
+///
+/// @param {String} $direction [both] - Direction: x, y, or both.
+///
+@mixin overflow_hidden($direction: both) {
+    @if $direction == x {
+        overflow-x: hidden;
+    } @else if $direction == y {
+        overflow-y: hidden;
+    } @else {
+        overflow: hidden;
+    }
+}
+
+///
+/// Clip overflow (modern alternative to hidden).
+///
+@mixin overflow_clip {
+    overflow: clip;
+}
+
+///
+/// Scroll container with max height.
+///
+/// @param {Length} $max-height [400px] - Maximum height.
+///
+@mixin scroll_container($max-height: 400px) {
+    max-height: $max-height;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+// ============================================================================
+// Scroll Indicator Mixins
+// ============================================================================
+
+///
+/// Fade edges to indicate more content (scroll shadows).
+///
+/// @param {String} $direction [y] - Direction: x or y.
+/// @param {Length} $size [30px] - Fade size.
+///
+@mixin scroll_fade_edges($direction: y, $size: 30px) {
+    position: relative;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        pointer-events: none;
+        z-index: 1;
+
+        @if $direction == y {
+            left: 0;
+            right: 0;
+            height: $size;
+        } @else {
+            top: 0;
+            bottom: 0;
+            width: $size;
+        }
+    }
+
+    &::before {
+        @if $direction == y {
+            top: 0;
+            background: linear-gradient(to bottom, var(--scroll-fade-color, white), transparent);
+        } @else {
+            left: 0;
+            background: linear-gradient(to right, var(--scroll-fade-color, white), transparent);
+        }
+    }
+
+    &::after {
+        @if $direction == y {
+            bottom: 0;
+            background: linear-gradient(to top, var(--scroll-fade-color, white), transparent);
+        } @else {
+            right: 0;
+            background: linear-gradient(to left, var(--scroll-fade-color, white), transparent);
+        }
+    }
+}
+
+
+// ============================================================================
+// Scroll Animation Mixins
+// ============================================================================
+
+///
+/// Scroll-driven animation using scroll-timeline.
+///
+/// @param {String} $timeline-name - Name for the scroll timeline.
+/// @param {String} $axis [block] - Scroll axis: block, inline, x, y.
+///
+@mixin scroll_timeline($timeline-name, $axis: block) {
+    scroll-timeline-name: $timeline-name;
+    scroll-timeline-axis: $axis;
+}
+
+///
+/// View timeline for scroll-triggered animations.
+///
+/// @param {String} $timeline-name - Name for the view timeline.
+/// @param {String} $axis [block] - Axis: block, inline, x, y.
+///
+@mixin view_timeline($timeline-name, $axis: block) {
+    view-timeline-name: $timeline-name;
+    view-timeline-axis: $axis;
+}
+
+///
+/// Animation linked to scroll position.
+///
+/// @param {String} $animation-name - Keyframe animation name.
+/// @param {String} $timeline - Scroll/view timeline to use.
+///
+@mixin scroll_animation($animation-name, $timeline) {
+    animation: $animation-name linear;
+    animation-timeline: $timeline;
+}
+
+///
+/// Fade in on scroll into view.
+///
+@mixin scroll_fade_in {
+    animation: scroll-fade-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 100%;
+}
+
+///
+/// Parallax scrolling effect.
+///
+/// @param {Number} $speed [0.5] - Parallax speed (0-1).
+///
+@mixin scroll_parallax($speed: 0.5) {
+    will-change: transform;
+
+    @supports (animation-timeline: scroll()) {
+        animation: parallax-move linear;
+        animation-timeline: scroll();
+    }
+}
+
+
+// ============================================================================
+// Scroll Lock Mixins
+// ============================================================================
+
+///
+/// Lock body scroll (for modals).
+///
+@mixin scroll_lock {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+///
+/// Prevent scroll chaining (overscroll).
+///
+/// @param {String} $behavior [none] - none, contain, or auto.
+///
+@mixin overscroll($behavior: none) {
+    overscroll-behavior: $behavior;
+}
+
+///
+/// Prevent overscroll on specific axis.
+///
+/// @param {String} $axis [y] - Axis: x or y.
+///
+@mixin overscroll_contain($axis: y) {
+    @if $axis == y {
+        overscroll-behavior-y: contain;
+    } @else {
+        overscroll-behavior-x: contain;
+    }
+}
+
+
+// ============================================================================
+// Scroll Margin Mixins
+// ============================================================================
+
+///
+/// Scroll margin for anchor links.
+///
+/// @param {Length} $margin [80px] - Scroll margin.
+///
+@mixin scroll_margin($margin: 80px) {
+    scroll-margin-top: $margin;
+}
+
+///
+/// Scroll margin for fixed header anchors.
+///
+/// @param {Length} $header-height [60px] - Header height.
+/// @param {Length} $extra [20px] - Extra spacing.
+///
+@mixin scroll_margin_header($header-height: 60px, $extra: 20px) {
+    scroll-margin-top: calc(#{$header-height} + #{$extra});
+}
+
+
+// ============================================================================
+// Utility Class Generators
+// ============================================================================
+
+///
+/// Generate scroll utility classes.
+///
+@mixin generate_scroll_utilities {
+    .scroll-smooth { scroll-behavior: smooth; }
+    .scroll-auto { scroll-behavior: auto; }
+
+    .overflow-auto { overflow: auto; }
+    .overflow-hidden { overflow: hidden; }
+    .overflow-scroll { overflow: scroll; }
+    .overflow-x-auto { overflow-x: auto; }
+    .overflow-y-auto { overflow-y: auto; }
+    .overflow-x-hidden { overflow-x: hidden; }
+    .overflow-y-hidden { overflow-y: hidden; }
+
+    .overscroll-auto { overscroll-behavior: auto; }
+    .overscroll-contain { overscroll-behavior: contain; }
+    .overscroll-none { overscroll-behavior: none; }
+
+    .snap-x { scroll-snap-type: x mandatory; }
+    .snap-y { scroll-snap-type: y mandatory; }
+    .snap-start { scroll-snap-align: start; }
+    .snap-center { scroll-snap-align: center; }
+    .snap-end { scroll-snap-align: end; }
 }

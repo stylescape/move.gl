@@ -19,8 +19,8 @@
 ///
 ////
 
-@use "../variables" as *;
-@use "../mixins" as *;
+@use "../../variables" as *;
+// @use "../../mixins" as *; // Removed to avoid circular dependency
 
 
 // ============================================================================

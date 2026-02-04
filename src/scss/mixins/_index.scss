@@ -1,22 +1,64 @@
 // ============================================================================
-// Poster
+// move.gl | Mixins Index
+// ============================================================================
+// Copyright 2025 Scape Agency BV
+// Licensed under MIT License
 // ============================================================================
 
 ////
-///
-/// Transitions Mixin Module
+/// Mixins Module Index
 /// ===========================================================================
 ///
-/// This module ...
+/// This module consolidates all mixin submodules for the move.gl animation
+/// and motion library. It provides:
+/// - Mouse interaction mixins (hover, cursor, scroll, touch)
+/// - Transform mixins (rotate, scale, translate, skew, flip)
+/// - Transition mixins (timing, easing, property transitions)
+/// - Animation mixins (bounce, float, sway, blink, etc.)
+/// - Effect mixins (shadow, opacity, filter)
+/// - Keyframe mixins (base keyframes, flash, beat)
+/// - Loader mixins (spinners, progress indicators)
 ///
-///
-/// @group Transitions
+/// @group Mixins
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
-///
 ////
 
+// ==========================================================================
+// Interaction Mixins
+// ==========================================================================
+
 @forward "mouse";
+
+// ==========================================================================
+// Transform Mixins
+// ==========================================================================
+
+@forward "transforms";
+
+// ==========================================================================
+// Transition Mixins
+// ==========================================================================
+
+@forward "transitions";
+
+// ==========================================================================
+// Animation Mixins
+// ==========================================================================
+
+@forward "animations";
+@forward "keyframes";
+
+// ==========================================================================
+// Effect Mixins
+// ==========================================================================
+
+@forward "effects";
+
+// ==========================================================================
+// Loader Mixins
+// ==========================================================================
+
+@forward "loaders";
