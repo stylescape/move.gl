@@ -1,0 +1,385 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Loaders — move.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Effects</p>
+<h1>Loading Animations</h1>
+{%- endblock %}
+
+{%- block content %}
+
+<section>
+    <h2>Spinners</h2>
+    <p>Rotating loading indicators.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="loader loader--spinner"></div>
+            <p>spinner</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--spinner-dots"></div>
+            <p>spinner-dots</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Dots</h2>
+    <p>Pulsing dot animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="loader loader--dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>dots</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--dots-bounce">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>dots-bounce</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Bars</h2>
+    <p>Bar-based loading indicators.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="loader loader--bars">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>bars</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--progress"></div>
+            <p>progress</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Pulse</h2>
+    <p>Pulsing and ripple effects.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="loader loader--pulse"></div>
+            <p>pulse</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--ripple">
+                <span></span>
+                <span></span>
+            </div>
+            <p>ripple</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--heartbeat"></div>
+            <p>heartbeat</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Ring Spinners</h2>
+    <p>Ring and circle-based loading indicators.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="loader loader--dual-ring"></div>
+            <p>dual-ring</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--hourglass"></div>
+            <p>hourglass</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--circle-notch"></div>
+            <p>circle-notch</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--ring"></div>
+            <p>ring</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--gradient"></div>
+            <p>gradient</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>More Dots</h2>
+    <p>Additional dot-based animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="loader loader--dots-wave">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>dots-wave</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--dots-fade">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>dots-fade</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--dots-grow">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>dots-grow</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--ellipsis">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>ellipsis</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Shapes</h2>
+    <p>Square and cube animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="loader loader--square"></div>
+            <p>square</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--cube"></div>
+            <p>cube</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Bouncing</h2>
+    <p>Bounce and orbit animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="loader loader--bounce">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>bounce</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--orbit"></div>
+            <p>orbit</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Special</h2>
+    <p>Unique loading animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="loader loader--typing">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>typing</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--clock"></div>
+            <p>clock</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--battery"></div>
+            <p>battery</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--wifi">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>wifi</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Physics</h2>
+    <p>Physics-inspired animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="loader loader--pendulum">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>pendulum</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--seesaw"></div>
+            <p>seesaw</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--sand"></div>
+            <p>sand</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Advanced Shapes</h2>
+    <p>Complex shape animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="loader loader--morph"></div>
+            <p>morph</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--flip-card">
+                <span></span>
+            </div>
+            <p>flip-card</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--folding">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>folding</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Multi-Element</h2>
+    <p>Loaders with multiple animated parts.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="loader loader--dna">
+                <span></span>
+                <span></span>
+            </div>
+            <p>dna</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--infinity"></div>
+            <p>infinity</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--atom">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>atom</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--chase">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>chase</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Bar Variations</h2>
+    <p>Additional bar-based loaders.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="loader loader--wave-bar">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>wave-bar</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--windmill">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>windmill</p>
+        </div>
+        <div class="demo-item">
+            <div class="loader loader--gear"></div>
+            <p>gear</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Usage</h2>
+
+    <div class="code-block"><span class="comment">// SCSS Mixin</span>
+        .loading {
+        @include loader-spinner;
+        }
+
+        .loading-dots {
+        @include loader-dots($color: #3b82f6);
+        }
+
+        <span class="comment">// HTML Structure for dots</span>
+        &lt;div class="loader loader--dots"&gt;
+        &lt;span&gt;&lt;/span&gt;
+        &lt;span&gt;&lt;/span&gt;
+        &lt;span&gt;&lt;/span&gt;
+        &lt;/div&gt;
+
+        <span class="comment">// HTML Structure for bars</span>
+        &lt;div class="loader loader--bars"&gt;
+        &lt;span&gt;&lt;/span&gt;
+        &lt;span&gt;&lt;/span&gt;
+        &lt;span&gt;&lt;/span&gt;
+        &lt;span&gt;&lt;/span&gt;
+        &lt;/div&gt;
+    </div>
+</section>
+
+{%- endblock %}

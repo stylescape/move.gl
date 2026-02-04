@@ -1,0 +1,74 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Slide Animations — move.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Animations</p>
+<h1>Slide Animations</h1>
+{%- endblock %}
+
+{%- block content %}
+
+<section>
+    <h2>Slide In</h2>
+    <p>Directional sliding entrance animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate-slide-up-demo" id="slide-up-demo"></div>
+            <p>slide-up</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-slide-down-demo" id="slide-down-demo"></div>
+            <p>slide-down</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-slide-left-demo" id="slide-left-demo"></div>
+            <p>slide-left</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-slide-right-demo" id="slide-right-demo"></div>
+            <p>slide-right</p>
+        </div>
+    </div>
+
+    <button class="btn btn--primary" onclick="replaySlide()">Replay Animations</button>
+</section>
+
+<section>
+    <h2>Usage</h2>
+
+    <div class="code-block"><span class="comment">// SCSS Mixin</span>
+        .element {
+        @include slide-up;
+        }
+
+        .element-custom {
+        @include slide-up($duration: 0.5s, $distance: 30px);
+        }
+
+        <span class="comment">// All directions</span>
+        @include slide-down;
+        @include slide-left;
+        @include slide-right;
+
+        <span class="comment">// Utility classes</span>
+        &lt;div class="animate-slide-up"&gt;...&lt;/div&gt;
+        &lt;div class="animate-slide-down"&gt;...&lt;/div&gt;
+        &lt;div class="animate-slide-left"&gt;...&lt;/div&gt;
+        &lt;div class="animate-slide-right"&gt;...&lt;/div&gt;
+    </div>
+</section>
+
+<script>
+    function replaySlide() {
+        const demos = document.querySelectorAll('[id^="slide-"]');
+        demos.forEach(demo => {
+            demo.style.animation = 'none';
+            demo.offsetHeight;
+            demo.style.animation = null;
+        });
+    }
+</script>
+
+{%- endblock %}

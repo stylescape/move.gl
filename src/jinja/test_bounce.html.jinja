@@ -1,0 +1,84 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Bounce Animations — move.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Animations</p>
+<h1>Bounce Animations</h1>
+{%- endblock %}
+
+{%- block content %}
+
+<section>
+    <h2>Bounce Effects</h2>
+    <p>Playful bouncing animations with elastic easing.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate-bounce-demo" id="bounce-demo"></div>
+            <p>bounce</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-bounce-in-demo" id="bounce-in-demo"></div>
+            <p>bounce-in</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-bounce-out-demo" id="bounce-out-demo"></div>
+            <p>bounce-out</p>
+        </div>
+    </div>
+
+    <button class="btn btn--primary" onclick="replayBounce()">Replay Animations</button>
+</section>
+
+<section>
+    <h2>Continuous Bounce</h2>
+    <p>Looping bounce animations for attention-grabbing elements.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate-bounce-loop"></div>
+            <p>bounce (infinite)</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-pulse-demo"></div>
+            <p>pulse</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Usage</h2>
+
+    <div class="code-block"><span class="comment">// SCSS Mixin</span>
+        .element {
+        @include bounce;
+        }
+
+        .element-in {
+        @include bounce-in($duration: 0.6s);
+        }
+
+        <span class="comment">// Continuous bounce</span>
+        .notification {
+        @include bounce($iterations: infinite);
+        }
+
+        <span class="comment">// Utility classes</span>
+        &lt;div class="animate-bounce"&gt;...&lt;/div&gt;
+        &lt;div class="animate-bounce-in"&gt;...&lt;/div&gt;
+    </div>
+</section>
+
+<script>
+    function replayBounce() {
+        const demos = document.querySelectorAll('[id^="bounce-"]');
+        demos.forEach(demo => {
+            demo.style.animation = 'none';
+            demo.offsetHeight;
+            demo.style.animation = null;
+        });
+    }
+</script>
+
+{%- endblock %}

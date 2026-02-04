@@ -1,0 +1,78 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Shake Animations — move.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Animations</p>
+<h1>Shake Animations</h1>
+{%- endblock %}
+
+{%- block content %}
+
+<section>
+    <h2>Shake</h2>
+    <p>Rotation-based shake animations for attention and alerts.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate-shake-demo"></div>
+            <p>shake</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-shake-slow-demo"></div>
+            <p>shake-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-shake-horizontal-demo"></div>
+            <p>shake-horizontal</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-shake-vertical-demo"></div>
+            <p>shake-vertical</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Wobble & Jiggle</h2>
+    <p>Playful wobbling and jiggling effects.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate-wobble-demo"></div>
+            <p>wobble</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-jiggle-demo"></div>
+            <p>jiggle</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-jello-demo"></div>
+            <p>jello</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Usage</h2>
+
+    <div class="code-block"><span class="comment">// SCSS Mixin</span>
+        .element {
+        @include animate_shake;
+        }
+
+        <span class="comment">// With custom amplitude</span>
+        .element {
+        @include animate_shake(
+        $amplitude: 20deg,
+        $duration: 0.5s
+        );
+        }
+
+        <span class="comment">// Utility classes</span>
+        &lt;div class="animate-shake"&gt;...&lt;/div&gt;
+        &lt;div class="animate-wobble"&gt;...&lt;/div&gt;
+    </div>
+</section>
+
+{%- endblock %}

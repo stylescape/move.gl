@@ -1,0 +1,498 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Effects — move.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Mixins</p>
+<h1>CSS Effects</h1>
+{%- endblock %}
+
+{%- block content %}
+
+<section>
+    <h2>Basic Filter Effects</h2>
+    <p>CSS filter effects for visual manipulation. Compare with the original image on the left.</p>
+
+    <div class="demo-row">
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--original">
+                <img src="https://picsum.photos/120/80?random=1" alt="original">
+            </div>
+            <p>original</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--blur">
+                <img src="https://picsum.photos/120/80?random=1" alt="blur">
+            </div>
+            <p>blur</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--blur-light">
+                <img src="https://picsum.photos/120/80?random=1" alt="blur-light">
+            </div>
+            <p>blur-light</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--blur-heavy">
+                <img src="https://picsum.photos/120/80?random=1" alt="blur-heavy">
+            </div>
+            <p>blur-heavy</p>
+        </div>
+    </div>
+
+    <div class="demo-row">
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--original">
+                <img src="https://picsum.photos/120/80?random=2" alt="original">
+            </div>
+            <p>original</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--grayscale">
+                <img src="https://picsum.photos/120/80?random=2" alt="grayscale">
+            </div>
+            <p>grayscale</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--grayscale-50">
+                <img src="https://picsum.photos/120/80?random=2" alt="grayscale-50">
+            </div>
+            <p>grayscale-50%</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--sepia">
+                <img src="https://picsum.photos/120/80?random=2" alt="sepia">
+            </div>
+            <p>sepia</p>
+        </div>
+    </div>
+
+    <div class="demo-row">
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--original">
+                <img src="https://picsum.photos/120/80?random=3" alt="original">
+            </div>
+            <p>original</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--brightness">
+                <img src="https://picsum.photos/120/80?random=3" alt="brightness">
+            </div>
+            <p>brightness (150%)</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--brightness-low">
+                <img src="https://picsum.photos/120/80?random=3" alt="brightness-low">
+            </div>
+            <p>brightness (50%)</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--contrast">
+                <img src="https://picsum.photos/120/80?random=3" alt="contrast">
+            </div>
+            <p>contrast</p>
+        </div>
+    </div>
+
+    <div class="demo-row">
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--original">
+                <img src="https://picsum.photos/120/80?random=4" alt="original">
+            </div>
+            <p>original</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--invert">
+                <img src="https://picsum.photos/120/80?random=4" alt="invert">
+            </div>
+            <p>invert</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--hue-rotate">
+                <img src="https://picsum.photos/120/80?random=4" alt="hue-rotate">
+            </div>
+            <p>hue-rotate (90°)</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--hue-rotate-180">
+                <img src="https://picsum.photos/120/80?random=4" alt="hue-rotate-180">
+            </div>
+            <p>hue-rotate (180°)</p>
+        </div>
+    </div>
+
+    <div class="demo-row">
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--original">
+                <img src="https://picsum.photos/120/80?random=5" alt="original">
+            </div>
+            <p>original</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--saturate">
+                <img src="https://picsum.photos/120/80?random=5" alt="saturate">
+            </div>
+            <p>saturate (200%)</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--desaturate">
+                <img src="https://picsum.photos/120/80?random=5" alt="desaturate">
+            </div>
+            <p>desaturate (25%)</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--drop-shadow">
+                <img src="https://picsum.photos/120/80?random=5" alt="drop-shadow">
+            </div>
+            <p>drop-shadow</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Filter Presets</h2>
+    <p>Pre-configured filter combinations for common effects.</p>
+
+    <div class="demo-row">
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--original">
+                <img src="https://picsum.photos/120/80?random=10" alt="original">
+            </div>
+            <p>original</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--vintage">
+                <img src="https://picsum.photos/120/80?random=10" alt="vintage">
+            </div>
+            <p>vintage</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--dramatic">
+                <img src="https://picsum.photos/120/80?random=10" alt="dramatic">
+            </div>
+            <p>dramatic</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--faded">
+                <img src="https://picsum.photos/120/80?random=10" alt="faded">
+            </div>
+            <p>faded</p>
+        </div>
+    </div>
+
+    <div class="demo-row">
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--original">
+                <img src="https://picsum.photos/120/80?random=11" alt="original">
+            </div>
+            <p>original</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--cold">
+                <img src="https://picsum.photos/120/80?random=11" alt="cold">
+            </div>
+            <p>cold</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--warm">
+                <img src="https://picsum.photos/120/80?random=11" alt="warm">
+            </div>
+            <p>warm</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--vivid">
+                <img src="https://picsum.photos/120/80?random=11" alt="vivid">
+            </div>
+            <p>vivid</p>
+        </div>
+    </div>
+
+    <div class="demo-row">
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--original">
+                <img src="https://picsum.photos/120/80?random=12" alt="original">
+            </div>
+            <p>original</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--noir">
+                <img src="https://picsum.photos/120/80?random=12" alt="noir">
+            </div>
+            <p>noir</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--dreamy">
+                <img src="https://picsum.photos/120/80?random=12" alt="dreamy">
+            </div>
+            <p>dreamy</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--xray">
+                <img src="https://picsum.photos/120/80?random=12" alt="xray">
+            </div>
+            <p>x-ray</p>
+        </div>
+    </div>
+
+    <div class="demo-row">
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--original">
+                <img src="https://picsum.photos/120/80?random=13" alt="original">
+            </div>
+            <p>original</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--duotone-blue">
+                <img src="https://picsum.photos/120/80?random=13" alt="duotone-blue">
+            </div>
+            <p>duotone-blue</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--duotone-purple">
+                <img src="https://picsum.photos/120/80?random=13" alt="duotone-purple">
+            </div>
+            <p>duotone-purple</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--duotone-orange">
+                <img src="https://picsum.photos/120/80?random=13" alt="duotone-orange">
+            </div>
+            <p>duotone-orange</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Opacity Effects</h2>
+    <p>Opacity level variations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item effect-demo">
+            <div class="effect-box opacity--100">
+                <div class="color-block"></div>
+            </div>
+            <p>opacity 100%</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box opacity--75">
+                <div class="color-block"></div>
+            </div>
+            <p>opacity 75%</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box opacity--50">
+                <div class="color-block"></div>
+            </div>
+            <p>opacity 50%</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box opacity--25">
+                <div class="color-block"></div>
+            </div>
+            <p>opacity 25%</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Shadow Effects</h2>
+    <p>Box shadow variations for depth and emphasis.</p>
+
+    <div class="demo-row">
+        <div class="demo-item effect-demo">
+            <div class="effect-box shadow--light">Light</div>
+            <p>shadow-light</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box shadow--medium">Medium</div>
+            <p>shadow-medium</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box shadow--dark">Dark</div>
+            <p>shadow-dark</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box shadow--large">Large</div>
+            <p>shadow-large</p>
+        </div>
+    </div>
+
+    <div class="demo-row">
+        <div class="demo-item effect-demo">
+            <div class="effect-box shadow--soft">Soft</div>
+            <p>shadow-soft</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box shadow--inset">Inset</div>
+            <p>shadow-inset</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box shadow--colored">Colored</div>
+            <p>shadow-colored</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box shadow--intense">Intense</div>
+            <p>shadow-intense</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Directional Shadows</h2>
+    <p>Shadows pointing in different directions.</p>
+
+    <div class="demo-row">
+        <div class="demo-item effect-demo">
+            <div class="effect-box shadow--top">Top</div>
+            <p>shadow-top</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box shadow--right">Right</div>
+            <p>shadow-right</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box shadow--bottom">Bottom</div>
+            <p>shadow-bottom</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box shadow--left">Left</div>
+            <p>shadow-left</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Elevation Levels</h2>
+    <p>Material Design-inspired elevation shadows.</p>
+
+    <div class="demo-row">
+        <div class="demo-item effect-demo">
+            <div class="effect-box elevation--1">1</div>
+            <p>elevation-1</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box elevation--2">2</div>
+            <p>elevation-2</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box elevation--3">3</div>
+            <p>elevation-3</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box elevation--4">4</div>
+            <p>elevation-4</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box elevation--5">5</div>
+            <p>elevation-5</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Embossed Effects</h2>
+    <p>3D embossed and debossed appearances.</p>
+
+    <div class="demo-row">
+        <div class="demo-item effect-demo">
+            <div class="effect-box embossed--light">Light</div>
+            <p>embossed-light</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box embossed--heavy">Heavy</div>
+            <p>embossed-heavy</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box shadow--emphasize-dark">Emphasize</div>
+            <p>emphasize-dark</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box shadow--border">Border</div>
+            <p>shadow-border</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Backdrop Blur</h2>
+    <p>Frosted glass effect using backdrop-filter.</p>
+
+    <div class="demo-row">
+        <div class="demo-item effect-demo backdrop-container">
+            <div class="backdrop-bg"></div>
+            <div class="effect-box backdrop--blur">Backdrop Blur</div>
+            <p>backdrop-blur</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Interactive Filters</h2>
+    <p>Hover to see the filter transition effect.</p>
+
+    <div class="demo-row">
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--hover-blur">
+                <img src="https://picsum.photos/120/80?random=13" alt="hover-blur">
+            </div>
+            <p>hover: blur</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--hover-grayscale">
+                <img src="https://picsum.photos/120/80?random=14" alt="hover-grayscale">
+            </div>
+            <p>hover: grayscale</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--hover-saturate">
+                <img src="https://picsum.photos/120/80?random=15" alt="hover-saturate">
+            </div>
+            <p>hover: saturate</p>
+        </div>
+        <div class="demo-item effect-demo">
+            <div class="effect-box effect--hover-brightness">
+                <img src="https://picsum.photos/120/80?random=16" alt="hover-brightness">
+            </div>
+            <p>hover: brightness</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Usage</h2>
+
+    <div class="code-block"><span class="comment">// Filter Mixins</span>
+        .image-blur {
+        @include filter_blur(4px);
+        }
+
+        .image-grayscale {
+        @include filter_grayscale(100%);
+        }
+
+        .image-brightness {
+        @include filter_brightness(150%);
+        }
+
+        <span class="comment">// Shadow Mixins</span>
+        .card {
+        @include elevation(3);
+        }
+
+        .box {
+        @include box_shadow(0, 4px, 8px, 0, rgba(0,0,0, .2));
+        }
+
+        <span class="comment">// Opacity Mixin</span>
+        .faded {
+        @include set_opacity(0.5);
+        }
+
+        <span class="comment">// Opacity Transition</span>
+        .image {
+        @include opacity_transition(0.3s, 0.75);
+        }
+    </div>
+</section>
+
+{%- endblock %}

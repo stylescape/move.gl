@@ -1,0 +1,382 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Mouse — move.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Mixins</p>
+<h1>Mouse Interactions</h1>
+{%- endblock %}
+
+{%- block content %}
+
+<section>
+    <h2>Cursor Styles</h2>
+    <p>Hover over each box to see the cursor change.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="mouse-box cursor--default">Default</div>
+            <p>default</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box cursor--pointer">Pointer</div>
+            <p>pointer</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box cursor--text">Text</div>
+            <p>text</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box cursor--move">Move</div>
+            <p>move</p>
+        </div>
+    </div>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="mouse-box cursor--grab">Grab</div>
+            <p>grab</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box cursor--grabbing">Grabbing</div>
+            <p>grabbing</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box cursor--not-allowed">Not Allowed</div>
+            <p>not-allowed</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box cursor--wait">Wait</div>
+            <p>wait</p>
+        </div>
+    </div>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="mouse-box cursor--help">Help</div>
+            <p>help</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box cursor--crosshair">Crosshair</div>
+            <p>crosshair</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box cursor--zoom-in">Zoom In</div>
+            <p>zoom-in</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box cursor--zoom-out">Zoom Out</div>
+            <p>zoom-out</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Resize Cursors</h2>
+    <p>Directional resize cursors.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="mouse-box cursor--n-resize">↑</div>
+            <p>n-resize</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box cursor--e-resize">→</div>
+            <p>e-resize</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box cursor--s-resize">↓</div>
+            <p>s-resize</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box cursor--w-resize">←</div>
+            <p>w-resize</p>
+        </div>
+    </div>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="mouse-box cursor--ne-resize">↗</div>
+            <p>ne-resize</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box cursor--se-resize">↘</div>
+            <p>se-resize</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box cursor--sw-resize">↙</div>
+            <p>sw-resize</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box cursor--nw-resize">↖</div>
+            <p>nw-resize</p>
+        </div>
+    </div>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="mouse-box cursor--ew-resize">↔</div>
+            <p>ew-resize</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box cursor--ns-resize">↕</div>
+            <p>ns-resize</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box cursor--col-resize">‖</div>
+            <p>col-resize</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box cursor--row-resize">═</div>
+            <p>row-resize</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Hover Effects</h2>
+    <p>Interactive hover transitions.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="mouse-box hover--scale">Scale</div>
+            <p>hover-scale</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box hover--lift">Lift</div>
+            <p>hover-lift</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box hover--glow">Glow</div>
+            <p>hover-glow</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box hover--shadow">Shadow</div>
+            <p>hover-shadow</p>
+        </div>
+    </div>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="mouse-box hover--brighten">Brighten</div>
+            <p>hover-brighten</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box hover--darken">Darken</div>
+            <p>hover-darken</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box hover--rotate">Rotate</div>
+            <p>hover-rotate</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box hover--shake">Shake</div>
+            <p>hover-shake</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Pointer Events</h2>
+    <p>Control element interactivity.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="mouse-box pointer--auto">Auto</div>
+            <p>pointer-auto</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box pointer--none">None (click through)</div>
+            <p>pointer-none</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Text Selection</h2>
+    <p>Try selecting the text in each box.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="mouse-box selection--default">Select this text normally</div>
+            <p>default selection</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box selection--none">You cannot select this</div>
+            <p>user-select: none</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box selection--all">Click to select all</div>
+            <p>user-select: all</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box selection--custom">Custom selection color</div>
+            <p>custom ::selection</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Scroll Behavior</h2>
+    <p>Scrollable containers with different behaviors.</p>
+
+    <div class="demo-row">
+        <div class="demo-item scroll-demo">
+            <div class="scroll-container scroll--smooth">
+                <div class="scroll-content">
+                    <p>Smooth scrolling enabled</p>
+                    <p>Scroll down...</p>
+                    <p>Keep scrolling...</p>
+                    <p>More content...</p>
+                    <p>Almost there...</p>
+                    <p>End of content</p>
+                </div>
+            </div>
+            <p>smooth scroll</p>
+        </div>
+        <div class="demo-item scroll-demo">
+            <div class="scroll-container scroll--snap">
+                <div class="scroll-snap-item">Snap 1</div>
+                <div class="scroll-snap-item">Snap 2</div>
+                <div class="scroll-snap-item">Snap 3</div>
+            </div>
+            <p>scroll snap</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Custom Scrollbar</h2>
+    <p>Styled scrollbar appearance.</p>
+
+    <div class="demo-row">
+        <div class="demo-item scroll-demo">
+            <div class="scroll-container scrollbar--custom">
+                <div class="scroll-content">
+                    <p>Custom styled scrollbar</p>
+                    <p>Scroll to see...</p>
+                    <p>Notice the thin bar...</p>
+                    <p>Custom track color...</p>
+                    <p>Custom thumb style...</p>
+                    <p>End of content</p>
+                </div>
+            </div>
+            <p>custom scrollbar</p>
+        </div>
+        <div class="demo-item scroll-demo">
+            <div class="scroll-container scrollbar--hidden">
+                <div class="scroll-content">
+                    <p>Hidden scrollbar</p>
+                    <p>But still scrollable...</p>
+                    <p>Keep scrolling...</p>
+                    <p>No visible bar...</p>
+                    <p>Clean look...</p>
+                    <p>End of content</p>
+                </div>
+            </div>
+            <p>hidden scrollbar</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Touch Interactions</h2>
+    <p>Touch-optimized interaction styles.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="mouse-box touch--target">Touch Target (44px min)</div>
+            <p>touch-target</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box touch--feedback">Tap for Feedback</div>
+            <p>touch-feedback</p>
+        </div>
+        <div class="demo-item">
+            <div class="mouse-box touch--scroll">Touch Scroll</div>
+            <p>touch-scroll</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Focus States</h2>
+    <p>Tab through to see focus styles.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <button class="mouse-box focus--default" tabindex="0">Default Focus</button>
+            <p>default focus</p>
+        </div>
+        <div class="demo-item">
+            <button class="mouse-box focus--ring" tabindex="0">Focus Ring</button>
+            <p>focus-ring</p>
+        </div>
+        <div class="demo-item">
+            <button class="mouse-box focus--glow" tabindex="0">Focus Glow</button>
+            <p>focus-glow</p>
+        </div>
+        <div class="demo-item">
+            <button class="mouse-box focus--outline" tabindex="0">Focus Outline</button>
+            <p>focus-outline</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Usage</h2>
+
+    <div class="code-block"><span class="comment">// Cursor Mixins</span>
+        .button {
+        @include cursor_pointer;
+        }
+
+        .draggable {
+        @include cursor_grab;
+        &:active {
+        @include cursor_grabbing;
+        }
+        }
+
+        <span class="comment">// Custom cursor</span>
+        .custom {
+        @include cursor_custom('path/to/cursor.png', 'pointer');
+        }
+
+        <span class="comment">// Hover Effects</span>
+        .card {
+        @include hover_scale(1.05, 0.3s);
+        }
+
+        .interactive {
+        @include hover_transition(background-color, 0.2s, ease-in-out) {
+        background-color: lighten($primary, 10%);
+        }
+        }
+
+        <span class="comment">// Pointer Events</span>
+        .overlay {
+        @include pointer_events(none);
+        }
+
+        <span class="comment">// Text Selection</span>
+        .no-select {
+        user-select: none;
+        }
+
+        body {
+        @include custom-selection(#3b82f6, #ffffff);
+        }
+
+        <span class="comment">// Scroll Behavior</span>
+        .container {
+        @include scroll_smooth(true, true);
+        }
+
+        .carousel {
+        @include scroll_snap('x mandatory', 'center');
+        }
+    </div>
+</section>
+
+{%- endblock %}

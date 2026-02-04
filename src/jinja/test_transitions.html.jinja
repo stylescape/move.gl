@@ -1,0 +1,111 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Transitions — move.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Effects</p>
+<h1>Transitions</h1>
+{%- endblock %}
+
+{%- block content %}
+
+<section>
+    <h2>Hover Transitions</h2>
+    <p>Hover over the elements to see smooth transitions.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box transition-opacity"></div>
+            <p>opacity</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box transition-scale"></div>
+            <p>scale</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box transition-translate"></div>
+            <p>translate</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box transition-rotate"></div>
+            <p>rotate</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box transition-color"></div>
+            <p>color</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box transition-shadow"></div>
+            <p>shadow</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Timing Functions</h2>
+    <p>Different easing functions for transitions.</p>
+
+    <div class="demo-row demo-row--timing">
+        <div class="demo-item">
+            <div class="demo-box timing-linear"></div>
+            <p>linear</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box timing-ease"></div>
+            <p>ease</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box timing-ease-in"></div>
+            <p>ease-in</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box timing-ease-out"></div>
+            <p>ease-out</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box timing-ease-in-out"></div>
+            <p>ease-in-out</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box timing-bounce"></div>
+            <p>bounce</p>
+        </div>
+    </div>
+
+    <button class="btn btn--primary" onclick="runTimingDemo()">Run Demo</button>
+</section>
+
+<section>
+    <h2>Usage</h2>
+
+    <div class="code-block"><span class="comment">// SCSS Mixin</span>
+        .element {
+        @include transition(opacity, 0.3s, ease-out);
+        }
+
+        <span class="comment">// Multiple properties</span>
+        .card {
+        @include transition-multiple(
+        (transform, 0.3s, ease-out),
+        (opacity, 0.2s, ease-in),
+        (box-shadow, 0.3s, ease)
+        );
+        }
+
+        <span class="comment">// Utility classes</span>
+        &lt;div class="transition-all"&gt;...&lt;/div&gt;
+        &lt;div class="transition-opacity"&gt;...&lt;/div&gt;
+        &lt;div class="transition-transform"&gt;...&lt;/div&gt;
+    </div>
+</section>
+
+<script>
+    function runTimingDemo() {
+        const boxes = document.querySelectorAll('.demo-row--timing .demo-box');
+        boxes.forEach(box => {
+            box.classList.toggle('active');
+        });
+    }
+</script>
+
+{%- endblock %}

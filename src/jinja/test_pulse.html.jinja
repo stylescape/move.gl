@@ -1,0 +1,67 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Pulse Animations — move.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Animations</p>
+<h1>Pulse Animations</h1>
+{%- endblock %}
+
+{%- block content %}
+
+<section>
+    <h2>Pulse</h2>
+    <p>Scale-based pulsing effects for attention and emphasis.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate-pulse-demo"></div>
+            <p>pulse</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-pulse-slow-demo"></div>
+            <p>pulse-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-pulse-fast-demo"></div>
+            <p>pulse-fast</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Heartbeat</h2>
+    <p>Organic heartbeat-like pulsing animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate-heartbeat-demo"></div>
+            <p>heartbeat</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Usage</h2>
+
+    <div class="code-block"><span class="comment">// SCSS Mixin</span>
+        .element {
+        @include animate_pulse;
+        }
+
+        <span class="comment">// With custom scale</span>
+        .element {
+        @include animate_pulse(
+        $scale_min: 0.9,
+        $scale_max: 1.2,
+        $duration: 1s
+        );
+        }
+
+        <span class="comment">// Utility classes</span>
+        &lt;div class="animate-pulse"&gt;...&lt;/div&gt;
+        &lt;div class="animate-pulse-slow"&gt;...&lt;/div&gt;
+    </div>
+</section>
+
+{%- endblock %}

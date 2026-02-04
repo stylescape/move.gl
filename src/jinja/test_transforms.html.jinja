@@ -1,0 +1,115 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Transforms — move.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Effects</p>
+<h1>Transforms</h1>
+{%- endblock %}
+
+{%- block content %}
+
+<section>
+    <h2>2D Transforms</h2>
+    <p>Hover over the elements to see transform effects.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box transform-translate-x"></div>
+            <p>translateX</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box transform-translate-y"></div>
+            <p>translateY</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box transform-scale"></div>
+            <p>scale</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box transform-rotate"></div>
+            <p>rotate</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box transform-skew-x"></div>
+            <p>skewX</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box transform-skew-y"></div>
+            <p>skewY</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>3D Transforms</h2>
+    <p>Perspective-based 3D transforms.</p>
+
+    <div class="demo-row">
+        <div class="demo-item perspective-container">
+            <div class="demo-box transform-rotate-x"></div>
+            <p>rotateX</p>
+        </div>
+        <div class="demo-item perspective-container">
+            <div class="demo-box transform-rotate-y"></div>
+            <p>rotateY</p>
+        </div>
+        <div class="demo-item perspective-container">
+            <div class="demo-box transform-rotate-z"></div>
+            <p>rotateZ</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Combined Transforms</h2>
+    <p>Multiple transforms combined.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box transform-combined-1"></div>
+            <p>scale + rotate</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box transform-combined-2"></div>
+            <p>translate + scale</p>
+        </div>
+        <div class="demo-item perspective-container">
+            <div class="demo-box transform-combined-3"></div>
+            <p>3D rotate + scale</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Usage</h2>
+
+    <div class="code-block"><span class="comment">// SCSS Mixin</span>
+        .element {
+        @include transform-scale(1.1);
+        }
+
+        .element-rotate {
+        @include transform-rotate(45deg);
+        }
+
+        <span class="comment">// Combined transforms</span>
+        .card {
+        @include transform(
+        translateY(-10px) scale(1.05) rotate(2deg)
+        );
+        }
+
+        <span class="comment">// 3D transforms</span>
+        .flip-card {
+        @include transform-3d(rotateY(180deg));
+        }
+
+        <span class="comment">// Utility classes</span>
+        &lt;div class="scale-110"&gt;...&lt;/div&gt;
+        &lt;div class="rotate-45"&gt;...&lt;/div&gt;
+        &lt;div class="-translate-y-2"&gt;...&lt;/div&gt;
+    </div>
+</section>
+
+{%- endblock %}

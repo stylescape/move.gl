@@ -1,0 +1,116 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Attention Animations — move.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Animations</p>
+<h1>Attention Seekers</h1>
+{%- endblock %}
+
+{%- block content %}
+
+<section>
+    <h2>Flash & Blink</h2>
+    <p>Visibility-based attention animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate-flash-demo"></div>
+            <p>flash</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-blink-demo"></div>
+            <p>blink</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Beat</h2>
+    <p>Beat and rhythm-based animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate-beat-demo"></div>
+            <p>beat</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-beat-fade-demo"></div>
+            <p>beat-fade</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Tada & Pop</h2>
+    <p>Celebratory entrance animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate-tada-demo" id="tada-demo"></div>
+            <p>tada</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-pop-demo" id="pop-demo"></div>
+            <p>pop</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-rubber-demo" id="rubber-demo"></div>
+            <p>rubber-band</p>
+        </div>
+    </div>
+
+    <button class="btn btn--primary" onclick="replayTada()">Replay Animations</button>
+</section>
+
+<section>
+    <h2>Swing & Sway</h2>
+    <p>Pendulum-like swinging motions.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate-swing-demo"></div>
+            <p>swing</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-sway-demo"></div>
+            <p>sway</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-nod-demo"></div>
+            <p>nod</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Usage</h2>
+
+    <div class="code-block"><span class="comment">// SCSS Mixin</span>
+        .element {
+        @include animate_tada;
+        }
+
+        .element {
+        @include animate_flash;
+        }
+
+        <span class="comment">// Utility classes</span>
+        &lt;div class="animate-tada"&gt;...&lt;/div&gt;
+        &lt;div class="animate-flash"&gt;...&lt;/div&gt;
+        &lt;div class="animate-swing"&gt;...&lt;/div&gt;
+    </div>
+</section>
+
+<script>
+    function replayTada() {
+        const demos = document.querySelectorAll('[id$="-demo"]');
+        demos.forEach(demo => {
+            demo.style.animation = 'none';
+            demo.offsetHeight;
+            demo.style.animation = null;
+        });
+    }
+</script>
+
+{%- endblock %}

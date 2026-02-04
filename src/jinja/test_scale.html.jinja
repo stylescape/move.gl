@@ -1,0 +1,107 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Scale Animations — move.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Animations</p>
+<h1>Scale Animations</h1>
+{%- endblock %}
+
+{%- block content %}
+
+<section>
+    <h2>Scale In</h2>
+    <p>Scale-based entrance animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate-scale-in-demo" id="scale-in-demo"></div>
+            <p>scale-in</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-scale-in-up-demo" id="scale-in-up-demo"></div>
+            <p>scale-in-up</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-scale-in-down-demo" id="scale-in-down-demo"></div>
+            <p>scale-in-down</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-scale-in-left-demo" id="scale-in-left-demo"></div>
+            <p>scale-in-left</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-scale-in-right-demo" id="scale-in-right-demo"></div>
+            <p>scale-in-right</p>
+        </div>
+    </div>
+
+    <button class="btn btn--primary" onclick="replayScaleIn()">Replay Animations</button>
+</section>
+
+<section>
+    <h2>Scale Out</h2>
+    <p>Scale-based exit animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate-scale-out-demo" id="scale-out-demo"></div>
+            <p>scale-out</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-scale-out-up-demo" id="scale-out-up-demo"></div>
+            <p>scale-out-up</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate-scale-out-down-demo" id="scale-out-down-demo"></div>
+            <p>scale-out-down</p>
+        </div>
+    </div>
+
+    <button class="btn btn--primary" onclick="replayScaleOut()">Replay Animations</button>
+</section>
+
+<section>
+    <h2>Usage</h2>
+
+    <div class="code-block"><span class="comment">// SCSS Mixin</span>
+        .element {
+        @include animate_scale_in;
+        }
+
+        <span class="comment">// With custom scale</span>
+        .element {
+        @include animate_scale_in(
+        $start_scale: 0,
+        $end_scale: 1,
+        $duration: 0.5s
+        );
+        }
+
+        <span class="comment">// Utility classes</span>
+        &lt;div class="animate-scale-in"&gt;...&lt;/div&gt;
+        &lt;div class="animate-scale-in-up"&gt;...&lt;/div&gt;
+    </div>
+</section>
+
+<script>
+    function replayScaleIn() {
+        const demos = document.querySelectorAll('[id^="scale-in"]');
+        demos.forEach(demo => {
+            demo.style.animation = 'none';
+            demo.offsetHeight;
+            demo.style.animation = null;
+        });
+    }
+
+    function replayScaleOut() {
+        const demos = document.querySelectorAll('[id^="scale-out"]');
+        demos.forEach(demo => {
+            demo.style.animation = 'none';
+            demo.offsetHeight;
+            demo.style.animation = null;
+        });
+    }
+</script>
+
+{%- endblock %}

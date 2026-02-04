@@ -1,0 +1,254 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Keyframes — move.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Mixins</p>
+<h1>Keyframe Animations</h1>
+{%- endblock %}
+
+{%- block content %}
+
+<section>
+    <h2>Beat Animations</h2>
+    <p>Pulsing heartbeat-style animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--beat">♥</div>
+            <p>beat</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--beat-fade">♥</div>
+            <p>beat-fade</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--beat-double">♥</div>
+            <p>beat-double</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Flash Animations</h2>
+    <p>Attention-grabbing flash effects.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--flash">Flash</div>
+            <p>flash</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--flash-slow">Flash</div>
+            <p>flash-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--flash-fast">Flash</div>
+            <p>flash-fast</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Pulse Variations</h2>
+    <p>Rhythmic pulsing effects.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--pulse">Pulse</div>
+            <p>pulse</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--pulse-soft">Pulse</div>
+            <p>pulse-soft</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--pulse-strong">Pulse</div>
+            <p>pulse-strong</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Scale Keyframes</h2>
+    <p>Size-changing animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--scale-up">Scale</div>
+            <p>scale-up</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--scale-down">Scale</div>
+            <p>scale-down</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--scale-bounce">Scale</div>
+            <p>scale-bounce</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Rotation Keyframes</h2>
+    <p>Spinning and rotating animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--rotate">↻</div>
+            <p>rotate</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--rotate-reverse">↺</div>
+            <p>rotate-reverse</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--rotate-90">↻</div>
+            <p>rotate-90</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--wobble">~</div>
+            <p>wobble</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Translate Keyframes</h2>
+    <p>Movement-based animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--slide-x">→</div>
+            <p>slide-x</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--slide-y">↓</div>
+            <p>slide-y</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--float">☁</div>
+            <p>float</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--bounce-y">⬆</div>
+            <p>bounce-y</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Fade Keyframes</h2>
+    <p>Opacity-based animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--fade">Fade</div>
+            <p>fade</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--fade-in-out">Fade</div>
+            <p>fade-in-out</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--blink">Blink</div>
+            <p>blink</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Skew Keyframes</h2>
+    <p>Skewing and shearing animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--skew-x">Skew</div>
+            <p>skew-x</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--skew-y">Skew</div>
+            <p>skew-y</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--jello">Jello</div>
+            <p>jello</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>3D Keyframes</h2>
+    <p>3D transform-based animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--flip-x">Flip</div>
+            <p>flip-x</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--flip-y">Flip</div>
+            <p>flip-y</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--swing">Swing</div>
+            <p>swing</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--tada">Tada</div>
+            <p>tada</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Custom Keyframes</h2>
+    <p>Create your own keyframe animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--custom-bounce">Custom</div>
+            <p>custom-bounce</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--custom-shake">Custom</div>
+            <p>custom-shake</p>
+        </div>
+        <div class="demo-item">
+            <div class="keyframe-box keyframe--custom-rubber">Custom</div>
+            <p>custom-rubber</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Usage</h2>
+
+    <div class="code-block"><span class="comment">// Define custom keyframes using the mixin</span>
+        @include keyframes('animate_bounce') {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-30px); }
+        100% { transform: translateY(0); }
+        }
+
+        <span class="comment">// Use predefined beat keyframes</span>
+        @include keyframes_beat;
+        @include keyframes_beat_fade;
+
+        <span class="comment">// Apply animation to an element</span>
+        .heartbeat {
+        animation: keyframes_beat 1s ease-in-out infinite;
+        }
+
+        .pulsing {
+        animation: keyframes_beat_fade 1.5s ease infinite;
+        }
+
+        <span class="comment">// Custom animation with keyframes</span>
+        .bouncing-element {
+        animation: animate_bounce 0.6s ease infinite;
+        }
+    </div>
+</section>
+
+{%- endblock %}
