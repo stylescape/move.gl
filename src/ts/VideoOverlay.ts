@@ -1,71 +1,135 @@
+// ============================================================================
+// move.gl | Video Overlay
+// ============================================================================
 // Copyright 2025 Scape Agency BV
+// Licensed under MIT License
+// ============================================================================
 
 /**
- * @title Transparent Video Overlay Handler
- * @notice Manages a transparent video overlay, controlling its visibility,
- * playback, and effects.
- * @dev Provides methods to show, hide, toggle, and dynamically change the
- * video source with visual effects.
+ * Video overlay options
  */
- class TransparentVideoOverlay {
-    private videoElement: HTMLVideoElement;
+export interface VideoOverlayOptions {
+    /** Fade transition duration in milliseconds */
+    fadeTransitionDuration?: number;
+    /** Whether to loop the video */
+    loop?: boolean;
+    /** Initial video source URL */
+    initialSource?: string;
+}
+
+/**
+ * Transparent Video Overlay Handler
+ *
+ * Manages a transparent video overlay, controlling its visibility,
+ * playback, and effects.
+ *
+ * @example
+ * ```typescript
+ * const overlay = new TransparentVideoOverlay('myVideo', {
+ *     fadeTransitionDuration: 500,
+ *     loop: true
+ * });
+ * overlay.showOverlay();
+ * ```
+ */
+export class TransparentVideoOverlay {
+    private videoElement: HTMLVideoElement | null = null;
     private isVisible: boolean = false;
+    private fadeTransitionDuration: number;
+    private loop: boolean;
 
-    constructor(videoElementId: string) {
-        this.videoElement = document.getElementById(
-            videoElementId
-        ) as HTMLVideoElement;
-        this.setupVideo();
+    /**
+     * Creates a new TransparentVideoOverlay instance.
+     * @param videoElementId - The ID of the video element to manage.
+     * @param options - Optional configuration options.
+     */
+    constructor(videoElementId: string, options: VideoOverlayOptions = {}) {
+        const element = document.getElementById(videoElementId);
+        if (element instanceof HTMLVideoElement) {
+            this.videoElement = element;
+        } else {
+            console.warn(`Element with id "${videoElementId}" is not a video element`);
+        }
+
+        this.fadeTransitionDuration = options.fadeTransitionDuration ?? 500;
+        this.loop = options.loop ?? true;
+
+        if (this.videoElement) {
+            this.setupVideo();
+            if (options.initialSource) {
+                this.changeVideoSource(options.initialSource, false);
+            }
+        }
     }
 
     /**
-     * @notice Initializes video settings and event listeners for enhanced
-     * control.
+     * Initializes video settings and event listeners.
      */
-    private setupVideo() {
-        this.videoElement.addEventListener(
-            "ended", () => this.videoElement.play()
-        ); // Ensure looping
-        this.videoElement.addEventListener("loadeddata", () => {
-            console.log("Video loaded successfully.");
+    private setupVideo(): void {
+        if (!this.videoElement) return;
+
+        if (this.loop) {
+            this.videoElement.addEventListener('ended', () => {
+                this.videoElement?.play();
+            });
+        }
+
+        this.videoElement.addEventListener('loadeddata', () => {
+            console.log('Video loaded successfully.');
         });
-        this.videoElement.addEventListener("error", (e) => {
-            console.error("Error loading video:", e);
+
+        this.videoElement.addEventListener('error', (e) => {
+            console.error('Error loading video:', e);
         });
+
+        // Set initial style for smooth transitions
+        this.videoElement.style.transition = `opacity ${this.fadeTransitionDuration}ms ease`;
     }
 
     /**
-     * @notice Shows the video overlay with a fade-in effect.
-     * @dev Uses CSS transitions to create a fade-in effect.
+     * Shows the video overlay with a fade-in effect.
      */
-    public showOverlay() {
-        this.videoElement.style.display = "block";
-        this.videoElement.style.opacity = "0";
-        setTimeout(() => {
-            this.videoElement.style.opacity = "1";
-            this.videoElement.play();
-        }, 10); // Timeout to ensure CSS transition takes place
+    public showOverlay(): void {
+        if (!this.videoElement) return;
+
+        this.videoElement.style.display = 'block';
+        this.videoElement.style.opacity = '0';
+
+        // Use requestAnimationFrame for smoother transition
+        requestAnimationFrame(() => {
+            if (this.videoElement) {
+                this.videoElement.style.opacity = '1';
+                this.videoElement.play().catch(err => {
+                    console.warn('Auto-play prevented:', err);
+                });
+            }
+        });
+
         this.isVisible = true;
     }
 
     /**
-     * @notice Hides the video overlay with a fade-out effect.
-     * @dev Uses CSS transitions to create a fade-out effect before pausing
-     * and hiding the video.
+     * Hides the video overlay with a fade-out effect.
      */
-    public hideOverlay() {
-        this.videoElement.style.opacity = "0";
+    public hideOverlay(): void {
+        if (!this.videoElement) return;
+
+        this.videoElement.style.opacity = '0';
+
         setTimeout(() => {
-            this.videoElement.style.display = "none";
-            this.videoElement.pause();
-        }, 500); // Match timeout to CSS transition duration
+            if (this.videoElement) {
+                this.videoElement.style.display = 'none';
+                this.videoElement.pause();
+            }
+        }, this.fadeTransitionDuration);
+
         this.isVisible = false;
     }
 
     /**
-     * @notice Toggles the visibility of the video overlay with effects.
+     * Toggles the visibility of the video overlay.
      */
-    public toggleOverlay() {
+    public toggleOverlay(): void {
         if (this.isVisible) {
             this.hideOverlay();
         } else {
@@ -74,43 +138,68 @@
     }
 
     /**
-     * @notice Changes the video source and optionally plays it immediately.
-     * @param videoUrl The URL of the new video source.
-     * @param autoPlay Determines if the video should play immediately after
-     * loading.
+     * Changes the video source and optionally plays it immediately.
+     * @param videoUrl - The URL of the new video source.
+     * @param autoPlay - Whether the video should play immediately after loading.
      */
-    public changeVideoSource(videoUrl: string, autoPlay: boolean = true) {
+    public changeVideoSource(videoUrl: string, autoPlay: boolean = true): void {
+        if (!this.videoElement) return;
+
         this.videoElement.src = videoUrl;
-        this.videoElement.load(); // Reload video to apply new source
+        this.videoElement.load();
+
         if (autoPlay) {
             this.showOverlay();
         }
     }
+
+    /**
+     * Gets the visibility state of the overlay.
+     */
+    public getIsVisible(): boolean {
+        return this.isVisible;
+    }
+
+    /**
+     * Cleans up the video overlay instance.
+     */
+    public destroy(): void {
+        if (this.videoElement) {
+            this.videoElement.pause();
+            this.videoElement.src = '';
+            this.videoElement = null;
+        }
+    }
 }
 
-// Example usage:
-const videoOverlay = new TransparentVideoOverlay("videoOverlay");
-videoOverlay.showOverlay(); // Show the overlay with fade-in effect
-
-
-
-
-
-
-
-function supportsHEVCAlpha() {
+/**
+ * Checks if the browser supports HEVC alpha channel videos.
+ * This is primarily supported in Safari.
+ * @returns Whether HEVC alpha is supported.
+ */
+export function supportsHEVCAlpha(): boolean {
     const navigator = window.navigator;
-    const ua = navigator.userAgent.toLowerCase()
-    const hasMediaCapabilities = !!(navigator.mediaCapabilities && navigator.mediaCapabilities.decodingInfo)
-    const isSafari = ((ua.indexOf("safari") != -1) && (!(ua.indexOf("chrome")!= -1) && (ua.indexOf("version/")!= -1)))
-    return isSafari && hasMediaCapabilities
+    const ua = navigator.userAgent.toLowerCase();
+    const hasMediaCapabilities = !!(
+        navigator.mediaCapabilities &&
+        navigator.mediaCapabilities.decodingInfo
+    );
+    const isSafari = (
+        ua.indexOf('safari') !== -1 &&
+        ua.indexOf('chrome') === -1 &&
+        ua.indexOf('version/') !== -1
+    );
+    return isSafari && hasMediaCapabilities;
 }
 
-// Here’s an example of how this comes together in HTML:
+/**
+ * Gets the appropriate video source based on browser support.
+ * @param hevcSource - The HEVC/MOV source for Safari.
+ * @param webmSource - The WebM source for other browsers.
+ * @returns The appropriate video source URL.
+ */
+export function getOptimalVideoSource(hevcSource: string, webmSource: string): string {
+    return supportsHEVCAlpha() ? hevcSource : webmSource;
+}
 
-<video id="player" loop muted autoplay playsinline></video>
-
-<script>
-const player = document.getElementById("player");
-player.src = supportsHEVCAlpha() ? "output.mov" : "output.webm";
-</script>
+export default TransparentVideoOverlay;

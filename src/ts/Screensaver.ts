@@ -1,61 +1,95 @@
+// ============================================================================
+// move.gl | Screensaver
+// ============================================================================
 // Copyright 2025 Scape Agency BV
-
+// Licensed under MIT License
+// ============================================================================
 
 /**
- * @title Screensaver Class
- * @notice Handles the activation and deactivation of a screensaver based on
- * user inactivity.
- * @dev This class provides methods to start and stop the screensaver, manage
- * media sources, and handle user interactions.
+ * Screensaver Configuration Options
  */
- class Screensaver {
+export interface ScreensaverOptions {
+    /** Inactivity timeout in milliseconds */
+    timeout: number;
+    /** URL for the video to play */
+    videoUrl?: string;
+    /** URL for the audio to play */
+    audioUrl?: string;
+    /** ID of the screensaver container element */
+    containerId?: string;
+    /** ID of the video element */
+    videoId?: string;
+    /** ID of the audio element */
+    audioId?: string;
+}
 
+/**
+ * Screensaver Class
+ *
+ * Handles the activation and deactivation of a screensaver based on
+ * user inactivity. Provides methods to start and stop the screensaver,
+ * manage media sources, and handle user interactions.
+ *
+ * @example
+ * ```typescript
+ * const screensaver = new Screensaver({
+ *     timeout: 300000, // 5 minutes
+ *     videoUrl: 'path/to/video.mp4',
+ *     audioUrl: 'path/to/audio.mp3'
+ * });
+ * screensaver.setVolume(0.5);
+ * ```
+ */
+export class Screensaver {
     private timeoutId: number | undefined;
     private readonly timeout: number;
-    private screensaverElement: HTMLElement | undefined;
-    private videoElement: HTMLVideoElement | undefined;
-    private audioElement: HTMLAudioElement | undefined;
+    private screensaverElement: HTMLElement | null = null;
+    private videoElement: HTMLVideoElement | null = null;
+    private audioElement: HTMLAudioElement | null = null;
     private isActive: boolean = false;
+    private readonly options: ScreensaverOptions;
 
     /**
-     * @notice Initializes a new Screensaver instance.
-     * @param timeout The inactivity timeout in milliseconds after which the
-     * screensaver activates.
-     * @param videoUrl The URL for the video to be played when the screensaver
-     * activates.
-     * @param audioUrl The URL for the audio to be played when the screensaver
-     * activates.
+     * Creates a new Screensaver instance.
+     * @param options - Configuration options for the screensaver.
      */
-    constructor(timeout: number, videoUrl: string, audioUrl: string) {
-        this.timeout = timeout;
+    constructor(options: ScreensaverOptions) {
+        this.options = {
+            containerId: 'screensaver',
+            videoId: 'screensaverVideo',
+            audioId: 'screensaverAudio',
+            ...options
+        };
+        this.timeout = options.timeout;
         this.initializeElements();
-        this.loadMedia(videoUrl, audioUrl);
+        if (options.videoUrl && options.audioUrl) {
+            this.loadMedia(options.videoUrl, options.audioUrl);
+        }
         this.setupEventListeners();
+        this.startScreensaverTimeout();
     }
 
     /**
-     * @notice Initializes HTML elements from the DOM.
-     * @dev Queries the DOM to get the screensaver, video, and audio elements
-     * by their IDs.
+     * Initializes HTML elements from the DOM.
      */
-    private initializeElements() {
-        this.screensaverElement = document.getElementById("screensaver")!;
-        this.videoElement = document.getElementById(
-            "screensaverVideo"
-        ) as HTMLVideoElement;
-        this.audioElement = document.getElementById(
-            "screensaverAudio"
-        ) as HTMLAudioElement;
+    private initializeElements(): void {
+        this.screensaverElement = document.getElementById(this.options.containerId!);
+        this.videoElement = document.getElementById(this.options.videoId!) as HTMLVideoElement | null;
+        this.audioElement = document.getElementById(this.options.audioId!) as HTMLAudioElement | null;
     }
 
     /**
-     * @notice Loads media sources into the video and audio elements.
-     * @param videoUrl The source URL of the video.
-     * @param audioUrl The source URL of the audio.
+     * Loads media sources into the video and audio elements.
+     * @param videoUrl - The source URL of the video.
+     * @param audioUrl - The source URL of the audio.
      */
-    private loadMedia(videoUrl: string, audioUrl: string) {
-        this.videoElement.src = videoUrl;
-        this.audioElement.src = audioUrl;
+    private loadMedia(videoUrl: string, audioUrl: string): void {
+        if (this.videoElement) {
+            this.videoElement.src = videoUrl;
+        }
+        if (this.audioElement) {
+            this.audioElement.src = audioUrl;
+        }
     }
 
     /**
@@ -95,23 +129,26 @@
     };
 
     /**
-     * @notice Activates the screensaver, displaying elements and playing media.
+     * Activates the screensaver, displaying elements and playing media.
      */
-    private activateScreensaver = () => {
-        this.screensaverElement.style.display = 'block';
-        this.videoElement.play();
-        this.audioElement.play();
+    private activateScreensaver = (): void => {
+        if (this.screensaverElement) {
+            this.screensaverElement.style.display = 'block';
+        }
+        this.videoElement?.play();
+        this.audioElement?.play();
         this.isActive = true;
     };
 
     /**
-     * @notice Stops the screensaver and hides its elements.
-     * @dev Pauses media playback and clears the activation timeout.
+     * Stops the screensaver and hides its elements.
      */
-    private stopScreensaver() {
-        this.screensaverElement.style.display = 'none';
-        this.videoElement.pause();
-        this.audioElement.pause();
+    public stopScreensaver(): void {
+        if (this.screensaverElement) {
+            this.screensaverElement.style.display = 'none';
+        }
+        this.videoElement?.pause();
+        this.audioElement?.pause();
         this.isActive = false;
 
         if (this.timeoutId !== undefined) {
@@ -121,20 +158,35 @@
     }
 
     /**
-     * @notice Sets the volume for both video and audio elements of the
-     * screensaver.
-     * @param volume A number between 0.0 and 1.0 indicating the volume level.
+     * Sets the volume for both video and audio elements.
+     * @param volume - A number between 0.0 and 1.0 indicating the volume level.
      */
-    public setVolume(volume: number) {
-        this.videoElement.volume = volume;
-        this.audioElement.volume = volume;
+    public setVolume(volume: number): void {
+        const clampedVolume = Math.max(0, Math.min(1, volume));
+        if (this.videoElement) {
+            this.videoElement.volume = clampedVolume;
+        }
+        if (this.audioElement) {
+            this.audioElement.volume = clampedVolume;
+        }
+    }
+
+    /**
+     * Returns whether the screensaver is currently active.
+     */
+    public getIsActive(): boolean {
+        return this.isActive;
+    }
+
+    /**
+     * Cleans up event listeners and stops the screensaver.
+     */
+    public destroy(): void {
+        this.stopScreensaver();
+        ['mousemove', 'keydown', 'touchstart'].forEach(event => {
+            document.removeEventListener(event, this.resetScreensaver);
+        });
     }
 }
 
-// Example usage:
-const screensaver = new Screensaver(
-    300000,
-    'path/to/video.mp4',
-    'path/to/audio.mp3'
-); // Initialize the screensaver with a 5-minute timeout
-screensaver.setVolume(0.5); // Set initial volume to 50%
+export default Screensaver;

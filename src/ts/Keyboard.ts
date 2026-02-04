@@ -1,14 +1,41 @@
+// ============================================================================
+// move.gl | Virtual Keyboard
+// ============================================================================
 // Copyright 2025 Scape Agency BV
-
+// Licensed under MIT License
+// ============================================================================
 
 /**
- * @title Virtual Keyboard
- * @notice Manages the rendering and interaction of a virtual keyboard on
- * the web.
- * @dev This class supports multiple layouts (default, shift, special) and
- * handles both mouse and keyboard inputs, including touch support.
+ * Keyboard layout configuration
  */
- class VirtualKeyboard {
+export interface KeyboardLayout {
+    [mode: string]: string[][];
+}
+
+/**
+ * Virtual Keyboard Configuration Options
+ */
+export interface VirtualKeyboardOptions {
+    /** Custom keyboard layout */
+    layout?: KeyboardLayout;
+    /** Callback when a key is pressed */
+    onKeyPress?: (key: string) => void;
+}
+
+/**
+ * Virtual Keyboard
+ *
+ * Manages the rendering and interaction of a virtual keyboard on the web.
+ * Supports multiple layouts (default, shift, special) and handles both
+ * mouse and keyboard inputs, including touch support.
+ *
+ * @example
+ * ```typescript
+ * const keyboard = new VirtualKeyboard('textInput', 'keyboard');
+ * keyboard.switchMode('special');
+ * ```
+ */
+export class VirtualKeyboard {
 
     private keys: { [mode: string]: string[][] } = {
         "default": [
@@ -153,10 +180,15 @@
             this.renderKeyboard();
         }
     }
+
+    /**
+     * Removes all event listeners and cleans up.
+     */
+    public destroy(): void {
+        document.removeEventListener('keydown', this.handlePhysicalKeyPress);
+        this.keyboardElement.removeEventListener('touchstart', this.handleTouchStart);
+        this.keyboardElement.innerHTML = '';
+    }
 }
 
-// Example usage:
-const keyboard = new VirtualKeyboard("textInput", "keyboard");
-document.getElementById(
-    "switchToSpecial"
-).addEventListener("click", () => keyboard.switchMode("special"));
+export default VirtualKeyboard;
