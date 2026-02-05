@@ -1,0 +1,89 @@
+// ============================================================================
+// move.gl | Twist Keyframes
+// ============================================================================
+// Copyright 2025 Scape Agency BV
+// Licensed under MIT License
+// ============================================================================
+
+////
+/// Twist Keyframes Module
+/// ===========================================================================
+///
+/// Provides parameterized keyframe mixins for twist animations.
+/// Combines rotation with scale changes.
+///
+/// @group Keyframes
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+////
+
+
+// ============================================================================
+// Keyframes
+// ============================================================================
+
+
+///
+/// Twist Keyframes
+/// @name keyframes_animate_twist
+/// @param {Number} $scale_end [0.9] - The scale factor at midpoint.
+/// @param {Angle} $rotation [10deg] - The rotation angle at midpoint.
+///
+@mixin keyframes_animate_twist($scale_end: $animate_scale_twist_end, $rotation: $animate_angle_twist) {
+    @keyframes animate_twist {
+        0%, 100% { transform: scale(1) rotate(0deg); }
+        50% { transform: scale($scale_end) rotate($rotation); }
+    }
+}
+
+
+///
+/// Twist Slow Keyframes
+/// @name keyframes_animate_twist_slow
+/// @param {Number} $scale_end [0.95] - The scale factor at midpoint.
+/// @param {Angle} $rotation [5deg] - The rotation angle at midpoint.
+///
+@mixin keyframes_animate_twist_slow($scale_end: $animate_scale_twist_slow_end, $rotation: $animate_angle_twist_slow) {
+    @keyframes animate_twist_slow {
+        0%, 100% { transform: scale(1) rotate(0deg); }
+        50% { transform: scale($scale_end) rotate($rotation); }
+    }
+}
+
+
+///
+/// Twist Fast Keyframes
+/// @name keyframes_animate_twist_fast
+/// @param {Number} $scale_end [0.85] - The scale factor at midpoint.
+/// @param {Angle} $rotation [15deg] - The rotation angle at midpoint.
+///
+@mixin keyframes_animate_twist_fast($scale_end: $animate_scale_twist_fast_end, $rotation: $animate_angle_twist_fast) {
+    @keyframes animate_twist_fast {
+        0%, 100% { transform: scale(1) rotate(0deg); }
+        50% { transform: scale($scale_end) rotate($rotation); }
+    }
+}
+
+
+///
+/// Twist Color Keyframes
+/// @name keyframes_animate_twist_color
+/// @param {Number} $scale_end [0.9] - The scale factor at midpoint.
+/// @param {Angle} $rotation [10deg] - The rotation angle at midpoint.
+/// @param {Color} $color_start [inherit] - The starting color.
+/// @param {Color} $color_end [inherit] - The ending color.
+///
+@mixin keyframes_animate_twist_color($scale_end: $animate_scale_twist_end, $rotation: $animate_angle_twist, $color_start: inherit, $color_end: inherit) {
+    @keyframes animate_twist_color {
+        0%, 100% {
+            transform: scale(1) rotate(0deg);
+            color: $color_start;
+        }
+        50% {
+            transform: scale($scale_end) rotate($rotation);
+            color: $color_end;
+        }
+    }
+}

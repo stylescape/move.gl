@@ -1,0 +1,345 @@
+////
+///
+/// Slide Keyframes Mixins Module
+/// ===========================================================================
+///
+/// Defines keyframes for slide animations including slide in/out from all
+/// directions. These keyframes create smooth entrance and exit animations
+/// for UI elements.
+///
+/// @group Keyframes
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../variables" as *;
+@use "_base" as *;
+
+
+// ============================================================================
+// Slide In Keyframes
+// ============================================================================
+
+///
+/// Slide in from left.
+///
+/// @param {Length} $distance [$animate_translate_slide] - Starting distance
+///
+@mixin keyframes_slide_in_left($distance: $animate_translate_slide) {
+    @include keyframes(animate_slide_in_left) {
+        from {
+            transform: translateX(-$distance);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+}
+
+///
+/// Slide in from right.
+///
+/// @param {Length} $distance [$animate_translate_slide] - Starting distance
+///
+@mixin keyframes_slide_in_right($distance: $animate_translate_slide) {
+    @include keyframes(animate_slide_in_right) {
+        from {
+            transform: translateX($distance);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+}
+
+///
+/// Slide in from top.
+///
+/// @param {Length} $distance [$animate_translate_slide] - Starting distance
+///
+@mixin keyframes_slide_in_up($distance: $animate_translate_slide) {
+    @include keyframes(animate_slide_in_up) {
+        from {
+            transform: translateY($distance);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+}
+
+///
+/// Slide in from bottom.
+///
+/// @param {Length} $distance [$animate_translate_slide] - Starting distance
+///
+@mixin keyframes_slide_in_down($distance: $animate_translate_slide) {
+    @include keyframes(animate_slide_in_down) {
+        from {
+            transform: translateY(-$distance);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+}
+
+
+// ============================================================================
+// Slide Out Keyframes
+// ============================================================================
+
+///
+/// Slide out to left.
+///
+/// @param {Length} $distance [$animate_translate_slide] - Ending distance
+///
+@mixin keyframes_slide_out_left($distance: $animate_translate_slide) {
+    @include keyframes(animate_slide_out_left) {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(-$distance);
+            opacity: 0;
+        }
+    }
+}
+
+///
+/// Slide out to right.
+///
+/// @param {Length} $distance [$animate_translate_slide] - Ending distance
+///
+@mixin keyframes_slide_out_right($distance: $animate_translate_slide) {
+    @include keyframes(animate_slide_out_right) {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX($distance);
+            opacity: 0;
+        }
+    }
+}
+
+///
+/// Slide out to top.
+///
+/// @param {Length} $distance [$animate_translate_slide] - Ending distance
+///
+@mixin keyframes_slide_out_up($distance: $animate_translate_slide) {
+    @include keyframes(animate_slide_out_up) {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(-$distance);
+            opacity: 0;
+        }
+    }
+}
+
+///
+/// Slide out to bottom.
+///
+/// @param {Length} $distance [$animate_translate_slide] - Ending distance
+///
+@mixin keyframes_slide_out_down($distance: $animate_translate_slide) {
+    @include keyframes(animate_slide_out_down) {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateY($distance);
+            opacity: 0;
+        }
+    }
+}
+
+
+// ============================================================================
+// Slide with Fade Keyframes
+// ============================================================================
+
+///
+/// Slide with fade in from above.
+///
+/// @param {Length} $distance [50px] - Starting distance
+///
+@mixin keyframes_slide_fade_in_up($distance: $animate_translate_slide_fade) {
+    @include keyframes(animate_slide_fade_in_up) {
+        from {
+            transform: translateY($distance);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+}
+
+///
+/// Slide with fade in from below.
+///
+/// @param {Length} $distance [50px] - Starting distance
+///
+@mixin keyframes_slide_fade_in_down($distance: $animate_translate_slide_fade) {
+    @include keyframes(animate_slide_fade_in_down) {
+        from {
+            transform: translateY(-$distance);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+}
+
+///
+/// Slide with fade in from left.
+///
+/// @param {Length} $distance [50px] - Starting distance
+///
+@mixin keyframes_slide_fade_in_left($distance: $animate_translate_slide_fade) {
+    @include keyframes(animate_slide_fade_in_left) {
+        from {
+            transform: translateX(-$distance);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+}
+
+///
+/// Slide with fade in from right.
+///
+/// @param {Length} $distance [50px] - Starting distance
+///
+@mixin keyframes_slide_fade_in_right($distance: $animate_translate_slide_fade) {
+    @include keyframes(animate_slide_fade_in_right) {
+        from {
+            transform: translateX($distance);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+}
+
+
+// ============================================================================
+// Slide Loop Keyframes
+// ============================================================================
+
+///
+/// Continuous horizontal slide loop.
+///
+/// @param {Length} $distance [100%] - Slide distance
+///
+@mixin keyframes_slide_loop_horizontal($distance: 100%) {
+    @include keyframes(animate_slide_loop_horizontal) {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-$distance);
+        }
+    }
+}
+
+///
+/// Continuous vertical slide loop.
+///
+/// @param {Length} $distance [100%] - Slide distance
+///
+@mixin keyframes_slide_loop_vertical($distance: 100%) {
+    @include keyframes(animate_slide_loop_vertical) {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(-$distance);
+        }
+    }
+}
+
+
+// ============================================================================
+// Slide with Bounce Keyframes
+// ============================================================================
+
+///
+/// Slide in from left with bounce.
+///
+/// @param {Length} $distance [100%] - Starting distance
+///
+@mixin keyframes_slide_in_bounce_left($distance: 100%) {
+    @include keyframes(animate_slide_in_bounce_left) {
+        0% {
+            transform: translateX(-$distance);
+            opacity: 0;
+        }
+        60% {
+            transform: translateX(20px);
+            opacity: 1;
+        }
+        80% {
+            transform: translateX(-10px);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+}
+
+///
+/// Slide in from right with bounce.
+///
+/// @param {Length} $distance [100%] - Starting distance
+///
+@mixin keyframes_slide_in_bounce_right($distance: 100%) {
+    @include keyframes(animate_slide_in_bounce_right) {
+        0% {
+            transform: translateX($distance);
+            opacity: 0;
+        }
+        60% {
+            transform: translateX(-20px);
+            opacity: 1;
+        }
+        80% {
+            transform: translateX(10px);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+}

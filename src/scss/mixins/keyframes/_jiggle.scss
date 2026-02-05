@@ -1,0 +1,85 @@
+// ============================================================================
+// move.gl | Jiggle Keyframes
+// ============================================================================
+// Copyright 2025 Scape Agency BV
+// Licensed under MIT License
+// ============================================================================
+
+////
+/// Jiggle Keyframes Module
+/// ===========================================================================
+///
+/// Provides parameterized keyframe mixins for jiggle animations.
+/// Quick, nervous jiggling animations for horizontal and vertical movement.
+///
+/// @group Keyframes
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+////
+
+
+// ============================================================================
+// Keyframes
+// ============================================================================
+
+
+///
+/// Jiggle Keyframes
+/// @name keyframes_animate_jiggle
+/// @param {Length} $amplitude [5px] - The distance to move.
+///
+@mixin keyframes_animate_jiggle($amplitude: $animate_jiggle_amplitude) {
+    @keyframes animate_jiggle {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-$amplitude); }
+        50% { transform: translateX($amplitude); }
+        75% { transform: translateX(-$amplitude); }
+    }
+}
+
+
+///
+/// Jiggle Vertical Keyframes
+/// @name keyframes_animate_jiggle_vertical
+/// @param {Length} $amplitude [5px] - The distance to move.
+///
+@mixin keyframes_animate_jiggle_vertical($amplitude: $animate_jiggle_amplitude) {
+    @keyframes animate_jiggle_vertical {
+        0%, 100% { transform: translateY(0); }
+        25% { transform: translateY(-$amplitude); }
+        50% { transform: translateY($amplitude); }
+        75% { transform: translateY(-$amplitude); }
+    }
+}
+
+
+///
+/// Jiggle Multi Keyframes
+/// @name keyframes_animate_jiggle_multi
+/// @param {Length} $amplitude [5px] - The distance to move.
+///
+@mixin keyframes_animate_jiggle_multi($amplitude: $animate_jiggle_amplitude) {
+    @keyframes animate_jiggle_multi {
+        0%, 100% { transform: translate(0, 0); }
+        25% { transform: translate(-$amplitude, $amplitude); }
+        50% { transform: translate($amplitude, -$amplitude); }
+        75% { transform: translate(-$amplitude, $amplitude); }
+    }
+}
+
+
+///
+/// Jiggle Slow Keyframes
+/// @name keyframes_animate_jiggle_slow
+/// @param {Length} $amplitude [3px] - The distance to move.
+///
+@mixin keyframes_animate_jiggle_slow($amplitude: $animate_jiggle_amplitude_slow) {
+    @keyframes animate_jiggle_slow {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-$amplitude); }
+        50% { transform: translateX($amplitude); }
+        75% { transform: translateX(-$amplitude); }
+    }
+}
