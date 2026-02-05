@@ -1,0 +1,377 @@
+////
+///
+/// Ring & Circle Loader Mixins
+/// ===========================================================================
+///
+/// This module provides ring and circle-based loading animation mixins
+/// including spinners, dual rings, ripples, orbits, and chase animations.
+///
+/// @group Loaders
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+
+// ============================================================================
+// Keyframes
+// ============================================================================
+
+/// Basic spin animation
+@keyframes loader-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/// Ripple animation keyframes
+@keyframes loader-ripple {
+    0% { transform: scale(0.5); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+/// Pulse animation keyframes
+@keyframes loader-pulse {
+    0% { transform: scale(0.8); opacity: 1; }
+    50% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(0.8); opacity: 1; }
+}
+
+/// Orbit animation keyframes (top)
+@keyframes loader-orbit-top {
+    0%, 100% { top: 0; }
+    50% { top: calc(100% - 12px); }
+}
+
+/// Orbit animation keyframes (bottom)
+@keyframes loader-orbit-bottom {
+    0%, 100% { bottom: 0; }
+    50% { bottom: calc(100% - 12px); }
+}
+
+/// Atom orbit animation
+@keyframes loader-atom-orbit {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+///
+/// Basic spinner loader mixin.
+/// Creates a rotating border spinner.
+///
+/// @param {Length} $size [40px] - Spinner size.
+/// @param {Length} $border-width [3px] - Border width.
+/// @param {Color} $color [currentColor] - Spinner color.
+/// @param {Color} $bg [rgba(0,0,0,0.1)] - Track background color.
+/// @param {Time} $duration [0.8s] - Animation duration.
+///
+@mixin loader_spinner($size: 40px, $border-width: 3px, $color: currentColor, $bg: rgba(0, 0, 0, 0.1), $duration: 0.8s) {
+    width: $size;
+    height: $size;
+    border: $border-width solid $bg;
+    border-top-color: $color;
+    border-radius: 50%;
+    animation: loader-spin $duration linear infinite;
+}
+
+///
+/// Dotted spinner loader mixin.
+/// Creates a rotating dotted border spinner.
+///
+/// @param {Length} $size [40px] - Spinner size.
+/// @param {Length} $border-width [3px] - Border width.
+/// @param {Color} $color [currentColor] - Spinner color.
+/// @param {Time} $duration [1.5s] - Animation duration.
+///
+@mixin loader_spinner_dots($size: 40px, $border-width: 3px, $color: currentColor, $duration: 1.5s) {
+    width: $size;
+    height: $size;
+    border: $border-width dotted $color;
+    border-radius: 50%;
+    animation: loader-spin $duration linear infinite;
+}
+
+///
+/// Dual ring loader mixin.
+/// Creates a spinner with two colored rings.
+///
+/// @param {Length} $size [40px] - Spinner size.
+/// @param {Length} $border-width [3px] - Border width.
+/// @param {Color} $color [currentColor] - Ring color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_dual_ring($size: 40px, $border-width: 3px, $color: currentColor, $duration: 1s) {
+    width: $size;
+    height: $size;
+    border: $border-width solid transparent;
+    border-top-color: $color;
+    border-bottom-color: $color;
+    border-radius: 50%;
+    animation: loader-spin $duration linear infinite;
+}
+
+///
+/// Hourglass spinner mixin.
+/// Creates a spinner that looks like an hourglass.
+///
+/// @param {Length} $size [40px] - Spinner size.
+/// @param {Length} $border-width [3px] - Border width.
+/// @param {Color} $color [currentColor] - Ring color.
+/// @param {Time} $duration [1.2s] - Animation duration.
+///
+@mixin loader_hourglass($size: 40px, $border-width: 3px, $color: currentColor, $duration: 1.2s) {
+    width: $size;
+    height: $size;
+    border: $border-width solid $color;
+    border-radius: 50%;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    animation: loader-spin $duration linear infinite;
+}
+
+///
+/// Circle notch loader mixin.
+/// Creates a spinner with a notch cutout.
+///
+/// @param {Length} $size [40px] - Spinner size.
+/// @param {Length} $border-width [3px] - Border width.
+/// @param {Color} $color [currentColor] - Notch color.
+/// @param {Color} $bg [rgba(0,0,0,0.1)] - Track background color.
+/// @param {Time} $duration [0.8s] - Animation duration.
+///
+@mixin loader_circle_notch($size: 40px, $border-width: 3px, $color: currentColor, $bg: rgba(0, 0, 0, 0.1), $duration: 0.8s) {
+    width: $size;
+    height: $size;
+    border: $border-width solid $bg;
+    border-radius: 50%;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: -$border-width;
+        left: -$border-width;
+        right: -$border-width;
+        bottom: -$border-width;
+        border: $border-width solid transparent;
+        border-top-color: $color;
+        border-radius: 50%;
+        animation: loader-spin $duration linear infinite;
+    }
+}
+
+///
+/// Pulse loader mixin.
+/// Creates a pulsing circle animation.
+///
+/// @param {Length} $size [40px] - Circle size.
+/// @param {Color} $color [currentColor] - Circle color.
+/// @param {Time} $duration [1.5s] - Animation duration.
+///
+@mixin loader_pulse($size: 40px, $color: currentColor, $duration: 1.5s) {
+    width: $size;
+    height: $size;
+    background: $color;
+    border-radius: 50%;
+    animation: loader-pulse $duration ease-in-out infinite;
+}
+
+///
+/// Ripple loader mixin.
+/// Creates expanding ripple circles.
+///
+/// @param {Length} $size [40px] - Container size.
+/// @param {Length} $border-width [3px] - Border width.
+/// @param {Color} $color [currentColor] - Ripple color.
+/// @param {Time} $duration [1.5s] - Animation duration.
+///
+@mixin loader_ripple($size: 40px, $border-width: 3px, $color: currentColor, $duration: 1.5s) {
+    position: relative;
+    width: $size;
+    height: $size;
+
+    > * {
+        position: absolute;
+        inset: 0;
+        border: $border-width solid $color;
+        border-radius: 50%;
+        animation: loader-ripple $duration ease-out infinite;
+
+        &:nth-child(2) {
+            animation-delay: $duration * 0.33;
+        }
+    }
+}
+
+///
+/// Ring loader mixin.
+/// Creates a ring with animated segment.
+///
+/// @param {Length} $size [40px] - Ring size.
+/// @param {Length} $border-width [4px] - Border width.
+/// @param {Color} $color [currentColor] - Active segment color.
+/// @param {Color} $bg [rgba(0,0,0,0.1)] - Track background color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_ring($size: 40px, $border-width: 4px, $color: currentColor, $bg: rgba(0, 0, 0, 0.1), $duration: 1s) {
+    width: $size;
+    height: $size;
+    border: $border-width solid $bg;
+    border-radius: 50%;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -$border-width;
+        left: -$border-width;
+        width: $size;
+        height: $size;
+        border: $border-width solid transparent;
+        border-top-color: $color;
+        border-radius: 50%;
+        animation: loader-spin $duration ease-in-out infinite;
+    }
+}
+
+///
+/// Orbit loader mixin.
+/// Creates two orbiting dots.
+///
+/// @param {Length} $size [40px] - Container size.
+/// @param {Length} $dot-size [12px] - Dot size.
+/// @param {Color} $color [currentColor] - Dot color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_orbit($size: 40px, $dot-size: 12px, $color: currentColor, $duration: 1s) {
+    width: $size;
+    height: $size;
+    position: relative;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        width: $dot-size;
+        height: $dot-size;
+        background: $color;
+        border-radius: 50%;
+    }
+
+    &::before {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: loader-orbit-top $duration ease-in-out infinite;
+    }
+
+    &::after {
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: loader-orbit-bottom $duration ease-in-out infinite;
+    }
+}
+
+///
+/// Chase loader mixin.
+/// Creates rotating chase dots.
+///
+/// @param {Length} $size [40px] - Container size.
+/// @param {Length} $dot-size [8px] - Dot size.
+/// @param {Color} $color [currentColor] - Dot color.
+/// @param {Time} $duration [1.5s] - Animation duration.
+///
+@mixin loader_chase($size: 40px, $dot-size: 8px, $color: currentColor, $duration: 1.5s) {
+    width: $size;
+    height: $size;
+    position: relative;
+    animation: loader-spin $duration linear infinite;
+
+    > * {
+        position: absolute;
+        width: $dot-size;
+        height: $dot-size;
+        background: $color;
+        border-radius: 50%;
+
+        &:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); opacity: 1; }
+        &:nth-child(2) { top: 15%; right: 15%; opacity: 0.85; }
+        &:nth-child(3) { top: 50%; right: 0; transform: translateY(-50%); opacity: 0.7; }
+        &:nth-child(4) { bottom: 15%; right: 15%; opacity: 0.55; }
+        &:nth-child(5) { bottom: 0; left: 50%; transform: translateX(-50%); opacity: 0.4; }
+        &:nth-child(6) { bottom: 15%; left: 15%; opacity: 0.25; }
+    }
+}
+
+///
+/// Atom loader mixin.
+/// Creates an atom-like loader with orbiting electrons.
+///
+/// @param {Length} $size [40px] - Container size.
+/// @param {Length} $center-size [8px] - Center nucleus size.
+/// @param {Length} $orbit-width [2px] - Orbit line width.
+/// @param {Color} $color [currentColor] - Color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_atom($size: 40px, $center-size: 8px, $orbit-width: 2px, $color: currentColor, $duration: 1s) {
+    width: $size;
+    height: $size;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: $center-size;
+        height: $center-size;
+        background: $color;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    > * {
+        position: absolute;
+        inset: 0;
+        border: $orbit-width solid transparent;
+        border-top-color: $color;
+        border-radius: 50%;
+
+        &:nth-child(1) { animation: loader-atom-orbit $duration linear infinite; }
+        &:nth-child(2) { transform: rotate(60deg); animation: loader-atom-orbit $duration linear infinite; }
+        &:nth-child(3) { transform: rotate(120deg); animation: loader-atom-orbit $duration linear infinite; }
+    }
+}
+
+///
+/// Gradient spinner mixin.
+/// Creates a spinner with gradient coloring.
+///
+/// @param {Length} $size [40px] - Spinner size.
+/// @param {Color} $color [currentColor] - Gradient end color.
+/// @param {Color} $bg [transparent] - Center background color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_gradient($size: 40px, $color: currentColor, $bg: #ffffff, $duration: 1s) {
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent, $color);
+    animation: loader-spin $duration linear infinite;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 4px;
+        background: $bg;
+        border-radius: 50%;
+    }
+}

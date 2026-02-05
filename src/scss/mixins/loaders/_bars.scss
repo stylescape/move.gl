@@ -1,0 +1,128 @@
+////
+///
+/// Bars Loader Mixins
+/// ===========================================================================
+///
+/// This module provides bar-based loading animation mixins including
+/// wave bars, equalizer bars, and progress bar animations.
+///
+/// @group Loaders
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+
+// ============================================================================
+// Keyframes
+// ============================================================================
+
+/// Bars wave animation keyframes
+@keyframes loader-bars-wave {
+    0%, 40%, 100% { height: 10px; }
+    20% { height: 30px; }
+}
+
+/// Wave bar animation keyframes
+@keyframes loader-wave-bar {
+    0%, 100% { height: 10px; }
+    50% { height: 30px; }
+}
+
+/// Progress slide animation keyframes
+@keyframes loader-progress-slide {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(350%); }
+}
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+///
+/// Bars wave loader mixin.
+/// Creates animated vertical bars that wave up and down.
+///
+/// @param {Length} $width [6px] - Bar width.
+/// @param {Length} $height [30px] - Maximum bar height.
+/// @param {Color} $color [currentColor] - Bar color.
+/// @param {Time} $duration [1.2s] - Animation duration.
+/// @param {Number} $count [4] - Number of bars.
+///
+@mixin loader_bars($width: 6px, $height: 30px, $color: currentColor, $duration: 1.2s, $count: 4) {
+    display: flex;
+    gap: 4px;
+    height: $height;
+    align-items: flex-end;
+
+    > * {
+        width: $width;
+        background: $color;
+        border-radius: 2px;
+        animation: loader-bars-wave $duration ease-in-out infinite;
+
+        @for $i from 1 through $count {
+            &:nth-child(#{$i}) { animation-delay: #{($i - 1) * 0.1}s; }
+        }
+    }
+}
+
+///
+/// Wave bar loader mixin.
+/// Creates animated horizontal bars with wave effect.
+///
+/// @param {Length} $width [60px] - Container width.
+/// @param {Length} $height [30px] - Container height.
+/// @param {Color} $color [currentColor] - Bar color.
+/// @param {Time} $duration [1s] - Animation duration.
+/// @param {Number} $count [5] - Number of bars.
+///
+@mixin loader_wave_bar($width: 60px, $height: 30px, $color: currentColor, $duration: 1s, $count: 5) {
+    width: $width;
+    height: $height;
+    display: flex;
+    gap: 3px;
+    align-items: center;
+
+    > * {
+        flex: 1;
+        background: $color;
+        border-radius: 2px;
+        animation: loader-wave-bar $duration ease-in-out infinite;
+
+        @for $i from 1 through $count {
+            &:nth-child(#{$i}) { animation-delay: #{($i - 1) * 0.1}s; }
+        }
+    }
+}
+
+///
+/// Progress bar loader mixin.
+/// Creates an indeterminate progress bar animation.
+///
+/// @param {Length} $width [100px] - Bar width.
+/// @param {Length} $height [4px] - Bar height.
+/// @param {Color} $color [currentColor] - Progress color.
+/// @param {Color} $bg [rgba(0,0,0,0.1)] - Track background color.
+/// @param {Time} $duration [1.5s] - Animation duration.
+///
+@mixin loader_progress($width: 100px, $height: 4px, $color: currentColor, $bg: rgba(0, 0, 0, 0.1), $duration: 1.5s) {
+    width: $width;
+    height: $height;
+    background: $bg;
+    border-radius: $height * 0.5;
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 40%;
+        height: 100%;
+        background: $color;
+        border-radius: $height * 0.5;
+        animation: loader-progress-slide $duration ease-in-out infinite;
+    }
+}

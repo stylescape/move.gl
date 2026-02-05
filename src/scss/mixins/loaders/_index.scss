@@ -18,5 +18,63 @@
 /// @access public
 ////
 
-@forward "spinner";
-@forward "progress";
+
+// ============================================================================
+// Variables (centralized to avoid conflicts)
+// ============================================================================
+
+$loader-size: 48px !default;
+$loader-color: #FFF !default;
+$loader-accent: #FF3D00 !default;
+$loader-speed: 1s !default;
+
+
+// ============================================================================
+// Base loader mixin
+// ============================================================================
+
+@forward "base";
+
+
+// ============================================================================
+// Legacy loaders
+// ============================================================================
+
+@forward "spinner" hide $loader-size, $loader-color, $loader-accent, $loader-speed;
+@forward "progress" hide $loader-size, $loader-color, $loader-accent, $loader-speed;
+
+
+// ============================================================================
+// Animation-based loaders
+// ============================================================================
+
+@forward "dots" hide $loader-size, $loader-color, $loader-accent, $loader-speed;
+@forward "bars" hide $loader-size, $loader-color, $loader-accent, $loader-speed;
+@forward "rings" hide $loader-size, $loader-color, $loader-accent, $loader-speed, loader_hourglass;
+@forward "special" hide $loader-size, $loader-color, $loader-accent, $loader-speed, loader_clock, loader_gear, loader_pendulum, loader_dna, loader_infinity;
+
+
+// ============================================================================
+// Shape-based loaders
+// ============================================================================
+
+@forward "bubble" hide $loader-size, $loader-color, $loader-accent, $loader-speed;
+@forward "circle" hide $loader-size, $loader-color, $loader-accent, $loader-speed;
+@forward "rect" hide $loader-size, $loader-color, $loader-accent, $loader-speed;
+@forward "line" hide $loader-size, $loader-color, $loader-accent, $loader-speed;
+
+
+// ============================================================================
+// Content loaders
+// ============================================================================
+
+@forward "text" hide $loader-size, $loader-color, $loader-accent, $loader-speed;
+@forward "skeleton" hide $loader-size, $loader-color, $loader-accent, $loader-speed, $skeleton-bg, $skeleton-highlight;
+
+
+// ============================================================================
+// Graphic loaders
+// ============================================================================
+
+@forward "graph" hide $loader-size, $loader-color, $loader-accent, $loader-speed;
+@forward "objects" hide $loader-size, $loader-color, $loader-accent, $loader-speed;

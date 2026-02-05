@@ -1,0 +1,572 @@
+// ============================================================================
+// move.gl | Objects/Creative Loader Mixins
+// ============================================================================
+// Copyright 2025 Scape Agency BV
+// Licensed under MIT License
+// ============================================================================
+
+////
+/// Objects/Creative Loader Mixins
+/// ===========================================================================
+///
+/// This module provides mixins for creative object-based loading animations
+/// including ping pong, heart, star, brackets, and other visual loaders.
+///
+/// @group Loaders
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0
+/// @access public
+////
+
+@use "../../variables" as *;
+
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+$loader-color: #FFF !default;
+$loader-accent: #FF3D00 !default;
+$loader-speed: 1s !default;
+
+
+// ============================================================================
+// Keyframes
+// ============================================================================
+
+///
+/// Ping pong paddle animation keyframes.
+///
+@mixin keyframes_paddles {
+    @keyframes paddles {
+        0% { box-shadow: -25px -10px, 25px 10px; }
+        50% { box-shadow: -25px 8px, 25px -10px; }
+        100% { box-shadow: -25px -10px, 25px 10px; }
+    }
+}
+
+///
+/// Ball bounce animation keyframes.
+///
+@mixin keyframes_ball_bounce {
+    @keyframes ball-bounce {
+        0% { transform: translateX(-20px) scale(1, 1.2); }
+        25% { transform: scale(1.2, 1); }
+        50% { transform: translateX(15px) scale(1, 1.2); }
+        75% { transform: scale(1.2, 1); }
+        100% { transform: translateX(-20px); }
+    }
+}
+
+///
+/// Heart beat animation keyframes.
+///
+@mixin keyframes_heartbeat {
+    @keyframes heartbeat {
+        0%, 100% { transform: scale(1); }
+        10% { transform: scale(1.1); }
+        20% { transform: scale(1); }
+        30% { transform: scale(1.15); }
+        40% { transform: scale(1); }
+    }
+}
+
+///
+/// Star twinkle animation keyframes.
+///
+@mixin keyframes_star_twinkle {
+    @keyframes star-twinkle {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(0.8); }
+    }
+}
+
+///
+/// Bracket swing animation keyframes.
+///
+@mixin keyframes_bracket_swing {
+    @keyframes bracket-swing {
+        0%, 100% { transform: rotate(-10deg); }
+        50% { transform: rotate(10deg); }
+    }
+}
+
+///
+/// Rolling rock animation keyframes.
+///
+@mixin keyframes_rolling_rock {
+    @keyframes rolling-rock {
+        0% { transform: translate(0, -1em) rotate(-45deg); }
+        5% { transform: translate(0, -1em) rotate(-50deg); }
+        20% { transform: translate(1em, -2em) rotate(47deg); }
+        25% { transform: translate(1em, -2em) rotate(45deg); }
+        30% { transform: translate(1em, -2em) rotate(40deg); }
+        45% { transform: translate(2em, -3em) rotate(137deg); }
+        50% { transform: translate(2em, -3em) rotate(135deg); }
+        55% { transform: translate(2em, -3em) rotate(130deg); }
+        70% { transform: translate(3em, -4em) rotate(217deg); }
+        75% { transform: translate(3em, -4em) rotate(220deg); }
+        100% { transform: translate(0, -1em) rotate(-225deg); }
+    }
+}
+
+///
+/// Pendulum swing animation keyframes.
+///
+@mixin keyframes_pendulum {
+    @keyframes pendulum {
+        0% { transform: rotate(30deg); }
+        50% { transform: rotate(-30deg); }
+        100% { transform: rotate(30deg); }
+    }
+}
+
+///
+/// Coin flip animation keyframes.
+///
+@mixin keyframes_coin_flip {
+    @keyframes coin-flip {
+        0% { transform: rotateY(0deg); }
+        50% { transform: rotateY(180deg); }
+        100% { transform: rotateY(360deg); }
+    }
+}
+
+
+// ============================================================================
+// Objects/Creative Loader Mixins
+// ============================================================================
+
+///
+/// Ping pong loader.
+///
+/// @param {Length} $height [40px] - Paddle height.
+/// @param {Length} $width [6px] - Paddle width.
+/// @param {Color} $paddle-color [#FFF] - Paddle color.
+/// @param {Color} $ball-color [#FF3D00] - Ball color.
+/// @param {Time} $duration [0.75s] - Animation duration.
+///
+@mixin loader_ping_pong(
+    $height: 40px,
+    $width: 6px,
+    $paddle-color: $loader-color,
+    $ball-color: $loader-accent,
+    $duration: 0.75s
+) {
+    position: relative;
+    height: $height;
+    width: $width;
+    color: var(--loader-paddle, $paddle-color);
+    animation: paddles $duration ease-out infinite;
+
+    &::before {
+        content: '';
+        position: absolute;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        top: calc($height * 0.375);
+        width: 12px;
+        height: 12px;
+        background: var(--loader-ball, $ball-color);
+        border-radius: 50%;
+        animation: ball-bounce calc($duration * 0.8) ease-out infinite;
+    }
+}
+
+///
+/// Heart beat loader.
+///
+/// @param {Length} $size [40px] - Heart size.
+/// @param {Color} $color [#FF3D00] - Heart color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_heart(
+    $size: 40px,
+    $color: $loader-accent,
+    $duration: $loader-speed
+) {
+    width: $size;
+    height: calc($size * 0.9);
+    position: relative;
+    transform: rotate(-45deg);
+    animation: heartbeat $duration ease-in-out infinite;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        width: $size;
+        height: $size;
+        background: var(--loader-color, $color);
+        border-radius: 50%;
+    }
+
+    &::before {
+        top: calc(#{-$size} / 2);
+        left: 0;
+    }
+
+    &::after {
+        top: 0;
+        left: calc(#{$size} / 2);
+    }
+}
+
+///
+/// Star twinkle loader.
+///
+/// @param {Length} $size [40px] - Star size.
+/// @param {Color} $color [#FFF] - Star color.
+/// @param {Time} $duration [1.5s] - Animation duration.
+///
+@mixin loader_star(
+    $size: 40px,
+    $color: $loader-color,
+    $duration: 1.5s
+) {
+    width: 0;
+    height: 0;
+    position: relative;
+    border-left: calc($size / 2) solid transparent;
+    border-right: calc($size / 2) solid transparent;
+    border-bottom: calc($size * 0.7) solid var(--loader-color, $color);
+    animation: star-twinkle $duration ease-in-out infinite;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: calc(#{$size} * 0.22);
+        left: calc(#{-$size} / 2);
+        width: 0;
+        height: 0;
+        border-left: calc(#{$size} / 2) solid transparent;
+        border-right: calc(#{$size} / 2) solid transparent;
+        border-top: calc(#{$size} * 0.7) solid var(--loader-color, $color);
+    }
+}
+
+///
+/// Bracket swing loader.
+///
+/// @param {String} $open ['{'] - Opening bracket.
+/// @param {String} $close ['}'] - Closing bracket.
+/// @param {Length} $size [78px] - Font size.
+/// @param {Color} $color [#FFF] - Text color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_brackets(
+    $open: '{',
+    $close: '}',
+    $size: 78px,
+    $color: $loader-color,
+    $duration: $loader-speed
+) {
+    color: var(--loader-color, $color);
+    font-family: Consolas, Menlo, Monaco, monospace;
+    font-weight: bold;
+    font-size: $size;
+    opacity: 0.8;
+
+    &::before {
+        content: $open;
+        display: inline-block;
+        animation: bracket-swing $duration ease-in-out infinite;
+    }
+
+    &::after {
+        content: $close;
+        display: inline-block;
+        animation: bracket-swing $duration ease-in-out infinite reverse;
+    }
+}
+
+///
+/// Rolling rock/ball up slope loader.
+///
+/// @param {Length} $size [5.5em] - Container size.
+/// @param {Color} $slope-color [#FFF] - Slope color.
+/// @param {Color} $rock-color [#FF3D00] - Rock color.
+/// @param {Time} $duration [2.5s] - Animation duration.
+///
+@mixin loader_rolling_rock(
+    $size: 5.5em,
+    $slope-color: $loader-color,
+    $rock-color: $loader-accent,
+    $duration: 2.5s
+) {
+    position: relative;
+    font-size: 16px;
+    width: $size;
+    height: $size;
+
+    &::before {
+        content: '';
+        position: absolute;
+        transform: translate(-50%, -50%) rotate(45deg);
+        height: 100%;
+        width: 4px;
+        background: var(--loader-slope, $slope-color);
+        left: 50%;
+        top: 50%;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0.2em;
+        bottom: 0.18em;
+        width: 1em;
+        height: 1em;
+        background: var(--loader-rock, $rock-color);
+        border-radius: 15%;
+        animation: rolling-rock $duration cubic-bezier(0.79, 0, 0.47, 0.97) infinite;
+    }
+}
+
+///
+/// Pendulum swing loader.
+///
+/// @param {Length} $length [60px] - Pendulum string length.
+/// @param {Length} $ball-size [16px] - Ball size.
+/// @param {Color} $string-color [rgba(255,255,255,0.3)] - String color.
+/// @param {Color} $ball-color [#FFF] - Ball color.
+/// @param {Time} $duration [1.5s] - Animation duration.
+///
+@mixin loader_pendulum(
+    $length: 60px,
+    $ball-size: 16px,
+    $string-color: rgba(255, 255, 255, 0.3),
+    $ball-color: $loader-color,
+    $duration: 1.5s
+) {
+    width: $ball-size;
+    height: calc($length + $ball-size);
+    position: relative;
+    transform-origin: top center;
+    animation: pendulum $duration ease-in-out infinite;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 2px;
+        height: $length;
+        background: var(--loader-string, $string-color);
+        transform: translateX(-50%);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: $ball-size;
+        height: $ball-size;
+        background: var(--loader-ball, $ball-color);
+        border-radius: 50%;
+    }
+}
+
+///
+/// Coin flip loader.
+///
+/// @param {Length} $size [40px] - Coin size.
+/// @param {Color} $front-color [#FFF] - Front color.
+/// @param {Color} $back-color [#FF3D00] - Back color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_coin(
+    $size: 40px,
+    $front-color: $loader-color,
+    $back-color: $loader-accent,
+    $duration: $loader-speed
+) {
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    background: linear-gradient(
+        90deg,
+        var(--loader-front, $front-color) 50%,
+        var(--loader-back, $back-color) 50%
+    );
+    animation: coin-flip $duration linear infinite;
+    transform-style: preserve-3d;
+}
+
+///
+/// Bouncing ball with shadow loader.
+///
+/// @param {Length} $size [24px] - Ball size.
+/// @param {Color} $color [#FFF] - Ball color.
+/// @param {Color} $shadow-color [rgba(0,0,0,0.3)] - Shadow color.
+/// @param {Time} $duration [0.6s] - Animation duration.
+///
+@mixin loader_bouncing_ball(
+    $size: 24px,
+    $color: $loader-color,
+    $shadow-color: rgba(0, 0, 0, 0.3),
+    $duration: 0.6s
+) {
+    position: relative;
+    width: $size;
+    height: calc($size * 3);
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: $size;
+        height: $size;
+        background: var(--loader-color, $color);
+        border-radius: 50%;
+        animation: bounce-up $duration ease-in-out infinite;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 10%;
+        width: 80%;
+        height: 6px;
+        background: var(--loader-shadow, $shadow-color);
+        border-radius: 50%;
+        animation: bounce-shadow $duration ease-in-out infinite;
+    }
+}
+
+///
+/// Bounce up animation.
+///
+@mixin keyframes_bounce_up {
+    @keyframes bounce-up {
+        0%, 100% { top: calc(100% - 100%); transform: scaleY(1); }
+        30% { transform: scaleY(0.8); }
+        50% { top: 0; transform: scaleY(1.1); }
+        70% { transform: scaleY(0.9); }
+    }
+}
+
+///
+/// Bounce shadow animation.
+///
+@mixin keyframes_bounce_shadow {
+    @keyframes bounce-shadow {
+        0%, 100% { transform: scaleX(1); opacity: 0.5; }
+        50% { transform: scaleX(0.5); opacity: 0.3; }
+    }
+}
+
+///
+/// DNA helix loader.
+///
+/// @param {Length} $width [60px] - Helix width.
+/// @param {Length} $height [40px] - Helix height.
+/// @param {Color} $color1 [#FFF] - First strand color.
+/// @param {Color} $color2 [#FF3D00] - Second strand color.
+/// @param {Time} $duration [1.5s] - Animation duration.
+///
+@mixin loader_dna(
+    $width: 60px,
+    $height: 40px,
+    $color1: $loader-color,
+    $color2: $loader-accent,
+    $duration: 1.5s
+) {
+    width: $width;
+    height: $height;
+    position: relative;
+
+    span {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        animation: dna-rotate $duration linear infinite;
+
+        &:nth-child(odd) {
+            background: var(--loader-color1, $color1);
+        }
+
+        &:nth-child(even) {
+            background: var(--loader-color2, $color2);
+        }
+
+        @for $i from 1 through 6 {
+            &:nth-child(#{$i}) {
+                left: calc(($i - 1) * ($width / 5));
+                animation-delay: calc(($i - 1) * -0.15s);
+            }
+        }
+    }
+}
+
+///
+/// DNA rotation animation.
+///
+@mixin keyframes_dna_rotate {
+    @keyframes dna-rotate {
+        0% { top: 0; z-index: 1; }
+        25% { top: 50%; z-index: 1; transform: scale(1.2); }
+        50% { top: 100%; z-index: -1; }
+        75% { top: 50%; z-index: -1; transform: scale(0.8); }
+        100% { top: 0; z-index: 1; }
+    }
+}
+
+///
+/// Infinity symbol loader.
+///
+/// @param {Length} $size [60px] - Symbol width.
+/// @param {Color} $color [#FFF] - Symbol color.
+/// @param {Length} $stroke [4px] - Stroke width.
+/// @param {Time} $duration [2s] - Animation duration.
+///
+@mixin loader_infinity(
+    $size: 60px,
+    $color: $loader-color,
+    $stroke: 4px,
+    $duration: 2s
+) {
+    width: $size;
+    height: calc($size / 2);
+    position: relative;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        width: calc($size / 2);
+        height: calc($size / 2);
+        border: $stroke solid var(--loader-color, $color);
+        border-radius: 50%;
+        animation: infinity-rotate $duration linear infinite;
+    }
+
+    &::before {
+        left: 0;
+        border-right-color: transparent;
+        border-top-color: transparent;
+    }
+
+    &::after {
+        right: 0;
+        border-left-color: transparent;
+        border-bottom-color: transparent;
+        animation-delay: calc($duration / 2);
+    }
+}
+
+///
+/// Infinity rotation animation.
+///
+@mixin keyframes_infinity_rotate {
+    @keyframes infinity-rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+}

@@ -1,0 +1,248 @@
+////
+///
+/// Dots Loader Mixins
+/// ===========================================================================
+///
+/// This module provides dot-based loading animation mixins including
+/// pulse dots, bounce dots, wave dots, fade dots, and grow dots.
+///
+/// @group Loaders
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "sass:map";
+
+
+// ============================================================================
+// Keyframes
+// ============================================================================
+
+/// Dots pulse animation keyframes
+@keyframes loader-dots-pulse {
+    0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+    40% { opacity: 1; transform: scale(1); }
+}
+
+/// Dots bounce animation keyframes
+@keyframes loader-dots-bounce {
+    0%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-12px); }
+}
+
+/// Dots wave animation keyframes
+@keyframes loader-dots-wave {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50% { transform: translateY(-10px); opacity: 1; }
+}
+
+/// Dots fade animation keyframes
+@keyframes loader-dots-fade {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
+
+/// Dots grow animation keyframes
+@keyframes loader-dots-grow {
+    0%, 100% { transform: scale(0.6); }
+    50% { transform: scale(1.2); }
+}
+
+/// Typing dots animation keyframes
+@keyframes loader-typing {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-6px); }
+}
+
+/// Ellipsis animation keyframes
+@keyframes loader-ellipsis {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.5); }
+    100% { transform: scale(1); }
+}
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+///
+/// Base dots loader container mixin.
+///
+/// @param {Length} $gap [6px] - Gap between dots.
+///
+@mixin loader_dots_base($gap: 6px) {
+    display: flex;
+    gap: $gap;
+    align-items: center;
+}
+
+///
+/// Dot element mixin.
+///
+/// @param {Length} $size [10px] - Dot size.
+/// @param {Color} $color [currentColor] - Dot color.
+///
+@mixin loader_dot($size: 10px, $color: currentColor) {
+    width: $size;
+    height: $size;
+    background: $color;
+    border-radius: 50%;
+}
+
+///
+/// Pulse dots loader mixin.
+/// Creates a pulsing dot animation.
+///
+/// @param {Length} $size [10px] - Dot size.
+/// @param {Color} $color [currentColor] - Dot color.
+/// @param {Time} $duration [1.4s] - Animation duration.
+///
+@mixin loader_dots_pulse($size: 10px, $color: currentColor, $duration: 1.4s) {
+    @include loader_dots_base();
+
+    > * {
+        @include loader_dot($size, $color);
+        animation: loader-dots-pulse $duration ease-in-out infinite;
+
+        &:nth-child(2) { animation-delay: 0.2s; }
+        &:nth-child(3) { animation-delay: 0.4s; }
+    }
+}
+
+///
+/// Bounce dots loader mixin.
+/// Creates bouncing dots animation.
+///
+/// @param {Length} $size [10px] - Dot size.
+/// @param {Color} $color [currentColor] - Dot color.
+/// @param {Time} $duration [1.4s] - Animation duration.
+///
+@mixin loader_dots_bounce($size: 10px, $color: currentColor, $duration: 1.4s) {
+    @include loader_dots_base();
+
+    > * {
+        @include loader_dot($size, $color);
+        animation: loader-dots-bounce $duration ease-in-out infinite;
+
+        &:nth-child(2) { animation-delay: 0.16s; }
+        &:nth-child(3) { animation-delay: 0.32s; }
+    }
+}
+
+///
+/// Wave dots loader mixin.
+/// Creates a wave animation across multiple dots.
+///
+/// @param {Length} $size [8px] - Dot size.
+/// @param {Color} $color [currentColor] - Dot color.
+/// @param {Time} $duration [1.2s] - Animation duration.
+/// @param {Number} $count [5] - Number of dots.
+///
+@mixin loader_dots_wave($size: 8px, $color: currentColor, $duration: 1.2s, $count: 5) {
+    @include loader_dots_base(4px);
+
+    > * {
+        @include loader_dot($size, $color);
+        animation: loader-dots-wave $duration ease-in-out infinite;
+
+        @for $i from 2 through $count {
+            &:nth-child(#{$i}) { animation-delay: #{($i - 1) * 0.1}s; }
+        }
+    }
+}
+
+///
+/// Fade dots loader mixin.
+/// Creates fading dots animation.
+///
+/// @param {Length} $size [10px] - Dot size.
+/// @param {Color} $color [currentColor] - Dot color.
+/// @param {Time} $duration [1.4s] - Animation duration.
+///
+@mixin loader_dots_fade($size: 10px, $color: currentColor, $duration: 1.4s) {
+    @include loader_dots_base();
+
+    > * {
+        @include loader_dot($size, $color);
+        animation: loader-dots-fade $duration ease-in-out infinite;
+
+        &:nth-child(2) { animation-delay: 0.2s; }
+        &:nth-child(3) { animation-delay: 0.4s; }
+    }
+}
+
+///
+/// Grow dots loader mixin.
+/// Creates growing/shrinking dots animation.
+///
+/// @param {Length} $size [10px] - Dot size.
+/// @param {Color} $color [currentColor] - Dot color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_dots_grow($size: 10px, $color: currentColor, $duration: 1s) {
+    @include loader_dots_base();
+
+    > * {
+        @include loader_dot($size, $color);
+        animation: loader-dots-grow $duration ease-in-out infinite;
+
+        &:nth-child(2) { animation-delay: 0.15s; }
+        &:nth-child(3) { animation-delay: 0.3s; }
+    }
+}
+
+///
+/// Typing indicator loader mixin.
+/// Creates a typing indicator animation (like chat bubbles).
+///
+/// @param {Length} $size [8px] - Dot size.
+/// @param {Color} $color [currentColor] - Dot color.
+/// @param {Color} $bg [rgba(0,0,0,0.1)] - Background color.
+///
+@mixin loader_typing($size: 8px, $color: currentColor, $bg: rgba(0, 0, 0, 0.1)) {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 8px 12px;
+    background: $bg;
+    border-radius: 16px;
+
+    > * {
+        @include loader_dot($size, $color);
+        animation: loader-typing 1.4s ease-in-out infinite;
+
+        &:nth-child(2) { animation-delay: 0.2s; }
+        &:nth-child(3) { animation-delay: 0.4s; }
+    }
+}
+
+///
+/// Ellipsis loader mixin.
+/// Creates an ellipsis loading animation.
+///
+/// @param {Length} $size [10px] - Dot size.
+/// @param {Color} $color [currentColor] - Dot color.
+/// @param {Time} $duration [1.4s] - Animation duration.
+///
+@mixin loader_ellipsis($size: 10px, $color: currentColor, $duration: 1.4s) {
+    @include loader_dots_base(4px);
+
+    > * {
+        @include loader_dot($size, $color);
+        animation: loader-ellipsis $duration ease-in-out infinite;
+
+        &:nth-child(1) { animation-delay: 0s; }
+        &:nth-child(2) { animation-delay: 0.2s; }
+        &:nth-child(3) { animation-delay: 0.4s; }
+        &:nth-child(4) { animation-delay: 0.6s; }
+    }
+}
