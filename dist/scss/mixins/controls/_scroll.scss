@@ -104,7 +104,11 @@
 @mixin scroll_snap_x($align: center, $mandatory: true) {
     overflow-x: auto;
     overflow-y: hidden;
-    scroll-snap-type: x #{if($mandatory, mandatory, proximity)};
+    @if $mandatory {
+        scroll-snap-type: x mandatory;
+    } @else {
+        scroll-snap-type: x proximity;
+    }
 
     > * {
         scroll-snap-align: $align;
@@ -120,7 +124,11 @@
 @mixin scroll_snap_y($align: start, $mandatory: true) {
     overflow-x: hidden;
     overflow-y: auto;
-    scroll-snap-type: y #{if($mandatory, mandatory, proximity)};
+    @if $mandatory {
+        scroll-snap-type: y mandatory;
+    } @else {
+        scroll-snap-type: y proximity;
+    }
 
     > * {
         scroll-snap-align: $align;

@@ -20,6 +20,8 @@
 // Use
 // ============================================================================
 
+@use "sass:math";
+@use "sass:color";
 @use "../../variables" as *;
 @use "../../maps" as *;
 
@@ -157,10 +159,10 @@ body::-webkit-scrollbar-button:end:increment {
 
     &::-webkit-scrollbar-thumb {
         background: $thumb-color;
-        border-radius: $width / 2;
+        border-radius: math.div($width, 2);
         border: 2px solid $track-color;
         &:hover {
-        background: darken($thumb-color, 10%);
+        background: color.adjust($thumb-color, $lightness: -10%);
         }
     }
 
@@ -194,9 +196,17 @@ body::-webkit-scrollbar-button:end:increment {
     $width: 12px,
     $track-color: #f1f1f1,
     $thumb-color: #888,
-    $thumb-hover-color: darken($thumb-color, 10%),
-    $thumb-active-color: darken($thumb-color, 20%)
+    $thumb-hover-color: null,
+    $thumb-active-color: null
 ) {
+    // Set default values using color.adjust if not provided
+    @if $thumb-hover-color == null {
+        $thumb-hover-color: color.adjust($thumb-color, $lightness: -10%);
+    }
+    @if $thumb-active-color == null {
+        $thumb-active-color: color.adjust($thumb-color, $lightness: -20%);
+    }
+
     // Scrollbar track
     &::-webkit-scrollbar {
         width: $width;
@@ -205,15 +215,15 @@ body::-webkit-scrollbar-button:end:increment {
 
     &::-webkit-scrollbar-track {
         background: $track-color;
-        border-radius: $width / 2;
-        box-shadow: inset 0 0 5px grey; // Optional: adds inset shadow to the track
+        border-radius: math.div($width, 2);
+        box-shadow: inset 0 0 5px grey;
     }
 
     // Scrollbar thumb
     &::-webkit-scrollbar-thumb {
         background: $thumb-color;
-        border-radius: $width / 2;
-        border: 3px solid $track-color; // Creates a margin between the track and thumb
+        border-radius: math.div($width, 2);
+        border: 3px solid $track-color;
 
         &:hover {
         background: $thumb-hover-color;
