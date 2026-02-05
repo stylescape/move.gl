@@ -11,7 +11,6 @@
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -34,14 +33,21 @@
 
 ///
 /// Ripple Animation
+/// ---------------------------------------------------------------------------
 /// Creates a ripple effect where the element scales up and fades out.
+///
 /// @name animate_ripple
-/// @param {Number} $scale_start [1] - The initial scale of the ripple.
-/// @param {Number} $scale_end [1.5] - The final scale of the ripple.
-/// @param {Number} $opacity_start [1] - The initial opacity of the ripple.
-/// @param {Number} $opacity_end [0] - The final opacity of the ripple.
-/// @param {Number|String} $duration [$animate_base_duration] - The duration of the ripple animation.
-/// @param {String} $timing_function [ease-out] - The timing function for the ripple animation.
+/// @param {Number} $scale_start [1] - Initial scale of the ripple
+/// @param {Number} $scale_end [1.5] - Final scale of the ripple
+/// @param {Number} $opacity_start [1] - Initial opacity of the ripple
+/// @param {Number} $opacity_end [0] - Final opacity of the ripple
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [ease-out] - Timing function
+///
+/// @example scss - Basic usage
+///   .touch-ripple {
+///     @include animate_ripple;
+///   }
 ///
 @mixin animate_ripple(
     $scale_start: 1,
@@ -61,19 +67,21 @@
 }
 
 
-
-// Slow Ripple Animation
-// ----------------------------------------------------------------------------
-
 ///
 /// Slow Ripple Animation
+/// ---------------------------------------------------------------------------
 /// Creates a slower ripple effect where the element scales up and fades out.
 ///
 /// @name animate_ripple_slow
-/// @param {Number} $scale_end [1.5] - The final scale of the ripple.
-/// @param {Number} $opacity_end [0] - The final opacity of the ripple.
-/// @param {Number|String} $duration [2s] - The duration of the ripple animation.
-/// @param {String} $timing_function [ease-out] - The timing function for the ripple animation.
+/// @param {Number} $scale_end [1.5] - Final scale of the ripple
+/// @param {Number} $opacity_end [0] - Final opacity of the ripple
+/// @param {Time} $duration [2s] - Animation duration
+/// @param {String} $timing_function [ease-out] - Timing function
+///
+/// @example scss - Usage
+///   .water-ripple {
+///     @include animate_ripple_slow;
+///   }
 ///
 @mixin animate_ripple_slow(
     $scale_end: 1.5,

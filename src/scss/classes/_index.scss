@@ -1,28 +1,28 @@
-// ============================================================================
-// move.gl | Classes Index
-// ============================================================================
-// Copyright 2025 Scape Agency BV
-// Licensed under MIT License
-// ============================================================================
-
 ////
-/// Classes Module Index
-/// ===========================================================================
 ///
-/// This module consolidates all CSS class definitions that apply the
-/// animation and transform mixins to create ready-to-use utility classes.
+/// Classes Module Index
+/// =========================================================================
+///
+/// Central index for all CSS utility classes. This module consolidates
+/// ready-to-use classes that apply mixins for animations, controls,
+/// effects, loaders, transforms, and transitions.
 ///
 /// @group Classes
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @access public
+///
 ////
 
+
+// ============================================================================
+// Forwards
+// ============================================================================
+
 @forward "animations";
-@forward "transforms";
-@forward "transitions";
+@forward "controls";
 @forward "effects";
 @forward "loaders";
-@forward "keyboard";
-@forward "screensaver";
+@forward "transforms";
+@forward "transitions";

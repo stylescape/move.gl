@@ -1,0 +1,124 @@
+// ============================================================================
+// move.gl | Roll Keyframes
+// ============================================================================
+// Copyright 2025 Scape Agency BV
+// Licensed under MIT License
+// ============================================================================
+
+////
+/// Roll Keyframes Module
+/// ===========================================================================
+///
+/// Provides parameterized keyframe mixins for roll animations.
+/// Combines translation with rotation.
+///
+/// @group Keyframes
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../../variables" as *;
+
+
+// ============================================================================
+// Keyframes
+// ============================================================================
+
+
+///
+/// Roll Keyframes
+/// @name keyframes_animate_roll
+/// @param {Number|String} $translate_distance [100%] - The distance to translate.
+/// @param {Angle} $rotation_angle [360deg] - The rotation angle.
+///
+@mixin keyframes_animate_roll($translate_distance: $animate_translate_slide, $rotation_angle: $animate_angle_full) {
+    @keyframes animate_roll {
+        0% { transform: translateX(0) rotate(0deg); }
+        100% { transform: translateX($translate_distance) rotate($rotation_angle); }
+    }
+}
+
+
+///
+/// Roll Reverse Keyframes
+/// @name keyframes_animate_roll_reverse
+/// @param {Number|String} $translate_distance [-100%] - The distance to translate.
+/// @param {Angle} $rotation_angle [-360deg] - The rotation angle.
+///
+@mixin keyframes_animate_roll_reverse($translate_distance: -$animate_translate_slide, $rotation_angle: -$animate_angle_full) {
+    @keyframes animate_roll_reverse {
+        0% { transform: translateX(0) rotate(0deg); }
+        100% { transform: translateX($translate_distance) rotate($rotation_angle); }
+    }
+}
+
+
+///
+/// Roll Slow Keyframes
+/// @name keyframes_animate_roll_slow
+/// @param {Number|String} $translate_distance [100%] - The distance to translate.
+/// @param {Angle} $rotation_angle [360deg] - The rotation angle.
+///
+@mixin keyframes_animate_roll_slow($translate_distance: $animate_translate_slide, $rotation_angle: $animate_angle_full) {
+    @keyframes animate_roll_slow {
+        0% { transform: translateX(0) rotate(0deg); }
+        100% { transform: translateX($translate_distance) rotate($rotation_angle); }
+    }
+}
+
+
+///
+/// Roll Vertical Keyframes
+/// @name keyframes_animate_roll_vertical
+/// @param {Number|String} $translate_distance [100%] - The distance to translate.
+/// @param {Angle} $rotation_angle [360deg] - The rotation angle.
+///
+@mixin keyframes_animate_roll_vertical($translate_distance: $animate_translate_slide, $rotation_angle: $animate_angle_full) {
+    @keyframes animate_roll_vertical {
+        0% { transform: translateY(0) rotate(0deg); }
+        100% { transform: translateY($translate_distance) rotate($rotation_angle); }
+    }
+}
+
+
+///
+/// Roll In Keyframes (from animate.css by Nick Pettit)
+/// @name keyframes_animate_roll_in
+///
+@mixin keyframes_animate_roll_in() {
+    @keyframes animate_roll_in {
+        0% {
+            opacity: 0;
+            transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
+        }
+        100% {
+            opacity: 1;
+            transform: none;
+        }
+    }
+}
+
+
+///
+/// Roll Out Keyframes
+/// @name keyframes_animate_roll_out
+///
+@mixin keyframes_animate_roll_out() {
+    @keyframes animate_roll_out {
+        0% {
+            opacity: 1;
+            transform: none;
+        }
+        100% {
+            opacity: 0;
+            transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg);
+        }
+    }
+}

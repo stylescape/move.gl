@@ -9,8 +9,8 @@
 /// Effects Mixin Module
 /// ===========================================================================
 ///
-/// This module provides effect mixins including shadows, filters, opacity,
-/// blend modes, gradients, masks, cursors, focus states, and scroll effects.
+/// Provides visual effect mixins including shadows, filters, opacity,
+/// blend modes, gradients, masks, and focus states.
 ///
 /// @group Effects
 /// @author Scape Agency
@@ -25,6 +25,4 @@
 @forward "blend";
 @forward "gradient";
 @forward "mask";
-@forward "cursor";
 @forward "focus";
-@forward "scroll";

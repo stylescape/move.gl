@@ -20,16 +20,10 @@
 
 
 // ============================================================================
-// Variables
+// Use
 // ============================================================================
 
-$screensaver-z-index: 9999 !default;
-$screensaver-bg: #000 !default;
-$screensaver-color: white !default;
-$screensaver-fade: 500ms !default;
-$screensaver-icon-size: 80px !default;
-$screensaver-title-size: 24px !default;
-$screensaver-hint-size: 14px !default;
+@use "../variables" as *;
 
 
 // ============================================================================

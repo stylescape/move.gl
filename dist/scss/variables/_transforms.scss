@@ -1,0 +1,85 @@
+////
+///
+/// Transforms Variables Module
+/// =========================================================================
+///
+/// Centralized configuration for CSS transform-related variables including
+/// rotation, scaling, translation, and skew defaults.
+///
+/// @group Transforms
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+
+// ============================================================================
+// Rotation Variables
+// ============================================================================
+
+/// Default rotation angle
+$rotate-default: 45deg !default;
+
+/// Full rotation angle
+$rotate-full: 360deg !default;
+
+/// Half rotation angle
+$rotate-half: 180deg !default;
+
+
+// ============================================================================
+// Scale Variables
+// ============================================================================
+
+/// Default scale factor
+$scale-default: 1.1 !default;
+
+/// Large scale factor
+$scale-large: 1.5 !default;
+
+/// Small scale factor
+$scale-small: 0.9 !default;
+
+/// Zero scale (for hide animations)
+$scale-zero: 0 !default;
+
+
+// ============================================================================
+// Translate Variables
+// ============================================================================
+
+/// Default translate distance
+$translate-default: 20px !default;
+
+/// Large translate distance
+$translate-large: 50px !default;
+
+/// Small translate distance
+$translate-small: 10px !default;
+
+
+// ============================================================================
+// Skew Variables
+// ============================================================================
+
+/// Default skew angle
+$skew-default: 10deg !default;
+
+/// Large skew angle
+$skew-large: 20deg !default;
+
+
+// ============================================================================
+// Perspective Variables
+// ============================================================================
+
+/// Default perspective distance
+$perspective-default: 1000px !default;
+
+/// Close perspective distance
+$perspective-close: 500px !default;
+
+/// Far perspective distance
+$perspective-far: 2000px !default;

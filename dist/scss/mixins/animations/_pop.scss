@@ -11,7 +11,6 @@
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -34,11 +33,18 @@
 
 ///
 /// Pop Animation
+/// ---------------------------------------------------------------------------
 /// Creates a pop animation where the element scales up and then back down.
+///
 /// @name animate_pop
-/// @param {Number} $scale [1.2] - The scale factor for the pop effect.
-/// @param {Number|String} $duration [$animate_base_duration_fast] - The duration of the pop animation.
-/// @param {String} $timing_function [ease-in-out] - The timing function for the pop animation.
+/// @param {Number} $scale [1.2] - Scale factor for the pop effect
+/// @param {Time} $duration [$animate_base_duration_fast] - Animation duration
+/// @param {String} $timing_function [ease-in-out] - Timing function
+///
+/// @example scss - Basic usage
+///   .button {
+///     @include animate_pop;
+///   }
 ///
 @mixin animate_pop(
     $scale: 1.2,
@@ -55,16 +61,20 @@
 }
 
 
-// Rapid Pop Animation
-// ----------------------------------------------------------------------------
-
 ///
 /// Rapid Pop Animation
+/// ---------------------------------------------------------------------------
 /// Creates a rapid pop animation with a quick scaling effect.
+///
 /// @name animate_pop_fast
-/// @param {Number} $scale [1.2] - The scale factor for the pop effect.
-/// @param {Number|String} $duration [$animate_base_duration_fast] - The duration of the pop animation.
-/// @param {String} $timing_function [ease-in-out] - The timing function for the pop animation.
+/// @param {Number} $scale [1.2] - Scale factor for the pop effect
+/// @param {Time} $duration [$animate_base_duration_fast] - Animation duration
+/// @param {String} $timing_function [ease-in-out] - Timing function
+///
+/// @example scss - Usage
+///   .icon {
+///     @include animate_pop_fast;
+///   }
 ///
 @mixin animate_pop_fast(
     $scale: 1.2,
@@ -81,16 +91,20 @@
 }
 
 
-// Gentle Pop Animation
-// ----------------------------------------------------------------------------
-
 ///
 /// Gentle Pop Animation
+/// ---------------------------------------------------------------------------
 /// Creates a gentler pop animation with a slower scaling effect.
+///
 /// @name animate_pop_slow
-/// @param {Number} $scale [1.1] - The scale factor for the pop effect.
-/// @param {Number|String} $duration [$animate_base_duration] - The duration of the pop animation.
-/// @param {String} $timing_function [ease-in-out] - The timing function for the pop animation.
+/// @param {Number} $scale [1.1] - Scale factor for the pop effect
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [ease-in-out] - Timing function
+///
+/// @example scss - Usage
+///   .soft-button {
+///     @include animate_pop_slow;
+///   }
 ///
 @mixin animate_pop_slow(
     $scale: 1.1,
@@ -107,17 +121,21 @@
 }
 
 
-// Pop with Rotation
-// ----------------------------------------------------------------------------
-
 ///
-/// Pop with Rotation
+/// Pop with Rotation Animation
+/// ---------------------------------------------------------------------------
 /// Creates a pop animation combined with a rotation effect.
+///
 /// @name animate_pop_rotate
-/// @param {Number} $scale [1.2] - The scale factor for the pop effect.
-/// @param {Number|String} $rotation_angle [10deg] - The rotation angle during the pop effect.
-/// @param {Number|String} $duration [$animate_base_duration_fast] - The duration of the pop animation.
-/// @param {String} $timing_function [ease-in-out] - The timing function for the pop animation.
+/// @param {Number} $scale [1.2] - Scale factor for the pop effect
+/// @param {Angle} $rotation_angle [10deg] - Rotation angle during the pop
+/// @param {Time} $duration [$animate_base_duration_fast] - Animation duration
+/// @param {String} $timing_function [ease-in-out] - Timing function
+///
+/// @example scss - Usage
+///   .fancy-button {
+///     @include animate_pop_rotate;
+///   }
 ///
 @mixin animate_pop_rotate(
     $scale: 1.2,

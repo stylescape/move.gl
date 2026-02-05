@@ -11,7 +11,6 @@
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -34,13 +33,19 @@
 
 ///
 /// Rubber Band Animation
+/// ---------------------------------------------------------------------------
 /// Creates a rubber band-style stretching and squashing effect.
 ///
 /// @name animate_rubber_band
-/// @param {Number} $intensity [1.25] - The stretch/squash intensity factor.
-/// @param {Duration} $duration [$animate_base_duration] - The animation duration.
-/// @param {String} $timing_function [ease-in-out] - The timing function.
-/// @param {Number|String} $iteration_count [1] - Number of iterations.
+/// @param {Number} $intensity [1.25] - Stretch/squash intensity factor
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [ease-in-out] - Timing function
+/// @param {Number|String} $iteration_count [1] - Number of iterations
+///
+/// @example scss - Basic usage
+///   .bouncy-element {
+///     @include animate_rubber_band;
+///   }
 ///
 @mixin animate_rubber_band(
     $intensity: 1.25,

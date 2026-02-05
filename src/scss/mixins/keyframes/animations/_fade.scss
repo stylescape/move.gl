@@ -1,0 +1,311 @@
+////
+///
+/// Fade Keyframes Mixins Module
+/// ===========================================================================
+///
+/// Defines keyframes for fade animations including basic fade, fade-in,
+/// fade-out, and directional fade variations. These keyframes control element
+/// opacity for smooth visibility transitions.
+///
+/// @group Keyframes
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../../variables" as *;
+@use "../_base" as *;
+
+
+// ============================================================================
+// Basic Fade Keyframes
+// ============================================================================
+
+///
+/// Looping fade animation.
+///
+/// @param {Number} $start_opacity [1] - Starting/ending opacity
+/// @param {Number} $mid_opacity [0] - Middle keyframe opacity
+///
+@mixin keyframes_fade($start_opacity: 1, $mid_opacity: 0) {
+    @include keyframes(animate_fade) {
+        0%, 100% {
+            opacity: $start_opacity;
+        }
+        50% {
+            opacity: $mid_opacity;
+        }
+    }
+}
+
+///
+/// Fade animation with CSS custom property support.
+///
+@mixin keyframes_animate_fade($start_opacity: $animate_opacity_start, $mid_opacity: $animate_opacity_fade) {
+    @include keyframes(animate_fade) {
+        0%, 100% {
+            opacity: var(--animate-opacity-start, #{$start_opacity});
+        }
+        50% {
+            opacity: var(--animate-opacity-fade, #{$mid_opacity});
+        }
+    }
+}
+
+
+// ============================================================================
+// Fade In Keyframes
+// ============================================================================
+
+///
+/// Basic fade in.
+///
+/// @param {Number} $start_opacity [0] - Starting opacity
+/// @param {Number} $end_opacity [1] - Ending opacity
+///
+@mixin keyframes_fade_in($start_opacity: 0, $end_opacity: 1) {
+    @include keyframes(animate_fade_in) {
+        from {
+            opacity: $start_opacity;
+        }
+        to {
+            opacity: $end_opacity;
+        }
+    }
+}
+
+///
+/// Fade in from above.
+///
+/// @param {Length} $distance [$animate_translate_fade] - Starting distance
+///
+@mixin keyframes_fade_in_down($distance: $animate_translate_fade) {
+    @include keyframes(animate_fade_in_down) {
+        from {
+            opacity: 0;
+            transform: translateY(-$distance);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+///
+/// Fade in from below.
+///
+/// @param {Length} $distance [$animate_translate_fade] - Starting distance
+///
+@mixin keyframes_fade_in_up($distance: $animate_translate_fade) {
+    @include keyframes(animate_fade_in_up) {
+        from {
+            opacity: 0;
+            transform: translateY($distance);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+///
+/// Fade in from left.
+///
+/// @param {Length} $distance [$animate_translate_fade] - Starting distance
+///
+@mixin keyframes_fade_in_left($distance: $animate_translate_fade) {
+    @include keyframes(animate_fade_in_left) {
+        from {
+            opacity: 0;
+            transform: translateX(-$distance);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+}
+
+///
+/// Fade in from right.
+///
+/// @param {Length} $distance [$animate_translate_fade] - Starting distance
+///
+@mixin keyframes_fade_in_right($distance: $animate_translate_fade) {
+    @include keyframes(animate_fade_in_right) {
+        from {
+            opacity: 0;
+            transform: translateX($distance);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+}
+
+
+// ============================================================================
+// Fade Out Keyframes
+// ============================================================================
+
+///
+/// Basic fade out.
+///
+/// @param {Number} $start_opacity [1] - Starting opacity
+/// @param {Number} $end_opacity [0] - Ending opacity
+///
+@mixin keyframes_fade_out($start_opacity: 1, $end_opacity: 0) {
+    @include keyframes(animate_fade_out) {
+        from {
+            opacity: $start_opacity;
+        }
+        to {
+            opacity: $end_opacity;
+        }
+    }
+}
+
+///
+/// Fade out to above.
+///
+/// @param {Length} $distance [20px] - Ending distance
+///
+@mixin keyframes_fade_out_up($distance: 20px) {
+    @include keyframes(animate_fade_out_up) {
+        from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateY(-$distance);
+        }
+    }
+}
+
+///
+/// Fade out to below.
+///
+/// @param {Length} $distance [20px] - Ending distance
+///
+@mixin keyframes_fade_out_down($distance: 20px) {
+    @include keyframes(animate_fade_out_down) {
+        from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateY($distance);
+        }
+    }
+}
+
+///
+/// Fade out to left.
+///
+/// @param {Length} $distance [$animate_translate_fade] - Ending distance
+///
+@mixin keyframes_fade_out_left($distance: $animate_translate_fade) {
+    @include keyframes(animate_fade_out_left) {
+        from {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateX(-$distance);
+        }
+    }
+}
+
+///
+/// Fade out to right.
+///
+/// @param {Length} $distance [$animate_translate_fade] - Ending distance
+///
+@mixin keyframes_fade_out_right($distance: $animate_translate_fade) {
+    @include keyframes(animate_fade_out_right) {
+        from {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateX($distance);
+        }
+    }
+}
+
+
+// ============================================================================
+// Gradual Fade Keyframes
+// ============================================================================
+
+///
+/// Slow, subtle fade.
+///
+/// @param {Number} $start_opacity [1] - Starting/ending opacity
+/// @param {Number} $end_opacity [0.5] - Midpoint opacity
+///
+@mixin keyframes_fade_gradual($start_opacity: 1, $end_opacity: 0.5) {
+    @include keyframes(animate_fade_gradual) {
+        0%, 100% {
+            opacity: $start_opacity;
+        }
+        50% {
+            opacity: $end_opacity;
+        }
+    }
+}
+
+
+// ============================================================================
+// Fade with Scale Keyframes
+// ============================================================================
+
+///
+/// Fade in with scale up.
+///
+/// @param {Number} $start_scale [$animate_scale_fade_in_start] - Starting scale
+///
+@mixin keyframes_fade_in_scale($start_scale: $animate_scale_fade_in_start) {
+    @include keyframes(animate_fade_in_scale) {
+        from {
+            opacity: 0;
+            transform: scale($start_scale);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+}
+
+///
+/// Fade out with scale down.
+///
+/// @param {Number} $end_scale [$animate_scale_fade_out_end] - Ending scale
+///
+@mixin keyframes_fade_out_scale($end_scale: $animate_scale_fade_out_end) {
+    @include keyframes(animate_fade_out_scale) {
+        from {
+            opacity: 1;
+            transform: scale(1);
+        }
+        to {
+            opacity: 0;
+            transform: scale($end_scale);
+        }
+    }
+}

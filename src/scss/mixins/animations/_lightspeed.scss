@@ -11,7 +11,6 @@
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -34,13 +33,19 @@
 
 ///
 /// Lightspeed In Animation
+/// ---------------------------------------------------------------------------
 /// High-speed entrance from the right with skew effect.
 ///
 /// @name animate_lightspeed_in
-/// @param {Number|String} $distance [100%] - The starting distance offscreen.
-/// @param {Angle} $skew_start [-30deg] - The initial skew angle.
-/// @param {Duration} $duration [$animate_base_duration] - The animation duration.
-/// @param {String} $timing_function [ease-out] - The timing function.
+/// @param {Length} $distance [100%] - Starting distance offscreen
+/// @param {Angle} $skew_start [-30deg] - Initial skew angle
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [ease-out] - Timing function
+///
+/// @example scss - Basic usage
+///   .hero-title {
+///     @include animate_lightspeed_in;
+///   }
 ///
 @mixin animate_lightspeed_in(
     $distance: 100%,
@@ -60,13 +65,19 @@
 
 ///
 /// Lightspeed Out Animation
+/// ---------------------------------------------------------------------------
 /// High-speed exit to the right with skew effect.
 ///
 /// @name animate_lightspeed_out
-/// @param {Number|String} $distance [100%] - The ending distance offscreen.
-/// @param {Angle} $skew_end [30deg] - The final skew angle.
-/// @param {Duration} $duration [$animate_base_duration] - The animation duration.
-/// @param {String} $timing_function [ease-in] - The timing function.
+/// @param {Length} $distance [100%] - Ending distance offscreen
+/// @param {Angle} $skew_end [30deg] - Final skew angle
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [ease-in] - Timing function
+///
+/// @example scss - Usage
+///   .closing-panel {
+///     @include animate_lightspeed_out;
+///   }
 ///
 @mixin animate_lightspeed_out(
     $distance: 100%,
@@ -86,10 +97,16 @@
 
 ///
 /// Lightspeed In Left Animation
+/// ---------------------------------------------------------------------------
 /// High-speed entrance from the left.
 ///
 /// @name animate_lightspeed_in_left
-/// @param {Duration} $duration [$animate_base_duration] - The animation duration.
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+///
+/// @example scss - Usage
+///   .slide-title {
+///     @include animate_lightspeed_in_left;
+///   }
 ///
 @mixin animate_lightspeed_in_left(
     $duration: $animate_base_duration
@@ -100,10 +117,16 @@
 
 ///
 /// Lightspeed Out Left Animation
+/// ---------------------------------------------------------------------------
 /// High-speed exit to the left.
 ///
 /// @name animate_lightspeed_out_left
-/// @param {Duration} $duration [$animate_base_duration] - The animation duration.
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+///
+/// @example scss - Usage
+///   .exit-panel {
+///     @include animate_lightspeed_out_left;
+///   }
 ///
 @mixin animate_lightspeed_out_left(
     $duration: $animate_base_duration

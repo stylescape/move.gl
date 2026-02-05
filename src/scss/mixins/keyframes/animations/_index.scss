@@ -1,0 +1,46 @@
+////
+///
+/// Animation Keyframes Module
+/// =========================================================================
+///
+/// CSS @keyframes definitions for all animation effects. These keyframes
+/// are used by the animations mixins module to create reusable animation
+/// effects like bounce, fade, spin, shake, and more.
+///
+/// @group Keyframes
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+
+// ============================================================================
+// Forward Animation Keyframes
+// ============================================================================
+
+@forward "beat";
+@forward "blink";
+@forward "bounce";
+@forward "fade";
+@forward "flash";
+@forward "flip";
+@forward "jiggle";
+@forward "lightspeed";
+@forward "nod";
+@forward "pop";
+@forward "pulse";
+@forward "ripple";
+@forward "roll";
+@forward "rotate";
+@forward "rubber";
+@forward "scale";
+@forward "shake";
+@forward "slide";
+@forward "spin";
+@forward "sway";
+@forward "twist";
+@forward "wave";
+@forward "wobble";
+@forward "zoom";

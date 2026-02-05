@@ -1,0 +1,80 @@
+////
+///
+/// Transitions Variables Module
+/// =========================================================================
+///
+/// Centralized configuration for CSS transition-related variables including
+/// durations, timing functions, and easing curves.
+///
+/// @group Transitions
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+
+// ============================================================================
+// Duration Variables
+// ============================================================================
+
+/// Fast transition duration
+$transition-fast: 0.15s !default;
+
+/// Default transition duration
+$transition-default: 0.3s !default;
+
+/// Slow transition duration
+$transition-slow: 0.5s !default;
+
+/// Very slow transition duration
+$transition-slower: 0.8s !default;
+
+
+// ============================================================================
+// Timing Function Variables
+// ============================================================================
+
+/// Default timing function
+$timing-default: ease !default;
+
+/// Linear timing function
+$timing-linear: linear !default;
+
+/// Ease-in timing function
+$timing-ease-in: ease-in !default;
+
+/// Ease-out timing function
+$timing-ease-out: ease-out !default;
+
+/// Ease-in-out timing function
+$timing-ease-in-out: ease-in-out !default;
+
+
+// ============================================================================
+// Custom Easing Curves
+// ============================================================================
+
+/// Bounce easing curve
+$easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55) !default;
+
+/// Smooth easing curve
+$easing-smooth: cubic-bezier(0.4, 0, 0.2, 1) !default;
+
+/// Snap easing curve
+$easing-snap: cubic-bezier(0.4, 0, 0.6, 1) !default;
+
+/// Elastic easing curve
+$easing-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6) !default;
+
+
+// ============================================================================
+// Property Defaults
+// ============================================================================
+
+/// Default transition property
+$transition-property-default: all !default;
+
+/// Common transition properties list
+$transition-properties: (opacity, transform, background-color, color, border-color, box-shadow) !default;

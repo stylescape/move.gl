@@ -11,7 +11,6 @@
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -34,15 +33,21 @@
 
 ///
 /// Float Animation
+/// ---------------------------------------------------------------------------
 /// Creates a floating animation where the element moves up and down smoothly.
 ///
 /// @name animate_float
-/// @param {Number|String} $start_position [0] - The starting position of the float animation.
-/// @param {Number|String} $mid_position [10px] - The mid-position of the float animation.
-/// @param {Number|String} $end_position [0] - The ending position of the float animation.
-/// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the float animation.
-/// @param {String} $timing_function [ease-in-out] - The timing function for the float animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Length} $start_position [0] - Starting position of the animation
+/// @param {Length} $mid_position [10px] - Mid-position of the animation
+/// @param {Length} $end_position [0] - Ending position of the animation
+/// @param {Time} $duration [$animate_base_duration_slow] - Animation duration
+/// @param {String} $timing_function [ease-in-out] - Timing function
+/// @param {Number|String} $iteration_count - Number of iterations
+///
+/// @example scss - Basic usage
+///   .cloud {
+///     @include animate_float;
+///   }
 ///
 @mixin animate_float(
     $start_position: 0,
@@ -64,15 +69,22 @@
     }
 }
 
+
 ///
-/// Float with Horizontal Movement
+/// Horizontal Float Animation
+/// ---------------------------------------------------------------------------
 /// Creates a floating animation where the element moves horizontally.
 ///
 /// @name animate_float_horizontal
-/// @param {Number|String} $horizontal-distance [10px] - The distance the element moves horizontally.
-/// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the float animation.
-/// @param {String} $timing_function [ease-in-out] - The timing function for the float animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Length} $horizontal-distance [10px] - Horizontal movement distance
+/// @param {Time} $duration [$animate_base_duration_slow] - Animation duration
+/// @param {String} $timing_function [ease-in-out] - Timing function
+/// @param {Number|String} $iteration_count - Number of iterations
+///
+/// @example scss - Usage
+///   .icon {
+///     @include animate_float_horizontal;
+///   }
 ///
 @mixin animate_float_horizontal(
     $horizontal-distance: 10px,
@@ -94,15 +106,21 @@
 
 
 ///
-/// Float with Rotation
+/// Float with Rotation Animation
+/// ---------------------------------------------------------------------------
 /// Creates a floating animation where the element moves up and down with a
 /// rotation.
 ///
 /// @name animate_float_rotate
-/// @param {Number|String} $rotation_angle [15deg] - The angle of rotation during the float animation.
-/// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the float animation.
-/// @param {String} $timing_function [ease-in-out] - The timing function for the float animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Angle} $rotation_angle [15deg] - Rotation angle during float
+/// @param {Time} $duration [$animate_base_duration_slow] - Animation duration
+/// @param {String} $timing_function [ease-in-out] - Timing function
+/// @param {Number|String} $iteration_count - Number of iterations
+///
+/// @example scss - Usage
+///   .leaf {
+///     @include animate_float_rotate;
+///   }
 ///
 @mixin animate_float_rotate(
     $rotation_angle: 15deg,

@@ -11,7 +11,6 @@
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -34,14 +33,20 @@
 
 ///
 /// Hinge Animation
+/// ---------------------------------------------------------------------------
 /// Creates a hinge effect where the element swings and falls off.
 ///
 /// @name animate_hinge
-/// @param {String} $origin [top left] - The transform origin (hinge point).
-/// @param {Angle} $swing_angle [80deg] - The maximum swing angle.
-/// @param {Number|String} $fall_distance [700px] - The distance to fall.
-/// @param {Duration} $duration [2s] - The animation duration.
-/// @param {String} $timing_function [ease-in-out] - The timing function.
+/// @param {String} $origin [top left] - Transform origin (hinge point)
+/// @param {Angle} $swing_angle [80deg] - Maximum swing angle
+/// @param {Length} $fall_distance [700px] - Distance to fall
+/// @param {Time} $duration [2s] - Animation duration
+/// @param {String} $timing_function [ease-in-out] - Timing function
+///
+/// @example scss - Basic usage
+///   .modal-close {
+///     @include animate_hinge;
+///   }
 ///
 @mixin animate_hinge(
     $origin: top left,
@@ -80,10 +85,16 @@
 
 ///
 /// Hinge Left Animation
+/// ---------------------------------------------------------------------------
 /// Creates a hinge effect from the left side.
 ///
 /// @name animate_hinge_left
-/// @param {Duration} $duration [2s] - The animation duration.
+/// @param {Time} $duration [2s] - Animation duration
+///
+/// @example scss - Usage
+///   .panel {
+///     @include animate_hinge_left;
+///   }
 ///
 @mixin animate_hinge_left(
     $duration: 2s
@@ -94,10 +105,11 @@
 
 ///
 /// Hinge Right Animation
+/// ---------------------------------------------------------------------------
 /// Creates a hinge effect from the right side.
 ///
 /// @name animate_hinge_right
-/// @param {Duration} $duration [2s] - The animation duration.
+/// @param {Time} $duration [2s] - Animation duration
 ///
 @mixin animate_hinge_right(
     $duration: 2s

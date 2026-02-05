@@ -11,7 +11,6 @@
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -34,15 +33,21 @@
 
 ///
 /// Roll Animation
+/// ---------------------------------------------------------------------------
 /// Creates a rolling animation where the element translates and rotates
 /// horizontally.
 ///
 /// @name animate_roll
-/// @param {Number|String} $translate_distance [100%] - The distance to translate the element horizontally.
-/// @param {Number|String} $rotation_angle [360deg] - The rotation angle for the roll.
-/// @param {Number|String} $duration [$animate_base_duration * 2] - The duration of the roll animation.
-/// @param {String} $timing_function [ease-in-out] - The timing function for the roll animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Length} $translate_distance [100%] - Horizontal translation
+/// @param {Angle} $rotation_angle [360deg] - Rotation angle for the roll
+/// @param {Time} $duration - Animation duration
+/// @param {String} $timing_function [ease-in-out] - Timing function
+/// @param {Number|String} $iteration_count - Number of iterations
+///
+/// @example scss - Basic usage
+///   .ball {
+///     @include animate_roll;
+///   }
 ///
 @mixin animate_roll(
     $translate_distance: 100%,
@@ -61,18 +66,23 @@
 }
 
 
-// Reverse Roll Animation
-// ----------------------------------------------------------------------------
-
 ///
 /// Reverse Roll Animation
-/// Creates a reverse rolling animation where the element translates and rotates horizontally in the opposite direction.
+/// ---------------------------------------------------------------------------
+/// Creates a reverse rolling animation where the element translates and
+/// rotates horizontally in the opposite direction.
+///
 /// @name animate_roll_reverse
-/// @param {Number|String} $translate-distance [-100%] - The distance to translate the element horizontally.
-/// @param {Number|String} $rotation_angle [-360deg] - The rotation angle for the reverse roll.
-/// @param {Number|String} $duration [$animate_base_duration/// 2] - The duration of the roll animation.
-/// @param {String} $timing_function [ease-in-out] - The timing function for the roll animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Length} $translate-distance [-100%] - Horizontal translation
+/// @param {Angle} $rotation_angle [-360deg] - Rotation angle for the roll
+/// @param {Time} $duration - Animation duration
+/// @param {String} $timing_function [ease-in-out] - Timing function
+/// @param {Number|String} $iteration_count - Number of iterations
+///
+/// @example scss - Usage
+///   .reverse-ball {
+///     @include animate_roll_reverse;
+///   }
 ///
 @mixin animate_roll_reverse(
     $translate-distance: -100%,

@@ -27,7 +27,7 @@
 
 @use "../mixins/transitions" as *;
 @use "../mixins/effects" as *;
-@use "../mixins/mouse" as *;
+@use "../mixins/controls" as *;
 
 
 // ============================================================================
@@ -252,70 +252,6 @@
 .cursor--ns-resize { @include cursor_ns_resize; }
 .cursor--col-resize { @include cursor_col_resize; }
 .cursor--row-resize { @include cursor_row_resize; }
-
-
-// ============================================================================
-// Pointer Event Classes
-// ============================================================================
-
-.pointer--auto { @include pointer_auto; }
-.pointer--none { @include pointer_none; }
-
-
-// ============================================================================
-// Text Selection Classes
-// ============================================================================
-
-.selection--default { @include select_auto; }
-.selection--none { @include select_none; }
-.selection--all { @include select_all; }
-
-
-// ============================================================================
-// Focus State Classes
-// ============================================================================
-
-.focus--default { @include focus_default; }
-.focus--ring { @include focus_ring; }
-.focus--glow { @include focus_glow; }
-.focus--outline { @include focus_outline; }
-
-
-// ============================================================================
-// Touch Interaction Classes
-// ============================================================================
-
-/// Touch-friendly target size
-.touch--target {
-    @include touch_target;
-}
-
-/// Touch feedback
-.touch--feedback {
-    @include touch_feedback;
-}
-
-/// Smooth touch scrolling
-.touch--scroll {
-    @include touch_scroll;
-}
-
-
-// ============================================================================
-// Scroll Behavior Classes
-// ============================================================================
-
-.scroll--smooth {
-    @include scroll_smooth;
-}
-
-.scroll--snap {
-    @include scroll_snap_y;
-}
-
-.scroll-snap-item {
-    @include scroll_snap_item;
-}
 
 
 // ============================================================================

@@ -22,20 +22,7 @@
 // ============================================================================
 
 @use "sass:math";
-
-
-// ============================================================================
-// Variables
-// ============================================================================
-
-/// Default animation duration
-$keyframe-duration-default: 1s !default;
-
-/// Default animation timing function
-$keyframe-timing-default: ease !default;
-
-/// Default animation iteration count
-$keyframe-iteration-default: 1 !default;
+@use "../../variables" as *;
 
 
 // ============================================================================
@@ -131,13 +118,6 @@ $keyframe-iteration-default: 1 !default;
 // ============================================================================
 // Loading Animation Keyframes
 // ============================================================================
-
-// NOTE: Common keyframe definitions (fade, slide, scale, spin, bounce, pulse,
-// shake, wobble, float, swing, flip, rubber_band, jello, tada) have been moved
-// to their respective dedicated keyframe modules to avoid duplication.
-// See: _fade.scss, _slide.scss, _scale.scss, _spin.scss, _bounce.scss,
-// _pulse.scss, _shake.scss, _wobble.scss, _float.scss, _swing.scss,
-// _flip.scss, _rubber.scss, _jello.scss, _tada.scss
 
 ///
 /// Spinner rotation.

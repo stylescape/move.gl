@@ -1,0 +1,85 @@
+////
+///
+/// Controls Maps Module
+/// =========================================================================
+///
+/// Maps for controls including cursor styles.
+///
+/// @group Controls
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+
+// ============================================================================
+// Cursor Styles Map
+// ============================================================================
+
+/// Cursor Styles Map
+/// ---------------------------------------------------------------------------
+/// A map defining standard cursor styles for easy reference and extensibility.
+/// Allows for uniform application of cursor styles across elements.
+///
+/// @see https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
+///
+$cursor_styles: (
+
+    // General
+    "auto": auto,
+    "default": default,
+    "none": none,
+
+    // Links & Status
+    "context-menu": context-menu,
+    "help": help,
+    "pointer": pointer,
+    "progress": progress,
+    "wait": wait,
+
+    // Selection
+    "cell": cell,
+    "crosshair": crosshair,
+    "text": text,
+    "vertical-text": vertical-text,
+
+    // Drag & drop
+    "alias": alias,
+    "copy": copy,
+    "move": move,
+    "no-drop": no-drop,
+    "not-allowed": not-allowed,
+    "grab": grab,
+    "grabbing": grabbing,
+
+    // Resizing & Scrolling
+    "all-scroll": all-scroll,
+    "col-resize": col-resize,
+    "row-resize": row-resize,
+    "n-resize": n-resize,
+    "e-resize": e-resize,
+    "s-resize": s-resize,
+    "w-resize": w-resize,
+    "ne-resize": ne-resize,
+    "nw-resize": nw-resize,
+    "se-resize": se-resize,
+    "sw-resize": sw-resize,
+    "ew-resize": ew-resize,
+    "ns-resize": ns-resize,
+    "nesw-resize": nesw-resize,
+    "nwse-resize": nwse-resize,
+
+    // Zooming
+    "zoom-in": zoom-in,
+    "zoom-out": zoom-out,
+
+    // Aliases
+    "disabled": not-allowed,
+    "resize-vertical": ns-resize,
+    "resize-horizontal": ew-resize,
+    "resize-diagonal-1": nwse-resize,
+    "resize-diagonal-2": nesw-resize,
+
+);

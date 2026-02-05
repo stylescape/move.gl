@@ -11,7 +11,6 @@
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -34,15 +33,21 @@
 
 ///
 /// Blink Animation
-/// Creates a blink animation where the element alternates between visible and
-/// invisible states.
+/// ---------------------------------------------------------------------------
+/// Creates a blink animation where the element alternates between visible
+/// and invisible states.
 ///
 /// @name animate_blink
-/// @param {Number|String} $duration [$animate_base_duration] - The duration of the blink animation.
-/// @param {String} $timing_function [step-end] - The timing function for the blink animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
-/// @param {Number} $start_opacity [1] - The opacity of the element at the start and end of the animation.
-/// @param {Number} $blink_opacity [0] - The opacity of the element during the blink.
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [step-end] - Timing function
+/// @param {Number|String} $iteration_count - Number of iterations
+/// @param {Number} $start_opacity [1] - Opacity at start and end
+/// @param {Number} $blink_opacity [0] - Opacity during blink
+///
+/// @example scss - Basic usage
+///   .cursor {
+///     @include animate_blink;
+///   }
 ///
 @mixin animate_blink(
     $duration: $animate_base_duration,
@@ -63,13 +68,19 @@
 
 ///
 /// Rapid Blink Animation
+/// ---------------------------------------------------------------------------
 /// Creates a rapid blink animation where the element blinks quickly between
 /// visible and invisible states.
 ///
 /// @name animate_blink_rapid
-/// @param {Number|String} $duration [$animate_base_duration_fast] - The duration of the rapid blink animation.
-/// @param {String} $timing_function [steps(2, end)] - The timing function for the rapid blink animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Time} $duration [$animate_base_duration_fast] - Animation duration
+/// @param {String} $timing_function [steps(2, end)] - Timing function
+/// @param {Number|String} $iteration_count - Number of iterations
+///
+/// @example scss - Usage
+///   .alert {
+///     @include animate_blink_rapid;
+///   }
 ///
 @mixin animate_blink_rapid(
     $duration: $animate_base_duration_fast,
@@ -88,13 +99,19 @@
 
 ///
 /// Soft Blink Animation
+/// ---------------------------------------------------------------------------
 /// Creates a soft blink animation with a smooth transition in and out of
 /// visibility.
 ///
 /// @name animate_blink_soft
-/// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the soft blink animation.
-/// @param {String} $timing_function [ease-in-out] - The timing function for the soft blink animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Time} $duration [$animate_base_duration_slow] - Animation duration
+/// @param {String} $timing_function [ease-in-out] - Timing function
+/// @param {Number|String} $iteration_count - Number of iterations
+///
+/// @example scss - Usage
+///   .status {
+///     @include animate_blink_soft;
+///   }
 ///
 @mixin animate_blink_soft(
     $duration: $animate_base_duration_slow,
@@ -113,13 +130,19 @@
 
 ///
 /// Alternating Blink Animation
-/// Creates an alternating blink animation where the element blinks at regular
-/// intervals.
+/// ---------------------------------------------------------------------------
+/// Creates an alternating blink animation where the element blinks at
+/// regular intervals.
 ///
 /// @name animate_blink_alternate
-/// @param {Number|String} $duration [$animate_base_duration] - The duration of the alternating blink animation.
-/// @param {String} $timing_function [linear] - The timing function for the alternating blink animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [linear] - Timing function
+/// @param {Number|String} $iteration_count - Number of iterations
+///
+/// @example scss - Usage
+///   .indicator {
+///     @include animate_blink_alternate;
+///   }
 ///
 @mixin animate_blink_alternate(
     $duration: $animate_base_duration,

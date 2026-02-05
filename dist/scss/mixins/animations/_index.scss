@@ -1,37 +1,97 @@
 // ============================================================================
-// StyleScape | Animations | Index
+// move.gl | Animations Index
+// ============================================================================
+// Copyright 2025 Scape Agency BV
+// Licensed under MIT License
+// ============================================================================
+
+////
+/// Animations Mixin Module Index
+/// =========================================================================
+///
+/// Central index for all animation mixins in move.gl. Provides a complete
+/// library of animation effects including:
+///
+/// - **Base**: Core animation infrastructure and utilities
+/// - **Attention**: beat, blink, bounce, flash, heartbeat, jiggle, shake
+/// - **Entrance/Exit**: fade, flip, lightspeed, roll, slide, zoom
+/// - **Emphasis**: pulse, glow, pop, rubber, tada, wobble
+/// - **Background**: float, sway, swing, wave
+/// - **Transform**: rotate, scale, spin, twist
+/// - **Special**: elastic, hinge, jello, nod, ripple
+///
+/// @group Animations
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Core
 // ============================================================================
 
 @forward "base";
+
+// ============================================================================
+// Attention Seekers
+// ============================================================================
+
 @forward "beat";
 @forward "blink";
 @forward "bounce";
-@forward "elastic";
-@forward "fade";
 @forward "flash";
-@forward "flip";
-@forward "float";
-@forward "glow";
 @forward "heartbeat";
-@forward "hinge";
-@forward "jello";
 @forward "jiggle";
-@forward "lightspeed";
-@forward "nod";
-@forward "pop";
-@forward "pulse";
-@forward "ripple";
-@forward "roll";
-@forward "rotate";
-@forward "rubber";
-@forward "scale";
 @forward "shake";
+
+// ============================================================================
+// Entrance & Exit Animations
+// ============================================================================
+
+@forward "fade";
+@forward "flip";
+@forward "lightspeed";
+@forward "roll";
 @forward "slide";
-@forward "spin";
+@forward "zoom";
+
+// ============================================================================
+// Emphasis Animations
+// ============================================================================
+
+@forward "pulse";
+@forward "glow";
+@forward "pop";
+@forward "rubber";
+@forward "tada";
+@forward "wobble";
+
+// ============================================================================
+// Background & Ambient Animations
+// ============================================================================
+
+@forward "float";
 @forward "sway";
 @forward "swing";
-@forward "tada";
-@forward "twist";
 @forward "wave";
-@forward "wobble";
-@forward "zoom";
+
+// ============================================================================
+// Transform-based Animations
+// ============================================================================
+
+@forward "rotate";
+@forward "scale";
+@forward "spin";
+@forward "twist";
+
+// ============================================================================
+// Special Effects
+// ============================================================================
+
+@forward "elastic";
+@forward "hinge";
+@forward "jello";
+@forward "nod";
+@forward "ripple";

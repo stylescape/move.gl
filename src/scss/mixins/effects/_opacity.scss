@@ -18,17 +18,10 @@
 
 
 // ============================================================================
-// Variables
+// Use
 // ============================================================================
 
-/// Default hover opacity
-$opacity-hover-default: 0.75 !default;
-
-/// Disabled state opacity
-$opacity-disabled: 0.5 !default;
-
-/// Muted/secondary opacity
-$opacity-muted: 0.6 !default;
+@use "../../variables" as *;
 
 
 // ============================================================================

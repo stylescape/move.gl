@@ -11,7 +11,6 @@
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -34,12 +33,20 @@
 
 ///
 /// Nod Animation
-/// Creates a nodding animation where the element rotates back and forth on the X-axis.
+/// ---------------------------------------------------------------------------
+/// Creates a nodding animation where the element rotates back and forth on
+/// the X-axis.
+///
 /// @name animate_nod
-/// @param {Number|String} $angle [10deg] - The angle of rotation for the nod.
-/// @param {Number|String} $duration [$animate_base_duration] - The duration of the nod animation.
-/// @param {String} $timing_function [ease-in-out] - The timing function for the nod animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Angle} $angle [10deg] - Angle of rotation for the nod
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [ease-in-out] - Timing function
+/// @param {Number|String} $iteration_count - Number of iterations
+///
+/// @example scss - Basic usage
+///   .avatar {
+///     @include animate_nod;
+///   }
 ///
 @mixin animate_nod(
     $angle: 10deg,
@@ -57,19 +64,22 @@
 }
 
 
-
-
-// Slow Nod Animation
-// ----------------------------------------------------------------------------
-
 ///
 /// Slow Nod Animation
-/// Creates a slower nodding animation with a more gradual movement on the X-axis.
+/// ---------------------------------------------------------------------------
+/// Creates a slower nodding animation with more gradual movement on the
+/// X-axis.
+///
 /// @name animate_nod_slow
-/// @param {Number|String} $angle [10deg] - The angle of rotation for the nod.
-/// @param {Number|String} $duration [$animate_base_duration_slow] - The duration of the nod animation.
-/// @param {String} $timing_function [ease-in-out] - The timing function for the nod animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Angle} $angle [10deg] - Angle of rotation for the nod
+/// @param {Time} $duration [$animate_base_duration_slow] - Animation duration
+/// @param {String} $timing_function [ease-in-out] - Timing function
+/// @param {Number|String} $iteration_count - Number of iterations
+///
+/// @example scss - Usage
+///   .gentle-nod {
+///     @include animate_nod_slow;
+///   }
 ///
 @mixin animate_nod_slow(
     $angle: 10deg,
@@ -87,17 +97,15 @@
 }
 
 
-
-// Nod with Bounce
-// ----------------------------------------------------------------------------
-
 ///
-/// Nod with Bounce
+/// Nod with Bounce Animation
+/// ---------------------------------------------------------------------------
 /// Creates a nodding animation combined with a bounce effect.
+///
 /// @name animate_nod_bounce
-/// @param {Number|String} $angle [10deg] - The angle of rotation for the nod.
-/// @param {Number|String} $bounce-height [5px] - The height of the bounce during the nod.
-/// @param {Number|String} $duration [$animate_base_duration] - The duration of the nod animation.
+/// @param {Angle} $angle [10deg] - Angle of rotation for the nod
+/// @param {Length} $bounce-height [5px] - Height of the bounce during the nod
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - The timing function for the nod animation.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///

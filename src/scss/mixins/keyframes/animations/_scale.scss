@@ -1,0 +1,308 @@
+////
+///
+/// Scale Keyframes Mixins Module
+/// ===========================================================================
+///
+/// Defines keyframes for scale animations including expand, shrink, scale
+/// in/out effects. These keyframes provide size-based animations for
+/// emphasis, feedback, and transition effects.
+///
+/// @group Keyframes
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../../variables" as *;
+@use "../_base" as *;
+
+
+// ============================================================================
+// Basic Scale Keyframes
+// ============================================================================
+
+///
+/// Standard scale animation.
+///
+/// @param {Number} $scale_start [1] - Starting scale
+/// @param {Number} $scale_end [1.2] - Ending/midpoint scale
+///
+@mixin keyframes_scale($scale_start: 1, $scale_end: $animate_scale_pop) {
+    @include keyframes(animate_scale) {
+        0%, 100% {
+            transform: scale($scale_start);
+        }
+        50% {
+            transform: scale($scale_end);
+        }
+    }
+}
+
+///
+/// Scale with CSS custom property support.
+///
+@mixin keyframes_animate_scale($scale: $animate_scale_pop) {
+    @include keyframes(animate_scale) {
+        0%, 100% {
+            transform: scale(var(--animate-scale-base, #{$animate_scale_base}));
+        }
+        50% {
+            transform: scale(var(--animate-scale-end, #{$scale}));
+        }
+    }
+}
+
+
+// ============================================================================
+// Expand Keyframes
+// ============================================================================
+
+///
+/// Expand animation.
+///
+/// @param {Number} $scale_start [1] - Starting scale
+/// @param {Number} $scale_end [1.2] - Maximum scale
+///
+@mixin keyframes_scale_expand($scale_start: 1, $scale_end: $animate_scale_pop) {
+    @include keyframes(animate_scale_expand) {
+        0%, 100% {
+            transform: scale($scale_start);
+        }
+        50% {
+            transform: scale($scale_end);
+        }
+    }
+}
+
+
+// ============================================================================
+// Shrink Keyframes
+// ============================================================================
+
+///
+/// Shrink animation.
+///
+/// @param {Number} $scale_min [0.8] - Minimum scale
+/// @param {Number} $scale_max [1.2] - Maximum scale
+///
+@mixin keyframes_scale_shrink($scale_min: $animate_scale_shrink_min, $scale_max: $animate_scale_pop) {
+    @include keyframes(animate_scale_shrink) {
+        0% {
+            transform: scale($scale_max);
+        }
+        50% {
+            transform: scale($scale_min);
+        }
+        100% {
+            transform: scale($scale_max);
+        }
+    }
+}
+
+
+// ============================================================================
+// Scale In Keyframes
+// ============================================================================
+
+///
+/// Scale in from small.
+///
+/// @param {Number} $start_scale [0] - Starting scale
+///
+@mixin keyframes_scale_in($start_scale: 0) {
+    @include keyframes(animate_scale_in) {
+        from {
+            transform: scale($start_scale);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+}
+
+///
+/// Scale in from center.
+///
+/// @param {Number} $start_scale [0.5] - Starting scale
+///
+@mixin keyframes_scale_in_center($start_scale: $animate_scale_in_center) {
+    @include keyframes(animate_scale_in_center) {
+        from {
+            transform: scale($start_scale);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+}
+
+///
+/// Scale in with overshoot (pop effect).
+///
+/// @param {Number} $start_scale [0] - Starting scale
+/// @param {Number} $overshoot [1.1] - Overshoot scale
+///
+@mixin keyframes_scale_in_pop($start_scale: 0, $overshoot: $animate_scale_overshoot) {
+    @include keyframes(animate_scale_in_pop) {
+        0% {
+            transform: scale($start_scale);
+            opacity: 0;
+        }
+        70% {
+            transform: scale($overshoot);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+}
+
+
+// ============================================================================
+// Scale Out Keyframes
+// ============================================================================
+
+///
+/// Scale out to nothing.
+///
+/// @param {Number} $end_scale [0] - Ending scale
+///
+@mixin keyframes_scale_out($end_scale: 0) {
+    @include keyframes(animate_scale_out) {
+        from {
+            transform: scale(1);
+            opacity: 1;
+        }
+        to {
+            transform: scale($end_scale);
+            opacity: 0;
+        }
+    }
+}
+
+///
+/// Scale out from center.
+///
+/// @param {Number} $end_scale [0.5] - Ending scale
+///
+@mixin keyframes_scale_out_center($end_scale: $animate_scale_in_center) {
+    @include keyframes(animate_scale_out_center) {
+        from {
+            transform: scale(1);
+            opacity: 1;
+        }
+        to {
+            transform: scale($end_scale);
+            opacity: 0;
+        }
+    }
+}
+
+
+// ============================================================================
+// Bounce Scale Keyframes
+// ============================================================================
+
+///
+/// Scale with bounce effect.
+///
+/// @param {Number} $scale [1.2] - Target scale
+///
+@mixin keyframes_scale_bounce($scale: $animate_scale_pop) {
+    @include keyframes(animate_scale_bounce) {
+        0%, 100% {
+            transform: scale(1);
+        }
+        30% {
+            transform: scale($scale);
+        }
+        50% {
+            transform: scale($scale * 0.9);
+        }
+        70% {
+            transform: scale($scale * 0.95);
+        }
+    }
+}
+
+
+// ============================================================================
+// Scale X/Y Keyframes
+// ============================================================================
+
+///
+/// Scale on X-axis only.
+///
+/// @param {Number} $scale_x [1.2] - X-axis scale
+///
+@mixin keyframes_scale_x($scale_x: $animate_scale_pop) {
+    @include keyframes(animate_scale_x) {
+        0%, 100% {
+            transform: scaleX(1);
+        }
+        50% {
+            transform: scaleX($scale_x);
+        }
+    }
+}
+
+///
+/// Scale on Y-axis only.
+///
+/// @param {Number} $scale_y [1.2] - Y-axis scale
+///
+@mixin keyframes_scale_y($scale_y: $animate_scale_pop) {
+    @include keyframes(animate_scale_y) {
+        0%, 100% {
+            transform: scaleY(1);
+        }
+        50% {
+            transform: scaleY($scale_y);
+        }
+    }
+}
+
+
+// ============================================================================
+// Scale Transition Classes (CSS utility classes)
+// ============================================================================
+
+///
+/// Keyframes for scale-in transition class.
+///
+@mixin keyframes_scale_transition_in() {
+    @include keyframes(scale_transition_in) {
+        from {
+            transform: scale(0);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
+}
+
+///
+/// Keyframes for scale-out transition class.
+///
+@mixin keyframes_scale_transition_out() {
+    @include keyframes(scale_transition_out) {
+        from {
+            transform: scale(1);
+        }
+        to {
+            transform: scale(0);
+        }
+    }
+}

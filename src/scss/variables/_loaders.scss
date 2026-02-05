@@ -1,0 +1,75 @@
+////
+///
+/// Loaders Variables Module
+/// ===========================================================================
+///
+/// Centralized configuration for all loader-related variables including
+/// spinners, dots, bars, circles, skeleton, and text loaders.
+///
+/// @group Loaders
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+
+// ============================================================================
+// Base Loader Variables
+// ============================================================================
+
+/// Default loader size
+$loader-size: 48px !default;
+
+/// Default loader color
+$loader-color: #FFF !default;
+
+/// Default loader accent color
+$loader-accent: #FF3D00 !default;
+
+/// Default loader animation speed
+$loader-speed: 1s !default;
+
+/// Default loader border width
+$loader-border: 5px !default;
+
+
+// ============================================================================
+// Spinner Variables
+// ============================================================================
+
+/// Spinner width
+$spinner-width: 2rem !default;
+
+/// Spinner height
+$spinner-height: 2rem !default;
+
+/// Small spinner width
+$spinner-width-sm: 1rem !default;
+
+/// Small spinner height
+$spinner-height-sm: 1rem !default;
+
+/// Spinner border width
+$spinner-border-width: 0.25em !default;
+
+/// Small spinner border width
+$spinner-border-width-sm: 0.2em !default;
+
+/// Spinner animation speed
+$spinner-animation-speed: 0.75s !default;
+
+/// Spinner vertical alignment
+$spinner-vertical-align: -0.125em !default;
+
+
+// ============================================================================
+// Skeleton Variables
+// ============================================================================
+
+/// Skeleton background color
+$skeleton-bg: rgba(255, 255, 255, 0.1) !default;
+
+/// Skeleton highlight/shimmer color
+$skeleton-highlight: rgba(255, 255, 255, 0.2) !default;

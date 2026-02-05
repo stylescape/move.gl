@@ -11,7 +11,6 @@
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -34,13 +33,19 @@
 
 ///
 /// Jello Animation
+/// ---------------------------------------------------------------------------
 /// Creates a jelly-like wobble effect using skew transforms.
 ///
 /// @name animate_jello
-/// @param {Angle} $intensity [12.5deg] - The initial skew intensity.
-/// @param {Duration} $duration [$animate_base_duration] - The animation duration.
-/// @param {String} $timing_function [ease-in-out] - The timing function.
-/// @param {Number|String} $iteration_count [1] - Number of iterations.
+/// @param {Angle} $intensity [12.5deg] - Initial skew intensity
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [ease-in-out] - Timing function
+/// @param {Number|String} $iteration_count [1] - Number of iterations
+///
+/// @example scss - Basic usage
+///   .button {
+///     @include animate_jello;
+///   }
 ///
 @mixin animate_jello(
     $intensity: 12.5deg,
@@ -86,10 +91,16 @@
 
 ///
 /// Subtle Jello Animation
+/// ---------------------------------------------------------------------------
 /// A gentler version of the jello effect.
 ///
 /// @name animate_jello_subtle
-/// @param {Duration} $duration [$animate_base_duration] - The animation duration.
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+///
+/// @example scss - Usage
+///   .card {
+///     @include animate_jello_subtle;
+///   }
 ///
 @mixin animate_jello_subtle(
     $duration: $animate_base_duration

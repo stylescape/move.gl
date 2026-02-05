@@ -1,3 +1,4 @@
+@charset "UTF-8";
 *,
 a,
 abbr,
@@ -478,61 +479,6 @@ body {
   margin: 0;
 }
 
-.cursor-pointer {
-  cursor: pointer;
-}
-
-.cursor-text {
-  cursor: text;
-}
-
-.cursor-wait {
-  cursor: wait;
-}
-
-.cursor-crosshair {
-  cursor: crosshair;
-}
-
-.cursor-not-allowed {
-  cursor: not-allowed;
-}
-
-.cursor-zoom-in {
-  cursor: zoom-in;
-}
-
-.cursor-grab {
-  cursor: grab;
-}
-
-.cursor-grabbing {
-  cursor: grabbing;
-}
-
-.interactive-element {
-  pointer-events: auto;
-}
-
-.non-interactive-element {
-  pointer-events: none;
-}
-
-.custom-element {
-  pointer-events: visiblePainted;
-}
-
-@keyframes hover-shake {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-3px);
-  }
-  75% {
-    transform: translateX(3px);
-  }
-}
 .animate_glow_soft {
   animation-name: animate_glow_soft;
   animation-duration: 2s;
@@ -628,6 +574,155 @@ body {
     transform: rotate(15deg);
     opacity: 0.5;
   }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-text {
+  cursor: text;
+}
+
+.cursor-wait {
+  cursor: wait;
+}
+
+.cursor-crosshair {
+  cursor: crosshair;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+.cursor-zoom-in {
+  cursor: zoom-in;
+}
+
+.cursor-grab {
+  cursor: grab;
+}
+
+.cursor-grabbing {
+  cursor: grabbing;
+}
+
+.interactive-element {
+  pointer-events: auto;
+}
+
+.non-interactive-element {
+  pointer-events: none;
+}
+
+.custom-element {
+  pointer-events: visiblePainted;
+}
+
+/*
+::-webkit-scrollbar              {}
+::-webkit-scrollbar-button       {}
+::-webkit-scrollbar-track        {}
+::-webkit-scrollbar-track-piece  {}
+::-webkit-scrollbar-thumb        {}
+::-webkit-scrollbar-corner       {}
+::-webkit-resizer                {}
+https://gist.github.com/JuanMaRuiz/7927982
+
+
+::-webkit-scrollbar               — the entire scrollbar.
+::-webkit-scrollbar-button        — the buttons on the scrollbar (arrows pointing upwards and downwards).
+::-webkit-scrollbar-thumb         — the draggable scrolling handle.
+::-webkit-scrollbar-track         — the track (progress bar) of the scrollbar.
+::-webkit-scrollbar-track-piece   — the part of the track (progress bar) not covered by the handle.
+::-webkit-scrollbar-corner        — the bottom corner of the scrollbar, where both horizontal and vertical scrollbars meet.
+::-webkit-resizer                 — the draggable resizing handle that appears at the bottom corner of some elements.
+*/
+*::-webkit-scrollbar {
+  width: 12px;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: none !important;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-track-piece {
+  -webkit-border-radius: 6px;
+}
+
+*::-webkit-scrollbar-thumb:window-inactive {
+  background: none;
+}
+
+.scrollable-content::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.scrollable-content::-webkit-scrollbar-track {
+  background: #e0e0e0;
+}
+.scrollable-content::-webkit-scrollbar-thumb {
+  background: #4A4A4A;
+  border-radius: 5px;
+  border: 2px solid #e0e0e0;
+}
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+  background: rgb(48.5, 48.5, 48.5);
+}
+.scrollable-content {
+  scrollbar-width: thin;
+  scrollbar-color: #4A4A4A #e0e0e0;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.detailed-scrollable-content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.detailed-scrollable-content::-webkit-scrollbar-track {
+  background: #eaeaea;
+  border-radius: 4px;
+  box-shadow: inset 0 0 5px grey;
+}
+.detailed-scrollable-content::-webkit-scrollbar-thumb {
+  background: #bcbcbc;
+  border-radius: 4px;
+  border: 3px solid #eaeaea;
+}
+.detailed-scrollable-content::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+.detailed-scrollable-content::-webkit-scrollbar-thumb:active {
+  background: #989898;
+}
+.detailed-scrollable-content::-webkit-scrollbar-corner {
+  background: #eaeaea;
+}
+.detailed-scrollable-content {
+  scrollbar-width: auto;
+  scrollbar-color: #bcbcbc #eaeaea;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.unique-vertical-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+.unique-vertical-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff8a00, #e52e71);
+  border-radius: 5px;
+}
+
+.unique-horizontal-scrollbar::-webkit-scrollbar {
+  height: 10px;
+}
+.unique-horizontal-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  border-radius: 5px;
 }
 
 @keyframes loader-dots-pulse {
@@ -3215,310 +3310,52 @@ body {
   }
 }
 
-.transform_flip_horizontal {
-  transform: scale(-1, 1);
-}
-
-.transform_flip_vertical {
-  transform: scale(1, -1);
-}
-
-.transform_flip_both {
-  transform: scale(-1, -1);
-}
-
-.transform_flip_horizontal.transform_flip_vertical {
-  transform: scale(-1, -1);
-}
-
-.transform_rotate_90 {
-  transform: rotate(90deg);
-}
-
-.transform_rotate_180 {
-  transform: rotate(180deg);
-}
-
-.transform_rotate_270 {
-  transform: rotate(270deg);
-}
-
-.transform_rotate_dynamic {
-  transform: rotate(var(--rotation_angle));
-}
-
-.scale_up {
-  transform: scale(1.2);
-}
-
-.scale_down {
-  transform: scale(0.8);
-}
-
-.translate_xy {
-  transform: translate(10px, 10px);
-}
-
-.skew_xy {
-  transform: skew(10deg, 10deg);
-}
-
-.transition-opacity {
-  transition: opacity 0.3s ease;
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-.transition-opacity:hover {
-  opacity: 0.5;
-}
-
-.transition-scale {
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-.transition-scale:hover {
-  transform: scale(1.2);
-}
-
-.transition-translate {
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-.transition-translate:hover {
-  transform: translate(0, -10px);
-}
-
-.transition-rotate {
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-.transition-rotate:hover {
-  transform: rotate(15deg);
-}
-
-.transition-color {
-  transition: background-color 0.3s ease;
-}
-.transition-color:hover {
-  background-color: #ef4444;
-}
-
-.transition-shadow {
-  transition: box-shadow 0.3s ease;
-  cursor: pointer;
-}
-.transition-shadow:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-.timing-linear {
-  transition: transform 0.6s linear;
-}
-.timing-linear.active {
-  transform: translateX(100px);
-}
-
-.timing-ease {
-  transition: transform 0.6s ease;
-}
-.timing-ease.active {
-  transform: translateX(100px);
-}
-
-.timing-ease-in {
-  transition: transform 0.6s ease-in;
-}
-.timing-ease-in.active {
-  transform: translateX(100px);
-}
-
-.timing-ease-out {
-  transition: transform 0.6s ease-out;
-}
-.timing-ease-out.active {
-  transform: translateX(100px);
-}
-
-.timing-ease-in-out {
-  transition: transform 0.6s ease-in-out;
-}
-.timing-ease-in-out.active {
-  transform: translateX(100px);
-}
-
-.timing-bounce {
-  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-.timing-bounce.active {
-  transform: translateX(100px);
-}
-
-.transform-translate-x {
-  transition: transform 0.3s ease;
-}
-.transform-translate-x:hover {
-  transform: translateX(20px);
-}
-
-.transform-translate-y {
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-.transform-translate-y:hover {
-  transform: translate(0, -20px);
-}
-
-.transform-scale {
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-.transform-scale:hover {
-  transform: scale(1.3);
-}
-
-.transform-rotate {
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-.transform-rotate:hover {
-  transform: rotate(45deg);
-}
-
-.transform-skew-x {
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-.transform-skew-x:hover {
-  transform: skew(15deg, 0);
-}
-
-.transform-skew-y {
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-.transform-skew-y:hover {
-  transform: skew(0, 15deg);
-}
-
-.transform-rotate-x {
-  transition: transform 0.3s ease;
-}
-.transform-rotate-x:hover {
-  transform: rotateX(45deg);
-}
-
-.transform-rotate-y {
-  transition: transform 0.3s ease;
-}
-.transform-rotate-y:hover {
-  transform: rotateY(45deg);
-}
-
-.transform-rotate-z {
-  transition: transform 0.3s ease;
-}
-.transform-rotate-z:hover {
-  transform: rotateZ(45deg);
-}
-
-.transform-combined-1 {
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-.transform-combined-1:hover {
-  transform: scale(1.2) rotate(10deg);
-}
-
-.transform-combined-2 {
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-.transform-combined-2:hover {
-  transform: translateY(-10px) scale(1.1);
-}
-
-.transform-combined-3 {
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-.transform-combined-3:hover {
-  transform: rotateY(30deg) rotateX(15deg) scale(1.1);
-}
-
-.hover--scale {
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-.hover--scale:hover {
-  transform: scale(1.1);
-}
-
-.hover--lift {
-  transition: transform, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-.hover--lift:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-.hover--glow {
-  transition: box-shadow 0.3s ease;
-  cursor: pointer;
-}
-.hover--glow:hover {
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-}
-
-.hover--shadow {
-  transition: box-shadow 0.3s ease;
-  cursor: pointer;
-}
-.hover--shadow:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-.hover--brighten {
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
-.hover--brighten:hover {
-  background-color: #e0f2fe;
-}
-
-.hover--darken {
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
-.hover--darken:hover {
-  background-color: #cbd5e1;
-}
-
-.hover--rotate {
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-.hover--rotate:hover {
-  transform: rotate(5deg);
-}
-
-.hover--shake {
-  cursor: pointer;
-}
-.hover--shake:hover {
-  animation: hover-shake 0.3s ease infinite;
+.cursor--auto {
+  cursor: auto;
 }
 
 .cursor--default {
   cursor: default;
 }
 
+.cursor--none {
+  cursor: none;
+}
+
 .cursor--pointer {
   cursor: pointer;
 }
 
+.cursor--help {
+  cursor: help;
+}
+
+.cursor--context-menu {
+  cursor: context-menu;
+}
+
+.cursor--progress {
+  cursor: progress;
+}
+
+.cursor--wait {
+  cursor: wait;
+}
+
 .cursor--text {
   cursor: text;
+}
+
+.cursor--vertical-text {
+  cursor: vertical-text;
+}
+
+.cursor--cell {
+  cursor: cell;
+}
+
+.cursor--crosshair {
+  cursor: crosshair;
 }
 
 .cursor--move {
@@ -3533,28 +3370,28 @@ body {
   cursor: grabbing;
 }
 
+.cursor--copy {
+  cursor: copy;
+}
+
+.cursor--alias {
+  cursor: alias;
+}
+
+.cursor--no-drop {
+  cursor: no-drop;
+}
+
 .cursor--not-allowed {
   cursor: not-allowed;
 }
 
-.cursor--wait {
-  cursor: wait;
+.cursor--col-resize {
+  cursor: col-resize;
 }
 
-.cursor--help {
-  cursor: help;
-}
-
-.cursor--crosshair {
-  cursor: crosshair;
-}
-
-.cursor--zoom-in {
-  cursor: zoom-in;
-}
-
-.cursor--zoom-out {
-  cursor: zoom-out;
+.cursor--row-resize {
+  cursor: row-resize;
 }
 
 .cursor--n-resize {
@@ -3577,16 +3414,16 @@ body {
   cursor: ne-resize;
 }
 
+.cursor--nw-resize {
+  cursor: nw-resize;
+}
+
 .cursor--se-resize {
   cursor: se-resize;
 }
 
 .cursor--sw-resize {
   cursor: sw-resize;
-}
-
-.cursor--nw-resize {
-  cursor: nw-resize;
 }
 
 .cursor--ew-resize {
@@ -3597,12 +3434,124 @@ body {
   cursor: ns-resize;
 }
 
-.cursor--col-resize {
-  cursor: col-resize;
+.cursor--nesw-resize {
+  cursor: nesw-resize;
 }
 
-.cursor--row-resize {
-  cursor: row-resize;
+.cursor--nwse-resize {
+  cursor: nwse-resize;
+}
+
+.cursor--all-scroll {
+  cursor: all-scroll;
+}
+
+.cursor--zoom-in {
+  cursor: zoom-in;
+}
+
+.cursor--zoom-out {
+  cursor: zoom-out;
+}
+
+.scroll--smooth {
+  scroll-behavior: smooth;
+}
+
+.scroll--auto {
+  scroll-behavior: auto;
+}
+
+.overflow--auto {
+  overflow: auto;
+}
+
+.overflow--hidden {
+  overflow: hidden;
+}
+
+.overflow--visible {
+  overflow: visible;
+}
+
+.overflow--scroll {
+  overflow: scroll;
+}
+
+.overflow-x--auto {
+  overflow-x: auto;
+}
+
+.overflow-x--hidden {
+  overflow-x: hidden;
+}
+
+.overflow-x--scroll {
+  overflow-x: scroll;
+}
+
+.overflow-y--auto {
+  overflow-y: auto;
+}
+
+.overflow-y--hidden {
+  overflow-y: hidden;
+}
+
+.overflow-y--scroll {
+  overflow-y: scroll;
+}
+
+.overscroll--auto {
+  overscroll-behavior: auto;
+}
+
+.overscroll--contain {
+  overscroll-behavior: contain;
+}
+
+.overscroll--none {
+  overscroll-behavior: none;
+}
+
+.touch--auto {
+  touch-action: auto;
+}
+
+.touch--none {
+  touch-action: none;
+}
+
+.touch--pan-x {
+  touch-action: pan-x;
+}
+
+.touch--pan-y {
+  touch-action: pan-y;
+}
+
+.touch--pan-left {
+  touch-action: pan-left;
+}
+
+.touch--pan-right {
+  touch-action: pan-right;
+}
+
+.touch--pan-up {
+  touch-action: pan-up;
+}
+
+.touch--pan-down {
+  touch-action: pan-down;
+}
+
+.touch--pinch-zoom {
+  touch-action: pinch-zoom;
+}
+
+.touch--manipulation {
+  touch-action: manipulation;
 }
 
 .pointer--auto {
@@ -3613,76 +3562,254 @@ body {
   pointer-events: none;
 }
 
-.selection--default {
-  -webkit-user-select: auto;
-     -moz-user-select: auto;
-          user-select: auto;
-}
-
-.selection--none {
+.select--none {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
 }
 
-.selection--all {
+.select--text {
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+}
+
+.select--all {
   -webkit-user-select: all;
      -moz-user-select: all;
           user-select: all;
 }
 
-.focus--default:focus {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
+.select--auto {
+  -webkit-user-select: auto;
+     -moz-user-select: auto;
+          user-select: auto;
 }
 
-.focus--ring:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+.hover--opacity-50:hover {
+  opacity: 0.5;
 }
 
-.focus--glow:focus {
-  outline: none;
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+.hover--opacity-75:hover {
+  opacity: 0.75;
 }
 
-.focus--outline:focus {
-  outline: 3px dashed #8b5cf6;
-  outline-offset: 3px;
+.hover--opacity-100:hover {
+  opacity: 1;
 }
 
-.touch--target {
-  min-width: 44px;
-  min-height: 44px;
+.hover--scale:hover {
+  transform: scale(1.05);
 }
 
-.touch--feedback {
+.hover--scale-sm:hover {
+  transform: scale(1.02);
+}
+
+.hover--scale-lg:hover {
+  transform: scale(1.1);
+}
+
+.keyboard {
+  background: var(--keyboard-bg, #2d2d44);
+  border-radius: var(--keyboard-radius, 12px);
+  padding: var(--keyboard-padding, 1rem);
+}
+
+.keyboard__row {
+  display: flex;
+  justify-content: center;
+  gap: var(--keyboard-gap, 6px);
+  margin-bottom: var(--keyboard-gap, 6px);
+}
+.keyboard__row:last-child {
+  margin-bottom: 0;
+}
+
+.key {
+  min-width: var(--key-min-width, 40px);
+  height: var(--key-height, 48px);
+  border: none;
+  border-radius: var(--key-radius, 6px);
+  background: var(--key-bg, #3d3d5c);
+  color: var(--key-color, white);
+  font-size: var(--key-font-size, 16px);
+  font-weight: 500;
   cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
-.touch--feedback:active {
-  transform: scale(0.95);
+.key:hover {
+  background: var(--key-bg-hover, #4d4d6c);
+  transform: translateY(-2px);
 }
-
-.touch--scroll {
-  -webkit-overflow-scrolling: touch;
-  overflow-y: auto;
-}
-
-.scroll--smooth {
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-}
-
-.scroll--snap {
-  scroll-snap-type: y mandatory;
+.key:active {
+  background: var(--key-bg-active, #667eea);
+  transform: translateY(0);
 }
 
-.scroll-snap-item {
-  scroll-snap-align: start;
+.key--space {
+  flex: 1;
+  max-width: var(--key-space-max-width, 300px);
 }
 
-.perspective-container {
-  perspective: 500px;
+.key--shift,
+.key--backspace,
+.key--enter {
+  min-width: var(--key-special-width, 80px);
+  background: var(--key-special-bg, #4d4d6c);
+}
+
+.key--mode {
+  min-width: var(--key-special-width, 80px);
+  background: var(--key-special-bg, #4d4d6c);
+}
+.key--mode:hover {
+  background: var(--key-mode-bg-hover, #5a6fd6);
+}
+
+.keyboard__input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 18px;
+  border: 2px solid var(--keyboard-input-border, #444);
+  border-radius: 8px;
+  background: var(--keyboard-input-bg, #0d1117);
+  color: var(--keyboard-input-color, white);
+  margin-bottom: 1.5rem;
+}
+.keyboard__input:focus {
+  outline: none;
+  border-color: var(--keyboard-input-focus, #667eea);
+}
+
+.keyboard__modes {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.keyboard__mode-btn {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--keyboard-mode-border, #667eea);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--keyboard-mode-color, #667eea);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.keyboard__mode-btn:hover, .keyboard__mode-btn.active {
+  background: var(--keyboard-mode-active-bg, #667eea);
+  color: var(--keyboard-mode-active-color, white);
+}
+
+.keyboard__stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--keyboard-stats-border, #444);
+  color: var(--keyboard-stats-color, #aaa);
+  font-size: 14px;
+}
+.keyboard__stats span {
+  color: var(--keyboard-stats-value, #667eea);
+  font-weight: 600;
+}
+
+[data-theme=dark] .keyboard {
+  --keyboard-bg: #1a1a2e;
+  --key-bg: #2d2d44;
+  --key-bg-hover: #3d3d5c;
+}
+
+@keyframes screensaver-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+.screensaver {
+  position: fixed;
+  inset: 0;
+  z-index: var(--screensaver-z-index, 9999);
+  background: var(--screensaver-bg, rgba(0, 0, 0, 0.9));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--screensaver-fade, 0.5s) ease, visibility var(--screensaver-fade, 0.5s) ease;
+}
+.screensaver.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.screensaver__content {
+  text-align: center;
+  color: var(--screensaver-color, white);
+}
+
+.screensaver__icon {
+  font-size: var(--screensaver-icon-size, 4rem);
+  margin-bottom: 1rem;
+  animation: screensaver-float 3s ease-in-out infinite;
+}
+
+.screensaver__title {
+  font-size: var(--screensaver-title-size, 2rem);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.screensaver__hint {
+  font-size: var(--screensaver-hint-size, 1rem);
+  opacity: 0.8;
+}
+
+.screensaver__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.screensaver__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--screensaver-gradient-start, #667eea) 0%, var(--screensaver-gradient-end, #764ba2) 100%);
+  opacity: var(--screensaver-overlay-opacity, 1);
+}
+
+.screensaver--dark {
+  --screensaver-bg: #000000;
+  --screensaver-color: #ffffff;
+}
+
+.screensaver--light {
+  --screensaver-bg: #f0f0f0;
+  --screensaver-color: #333333;
+}
+
+.screensaver--gradient {
+  --screensaver-bg: transparent;
+}
+.screensaver--gradient .screensaver__overlay {
+  opacity: 1;
 }
 
 .filter--blur-sm {
@@ -7517,206 +7644,385 @@ body {
   animation: bounce-shadow 0.6s ease-in-out infinite;
 }
 
-.keyboard {
-  background: var(--keyboard-bg, #2d2d44);
-  border-radius: var(--keyboard-radius, 12px);
-  padding: var(--keyboard-padding, 1rem);
+.transform_flip_horizontal {
+  transform: scale(-1, 1);
 }
 
-.keyboard__row {
-  display: flex;
-  justify-content: center;
-  gap: var(--keyboard-gap, 6px);
-  margin-bottom: var(--keyboard-gap, 6px);
-}
-.keyboard__row:last-child {
-  margin-bottom: 0;
+.transform_flip_vertical {
+  transform: scale(1, -1);
 }
 
-.key {
-  min-width: var(--key-min-width, 40px);
-  height: var(--key-height, 48px);
-  border: none;
-  border-radius: var(--key-radius, 6px);
-  background: var(--key-bg, #3d3d5c);
-  color: var(--key-color, white);
-  font-size: var(--key-font-size, 16px);
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-}
-.key:hover {
-  background: var(--key-bg-hover, #4d4d6c);
-  transform: translateY(-2px);
-}
-.key:active {
-  background: var(--key-bg-active, #667eea);
-  transform: translateY(0);
+.transform_flip_both {
+  transform: scale(-1, -1);
 }
 
-.key--space {
-  flex: 1;
-  max-width: var(--key-space-max-width, 300px);
+.transform_flip_horizontal.transform_flip_vertical {
+  transform: scale(-1, -1);
 }
 
-.key--shift,
-.key--backspace,
-.key--enter {
-  min-width: var(--key-special-width, 80px);
-  background: var(--key-special-bg, #4d4d6c);
+.transform_rotate_90 {
+  transform: rotate(90deg);
 }
 
-.key--mode {
-  min-width: var(--key-special-width, 80px);
-  background: var(--key-special-bg, #4d4d6c);
-}
-.key--mode:hover {
-  background: var(--key-mode-bg-hover, #5a6fd6);
+.transform_rotate_180 {
+  transform: rotate(180deg);
 }
 
-.keyboard__input {
-  width: 100%;
-  padding: 1rem;
-  font-size: 18px;
-  border: 2px solid var(--keyboard-input-border, #444);
-  border-radius: 8px;
-  background: var(--keyboard-input-bg, #0d1117);
-  color: var(--keyboard-input-color, white);
-  margin-bottom: 1.5rem;
-}
-.keyboard__input:focus {
-  outline: none;
-  border-color: var(--keyboard-input-focus, #667eea);
+.transform_rotate_270 {
+  transform: rotate(270deg);
 }
 
-.keyboard__modes {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  justify-content: center;
+.transform_rotate_dynamic {
+  transform: rotate(var(--rotation_angle));
 }
 
-.keyboard__mode-btn {
-  padding: 0.5rem 1rem;
-  border: 2px solid var(--keyboard-mode-border, #667eea);
-  border-radius: 8px;
-  background: transparent;
-  color: var(--keyboard-mode-color, #667eea);
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.keyboard__mode-btn:hover, .keyboard__mode-btn.active {
-  background: var(--keyboard-mode-active-bg, #667eea);
-  color: var(--keyboard-mode-active-color, white);
+.scale_up {
+  transform: scale(1.2);
 }
 
-.keyboard__stats {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--keyboard-stats-border, #444);
-  color: var(--keyboard-stats-color, #aaa);
-  font-size: 14px;
-}
-.keyboard__stats span {
-  color: var(--keyboard-stats-value, #667eea);
-  font-weight: 600;
+.scale_down {
+  transform: scale(0.8);
 }
 
-[data-theme=dark] .keyboard {
-  --keyboard-bg: #1a1a2e;
-  --key-bg: #2d2d44;
-  --key-bg-hover: #3d3d5c;
+.translate_xy {
+  transform: translate(10px, 10px);
 }
 
-@keyframes screensaver-float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+.skew_xy {
+  transform: skew(10deg, 10deg);
 }
-.screensaver {
-  position: fixed;
-  inset: 0;
-  z-index: var(--screensaver-z-index, 9999);
-  background: var(--screensaver-bg, #000);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity var(--screensaver-fade, 500ms) ease, visibility var(--screensaver-fade, 500ms) ease;
+
+.transition-opacity {
+  transition: opacity 0.3s ease;
 }
-.screensaver.active {
+.transition-opacity {
   opacity: 1;
-  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+.transition-opacity:hover {
+  opacity: 0.5;
 }
 
-.screensaver__content {
-  text-align: center;
-  color: var(--screensaver-color, white);
+.transition-scale {
+  transition: transform 0.3s ease-in-out;
+}
+.transition-scale:hover {
+  transform: scale(1.2);
 }
 
-.screensaver__icon {
-  font-size: var(--screensaver-icon-size, 80px);
-  margin-bottom: 1rem;
-  animation: screensaver-float 3s ease-in-out infinite;
+.transition-translate {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.transition-translate:hover {
+  transform: translate(0, -10px);
 }
 
-.screensaver__title {
-  font-size: var(--screensaver-title-size, 24px);
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+.transition-rotate {
+  transition: transform 0.3s ease;
+}
+.transition-rotate:hover {
+  transform: rotate(15deg);
 }
 
-.screensaver__hint {
-  font-size: var(--screensaver-hint-size, 14px);
-  opacity: 0.8;
+.transition-color {
+  transition: background-color 0.3s ease;
+}
+.transition-color:hover {
+  background-color: #ef4444;
 }
 
-.screensaver__video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
+.transition-shadow {
+  transition: box-shadow 0.3s ease;
+}
+.transition-shadow:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.screensaver__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--screensaver-gradient-start, #667eea) 0%, var(--screensaver-gradient-end, #764ba2) 100%);
-  opacity: var(--screensaver-overlay-opacity, 1);
+.timing-linear {
+  transition: transform 0.6s linear;
+}
+.timing-linear.active {
+  transform: translateX(100px);
 }
 
-.screensaver--dark {
-  --screensaver-bg: #000000;
-  --screensaver-color: #ffffff;
+.timing-ease {
+  transition: transform 0.6s ease;
+}
+.timing-ease.active {
+  transform: translateX(100px);
 }
 
-.screensaver--light {
-  --screensaver-bg: #f0f0f0;
-  --screensaver-color: #333333;
+.timing-ease-in {
+  transition: transform 0.6s ease-in;
+}
+.timing-ease-in.active {
+  transform: translateX(100px);
 }
 
-.screensaver--gradient {
-  --screensaver-bg: transparent;
+.timing-ease-out {
+  transition: transform 0.6s ease-out;
 }
-.screensaver--gradient .screensaver__overlay {
-  opacity: 1;
+.timing-ease-out.active {
+  transform: translateX(100px);
+}
+
+.timing-ease-in-out {
+  transition: transform 0.6s ease-in-out;
+}
+.timing-ease-in-out.active {
+  transform: translateX(100px);
+}
+
+.timing-bounce {
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.timing-bounce.active {
+  transform: translateX(100px);
+}
+
+.transform-translate-x {
+  transition: transform 0.3s ease;
+}
+.transform-translate-x:hover {
+  transform: translateX(20px);
+}
+
+.transform-translate-y {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.transform-translate-y:hover {
+  transform: translate(0, -20px);
+}
+
+.transform-scale {
+  transition: transform 0.3s ease-in-out;
+}
+.transform-scale:hover {
+  transform: scale(1.3);
+}
+
+.transform-rotate {
+  transition: transform 0.3s ease;
+}
+.transform-rotate:hover {
+  transform: rotate(45deg);
+}
+
+.transform-skew-x {
+  transition: transform 0.3s ease;
+}
+.transform-skew-x:hover {
+  transform: skew(15deg, 0);
+}
+
+.transform-skew-y {
+  transition: transform 0.3s ease;
+}
+.transform-skew-y:hover {
+  transform: skew(0, 15deg);
+}
+
+.transform-rotate-x {
+  transition: transform 0.3s ease;
+}
+.transform-rotate-x:hover {
+  transform: rotateX(45deg);
+}
+
+.transform-rotate-y {
+  transition: transform 0.3s ease;
+}
+.transform-rotate-y:hover {
+  transform: rotateY(45deg);
+}
+
+.transform-rotate-z {
+  transition: transform 0.3s ease;
+}
+.transform-rotate-z:hover {
+  transform: rotateZ(45deg);
+}
+
+.transform-combined-1 {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.transform-combined-1:hover {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.transform-combined-2 {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.transform-combined-2:hover {
+  transform: translateY(-10px) scale(1.1);
+}
+
+.transform-combined-3 {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.transform-combined-3:hover {
+  transform: rotateY(30deg) rotateX(15deg) scale(1.1);
+}
+
+.hover--scale {
+  transition: transform 0.3s ease-in-out;
+}
+.hover--scale:hover {
+  transform: scale(1.05);
+}
+
+.hover--lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover--lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.hover--glow {
+  transition: box-shadow 0.3s ease;
+}
+.hover--glow:hover {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+.hover--shadow {
+  transition: box-shadow 0.3s ease;
+}
+.hover--shadow:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.hover--brighten {
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+.hover--brighten:hover {
+  background-color: #e0f2fe;
+}
+
+.hover--darken {
+  transition: filter 0.3s ease;
+}
+.hover--darken:hover {
+  filter: brightness(90%);
+}
+
+.hover--rotate {
+  transition: transform 0.3s ease;
+}
+.hover--rotate:hover {
+  transform: rotate(5deg);
+}
+
+.hover--shake:hover {
+  animation: shake-hover 0.5s ease;
+}
+
+.cursor--default {
+  cursor: default;
+}
+
+.cursor--pointer {
+  cursor: pointer;
+}
+
+.cursor--text {
+  cursor: text;
+}
+
+.cursor--move {
+  cursor: move;
+}
+
+.cursor--grab {
+  cursor: grab;
+}
+
+.cursor--grabbing {
+  cursor: grabbing;
+}
+
+.cursor--not-allowed {
+  cursor: not-allowed;
+}
+
+.cursor--wait {
+  cursor: wait;
+}
+
+.cursor--help {
+  cursor: help;
+}
+
+.cursor--crosshair {
+  cursor: crosshair;
+}
+
+.cursor--zoom-in {
+  cursor: zoom-in;
+}
+
+.cursor--zoom-out {
+  cursor: zoom-out;
+}
+
+.cursor--n-resize {
+  cursor: n-resize;
+}
+
+.cursor--e-resize {
+  cursor: e-resize;
+}
+
+.cursor--s-resize {
+  cursor: s-resize;
+}
+
+.cursor--w-resize {
+  cursor: w-resize;
+}
+
+.cursor--ne-resize {
+  cursor: ne-resize;
+}
+
+.cursor--se-resize {
+  cursor: se-resize;
+}
+
+.cursor--sw-resize {
+  cursor: sw-resize;
+}
+
+.cursor--nw-resize {
+  cursor: nw-resize;
+}
+
+.cursor--ew-resize {
+  cursor: ew-resize;
+}
+
+.cursor--ns-resize {
+  cursor: ns-resize;
+}
+
+.cursor--col-resize {
+  cursor: col-resize;
+}
+
+.cursor--row-resize {
+  cursor: row-resize;
+}
+
+.perspective-container {
+  perspective: 500px;
+  transform-style: preserve-3d;
 }
 
 /*!
