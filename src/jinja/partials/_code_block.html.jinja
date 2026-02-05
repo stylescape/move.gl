@@ -1,0 +1,17 @@
+{# ============================================================================
+move.gl | Code Block Partial
+============================================================================
+Reusable code block component with syntax highlighting classes
+============================================================================ #}
+
+{%- macro code_block(code, language='javascript') -%}
+<div class="code-block" data-language="{{ language }}">
+    <code>{{ code | safe }}</code>
+</div>
+{%- endmacro -%}
+
+{%- macro keyword(text) -%}<span class="keyword">{{ text }}</span>{%- endmacro -%}
+{%- macro string(text) -%}<span class="string">{{ text }}</span>{%- endmacro -%}
+{%- macro number(text) -%}<span class="number">{{ text }}</span>{%- endmacro -%}
+{%- macro comment(text) -%}<span class="comment">{{ text }}</span>{%- endmacro -%}
+{%- macro func(text) -%}<span class="function">{{ text }}</span>{%- endmacro -%}

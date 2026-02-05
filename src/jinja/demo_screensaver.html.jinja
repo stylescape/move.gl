@@ -1,0 +1,122 @@
+{# ============================================================================
+move.gl | Screensaver Demo
+============================================================================
+Interactive demo for the screensaver component
+============================================================================ #}
+{%- extends "_base.html.jinja" -%}
+
+{%- set title = "Screensaver Demo — move.gl" -%}
+{%- set description = "Screensaver Demo — Inactivity-based screensaver with video and audio support." -%}
+{%- set current_demo = "screensaver" -%}
+
+{%- block header %}
+<header class="page-header">
+    <div class="page-header__badge">TypeScript Component</div>
+    <h1 class="page-header__title">Screensaver</h1>
+    <p class="page-header__description">
+        An inactivity-based screensaver system with video and audio support.
+        Perfect for kiosk displays, digital signage, and interactive installations.
+    </p>
+</header>
+{%- endblock -%}
+
+{%- block content %}
+<section class="section">
+    <h2 class="section__title">Interactive Demo</h2>
+    <p class="section__description">
+        The screensaver activates after a period of inactivity. Move your mouse or press any key to reset the timer.
+    </p>
+
+    <div class="demo-container" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white;">
+        <div class="screensaver-preview">
+            <div class="preview-placeholder" id="placeholder">
+                <div class="icon">🖥️</div>
+                <div>Normal content view</div>
+            </div>
+            <div class="screensaver-content" id="screensaverContent">
+                <div class="icon">🌙</div>
+                <div class="text">Screensaver Active</div>
+                <div class="subtext">Move mouse or press any key to dismiss</div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div class="status-indicator">
+                <div class="status-dot" id="statusDot"></div>
+                <span id="statusText">Monitoring activity</span>
+            </div>
+            <div class="countdown" id="countdown">10s</div>
+        </div>
+
+        <div class="controls-panel">
+            <div class="control-group">
+                <label>Timeout (seconds)</label>
+                <div class="value" id="timeoutValue">10</div>
+                <input type="range" id="timeoutSlider" min="5" max="30" value="10">
+            </div>
+            <div class="control-group">
+                <label>Fade Duration (ms)</label>
+                <div class="value" id="fadeValue">500</div>
+                <input type="range" id="fadeSlider" min="100" max="2000" step="100" value="500">
+            </div>
+            <div class="control-group">
+                <label>Activity Events</label>
+                <div class="value" id="eventCount">0</div>
+            </div>
+        </div>
+
+        <div class="button-row">
+            <button class="btn btn-primary" onclick="forceActivate()">Force Screensaver</button>
+            <button class="btn btn-danger" onclick="forceDeactivate()">Force Deactivate</button>
+            <button class="btn btn-secondary" onclick="resetDemo()">Reset Demo</button>
+        </div>
+
+        <div class="activity-log" id="activityLog">
+            <div class="entry">[--:--:--] Demo initialized</div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section__title">Features</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h4>⏱️ Configurable Timeout</h4>
+            <p>Set custom inactivity periods before screensaver activation.</p>
+        </div>
+        <div class="feature-card">
+            <h4>🎬 Video Support</h4>
+            <p>Display videos during screensaver mode with automatic playback.</p>
+        </div>
+        <div class="feature-card">
+            <h4>🔊 Audio Support</h4>
+            <p>Play audio tracks with volume control during screensaver.</p>
+        </div>
+        <div class="feature-card">
+            <h4>🎯 Activity Detection</h4>
+            <p>Monitors mouse movement, keyboard input, and touch events.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section__title">Usage</h2>
+    <div class="code-block">
+        <code><span class="keyword">import</span> { Screensaver } <span class="keyword">from</span> <span class="string">'move.gl'</span>;
+
+<span class="keyword">const</span> screensaver = <span class="keyword">new</span> <span class="function">Screensaver</span>({
+    timeout: <span class="number">300000</span>,  <span class="comment">// 5 minutes</span>
+    videoUrl: <span class="string">'path/to/video.mp4'</span>,
+    audioUrl: <span class="string">'path/to/audio.mp3'</span>,
+    containerId: <span class="string">'screensaver'</span>
+});
+
+screensaver.<span class="function">setVolume</span>(<span class="number">0.5</span>);
+screensaver.<span class="function">activate</span>();
+screensaver.<span class="function">deactivate</span>();
+screensaver.<span class="function">destroy</span>();</code>
+    </div>
+</section>
+
+{%- include "partials/_demo_links.html.jinja" %}
+{%- endblock -%}

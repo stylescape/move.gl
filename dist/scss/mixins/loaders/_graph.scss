@@ -1,0 +1,551 @@
+// ============================================================================
+// move.gl | Graphic/Icon Loader Mixins
+// ============================================================================
+// Copyright 2025 Scape Agency BV
+// Licensed under MIT License
+// ============================================================================
+
+////
+/// Graphic/Icon Loader Mixins
+/// ===========================================================================
+///
+/// This module provides mixins for graphic/icon-based loading animations
+/// including clipboard, book, pencil, and other visual loaders.
+///
+/// @group Loaders
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0
+/// @access public
+////
+
+@use "../../variables" as *;
+
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+$loader-color: #FFF !default;
+$loader-accent: #FF3D00 !default;
+$loader-speed: 1s !default;
+
+
+// ============================================================================
+// Keyframes
+// ============================================================================
+
+///
+/// Write down animation keyframes.
+///
+@mixin keyframes_write_down {
+    @keyframes write-down {
+        0% { height: 0%; opacity: 0; }
+        20% { height: 0%; opacity: 1; }
+        80% { height: 65%; opacity: 1; }
+        100% { height: 65%; opacity: 0; }
+    }
+}
+
+///
+/// Book page turn animation keyframes.
+///
+@mixin keyframes_page_turn {
+    @keyframes page-turn {
+        0%, 100% { transform: rotateY(0deg); }
+        50% { transform: rotateY(-180deg); }
+    }
+}
+
+///
+/// Pencil write animation keyframes.
+///
+@mixin keyframes_pencil_write {
+    @keyframes pencil-write {
+        0% { transform: translate(0, 0) rotate(-45deg); }
+        25% { transform: translate(10px, 0) rotate(-45deg); }
+        50% { transform: translate(20px, 0) rotate(-45deg); }
+        75% { transform: translate(10px, 0) rotate(-45deg); }
+        100% { transform: translate(0, 0) rotate(-45deg); }
+    }
+}
+
+///
+/// Checkmark draw animation keyframes.
+///
+@mixin keyframes_checkmark {
+    @keyframes checkmark {
+        0% { stroke-dashoffset: 100; }
+        100% { stroke-dashoffset: 0; }
+    }
+}
+
+///
+/// Hourglass flip animation keyframes.
+///
+@mixin keyframes_hourglass_flip {
+    @keyframes hourglass-flip {
+        0% { transform: rotate(0deg); }
+        50% { transform: rotate(180deg); }
+        100% { transform: rotate(180deg); }
+    }
+}
+
+///
+/// Sand fall animation keyframes.
+///
+@mixin keyframes_sand_fall {
+    @keyframes sand-fall {
+        0% { clip-path: polygon(0 0, 100% 0, 100% 0%, 50% 50%, 0 0%); }
+        50% { clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 50%, 0 100%); }
+        100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 50%, 0 100%); }
+    }
+}
+
+///
+/// Clock hand rotation animation keyframes.
+///
+@mixin keyframes_clock_rotate {
+    @keyframes clock-rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+}
+
+
+// ============================================================================
+// Graphic Loader Mixins
+// ============================================================================
+
+///
+/// Clipboard writing loader.
+///
+/// @param {Length} $width [100px] - Clipboard width.
+/// @param {Length} $height [130px] - Clipboard height.
+/// @param {Color} $bg-color [#FFF] - Clipboard background.
+/// @param {Color} $clip-color [#FF3D00] - Clip color.
+/// @param {Color} $line-color [rgba(255,255,255,0.3)] - Line color.
+/// @param {Time} $duration [2s] - Animation duration.
+///
+@mixin loader_clipboard(
+    $width: 100px,
+    $height: 130px,
+    $bg-color: $loader-color,
+    $clip-color: $loader-accent,
+    $line-color: rgba(0, 0, 0, 0.3),
+    $duration: 2s
+) {
+    position: relative;
+    width: $width;
+    height: $height;
+    background: var(--loader-bg, $bg-color);
+    border-radius: 4px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 54%;
+        height: 20%;
+        left: 50%;
+        top: 0;
+        background-image:
+            radial-gradient(ellipse at center, transparent 24%, var(--loader-accent, $clip-color) 25%, var(--loader-accent, $clip-color) 64%, transparent 65%),
+            linear-gradient(to bottom, transparent 34%, var(--loader-accent, $clip-color) 35%);
+        background-size: 12px 12px, 100% auto;
+        background-repeat: no-repeat;
+        background-position: center top;
+        transform: translate(-50%, -65%);
+        box-shadow: 0 -3px rgba(0, 0, 0, 0.25) inset;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 20%;
+        transform: translateX(-50%);
+        width: 66%;
+        height: 60%;
+        background: linear-gradient(to bottom, var(--loader-line, $line-color) 30%, transparent 31%);
+        background-size: 100% 16px;
+        animation: write-down $duration ease-out infinite;
+    }
+}
+
+///
+/// Book page flip loader.
+///
+/// @param {Length} $width [200px] - Book width.
+/// @param {Length} $height [140px] - Book height.
+/// @param {Color} $cover-color [#979794] - Book cover color.
+/// @param {Color} $page-color [#F5F5F5] - Page color.
+/// @param {Color} $line-color [#DDD] - Line color.
+/// @param {Time} $duration [2s] - Animation duration.
+///
+@mixin loader_book(
+    $width: 200px,
+    $height: 140px,
+    $cover-color: #979794,
+    $page-color: #F5F5F5,
+    $line-color: #DDD,
+    $duration: 2s
+) {
+    width: $width;
+    height: $height;
+    background: var(--loader-cover, $cover-color);
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 8px;
+    perspective: 1000px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        top: 10px;
+        bottom: 10px;
+        border-radius: 8px;
+        background: var(--loader-page, $page-color) no-repeat;
+        background-size: 60px 10px;
+        background-image:
+            linear-gradient(var(--loader-line, $line-color) 100px, transparent 0),
+            linear-gradient(var(--loader-line, $line-color) 100px, transparent 0),
+            linear-gradient(var(--loader-line, $line-color) 100px, transparent 0),
+            linear-gradient(var(--loader-line, $line-color) 100px, transparent 0),
+            linear-gradient(var(--loader-line, $line-color) 100px, transparent 0),
+            linear-gradient(var(--loader-line, $line-color) 100px, transparent 0);
+        background-position: 15px 30px, 15px 60px, 15px 90px, 105px 30px, 105px 60px, 105px 90px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: calc(50% - 10px);
+        right: 10px;
+        top: 10px;
+        bottom: 10px;
+        border-radius: 8px;
+        background: var(--loader-page, #FFF) no-repeat;
+        background-size: 60px 10px;
+        background-image:
+            linear-gradient(var(--loader-line, $line-color) 100px, transparent 0),
+            linear-gradient(var(--loader-line, $line-color) 100px, transparent 0),
+            linear-gradient(var(--loader-line, $line-color) 100px, transparent 0);
+        background-position: 50% 30px, 50% 60px, 50% 90px;
+        transform: rotateY(0deg);
+        transform-origin: left center;
+        animation: page-turn $duration ease-in-out infinite;
+    }
+}
+
+///
+/// Hourglass loader.
+///
+/// @param {Length} $size [48px] - Hourglass size.
+/// @param {Color} $frame-color [#FFF] - Frame color.
+/// @param {Color} $sand-color [#FF3D00] - Sand color.
+/// @param {Time} $duration [2s] - Animation duration.
+///
+@mixin loader_hourglass(
+    $size: 48px,
+    $frame-color: $loader-color,
+    $sand-color: $loader-accent,
+    $duration: 2s
+) {
+    width: $size;
+    height: calc($size * 1.5);
+    position: relative;
+    animation: hourglass-flip $duration ease-in-out infinite;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        border: 3px solid var(--loader-frame, $frame-color);
+    }
+
+    &::before {
+        top: 0;
+        height: 45%;
+        border-radius: $size $size 0 0;
+        background: var(--loader-sand, $sand-color);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 50%, 0 100%);
+        animation: sand-fall $duration ease-in-out infinite;
+    }
+
+    &::after {
+        bottom: 0;
+        height: 45%;
+        border-radius: 0 0 $size $size;
+        background: var(--loader-sand, $sand-color);
+        clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    }
+}
+
+///
+/// Clock loader.
+///
+/// @param {Length} $size [48px] - Clock size.
+/// @param {Color} $face-color [rgba(255,255,255,0.1)] - Clock face color.
+/// @param {Color} $frame-color [#FFF] - Frame/hand color.
+/// @param {Length} $stroke [3px] - Border width.
+/// @param {Time} $duration [2s] - Full rotation duration.
+///
+@mixin loader_clock(
+    $size: 48px,
+    $face-color: rgba(255, 255, 255, 0.1),
+    $frame-color: $loader-color,
+    $stroke: 3px,
+    $duration: 2s
+) {
+    width: $size;
+    height: $size;
+    border: $stroke solid var(--loader-frame, $frame-color);
+    border-radius: 50%;
+    background: var(--loader-face, $face-color);
+    position: relative;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        background: var(--loader-frame, $frame-color);
+        left: 50%;
+        top: 50%;
+        transform-origin: center bottom;
+    }
+
+    &::before {
+        width: 2px;
+        height: 35%;
+        margin-left: -1px;
+        margin-top: -35%;
+        animation: clock-rotate $duration linear infinite;
+    }
+
+    &::after {
+        width: 2px;
+        height: 25%;
+        margin-left: -1px;
+        margin-top: -25%;
+        animation: clock-rotate calc($duration * 12) linear infinite;
+    }
+}
+
+///
+/// Document loader with lines.
+///
+/// @param {Length} $width [60px] - Document width.
+/// @param {Length} $height [80px] - Document height.
+/// @param {Color} $bg-color [#FFF] - Document background.
+/// @param {Color} $line-color [#DDD] - Line color.
+/// @param {Number} $border-radius [4px] - Border radius.
+/// @param {Time} $duration [1.5s] - Animation duration.
+///
+@mixin loader_document(
+    $width: 60px,
+    $height: 80px,
+    $bg-color: $loader-color,
+    $line-color: #DDD,
+    $border-radius: 4px,
+    $duration: 1.5s
+) {
+    width: $width;
+    height: $height;
+    background: var(--loader-bg, $bg-color);
+    border-radius: $border-radius;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 20%;
+        left: 15%;
+        right: 15%;
+        height: 50%;
+        background:
+            repeating-linear-gradient(
+                to bottom,
+                var(--loader-line, $line-color) 0,
+                var(--loader-line, $line-color) 4px,
+                transparent 4px,
+                transparent 12px
+            );
+        animation: skeleton-pulse $duration ease-in-out infinite;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 0;
+        height: 0;
+        border-left: 12px solid var(--loader-bg, $bg-color);
+        border-bottom: 12px solid rgba(0, 0, 0, 0.1);
+        border-right: 12px solid rgba(0, 0, 0, 0.1);
+        border-top: 12px solid transparent;
+    }
+}
+
+///
+/// Envelope loader.
+///
+/// @param {Length} $width [60px] - Envelope width.
+/// @param {Length} $height [40px] - Envelope height.
+/// @param {Color} $bg-color [#FFF] - Envelope color.
+/// @param {Color} $flap-color [#DDD] - Flap color.
+/// @param {Time} $duration [2s] - Animation duration.
+///
+@mixin loader_envelope(
+    $width: 60px,
+    $height: 40px,
+    $bg-color: $loader-color,
+    $flap-color: #DDD,
+    $duration: 2s
+) {
+    width: $width;
+    height: $height;
+    background: var(--loader-bg, $bg-color);
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 0;
+        border-left: calc($width / 2) solid transparent;
+        border-right: calc($width / 2) solid transparent;
+        border-top: calc($height * 0.6) solid var(--loader-flap, $flap-color);
+        transform-origin: top center;
+        animation: envelope-open $duration ease-in-out infinite;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 30%;
+        left: 15%;
+        right: 15%;
+        height: 8px;
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.1) 0,
+            rgba(0, 0, 0, 0.1) 2px,
+            transparent 2px,
+            transparent 4px,
+            rgba(0, 0, 0, 0.1) 4px,
+            rgba(0, 0, 0, 0.1) 6px,
+            transparent 6px
+        );
+    }
+}
+
+///
+/// Envelope open animation.
+///
+@mixin keyframes_envelope_open {
+    @keyframes envelope-open {
+        0%, 100% { transform: rotateX(0deg); }
+        50% { transform: rotateX(-180deg); }
+    }
+}
+
+///
+/// Search/magnifying glass loader.
+///
+/// @param {Length} $size [32px] - Glass size.
+/// @param {Color} $color [#FFF] - Color.
+/// @param {Length} $stroke [4px] - Border width.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_search(
+    $size: 32px,
+    $color: $loader-color,
+    $stroke: 4px,
+    $duration: $loader-speed
+) {
+    width: $size;
+    height: $size;
+    border: $stroke solid var(--loader-color, $color);
+    border-radius: 50%;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: $stroke;
+        height: calc($size * 0.5);
+        background: var(--loader-color, $color);
+        right: calc(#{-$stroke} / 2);
+        bottom: calc(#{-$size} * 0.35);
+        transform: rotate(-45deg);
+        transform-origin: top center;
+    }
+
+    animation: search-wobble $duration ease-in-out infinite;
+}
+
+///
+/// Search wobble animation.
+///
+@mixin keyframes_search_wobble {
+    @keyframes search-wobble {
+        0%, 100% { transform: rotate(-15deg); }
+        50% { transform: rotate(15deg); }
+    }
+}
+
+///
+/// Gear/cog loader.
+///
+/// @param {Length} $size [48px] - Gear size.
+/// @param {Color} $color [#FFF] - Gear color.
+/// @param {Number} $teeth [8] - Number of teeth.
+/// @param {Time} $duration [2s] - Animation duration.
+///
+@mixin loader_gear(
+    $size: 48px,
+    $color: $loader-color,
+    $teeth: 8,
+    $duration: 2s
+) {
+    width: $size;
+    height: $size;
+    position: relative;
+    animation: gear-rotate $duration linear infinite;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 25%;
+        background: var(--loader-color, $color);
+        border-radius: 50%;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 35%;
+        background: currentColor;
+        border-radius: 50%;
+    }
+}
+
+///
+/// Gear rotation animation.
+///
+@mixin keyframes_gear_rotate {
+    @keyframes gear-rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+}

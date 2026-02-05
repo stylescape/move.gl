@@ -1,0 +1,490 @@
+// ============================================================================
+// move.gl | Rectangle/Square Loader Mixins
+// ============================================================================
+// Copyright 2025 Scape Agency BV
+// Licensed under MIT License
+// ============================================================================
+
+////
+/// Rectangle/Square Loader Mixins
+/// ===========================================================================
+///
+/// This module provides mixins for rectangle/square-based loading animations.
+///
+/// @group Loaders
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0
+/// @access public
+////
+
+@use "../../variables" as *;
+
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+$loader-size: 48px !default;
+$loader-color: #FFF !default;
+$loader-accent: #FF3D00 !default;
+$loader-speed: 1s !default;
+
+
+// ============================================================================
+// Keyframes
+// ============================================================================
+
+///
+/// 3D flip X keyframes.
+///
+@mixin keyframes_rect_flip_x {
+    @keyframes rect-flip-x {
+        0% { transform: perspective(200px) rotateX(0deg) rotateY(0deg); }
+        50% { transform: perspective(200px) rotateX(-180deg) rotateY(0deg); }
+        100% { transform: perspective(200px) rotateX(-180deg) rotateY(-180deg); }
+    }
+}
+
+///
+/// Scale out keyframes.
+///
+@mixin keyframes_rect_scale_out {
+    @keyframes rect-scale-out {
+        0% { transform: scale(0); }
+        100% { transform: scale(1); }
+    }
+}
+
+///
+/// Scale with opacity keyframes.
+///
+@mixin keyframes_rect_scale_fade {
+    @keyframes rect-scale-fade {
+        0% { transform: scale(0); opacity: 1; }
+        100% { transform: scale(1); opacity: 0; }
+    }
+}
+
+///
+/// Fill animation keyframes.
+///
+@mixin keyframes_rect_fill {
+    @keyframes rect-fill {
+        0% { box-shadow: 0 0 inset; }
+        100% { box-shadow: 0 -48px inset; }
+    }
+}
+
+///
+/// Diamond fill keyframes.
+///
+@mixin keyframes_rect_diamond_fill {
+    @keyframes rect-diamond-fill {
+        0%, 10% { transform: translate(-64px, -64px) rotate(-45deg); }
+        90%, 100% { transform: translate(0px, 0px) rotate(-45deg); }
+    }
+}
+
+///
+/// Rotate shrink keyframes.
+///
+@mixin keyframes_rect_rotate_shrink {
+    @keyframes rect-rotate-shrink {
+        0% { transform: scale(1) rotate(0deg); }
+        100% { transform: scale(0) rotate(360deg); }
+    }
+}
+
+///
+/// Square to circle keyframes.
+///
+@mixin keyframes_rect_morph {
+    @keyframes rect-morph {
+        0% { transform: rotate(0deg) scale(0.2); border-radius: 10%; }
+        50% { transform: rotate(180deg) scale(1.5); border-radius: 50%; }
+        100% { transform: rotate(360deg) scale(0.2); border-radius: 10%; }
+    }
+}
+
+///
+/// Walk animation keyframes.
+///
+@mixin keyframes_rect_walk {
+    @keyframes rect-walk {
+        0% { transform: translate(0, 0) rotateX(0) rotateY(0); }
+        25% { transform: translate(100%, 0) rotateX(0) rotateY(180deg); }
+        50% { transform: translate(100%, 100%) rotateX(-180deg) rotateY(180deg); }
+        75% { transform: translate(0, 100%) rotateX(-180deg) rotateY(360deg); }
+        100% { transform: translate(0, 0) rotateX(0) rotateY(360deg); }
+    }
+}
+
+///
+/// Rotation break keyframes.
+///
+@mixin keyframes_rect_rotation_break {
+    @keyframes rect-rotation-break {
+        0% { transform: rotate(0); }
+        25% { transform: rotate(90deg); }
+        50% { transform: rotate(180deg); }
+        75% { transform: rotate(270deg); }
+        100% { transform: rotate(360deg); }
+    }
+}
+
+
+// ============================================================================
+// Rectangle Loader Mixins
+// ============================================================================
+
+///
+/// 3D flip square loader.
+///
+/// @param {Length} $size [48px] - Square size.
+/// @param {Color} $color [#FFF] - Square color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_rect_flip(
+    $size: $loader-size,
+    $color: $loader-color,
+    $duration: $loader-speed
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    display: inline-block;
+    position: relative;
+    background: var(--loader-color, $color);
+    box-sizing: border-box;
+    animation: rect-flip-x $duration linear infinite;
+}
+
+///
+/// Dual squares rotation loader.
+///
+/// @param {Length} $size [48px] - Square size.
+/// @param {Length} $border [2px] - Border width.
+/// @param {Color} $color [#FFF] - Primary color.
+/// @param {Color} $accent [#FF3D00] - Accent color.
+/// @param {Time} $duration [2s] - Animation duration.
+///
+@mixin loader_rect_dual(
+    $size: $loader-size,
+    $border: 2px,
+    $color: $loader-color,
+    $accent: $loader-accent,
+    $duration: 2s
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    display: inline-block;
+    position: relative;
+
+    &::after,
+    &::before {
+        content: '';
+        width: var(--loader-size, $size);
+        height: var(--loader-size, $size);
+        border: $border solid var(--loader-color, $color);
+        position: absolute;
+        left: 0;
+        top: 0;
+        box-sizing: border-box;
+        animation: rotation $duration ease-in-out infinite;
+    }
+
+    &::after {
+        border-color: var(--loader-accent, $accent);
+        animation-delay: calc($duration / 2);
+    }
+}
+
+///
+/// Expanding squares loader.
+///
+/// @param {Length} $size [48px] - Square size.
+/// @param {Length} $border [4px] - Border width.
+/// @param {Color} $color [#FFF] - Primary color.
+/// @param {Color} $accent [#FF3D00] - Accent color.
+/// @param {Time} $duration [2s] - Animation duration.
+///
+@mixin loader_rect_expand(
+    $size: $loader-size,
+    $border: 4px,
+    $color: $loader-color,
+    $accent: $loader-accent,
+    $duration: 2s
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    display: inline-block;
+    position: relative;
+
+    &::after,
+    &::before {
+        content: '';
+        box-sizing: border-box;
+        width: var(--loader-size, $size);
+        height: var(--loader-size, $size);
+        border: $border solid var(--loader-color, $color);
+        position: absolute;
+        left: 0;
+        top: 0;
+        animation: rect-scale-fade $duration ease-in-out infinite;
+    }
+
+    &::after {
+        border-color: var(--loader-accent, $accent);
+        animation-delay: calc($duration / 2);
+    }
+}
+
+///
+/// Alternating rotation squares loader.
+///
+/// @param {Length} $size [48px] - Square size.
+/// @param {Length} $border [2px] - Border width.
+/// @param {Color} $color [#FFF] - Primary color.
+/// @param {Color} $accent [#FF3D00] - Accent color.
+/// @param {Time} $duration [2s] - Animation duration.
+///
+@mixin loader_rect_alternate(
+    $size: $loader-size,
+    $border: 2px,
+    $color: $loader-color,
+    $accent: $loader-accent,
+    $duration: 2s
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    display: inline-block;
+    position: relative;
+
+    &::after,
+    &::before {
+        content: '';
+        box-sizing: border-box;
+        width: var(--loader-size, $size);
+        height: var(--loader-size, $size);
+        border: $border solid var(--loader-color, $color);
+        position: absolute;
+        left: 0;
+        top: 0;
+        animation: rotation $duration ease-in-out infinite alternate;
+    }
+
+    &::after {
+        border-color: var(--loader-accent, $accent);
+        animation-direction: alternate-reverse;
+    }
+}
+
+///
+/// Fill square loader.
+///
+/// @param {Length} $size [48px] - Square size.
+/// @param {Color} $color [#FFF] - Square color.
+/// @param {Time} $duration [2s] - Animation duration.
+///
+@mixin loader_rect_fill(
+    $size: $loader-size,
+    $color: $loader-color,
+    $duration: 2s
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    display: inline-block;
+    position: relative;
+    color: var(--loader-color, $color);
+    border: 1px solid;
+    box-sizing: border-box;
+    animation: rect-fill $duration linear infinite alternate;
+}
+
+///
+/// Shrink and rotate loader.
+///
+/// @param {Length} $size [48px] - Square size.
+/// @param {Color} $color [#FFF] - Square color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_rect_shrink(
+    $size: $loader-size,
+    $color: $loader-color,
+    $duration: $loader-speed
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    display: inline-block;
+    position: relative;
+    background: var(--loader-color, $color);
+    box-sizing: border-box;
+    animation: rect-rotate-shrink $duration ease infinite alternate-reverse;
+}
+
+///
+/// Square to circle morph loader.
+///
+/// @param {Length} $size [48px] - Square size.
+/// @param {Color} $color [#FFF] - Square color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_rect_morph(
+    $size: $loader-size,
+    $color: $loader-color,
+    $duration: $loader-speed
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    background: var(--loader-color, $color);
+    animation: rect-morph $duration linear infinite;
+}
+
+///
+/// Diamond fill loader.
+///
+/// @param {Length} $size [64px] - Diamond size.
+/// @param {Color} $color [#222b32] - Background color.
+/// @param {Color} $accent [#de3500] - Fill color.
+/// @param {Time} $duration [2s] - Animation duration.
+///
+@mixin loader_rect_diamond(
+    $size: 64px,
+    $color: #222b32,
+    $accent: #de3500,
+    $duration: 2s
+) {
+    position: relative;
+    width: $size;
+    height: $size;
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: rotate(45deg);
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 8px;
+        margin: auto;
+        background: $color;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -15px;
+        margin: auto;
+        background: var(--loader-accent, $accent);
+        animation: rect-diamond-fill $duration linear infinite;
+    }
+}
+
+///
+/// Walking square loader.
+///
+/// @param {Length} $size [24px] - Square size.
+/// @param {Color} $color [#FFF] - Square color.
+/// @param {Time} $duration [2s] - Animation duration.
+///
+@mixin loader_rect_walk(
+    $size: 24px,
+    $color: $loader-color,
+    $duration: 2s
+) {
+    width: $size;
+    height: $size;
+    display: inline-block;
+    position: relative;
+    background: var(--loader-color, $color);
+    box-sizing: border-box;
+    animation: rect-walk $duration linear infinite;
+}
+
+///
+/// Nested rotating squares loader.
+///
+/// @param {Length} $size [48px] - Outer size.
+/// @param {Length} $border [2px] - Border width.
+/// @param {Color} $color [#FFF] - Primary color.
+/// @param {Color} $accent [#FF3D00] - Accent color.
+/// @param {Time} $duration [2s] - Animation duration.
+///
+@mixin loader_rect_nested(
+    $size: $loader-size,
+    $border: 2px,
+    $color: $loader-color,
+    $accent: $loader-accent,
+    $duration: 2s
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    display: inline-block;
+    position: relative;
+    border: $border solid var(--loader-color, $color);
+    box-sizing: border-box;
+    animation: rotation $duration linear infinite;
+
+    &::after,
+    &::before {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        border: $border solid var(--loader-accent, $accent);
+        width: calc(var(--loader-size, $size) - 10px);
+        height: calc(var(--loader-size, $size) - 10px);
+        animation: rotation calc($duration * 0.75) linear infinite reverse;
+        transform-origin: center center;
+    }
+
+    &::before {
+        width: calc(var(--loader-size, $size) - 20px);
+        height: calc(var(--loader-size, $size) - 20px);
+        border-color: var(--loader-color, $color);
+        animation: rotation calc($duration / 2) linear infinite;
+    }
+}
+
+///
+/// Stepped rotation squares loader.
+///
+/// @param {Length} $size [48px] - Square size.
+/// @param {Length} $border [2px] - Border width.
+/// @param {Color} $color [#FFF] - Primary color.
+/// @param {Color} $accent [#FF3D00] - Accent color.
+/// @param {Time} $duration [3s] - Animation duration.
+///
+@mixin loader_rect_stepped(
+    $size: $loader-size,
+    $border: 2px,
+    $color: $loader-color,
+    $accent: $loader-accent,
+    $duration: 3s
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    display: inline-block;
+    position: relative;
+
+    &::after,
+    &::before {
+        content: '';
+        box-sizing: border-box;
+        width: var(--loader-size, $size);
+        height: var(--loader-size, $size);
+        border: $border solid var(--loader-color, $color);
+        position: absolute;
+        left: 0;
+        top: 0;
+        animation: rect-rotation-break $duration ease-in-out infinite alternate;
+    }
+
+    &::after {
+        border-color: var(--loader-accent, $accent);
+        animation-direction: alternate-reverse;
+    }
+}

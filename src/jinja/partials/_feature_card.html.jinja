@@ -1,0 +1,20 @@
+{# ============================================================================
+move.gl | Feature Card Partial
+============================================================================
+Reusable feature card component
+============================================================================ #}
+
+{%- macro feature_card(icon, title, description, href=None) -%}
+{%- if href %}
+<a href="{{ href }}" class="feature-card" style="text-decoration: none;">
+    {%- else %}
+    <div class="feature-card">
+        {%- endif %}
+        <h4>{{ icon }} {{ title }}</h4>
+        <p>{{ description }}</p>
+        {%- if href %}
+</a>
+{%- else %}
+</div>
+{%- endif %}
+{%- endmacro -%}

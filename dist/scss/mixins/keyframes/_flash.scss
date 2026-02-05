@@ -1,7 +1,3 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Flash Keyframes Mixin Module
@@ -137,7 +133,7 @@
 ///
 /// @param {Color} $color [#fff] - Glow color.
 ///
-@mixin keyframes_flash_glow($color: #fff) {
+@mixin keyframes_flash_glow($color: $animate_color_flash_glow) {
     @include keyframes(flash-glow) {
         0%, 100% {
             opacity: 1;
@@ -155,7 +151,7 @@
 ///
 /// @param {Color} $color [#0ff] - Neon color.
 ///
-@mixin keyframes_neon_flash($color: #0ff) {
+@mixin keyframes_neon_flash($color: $animate_color_neon_flash) {
     @include keyframes(neon-flash) {
         0%, 100% {
             text-shadow: 0 0 4px $color, 0 0 8px $color;
@@ -170,82 +166,8 @@
 
 
 // ============================================================================
-// Flash Animation Mixins
+// Note: Animation application mixins (animate_flash, animate_blink, etc.)
+// have been moved to the animations module to avoid duplication.
+// Use the animations module for ready-to-use animation mixins.
+// This file provides only the keyframe definitions.
 // ============================================================================
-
-///
-/// Apply flash animation.
-///
-/// @param {Time} $duration [1s] - Animation duration.
-/// @param {Number} $iterations [infinite] - Number of iterations.
-///
-@mixin animate_flash($duration: 1s, $iterations: infinite) {
-    @include keyframes_flash;
-    animation: flash $duration ease-in-out $iterations;
-}
-
-///
-/// Apply blink animation.
-///
-/// @param {Time} $duration [0.8s] - Animation duration.
-///
-@mixin animate_blink($duration: 0.8s) {
-    @include keyframes_blink;
-    animation: blink $duration step-end infinite;
-}
-
-///
-/// Apply strobe animation.
-///
-/// @param {Time} $duration [0.5s] - Animation duration.
-///
-@mixin animate_strobe($duration: 0.5s) {
-    @include keyframes_strobe;
-    animation: strobe $duration linear infinite;
-}
-
-///
-/// Apply cursor blink animation.
-///
-/// @param {Time} $duration [1s] - Animation duration.
-///
-@mixin animate_cursor_blink($duration: 1s) {
-    @include keyframes_cursor_blink;
-    animation: cursor-blink $duration step-end infinite;
-}
-
-
-// ============================================================================
-// Utility Class Generator
-// ============================================================================
-
-///
-/// Generate flash animation utility classes.
-///
-@mixin generate_flash_utilities {
-    .animate-flash {
-        @include animate_flash;
-    }
-
-    .animate-flash-double {
-        @include keyframes_flash_double;
-        animation: flash-double 1.5s ease-in-out infinite;
-    }
-
-    .animate-blink {
-        @include animate_blink;
-    }
-
-    .animate-blink-smooth {
-        @include keyframes_blink_smooth;
-        animation: blink-smooth 1s ease-in-out infinite;
-    }
-
-    .animate-strobe {
-        @include animate_strobe;
-    }
-
-    .animate-cursor {
-        @include animate_cursor_blink;
-    }
-}

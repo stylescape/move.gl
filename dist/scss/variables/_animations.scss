@@ -1,111 +1,300 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Animation Variables Module
 /// ===========================================================================
 ///
-///
+/// Centralized configuration for all animation-related variables in move.gl.
+/// Uses consistent underscore naming convention throughout.
 ///
 /// @group Animation
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
 
 
 // ============================================================================
-// StyleScape | Animations | Base
+// Use
 // ============================================================================
 
 @use "../dev" as *;
 
 
-// Default Variables
-// ----------------------------------------------------------------------------
+// ============================================================================
+// Base Animation Variables
+// ============================================================================
 
-$animate_base_duration: 1s !default;
-$animate_base_duration_fast: 0.5s !default;
-$animate_base_duration_slow: 2s !default;
+/// Duration
+/// ---------------------------------------------------------------------------
+$animate_base_duration:         1s !default;
+$animate_base_duration_fast:    0.25s !default;
+$animate_base_duration_normal:  0.5s !default;
+$animate_base_duration_slow:    2s !default;
 
+/// Delay
+/// ---------------------------------------------------------------------------
 $animate_base_delay: 0s !default;
-$animate_base_timing_function: ease-in-out !default;
-$animate_base_iteration_count: infinite !default;
-$animate_base_direction: normal !default;
-$animate_base_color_start: #ffffff !default;
-$animate_base_color_end: #000000 !default;
-$animate_base_color_glow_01: $N2405 !default;
-$animate_base_color_glow_02: $N3005 !default;
-$animate_base_color_glow_03: $N3605 !default;
 
-
-// ============================================================================
-
-$transition_duration_00:    0.5s;
-$transition_duration_01:    1.0s;
-$transition_duration_02:    1.5s;
-$transition_duration_03:    2.0s;
-
-
-
-$slideshow-time: 6s;
-
-
-
-// ============================================================================
-
-/// Default animation durations
-$animate-base-duration: 0.5s !default;
-$animate-base-duration-slow: 1s !default;
-$animate-base-duration-fast: 0.25s !default;
-
-/// Default timing functions
-$animate-base-timing-function: ease-in-out !default;
-$animate-base-timing-function-fade: cubic-bezier(.4, 0, .6, 1) !default;
-
-/// Default iteration counts
-$animate-base-iteration-count: infinite !default;
-
-/// Default scale values
-$animate-scale-base: 1 !default;
-$animate-scale-beat: 1.25 !default;
-$animate-scale-beat-fade: 1.125 !default;
-$animate-scale-beat-double-small: 0.8 !default;
-$animate-scale-beat-double-large: 1.5 !default;
-
-/// Default opacity values
-$animate-opacity-fade: 0.4 !default;
-
-/// Default angles
-$animate-angle-twist: 10deg !default;
-$animate-angle-gentle: 5deg !default;
-$animate-angle-rapid: 15deg !default;
-
-
-
-
-
-
-/// Animation Durations
-$animate-base-duration: 0.5s !default;
-$animate-base-duration-slow: 1s !default;
-$animate-base-duration-fast: 0.25s !default;
+/// Stagger (for sequential animations)
+/// ---------------------------------------------------------------------------
+$animate_stagger_delay:         0.1s !default;
+$animate_stagger_initial_delay: 0s !default;
 
 /// Timing Functions
-$animate-base-timing-function: step-end !default;
-$animate-timing-function-rapid: steps(2, end) !default;
-$animate-timing-function-soft: ease-in-out !default;
-$animate-timing-function-alternate: linear !default;
+/// ---------------------------------------------------------------------------
+$animate_base_timing_function:          ease-in-out !default;
+$animate_base_timing_function_fade:     cubic-bezier(0.4, 0, 0.6, 1) !default;
+$animate_base_timing_function_bounce:   cubic-bezier(0.68, -0.55, 0.265, 1.55) !default;
+$animate_base_timing_function_elastic:  cubic-bezier(0.68, -0.6, 0.32, 1.6) !default;
+$animate_base_timing_function_step:     step-end !default;
+$animate_base_timing_function_rapid:    steps(2, end) !default;
+$animate_base_timing_function_linear:   linear !default;
+$animate_base_timing_function_ease_out: ease-out !default;
+$animate_base_timing_function_ease_in:  ease-in !default;
 
 /// Iteration Count
-$animate-base-iteration-count: infinite !default;
+/// ---------------------------------------------------------------------------
+$animate_base_iteration_count: infinite !default;
 
-/// Opacity Levels
-$animate-opacity-start: 1 !default;
-$animate-opacity-blink: 0 !default;
-$animate-opacity-soft-blink: 0.3 !default;
+/// Direction
+/// ---------------------------------------------------------------------------
+$animate_base_direction: normal !default;
+
+/// Fill Mode
+/// ---------------------------------------------------------------------------
+$animate_fill_mode_both:     both !default;
+$animate_fill_mode_forwards: forwards !default;
+
+
+// ============================================================================
+// Scale Variables
+// ============================================================================
+
+$animate_scale_base:                1 !default;
+$animate_scale_beat:                1.25 !default;
+$animate_scale_beat_fade:           1.125 !default;
+$animate_scale_beat_double_small:   0.8 !default;
+$animate_scale_beat_double_large:   1.5 !default;
+$animate_scale_bounce:              1.1 !default;
+$animate_scale_pulse:               1.05 !default;
+$animate_scale_pop:                 1.2 !default;
+
+/// Pulse scale variants
+$animate_scale_pulse_slow_min:      0.95 !default;
+$animate_scale_pulse_slow_max:      1.05 !default;
+$animate_scale_pulse_fast_min:      0.9 !default;
+$animate_scale_pulse_fast_max:      1.2 !default;
+$animate_scale_pulse_fade_max:      1.1 !default;
+
+/// Zoom scales
+$animate_scale_zoom:                1.5 !default;
+$animate_scale_zoom_slow:           1.3 !default;
+$animate_scale_zoom_fast:           1.7 !default;
+$animate_scale_zoom_in_start:       0.5 !default;
+$animate_scale_zoom_out_end:        0.5 !default;
+
+/// Flip scales
+$animate_scale_flip:                0.8 !default;
+
+/// Fade scales
+$animate_scale_fade_in_start:       0.8 !default;
+$animate_scale_fade_out_end:        0.8 !default;
+
+/// Twist scales
+$animate_scale_twist_end:           0.9 !default;
+$animate_scale_twist_slow_end:      0.95 !default;
+$animate_scale_twist_fast_end:      0.85 !default;
+
+/// Rubber band intensity
+$animate_scale_rubber_intensity:    1.25 !default;
+$animate_scale_rubber_squeeze:      0.8 !default;
+
+/// Scale shrink
+$animate_scale_shrink_min:          0.8 !default;
+
+/// Scale in/out center
+$animate_scale_in_center:           0.5 !default;
+
+/// Scale overshoot (pop effect)
+$animate_scale_overshoot:           1.1 !default;
+
+
+// ============================================================================
+// Opacity Variables
+// ============================================================================
+
+$animate_opacity_start:         1 !default;
+$animate_opacity_fade:          0.4 !default;
+$animate_opacity_blink:         0 !default;
+$animate_opacity_blink_soft:    0.3 !default;
+$animate_opacity_soft:          0.3 !default;
+$animate_opacity_pulse_min:     0.7 !default;
+$animate_opacity_zoom_fade_min: 0.5 !default;
+$animate_opacity_gradual_end:   0.5 !default;
+
+
+// ============================================================================
+// Rotation & Angle Variables
+// ============================================================================
+
+$animate_angle_twist:           10deg !default;
+$animate_angle_gentle:          5deg !default;
+$animate_angle_rapid:           15deg !default;
+$animate_angle_shake:           10deg !default;
+$animate_angle_wobble:          15deg !default;
+$animate_angle_full:            360deg !default;
+
+/// Twist rotation
+$animate_angle_twist_slow:      5deg !default;
+$animate_angle_twist_fast:      15deg !default;
+
+/// Wobble angles
+$animate_angle_wobble_slow:     3deg !default;
+$animate_angle_wobble_fast:     10deg !default;
+$animate_angle_wobble_pendulum: 10deg !default;
+$animate_angle_wobble_skew:     5deg !default;
+
+/// Pop rotation
+$animate_angle_pop_rotate:      10deg !default;
+
+/// Nod angle
+$animate_angle_nod:             10deg !default;
+
+/// Sway angles
+$animate_angle_sway:            5deg !default;
+$animate_angle_sway_slow:       3deg !default;
+$animate_angle_sway_fast:       10deg !default;
+
+/// Wave angles
+$animate_angle_wave:            20deg !default;
+$animate_angle_wave_slow:       10deg !default;
+$animate_angle_wave_fast:       30deg !default;
+
+/// Rotate In/Out Angles
+$animate_rotate_in_angle:       -200deg !default;
+$animate_rotate_out_angle:      200deg !default;
+$animate_rotate_corner_angle:   45deg !default;
+$animate_rotate_corner_in_down_left:   -45deg !default;
+$animate_rotate_corner_in_down_right:  45deg !default;
+$animate_rotate_corner_in_up_left:     45deg !default;
+$animate_rotate_corner_in_up_right:    -90deg !default;
+
+/// Flip angles
+$animate_flip_in_angle:         -90deg !default;
+$animate_flip_out_angle:        90deg !default;
+$animate_flip_diagonal_angle:   360deg !default;
+
+/// Zoom rotation
+$animate_zoom_rotate_angle:     15deg !default;
+
+/// Lightspeed skew
+$animate_lightspeed_skew_start: -30deg !default;
+$animate_lightspeed_skew_end:   30deg !default;
+
+
+// ============================================================================
+// Translation Variables
+// ============================================================================
+
+$animate_translate_bounce:      -10px !default;
+$animate_translate_slide:       100% !default;
+$animate_translate_shake:       10px !default;
+
+/// Fade translate distance
+$animate_translate_fade:        20px !default;
+
+/// Slide fade translate distance
+$animate_translate_slide_fade:  50px !default;
+
+/// Zoom translate distance
+$animate_translate_zoom:        20px !default;
+
+/// Nod bounce height
+$animate_translate_nod_bounce:  5px !default;
+
+
+// ============================================================================
+// Bounce Variables
+// ============================================================================
+
+/// Default bounce timing function with elastic feel
+$animate_timing_function_bounce: cubic-bezier(0.28, 0.84, 0.42, 1) !default;
+
+/// Bounce height variables
+$animate_bounce_height:             -20% !default;
+$animate_bounce_height_extended:    -0.5em !default;
+$animate_bounce_rebound:            -0.125em !default;
+$animate_bounce_elastic_height:     -30% !default;
+
+/// Bounce multi-directional
+$animate_bounce_multi_x:            -10% !default;
+$animate_bounce_multi_y:            -20% !default;
+
+/// Bounce extended squash/stretch
+$animate_bounce_start_scale_x:      1.1 !default;
+$animate_bounce_start_scale_y:      0.9 !default;
+$animate_bounce_jump_scale_x:       0.9 !default;
+$animate_bounce_jump_scale_y:       1.1 !default;
+$animate_bounce_land_scale_x:       1.05 !default;
+$animate_bounce_land_scale_y:       0.95 !default;
+
+
+// ============================================================================
+// Wobble Variables
+// ============================================================================
+
+$animate_wobble_distance:       5% !default;
+
+
+// ============================================================================
+// Jiggle Variables
+// ============================================================================
+
+$animate_jiggle_amplitude:      5px !default;
+$animate_jiggle_amplitude_slow: 3px !default;
+
+
+// ============================================================================
+// Color Variables
+// ============================================================================
+
+$animate_base_color_start:      #ffffff !default;
+$animate_base_color_end:        #000000 !default;
+$animate_base_color_glow_01:    $N2405 !default;
+$animate_base_color_glow_02:    $N3005 !default;
+$animate_base_color_glow_03:    $N3605 !default;
+
+/// Flash colors
+$animate_color_flash_glow:      #fff !default;
+$animate_color_neon_flash:      #0ff !default;
+
+/// Pulse ring color
+$animate_color_pulse_ring:      rgba(0, 0, 0, 0.3) !default;
+$animate_pulse_ring_size:       20px !default;
+
+
+// ============================================================================
+// Heartbeat Variables
+// ============================================================================
+
+$animate_heartbeat_scale_small: 1.1 !default;
+
+
+// ============================================================================
+// Transition Duration Variables
+// ============================================================================
+
+$transition_duration_00:    0.25s !default;
+$transition_duration_01:    0.5s !default;
+$transition_duration_02:    1.0s !default;
+$transition_duration_03:    1.5s !default;
+$transition_duration_04:    2.0s !default;
+
+
+// ============================================================================
+// Slideshow Variables
+// ============================================================================
+
+$slideshow_time: 6s !default;

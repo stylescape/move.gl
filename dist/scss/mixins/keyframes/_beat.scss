@@ -1,20 +1,16 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Beat Keyframes Mixins Module
 /// ===========================================================================
-/// This module defines keyframes for beat animations, including basic beat,
-/// beat with fade, double beat, heartbeat, pulse beat, and rhythmic patterns.
-/// These keyframes create pulsing or rhythmic effects in UI elements.
+///
+/// Defines keyframes for beat animations including basic beat, beat with fade,
+/// double beat, heartbeat, pulse beat, and rhythmic patterns. These keyframes
+/// create pulsing or rhythmic effects in UI elements.
 ///
 /// @group Keyframes
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -26,17 +22,6 @@
 
 @use "../../variables" as *;
 @use "_base" as *;
-
-
-// ============================================================================
-// Variables
-// ============================================================================
-
-/// Default beat scale
-$beat-scale-default: 1.1 !default;
-
-/// Beat fade opacity
-$beat-fade-opacity: 0.6 !default;
 
 
 // ============================================================================
@@ -52,12 +37,12 @@ $beat-fade-opacity: 0.6 !default;
             transform: scale(
                 var(
                     --animate-scale-base,
-                    #{$animate-scale-base}
+                    #{$animate_scale_base}
                 )
             );
         }
         45% {
-            transform: scale(var(--animate-scale-beat, #{$animate-scale-beat}));
+            transform: scale(var(--animate-scale-beat, #{$animate_scale_beat}));
         }
     }
 }
@@ -68,12 +53,12 @@ $beat-fade-opacity: 0.6 !default;
 @mixin keyframes_beat_fade {
     @include keyframes(beat-fade) {
         0%, 100% {
-            opacity: var(--animate-opacity-fade, #{$animate-opacity-fade});
-            transform: scale(var(--animate-scale-base, #{$animate-scale-base}));
+            opacity: var(--animate-opacity-fade, #{$animate_opacity_fade});
+            transform: scale(var(--animate-scale-base, #{$animate_scale_base}));
         }
         50% {
             opacity: 1;
-            transform: scale(var(--animate-scale-beat-fade, #{$animate-scale-beat-fade}));
+            transform: scale(var(--animate-scale-beat-fade, #{$animate_scale_beat_fade}));
         }
     }
 }
@@ -84,16 +69,16 @@ $beat-fade-opacity: 0.6 !default;
 @mixin keyframes_beat_double {
     @include keyframes(beat-double) {
         0%, 100% {
-            transform: scale(var(--animate-scale-base, #{$animate-scale-base}));
+            transform: scale(var(--animate-scale-base, #{$animate_scale_base}));
         }
         25% {
-            transform: scale(var(--animate-scale-beat-double-small, #{$animate-scale-beat-double-small}));
+            transform: scale(var(--animate-scale-beat-double-small, #{$animate_scale_beat_double_small}));
         }
         50% {
-            transform: scale(var(--animate-scale-beat-double-large, #{$animate-scale-beat-double-large}));
+            transform: scale(var(--animate-scale-beat-double-large, #{$animate_scale_beat_double_large}));
         }
         75% {
-            transform: scale(var(--animate-scale-beat-double-small, #{$animate-scale-beat-double-small}));
+            transform: scale(var(--animate-scale-beat-double-small, #{$animate_scale_beat_double_small}));
         }
     }
 }
@@ -109,9 +94,9 @@ $beat-fade-opacity: 0.6 !default;
 @mixin keyframes_heartbeat {
     @include keyframes(heartbeat) {
         0% { transform: scale(1); }
-        14% { transform: scale(1.1); }
+        14% { transform: scale($animate_heartbeat_scale_small); }
         28% { transform: scale(1); }
-        42% { transform: scale(1.1); }
+        42% { transform: scale($animate_heartbeat_scale_small); }
         70% { transform: scale(1); }
         100% { transform: scale(1); }
     }
@@ -123,9 +108,9 @@ $beat-fade-opacity: 0.6 !default;
 @mixin keyframes_heartbeat_fast {
     @include keyframes(heartbeat-fast) {
         0% { transform: scale(1); }
-        10% { transform: scale(1.15); }
+        10% { transform: scale($animate_scale_beat_double_large * 0.76667); }
         20% { transform: scale(1); }
-        30% { transform: scale(1.15); }
+        30% { transform: scale($animate_scale_beat_double_large * 0.76667); }
         50% { transform: scale(1); }
         100% { transform: scale(1); }
     }
@@ -159,8 +144,8 @@ $beat-fade-opacity: 0.6 !default;
             opacity: 1;
         }
         50% {
-            transform: scale(1.1);
-            opacity: 0.8;
+            transform: scale($animate_heartbeat_scale_small);
+            opacity: $animate_scale_shrink_min;
         }
     }
 }
@@ -177,24 +162,24 @@ $beat-fade-opacity: 0.6 !default;
             box-shadow: 0 0 0 0 rgba($color, 0.4);
         }
         50% {
-            transform: scale(1.05);
-            box-shadow: 0 0 0 10px rgba($color, 0);
+            transform: scale($animate_scale_pulse);
+            box-shadow: 0 0 0 $animate_translate_shake rgba($color, 0);
         }
     }
 }
 
 ///
-/// Expanding ring pulse.
+/// Expanding ring pulse for beat effects.
 ///
 /// @param {Color} $color [currentColor] - Ring color.
 ///
-@mixin keyframes_pulse_ring($color: currentColor) {
-    @include keyframes(pulse-ring) {
+@mixin keyframes_beat_ring($color: currentColor) {
+    @include keyframes(beat-ring) {
         0% {
             box-shadow: 0 0 0 0 rgba($color, 0.6);
         }
         100% {
-            box-shadow: 0 0 0 20px rgba($color, 0);
+            box-shadow: 0 0 0 $animate_pulse_ring_size rgba($color, 0);
         }
     }
 }
@@ -210,11 +195,11 @@ $beat-fade-opacity: 0.6 !default;
 @mixin keyframes_beat_triple {
     @include keyframes(beat-triple) {
         0%, 100% { transform: scale(1); }
-        15% { transform: scale(1.1); }
+        15% { transform: scale($animate_heartbeat_scale_small); }
         30% { transform: scale(1); }
-        45% { transform: scale(1.1); }
+        45% { transform: scale($animate_heartbeat_scale_small); }
         60% { transform: scale(1); }
-        75% { transform: scale(1.1); }
+        75% { transform: scale($animate_heartbeat_scale_small); }
         90% { transform: scale(1); }
     }
 }
@@ -225,91 +210,79 @@ $beat-fade-opacity: 0.6 !default;
 @mixin keyframes_beat_syncopated {
     @include keyframes(beat-syncopated) {
         0%, 100% { transform: scale(1); }
-        10% { transform: scale(1.15); }
+        10% { transform: scale($animate_scale_beat_double_large * 0.76667); }
         20% { transform: scale(1); }
-        50% { transform: scale(1.1); }
+        50% { transform: scale($animate_heartbeat_scale_small); }
         60% { transform: scale(1); }
-        80% { transform: scale(1.05); }
+        80% { transform: scale($animate_scale_pulse); }
         90% { transform: scale(1); }
     }
 }
 
 
 // ============================================================================
-// Beat Animation Mixins
+// Parameterized Keyframes (for animations module)
 // ============================================================================
 
 ///
-/// Apply beat animation.
+/// Parameterized beat animation keyframes.
+/// @param {Number} $scale - The scale factor for the beat effect.
 ///
-/// @param {Time} $duration [1s] - Animation duration.
-/// @param {Number} $iterations [infinite] - Number of iterations.
-///
-@mixin animate_beat($duration: 1s, $iterations: infinite) {
-    @include keyframes_beat;
-    animation: beat $duration ease-in-out $iterations;
+@mixin keyframes_animate_beat($scale: $animate_scale_beat) {
+    @keyframes animate_beat {
+        0%, 90% {
+            transform: scale(1);
+        }
+        45% {
+            transform: scale($scale);
+        }
+    }
 }
 
 ///
-/// Apply heartbeat animation.
+/// Parameterized beat fade animation keyframes.
+/// @param {Number} $opacity - The opacity at start/end.
+/// @param {Number} $scale - The scale factor.
 ///
-/// @param {Time} $duration [1.5s] - Animation duration.
-///
-@mixin animate_heartbeat($duration: 1.5s) {
-    @include keyframes_heartbeat;
-    animation: heartbeat $duration ease-in-out infinite;
+@mixin keyframes_animate_beat_fade($opacity: $animate_opacity_fade, $scale: $animate_scale_beat_fade) {
+    @keyframes animate_beat_fade {
+        0%, 100% {
+            opacity: $opacity;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 1;
+            transform: scale($scale);
+        }
+    }
 }
 
 ///
-/// Apply pulse beat with glow.
+/// Parameterized double beat animation keyframes.
+/// @param {Number} $scale_small - The smaller scale factor.
+/// @param {Number} $scale_large - The larger scale factor.
 ///
-/// @param {Color} $color [#ff0000] - Glow color.
-/// @param {Time} $duration [1.5s] - Animation duration.
-///
-@mixin animate_pulse_beat($color: #ff0000, $duration: 1.5s) {
-    @include keyframes_pulse_beat_glow($color);
-    animation: pulse-beat-glow $duration ease-in-out infinite;
+@mixin keyframes_animate_beat_double($scale_small: $animate_scale_beat_double_small, $scale_large: $animate_scale_beat_double_large) {
+    @keyframes animate_beat_double {
+        0%, 100% {
+            transform: scale(1);
+        }
+        25% {
+            transform: scale($scale_small);
+        }
+        50% {
+            transform: scale($scale_large);
+        }
+        75% {
+            transform: scale($scale_small);
+        }
+    }
 }
 
 
 // ============================================================================
-// Utility Class Generator
+// Note: Animation application mixins (animate_beat, animate_heartbeat, etc.)
+// have been moved to the animations module to avoid duplication.
+// Use the animations module for ready-to-use animation mixins.
+// This file provides only the keyframe definitions.
 // ============================================================================
-
-///
-/// Generate beat animation utility classes.
-///
-@mixin generate_beat_utilities {
-    .animate-beat {
-        @include animate_beat;
-    }
-
-    .animate-beat-fade {
-        @include keyframes_beat_fade;
-        animation: beat-fade 1s ease-in-out infinite;
-    }
-
-    .animate-beat-double {
-        @include keyframes_beat_double;
-        animation: beat-double 1.2s ease-in-out infinite;
-    }
-
-    .animate-heartbeat {
-        @include animate_heartbeat;
-    }
-
-    .animate-heartbeat-fast {
-        @include keyframes_heartbeat_fast;
-        animation: heartbeat-fast 0.8s ease-in-out infinite;
-    }
-
-    .animate-heartbeat-slow {
-        @include keyframes_heartbeat_slow;
-        animation: heartbeat-slow 2s ease-in-out infinite;
-    }
-
-    .animate-pulse-beat {
-        @include keyframes_pulse_beat;
-        animation: pulse-beat 1s ease-in-out infinite;
-    }
-}

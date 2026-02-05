@@ -1,14 +1,11 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Nod Animations Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// Provides nodding animations that rotate elements on the X-axis.
+/// Simulates head nodding or agreement gestures. Useful for confirmation
+/// feedback, avatars, and character animations.
 ///
 /// @group Animations
 /// @author Scape Agency
@@ -56,10 +53,7 @@
         $timing_function,
         $iteration_count
     );
-    @keyframes animate_nod {
-        0%, 100% { transform: rotateX(0deg); }
-        50% { transform: rotateX($angle); }
-    }
+    @include keyframes_animate_nod($angle);
 }
 
 
@@ -89,10 +83,7 @@
         $timing_function,
         $iteration_count
     );
-    @keyframes animate_nod_slow {
-        0%, 100% { transform: rotateX(0deg); }
-        50% { transform: rotateX($angle); }
-    }
+    @include keyframes_animate_nod_slow($angle);
 }
 
 
@@ -123,10 +114,7 @@
         $timing_function,
         $iteration_count
     );
-    @keyframes animate_nod_bounce {
-        0%, 100% { transform: rotateX(0deg) translateY(0); }
-        50% { transform: rotateX($angle) translateY(-$bounce-height); }
-    }
+    @include keyframes_animate_nod_bounce($angle, $bounce-height);
 }
 
 
@@ -153,9 +141,5 @@
         $timing_function,
         $iteration_count
     );
-    @keyframes animate_nod_continuous {
-        0% { transform: rotateX(0deg); }
-        25%, 75% { transform: rotateX($angle); }
-        50%, 100% { transform: rotateX(-$angle); }
-    }
+    @include keyframes_animate_nod_continuous($angle);
 }

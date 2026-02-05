@@ -1,0 +1,481 @@
+// ============================================================================
+// move.gl | Line/Bar Loader Mixins
+// ============================================================================
+// Copyright 2025 Scape Agency BV
+// Licensed under MIT License
+// ============================================================================
+
+////
+/// Line/Bar Loader Mixins
+/// ===========================================================================
+///
+/// This module provides mixins for line/bar-based loading animations.
+///
+/// @group Loaders
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0
+/// @access public
+////
+
+@use "../../variables" as *;
+
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+$loader-size: 48px !default;
+$loader-color: #FFF !default;
+$loader-accent: #FF3D00 !default;
+$loader-speed: 1s !default;
+
+
+// ============================================================================
+// Keyframes
+// ============================================================================
+
+///
+/// Bar height animation keyframes.
+///
+@mixin keyframes_bar_height {
+    @keyframes bar-height {
+        0% { height: 48px; }
+        100% { height: 4.8px; }
+    }
+}
+
+///
+/// Bar height with transform keyframes.
+///
+@mixin keyframes_bar_bounce {
+    @keyframes bar-bounce {
+        0% { height: 40px; transform: translateY(0); }
+        100% { height: 10px; transform: translateY(30px); }
+    }
+}
+
+///
+/// Scale height keyframes.
+///
+@mixin keyframes_bar_scale_y {
+    @keyframes bar-scale-y {
+        0%, 80%, 100% { box-shadow: 0 0; height: 4em; }
+        40% { box-shadow: 0 -2em; height: 5em; }
+    }
+}
+
+///
+/// Bar opacity flash keyframes.
+///
+@mixin keyframes_bar_flash {
+    @keyframes bar-flash {
+        0% { box-shadow: 20px 0 rgba(255, 255, 255, 0.25), 40px 0 white, 60px 0 white; }
+        50% { box-shadow: 20px 0 white, 40px 0 rgba(255, 255, 255, 0.25), 60px 0 white; }
+        100% { box-shadow: 20px 0 white, 40px 0 white, 60px 0 rgba(255, 255, 255, 0.25); }
+    }
+}
+
+///
+/// Bar wave animation keyframes.
+///
+@mixin keyframes_bar_wave {
+    @keyframes bar-wave {
+        0% { box-shadow: 20px -10px, 40px 10px, 60px 0px; }
+        25% { box-shadow: 20px 0px, 40px 0px, 60px 10px; }
+        50% { box-shadow: 20px 10px, 40px -10px, 60px 0px; }
+        75% { box-shadow: 20px 0px, 40px 0px, 60px -10px; }
+        100% { box-shadow: 20px -10px, 40px 10px, 60px 0px; }
+    }
+}
+
+///
+/// Width expand keyframes.
+///
+@mixin keyframes_bar_expand {
+    @keyframes bar-expand {
+        0% { width: 4.8px; }
+        100% { width: 48px; }
+    }
+}
+
+///
+/// Bar reveal keyframes.
+///
+@mixin keyframes_bar_reveal {
+    @keyframes bar-reveal {
+        0% { box-shadow: 20px 0 rgba(255, 255, 255, 0), 40px 0 rgba(255, 255, 255, 0), 60px 0 rgba(255, 255, 255, 0), 80px 0 rgba(255, 255, 255, 0), 100px 0 rgba(255, 255, 255, 0); }
+        20% { box-shadow: 20px 0 white, 40px 0 rgba(255, 255, 255, 0), 60px 0 rgba(255, 255, 255, 0), 80px 0 rgba(255, 255, 255, 0), 100px 0 rgba(255, 255, 255, 0); }
+        40% { box-shadow: 20px 0 white, 40px 0 white, 60px 0 rgba(255, 255, 255, 0), 80px 0 rgba(255, 255, 255, 0), 100px 0 rgba(255, 255, 255, 0); }
+        60% { box-shadow: 20px 0 white, 40px 0 white, 60px 0 white, 80px 0 rgba(255, 255, 255, 0), 100px 0 rgba(255, 255, 255, 0); }
+        80% { box-shadow: 20px 0 white, 40px 0 white, 60px 0 white, 80px 0 white, 100px 0 rgba(255, 255, 255, 0); }
+        100% { box-shadow: 20px 0 white, 40px 0 white, 60px 0 white, 80px 0 white, 100px 0 white; }
+    }
+}
+
+///
+/// Spike roll animation keyframes.
+///
+@mixin keyframes_bar_spike {
+    @keyframes bar-spike {
+        0% { background-size: 10px 3px; }
+        16% { background-size: 10px 50px, 10px 3px, 10px 3px, 10px 3px, 10px 3px, 10px 3px; }
+        33% { background-size: 10px 30px, 10px 50px, 10px 3px, 10px 3px, 10px 3px, 10px 3px; }
+        50% { background-size: 10px 10px, 10px 30px, 10px 50px, 10px 3px, 10px 3px, 10px 3px; }
+        66% { background-size: 10px 3px, 10px 10px, 10px 30px, 10px 50px, 10px 3px, 10px 3px; }
+        83% { background-size: 10px 3px, 10px 3px, 10px 10px, 10px 30px, 10px 50px, 10px 3px; }
+        100% { background-size: 10px 3px, 10px 3px, 10px 3px, 10px 10px, 10px 30px, 10px 50px; }
+    }
+}
+
+
+// ============================================================================
+// Line/Bar Loader Mixins
+// ============================================================================
+
+///
+/// Three bars bounce loader.
+///
+/// @param {Length} $width [8px] - Bar width.
+/// @param {Length} $height [40px] - Bar height.
+/// @param {Color} $color [#FFF] - Bar color.
+/// @param {Time} $duration [0.3s] - Animation duration.
+///
+@mixin loader_bar_bounce(
+    $width: 8px,
+    $height: 40px,
+    $color: $loader-color,
+    $duration: 0.3s
+) {
+    width: $width;
+    height: $height;
+    border-radius: 4px;
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 10px;
+    position: relative;
+    background: currentColor;
+    color: var(--loader-color, $color);
+    box-sizing: border-box;
+    animation: bar-bounce $duration calc($duration * 1) linear infinite alternate;
+
+    &::after,
+    &::before {
+        content: '';
+        box-sizing: border-box;
+        width: $width;
+        height: $height;
+        border-radius: 4px;
+        background: currentColor;
+        position: absolute;
+        bottom: 0;
+        left: 20px;
+        animation: bar-height $duration calc($duration * 1.5) linear infinite alternate;
+    }
+
+    &::before {
+        left: -20px;
+        animation-delay: 0s;
+    }
+}
+
+///
+/// Three bars pulse loader.
+///
+/// @param {Length} $width [8px] - Bar width.
+/// @param {Length} $height [40px] - Bar height.
+/// @param {Color} $color [#FFF] - Bar color.
+/// @param {Time} $duration [0.3s] - Animation duration.
+///
+@mixin loader_bar_pulse(
+    $width: 8px,
+    $height: 40px,
+    $color: $loader-color,
+    $duration: 0.3s
+) {
+    width: $width;
+    height: $height;
+    border-radius: 4px;
+    display: block;
+    margin: 20px auto;
+    position: relative;
+    background: currentColor;
+    color: var(--loader-color, $color);
+    box-sizing: border-box;
+    animation: bar-height $duration calc($duration * 1) linear infinite alternate;
+
+    &::after,
+    &::before {
+        content: '';
+        width: $width;
+        height: $height;
+        border-radius: 4px;
+        background: currentColor;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 20px;
+        box-sizing: border-box;
+        animation: bar-height $duration calc($duration * 1.5) linear infinite alternate;
+    }
+
+    &::before {
+        left: -20px;
+        animation-delay: 0s;
+    }
+}
+
+///
+/// Flash bars loader (opacity).
+///
+/// @param {Length} $width [8px] - Bar width.
+/// @param {Length} $height [48px] - Bar height.
+/// @param {Color} $color [#FFF] - Bar color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_bar_flash(
+    $width: 8px,
+    $height: 48px,
+    $color: $loader-color,
+    $duration: $loader-speed
+) {
+    width: $width;
+    height: $height;
+    display: block;
+    margin: auto;
+    left: -20px;
+    position: relative;
+    border-radius: 4px;
+    box-sizing: border-box;
+    animation: bar-flash $duration linear infinite alternate;
+}
+
+///
+/// Wave bars loader.
+///
+/// @param {Length} $width [8px] - Bar width.
+/// @param {Length} $height [48px] - Bar height.
+/// @param {Color} $color [#FFF] - Bar color.
+/// @param {Time} $duration [0.6s] - Animation duration.
+///
+@mixin loader_bar_wave(
+    $width: 8px,
+    $height: 48px,
+    $color: $loader-color,
+    $duration: 0.6s
+) {
+    width: $width;
+    height: $height;
+    display: inline-block;
+    position: relative;
+    border-radius: 4px;
+    color: var(--loader-color, $color);
+    box-sizing: border-box;
+    animation: bar-wave $duration linear infinite;
+}
+
+///
+/// Equalizer bars loader.
+///
+/// @param {Color} $color [#FFF] - Bar color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_bar_equalizer(
+    $color: $loader-color,
+    $duration: $loader-speed
+) {
+    color: var(--loader-color, $color);
+    position: relative;
+    font-size: 11px;
+    background: var(--loader-color, $color);
+    animation: bar-scale-y $duration infinite ease-in-out;
+    width: 1em;
+    height: 4em;
+    animation-delay: -0.16s;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 2em;
+        background: var(--loader-color, $color);
+        width: 1em;
+        height: 4em;
+        animation: bar-scale-y $duration infinite ease-in-out;
+    }
+
+    &::before {
+        left: -2em;
+        animation-delay: -0.32s;
+    }
+}
+
+///
+/// Expanding width bars loader.
+///
+/// @param {Length} $size [4.8px] - Dot size.
+/// @param {Color} $color [#FFF] - Dot color.
+/// @param {Time} $duration [0.3s] - Animation duration.
+///
+@mixin loader_bar_expand_horizontal(
+    $size: 4.8px,
+    $color: $loader-color,
+    $duration: 0.3s
+) {
+    width: $size;
+    height: $size;
+    display: inline-block;
+    margin-top: 20px;
+    position: relative;
+    border-radius: 4px;
+    color: var(--loader-color, $color);
+    background: currentColor;
+    box-sizing: border-box;
+    animation: bar-expand $duration calc($duration * 1) linear infinite alternate;
+
+    &::after,
+    &::before {
+        content: '';
+        box-sizing: border-box;
+        width: $size;
+        height: $size;
+        border-radius: 4px;
+        background: currentColor;
+        position: absolute;
+        left: 0;
+        top: 15px;
+        animation: bar-expand $duration calc($duration * 1.5) linear infinite alternate;
+    }
+
+    &::after {
+        top: -15px;
+        animation-delay: 0s;
+    }
+}
+
+///
+/// Sequential reveal bars loader.
+///
+/// @param {Length} $width [8px] - Bar width.
+/// @param {Length} $height [48px] - Bar height.
+/// @param {Color} $color [#FFF] - Bar color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_bar_reveal(
+    $width: 8px,
+    $height: 48px,
+    $color: $loader-color,
+    $duration: $loader-speed
+) {
+    width: $width;
+    height: $height;
+    display: inline-block;
+    position: relative;
+    border-radius: 4px;
+    box-sizing: border-box;
+    animation: bar-reveal $duration linear infinite alternate;
+}
+
+///
+/// Sound wave bars loader.
+///
+/// @param {Length} $width [85px] - Container width.
+/// @param {Length} $height [50px] - Container height.
+/// @param {Color} $color [#FFF] - Bar color.
+/// @param {Time} $duration [0.65s] - Animation duration.
+///
+@mixin loader_bar_sound_wave(
+    $width: 85px,
+    $height: 50px,
+    $color: $loader-color,
+    $duration: 0.65s
+) {
+    position: relative;
+    width: $width;
+    height: $height;
+    background-repeat: no-repeat;
+    background-image:
+        linear-gradient(var(--loader-color, $color) 50px, transparent 0),
+        linear-gradient(var(--loader-color, $color) 50px, transparent 0),
+        linear-gradient(var(--loader-color, $color) 50px, transparent 0),
+        linear-gradient(var(--loader-color, $color) 50px, transparent 0),
+        linear-gradient(var(--loader-color, $color) 50px, transparent 0),
+        linear-gradient(var(--loader-color, $color) 50px, transparent 0);
+    background-position: 0px center, 15px center, 30px center, 45px center, 60px center, 75px center;
+    animation: bar-spike $duration linear infinite alternate;
+}
+
+///
+/// Shrinking bars loader.
+///
+/// @param {Length} $height [30px] - Bar height.
+/// @param {Length} $width [10px] - Bar width.
+/// @param {Color} $color [#FFF] - Bar color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_bar_shrink(
+    $height: 30px,
+    $width: 10px,
+    $color: $loader-color,
+    $duration: $loader-speed
+) {
+    height: $height;
+    width: $width;
+    border-radius: 4px;
+    color: var(--loader-color, $color);
+    background: currentColor;
+    position: relative;
+    animation: bar-ht $duration ease-in infinite alternate;
+    box-shadow:
+        15px 0 0 -1px,
+        -15px 0 0 -1px,
+        30px 0 0 -2px,
+        -30px 0 0 -2px,
+        45px 0 0 -3px,
+        -45px 0 0 -3px;
+}
+
+///
+/// Shrinking height animation.
+///
+@mixin keyframes_bar_ht {
+    @keyframes bar-ht {
+        100% { height: 0px; }
+    }
+}
+
+///
+/// Matrix rain effect bars.
+///
+/// @param {Length} $width [45px] - Container width.
+/// @param {Length} $height [40px] - Container height.
+/// @param {Color} $color [#FFF] - Bar color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_bar_matrix(
+    $width: 45px,
+    $height: 40px,
+    $color: $loader-color,
+    $duration: $loader-speed
+) {
+    width: $width;
+    height: $height;
+    background:
+        linear-gradient(transparent calc(1 * 100% / 6), var(--loader-color, $color) 0 calc(3 * 100% / 6), transparent 0),
+        linear-gradient(transparent calc(2 * 100% / 6), var(--loader-color, $color) 0 calc(4 * 100% / 6), transparent 0),
+        linear-gradient(transparent calc(3 * 100% / 6), var(--loader-color, $color) 0 calc(5 * 100% / 6), transparent 0);
+    background-size: 10px 400%;
+    background-repeat: no-repeat;
+    animation: matrix $duration infinite linear;
+}
+
+///
+/// Matrix animation keyframes.
+///
+@mixin keyframes_matrix {
+    @keyframes matrix {
+        0% { background-position: 0% 100%, 50% 100%, 100% 100%; }
+        100% { background-position: 0% 0%, 50% 0%, 100% 0%; }
+    }
+}

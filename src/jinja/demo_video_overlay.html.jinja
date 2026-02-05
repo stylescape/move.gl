@@ -1,0 +1,155 @@
+{# ============================================================================
+move.gl | Video Overlay Demo
+============================================================================
+Interactive demo for the video overlay component
+============================================================================ #}
+{%- extends "_base.html.jinja" -%}
+
+{%- set title = "Video Overlay Demo — move.gl" -%}
+{%- set description = "Video Overlay Demo — Transparent video overlay with fade effects and alpha channel support." -%}
+{%- set current_demo = "video_overlay" -%}
+
+{%- block header %}
+<header class="page-header">
+    <div class="page-header__badge">TypeScript Component</div>
+    <h1 class="page-header__title">Video Overlay</h1>
+    <p class="page-header__description">
+        A transparent video overlay system with fade effects and HEVC alpha channel support.
+        Perfect for visual effects, transitions, and decorative overlays.
+    </p>
+</header>
+{%- endblock -%}
+
+{%- block content %}
+<section class="section">
+    <h2 class="section__title">Interactive Demo</h2>
+    <p class="section__description">
+        Toggle different overlay effects to see how they work. The checkerboard pattern shows transparency.
+    </p>
+
+    <div class="demo-container" style="background: linear-gradient(135deg, #2d3436 0%, #000000 100%); color: white;">
+        <div class="info-banner"
+            style="background: rgba(102, 126, 234, 0.2); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 12px; padding: 1rem 1.5rem; margin-bottom: 1.5rem;">
+            <div class="title" style="font-weight: 600; margin-bottom: 0.5rem;">🎬 HEVC Alpha Channel Support</div>
+            <div class="description" style="font-size: 14px; opacity: 0.8;">
+                This component detects and uses HEVC videos with alpha channels when available for true video
+                transparency.
+                <span class="alpha-indicator" id="alphaIndicator">Checking...</span>
+            </div>
+        </div>
+
+        <div class="video-preview" id="videoPreview">
+            <div class="preview-content">
+                <div style="text-align: center;">
+                    <div class="icon">🎥</div>
+                    <div class="text">Background Content</div>
+                </div>
+            </div>
+            <div class="video-overlay" id="videoOverlay">
+                <div class="overlay-effect"></div>
+                <div class="overlay-particles" id="particles"></div>
+            </div>
+        </div>
+
+        <div class="controls-panel">
+            <div class="control-group">
+                <label>Opacity</label>
+                <div class="value" id="opacityValue">100%</div>
+                <input type="range" id="opacitySlider" min="0" max="100" value="100">
+            </div>
+            <div class="control-group">
+                <label>Fade Duration (ms)</label>
+                <div class="value" id="fadeValue">300</div>
+                <input type="range" id="fadeSlider" min="100" max="2000" step="100" value="300">
+            </div>
+            <div class="control-group">
+                <label>Blur Amount (px)</label>
+                <div class="value" id="blurValue">0</div>
+                <input type="range" id="blurSlider" min="0" max="20" value="0">
+            </div>
+        </div>
+
+        <div class="control-group" style="margin-bottom: 1.5rem;">
+            <label>Overlay Effect</label>
+            <div class="effect-buttons">
+                <button class="effect-btn" data-effect="none">None</button>
+                <button class="effect-btn active" data-effect="vignette">Vignette</button>
+                <button class="effect-btn" data-effect="particles">Particles</button>
+                <button class="effect-btn" data-effect="gradient">Gradient</button>
+                <button class="effect-btn" data-effect="scanlines">Scanlines</button>
+            </div>
+        </div>
+
+        <div class="button-row">
+            <button class="btn btn-primary" id="toggleOverlay">Show Overlay</button>
+            <button class="btn btn-secondary" id="fadeInOut">Fade In/Out</button>
+            <button class="btn btn-secondary" id="resetDemo">Reset</button>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section__title">Features</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h4>🎞️ HEVC Alpha Support</h4>
+            <p>Automatic detection and use of HEVC videos with alpha channels.</p>
+        </div>
+        <div class="feature-card">
+            <h4>🌟 Smooth Transitions</h4>
+            <p>Configurable fade in/out with customizable duration.</p>
+        </div>
+        <div class="feature-card">
+            <h4>🎨 Visual Effects</h4>
+            <p>Built-in effects: vignette, particles, gradients, and scanlines.</p>
+        </div>
+        <div class="feature-card">
+            <h4>🖥️ Full Control</h4>
+            <p>Complete API for positioning, opacity, and playback control.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section__title">Usage</h2>
+    <div class="code-block">
+        <code><span class="keyword">import</span> { VideoOverlay } <span class="keyword">from</span> <span class="string">'move.gl'</span>;
+
+<span class="keyword">const</span> overlay = <span class="keyword">new</span> <span class="function">VideoOverlay</span>({
+    containerId: <span class="string">'overlay-container'</span>,
+    videoUrl: <span class="string">'overlay.mp4'</span>,
+    loop: <span class="keyword">true</span>,
+    autoplay: <span class="keyword">true</span>,
+    opacity: <span class="number">0.8</span>,
+    fadeInDuration: <span class="number">500</span>,
+    fadeOutDuration: <span class="number">300</span>
+});
+
+<span class="comment">// Control methods</span>
+overlay.<span class="function">show</span>();
+overlay.<span class="function">hide</span>();
+overlay.<span class="function">setOpacity</span>(<span class="number">0.5</span>);
+overlay.<span class="function">fadeIn</span>(<span class="number">1000</span>);
+overlay.<span class="function">fadeOut</span>(<span class="number">500</span>);
+
+<span class="comment">// Check HEVC alpha support</span>
+<span class="keyword">const</span> supported = VideoOverlay.<span class="function">supportsHevcAlpha</span>();</code>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section__title">HEVC Alpha Detection</h2>
+    <div class="code-block">
+        <code><span class="comment">// The component automatically detects HEVC alpha support</span>
+<span class="keyword">if</span> (VideoOverlay.<span class="function">supportsHevcAlpha</span>()) {
+    <span class="comment">// Use HEVC video with alpha channel</span>
+    overlay.<span class="function">setVideoUrl</span>(<span class="string">'overlay-alpha.mov'</span>);
+} <span class="keyword">else</span> {
+    <span class="comment">// Fallback to WebM with alpha or CSS effects</span>
+    overlay.<span class="function">setVideoUrl</span>(<span class="string">'overlay-alpha.webm'</span>);
+}</code>
+    </div>
+</section>
+
+{%- include "partials/_demo_links.html.jinja" %}
+{%- endblock -%}

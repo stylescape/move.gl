@@ -1,14 +1,11 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Pop Animations Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// Provides quick pop-in/pop-out animations for element emphasis.
+/// Includes rapid and subtle variants with customizable scale factors.
+/// Perfect for button clicks, notifications, and micro-interactions.
 ///
 /// @group Animations
 /// @author Scape Agency
@@ -54,10 +51,7 @@
         $timing_function,
         1,
     );
-    @keyframes animate_pop {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale($scale); }
-    }
+    @include keyframes_animate_pop($scale);
 }
 
 
@@ -83,10 +77,7 @@
         $timing_function,
         1,
     );
-    @keyframes animate_pop_fast {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale($scale); }
-    }
+    @include keyframes_animate_pop_fast($scale);
 }
 
 
@@ -112,10 +103,7 @@
         $timing_function,
         1,
 );
-    @keyframes animate_pop_slow {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale($scale); }
-    }
+    @include keyframes_animate_pop_slow($scale);
 }
 
 
@@ -143,8 +131,5 @@
         $timing_function,
         1,
     );
-    @keyframes animate_pop_rotate {
-        0%, 100% { transform: scale(1) rotate(0); }
-        50% { transform: scale($scale) rotate($rotation_angle); }
-    }
+    @include keyframes_animate_pop_rotate($scale, $rotation_angle);
 }

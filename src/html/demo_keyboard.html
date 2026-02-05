@@ -1,640 +1,224 @@
+
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 
 <head>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Virtual Keyboard Demo — Customizable on-screen keyboard with multiple layouts." />
+    <meta name="description"
+        content="Virtual Keyboard Demo — Customizable on-screen keyboard with multiple layouts." />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
     <title>Virtual Keyboard Demo — move.gl</title>
+
+    <!-- Library CSS -->
     <link rel="stylesheet" href="/css/move.gl.css" />
+    <!-- Documentation CSS -->
     <link rel="stylesheet" href="/css/move.gl.docs.css" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        .demo-container {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 2rem 0;
-        }
-
-        [data-theme="dark"] .demo-container {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-        }
-
-        .input-area {
-            margin-bottom: 1.5rem;
-        }
-
-        .input-area label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-
-        [data-theme="dark"] .input-area label {
-            color: #e4e8eb;
-        }
-
-        #textInput {
-            width: 100%;
-            padding: 1rem 1.25rem;
-            font-size: 18px;
-            border: 2px solid #ddd;
-            border-radius: 12px;
-            background: white;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        [data-theme="dark"] #textInput {
-            background: #1a1a2e;
-            border-color: #444;
-            color: #e4e8eb;
-        }
-
-        #textInput:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-        }
-
-        .keyboard-container {
-            background: #e8e8e8;
-            border-radius: 16px;
-            padding: 1rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        [data-theme="dark"] .keyboard-container {
-            background: #2a2a3e;
-        }
-
-        #keyboard {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .keyboard-row {
-            display: flex;
-            justify-content: center;
-            gap: 0.35rem;
-        }
-
-        .key {
-            min-width: 40px;
-            height: 48px;
-            border: none;
-            border-radius: 8px;
-            background: white;
-            color: #333;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 0 #ccc, 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: all 0.1s ease;
-            user-select: none;
-        }
-
-        [data-theme="dark"] .key {
-            background: #3a3a4e;
-            color: #e4e8eb;
-            box-shadow: 0 2px 0 #222, 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .key:hover {
-            background: #f0f0f0;
-        }
-
-        [data-theme="dark"] .key:hover {
-            background: #4a4a5e;
-        }
-
-        .key:active {
-            transform: translateY(2px);
-            box-shadow: 0 0 0 #ccc, 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .key.special {
-            min-width: 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            box-shadow: 0 2px 0 #5a6fd6, 0 4px 8px rgba(102, 126, 234, 0.2);
-        }
-
-        .key.special:hover {
-            background: linear-gradient(135deg, #5a6fd6 0%, #6a4198 100%);
-        }
-
-        .key.space {
-            flex: 1;
-            max-width: 300px;
-        }
-
-        .key.backspace {
-            min-width: 80px;
-            background: #ff6b6b;
-            color: white;
-            box-shadow: 0 2px 0 #ee5a5a, 0 4px 8px rgba(255, 107, 107, 0.2);
-        }
-
-        .key.backspace:hover {
-            background: #ee5a5a;
-        }
-
-        .key.enter {
-            min-width: 80px;
-            background: #51cf66;
-            color: white;
-            box-shadow: 0 2px 0 #40c057, 0 4px 8px rgba(81, 207, 102, 0.2);
-        }
-
-        .key.enter:hover {
-            background: #40c057;
-        }
-
-        .mode-switcher {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            justify-content: center;
-        }
-
-        .mode-btn {
-            padding: 0.5rem 1rem;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            background: transparent;
-            color: #666;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        [data-theme="dark"] .mode-btn {
-            border-color: #444;
-            color: #aaa;
-        }
-
-        .mode-btn.active {
-            border-color: #667eea;
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-        }
-
-        .mode-btn:hover:not(.active) {
-            border-color: #999;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .feature-card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        [data-theme="dark"] .feature-card {
-            background: #1a1a2e;
-        }
-
-        .feature-card h4 {
-            margin: 0 0 0.5rem 0;
-            color: #667eea;
-        }
-
-        .feature-card p {
-            margin: 0;
-            color: #666;
-            font-size: 14px;
-        }
-
-        [data-theme="dark"] .feature-card p {
-            color: #aaa;
-        }
-
-        .code-block {
-            background: #1a1a2e;
-            border-radius: 8px;
-            padding: 1rem;
-            overflow-x: auto;
-            margin: 1rem 0;
-        }
-
-        .code-block code {
-            color: #e4e8eb;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
-            white-space: pre;
-        }
-
-        .code-block .keyword { color: #c678dd; }
-        .code-block .string { color: #98c379; }
-        .code-block .comment { color: #5c6370; }
-        .code-block .function { color: #61afef; }
-
-        .key-stats {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .key-stat {
-            background: rgba(102, 126, 234, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        .key-stat strong {
-            color: #667eea;
-        }
-
-        @media (max-width: 600px) {
-            .key {
-                min-width: 32px;
-                height: 42px;
-                font-size: 14px;
-            }
-
-            .key.special, .key.backspace, .key.enter {
-                min-width: 50px;
-            }
-
-            .keyboard-container {
-                padding: 0.75rem;
-            }
-        }
-    </style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
 </head>
 
-<body>
-    <!-- Navigation -->
-    <div class="nav-wrapper">
-        <nav class="nav">
-            <div class="nav__inner">
-                <a href="index.html" class="nav__logo">
-                    <span class="nav__logo-text">move.gl</span>
-                    <span class="nav__version">v0.0.1</span>
-                </a>
-                <div class="nav__right">
-                    <button type="button" class="theme-toggle" data-toggle="theme" title="Toggle dark mode">
-                        <svg class="theme-icon theme-icon--light" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zm7-5a.75.75 0 00-.75-.75h-1.5a.75.75 0 000 1.5h1.5A.75.75 0 0015 8zM3 8a.75.75 0 00-.75-.75H.75a.75.75 0 000 1.5h1.5A.75.75 0 003 8z"/>
-                        </svg>
-                        <svg class="theme-icon theme-icon--dark" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M6.2 1A6.98 6.98 0 008 7a6.98 6.98 0 00-1.8 6A7 7 0 116.2 1z"/>
+<body class="">
+
+<div class="nav-wrapper">
+    <nav class="nav">
+        <div class="nav__inner">
+            <a href="index.html" class="nav__logo">
+                <span class="nav__logo-text">move.gl</span>
+                <span class="nav__version">v0.0.1</span>
+            </a>
+            <div class="nav__right">
+
+<button type="button" class="theme-toggle" data-toggle="theme" title="Toggle dark mode" aria-label="Toggle dark mode">
+    <svg class="theme-icon theme-icon--light" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path
+            d="M8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zm7-5a.75.75 0 00-.75-.75h-1.5a.75.75 0 000 1.5h1.5A.75.75 0 0015 8zM3 8a.75.75 0 00-.75-.75H.75a.75.75 0 000 1.5h1.5A.75.75 0 003 8zm9.536-4.536a.75.75 0 00-1.06 0l-1.061 1.06a.75.75 0 001.06 1.061l1.061-1.06a.75.75 0 000-1.061zm-9.072 9.072a.75.75 0 00-1.06 0l-1.061 1.06a.75.75 0 101.06 1.061l1.061-1.06a.75.75 0 000-1.061zm9.072 0a.75.75 0 00-1.06 1.06l1.06 1.061a.75.75 0 101.061-1.06l-1.06-1.061zm-9.072-9.072a.75.75 0 00-1.06 1.06l1.06 1.061a.75.75 0 001.061-1.06l-1.06-1.061z" />
+    </svg>
+    <svg class="theme-icon theme-icon--dark" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M6.2 1A6.98 6.98 0 008 7a6.98 6.98 0 00-1.8 6A7 7 0 116.2 1z" />
+    </svg>
+</button>
+
+                <div class="nav__dropdown" id="nav-dropdown">
+                    <button type="button" class="nav__dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                        <span>Docs</span>
+                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M1 1l4 4 4-4" />
                         </svg>
                     </button>
-                    <a href="https://github.com/stylescape/move.gl" class="nav__github" target="_blank" title="View on GitHub">
-                        <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </nav>
-    </div>
-
-    <!-- Main Content -->
-    <main class="main">
-        <div class="container">
-            <!-- Page Header -->
-            <header class="page-header">
-                <div class="page-header__badge">TypeScript Component</div>
-                <h1 class="page-header__title">Virtual Keyboard</h1>
-                <p class="page-header__description">
-                    A fully customizable on-screen virtual keyboard with multiple layout modes.
-                    Perfect for touch interfaces, kiosk applications, and accessibility features.
-                </p>
-            </header>
-
-            <!-- Interactive Demo -->
-            <section class="section">
-                <h2 class="section__title">Interactive Demo</h2>
-                <p class="section__description">Click or tap the keys to type. Switch between different keyboard modes.</p>
-
-                <div class="demo-container">
-                    <div class="input-area">
-                        <label for="textInput">Type here:</label>
-                        <input type="text" id="textInput" placeholder="Click the keyboard keys to type..." autofocus>
-                    </div>
-
-                    <div class="keyboard-container">
-                        <div id="keyboard"></div>
-
-                        <div class="mode-switcher">
-                            <button class="mode-btn active" data-mode="default">ABC</button>
-                            <button class="mode-btn" data-mode="shift">⇧ Shift</button>
-                            <button class="mode-btn" data-mode="special">#+=</button>
+                    <div class="nav__dropdown-menu" role="menu">
+                        <div class="nav__dropdown-section">
+                            <span class="nav__dropdown-label">Learn</span>
+                            <a href="getting-started.html" role="menuitem">Getting Started</a>
+                            <a href="core-concepts.html" role="menuitem">Core Concepts</a>
+                        </div>
+                        <div class="nav__dropdown-section">
+                            <span class="nav__dropdown-label">Overview</span>
+                            <a href="test_overview.html" role="menuitem">All Animations</a>
+                        </div>
+                        <div class="nav__dropdown-section">
+                            <span class="nav__dropdown-label">Animations</span>
+                            <a href="test_fade.html" role="menuitem">Fade</a>
+                            <a href="test_slide.html" role="menuitem">Slide</a>
+                            <a href="test_bounce.html" role="menuitem">Bounce</a>
+                            <a href="test_zoom.html" role="menuitem">Zoom</a>
+                            <a href="test_flip.html" role="menuitem">Flip</a>
+                            <a href="test_scale.html" role="menuitem">Scale</a>
+                            <a href="test_spin.html" role="menuitem">Spin & Rotate</a>
+                            <a href="test_pulse.html" role="menuitem">Pulse</a>
+                            <a href="test_shake.html" role="menuitem">Shake & Wobble</a>
+                            <a href="test_attention.html" role="menuitem">Attention</a>
+                            <a href="test_special.html" role="menuitem">Special Effects</a>
+                        </div>
+                        <div class="nav__dropdown-section">
+                            <span class="nav__dropdown-label">Effects</span>
+                            <a href="test_loaders.html" role="menuitem">Loaders</a>
+                            <a href="test_transitions.html" role="menuitem">Transitions</a>
+                            <a href="test_transforms.html" role="menuitem">Transforms</a>
+                            <a href="test_effects.html" role="menuitem">Filter Effects</a>
+                            <a href="test_keyframes.html" role="menuitem">Keyframes</a>
+                            <a href="test_mouse.html" role="menuitem">Mouse Interactions</a>
+                        </div>
+                        <div class="nav__dropdown-section">
+                            <span class="nav__dropdown-label">TypeScript Demos</span>
+                            <a href="demo_draggable.html" role="menuitem">Draggable</a>
+                            <a href="demo_gesture.html" role="menuitem">Gesture Handler</a>
+                            <a href="demo_keyboard.html" role="menuitem">Virtual Keyboard</a>
+                            <a href="demo_screensaver.html" role="menuitem">Screensaver</a>
+                            <a href="demo_video_overlay.html" role="menuitem">Video Overlay</a>
                         </div>
                     </div>
-
-                    <div class="key-stats">
-                        <div class="key-stat">Characters: <strong id="charCount">0</strong></div>
-                        <div class="key-stat">Words: <strong id="wordCount">0</strong></div>
-                        <div class="key-stat">Keys pressed: <strong id="keyPressCount">0</strong></div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Features -->
-            <section class="section">
-                <h2 class="section__title">Features</h2>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h4>⌨️ Multiple Layouts</h4>
-                        <p>Default, shift, and special character modes with easy switching.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>📱 Touch Optimized</h4>
-                        <p>Large touch targets and responsive design for mobile devices.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>🎨 Customizable</h4>
-                        <p>Define your own keyboard layouts and key mappings.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>⚡ Event Callbacks</h4>
-                        <p>Hook into key press events for custom functionality.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Usage Code -->
-            <section class="section">
-                <h2 class="section__title">Usage</h2>
-
-                <h3>Basic Usage</h3>
-                <div class="code-block">
-                    <code><span class="keyword">import</span> { VirtualKeyboard } <span class="keyword">from</span> <span class="string">'move.gl'</span>;
-
-<span class="comment">// Create a virtual keyboard</span>
-<span class="keyword">const</span> keyboard = <span class="keyword">new</span> <span class="function">VirtualKeyboard</span>(<span class="string">'textInput'</span>, <span class="string">'keyboard'</span>);
-
-<span class="comment">// Switch to different modes</span>
-keyboard.<span class="function">switchMode</span>(<span class="string">'shift'</span>);    <span class="comment">// Uppercase letters</span>
-keyboard.<span class="function">switchMode</span>(<span class="string">'special'</span>);  <span class="comment">// Special characters</span>
-keyboard.<span class="function">switchMode</span>(<span class="string">'default'</span>);  <span class="comment">// Lowercase letters</span>
-
-<span class="comment">// Clean up when done</span>
-keyboard.<span class="function">destroy</span>();</code>
                 </div>
 
-                <h3>HTML Structure</h3>
-                <div class="code-block">
-                    <code><span class="comment">&lt;!-- Input element --&gt;</span>
-&lt;<span class="keyword">input</span> <span class="string">type</span>=<span class="string">"text"</span> <span class="string">id</span>=<span class="string">"textInput"</span>&gt;
+                <a href="https://github.com/stylescape/move.gl" class="nav__github" target="_blank"
+                    title="View on GitHub">
+                    <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
 
-<span class="comment">&lt;!-- Keyboard container --&gt;</span>
-&lt;<span class="keyword">div</span> <span class="string">id</span>=<span class="string">"keyboard"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</code>
-                </div>
+    <main class="main">
+        <div class="container"><header class="page-header">
+    <div class="page-header__badge">TypeScript Component</div>
+    <h1 class="page-header__title">Virtual Keyboard</h1>
+    <p class="page-header__description">
+        A fully customizable on-screen virtual keyboard with support for multiple layouts,
+        shift modes, and special character modes. Perfect for kiosks and touch interfaces.
+    </p>
+</header><section class="section">
+    <h2 class="section__title">Interactive Demo</h2>
+    <p class="section__description">Click keys on the virtual keyboard to type. Use mode buttons to switch layouts.</p>
 
-                <h3>Custom Layout</h3>
-                <div class="code-block">
-                    <code><span class="keyword">const</span> customLayout = {
-    <span class="string">"default"</span>: [
-        [<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>],
-        [<span class="string">"q"</span>, <span class="string">"w"</span>, <span class="string">"e"</span>, <span class="string">"r"</span>, <span class="string">"t"</span>],
-        [<span class="string">"a"</span>, <span class="string">"s"</span>, <span class="string">"d"</span>, <span class="string">"f"</span>, <span class="string">"g"</span>],
-        [<span class="string">"Backspace"</span>]
-    ],
-    <span class="string">"shift"</span>: [
-        [<span class="string">"!"</span>, <span class="string">"@"</span>, <span class="string">"#"</span>, <span class="string">"$"</span>, <span class="string">"%"</span>],
-        [<span class="string">"Q"</span>, <span class="string">"W"</span>, <span class="string">"E"</span>, <span class="string">"R"</span>, <span class="string">"T"</span>],
-        [<span class="string">"A"</span>, <span class="string">"S"</span>, <span class="string">"D"</span>, <span class="string">"F"</span>, <span class="string">"G"</span>],
-        [<span class="string">"Backspace"</span>]
-    ]
-};</code>
-                </div>
-            </section>
+    <div class="keyboard-demo">
+        <input type="text" class="keyboard__input" id="keyboardInput" placeholder="Click keys to type..." readonly>
 
-            <!-- API Reference -->
-            <section class="section">
-                <h2 class="section__title">API Reference</h2>
+        <div class="mode-buttons">
+            <button class="mode-btn active" onclick="switchMode('default')">ABC</button>
+            <button class="mode-btn" onclick="switchMode('shift')">⇧ SHIFT</button>
+            <button class="mode-btn" onclick="switchMode('special')">123</button>
+        </div>
 
-                <h3>Constructor</h3>
-                <div class="code-block">
-                    <code><span class="keyword">new</span> <span class="function">VirtualKeyboard</span>(inputId: <span class="keyword">string</span>, keyboardId: <span class="keyword">string</span>)</code>
-                </div>
+        <div class="keyboard" id="keyboard"></div>
 
-                <h3>Methods</h3>
-                <table class="api-table">
-                    <tr>
-                        <th>Method</th>
-                        <th>Description</th>
-                    </tr>
-                    <tr>
-                        <td><code>switchMode(mode: string)</code></td>
-                        <td>Switch keyboard layout mode ('default', 'shift', 'special')</td>
-                    </tr>
-                    <tr>
-                        <td><code>destroy()</code></td>
-                        <td>Remove event listeners and clean up</td>
-                    </tr>
-                </table>
+        <div class="keyboard__stats">
+            <div>Characters: <span id="charCount">0</span></div>
+            <div>Words: <span id="wordCount">0</span></div>
+            <div>Keypresses: <span id="keypressCount">0</span></div>
+        </div>
+    </div>
+</section>
 
-                <h3>Built-in Modes</h3>
-                <table class="api-table">
-                    <tr>
-                        <th>Mode</th>
-                        <th>Description</th>
-                    </tr>
-                    <tr>
-                        <td><code>default</code></td>
-                        <td>Lowercase letters and numbers</td>
-                    </tr>
-                    <tr>
-                        <td><code>shift</code></td>
-                        <td>Uppercase letters and symbols</td>
-                    </tr>
-                    <tr>
-                        <td><code>special</code></td>
-                        <td>Special characters and punctuation</td>
-                    </tr>
-                </table>
-            </section>
+<section class="section">
+    <h2 class="section__title">Features</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h4>⌨️ Full Keyboard</h4>
+            <p>Complete QWERTY layout with all letters, numbers, and common symbols.</p>
+        </div>
+        <div class="feature-card">
+            <h4>⇧ Shift Mode</h4>
+            <p>Toggle uppercase letters with shift key support.</p>
+        </div>
+        <div class="feature-card">
+            <h4>🔢 Special Characters</h4>
+            <p>Dedicated mode for numbers and special symbols.</p>
+        </div>
+        <div class="feature-card">
+            <h4>🎨 Customizable</h4>
+            <p>Easily customize layouts, styles, and key mappings.</p>
+        </div>
+    </div>
+</section>
 
-            <!-- Navigation -->
-            <section class="section">
-                <h2 class="section__title">More TypeScript Demos</h2>
-                <div class="feature-grid">
-                    <a href="demo_draggable.html" class="feature-card" style="text-decoration: none;">
-                        <h4>🖱️ Draggable</h4>
-                        <p>Make any element draggable with mouse and touch support.</p>
-                    </a>
-                    <a href="demo_gesture.html" class="feature-card" style="text-decoration: none;">
-                        <h4>👆 Gesture Handler</h4>
-                        <p>Touch gestures: tap, swipe, pinch, and rotate detection.</p>
-                    </a>
-                    <a href="demo_screensaver.html" class="feature-card" style="text-decoration: none;">
-                        <h4>🖥️ Screensaver</h4>
-                        <p>Inactivity-based screensaver with video and audio support.</p>
-                    </a>
-                    <a href="demo_video_overlay.html" class="feature-card" style="text-decoration: none;">
-                        <h4>🎬 Video Overlay</h4>
-                        <p>Transparent video overlay with fade effects.</p>
-                    </a>
-                </div>
-            </section>
+<section class="section">
+    <h2 class="section__title">Usage</h2>
+    <div class="code-block">
+        <code><span class="keyword">import</span> { VirtualKeyboard } <span class="keyword">from</span> <span class="string">'move.gl'</span>;
+
+<span class="keyword">const</span> keyboard = <span class="keyword">new</span> <span class="function">VirtualKeyboard</span>({
+    containerId: <span class="string">'keyboard-container'</span>,
+    inputId: <span class="string">'text-input'</span>,
+    <span class="function">onKeyPress</span>: (key) => console.<span class="function">log</span>(<span class="string">`Key: ${key}`</span>)
+});
+
+<span class="comment">// Switch keyboard mode</span>
+keyboard.<span class="function">switchMode</span>(<span class="string">'shift'</span>);
+keyboard.<span class="function">switchMode</span>(<span class="string">'special'</span>);
+keyboard.<span class="function">switchMode</span>(<span class="string">'default'</span>);</code>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section__title">More TypeScript Demos</h2>
+    <div class="feature-grid">        <a href="demo_draggable.html" class="feature-card" style="text-decoration: none;">
+            <h4>🖱️ Draggable</h4>
+            <p>Make any element draggable with mouse and touch support.</p>
+        </a>        <a href="demo_gesture.html" class="feature-card" style="text-decoration: none;">
+            <h4>👆 Gesture Handler</h4>
+            <p>Touch gestures: tap, swipe, pinch, and rotate detection.</p>
+        </a>        <a href="demo_screensaver.html" class="feature-card" style="text-decoration: none;">
+            <h4>🌙 Screensaver</h4>
+            <p>Inactivity-based screensaver with video and audio support.</p>
+        </a>        <a href="demo_video_overlay.html" class="feature-card" style="text-decoration: none;">
+            <h4>🎬 Video Overlay</h4>
+            <p>Transparent video overlay with fade effects.</p>
+        </a>    </div>
+</section>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>Made with ❤️ by <a href="https://www.scape.agency" target="_blank">Scape Agency</a></p>
+<footer class="footer">
+    <div class="footer__content">
+        <div class="footer__left">
+            <span class="footer__brand">move.gl</span>
+            <span class="footer__tagline">Motion & Animation Library</span>
         </div>
-    </footer>
+        <div class="footer__right">
+            <div class="footer__links">
+                <a href="https://github.com/stylescape/move.gl" class="footer__link" target="_blank">GitHub</a>
+                <a href="https://www.npmjs.com/package/move.gl" class="footer__link" target="_blank">npm</a>
+                <a href="https://www.scape.agency" class="footer__link" target="_blank">Scape Agency</a>
+            </div>
+            <span class="footer__copyright">© 2024 Scape Agency. MIT License.</span>
+        </div>
+    </div>
+</footer>
 
-    <script type="module">
-        // Theme toggle
-        const themeToggle = document.querySelector('[data-toggle="theme"]');
-        const html = document.documentElement;
-
-        const savedTheme = localStorage.getItem('theme') ||
-            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        html.setAttribute('data-theme', savedTheme);
-
-        themeToggle?.addEventListener('click', () => {
-            const current = html.getAttribute('data-theme');
-            const next = current === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
-        });
-
-        // Virtual Keyboard Implementation
-        class DemoVirtualKeyboard {
-            constructor(inputId, keyboardId) {
-                this.keys = {
-                    "default": [
-                        ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
-                        ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
-                        ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
-                        ["z", "x", "c", "v", "b", "n", "m", "Backspace"],
-                        ["Space", "Enter"]
-                    ],
-                    "shift": [
-                        ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"],
-                        ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
-                        ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
-                        ["Z", "X", "C", "V", "B", "N", "M", "Backspace"],
-                        ["Space", "Enter"]
-                    ],
-                    "special": [
-                        ["[", "]", "{", "}", "#", "%", "^", "*", "+", "="],
-                        ["_", "\\", "|", "~", "<", ">", "€", "£", "¥", "•"],
-                        [".", ",", "?", "!", "'", '"', ":", ";", "-"],
-                        ["/", "@", "&", "(", ")", "Backspace"],
-                        ["Space", "Enter"]
-                    ]
-                };
-                this.currentMode = "default";
-                this.inputElement = document.getElementById(inputId);
-                this.keyboardElement = document.getElementById(keyboardId);
-                this.keyPressCount = 0;
-                this.renderKeyboard();
-            }
-
-            renderKeyboard() {
-                this.keyboardElement.innerHTML = "";
-                this.keys[this.currentMode].forEach(row => {
-                    const rowElement = document.createElement("div");
-                    rowElement.className = "keyboard-row";
-
-                    row.forEach(key => {
-                        const keyElement = document.createElement("button");
-                        keyElement.type = "button";
-                        keyElement.className = "key";
-
-                        if (key === "Space") {
-                            keyElement.textContent = "␣";
-                            keyElement.classList.add("space");
-                        } else if (key === "Backspace") {
-                            keyElement.textContent = "⌫";
-                            keyElement.classList.add("backspace");
-                        } else if (key === "Enter") {
-                            keyElement.textContent = "⏎";
-                            keyElement.classList.add("enter");
-                        } else {
-                            keyElement.textContent = key;
-                        }
-
-                        keyElement.addEventListener("click", () => this.handleKeyPress(key));
-                        keyElement.addEventListener("touchstart", (e) => {
-                            e.preventDefault();
-                            this.handleKeyPress(key);
-                        }, { passive: false });
-
-                        rowElement.appendChild(keyElement);
-                    });
-
-                    this.keyboardElement.appendChild(rowElement);
-                });
-            }
-
-            handleKeyPress(key) {
-                this.keyPressCount++;
-                document.getElementById('keyPressCount').textContent = this.keyPressCount;
-
-                if (key === "Backspace") {
-                    this.inputElement.value = this.inputElement.value.slice(0, -1);
-                } else if (key === "Space") {
-                    this.inputElement.value += " ";
-                } else if (key === "Enter") {
-                    this.inputElement.value += "\n";
-                } else {
-                    this.inputElement.value += key;
-                }
-
-                this.inputElement.focus();
-                this.updateStats();
-            }
-
-            switchMode(mode) {
-                if (this.keys[mode]) {
-                    this.currentMode = mode;
-                    this.renderKeyboard();
-                }
-            }
-
-            updateStats() {
-                const text = this.inputElement.value;
-                document.getElementById('charCount').textContent = text.length;
-                document.getElementById('wordCount').textContent = text.trim() ? text.trim().split(/\s+/).length : 0;
-            }
-        }
-
-        // Initialize keyboard
-        const keyboard = new DemoVirtualKeyboard('textInput', 'keyboard');
-
-        // Mode switcher buttons
-        document.querySelectorAll('.mode-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                keyboard.switchMode(btn.dataset.mode);
-            });
-        });
-
-        // Update stats on manual input
-        document.getElementById('textInput').addEventListener('input', () => {
-            keyboard.updateStats();
-        });
-    </script>
-</body>
+    <!-- Core Scripts -->
+    <script type="module" src="/js/move.gl.js"></script>
+    <script type="module" src="/js/demo.js"></script></body>
 
 </html>

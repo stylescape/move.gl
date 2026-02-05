@@ -1,20 +1,16 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Bounce Animations Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// Provides SCSS mixins for creating bounce animations that make elements
+/// jump up and down with various effects including simple bounce, extended
+/// multi-stage bounce, rotating bounce, and multi-directional bounce.
 ///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -34,22 +30,27 @@
 // Mixins
 // ============================================================================
 
-
 ///
 /// Bounce Animation
+/// ---------------------------------------------------------------------------
 /// Creates a simple bounce animation where the element moves up and down.
 ///
 /// @name animate_bounce
-/// @param {Number|String} $duration [$animate_base_duration] - The duration of the bounce animation.
-/// @param {String} $timing_function [cubic-bezier(0.280, 0.840, 0.420, 1)] - The timing function for the bounce animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
-/// @param {Number|String} $bounce_height [-20%] - The height of the bounce.
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_timing_function_bounce] - Timing function
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {Length} $bounce_height [$animate_bounce_height] - Height of the bounce
+///
+/// @example scss - Basic usage
+///   .element {
+///     @include animate_bounce;
+///   }
 ///
 @mixin animate_bounce(
     $duration: $animate_base_duration,
-    $timing_function: cubic-bezier(0.280, 0.840, 0.420, 1),
+    $timing_function: $animate_timing_function_bounce,
     $iteration_count: $animate_base_iteration_count,
-    $bounce_height: -20%
+    $bounce_height: $animate_bounce_height
 ) {
     @include animate_base(
         animate_bounce,
@@ -57,122 +58,109 @@
         $timing_function,
         $iteration_count
     );
-    @keyframes animate_bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY($bounce_height); }
-    }
+    @include keyframes_animate_bounce($bounce_height);
 }
-
-
-
-// @keyframes bounce {
-// 	0%,100% {
-// 		-webkit-transform: translate3d(0,-30px,0);
-// 		transform: translate3d(0,-30px,0);
-// 	}
-// 	50% {
-// 		-webkit-transform: translate3d(0,-4px,0);
-// 		transform: translate3d(0,-4px,0);
-// 	}
-// }
 
 
 ///
 /// Extended Bounce Animation
-/// Creates an extended bounce animation with multiple stages of scaling
-/// and bouncing.
+/// ---------------------------------------------------------------------------
+/// Creates a more realistic bounce with multiple stages: squash, stretch,
+/// jump, land, and settle phases.
 ///
 /// @name animate_bounce_extended
-/// @param {Number} $start-scale_x [1.1] - Initial scale in the X direction.
-/// @param {Number} $start-scale_y [0.9] - Initial scale in the Y direction.
-/// @param {Number} $jump_scale_x [0.9] - Scale in the X direction during the jump.
-/// @param {Number} $jump_scale_y [1.1] - Scale in the Y direction during the jump.
-/// @param {Number|String} $bounce_height [-0.5em] - The height of the bounce.
-/// @param {Number} $land_scale_x [1.05] - Scale in the X direction upon landing.
-/// @param {Number} $land_scale_y [0.95] - Scale in the Y direction upon landing.
-/// @param {Number|String} $rebound_height [-0.125em] - The height of the rebound.
-/// @param {Number|String} $duration [$animate_base_duration] - The duration of the bounce animation.
-/// @param {String} $timing_function [cubic-bezier(0.280, 0.840, 0.420, 1)] - The timing function for the bounce animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Number} $start_scale_x [1.1] - Initial squash scale X
+/// @param {Number} $start_scale_y [0.9] - Initial squash scale Y
+/// @param {Number} $jump_scale_x [0.9] - Jump stretch scale X
+/// @param {Number} $jump_scale_y [1.1] - Jump stretch scale Y
+/// @param {Length} $bounce_height [$animate_bounce_height_extended] - Main bounce height
+/// @param {Number} $land_scale_x [1.05] - Landing squash scale X
+/// @param {Number} $land_scale_y [0.95] - Landing squash scale Y
+/// @param {Length} $rebound_height [$animate_bounce_rebound] - Secondary bounce height
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_timing_function_bounce] - Timing function
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
 ///
 @mixin animate_bounce_extended(
-    $start-scale_x: 1.1,
-    $start-scale_y: 0.9,
+    $start_scale_x: 1.1,
+    $start_scale_y: 0.9,
     $jump_scale_x: 0.9,
     $jump_scale_y: 1.1,
-    $bounce_height: -0.5em,
+    $bounce_height: $animate_bounce_height_extended,
     $land_scale_x: 1.05,
     $land_scale_y: 0.95,
-    $rebound_height: -0.125em,
+    $rebound_height: $animate_bounce_rebound,
     $duration: $animate_base_duration,
-    $timing_function: cubic-bezier(0.280, 0.840, 0.420, 1),
+    $timing_function: $animate_timing_function_bounce,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
-        animate_bounce,
+        animate_bounce_extended,
         $duration,
         $timing_function,
-        $iteration_count,
+        $iteration_count
     );
-    @keyframes animate_bounce {
-        0%   { transform: scale(1,1) translateY(0); }
-        10%  { transform: scale($start-scale_x, $start-scale_y) translateY(0); }
-        30%  { transform: scale($jump_scale_x, $jump_scale_y) translateY($bounce_height); }
-        50%  { transform: scale($land_scale_x, $land_scale_y) translateY(0); }
-        57%  { transform: scale(1,1) translateY($rebound_height); }
-        64%  { transform: scale(1,1) translateY(0); }
-        100% { transform: scale(1,1) translateY(0); }
-    }
+    @include keyframes_bounce_extended(
+        $start_scale_x,
+        $start_scale_y,
+        $jump_scale_x,
+        $jump_scale_y,
+        $bounce_height,
+        $land_scale_x,
+        $land_scale_y,
+        $rebound_height
+    );
 }
-
 
 
 ///
 /// Bounce with Rotation Animation
-/// Creates a bounce animation that includes a rotation as the element moves
-/// up and down.
+/// ---------------------------------------------------------------------------
+/// Creates a bounce animation that includes rotation during the jump phase.
 ///
 /// @name animate_bounce_rotate
-/// @param {Number|String} $rotation_angle [360deg] - The angle of rotation during the bounce.
-/// @param {Number|String} $duration [$animate_base_duration] - The duration of the bounce animation.
-/// @param {String} $timing_function [cubic-bezier(0.280, 0.840, 0.420, 1)] - The timing function for the bounce animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Angle} $rotation_angle [$animate_angle_full] - Rotation angle during bounce
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_timing_function_bounce] - Timing function
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+///
+/// @example scss - Usage
+///   .spinning-ball {
+///     @include animate_bounce_rotate(180deg, 1s);
+///   }
 ///
 @mixin animate_bounce_rotate(
-    $rotation_angle: 360deg,
+    $rotation_angle: $animate_angle_full,
     $duration: $animate_base_duration,
-    $timing_function: cubic-bezier(0.280, 0.840, 0.420, 1),
+    $timing_function: $animate_timing_function_bounce,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
         animate_bounce_rotate,
         $duration,
         $timing_function,
-        $iteration_count,
+        $iteration_count
     );
-    @keyframes animate_bounce_rotate {
-        0%, 100% { transform: translateY(0) rotate(0); }
-        50% { transform: translateY(-20%) rotate($rotation_angle); }
-    }
+    @include keyframes_bounce_rotate($rotation_angle);
 }
-
 
 
 ///
 /// Multi-Directional Bounce Animation
-/// Creates a bounce animation that moves the element in multiple
-/// directions (X and Y).
+/// ---------------------------------------------------------------------------
+/// Creates a bounce that moves in both X and Y directions for a more
+/// dynamic, chaotic movement.
 ///
 /// @name animate_bounce_multi
-/// @param {Number|String} $duration [$animate_base_duration] - The duration of the bounce animation.
-/// @param {String} $timing_function [cubic-bezier(0.280, 0.840, 0.420, 1)] - The timing function for the bounce animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
-/// @param {Number|String} $bounce_x [-10%] - The distance the element moves along the X-axis during the bounce.
-/// @param {Number|String} $bounce_y [-20%] - The distance the element moves along the Y-axis during the bounce.
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_timing_function_bounce] - Timing function
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {Length} $bounce_x [-10%] - Horizontal bounce distance
+/// @param {Length} $bounce_y [-20%] - Vertical bounce distance
 ///
 @mixin animate_bounce_multi(
     $duration: $animate_base_duration,
-    $timing_function: cubic-bezier(0.280, 0.840, 0.420, 1),
+    $timing_function: $animate_timing_function_bounce,
     $iteration_count: $animate_base_iteration_count,
     $bounce_x: -10%,
     $bounce_y: -20%
@@ -181,12 +169,138 @@
         animate_bounce_multi,
         $duration,
         $timing_function,
-        $iteration_count,
+        $iteration_count
     );
-    @keyframes animate_bounce_multi {
-        0%, 100% { transform: translate(0, 0); }
-        25% { transform: translate($bounce_x, 0); }
-        50% { transform: translate(0, $bounce_y); }
-        75% { transform: translate($bounce_x, 0); }
-    }
+    @include keyframes_bounce_multi($bounce_x, $bounce_y);
+}
+
+
+///
+/// Elastic Bounce Animation
+/// ---------------------------------------------------------------------------
+/// Creates a bounce with elastic overshoot effect.
+///
+/// @name animate_bounce_elastic
+/// @param {Length} $bounce_height [-30%] - Main bounce height
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function_elastic] - Timing function
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+///
+@mixin animate_bounce_elastic(
+    $bounce_height: -30%,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function_elastic,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_bounce_elastic,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @include keyframes_bounce_elastic($bounce_height);
+}
+
+
+///
+/// Bounce In Up Animation
+/// ---------------------------------------------------------------------------
+/// Entrance animation that bounces element in from below.
+///
+/// @name animate_bounce_in_up
+/// @param {Length} $distance [100%] - Starting distance
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_timing_function_bounce] - Timing function
+///
+@mixin animate_bounce_in_up(
+    $distance: 100%,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_timing_function_bounce
+) {
+    @include animate_base(
+        animate_bounce_in_up,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_bounce_in_up($distance);
+}
+
+
+///
+/// Bounce In Down Animation
+/// ---------------------------------------------------------------------------
+/// Entrance animation that bounces element in from above.
+///
+/// @name animate_bounce_in_down
+/// @param {Length} $distance [-100%] - Starting distance
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_timing_function_bounce] - Timing function
+///
+@mixin animate_bounce_in_down(
+    $distance: -100%,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_timing_function_bounce
+) {
+    @include animate_base(
+        animate_bounce_in_down,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_bounce_in_down($distance);
+}
+
+
+///
+/// Bounce In Left Animation
+/// ---------------------------------------------------------------------------
+/// Entrance animation that bounces element in from the left.
+///
+/// @name animate_bounce_in_left
+/// @param {Length} $distance [-100%] - Starting distance
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_timing_function_bounce] - Timing function
+///
+@mixin animate_bounce_in_left(
+    $distance: -100%,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_timing_function_bounce
+) {
+    @include animate_base(
+        animate_bounce_in_left,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_bounce_in_left($distance);
+}
+
+
+///
+/// Bounce In Right Animation
+/// ---------------------------------------------------------------------------
+/// Entrance animation that bounces element in from the right.
+///
+/// @name animate_bounce_in_right
+/// @param {Length} $distance [100%] - Starting distance
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_timing_function_bounce] - Timing function
+///
+@mixin animate_bounce_in_right(
+    $distance: 100%,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_timing_function_bounce
+) {
+    @include animate_base(
+        animate_bounce_in_right,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_bounce_in_right($distance);
 }

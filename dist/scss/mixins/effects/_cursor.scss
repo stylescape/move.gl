@@ -1,0 +1,62 @@
+////
+///
+/// Cursor Effects Mixin Module
+/// ===========================================================================
+///
+/// This module provides mixins for user selection and touch actions.
+/// For cursor style mixins, use the mouse/_cursor.scss module.
+/// For pointer event mixins, use the mouse/_pointer.scss module.
+///
+/// @group Effects
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+
+// ============================================================================
+// Note: Cursor style mixins have been moved to mixins/mouse/_cursor.scss
+// to provide a more comprehensive cursor management system using maps.
+// Note: Pointer event mixins are in mixins/mouse/_pointer.scss
+// ============================================================================
+
+
+// ============================================================================
+// User Select Mixins
+// ============================================================================
+
+/// Auto user select
+@mixin select_auto { user-select: auto; }
+
+/// None user select
+@mixin select_none { user-select: none; }
+
+/// All user select
+@mixin select_all { user-select: all; }
+
+/// Text user select
+@mixin select_text { user-select: text; }
+
+
+// ============================================================================
+// Touch Action Mixins
+// ============================================================================
+
+/// Auto touch action
+@mixin touch_auto { touch-action: auto; }
+
+/// None touch action
+@mixin touch_none { touch-action: none; }
+
+/// Pan X touch action
+@mixin touch_pan_x { touch-action: pan-x; }
+
+/// Pan Y touch action
+@mixin touch_pan_y { touch-action: pan-y; }
+
+/// Manipulation touch action
+@mixin touch_manipulation { touch-action: manipulation; }
+
+

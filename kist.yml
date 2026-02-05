@@ -147,3 +147,4 @@ stages:
                     tsConfigPath: "./tsconfig.json"
                     filePaths:
                         - "src/ts/index.ts"
+                        - "src/ts/demo.ts"

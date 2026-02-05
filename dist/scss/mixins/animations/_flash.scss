@@ -1,14 +1,11 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Flash Animations Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// Provides flashing and blinking animations for attention-grabbing effects.
+/// Includes standard flash, strobe, and fade variants with customizable
+/// opacity levels and timing. Useful for alerts, notifications, and warnings.
 ///
 /// @group Animations
 /// @author Scape Agency
@@ -63,8 +60,8 @@
         $iteration_count,
     );
     @keyframes animate_flash {
-        0%, 100% { opacity: $start-opacity; }
-        50% { opacity: $mid-opacity; }
+        0%, 100% { opacity: $start_opacity; }
+        50% { opacity: $mid_opacity; }
     }
 }
 

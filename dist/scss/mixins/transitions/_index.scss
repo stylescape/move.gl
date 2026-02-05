@@ -9,7 +9,8 @@
 /// Transitions Mixin Module
 /// ===========================================================================
 ///
-/// This module provides CSS transition mixins for smooth property changes.
+/// This module provides CSS transition and hover effect mixins
+/// for smooth property changes and interactive states.
 ///
 /// @group Transitions
 /// @author Scape Agency
@@ -19,3 +20,4 @@
 ////
 
 @forward "transition";
+@forward "hover";

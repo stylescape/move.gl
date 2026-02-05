@@ -1,7 +1,3 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Mouse Cursor Mixin Module
@@ -79,9 +75,11 @@
 // Utility Mixins for Common Cursor Styles
 // ============================================================================
 
+@mixin cursor_default { @include cursor_style('default'); }
 @mixin cursor_pointer { @include cursor_style('pointer'); }
 @mixin cursor_text { @include cursor_style('text'); }
 @mixin cursor_disabled { @include cursor_style('not-allowed'); }
+@mixin cursor_not_allowed { @include cursor_style('not-allowed'); }
 @mixin cursor_move { @include cursor_style('move'); }
 @mixin cursor_grab { @include cursor_style('grab'); }
 @mixin cursor_grabbing { @include cursor_style('grabbing'); }
@@ -90,6 +88,25 @@
 @mixin cursor_crosshair { @include cursor_style('crosshair'); }
 @mixin cursor_zoom_in { @include cursor_style('zoom-in'); }
 @mixin cursor_zoom_out { @include cursor_style('zoom-out'); }
+
+
+// ============================================================================
+// Resize Cursor Mixins
+// ============================================================================
+
+@mixin cursor_n_resize { @include cursor_style('n-resize'); }
+@mixin cursor_e_resize { @include cursor_style('e-resize'); }
+@mixin cursor_s_resize { @include cursor_style('s-resize'); }
+@mixin cursor_w_resize { @include cursor_style('w-resize'); }
+@mixin cursor_ne_resize { @include cursor_style('ne-resize'); }
+@mixin cursor_se_resize { @include cursor_style('se-resize'); }
+@mixin cursor_sw_resize { @include cursor_style('sw-resize'); }
+@mixin cursor_nw_resize { @include cursor_style('nw-resize'); }
+@mixin cursor_ew_resize { @include cursor_style('ew-resize'); }
+@mixin cursor_ns_resize { @include cursor_style('ns-resize'); }
+@mixin cursor_col_resize { @include cursor_style('col-resize'); }
+@mixin cursor_row_resize { @include cursor_style('row-resize'); }
+
 
 // ============================================================================
 // Advanced Mixins

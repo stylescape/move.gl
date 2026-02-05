@@ -1,0 +1,88 @@
+{# ============================================================================
+move.gl | Virtual Keyboard Demo
+============================================================================
+Interactive demo for the virtual keyboard component
+============================================================================ #}
+{%- extends "_base.html.jinja" -%}
+
+{%- set title = "Virtual Keyboard Demo — move.gl" -%}
+{%- set description = "Virtual Keyboard Demo — Customizable on-screen keyboard with multiple layouts." -%}
+{%- set current_demo = "keyboard" -%}
+
+{%- block header %}
+<header class="page-header">
+    <div class="page-header__badge">TypeScript Component</div>
+    <h1 class="page-header__title">Virtual Keyboard</h1>
+    <p class="page-header__description">
+        A fully customizable on-screen virtual keyboard with support for multiple layouts,
+        shift modes, and special character modes. Perfect for kiosks and touch interfaces.
+    </p>
+</header>
+{%- endblock -%}
+
+{%- block content %}
+<section class="section">
+    <h2 class="section__title">Interactive Demo</h2>
+    <p class="section__description">Click keys on the virtual keyboard to type. Use mode buttons to switch layouts.</p>
+
+    <div class="keyboard-demo">
+        <input type="text" class="keyboard__input" id="keyboardInput" placeholder="Click keys to type..." readonly>
+
+        <div class="mode-buttons">
+            <button class="mode-btn active" onclick="switchMode('default')">ABC</button>
+            <button class="mode-btn" onclick="switchMode('shift')">⇧ SHIFT</button>
+            <button class="mode-btn" onclick="switchMode('special')">123</button>
+        </div>
+
+        <div class="keyboard" id="keyboard"></div>
+
+        <div class="keyboard__stats">
+            <div>Characters: <span id="charCount">0</span></div>
+            <div>Words: <span id="wordCount">0</span></div>
+            <div>Keypresses: <span id="keypressCount">0</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section__title">Features</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h4>⌨️ Full Keyboard</h4>
+            <p>Complete QWERTY layout with all letters, numbers, and common symbols.</p>
+        </div>
+        <div class="feature-card">
+            <h4>⇧ Shift Mode</h4>
+            <p>Toggle uppercase letters with shift key support.</p>
+        </div>
+        <div class="feature-card">
+            <h4>🔢 Special Characters</h4>
+            <p>Dedicated mode for numbers and special symbols.</p>
+        </div>
+        <div class="feature-card">
+            <h4>🎨 Customizable</h4>
+            <p>Easily customize layouts, styles, and key mappings.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section__title">Usage</h2>
+    <div class="code-block">
+        <code><span class="keyword">import</span> { VirtualKeyboard } <span class="keyword">from</span> <span class="string">'move.gl'</span>;
+
+<span class="keyword">const</span> keyboard = <span class="keyword">new</span> <span class="function">VirtualKeyboard</span>({
+    containerId: <span class="string">'keyboard-container'</span>,
+    inputId: <span class="string">'text-input'</span>,
+    <span class="function">onKeyPress</span>: (key) => console.<span class="function">log</span>(<span class="string">`Key: ${key}`</span>)
+});
+
+<span class="comment">// Switch keyboard mode</span>
+keyboard.<span class="function">switchMode</span>(<span class="string">'shift'</span>);
+keyboard.<span class="function">switchMode</span>(<span class="string">'special'</span>);
+keyboard.<span class="function">switchMode</span>(<span class="string">'default'</span>);</code>
+    </div>
+</section>
+
+{%- include "partials/_demo_links.html.jinja" %}
+{%- endblock -%}

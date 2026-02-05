@@ -1,20 +1,16 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Wobble Animations Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// Provides unsteady wobbling animations that alternate rotation direction.
+/// Includes gentle, rapid, and horizontal variants. Perfect for error states,
+/// attention seekers, and playful feedback animations.
 ///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -34,220 +30,254 @@
 // Mixins
 // ============================================================================
 
-
-
-
-
 ///
 /// Wobble Animation
+/// ---------------------------------------------------------------------------
 /// Creates a wobble effect by rotating an element back and forth.
+///
 /// @name animate_wobble
-/// @param {Angle} $angle [5deg] - The maximum rotation angle during the wobble.
-/// @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
-/// @param {String} $timing_function [ease-in-out] - The timing function for the animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Angle} $angle [$animate_angle_wobble] - The maximum rotation angle.
+/// @param {Time} $duration [$animate_base_duration] - Animation duration.
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+///
+/// @example scss - Basic usage
+///   .element {
+///     @include animate_wobble;
+///   }
 ///
 @mixin animate_wobble(
-    $angle: 5deg,
+    $angle: $animate_angle_wobble,
     $duration: $animate_base_duration,
-    $timing_function: ease-in-out,
+    $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
         animate_wobble,
         $duration,
         $timing_function,
-        $iteration_count,
+        $iteration_count
     );
-    @keyframes animate_wobble {
-        0%, 100% { transform: rotate(0deg); }
-        25% { transform: rotate(-$angle); }
-        50% { transform: rotate($angle); }
-        75% { transform: rotate(-$angle); }
-    }
+    @include keyframes_wobble($angle);
 }
 
 
-// Gentle Wobble Animation
-// ----------------------------------------------------------------------------
-
 ///
 /// Gentle Wobble Animation
+/// ---------------------------------------------------------------------------
 /// A slower and subtler wobble animation.
+///
 /// @name animate_wobble_slow
-/// @param {Angle} $angle [3deg] - The maximum rotation angle during the wobble.
-/// @param {Duration} $duration [$animate_base_duration_slow] - The duration of the animation.
-/// @param {String} $timing_function [ease-in-out] - The timing function for the animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Angle} $angle [$animate_angle_wobble_slow] - Maximum rotation angle.
+/// @param {Time} $duration [$animate_base_duration_slow] - Animation duration.
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
 ///
 @mixin animate_wobble_slow(
-    $angle: 3deg,
+    $angle: $animate_angle_wobble_slow,
     $duration: $animate_base_duration_slow,
-    $timing_function: ease-in-out,
+    $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
         animate_wobble_slow,
         $duration,
         $timing_function,
-        $iteration_count,
+        $iteration_count
     );
-    @keyframes animate_wobble_slow {
-        0%, 100% { transform: rotate(0deg); }
-        25% { transform: rotate(-$angle); }
-        50% { transform: rotate($angle); }
-        75% { transform: rotate(-$angle); }
-    }
+    @include keyframes_wobble_slow($angle);
 }
 
 
-// Rapid Wobble Animation
-// ----------------------------------------------------------------------------
-
 ///
 /// Rapid Wobble Animation
+/// ---------------------------------------------------------------------------
 /// A faster and more intense wobble animation.
+///
 /// @name animate_wobble_fast
-/// @param {Angle} $angle [10deg] - The maximum rotation angle during the wobble.
-/// @param {Duration} $duration [$animate_base_duration_fast] - The duration of the animation.
-/// @param {String} $timing_function [ease-in-out] - The timing function for the animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Angle} $angle [$animate_angle_wobble_fast] - Maximum rotation angle.
+/// @param {Time} $duration [$animate_base_duration_fast] - Animation duration.
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
 ///
 @mixin animate_wobble_fast(
-    $angle: 10deg,
+    $angle: $animate_angle_wobble_fast,
     $duration: $animate_base_duration_fast,
-    $timing_function: ease-in-out,
+    $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
         animate_wobble_fast,
         $duration,
         $timing_function,
-        $iteration_count,
+        $iteration_count
     );
-    @keyframes animate_wobble_fast {
-        0%, 100% { transform: rotate(0deg); }
-        25% { transform: rotate(-$angle); }
-        50% { transform: rotate($angle); }
-        75% { transform: rotate(-$angle); }
-    }
+    @include keyframes_wobble_fast($angle);
 }
 
 
-// Wobble with Scale Animation
-// ----------------------------------------------------------------------------
-
 ///
 /// Wobble with Scale Animation
+/// ---------------------------------------------------------------------------
 /// A wobble animation combined with a scaling effect.
+///
 /// @name animate_wobble_scale
-/// @param {Angle} $angle [5deg] - The maximum rotation angle during the wobble.
-/// @param {Number} $scale [1.1] - The scale factor during the wobble.
-/// @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
-/// @param {String} $timing_function [ease-in-out] - The timing function for the animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Angle} $angle [$animate_angle_wobble] - Maximum rotation angle.
+/// @param {Number} $scale [1.1] - Scale factor during wobble.
+/// @param {Time} $duration [$animate_base_duration] - Animation duration.
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
 ///
 @mixin animate_wobble_scale(
-    $angle: 5deg,
+    $angle: $animate_angle_wobble,
     $scale: 1.1,
     $duration: $animate_base_duration,
-    $timing_function: ease-in-out,
+    $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
         animate_wobble_scale,
         $duration,
         $timing_function,
-        $iteration_count,
+        $iteration_count
     );
-    @keyframes animate_wobble_scale {
-        0%, 100% { transform: scale(1) rotate(0deg); }
-        25% { transform: scale($scale) rotate(-$angle); }
-        50% { transform: scale($scale) rotate($angle); }
-        75% { transform: scale($scale) rotate(-$angle); }
-    }
+    @include keyframes_wobble_scale($angle, $scale);
 }
 
 
+///
+/// Advanced Wobble Animation (Animate.css style)
+/// ---------------------------------------------------------------------------
+/// Complex wobble with translation, similar to Animate.css wobble.
+///
+/// @name animate_wobble_advanced
+/// @param {Time} $duration [$animate_base_duration] - Animation duration.
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+///
+/// @example scss - Usage
+///   .attention-element {
+///     @include animate_wobble_advanced;
+///   }
+///
+@mixin animate_wobble_advanced(
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_wobble_advanced,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @include keyframes_wobble_advanced();
+}
 
 
-// originally authored by Nick Pettit - https://github.com/nickpettit/glide
+///
+/// Horizontal Wobble Animation
+/// ---------------------------------------------------------------------------
+/// Wobble animation using horizontal translation.
+///
+/// @name animate_wobble_horizontal
+/// @param {Length} $distance [5%] - Maximum horizontal distance.
+/// @param {Time} $duration [$animate_base_duration] - Animation duration.
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+///
+@mixin animate_wobble_horizontal(
+    $distance: 5%,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_wobble_horizontal,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @include keyframes_wobble_horizontal($distance);
+}
 
-// @-webkit-keyframes wobble {
-//     from {
-//       -webkit-transform: none;
-//       transform: none;
-//     }
 
-//     15% {
-//       -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
-//       transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
-//     }
+///
+/// Vertical Wobble Animation
+/// ---------------------------------------------------------------------------
+/// Wobble animation using vertical translation.
+///
+/// @name animate_wobble_vertical
+/// @param {Length} $distance [5%] - Maximum vertical distance.
+/// @param {Time} $duration [$animate_base_duration] - Animation duration.
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+///
+@mixin animate_wobble_vertical(
+    $distance: 5%,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_wobble_vertical,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @include keyframes_wobble_vertical($distance);
+}
 
-//     30% {
-//       -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
-//       transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
-//     }
 
-//     45% {
-//       -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
-//       transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
-//     }
+///
+/// Skew Wobble Animation
+/// ---------------------------------------------------------------------------
+/// Wobble animation using skew transformation.
+///
+/// @name animate_wobble_skew
+/// @param {Angle} $skew [5deg] - Maximum skew angle.
+/// @param {Time} $duration [$animate_base_duration] - Animation duration.
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+///
+@mixin animate_wobble_skew(
+    $skew: 5deg,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_wobble_skew,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @include keyframes_wobble_skew($skew);
+}
 
-//     60% {
-//       -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
-//       transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
-//     }
 
-//     75% {
-//       -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
-//       transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
-//     }
-
-//     100% {
-//       -webkit-transform: none;
-//       transform: none;
-//     }
-//   }
-
-//   @keyframes wobble {
-//     from {
-//       -webkit-transform: none;
-//       transform: none;
-//     }
-
-//     15% {
-//       -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
-//       transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
-//     }
-
-//     30% {
-//       -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
-//       transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
-//     }
-
-//     45% {
-//       -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
-//       transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
-//     }
-
-//     60% {
-//       -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
-//       transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
-//     }
-
-//     75% {
-//       -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
-//       transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
-//     }
-
-//     100% {
-//       -webkit-transform: none;
-//       transform: none;
-//     }
-//   }
-
-//   .wobble {
-//     -webkit-animation-name: wobble;
-//     animation-name: wobble;
-//   }
+///
+/// Pendulum Wobble Animation
+/// ---------------------------------------------------------------------------
+/// Pendulum-style wobble from top origin.
+///
+/// @name animate_wobble_pendulum
+/// @param {Angle} $angle [10deg] - Maximum swing angle.
+/// @param {Time} $duration [$animate_base_duration] - Animation duration.
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+///
+@mixin animate_wobble_pendulum(
+    $angle: 10deg,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_wobble_pendulum,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @include keyframes_wobble_pendulum($angle);
+}

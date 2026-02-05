@@ -1433,6 +1433,41 @@ button.mouse-box {
     margin-bottom: 1.5rem;
 }
 
+.keyboard__row,
+.keyboard > div {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+}
+
+.key {
+    min-width: 40px;
+    height: 44px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.25);
+        border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    &:active {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(0.95);
+    }
+}
+
 .keyboard__stats {
     display: flex;
     gap: 2rem;

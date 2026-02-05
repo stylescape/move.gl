@@ -1,0 +1,50 @@
+{# ============================================================================
+move.gl | Base Template
+============================================================================
+Copyright 2025 Scape Agency BV
+Licensed under MIT License
+============================================================================
+Main base template that all pages extend. Provides:
+- Common HTML structure
+- CSS/JS includes
+- Navigation
+- Footer
+- Customizable blocks for child templates
+============================================================================ #}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    {%- include "partials/_head.html.jinja" %}
+
+    {%- block head_extra %}
+    {%- endblock %}
+
+    {%- block styles %}
+    {%- endblock %}
+</head>
+
+<body class="{%- block body_class %}{%- endblock %}">
+    {%- include "partials/_nav.html.jinja" %}
+
+    <main class="main">
+        <div class="container">
+            {%- block header %}
+            {%- endblock %}
+
+            {%- block content %}
+            {%- endblock %}
+        </div>
+    </main>
+
+    {%- include "partials/_footer.html.jinja" %}
+
+    <!-- Core Scripts -->
+    <script type="module" src="/js/move.gl.js"></script>
+    <script type="module" src="/js/demo.js"></script>
+
+    {%- block scripts %}
+    {%- endblock %}
+</body>
+
+</html>

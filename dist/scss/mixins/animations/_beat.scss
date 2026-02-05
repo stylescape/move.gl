@@ -1,25 +1,19 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Beat Animations Mixin Module
 /// ===========================================================================
-/// This module provides a set of SCSS mixins for creating various beat
-/// animations, including basic beat, beat with fade, and double beat effects.
-/// These mixins are designed to scale elements up and down in rhythmic
-/// patterns, enhancing the visual dynamics of your designs.
+///
+/// Provides SCSS mixins for creating rhythmic beat animations that scale
+/// elements up and down in pulsating patterns. Includes basic beat, beat
+/// with fade effect, and double beat (heartbeat-like) variations.
 ///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
-
 
 
 // ============================================================================
@@ -32,26 +26,36 @@
 @use "base" as *;
 
 
-
 // ============================================================================
 // Mixins
 // ============================================================================
 
 ///
 /// Beat Animation
+/// ---------------------------------------------------------------------------
 /// Creates a beat animation that scales an element up and down rhythmically.
 ///
 /// @name animate_beat
-/// @param {Number} $scale [$animate-scale-beat] - The scale factor for the beat animation.
-/// @param {Number|String} $duration [$animate-base-duration] - The duration of the animation.
-/// @param {String} $timing_function [$animate-base-timing-function] - The timing function for the animation.
-/// @param {Number|String} $iteration_count [$animate-base-iteration-count] - The number of iterations the animation will run.
+/// @param {Number} $scale [$animate_scale_beat] - The scale factor for the beat animation
+/// @param {Time} $duration [$animate_base_duration] - The duration of the animation
+/// @param {String} $timing_function [$animate_base_timing_function] - The timing function
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Number of iterations
+///
+/// @example scss - Basic usage
+///   .element {
+///     @include animate_beat;
+///   }
+///
+/// @example scss - Custom scale and duration
+///   .element {
+///     @include animate_beat(1.3, 0.8s);
+///   }
 ///
 @mixin animate_beat(
-    $scale: $animate-scale-beat,
-    $duration: $animate-base-duration,
-    $timing_function: $animate-base-timing-function,
-    $iteration_count: $animate-base-iteration-count
+    $scale: $animate_scale_beat,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function,
+    $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
         animate_beat,
@@ -62,52 +66,66 @@
     @include keyframes_animate_beat($scale);
 }
 
+
 ///
 /// Beat Fade Animation
+/// ---------------------------------------------------------------------------
 /// Combines a beat animation with a fade effect, scaling the element while
-/// changing its opacity.
+/// simultaneously changing its opacity for a more subtle pulsating effect.
 ///
 /// @name animate_beat_fade
-/// @param {Number} $opacity [$animate-opacity-fade] - The opacity level at the start and end of the animation.
-/// @param {Number} $scale [$animate-scale-beat-fade] - The scale factor for the beat animation.
-/// @param {Number|String} $duration [$animate-base-duration] - The duration of the animation.
-/// @param {String} $timing_function [$animate-base-timing-function-fade] - The timing function for the animation.
-/// @param {Number|String} $iteration_count [$animate-base-iteration-count] - The number of iterations the animation will run.
+/// @param {Number} $opacity [$animate_opacity_fade] - Opacity level at animation midpoint
+/// @param {Number} $scale [$animate_scale_beat_fade] - The scale factor for the beat
+/// @param {Time} $duration [$animate_base_duration] - The duration of the animation
+/// @param {String} $timing_function [$animate_base_timing_function_fade] - The timing function
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Number of iterations
+///
+/// @example scss - Usage
+///   .element {
+///     @include animate_beat_fade;
+///   }
 ///
 @mixin animate_beat_fade(
-    $opacity: $animate-opacity-fade,
-    $scale: $animate-scale-beat-fade,
-    $duration: $animate-base-duration,
-    $timing_function: $animate-base-timing-function-fade,
-    $iteration_count: $animate-base-iteration-count
+    $opacity: $animate_opacity_fade,
+    $scale: $animate_scale_beat_fade,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function_fade,
+    $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
         animate_beat_fade,
         $duration,
         $timing_function,
-        $iteration_count,
+        $iteration_count
     );
     @include keyframes_animate_beat_fade($opacity, $scale);
 }
 
+
 ///
 /// Double Beat Animation
-/// Creates a double beat animation where the element scales down, then up,
-/// then down again, simulating a heartbeat or pulsating effect.
+/// ---------------------------------------------------------------------------
+/// Creates a double beat animation simulating a heartbeat or pulsating effect.
+/// The element scales down, then up larger, then down again.
 ///
 /// @name animate_beat_double
-/// @param {Number} $scale-small [$animate-scale-beat-double-small] - The smaller scale factor for the double beat animation.
-/// @param {Number} $scale-large [$animate-scale-beat-double-large] - The larger scale factor for the double beat animation.
-/// @param {Number|String} $duration [$animate-base-duration] - The duration of the animation.
-/// @param {String} $timing_function [$animate-base-timing-function] - The timing function for the animation.
-/// @param {Number|String} $iteration_count [$animate-base-iteration-count] - The number of iterations the animation will run.
+/// @param {Number} $scale_small [$animate_scale_beat_double_small] - Smaller scale factor
+/// @param {Number} $scale_large [$animate_scale_beat_double_large] - Larger scale factor
+/// @param {Time} $duration [$animate_base_duration] - The duration of the animation
+/// @param {String} $timing_function [$animate_base_timing_function] - The timing function
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Number of iterations
+///
+/// @example scss - Usage
+///   .heartbeat-icon {
+///     @include animate_beat_double;
+///   }
 ///
 @mixin animate_beat_double(
-    $scale-small: $animate-scale-beat-double-small,
-    $scale-large: $animate-scale-beat-double-large,
-    $duration: $animate-base-duration,
-    $timing_function: $animate-base-timing-function,
-    $iteration_count: $animate-base-iteration-count
+    $scale_small: $animate_scale_beat_double_small,
+    $scale_large: $animate_scale_beat_double_large,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function,
+    $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
         animate_beat_double,
@@ -115,5 +133,5 @@
         $timing_function,
         $iteration_count
     );
-    @include keyframes_animate_beat_double($scale-small, $scale-large);
+    @include keyframes_animate_beat_double($scale_small, $scale_large);
 }

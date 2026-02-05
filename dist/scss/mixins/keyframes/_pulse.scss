@@ -1,0 +1,225 @@
+////
+///
+/// Pulse Keyframes Mixins Module
+/// ===========================================================================
+///
+/// Defines keyframes for pulse animations including basic pulse, speed
+/// variations, color pulse, and ring pulse effects. These keyframes create
+/// rhythmic scaling and attention-grabbing effects.
+///
+/// @group Keyframes
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../variables" as *;
+@use "_base" as *;
+
+
+// ============================================================================
+// Basic Pulse Keyframes
+// ============================================================================
+
+///
+/// Standard pulse animation.
+///
+/// @param {Number} $scale_min [1] - Minimum scale
+/// @param {Number} $scale_max [$animate_scale_pulse] - Maximum scale
+///
+@mixin keyframes_pulse($scale_min: 1, $scale_max: $animate_scale_pulse) {
+    @include keyframes(animate_pulse) {
+        0%, 100% {
+            transform: scale($scale_min);
+        }
+        50% {
+            transform: scale($scale_max);
+        }
+    }
+}
+
+///
+/// Pulse with CSS custom property support.
+///
+@mixin keyframes_animate_pulse($scale_max: $animate_scale_pulse) {
+    @include keyframes(animate_pulse) {
+        0%, 100% {
+            transform: scale(var(--animate-scale-base, #{$animate_scale_base}));
+        }
+        50% {
+            transform: scale(var(--animate-scale-pulse, #{$scale_max}));
+        }
+    }
+}
+
+
+// ============================================================================
+// Slow Pulse Keyframes
+// ============================================================================
+
+///
+/// Slower, subtler pulse.
+///
+/// @param {Number} $scale_min [$animate_scale_pulse_slow_min] - Minimum scale
+/// @param {Number} $scale_max [$animate_scale_pulse_slow_max] - Maximum scale
+///
+@mixin keyframes_pulse_slow($scale_min: $animate_scale_pulse_slow_min, $scale_max: $animate_scale_pulse_slow_max) {
+    @include keyframes(animate_pulse_slow) {
+        0%, 100% {
+            transform: scale($scale_min);
+        }
+        50% {
+            transform: scale($scale_max);
+        }
+    }
+}
+
+
+// ============================================================================
+// Fast Pulse Keyframes
+// ============================================================================
+
+///
+/// Faster, more pronounced pulse.
+///
+/// @param {Number} $scale_min [$animate_scale_pulse_fast_min] - Minimum scale
+/// @param {Number} $scale_max [$animate_scale_pulse_fast_max] - Maximum scale
+///
+@mixin keyframes_pulse_fast($scale_min: $animate_scale_pulse_fast_min, $scale_max: $animate_scale_pulse_fast_max) {
+    @include keyframes(animate_pulse_fast) {
+        0%, 100% {
+            transform: scale($scale_min);
+        }
+        50% {
+            transform: scale($scale_max);
+        }
+    }
+}
+
+
+// ============================================================================
+// Color Pulse Keyframes
+// ============================================================================
+
+///
+/// Pulse with background color transition.
+///
+/// @param {Color} $color_start [$animate_base_color_start] - Starting color
+/// @param {Color} $color_end [$animate_base_color_end] - Ending color
+///
+@mixin keyframes_pulse_color($color_start: $animate_base_color_start, $color_end: $animate_base_color_end) {
+    @include keyframes(animate_pulse_color) {
+        0%, 100% {
+            background-color: $color_start;
+        }
+        50% {
+            background-color: $color_end;
+        }
+    }
+}
+
+
+// ============================================================================
+// Ring Pulse Keyframes
+// ============================================================================
+
+///
+/// Expanding ring effect.
+///
+/// @param {Color} $ring_color [$animate_color_pulse_ring] - Ring color
+/// @param {Length} $ring_size [$animate_pulse_ring_size] - Maximum ring expansion
+///
+@mixin keyframes_pulse_ring($ring_color: $animate_color_pulse_ring, $ring_size: $animate_pulse_ring_size) {
+    @include keyframes(animate_pulse_ring) {
+        0% {
+            box-shadow: 0 0 0 0 $ring_color;
+        }
+        100% {
+            box-shadow: 0 0 0 $ring_size rgba($ring_color, 0);
+        }
+    }
+}
+
+
+// ============================================================================
+// Pulse with Opacity Keyframes
+// ============================================================================
+
+///
+/// Pulse with simultaneous opacity change.
+///
+/// @param {Number} $scale_max [$animate_scale_pulse_fade_max] - Maximum scale
+/// @param {Number} $opacity_min [$animate_opacity_pulse_min] - Minimum opacity
+///
+@mixin keyframes_pulse_fade($scale_max: $animate_scale_pulse_fade_max, $opacity_min: $animate_opacity_pulse_min) {
+    @include keyframes(animate_pulse_fade) {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale($scale_max);
+            opacity: $opacity_min;
+        }
+    }
+}
+
+
+// ============================================================================
+// Pulse with Glow Keyframes
+// ============================================================================
+
+///
+/// Pulse with glowing box-shadow effect.
+///
+/// @param {Color} $glow_color [currentColor] - Glow color
+/// @param {Length} $glow_size [10px] - Maximum glow size
+/// @param {Number} $scale_max [1.05] - Maximum scale
+///
+@mixin keyframes_pulse_glow($glow_color: currentColor, $glow_size: 10px, $scale_max: 1.05) {
+    @include keyframes(animate_pulse_glow) {
+        0%, 100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba($glow_color, 0.4);
+        }
+        50% {
+            transform: scale($scale_max);
+            box-shadow: 0 0 $glow_size 0 rgba($glow_color, 0);
+        }
+    }
+}
+
+
+// ============================================================================
+// Multi-Pulse Keyframes
+// ============================================================================
+
+///
+/// Double pulse pattern.
+///
+/// @param {Number} $scale_small [1.05] - First pulse scale
+/// @param {Number} $scale_large [1.1] - Second pulse scale
+///
+@mixin keyframes_pulse_double($scale_small: 1.05, $scale_large: 1.1) {
+    @include keyframes(animate_pulse_double) {
+        0%, 100% {
+            transform: scale(1);
+        }
+        25% {
+            transform: scale($scale_small);
+        }
+        50% {
+            transform: scale(1);
+        }
+        75% {
+            transform: scale($scale_large);
+        }
+    }
+}

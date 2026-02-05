@@ -1,0 +1,128 @@
+{# ============================================================================
+move.gl | Gesture Demo
+============================================================================
+Interactive demo for the gesture handler component
+============================================================================ #}
+{%- extends "_base.html.jinja" -%}
+
+{%- set title = "Gesture Demo — move.gl" -%}
+{%- set description = "Touch Gesture Demo — Detect taps, swipes, pinches, and rotations." -%}
+{%- set current_demo = "gesture" -%}
+
+{%- block header %}
+<header class="page-header">
+    <div class="page-header__badge">TypeScript Component</div>
+    <h1 class="page-header__title">Gesture Handler</h1>
+    <p class="page-header__description">
+        Detect and respond to touch gestures including taps, swipes, pinches, and rotations.
+        Works with both touch devices and mouse input.
+    </p>
+</header>
+{%- endblock -%}
+
+{%- block content %}
+<section class="section">
+    <h2 class="section__title">Interactive Demo</h2>
+    <p class="section__description">
+        <strong>Touch/Mobile:</strong> Use one finger to tap or swipe, two fingers to pinch.<br>
+        <strong>Desktop:</strong> Click to tap, click and drag to swipe.
+    </p>
+
+    <div class="gesture-area" id="gestureArea">
+        <div class="direction-indicator left" id="dirLeft">←</div>
+        <div class="direction-indicator right" id="dirRight">→</div>
+        <div class="direction-indicator up" id="dirUp">↑</div>
+        <div class="direction-indicator down" id="dirDown">↓</div>
+
+        <div class="gesture-icon" id="gestureIcon">👆</div>
+        <div class="gesture-label" id="gestureLabel">Touch or Click Here</div>
+        <div class="gesture-hint" id="gestureHint">Try tapping, swiping, or pinching</div>
+        <div class="gesture-feedback" id="gestureFeedback">Tap detected!</div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-card__value" id="tapCount">0</div>
+            <div class="stat-card__label">Taps</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-card__value" id="swipeCount">0</div>
+            <div class="stat-card__label">Swipes</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-card__value" id="pinchCount">0</div>
+            <div class="stat-card__label">Pinches</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-card__value" id="lastDirection">—</div>
+            <div class="stat-card__label">Last Direction</div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn btn-secondary" onclick="resetStats()">Reset Stats</button>
+        <button class="btn btn-secondary" onclick="clearLog()">Clear Log</button>
+    </div>
+
+    <div class="gesture-log" id="gestureLog">
+        <div class="entry">
+            <span class="timestamp">--:--:--</span>
+            <span class="type">INIT</span>
+            <span class="details">Gesture handler ready</span>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section__title">Supported Gestures</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h4>👆 Tap</h4>
+            <p>Single touch/click without movement. Fires onTap callback.</p>
+        </div>
+        <div class="feature-card">
+            <h4>👋 Swipe</h4>
+            <p>Touch and drag in any direction. Detects left, right, up, down.</p>
+        </div>
+        <div class="feature-card">
+            <h4>🤏 Pinch</h4>
+            <p>Two-finger pinch gesture. Returns scale factor for zoom effects.</p>
+        </div>
+        <div class="feature-card">
+            <h4>🔄 Rotate</h4>
+            <p>Two-finger rotation gesture. Returns angle for rotation effects.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section__title">Usage</h2>
+
+    <h3>TouchGestureHandler</h3>
+    <div class="code-block">
+        <code><span class="keyword">import</span> { TouchGestureHandler } <span class="keyword">from</span> <span class="string">'move.gl'</span>;
+
+<span class="keyword">const</span> gesture = <span class="keyword">new</span> <span class="function">TouchGestureHandler</span>(<span class="string">'myElement'</span>, {
+    <span class="function">onTap</span>: () => console.<span class="function">log</span>(<span class="string">'Tapped!'</span>),
+    <span class="function">onSwipe</span>: (direction, deltaX, deltaY) => {
+        console.<span class="function">log</span>(<span class="string">`Swiped ${direction}`</span>);
+    },
+    <span class="function">onPinch</span>: (scale) => console.<span class="function">log</span>(<span class="string">`Scale: ${scale}`</span>)
+});</code>
+    </div>
+
+    <h3>GestureCallbacks Interface</h3>
+    <div class="code-block">
+        <code><span class="keyword">interface</span> GestureCallbacks {
+    onTap?: () => <span class="keyword">void</span>;
+    onSwipe?: (direction: SwipeDirection, deltaX: <span class="keyword">number</span>, deltaY: <span class="keyword">number</span>) => <span class="keyword">void</span>;
+    onPinch?: (scale: <span class="keyword">number</span>) => <span class="keyword">void</span>;
+    onRotate?: (angle: <span class="keyword">number</span>) => <span class="keyword">void</span>;
+}
+
+<span class="keyword">type</span> SwipeDirection = <span class="string">'left'</span> | <span class="string">'right'</span> | <span class="string">'up'</span> | <span class="string">'down'</span>;</code>
+    </div>
+</section>
+
+{%- include "partials/_demo_links.html.jinja" %}
+{%- endblock -%}

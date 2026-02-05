@@ -1,14 +1,11 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Jello Animations Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// Provides jelly-like wobble animations using skew transforms. Creates a
+/// bouncy, gelatinous effect that settles naturally. Perfect for playful
+/// UI feedback and attention-grabbing effects.
 ///
 /// @group Animations
 /// @author Scape Agency
@@ -35,95 +32,81 @@
 // ============================================================================
 
 
+///
+/// Jello Animation
+/// Creates a jelly-like wobble effect using skew transforms.
+///
+/// @name animate_jello
+/// @param {Angle} $intensity [12.5deg] - The initial skew intensity.
+/// @param {Duration} $duration [$animate_base_duration] - The animation duration.
+/// @param {String} $timing_function [ease-in-out] - The timing function.
+/// @param {Number|String} $iteration_count [1] - Number of iterations.
+///
+@mixin animate_jello(
+    $intensity: 12.5deg,
+    $duration: $animate_base_duration,
+    $timing_function: ease-in-out,
+    $iteration_count: 1
+) {
+    @include animate_base(
+        animate_jello,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    transform-origin: center;
+    @keyframes animate_jello {
+        0%, 11.1%, 100% {
+            transform: none;
+        }
+        22.2% {
+            transform: skewX(-$intensity) skewY(-$intensity);
+        }
+        33.3% {
+            transform: skewX($intensity * 0.5) skewY($intensity * 0.5);
+        }
+        44.4% {
+            transform: skewX(-$intensity * 0.25) skewY(-$intensity * 0.25);
+        }
+        55.5% {
+            transform: skewX($intensity * 0.125) skewY($intensity * 0.125);
+        }
+        66.6% {
+            transform: skewX(-$intensity * 0.0625) skewY(-$intensity * 0.0625);
+        }
+        77.7% {
+            transform: skewX($intensity * 0.03125) skewY($intensity * 0.03125);
+        }
+        88.8% {
+            transform: skewX(-$intensity * 0.015625) skewY(-$intensity * 0.015625);
+        }
+    }
+}
 
 
-// @-webkit-keyframes jello {
-//     from, 11.1%, 100% {
-//       -webkit-transform: none;
-//       transform: none;
-//     }
+///
+/// Subtle Jello Animation
+/// A gentler version of the jello effect.
+///
+/// @name animate_jello_subtle
+/// @param {Duration} $duration [$animate_base_duration] - The animation duration.
+///
+@mixin animate_jello_subtle(
+    $duration: $animate_base_duration
+) {
+    @include animate_jello(6deg, $duration);
+}
 
-//     22.2% {
-//       -webkit-transform: skewX(-12.5deg) skewY(-12.5deg);
-//       transform: skewX(-12.5deg) skewY(-12.5deg);
-//     }
 
-//     33.3% {
-//       -webkit-transform: skewX(6.25deg) skewY(6.25deg);
-//       transform: skewX(6.25deg) skewY(6.25deg);
-//     }
-
-//     44.4% {
-//       -webkit-transform: skewX(-3.125deg) skewY(-3.125deg);
-//       transform: skewX(-3.125deg) skewY(-3.125deg);
-//     }
-
-//     55.5% {
-//       -webkit-transform: skewX(1.5625deg) skewY(1.5625deg);
-//       transform: skewX(1.5625deg) skewY(1.5625deg);
-//     }
-
-//     66.6% {
-//       -webkit-transform: skewX(-0.78125deg) skewY(-0.78125deg);
-//       transform: skewX(-0.78125deg) skewY(-0.78125deg);
-//     }
-
-//     77.7% {
-//       -webkit-transform: skewX(0.390625deg) skewY(0.390625deg);
-//       transform: skewX(0.390625deg) skewY(0.390625deg);
-//     }
-
-//     88.8% {
-//       -webkit-transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
-//       transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
-//     }
-//   }
-
-//   @keyframes jello {
-//     from, 11.1%, 100% {
-//       -webkit-transform: none;
-//       transform: none;
-//     }
-
-//     22.2% {
-//       -webkit-transform: skewX(-12.5deg) skewY(-12.5deg);
-//       transform: skewX(-12.5deg) skewY(-12.5deg);
-//     }
-
-//     33.3% {
-//       -webkit-transform: skewX(6.25deg) skewY(6.25deg);
-//       transform: skewX(6.25deg) skewY(6.25deg);
-//     }
-
-//     44.4% {
-//       -webkit-transform: skewX(-3.125deg) skewY(-3.125deg);
-//       transform: skewX(-3.125deg) skewY(-3.125deg);
-//     }
-
-//     55.5% {
-//       -webkit-transform: skewX(1.5625deg) skewY(1.5625deg);
-//       transform: skewX(1.5625deg) skewY(1.5625deg);
-//     }
-
-//     66.6% {
-//       -webkit-transform: skewX(-0.78125deg) skewY(-0.78125deg);
-//       transform: skewX(-0.78125deg) skewY(-0.78125deg);
-//     }
-
-//     77.7% {
-//       -webkit-transform: skewX(0.390625deg) skewY(0.390625deg);
-//       transform: skewX(0.390625deg) skewY(0.390625deg);
-//     }
-
-//     88.8% {
-//       -webkit-transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
-//       transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
-//     }
-//   }
-
-//   .jello {
-//     -webkit-animation-name: jello;
-//     animation-name: jello;
-//     -webkit-transform-origin: center;
-//     transform-origin: center;
-//   }
+///
+/// Intense Jello Animation
+/// A more dramatic version of the jello effect.
+///
+/// @name animate_jello_intense
+/// @param {Duration} $duration [$animate_base_duration] - The animation duration.
+///
+@mixin animate_jello_intense(
+    $duration: $animate_base_duration
+) {
+    @include animate_jello(20deg, $duration);
+}

@@ -1,0 +1,467 @@
+// ============================================================================
+// move.gl | Circle/Spinner Loader Mixins
+// ============================================================================
+// Copyright 2025 Scape Agency BV
+// Licensed under MIT License
+// ============================================================================
+
+////
+/// Circle/Spinner Loader Mixins
+/// ===========================================================================
+///
+/// This module provides mixins for circle/spinner-based loading animations.
+///
+/// @group Loaders
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0
+/// @access public
+////
+
+@use "../../variables" as *;
+
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+$loader-size: 48px !default;
+$loader-color: #FFF !default;
+$loader-accent: #FF3D00 !default;
+$loader-speed: 1s !default;
+$loader-border: 5px !default;
+
+
+// ============================================================================
+// Keyframes
+// ============================================================================
+
+///
+/// Rotation keyframes.
+///
+@mixin keyframes_circle_rotation {
+    @keyframes circle-rotation {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+}
+
+///
+/// Clip path animation keyframes.
+///
+@mixin keyframes_circle_clip {
+    @keyframes circle-clip {
+        0% { clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0); }
+        25% { clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0); }
+        50% { clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%); }
+        75% { clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%); }
+        100% { clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0); }
+    }
+}
+
+///
+/// Reverse rotation keyframes.
+///
+@mixin keyframes_circle_rotation_back {
+    @keyframes circle-rotation-back {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(-360deg); }
+    }
+}
+
+///
+/// Pulse ring keyframes.
+///
+@mixin keyframes_circle_pulse {
+    @keyframes circle-pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5);
+        }
+        100% {
+            box-shadow: 0 0 0 30px rgba(255, 255, 255, 0);
+        }
+    }
+}
+
+///
+/// Ripple keyframes.
+///
+@mixin keyframes_circle_ripple {
+    @keyframes circle-ripple {
+        0% {
+            transform: scale(0);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 0;
+        }
+    }
+}
+
+
+// ============================================================================
+// Circle/Spinner Loader Mixins
+// ============================================================================
+
+///
+/// Basic spinner loader.
+///
+/// @param {Length} $size [48px] - Loader size.
+/// @param {Length} $border [5px] - Border width.
+/// @param {Color} $color [#FFF] - Border color.
+/// @param {Color} $accent [#FF3D00] - Accent color for bottom border.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_circle_spinner(
+    $size: $loader-size,
+    $border: $loader-border,
+    $color: $loader-color,
+    $accent: $loader-accent,
+    $duration: $loader-speed
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    border: $border solid var(--loader-color, $color);
+    border-bottom-color: var(--loader-accent, $accent);
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: circle-rotation $duration linear infinite;
+}
+
+///
+/// Dual half-circle spinner.
+///
+/// @param {Length} $size [48px] - Loader size.
+/// @param {Length} $border [5px] - Border width.
+/// @param {Color} $color [#FFF] - Border color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_circle_dual(
+    $size: $loader-size,
+    $border: $loader-border,
+    $color: $loader-color,
+    $duration: $loader-speed
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    border: $border solid var(--loader-color, $color);
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: circle-rotation $duration linear infinite;
+}
+
+///
+/// Clip-path animated spinner.
+///
+/// @param {Length} $size [48px] - Loader size.
+/// @param {Length} $border [5px] - Border width.
+/// @param {Color} $color [#FFF] - Border color.
+/// @param {Time} $duration [1s] - Rotation duration.
+/// @param {Time} $clip-duration [2s] - Clip animation duration.
+///
+@mixin loader_circle_clip(
+    $size: $loader-size,
+    $border: $loader-border,
+    $color: $loader-color,
+    $duration: $loader-speed,
+    $clip-duration: 2s
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    border-radius: 50%;
+    position: relative;
+    animation: circle-rotation $duration linear infinite;
+
+    &::before {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: $border solid var(--loader-color, $color);
+        animation: circle-clip $clip-duration linear infinite;
+    }
+}
+
+///
+/// Dual clip-path spinner with accent.
+///
+/// @param {Length} $size [48px] - Loader size.
+/// @param {Length} $border [5px] - Border width.
+/// @param {Color} $color [#FFF] - Primary color.
+/// @param {Color} $accent [#FF3D00] - Accent color.
+/// @param {Time} $duration [1s] - Rotation duration.
+///
+@mixin loader_circle_clip_dual(
+    $size: $loader-size,
+    $border: $loader-border,
+    $color: $loader-color,
+    $accent: $loader-accent,
+    $duration: $loader-speed
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    border-radius: 50%;
+    position: relative;
+    animation: circle-rotation $duration linear infinite;
+
+    &::before,
+    &::after {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: $border solid var(--loader-color, $color);
+        animation: circle-clip 2s linear infinite;
+    }
+
+    &::after {
+        transform: rotate3d(90, 90, 0, 180deg);
+        border-color: var(--loader-accent, $accent);
+    }
+}
+
+///
+/// Nested circles spinner.
+///
+/// @param {Length} $size [48px] - Loader size.
+/// @param {Length} $border [3px] - Border width.
+/// @param {Color} $color [#FFF] - Primary color.
+/// @param {Color} $accent [#FF3D00] - Accent color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_circle_nested(
+    $size: $loader-size,
+    $border: 3px,
+    $color: $loader-color,
+    $accent: $loader-accent,
+    $duration: $loader-speed
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    border: $border solid var(--loader-color, $color);
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    animation: circle-rotation $duration linear infinite;
+
+    &::after {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: calc(var(--loader-size, $size) - 16px);
+        height: calc(var(--loader-size, $size) - 16px);
+        border-radius: 50%;
+        border: $border solid transparent;
+        border-bottom-color: var(--loader-accent, $accent);
+    }
+}
+
+///
+/// Triple nested squares spinner.
+///
+/// @param {Length} $size [48px] - Outer size.
+/// @param {Length} $border [2px] - Border width.
+/// @param {Color} $color [#FFF] - Primary color.
+/// @param {Color} $accent [#FF3D00] - Accent color.
+/// @param {Time} $duration [2s] - Animation duration.
+///
+@mixin loader_circle_triple(
+    $size: $loader-size,
+    $border: 2px,
+    $color: $loader-color,
+    $accent: $loader-accent,
+    $duration: 2s
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    display: inline-block;
+    position: relative;
+    border: $border solid var(--loader-color, $color);
+    box-sizing: border-box;
+    animation: circle-rotation $duration linear infinite;
+
+    &::after,
+    &::before {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        border: $border solid var(--loader-accent, $accent);
+        width: calc(var(--loader-size, $size) - 10px);
+        height: calc(var(--loader-size, $size) - 10px);
+        animation: circle-rotation-back 1.5s linear infinite;
+        transform-origin: center center;
+    }
+
+    &::before {
+        width: calc(var(--loader-size, $size) - 20px);
+        height: calc(var(--loader-size, $size) - 20px);
+        border-color: var(--loader-color, $color);
+        animation: circle-rotation $duration linear infinite;
+    }
+}
+
+///
+/// Spinner with dot marker.
+///
+/// @param {Length} $size [48px] - Loader size.
+/// @param {Length} $border [2px] - Border width.
+/// @param {Length} $dot-size [6px] - Dot size.
+/// @param {Color} $color [#FFF] - Border color.
+/// @param {Color} $accent [#FF3D00] - Dot color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_circle_dot(
+    $size: $loader-size,
+    $border: 2px,
+    $dot-size: 6px,
+    $color: $loader-color,
+    $accent: $loader-accent,
+    $duration: $loader-speed
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    border: $border solid var(--loader-color, $color);
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    animation: circle-rotation $duration linear infinite;
+
+    &::after,
+    &::before {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: var(--loader-accent, $accent);
+        width: $dot-size;
+        height: $dot-size;
+        border-radius: 50%;
+    }
+
+    &::before {
+        left: auto;
+        top: auto;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+///
+/// Pulse ring loader.
+///
+/// @param {Length} $size [48px] - Loader size.
+/// @param {Color} $color [#FFF] - Ring color.
+/// @param {Time} $duration [1.5s] - Animation duration.
+///
+@mixin loader_circle_pulse(
+    $size: $loader-size,
+    $color: $loader-color,
+    $duration: 1.5s
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    background: var(--loader-color, $color);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5);
+    animation: circle-pulse $duration ease-out infinite;
+}
+
+///
+/// Ripple loader.
+///
+/// @param {Length} $size [48px] - Loader size.
+/// @param {Length} $border [4px] - Border width.
+/// @param {Color} $color [#FFF] - Ring color.
+/// @param {Color} $accent [#FF3D00] - Second ring color.
+/// @param {Time} $duration [2s] - Animation duration.
+///
+@mixin loader_circle_ripple(
+    $size: $loader-size,
+    $border: 4px,
+    $color: $loader-color,
+    $accent: $loader-accent,
+    $duration: 2s
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    display: inline-block;
+    position: relative;
+
+    &::after,
+    &::before {
+        content: '';
+        box-sizing: border-box;
+        width: var(--loader-size, $size);
+        height: var(--loader-size, $size);
+        border: $border solid var(--loader-color, $color);
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-radius: 50%;
+        animation: circle-ripple $duration ease-in-out infinite;
+    }
+
+    &::after {
+        border-color: var(--loader-accent, $accent);
+        animation-delay: calc($duration / 2);
+    }
+}
+
+///
+/// Orbit loader with ball.
+///
+/// @param {Length} $size [48px] - Orbit size.
+/// @param {Length} $border [2px] - Orbit border width.
+/// @param {Length} $ball-size [16px] - Ball size.
+/// @param {Color} $color [#FF3D00] - Orbit color.
+/// @param {Color} $accent [#FFF] - Ball color.
+/// @param {Time} $duration [1s] - Animation duration.
+///
+@mixin loader_circle_orbit(
+    $size: $loader-size,
+    $border: 2px,
+    $ball-size: 16px,
+    $color: $loader-accent,
+    $accent: $loader-color,
+    $duration: $loader-speed
+) {
+    width: var(--loader-size, $size);
+    height: var(--loader-size, $size);
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    border: $border solid var(--loader-accent, $color);
+    box-sizing: border-box;
+    animation: circle-rotation $duration linear infinite;
+
+    &::after {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        left: 4px;
+        top: 4px;
+        border: $border solid var(--loader-color, $accent);
+        width: $ball-size - 4px;
+        height: $ball-size - 4px;
+        border-radius: 50%;
+    }
+}

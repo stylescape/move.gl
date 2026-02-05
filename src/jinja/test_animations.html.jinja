@@ -1,0 +1,679 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}All Animations — move.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Animations</p>
+<h1>All Animations</h1>
+{%- endblock %}
+
+{%- block content %}
+
+<section>
+    <h2>Beat Animations</h2>
+    <p>Rhythmic beating effects for attention-grabbing elements.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_beat"></div>
+            <p>beat</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_beat_fade"></div>
+            <p>beat-fade</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_beat_double"></div>
+            <p>beat-double</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Blink Animations</h2>
+    <p>Blinking effects for cursor-like or attention elements.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_blink"></div>
+            <p>blink</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_blink_rapid"></div>
+            <p>blink-rapid</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_blink_soft"></div>
+            <p>blink-soft</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_blink_alternate"></div>
+            <p>blink-alternate</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Bounce Animations</h2>
+    <p>Playful bouncing effects with elastic easing.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_bounce"></div>
+            <p>bounce</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_bounce_extended"></div>
+            <p>bounce-extended</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_bounce_rotate"></div>
+            <p>bounce-rotate</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_bounce_multi"></div>
+            <p>bounce-multi</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Elastic Animations</h2>
+    <p>Springy elastic effects with overshoot.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_elastic"></div>
+            <p>elastic</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Fade Animations</h2>
+    <p>Smooth opacity transitions.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_fade"></div>
+            <p>fade</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_fade_in"></div>
+            <p>fade-in</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_fade_out"></div>
+            <p>fade-out</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_fade_gradual"></div>
+            <p>fade-gradual</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Flash Animations</h2>
+    <p>Quick flashing effects for alerts and notifications.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_flash"></div>
+            <p>flash</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_flash_fade"></div>
+            <p>flash-fade</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_flash_strobe"></div>
+            <p>flash-strobe</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_flash_fade_slow"></div>
+            <p>flash-fade-slow</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Flip Animations</h2>
+    <p>3D flip effects along different axes.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_flip"></div>
+            <p>flip</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_flip_horizontal"></div>
+            <p>flip-horizontal</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_flip_vertical"></div>
+            <p>flip-vertical</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_flip_diagonal"></div>
+            <p>flip-diagonal</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_flip_180_horizontal"></div>
+            <p>flip-180-h</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_flip_180_vertical"></div>
+            <p>flip-180-v</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_flip_180_diagonal"></div>
+            <p>flip-180-d</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Float Animations</h2>
+    <p>Gentle floating effects for dreamy UIs.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_float"></div>
+            <p>float</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_float_horizontal"></div>
+            <p>float-horizontal</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_float_rotate"></div>
+            <p>float-rotate</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Glow Animations</h2>
+    <p>Glowing effects using box-shadow.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_glow"></div>
+            <p>glow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_glow_pulse"></div>
+            <p>glow-pulse</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_glow_multicolor"></div>
+            <p>glow-multicolor</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Heartbeat Animations</h2>
+    <p>Pulsing heartbeat effects.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_heartbeat"></div>
+            <p>heartbeat</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_heartbeat_fast"></div>
+            <p>heartbeat-fast</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_heartbeat_slow"></div>
+            <p>heartbeat-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_heartbeat_color"></div>
+            <p>heartbeat-color</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Jiggle Animations</h2>
+    <p>Small jiggling movements.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_jiggle"></div>
+            <p>jiggle</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_jiggle_vertical"></div>
+            <p>jiggle-vertical</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_jiggle_multi"></div>
+            <p>jiggle-multi</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_jiggle_slow"></div>
+            <p>jiggle-slow</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Nod Animations</h2>
+    <p>Nodding head-like animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_nod"></div>
+            <p>nod</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_nod_slow"></div>
+            <p>nod-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_nod_bounce"></div>
+            <p>nod-bounce</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_nod_continuous"></div>
+            <p>nod-continuous</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Pop Animations</h2>
+    <p>Quick pop-in effects for emphasis.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_pop"></div>
+            <p>pop</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_pop_fast"></div>
+            <p>pop-fast</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_pop_slow"></div>
+            <p>pop-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_pop_rotate"></div>
+            <p>pop-rotate</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Pulse Animations</h2>
+    <p>Rhythmic pulsing scale effects.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_pulse"></div>
+            <p>pulse</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_pulse_slow"></div>
+            <p>pulse-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_pulse_fast"></div>
+            <p>pulse-fast</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_pulse_color"></div>
+            <p>pulse-color</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Ripple Animations</h2>
+    <p>Expanding ripple effects.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_ripple"></div>
+            <p>ripple</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_ripple_slow"></div>
+            <p>ripple-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_ripple_multi"></div>
+            <p>ripple-multi</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_ripple_color"></div>
+            <p>ripple-color</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Roll Animations</h2>
+    <p>Rolling entrance and movement effects.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_roll"></div>
+            <p>roll</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_roll_reverse"></div>
+            <p>roll-reverse</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_roll_slow"></div>
+            <p>roll-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_roll_vertical"></div>
+            <p>roll-vertical</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Scale Animations</h2>
+    <p>Scaling transform effects.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_scale_expand"></div>
+            <p>scale-expand</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_scale_shrink"></div>
+            <p>scale-shrink</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Shake Animations</h2>
+    <p>Shaking effects for errors and attention.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_shake"></div>
+            <p>shake</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_shake_slow"></div>
+            <p>shake-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_shake_horizontal"></div>
+            <p>shake-horizontal</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Slide Animations</h2>
+    <p>Sliding entrance and exit effects.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_slide_in_left"></div>
+            <p>slide-in-left</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_slide_in_right"></div>
+            <p>slide-in-right</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_slide_in_up"></div>
+            <p>slide-in-up</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_slide_in_down"></div>
+            <p>slide-in-down</p>
+        </div>
+    </div>
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_slide_out_left"></div>
+            <p>slide-out-left</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_slide_out_right"></div>
+            <p>slide-out-right</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_slide_out_up"></div>
+            <p>slide-out-up</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_slide_out_down"></div>
+            <p>slide-out-down</p>
+        </div>
+    </div>
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_slide_fade_in_up"></div>
+            <p>slide-fade-in-up</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_slide_fade_in_down"></div>
+            <p>slide-fade-in-down</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_slide_fade_in_left"></div>
+            <p>slide-fade-in-left</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_slide_fade_in_right"></div>
+            <p>slide-fade-in-right</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Spin Animations</h2>
+    <p>Continuous rotation effects.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_spin"></div>
+            <p>spin</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_spin_reverse"></div>
+            <p>spin-reverse</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_spin_grow"></div>
+            <p>spin-grow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_spin_pulse"></div>
+            <p>spin-pulse</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_spin_flip"></div>
+            <p>spin-flip</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Sway Animations</h2>
+    <p>Gentle swaying motions.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_sway"></div>
+            <p>sway</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_sway_slow"></div>
+            <p>sway-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_sway_fast"></div>
+            <p>sway-fast</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_sway_fade"></div>
+            <p>sway-fade</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Tada Animations</h2>
+    <p>Celebratory attention-grabbing effects.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_tada"></div>
+            <p>tada</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_tada_slow"></div>
+            <p>tada-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_tada_fast"></div>
+            <p>tada-fast</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_tada_fade"></div>
+            <p>tada-fade</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Twist Animations</h2>
+    <p>Twisting rotation effects.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_twist"></div>
+            <p>twist</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_twist_slow"></div>
+            <p>twist-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_twist_fast"></div>
+            <p>twist-fast</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_twist_color"></div>
+            <p>twist-color</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Wave Animations</h2>
+    <p>Waving hand-like motions.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_wave"></div>
+            <p>wave</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_wave_slow"></div>
+            <p>wave-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_wave_fast"></div>
+            <p>wave-fast</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_wave_fade"></div>
+            <p>wave-fade</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Wobble Animations</h2>
+    <p>Wobbly side-to-side effects.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_wobble"></div>
+            <p>wobble</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_wobble_slow"></div>
+            <p>wobble-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_wobble_fast"></div>
+            <p>wobble-fast</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_wobble_scale"></div>
+            <p>wobble-scale</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Zoom Animations</h2>
+    <p>Zoom in/out effects.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_zoom"></div>
+            <p>zoom</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_zoom_slow"></div>
+            <p>zoom-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_zoom_fast"></div>
+            <p>zoom-fast</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_zoom_fade"></div>
+            <p>zoom-fade</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Usage</h2>
+
+    <div class="code-block"><span class="comment">// SCSS Mixin Usage</span>
+        .element {
+        @include animate_bounce();
+        }
+
+        .element-pulse {
+        @include animate_pulse_slow();
+        }
+
+        <span class="comment">// With custom parameters</span>
+        .custom-shake {
+        @include animate_shake($duration: 0.5s);
+        }
+
+        <span class="comment">// CSS Class Usage</span>
+        &lt;div class="animate_bounce"&gt;...&lt;/div&gt;
+        &lt;div class="animate_pulse"&gt;...&lt;/div&gt;
+        &lt;div class="animate_shake"&gt;...&lt;/div&gt;
+
+        <span class="comment">// Combine with other utilities</span>
+        &lt;div class="animate_fade_in delay-500"&gt;...&lt;/div&gt;
+    </div>
+</section>
+
+{%- endblock %}

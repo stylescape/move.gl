@@ -1,20 +1,16 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Scale Animations Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// Provides scale-based animations for expanding and shrinking elements.
+/// Includes smooth expand/contract effects with customizable scale factors.
+/// Useful for emphasis, feedback, and transition animations.
 ///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -34,20 +30,55 @@
 // Mixins
 // ============================================================================
 
+///
+/// Scale Animation
+/// ---------------------------------------------------------------------------
+/// Creates a scale animation where the element pulses up and down.
+///
+/// @name animate_scale
+/// @param {Number} $scale_start [1] - The initial scale of the element.
+/// @param {Number} $scale_end [$animate_scale_pop] - The scale at maximum size.
+/// @param {Time} $duration [$animate_base_duration] - Animation duration.
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+///
+/// @example scss - Basic usage
+///   .element {
+///     @include animate_scale;
+///   }
+///
+@mixin animate_scale(
+    $scale_start: $animate_scale_base,
+    $scale_end: $animate_scale_pop,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_scale,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @include keyframes_animate_scale($scale_end);
+}
+
 
 ///
 /// Expand Animation
+/// ---------------------------------------------------------------------------
 /// Creates an expand animation where the element scales up and down.
+///
 /// @name animate_scale_expand
-/// @param {Number|String} $scale_start [1] - The initial scale of the element.
-/// @param {Number|String} $scale_end [1.2] - The scale of the element at its maximum size.
-/// @param {Number|String} $duration [$animate_base_duration] - The duration of the expand animation.
-/// @param {String} $timing_function [ease-out] - The timing function for the expand animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Number} $scale_start [1] - The initial scale of the element.
+/// @param {Number} $scale_end [1.2] - The scale at maximum size.
+/// @param {Time} $duration [$animate_base_duration] - Animation duration.
+/// @param {String} $timing_function [ease-out] - Timing function.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
 ///
 @mixin animate_scale_expand(
-    $scale_start: 1,
-    $scale_end: 1.2,
+    $scale_start: $animate_scale_base,
+    $scale_end: $animate_scale_pop,
     $duration: $animate_base_duration,
     $timing_function: ease-out,
     $iteration_count: $animate_base_iteration_count
@@ -56,58 +87,296 @@
         animate_scale_expand,
         $duration,
         $timing_function,
-        $iteration_count,
+        $iteration_count
     );
-    @keyframes animate_scale_expand {
-        0%, 100% { transform: scale($scale_start); }
-        50% { transform: scale($scale_end); }
-    }
+    @include keyframes_scale_expand($scale_start, $scale_end);
 }
 
 
-//   // Scale transition
-// .scale-transition {
-//   &.scale-out {
-//     transform: scale(0);
-//     transition: transform .2s !important;
-//   }
-
-//   &.scale-in {
-//     transform: scale(1);
-//   }
-
-//   transition: transform .3s cubic-bezier(0.53, 0.01, 0.36, 1.63) !important;
-// }
-
-
-// Expand and Shrink Animation
-// ----------------------------------------------------------------------------
-
 ///
-/// Expand and Shrink Animation
-/// Creates an animation where the element alternates between expanding and shrinking.
+/// Shrink Animation
+/// ---------------------------------------------------------------------------
+/// Creates an animation where the element shrinks and expands.
+///
 /// @name animate_scale_shrink
-/// @param {Number|String} $scale_min [0.8] - The minimum scale of the element during the animation.
-/// @param {Number|String} $scale_max [1.2] - The maximum scale of the element during the animation.
-/// @param {Number|String} $duration [$animate_base_duration] - The duration of the expand and shrink animation.
-/// @param {String} $timing_function [ease-in-out] - The timing function for the expand and shrink animation.
-/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {Number} $scale_min [0.8] - The minimum scale during animation.
+/// @param {Number} $scale_max [1.2] - The maximum scale during animation.
+/// @param {Time} $duration [$animate_base_duration] - Animation duration.
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
 ///
 @mixin animate_scale_shrink(
     $scale_min: 0.8,
     $scale_max: 1.2,
     $duration: $animate_base_duration,
-    $timing_function: ease-in-out,
+    $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
         animate_scale_shrink,
         $duration,
         $timing_function,
-        $iteration_count,
+        $iteration_count
     );
-    @keyframes animate_scale_shrink {
-        0%, 100% { transform: scale($scale_min); }
-        50% { transform: scale($scale_max); }
+    @include keyframes_scale_shrink($scale_min, $scale_max);
+}
+
+
+// ============================================================================
+// Scale In/Out Mixins
+// ============================================================================
+
+///
+/// Scale In Animation
+/// ---------------------------------------------------------------------------
+/// Creates an entrance animation that scales element in from small.
+///
+/// @name animate_scale_in
+/// @param {Number} $start_scale [0] - Starting scale
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+///
+@mixin animate_scale_in(
+    $start_scale: 0,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function
+) {
+    @include animate_base(
+        animate_scale_in,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_scale_in($start_scale);
+}
+
+
+///
+/// Scale In Center Animation
+/// ---------------------------------------------------------------------------
+/// Creates an entrance animation that scales element in from center.
+///
+/// @name animate_scale_in_center
+/// @param {Number} $start_scale [0.5] - Starting scale
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+///
+@mixin animate_scale_in_center(
+    $start_scale: 0.5,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function
+) {
+    @include animate_base(
+        animate_scale_in_center,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_scale_in_center($start_scale);
+}
+
+
+///
+/// Scale In Pop Animation
+/// ---------------------------------------------------------------------------
+/// Creates an entrance animation with overshoot (pop effect).
+///
+/// @name animate_scale_in_pop
+/// @param {Number} $start_scale [0] - Starting scale
+/// @param {Number} $overshoot [1.1] - Overshoot scale
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function_elastic] - Timing function
+///
+@mixin animate_scale_in_pop(
+    $start_scale: 0,
+    $overshoot: 1.1,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function_elastic
+) {
+    @include animate_base(
+        animate_scale_in_pop,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_scale_in_pop($start_scale, $overshoot);
+}
+
+
+///
+/// Scale Out Animation
+/// ---------------------------------------------------------------------------
+/// Creates an exit animation that scales element out to nothing.
+///
+/// @name animate_scale_out
+/// @param {Number} $end_scale [0] - Ending scale
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+///
+@mixin animate_scale_out(
+    $end_scale: 0,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function
+) {
+    @include animate_base(
+        animate_scale_out,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_scale_out($end_scale);
+}
+
+
+///
+/// Scale Out Center Animation
+/// ---------------------------------------------------------------------------
+/// Creates an exit animation that scales element out from center.
+///
+/// @name animate_scale_out_center
+/// @param {Number} $end_scale [0.5] - Ending scale
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+///
+@mixin animate_scale_out_center(
+    $end_scale: 0.5,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function
+) {
+    @include animate_base(
+        animate_scale_out_center,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_scale_out_center($end_scale);
+}
+
+
+// ============================================================================
+// Scale with Bounce Mixins
+// ============================================================================
+
+///
+/// Scale Bounce Animation
+/// ---------------------------------------------------------------------------
+/// Creates a scale animation with bounce effect.
+///
+/// @name animate_scale_bounce
+/// @param {Number} $scale [1.2] - Target scale
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_timing_function_bounce] - Timing function
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+///
+@mixin animate_scale_bounce(
+    $scale: $animate_scale_pop,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_timing_function_bounce,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_scale_bounce,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @include keyframes_scale_bounce($scale);
+}
+
+
+// ============================================================================
+// Scale X/Y Mixins
+// ============================================================================
+
+///
+/// Scale X Animation
+/// ---------------------------------------------------------------------------
+/// Creates a scale animation on X-axis only.
+///
+/// @name animate_scale_x
+/// @param {Number} $scale_x [1.2] - X-axis scale
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+///
+@mixin animate_scale_x(
+    $scale_x: 1.2,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_scale_x,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @include keyframes_scale_x($scale_x);
+}
+
+
+///
+/// Scale Y Animation
+/// ---------------------------------------------------------------------------
+/// Creates a scale animation on Y-axis only.
+///
+/// @name animate_scale_y
+/// @param {Number} $scale_y [1.2] - Y-axis scale
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+///
+@mixin animate_scale_y(
+    $scale_y: 1.2,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_scale_y,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @include keyframes_scale_y($scale_y);
+}
+
+
+// ============================================================================
+// Scale Transition Classes
+// ============================================================================
+
+///
+/// Scale Transition Mixin
+/// ---------------------------------------------------------------------------
+/// Creates CSS classes for scale transitions (in/out).
+/// Implements the previously commented-out scale-transition pattern.
+///
+/// @name scale_transition
+///
+/// @example scss - Usage
+///   .element {
+///     @include scale_transition;
+///   }
+///
+@mixin scale_transition(
+    $transition_duration: 0.3s,
+    $transition_out_duration: 0.2s,
+    $timing_function: cubic-bezier(0.53, 0.01, 0.36, 1.63)
+) {
+    transition: transform $transition_duration $timing_function;
+
+    &.scale-out {
+        transform: scale(0);
+        transition: transform $transition_out_duration !important;
+    }
+
+    &.scale-in {
+        transform: scale(1);
     }
 }

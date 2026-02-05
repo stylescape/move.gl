@@ -1,834 +1,291 @@
+
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 
 <head>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Video Overlay Demo — Transparent video overlay with fade effects and HEVC Alpha support." />
+    <meta name="description"
+        content="Video Overlay Demo — Transparent video overlay with fade effects and alpha channel support." />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
     <title>Video Overlay Demo — move.gl</title>
+
+    <!-- Library CSS -->
     <link rel="stylesheet" href="/css/move.gl.css" />
+    <!-- Documentation CSS -->
     <link rel="stylesheet" href="/css/move.gl.docs.css" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        .demo-container {
-            background: linear-gradient(135deg, #2d1b4e 0%, #1a0a2e 100%);
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 2rem 0;
-            color: white;
-        }
-
-        .video-preview-area {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16/9;
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 1.5rem;
-            background-image:
-                linear-gradient(45deg, #1a1a1a 25%, transparent 25%),
-                linear-gradient(-45deg, #1a1a1a 25%, transparent 25%),
-                linear-gradient(45deg, transparent 75%, #1a1a1a 75%),
-                linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
-            background-size: 20px 20px;
-            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-            background-color: #2a2a2a;
-        }
-
-        .content-layer {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .content-layer h3 {
-            margin: 0 0 0.5rem 0;
-            font-size: 28px;
-        }
-
-        .content-layer p {
-            margin: 0;
-            opacity: 0.8;
-        }
-
-        .video-overlay {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.7);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            pointer-events: none;
-        }
-
-        .video-overlay.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .video-overlay .placeholder-icon {
-            font-size: 80px;
-            margin-bottom: 1rem;
-        }
-
-        .video-overlay .placeholder-text {
-            font-size: 18px;
-            font-weight: 500;
-        }
-
-        .video-overlay .placeholder-subtext {
-            font-size: 14px;
-            opacity: 0.7;
-            margin-top: 0.5rem;
-        }
-
-        .controls-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            width: 100%;
-        }
-
-        .btn-show {
-            background: linear-gradient(135deg, #51cf66 0%, #37b24d 100%);
-            color: white;
-        }
-
-        .btn-show:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(81, 207, 102, 0.4);
-        }
-
-        .btn-hide {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
-            color: white;
-        }
-
-        .btn-hide:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
-        }
-
-        .btn-toggle {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .btn-toggle:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .status-panel {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1rem 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .status-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .status-item .label {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            opacity: 0.7;
-        }
-
-        .status-item .value {
-            font-weight: 600;
-            color: #a78bfa;
-        }
-
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(81, 207, 102, 0.2);
-            border-radius: 20px;
-            font-size: 13px;
-        }
-
-        .status-badge.visible {
-            background: rgba(81, 207, 102, 0.2);
-            color: #51cf66;
-        }
-
-        .status-badge.hidden {
-            background: rgba(255, 107, 107, 0.2);
-            color: #ff6b6b;
-        }
-
-        .settings-panel {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .settings-panel h4 {
-            margin: 0 0 1rem 0;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            opacity: 0.7;
-        }
-
-        .setting-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .setting-row:last-child {
-            border-bottom: none;
-        }
-
-        .setting-row label {
-            font-size: 14px;
-        }
-
-        .setting-row input[type="range"] {
-            width: 150px;
-        }
-
-        .setting-row .value {
-            min-width: 60px;
-            text-align: right;
-            font-family: 'JetBrains Mono', monospace;
-            color: #a78bfa;
-        }
-
-        .hevc-banner {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 12px;
-            padding: 1rem 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .hevc-banner .icon {
-            font-size: 32px;
-        }
-
-        .hevc-banner .text {
-            flex: 1;
-        }
-
-        .hevc-banner .title {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .hevc-banner .description {
-            font-size: 13px;
-            opacity: 0.8;
-        }
-
-        .hevc-badge {
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .hevc-badge.supported {
-            background: rgba(81, 207, 102, 0.2);
-            color: #51cf66;
-        }
-
-        .hevc-badge.unsupported {
-            background: rgba(255, 107, 107, 0.2);
-            color: #ff6b6b;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .feature-card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        [data-theme="dark"] .feature-card {
-            background: #1a1a2e;
-        }
-
-        .feature-card h4 {
-            margin: 0 0 0.5rem 0;
-            color: #a78bfa;
-        }
-
-        .feature-card p {
-            margin: 0;
-            color: #666;
-            font-size: 14px;
-        }
-
-        [data-theme="dark"] .feature-card p {
-            color: #aaa;
-        }
-
-        .code-block {
-            background: #1a1a2e;
-            border-radius: 8px;
-            padding: 1rem;
-            overflow-x: auto;
-            margin: 1rem 0;
-        }
-
-        .code-block code {
-            color: #e4e8eb;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
-            white-space: pre;
-        }
-
-        .code-block .keyword { color: #c678dd; }
-        .code-block .string { color: #98c379; }
-        .code-block .comment { color: #5c6370; }
-        .code-block .function { color: #61afef; }
-        .code-block .number { color: #d19a66; }
-
-        .event-log {
-            background: #000;
-            color: #a78bfa;
-            padding: 1rem;
-            border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            max-height: 120px;
-            overflow-y: auto;
-            margin-top: 1rem;
-        }
-
-        .event-log .entry {
-            padding: 0.25rem 0;
-            opacity: 0.8;
-        }
-
-        .event-log .entry:last-child {
-            opacity: 1;
-        }
-    </style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
 </head>
 
-<body>
-    <!-- Navigation -->
-    <div class="nav-wrapper">
-        <nav class="nav">
-            <div class="nav__inner">
-                <a href="index.html" class="nav__logo">
-                    <span class="nav__logo-text">move.gl</span>
-                    <span class="nav__version">v0.0.1</span>
-                </a>
-                <div class="nav__right">
-                    <button type="button" class="theme-toggle" data-toggle="theme" title="Toggle dark mode">
-                        <svg class="theme-icon theme-icon--light" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zm7-5a.75.75 0 00-.75-.75h-1.5a.75.75 0 000 1.5h1.5A.75.75 0 0015 8zM3 8a.75.75 0 00-.75-.75H.75a.75.75 0 000 1.5h1.5A.75.75 0 003 8z"/>
-                        </svg>
-                        <svg class="theme-icon theme-icon--dark" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M6.2 1A6.98 6.98 0 008 7a6.98 6.98 0 00-1.8 6A7 7 0 116.2 1z"/>
+<body class="">
+
+<div class="nav-wrapper">
+    <nav class="nav">
+        <div class="nav__inner">
+            <a href="index.html" class="nav__logo">
+                <span class="nav__logo-text">move.gl</span>
+                <span class="nav__version">v0.0.1</span>
+            </a>
+            <div class="nav__right">
+
+<button type="button" class="theme-toggle" data-toggle="theme" title="Toggle dark mode" aria-label="Toggle dark mode">
+    <svg class="theme-icon theme-icon--light" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path
+            d="M8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zm7-5a.75.75 0 00-.75-.75h-1.5a.75.75 0 000 1.5h1.5A.75.75 0 0015 8zM3 8a.75.75 0 00-.75-.75H.75a.75.75 0 000 1.5h1.5A.75.75 0 003 8zm9.536-4.536a.75.75 0 00-1.06 0l-1.061 1.06a.75.75 0 001.06 1.061l1.061-1.06a.75.75 0 000-1.061zm-9.072 9.072a.75.75 0 00-1.06 0l-1.061 1.06a.75.75 0 101.06 1.061l1.061-1.06a.75.75 0 000-1.061zm9.072 0a.75.75 0 00-1.06 1.06l1.06 1.061a.75.75 0 101.061-1.06l-1.06-1.061zm-9.072-9.072a.75.75 0 00-1.06 1.06l1.06 1.061a.75.75 0 001.061-1.06l-1.06-1.061z" />
+    </svg>
+    <svg class="theme-icon theme-icon--dark" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M6.2 1A6.98 6.98 0 008 7a6.98 6.98 0 00-1.8 6A7 7 0 116.2 1z" />
+    </svg>
+</button>
+
+                <div class="nav__dropdown" id="nav-dropdown">
+                    <button type="button" class="nav__dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                        <span>Docs</span>
+                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M1 1l4 4 4-4" />
                         </svg>
                     </button>
-                    <a href="https://github.com/stylescape/move.gl" class="nav__github" target="_blank" title="View on GitHub">
-                        <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                        </svg>
-                    </a>
+                    <div class="nav__dropdown-menu" role="menu">
+                        <div class="nav__dropdown-section">
+                            <span class="nav__dropdown-label">Learn</span>
+                            <a href="getting-started.html" role="menuitem">Getting Started</a>
+                            <a href="core-concepts.html" role="menuitem">Core Concepts</a>
+                        </div>
+                        <div class="nav__dropdown-section">
+                            <span class="nav__dropdown-label">Overview</span>
+                            <a href="test_overview.html" role="menuitem">All Animations</a>
+                        </div>
+                        <div class="nav__dropdown-section">
+                            <span class="nav__dropdown-label">Animations</span>
+                            <a href="test_fade.html" role="menuitem">Fade</a>
+                            <a href="test_slide.html" role="menuitem">Slide</a>
+                            <a href="test_bounce.html" role="menuitem">Bounce</a>
+                            <a href="test_zoom.html" role="menuitem">Zoom</a>
+                            <a href="test_flip.html" role="menuitem">Flip</a>
+                            <a href="test_scale.html" role="menuitem">Scale</a>
+                            <a href="test_spin.html" role="menuitem">Spin & Rotate</a>
+                            <a href="test_pulse.html" role="menuitem">Pulse</a>
+                            <a href="test_shake.html" role="menuitem">Shake & Wobble</a>
+                            <a href="test_attention.html" role="menuitem">Attention</a>
+                            <a href="test_special.html" role="menuitem">Special Effects</a>
+                        </div>
+                        <div class="nav__dropdown-section">
+                            <span class="nav__dropdown-label">Effects</span>
+                            <a href="test_loaders.html" role="menuitem">Loaders</a>
+                            <a href="test_transitions.html" role="menuitem">Transitions</a>
+                            <a href="test_transforms.html" role="menuitem">Transforms</a>
+                            <a href="test_effects.html" role="menuitem">Filter Effects</a>
+                            <a href="test_keyframes.html" role="menuitem">Keyframes</a>
+                            <a href="test_mouse.html" role="menuitem">Mouse Interactions</a>
+                        </div>
+                        <div class="nav__dropdown-section">
+                            <span class="nav__dropdown-label">TypeScript Demos</span>
+                            <a href="demo_draggable.html" role="menuitem">Draggable</a>
+                            <a href="demo_gesture.html" role="menuitem">Gesture Handler</a>
+                            <a href="demo_keyboard.html" role="menuitem">Virtual Keyboard</a>
+                            <a href="demo_screensaver.html" role="menuitem">Screensaver</a>
+                            <a href="demo_video_overlay.html" role="menuitem">Video Overlay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://github.com/stylescape/move.gl" class="nav__github" target="_blank"
+                    title="View on GitHub">
+                    <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+    <main class="main">
+        <div class="container"><header class="page-header">
+    <div class="page-header__badge">TypeScript Component</div>
+    <h1 class="page-header__title">Video Overlay</h1>
+    <p class="page-header__description">
+        A transparent video overlay system with fade effects and HEVC alpha channel support.
+        Perfect for visual effects, transitions, and decorative overlays.
+    </p>
+</header><section class="section">
+    <h2 class="section__title">Interactive Demo</h2>
+    <p class="section__description">
+        Toggle different overlay effects to see how they work. The checkerboard pattern shows transparency.
+    </p>
+
+    <div class="demo-container" style="background: linear-gradient(135deg, #2d3436 0%, #000000 100%); color: white;">
+        <div class="info-banner"
+            style="background: rgba(102, 126, 234, 0.2); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 12px; padding: 1rem 1.5rem; margin-bottom: 1.5rem;">
+            <div class="title" style="font-weight: 600; margin-bottom: 0.5rem;">🎬 HEVC Alpha Channel Support</div>
+            <div class="description" style="font-size: 14px; opacity: 0.8;">
+                This component detects and uses HEVC videos with alpha channels when available for true video
+                transparency.
+                <span class="alpha-indicator" id="alphaIndicator">Checking...</span>
+            </div>
+        </div>
+
+        <div class="video-preview" id="videoPreview">
+            <div class="preview-content">
+                <div style="text-align: center;">
+                    <div class="icon">🎥</div>
+                    <div class="text">Background Content</div>
                 </div>
             </div>
-        </nav>
+            <div class="video-overlay" id="videoOverlay">
+                <div class="overlay-effect"></div>
+                <div class="overlay-particles" id="particles"></div>
+            </div>
+        </div>
+
+        <div class="controls-panel">
+            <div class="control-group">
+                <label>Opacity</label>
+                <div class="value" id="opacityValue">100%</div>
+                <input type="range" id="opacitySlider" min="0" max="100" value="100">
+            </div>
+            <div class="control-group">
+                <label>Fade Duration (ms)</label>
+                <div class="value" id="fadeValue">300</div>
+                <input type="range" id="fadeSlider" min="100" max="2000" step="100" value="300">
+            </div>
+            <div class="control-group">
+                <label>Blur Amount (px)</label>
+                <div class="value" id="blurValue">0</div>
+                <input type="range" id="blurSlider" min="0" max="20" value="0">
+            </div>
+        </div>
+
+        <div class="control-group" style="margin-bottom: 1.5rem;">
+            <label>Overlay Effect</label>
+            <div class="effect-buttons">
+                <button class="effect-btn" data-effect="none">None</button>
+                <button class="effect-btn active" data-effect="vignette">Vignette</button>
+                <button class="effect-btn" data-effect="particles">Particles</button>
+                <button class="effect-btn" data-effect="gradient">Gradient</button>
+                <button class="effect-btn" data-effect="scanlines">Scanlines</button>
+            </div>
+        </div>
+
+        <div class="button-row">
+            <button class="btn btn-primary" id="toggleOverlay">Show Overlay</button>
+            <button class="btn btn-secondary" id="fadeInOut">Fade In/Out</button>
+            <button class="btn btn-secondary" id="resetDemo">Reset</button>
+        </div>
     </div>
+</section>
 
-    <!-- Main Content -->
-    <main class="main">
-        <div class="container">
-            <!-- Page Header -->
-            <header class="page-header">
-                <div class="page-header__badge">TypeScript Component</div>
-                <h1 class="page-header__title">Transparent Video Overlay</h1>
-                <p class="page-header__description">
-                    Display transparent video overlays with smooth fade effects.
-                    Perfect for video backgrounds, animated overlays, and HEVC alpha channel support.
-                </p>
-            </header>
+<section class="section">
+    <h2 class="section__title">Features</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h4>🎞️ HEVC Alpha Support</h4>
+            <p>Automatic detection and use of HEVC videos with alpha channels.</p>
+        </div>
+        <div class="feature-card">
+            <h4>🌟 Smooth Transitions</h4>
+            <p>Configurable fade in/out with customizable duration.</p>
+        </div>
+        <div class="feature-card">
+            <h4>🎨 Visual Effects</h4>
+            <p>Built-in effects: vignette, particles, gradients, and scanlines.</p>
+        </div>
+        <div class="feature-card">
+            <h4>🖥️ Full Control</h4>
+            <p>Complete API for positioning, opacity, and playback control.</p>
+        </div>
+    </div>
+</section>
 
-            <!-- Interactive Demo -->
-            <section class="section">
-                <h2 class="section__title">Interactive Demo</h2>
-                <p class="section__description">
-                    Control a video overlay with show, hide, and toggle functionality. The overlay supports smooth fade transitions.
-                </p>
+<section class="section">
+    <h2 class="section__title">Usage</h2>
+    <div class="code-block">
+        <code><span class="keyword">import</span> { VideoOverlay } <span class="keyword">from</span> <span class="string">'move.gl'</span>;
 
-                <div class="demo-container">
-                    <!-- Preview Area -->
-                    <div class="video-preview-area">
-                        <div class="content-layer">
-                            <h3>Background Content</h3>
-                            <p>This content is beneath the video overlay</p>
-                        </div>
-                        <div class="video-overlay" id="videoOverlay">
-                            <div style="text-align: center;">
-                                <div class="placeholder-icon">🎬</div>
-                                <div class="placeholder-text">Video Overlay Active</div>
-                                <div class="placeholder-subtext">In production, this would be a transparent video</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Status Panel -->
-                    <div class="status-panel">
-                        <div class="status-item">
-                            <span class="label">Status:</span>
-                            <span class="status-badge hidden" id="statusBadge">
-                                <span id="statusIcon">⚫</span>
-                                <span id="statusText">Hidden</span>
-                            </span>
-                        </div>
-                        <div class="status-item">
-                            <span class="label">Visibility:</span>
-                            <span class="value" id="visibilityValue">0%</span>
-                        </div>
-                        <div class="status-item">
-                            <span class="label">Toggles:</span>
-                            <span class="value" id="toggleCount">0</span>
-                        </div>
-                    </div>
-
-                    <!-- Controls -->
-                    <div class="controls-grid">
-                        <button class="btn btn-show" onclick="showOverlay()">
-                            ▶ Show Overlay
-                        </button>
-                        <button class="btn btn-hide" onclick="hideOverlay()">
-                            ⏹ Hide Overlay
-                        </button>
-                        <button class="btn btn-toggle" onclick="toggleOverlay()">
-                            🔄 Toggle Overlay
-                        </button>
-                        <button class="btn btn-secondary" onclick="resetDemo()">
-                            🔃 Reset Demo
-                        </button>
-                    </div>
-
-                    <!-- Settings -->
-                    <div class="settings-panel">
-                        <h4>Overlay Settings</h4>
-                        <div class="setting-row">
-                            <label>Fade In Duration</label>
-                            <input type="range" id="fadeInSlider" min="100" max="2000" step="100" value="500">
-                            <span class="value" id="fadeInValue">500ms</span>
-                        </div>
-                        <div class="setting-row">
-                            <label>Fade Out Duration</label>
-                            <input type="range" id="fadeOutSlider" min="100" max="2000" step="100" value="500">
-                            <span class="value" id="fadeOutValue">500ms</span>
-                        </div>
-                    </div>
-
-                    <!-- HEVC Alpha Detection -->
-                    <div class="hevc-banner">
-                        <div class="icon">🎥</div>
-                        <div class="text">
-                            <div class="title">HEVC Alpha Support</div>
-                            <div class="description">Videos with alpha channel transparency for true overlay effects</div>
-                        </div>
-                        <span class="hevc-badge" id="hevcBadge">Checking...</span>
-                    </div>
-
-                    <!-- Event Log -->
-                    <div class="event-log" id="eventLog">
-                        <div class="entry">[--:--:--] Demo initialized</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Features -->
-            <section class="section">
-                <h2 class="section__title">Features</h2>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h4>🎬 Transparent Video</h4>
-                        <p>Support for videos with alpha channel transparency using HEVC codec.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>✨ Smooth Transitions</h4>
-                        <p>Configurable fade in and fade out durations for smooth visibility changes.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>🔄 Toggle Control</h4>
-                        <p>Show, hide, and toggle methods for easy visibility control.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>📱 Browser Detection</h4>
-                        <p>Automatic HEVC alpha codec support detection for fallback handling.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Usage Code -->
-            <section class="section">
-                <h2 class="section__title">Usage</h2>
-
-                <h3>Basic Usage</h3>
-                <div class="code-block">
-                    <code><span class="keyword">import</span> { TransparentVideoOverlay } <span class="keyword">from</span> <span class="string">'move.gl'</span>;
-
-<span class="keyword">const</span> overlay = <span class="keyword">new</span> <span class="function">TransparentVideoOverlay</span>({
-    videoUrl: <span class="string">'path/to/video-alpha.mp4'</span>,
+<span class="keyword">const</span> overlay = <span class="keyword">new</span> <span class="function">VideoOverlay</span>({
     containerId: <span class="string">'overlay-container'</span>,
-    videoId: <span class="string">'overlay-video'</span>,
+    videoUrl: <span class="string">'overlay.mp4'</span>,
+    loop: <span class="keyword">true</span>,
+    autoplay: <span class="keyword">true</span>,
+    opacity: <span class="number">0.8</span>,
     fadeInDuration: <span class="number">500</span>,
-    fadeOutDuration: <span class="number">500</span>,
-    loop: <span class="keyword">true</span>
+    fadeOutDuration: <span class="number">300</span>
 });
 
-<span class="comment">// Show the overlay with fade in</span>
+<span class="comment">// Control methods</span>
 overlay.<span class="function">show</span>();
-
-<span class="comment">// Hide the overlay with fade out</span>
 overlay.<span class="function">hide</span>();
+overlay.<span class="function">setOpacity</span>(<span class="number">0.5</span>);
+overlay.<span class="function">fadeIn</span>(<span class="number">1000</span>);
+overlay.<span class="function">fadeOut</span>(<span class="number">500</span>);
 
-<span class="comment">// Toggle visibility</span>
-overlay.<span class="function">toggle</span>();
+<span class="comment">// Check HEVC alpha support</span>
+<span class="keyword">const</span> supported = VideoOverlay.<span class="function">supportsHevcAlpha</span>();</code>
+    </div>
+</section>
 
-<span class="comment">// Change video source</span>
-overlay.<span class="function">setSource</span>(<span class="string">'path/to/new-video.mp4'</span>);
-
-<span class="comment">// Clean up</span>
-overlay.<span class="function">destroy</span>();</code>
-                </div>
-
-                <h3>HEVC Alpha Detection</h3>
-                <div class="code-block">
-                    <code><span class="keyword">import</span> { supportsHEVCAlpha } <span class="keyword">from</span> <span class="string">'move.gl'</span>;
-
-<span class="comment">// Check if browser supports HEVC alpha</span>
-<span class="keyword">if</span> (<span class="function">supportsHEVCAlpha</span>()) {
-    <span class="comment">// Use transparent video</span>
-    overlay.<span class="function">setSource</span>(<span class="string">'video-alpha.mp4'</span>);
+<section class="section">
+    <h2 class="section__title">HEVC Alpha Detection</h2>
+    <div class="code-block">
+        <code><span class="comment">// The component automatically detects HEVC alpha support</span>
+<span class="keyword">if</span> (VideoOverlay.<span class="function">supportsHevcAlpha</span>()) {
+    <span class="comment">// Use HEVC video with alpha channel</span>
+    overlay.<span class="function">setVideoUrl</span>(<span class="string">'overlay-alpha.mov'</span>);
 } <span class="keyword">else</span> {
-    <span class="comment">// Fallback to non-alpha video or image</span>
-    overlay.<span class="function">setSource</span>(<span class="string">'video-fallback.mp4'</span>);
+    <span class="comment">// Fallback to WebM with alpha or CSS effects</span>
+    overlay.<span class="function">setVideoUrl</span>(<span class="string">'overlay-alpha.webm'</span>);
 }</code>
-                </div>
+    </div>
+</section>
 
-                <h3>HTML Structure</h3>
-                <div class="code-block">
-                    <code><span class="comment">&lt;!-- Video overlay container --&gt;</span>
-&lt;<span class="keyword">div</span> <span class="string">id</span>=<span class="string">"overlay-container"</span> <span class="string">class</span>=<span class="string">"video-overlay"</span>&gt;
-    &lt;<span class="keyword">video</span> <span class="string">id</span>=<span class="string">"overlay-video"</span> <span class="string">muted</span> <span class="string">playsinline</span>&gt;
-        &lt;<span class="keyword">source</span> <span class="string">src</span>=<span class="string">"video.mp4"</span> <span class="string">type</span>=<span class="string">"video/mp4"</span>&gt;
-    &lt;/<span class="keyword">video</span>&gt;
-&lt;/<span class="keyword">div</span>&gt;</code>
-                </div>
-            </section>
-
-            <!-- API Reference -->
-            <section class="section">
-                <h2 class="section__title">API Reference</h2>
-
-                <h3>VideoOverlayOptions Interface</h3>
-                <div class="code-block">
-                    <code><span class="keyword">interface</span> VideoOverlayOptions {
-    videoUrl: <span class="keyword">string</span>;          <span class="comment">// URL for video source</span>
-    containerId?: <span class="keyword">string</span>;      <span class="comment">// Container element ID</span>
-    videoId?: <span class="keyword">string</span>;          <span class="comment">// Video element ID</span>
-    fadeInDuration?: <span class="keyword">number</span>;   <span class="comment">// Fade in time (ms)</span>
-    fadeOutDuration?: <span class="keyword">number</span>;  <span class="comment">// Fade out time (ms)</span>
-    loop?: <span class="keyword">boolean</span>;            <span class="comment">// Loop video playback</span>
-}</code>
-                </div>
-
-                <h3>Methods</h3>
-                <table class="api-table">
-                    <tr>
-                        <th>Method</th>
-                        <th>Description</th>
-                    </tr>
-                    <tr>
-                        <td><code>show()</code></td>
-                        <td>Show the overlay with fade in effect</td>
-                    </tr>
-                    <tr>
-                        <td><code>hide()</code></td>
-                        <td>Hide the overlay with fade out effect</td>
-                    </tr>
-                    <tr>
-                        <td><code>toggle()</code></td>
-                        <td>Toggle overlay visibility</td>
-                    </tr>
-                    <tr>
-                        <td><code>setSource(url: string)</code></td>
-                        <td>Change the video source</td>
-                    </tr>
-                    <tr>
-                        <td><code>destroy()</code></td>
-                        <td>Clean up and release resources</td>
-                    </tr>
-                </table>
-
-                <h3>Utility Functions</h3>
-                <table class="api-table">
-                    <tr>
-                        <th>Function</th>
-                        <th>Description</th>
-                    </tr>
-                    <tr>
-                        <td><code>supportsHEVCAlpha()</code></td>
-                        <td>Check if browser supports HEVC alpha codec</td>
-                    </tr>
-                </table>
-            </section>
-
-            <!-- Navigation -->
-            <section class="section">
-                <h2 class="section__title">More TypeScript Demos</h2>
-                <div class="feature-grid">
-                    <a href="demo_draggable.html" class="feature-card" style="text-decoration: none;">
-                        <h4>🖱️ Draggable</h4>
-                        <p>Make any element draggable with mouse and touch support.</p>
-                    </a>
-                    <a href="demo_gesture.html" class="feature-card" style="text-decoration: none;">
-                        <h4>👆 Gesture Handler</h4>
-                        <p>Touch gestures: tap, swipe, pinch, and rotate detection.</p>
-                    </a>
-                    <a href="demo_keyboard.html" class="feature-card" style="text-decoration: none;">
-                        <h4>⌨️ Virtual Keyboard</h4>
-                        <p>Customizable on-screen keyboard with multiple layouts.</p>
-                    </a>
-                    <a href="demo_screensaver.html" class="feature-card" style="text-decoration: none;">
-                        <h4>🌙 Screensaver</h4>
-                        <p>Inactivity-based screensaver with video and audio.</p>
-                    </a>
-                </div>
-            </section>
+<section class="section">
+    <h2 class="section__title">More TypeScript Demos</h2>
+    <div class="feature-grid">        <a href="demo_draggable.html" class="feature-card" style="text-decoration: none;">
+            <h4>🖱️ Draggable</h4>
+            <p>Make any element draggable with mouse and touch support.</p>
+        </a>        <a href="demo_gesture.html" class="feature-card" style="text-decoration: none;">
+            <h4>👆 Gesture Handler</h4>
+            <p>Touch gestures: tap, swipe, pinch, and rotate detection.</p>
+        </a>        <a href="demo_keyboard.html" class="feature-card" style="text-decoration: none;">
+            <h4>⌨️ Virtual Keyboard</h4>
+            <p>Customizable on-screen keyboard with multiple layouts.</p>
+        </a>        <a href="demo_screensaver.html" class="feature-card" style="text-decoration: none;">
+            <h4>🌙 Screensaver</h4>
+            <p>Inactivity-based screensaver with video and audio support.</p>
+        </a>    </div>
+</section>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>Made with ❤️ by <a href="https://www.scape.agency" target="_blank">Scape Agency</a></p>
+<footer class="footer">
+    <div class="footer__content">
+        <div class="footer__left">
+            <span class="footer__brand">move.gl</span>
+            <span class="footer__tagline">Motion & Animation Library</span>
         </div>
-    </footer>
+        <div class="footer__right">
+            <div class="footer__links">
+                <a href="https://github.com/stylescape/move.gl" class="footer__link" target="_blank">GitHub</a>
+                <a href="https://www.npmjs.com/package/move.gl" class="footer__link" target="_blank">npm</a>
+                <a href="https://www.scape.agency" class="footer__link" target="_blank">Scape Agency</a>
+            </div>
+            <span class="footer__copyright">© 2024 Scape Agency. MIT License.</span>
+        </div>
+    </div>
+</footer>
 
-    <script type="module">
-        // Theme toggle
-        const themeToggle = document.querySelector('[data-toggle="theme"]');
-        const html = document.documentElement;
-
-        const savedTheme = localStorage.getItem('theme') ||
-            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        html.setAttribute('data-theme', savedTheme);
-
-        themeToggle?.addEventListener('click', () => {
-            const current = html.getAttribute('data-theme');
-            const next = current === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
-        });
-
-        // Demo Video Overlay
-        class DemoVideoOverlay {
-            constructor(options) {
-                this.fadeInDuration = options.fadeInDuration || 500;
-                this.fadeOutDuration = options.fadeOutDuration || 500;
-                this.isVisible = false;
-                this.toggleCount = 0;
-
-                this.overlay = document.getElementById('videoOverlay');
-                this.statusBadge = document.getElementById('statusBadge');
-                this.statusIcon = document.getElementById('statusIcon');
-                this.statusText = document.getElementById('statusText');
-                this.visibilityValue = document.getElementById('visibilityValue');
-                this.toggleCountEl = document.getElementById('toggleCount');
-                this.eventLog = document.getElementById('eventLog');
-
-                this.updateTransition();
-            }
-
-            log(message) {
-                const time = new Date().toLocaleTimeString();
-                const entry = document.createElement('div');
-                entry.className = 'entry';
-                entry.textContent = `[${time}] ${message}`;
-                this.eventLog.appendChild(entry);
-                this.eventLog.scrollTop = this.eventLog.scrollHeight;
-            }
-
-            updateTransition() {
-                this.overlay.style.transition = `opacity ${this.isVisible ? this.fadeOutDuration : this.fadeInDuration}ms ease`;
-            }
-
-            updateStatus() {
-                if (this.isVisible) {
-                    this.statusBadge.className = 'status-badge visible';
-                    this.statusIcon.textContent = '🟢';
-                    this.statusText.textContent = 'Visible';
-                    this.visibilityValue.textContent = '100%';
-                } else {
-                    this.statusBadge.className = 'status-badge hidden';
-                    this.statusIcon.textContent = '⚫';
-                    this.statusText.textContent = 'Hidden';
-                    this.visibilityValue.textContent = '0%';
-                }
-            }
-
-            show() {
-                if (!this.isVisible) {
-                    this.isVisible = true;
-                    this.overlay.style.transition = `opacity ${this.fadeInDuration}ms ease`;
-                    this.overlay.classList.add('visible');
-                    this.updateStatus();
-                    this.log(`Overlay shown (fade: ${this.fadeInDuration}ms)`);
-                }
-            }
-
-            hide() {
-                if (this.isVisible) {
-                    this.isVisible = false;
-                    this.overlay.style.transition = `opacity ${this.fadeOutDuration}ms ease`;
-                    this.overlay.classList.remove('visible');
-                    this.updateStatus();
-                    this.log(`Overlay hidden (fade: ${this.fadeOutDuration}ms)`);
-                }
-            }
-
-            toggle() {
-                this.toggleCount++;
-                this.toggleCountEl.textContent = this.toggleCount;
-
-                if (this.isVisible) {
-                    this.hide();
-                } else {
-                    this.show();
-                }
-                this.log(`Toggle #${this.toggleCount}`);
-            }
-
-            setFadeInDuration(duration) {
-                this.fadeInDuration = duration;
-                this.log(`Fade in duration set to ${duration}ms`);
-            }
-
-            setFadeOutDuration(duration) {
-                this.fadeOutDuration = duration;
-                this.log(`Fade out duration set to ${duration}ms`);
-            }
-
-            reset() {
-                this.isVisible = false;
-                this.toggleCount = 0;
-                this.overlay.classList.remove('visible');
-                this.updateStatus();
-                this.toggleCountEl.textContent = '0';
-                this.eventLog.innerHTML = '<div class="entry">[--:--:--] Demo reset</div>';
-            }
-        }
-
-        // HEVC Alpha Detection
-        function supportsHEVCAlpha() {
-            const video = document.createElement('video');
-            const canPlayType = video.canPlayType('video/mp4; codecs="hvc1.2.4.L123.B0"');
-            return canPlayType === 'probably' || canPlayType === 'maybe';
-        }
-
-        // Initialize
-        let overlay = new DemoVideoOverlay({ fadeInDuration: 500, fadeOutDuration: 500 });
-
-        // Check HEVC support
-        const hevcBadge = document.getElementById('hevcBadge');
-        if (supportsHEVCAlpha()) {
-            hevcBadge.textContent = 'Supported';
-            hevcBadge.className = 'hevc-badge supported';
-            overlay.log('HEVC Alpha: Supported');
-        } else {
-            hevcBadge.textContent = 'Not Supported';
-            hevcBadge.className = 'hevc-badge unsupported';
-            overlay.log('HEVC Alpha: Not supported');
-        }
-
-        // Slider controls
-        document.getElementById('fadeInSlider').addEventListener('input', (e) => {
-            const value = parseInt(e.target.value);
-            document.getElementById('fadeInValue').textContent = `${value}ms`;
-            overlay.setFadeInDuration(value);
-        });
-
-        document.getElementById('fadeOutSlider').addEventListener('input', (e) => {
-            const value = parseInt(e.target.value);
-            document.getElementById('fadeOutValue').textContent = `${value}ms`;
-            overlay.setFadeOutDuration(value);
-        });
-
-        // Global functions
-        window.showOverlay = function() {
-            overlay.show();
-        };
-
-        window.hideOverlay = function() {
-            overlay.hide();
-        };
-
-        window.toggleOverlay = function() {
-            overlay.toggle();
-        };
-
-        window.resetDemo = function() {
-            overlay.reset();
-        };
-    </script>
-</body>
+    <!-- Core Scripts -->
+    <script type="module" src="/js/move.gl.js"></script>
+    <script type="module" src="/js/demo.js"></script></body>
 
 </html>

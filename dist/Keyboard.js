@@ -48,6 +48,7 @@ export class VirtualKeyboard {
         this.keyboardElement.innerHTML = "";
         this.keys[this.currentMode].forEach(row => {
             const rowElement = document.createElement("div");
+            rowElement.className = "keyboard__row";
             row.forEach(key => {
                 const keyElement = document.createElement("div");
                 keyElement.textContent = key;

@@ -1,0 +1,81 @@
+// ============================================================================
+// move.gl | Rubber Keyframes
+// ============================================================================
+// Copyright 2025 Scape Agency BV
+// Licensed under MIT License
+// ============================================================================
+
+////
+/// Rubber Keyframes Module
+/// ===========================================================================
+///
+/// Provides parameterized keyframe mixins for rubber band animations.
+/// Creates elastic, bouncy effects that simulate rubber material physics.
+///
+/// @group Keyframes
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+////
+
+
+// ============================================================================
+// Keyframes
+// ============================================================================
+
+
+///
+/// Rubber Band Keyframes
+/// @name keyframes_animate_rubber_band
+/// @param {Number} $intensity [1.25] - The stretch/squash intensity factor.
+///
+@mixin keyframes_animate_rubber_band($intensity: $animate_scale_rubber_intensity) {
+    $squash: 2 - $intensity;
+    $settle1: 1 + ($intensity - 1) * 0.6;
+    $settle1_inv: 2 - $settle1;
+    $settle2: 1 - ($intensity - 1) * 0.2;
+    $settle2_inv: 2 - $settle2;
+    $settle3: 1 + ($intensity - 1) * 0.2;
+    $settle3_inv: 2 - $settle3;
+
+    @keyframes animate_rubber_band {
+        0%, 100% {
+            transform: scale3d(1, 1, 1);
+        }
+        30% {
+            transform: scale3d($intensity, $squash, 1);
+        }
+        40% {
+            transform: scale3d($squash, $intensity, 1);
+        }
+        50% {
+            transform: scale3d($settle1, $settle1_inv, 1);
+        }
+        65% {
+            transform: scale3d($settle2, $settle2_inv, 1);
+        }
+        75% {
+            transform: scale3d($settle3, $settle3_inv, 1);
+        }
+    }
+}
+
+
+///
+/// Rubber Squeeze Keyframes
+/// @name keyframes_animate_rubber_squeeze
+/// @param {Number} $squeeze [0.8] - The squeeze factor.
+///
+@mixin keyframes_animate_rubber_squeeze($squeeze: $animate_scale_rubber_squeeze) {
+    $stretch: 2 - $squeeze;
+
+    @keyframes animate_rubber_squeeze {
+        0%, 100% {
+            transform: scale3d(1, 1, 1);
+        }
+        50% {
+            transform: scale3d($squeeze, $stretch, 1);
+        }
+    }
+}

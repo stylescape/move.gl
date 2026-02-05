@@ -1,20 +1,16 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Fade Animations Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// Provides SCSS mixins for creating fade animations that control element
+/// opacity. Includes basic fade, fade-in, fade-out, and gradual fade
+/// variations for smooth visibility transitions.
 ///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -34,28 +30,56 @@
 // Mixins
 // ============================================================================
 
-
+///
+/// Fade Animation
+/// ---------------------------------------------------------------------------
+/// Creates a looping fade animation that transitions between opacity values.
+///
+/// @name animate_fade
+/// @param {Number} $start_opacity [1] - Starting and ending opacity
+/// @param {Number} $mid_opacity [0] - Middle keyframe opacity
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [cubic-bezier(0.4, 0, 0.6, 1)] - Timing function
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+///
+/// @example scss - Basic usage
+///   .element {
+///     @include animate_fade;
+///   }
+///
 @mixin animate_fade(
     $start_opacity: 1,
     $mid_opacity: 0,
-    $end_opacity: 1,
     $duration: $animate_base_duration,
-    $timing_function: cubic-bezier(.4, 0, .6, 1),
+    $timing_function: $animate_base_timing_function_fade,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
         animate_fade,
         $duration,
         $timing_function,
-        $iteration_count,
+        $iteration_count
     );
-    @keyframes animate_fade {
-        0%, 100% { opacity: $start-opacity; }
-        50% { opacity: $mid-opacity; }
-    }
+    @include keyframes_animate_fade($start_opacity, $mid_opacity);
 }
 
 
+///
+/// Fade In Animation
+/// ---------------------------------------------------------------------------
+/// Creates a one-time fade-in effect from transparent to opaque.
+///
+/// @name animate_fade_in
+/// @param {Number} $start_opacity [0] - Starting opacity
+/// @param {Number} $end_opacity [1] - Ending opacity
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [ease-in] - Timing function
+///
+/// @example scss - Usage
+///   .modal {
+///     @include animate_fade_in(0, 1, 0.3s);
+///   }
+///
 @mixin animate_fade_in(
     $start_opacity: 0,
     $end_opacity: 1,
@@ -66,43 +90,29 @@
         animate_fade_in,
         $duration,
         $timing_function,
-        1
+        1,
+        $fill_mode: forwards
     );
-    @keyframes animate_fade_in {
-        from { opacity: $start-opacity; }
-        to { opacity: $end-opacity; }
-    }
+    @include keyframes_fade_in($start_opacity, $end_opacity);
 }
 
 
-// @keyframes fadeIn {
-//     from {
-//       opacity: 0;
-//       transform: translate3d(0, -100%, 0);
-//     }
-
-//     to {
-//       opacity: 1;
-//       transform: none;
-//     }
-//   }
-
-// $boot-fadein-time: 2s;
-// $boot-fadein-opacity-start: 0;
-// $boot-fadein-opacity-end: 1;
-
-//   .fade {
-//     @include transition($transition-fade);
-
-//     &:not(.show) {
-//         opacity: 0;
-//     }
-// }
-
-
-// Fade Out Animation
-// ----------------------------------------------------------------------------
-
+///
+/// Fade Out Animation
+/// ---------------------------------------------------------------------------
+/// Creates a one-time fade-out effect from opaque to transparent.
+///
+/// @name animate_fade_out
+/// @param {Number} $start_opacity [1] - Starting opacity
+/// @param {Number} $end_opacity [0] - Ending opacity
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [ease-out] - Timing function
+///
+/// @example scss - Usage
+///   .closing-element {
+///     @include animate_fade_out;
+///   }
+///
 @mixin animate_fade_out(
     $start_opacity: 1,
     $end_opacity: 0,
@@ -110,45 +120,274 @@
     $timing_function: ease-out
 ) {
     @include animate_base(
-        animate_fade_in,
+        animate_fade_out,
         $duration,
         $timing_function,
-        1
+        1,
+        $fill_mode: forwards
     );
-    @keyframes animate_fade_out {
-        from { opacity: $start-opacity; }
-        to { opacity: $end-opacity; }
-    }
+    @include keyframes_fade_out($start_opacity, $end_opacity);
 }
 
 
-// @keyframes fadeOut {
-//     from {
-//       opacity: 1;
-//     }
-
-//     to {
-//          transform: translate3d(0, -100%, 0);
-//       opacity: 0;
-//     }
-//   }
-
-
+///
+/// Gradual Fade Animation
+/// ---------------------------------------------------------------------------
+/// Creates a subtle, slow fade animation for a gentle pulsing effect.
+///
+/// @name animate_fade_gradual
+/// @param {Number} $start_opacity [1] - Starting and ending opacity
+/// @param {Number} $end_opacity [0.5] - Midpoint opacity
+/// @param {Time} $duration [$animate_base_duration_slow] - Animation duration
+/// @param {String} $timing_function [ease-in-out] - Timing function
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+///
 @mixin animate_fade_gradual(
     $start_opacity: 1,
     $end_opacity: 0.5,
     $duration: $animate_base_duration_slow,
-    $timing_function: ease-in-out,
+    $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
     @include animate_base(
         animate_fade_gradual,
         $duration,
         $timing_function,
-        $iteration_count,
+        $iteration_count
     );
-    @keyframes animate_fade_gradual {
-        0%, 100% { opacity: $start-opacity; }
-        50% { opacity: $end-opacity; }
-    }
+    @include keyframes_fade_gradual($start_opacity, $end_opacity);
+}
+
+
+///
+/// Fade In Up Animation
+/// ---------------------------------------------------------------------------
+/// Fades element in while moving upward from below.
+///
+/// @name animate_fade_in_up
+/// @param {Length} $distance [20px] - Distance to move
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [ease-out] - Timing function
+///
+@mixin animate_fade_in_up(
+    $distance: 20px,
+    $duration: $animate_base_duration,
+    $timing_function: ease-out
+) {
+    @include animate_base(
+        animate_fade_in_up,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_fade_in_up($distance);
+}
+
+
+///
+/// Fade In Down Animation
+/// ---------------------------------------------------------------------------
+/// Fades element in while moving downward from above.
+///
+/// @name animate_fade_in_down
+/// @param {Length} $distance [20px] - Distance to move
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [ease-out] - Timing function
+///
+@mixin animate_fade_in_down(
+    $distance: 20px,
+    $duration: $animate_base_duration,
+    $timing_function: ease-out
+) {
+    @include animate_base(
+        animate_fade_in_down,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_fade_in_down($distance);
+}
+
+
+///
+/// Fade In Left Animation
+/// ---------------------------------------------------------------------------
+/// Fades element in while moving from left to right.
+///
+/// @name animate_fade_in_left
+/// @param {Length} $distance [20px] - Distance to move
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [ease-out] - Timing function
+///
+@mixin animate_fade_in_left(
+    $distance: 20px,
+    $duration: $animate_base_duration,
+    $timing_function: ease-out
+) {
+    @include animate_base(
+        animate_fade_in_left,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_fade_in_left($distance);
+}
+
+
+///
+/// Fade In Right Animation
+/// ---------------------------------------------------------------------------
+/// Fades element in while moving from right to left.
+///
+/// @name animate_fade_in_right
+/// @param {Length} $distance [20px] - Distance to move
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [ease-out] - Timing function
+///
+@mixin animate_fade_in_right(
+    $distance: 20px,
+    $duration: $animate_base_duration,
+    $timing_function: ease-out
+) {
+    @include animate_base(
+        animate_fade_in_right,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_fade_in_right($distance);
+}
+
+
+///
+/// Fade In with Scale Animation
+/// ---------------------------------------------------------------------------
+/// Fades element in while scaling up from a smaller size.
+///
+/// @name animate_fade_in_scale
+/// @param {Number} $start_scale [0.8] - Starting scale value
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [ease-out] - Timing function
+///
+@mixin animate_fade_in_scale(
+    $start_scale: 0.8,
+    $duration: $animate_base_duration,
+    $timing_function: ease-out
+) {
+    @include animate_base(
+        animate_fade_in_scale,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_fade_in_scale($start_scale);
+}
+
+
+///
+/// Fade Out Up Animation
+/// ---------------------------------------------------------------------------
+/// Fades element out while moving upward.
+///
+/// @name animate_fade_out_up
+/// @param {Length} $distance [20px] - Distance to move
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [ease-in] - Timing function
+///
+@mixin animate_fade_out_up(
+    $distance: 20px,
+    $duration: $animate_base_duration,
+    $timing_function: ease-in
+) {
+    @include animate_base(
+        animate_fade_out_up,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: forwards
+    );
+    @include keyframes_fade_out_up($distance);
+}
+
+
+///
+/// Fade Out Down Animation
+/// ---------------------------------------------------------------------------
+/// Fades element out while moving downward.
+///
+/// @name animate_fade_out_down
+/// @param {Length} $distance [20px] - Distance to move
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [ease-in] - Timing function
+///
+@mixin animate_fade_out_down(
+    $distance: 20px,
+    $duration: $animate_base_duration,
+    $timing_function: ease-in
+) {
+    @include animate_base(
+        animate_fade_out_down,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: forwards
+    );
+    @include keyframes_fade_out_down($distance);
+}
+
+
+///
+/// Fade Out Left Animation
+/// ---------------------------------------------------------------------------
+/// Fades element out while moving to the left.
+///
+/// @name animate_fade_out_left
+/// @param {Length} $distance [20px] - Distance to move
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [ease-in] - Timing function
+///
+@mixin animate_fade_out_left(
+    $distance: 20px,
+    $duration: $animate_base_duration,
+    $timing_function: ease-in
+) {
+    @include animate_base(
+        animate_fade_out_left,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: forwards
+    );
+    @include keyframes_fade_out_left($distance);
+}
+
+
+///
+/// Fade Out Right Animation
+/// ---------------------------------------------------------------------------
+/// Fades element out while moving to the right.
+///
+/// @name animate_fade_out_right
+/// @param {Length} $distance [20px] - Distance to move
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [ease-in] - Timing function
+///
+@mixin animate_fade_out_right(
+    $distance: 20px,
+    $duration: $animate_base_duration,
+    $timing_function: ease-in
+) {
+    @include animate_base(
+        animate_fade_out_right,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: forwards
+    );
+    @include keyframes_fade_out_right($distance);
 }
