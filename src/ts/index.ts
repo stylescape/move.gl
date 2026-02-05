@@ -35,15 +35,21 @@ export {
 } from './VideoOverlay.js';
 export type { VideoOverlayOptions } from './VideoOverlay.js';
 
+// Loader Management
+export { LoaderManager, loaderManager } from './LoaderManager.js';
+export type { LoaderCategory, LoaderConfig, LoaderOptions } from './LoaderManager.js';
+
 // Re-export default classes
 import { Draggable } from './Draggable.js';
 import { AdvancedGestureRecognition, TouchGestureHandler } from './Gesture.js';
 import { VirtualKeyboard } from './Keyboard.js';
+import { LoaderManager } from './LoaderManager.js';
 import { Screensaver } from './Screensaver.js';
 import { TransparentVideoOverlay } from './VideoOverlay.js';
 
 export default {
     Draggable,
+    LoaderManager,
     Screensaver,
     VirtualKeyboard,
     TouchGestureHandler,

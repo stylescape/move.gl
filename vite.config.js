@@ -60,7 +60,8 @@ export default defineConfig({
                 runKist(server);
 
                 server.middlewares.use('/css', serveStatic(path.join(pathToDist, 'css')));
-                server.middlewares.use('/js', serveStatic(path.join(pathToDist, 'js')));
+                // Serve JS from dist root (TypeScript compiles to dist/, not dist/js/)
+                server.middlewares.use('/js', serveStatic(pathToDist));
 
                 // Serve / as index.html
                 server.middlewares.use((req, res, next) => {
