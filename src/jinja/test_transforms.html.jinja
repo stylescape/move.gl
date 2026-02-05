@@ -165,33 +165,33 @@
     <h2>Usage</h2>
 
     <div class="code-block"><span class="comment">// Utility Classes (immediate transform)</span>
-&lt;div class="transform_flip_horizontal"&gt;...&lt;/div&gt;
-&lt;div class="transform_rotate_90"&gt;...&lt;/div&gt;
-&lt;div class="scale_up"&gt;...&lt;/div&gt;
-&lt;div class="translate_xy"&gt;...&lt;/div&gt;
+        &lt;div class="transform_flip_horizontal"&gt;...&lt;/div&gt;
+        &lt;div class="transform_rotate_90"&gt;...&lt;/div&gt;
+        &lt;div class="scale_up"&gt;...&lt;/div&gt;
+        &lt;div class="translate_xy"&gt;...&lt;/div&gt;
 
-<span class="comment">// Dynamic rotation with CSS variable</span>
-&lt;div class="transform_rotate_dynamic" style="--rotate-angle: 45deg;"&gt;...&lt;/div&gt;
+        <span class="comment">// Dynamic rotation with CSS variable</span>
+        &lt;div class="transform_rotate_dynamic" style="--rotate-angle: 45deg;"&gt;...&lt;/div&gt;
 
-<span class="comment">// SCSS Mixins</span>
-.element {
-    @include transform_flip_horizontal;
-}
+        <span class="comment">// SCSS Mixins</span>
+        .element {
+        @include transform_flip_horizontal;
+        }
 
-.rotated {
-    @include transform_rotate(45deg);
-}
+        .rotated {
+        @include transform_rotate(45deg);
+        }
 
-.scaled {
-    @include scale(1.5);
-}
+        .scaled {
+        @include scale(1.5);
+        }
 
-<span class="comment">// Combined transforms</span>
-.card {
-    @include transform(
+        <span class="comment">// Combined transforms</span>
+        .card {
+        @include transform(
         translateY(-10px) scale(1.05) rotate(2deg)
-    );
-}
+        );
+        }
     </div>
 </section>
 
