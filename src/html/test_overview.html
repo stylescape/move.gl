@@ -27,8 +27,6 @@
 
 <body class="">
 
-    
-
 <div class="nav-wrapper">
     <nav class="nav">
         <div class="nav__inner">
@@ -112,458 +110,1315 @@
     </nav>
 </div>
 
-    <div class="container">
-        <header class="header">            <p class="eyebrow">move.gl</p>
-            <h1>Documentation</h1>        </header>
+    <main class="main">
+        <div class="container"><section class="section">
+    <h1 class="section-title">🎬 Animation Overview</h1>
+    <p class="section-description">
+        Complete showcase of all animations in the move.gl library. Each card shows the animation preview
+        and the HTML code needed to implement it.
+    </p>
 
-        <main><main class="demo-page">
-    <h1>Animation Overview</h1>
-    <p>Complete showcase of all animations in the move.gl library, running continuously.</p>
-
-    <!-- Fade Animations -->
-    <section class="demo-section">
-        <h2>Fade Animations</h2>
-        <div class="demo-row">
-            <div class="demo-item">
-                <div class="demo-box anim-fade-in-loop"></div>
-                <p>fade-in</p>
+    
+    <h2 class="demo-section-title">✨ Fade Animations</h2>
+    <p class="demo-section-desc">Opacity-based fade effects</p>
+    <div class="demo-grid-fixed">
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_fade"></div>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-fade-in-up-loop"></div>
-                <p>fade-in-up</p>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">fade</h4>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-fade-in-down-loop"></div>
-                <p>fade-in-down</p>
-            </div>
-            <div class="demo-item">
-                <div class="demo-box anim-fade-in-left-loop"></div>
-                <p>fade-in-left</p>
-            </div>
-            <div class="demo-item">
-                <div class="demo-box anim-fade-in-right-loop"></div>
-                <p>fade-in-right</p>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_fade"&gt;&lt;/div&gt;</code>
             </div>
         </div>
-    </section>
-
-    <!-- Slide Animations -->
-    <section class="demo-section">
-        <h2>Slide Animations</h2>
-        <div class="demo-row">
-            <div class="demo-item">
-                <div class="demo-box anim-slide-up-loop"></div>
-                <p>slide-up</p>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_fade_in"></div>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-slide-down-loop"></div>
-                <p>slide-down</p>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">fade_in</h4>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-slide-left-loop"></div>
-                <p>slide-left</p>
-            </div>
-            <div class="demo-item">
-                <div class="demo-box anim-slide-right-loop"></div>
-                <p>slide-right</p>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_fade_in"&gt;&lt;/div&gt;</code>
             </div>
         </div>
-    </section>
-
-    <!-- Bounce Animations -->
-    <section class="demo-section">
-        <h2>Bounce Animations</h2>
-        <div class="demo-row">
-            <div class="demo-item">
-                <div class="demo-box anim-bounce-loop"></div>
-                <p>bounce</p>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_fade_out"></div>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-bounce-in-loop"></div>
-                <p>bounce-in</p>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">fade_out</h4>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-bounce-subtle-loop"></div>
-                <p>bounce-subtle</p>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_fade_out"&gt;&lt;/div&gt;</code>
             </div>
         </div>
-    </section>
-
-    <!-- Zoom Animations -->
-    <section class="demo-section">
-        <h2>Zoom Animations</h2>
-        <div class="demo-row">
-            <div class="demo-item">
-                <div class="demo-box anim-zoom-in-loop"></div>
-                <p>zoom-in</p>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_fade_gradual"></div>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-zoom-in-up-loop"></div>
-                <p>zoom-in-up</p>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">fade_gradual</h4>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-zoom-in-down-loop"></div>
-                <p>zoom-in-down</p>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_fade_gradual"&gt;&lt;/div&gt;</code>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Flip Animations -->
-    <section class="demo-section">
-        <h2>Flip Animations</h2>
-        <div class="demo-row">
-            <div class="demo-item">
-                <div class="demo-box anim-flip-x-loop"></div>
-                <p>flip-x</p>
+    
+    <h2 class="demo-section-title">↔️ Slide Animations</h2>
+    <p class="demo-section-desc">Directional slide movements</p>
+    <div class="demo-grid-fixed">
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_slide_in_up"></div>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-flip-y-loop"></div>
-                <p>flip-y</p>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">slide_in_up</h4>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-flip-loop"></div>
-                <p>flip</p>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_slide_in_up"&gt;&lt;/div&gt;</code>
             </div>
         </div>
-    </section>
-
-    <!-- Scale Animations -->
-    <section class="demo-section">
-        <h2>Scale Animations</h2>
-        <div class="demo-row">
-            <div class="demo-item">
-                <div class="demo-box anim-scale-in-loop"></div>
-                <p>scale-in</p>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_slide_in_down"></div>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-scale-up-loop"></div>
-                <p>scale-up</p>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">slide_in_down</h4>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-scale-down-loop"></div>
-                <p>scale-down</p>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_slide_in_down"&gt;&lt;/div&gt;</code>
             </div>
         </div>
-    </section>
-
-    <!-- Spin & Rotate Animations -->
-    <section class="demo-section">
-        <h2>Spin & Rotate Animations</h2>
-        <div class="demo-row">
-            <div class="demo-item">
-                <div class="demo-box anim-spin-loop"></div>
-                <p>spin</p>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_slide_in_left"></div>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-spin-slow-loop"></div>
-                <p>spin-slow</p>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">slide_in_left</h4>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-spin-reverse-loop"></div>
-                <p>spin-reverse</p>
-            </div>
-            <div class="demo-item">
-                <div class="demo-box anim-rotate-in-loop"></div>
-                <p>rotate-in</p>
-            </div>
-            <div class="demo-item">
-                <div class="demo-box anim-roll-loop"></div>
-                <p>roll</p>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_slide_in_left"&gt;&lt;/div&gt;</code>
             </div>
         </div>
-    </section>
-
-    <!-- Pulse & Heartbeat Animations -->
-    <section class="demo-section">
-        <h2>Pulse & Heartbeat Animations</h2>
-        <div class="demo-row">
-            <div class="demo-item">
-                <div class="demo-box anim-pulse-loop"></div>
-                <p>pulse</p>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_slide_in_right"></div>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-pulse-slow-loop"></div>
-                <p>pulse-slow</p>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">slide_in_right</h4>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-heartbeat-loop"></div>
-                <p>heartbeat</p>
-            </div>
-            <div class="demo-item">
-                <div class="demo-box anim-beat-loop"></div>
-                <p>beat</p>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_slide_in_right"&gt;&lt;/div&gt;</code>
             </div>
         </div>
-    </section>
-
-    <!-- Shake & Wobble Animations -->
-    <section class="demo-section">
-        <h2>Shake & Wobble Animations</h2>
-        <div class="demo-row">
-            <div class="demo-item">
-                <div class="demo-box anim-shake-loop"></div>
-                <p>shake</p>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_slide_out_up"></div>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-shake-horizontal-loop"></div>
-                <p>shake-h</p>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">slide_out_up</h4>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-shake-vertical-loop"></div>
-                <p>shake-v</p>
-            </div>
-            <div class="demo-item">
-                <div class="demo-box anim-wobble-loop"></div>
-                <p>wobble</p>
-            </div>
-            <div class="demo-item">
-                <div class="demo-box anim-jiggle-loop"></div>
-                <p>jiggle</p>
-            </div>
-            <div class="demo-item">
-                <div class="demo-box anim-jello-loop"></div>
-                <p>jello</p>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_slide_out_up"&gt;&lt;/div&gt;</code>
             </div>
         </div>
-    </section>
-
-    <!-- Attention Seeker Animations -->
-    <section class="demo-section">
-        <h2>Attention Seekers</h2>
-        <div class="demo-row">
-            <div class="demo-item">
-                <div class="demo-box anim-flash-loop"></div>
-                <p>flash</p>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_slide_out_down"></div>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-blink-loop"></div>
-                <p>blink</p>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">slide_out_down</h4>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-tada-loop"></div>
-                <p>tada</p>
-            </div>
-            <div class="demo-item">
-                <div class="demo-box anim-pop-loop"></div>
-                <p>pop</p>
-            </div>
-            <div class="demo-item">
-                <div class="demo-box anim-rubber-loop"></div>
-                <p>rubber</p>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_slide_out_down"&gt;&lt;/div&gt;</code>
             </div>
         </div>
-    </section>
-
-    <!-- Swing & Sway Animations -->
-    <section class="demo-section">
-        <h2>Swing & Sway Animations</h2>
-        <div class="demo-row">
-            <div class="demo-item">
-                <div class="demo-box anim-swing-loop"></div>
-                <p>swing</p>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_slide_out_left"></div>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-sway-loop"></div>
-                <p>sway</p>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">slide_out_left</h4>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-nod-loop"></div>
-                <p>nod</p>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_slide_out_left"&gt;&lt;/div&gt;</code>
             </div>
         </div>
-    </section>
-
-    <!-- Float, Glow & Ripple Animations -->
-    <section class="demo-section">
-        <h2>Float, Glow & Ripple</h2>
-        <div class="demo-row">
-            <div class="demo-item">
-                <div class="demo-box anim-float-loop"></div>
-                <p>float</p>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_slide_out_right"></div>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-glow-loop"></div>
-                <p>glow</p>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">slide_out_right</h4>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-ripple-loop"></div>
-                <p>ripple</p>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_slide_out_right"&gt;&lt;/div&gt;</code>
             </div>
         </div>
-    </section>
-
-    <!-- Special Effects -->
-    <section class="demo-section">
-        <h2>Special Effects</h2>
-        <div class="demo-row">
-            <div class="demo-item">
-                <div class="demo-box anim-elastic-loop"></div>
-                <p>elastic</p>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_slide_fade_in_up"></div>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-lightspeed-loop"></div>
-                <p>lightspeed</p>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">slide_fade_in_up</h4>
             </div>
-            <div class="demo-item">
-                <div class="demo-box anim-hinge-loop"></div>
-                <p>hinge</p>
-            </div>
-            <div class="demo-item">
-                <div class="demo-box anim-wave-loop"></div>
-                <p>wave</p>
-            </div>
-            <div class="demo-item">
-                <div class="demo-box anim-twist-loop"></div>
-                <p>twist</p>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_slide_fade_in_up"&gt;&lt;/div&gt;</code>
             </div>
         </div>
-    </section>
-
-    <!-- Loaders -->
-    <section class="demo-section">
-        <h2>Loaders - Spinners</h2>
-        <div class="demo-row">
-            <div class="demo-item">
-                <div class="loader loader--spinner"></div>
-                <p>spinner</p>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_slide_fade_in_down"></div>
             </div>
-            <div class="demo-item">
-                <div class="loader loader--spinner-dots"></div>
-                <p>spinner-dots</p>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">slide_fade_in_down</h4>
             </div>
-            <div class="demo-item">
-                <div class="loader loader--dual-ring"></div>
-                <p>dual-ring</p>
-            </div>
-            <div class="demo-item">
-                <div class="loader loader--hourglass"></div>
-                <p>hourglass</p>
-            </div>
-            <div class="demo-item">
-                <div class="loader loader--circle-notch"></div>
-                <p>circle-notch</p>
-            </div>
-            <div class="demo-item">
-                <div class="loader loader--ring"></div>
-                <p>ring</p>
-            </div>
-            <div class="demo-item">
-                <div class="loader loader--gradient"></div>
-                <p>gradient</p>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_slide_fade_in_down"&gt;&lt;/div&gt;</code>
             </div>
         </div>
-    </section>
-
-    <section class="demo-section">
-        <h2>Loaders - Dots</h2>
-        <div class="demo-row">
-            <div class="demo-item">
-                <div class="loader loader--dots">
-                    <span></span><span></span><span></span>
-                </div>
-                <p>dots</p>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_slide_fade_in_left"></div>
             </div>
-            <div class="demo-item">
-                <div class="loader loader--dots-bounce">
-                    <span></span><span></span><span></span>
-                </div>
-                <p>dots-bounce</p>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">slide_fade_in_left</h4>
             </div>
-            <div class="demo-item">
-                <div class="loader loader--dots-wave">
-                    <span></span><span></span><span></span><span></span><span></span>
-                </div>
-                <p>dots-wave</p>
-            </div>
-            <div class="demo-item">
-                <div class="loader loader--dots-fade">
-                    <span></span><span></span><span></span>
-                </div>
-                <p>dots-fade</p>
-            </div>
-            <div class="demo-item">
-                <div class="loader loader--dots-grow">
-                    <span></span><span></span><span></span>
-                </div>
-                <p>dots-grow</p>
-            </div>
-            <div class="demo-item">
-                <div class="loader loader--ellipsis">
-                    <span></span><span></span><span></span><span></span>
-                </div>
-                <p>ellipsis</p>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_slide_fade_in_left"&gt;&lt;/div&gt;</code>
             </div>
         </div>
-    </section>
-
-    <section class="demo-section">
-        <h2>Loaders - Bars & Shapes</h2>
-        <div class="demo-row">
-            <div class="demo-item">
-                <div class="loader loader--bars">
-                    <span></span><span></span><span></span><span></span>
-                </div>
-                <p>bars</p>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_slide_fade_in_right"></div>
             </div>
-            <div class="demo-item">
-                <div class="loader loader--progress"></div>
-                <p>progress</p>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">slide_fade_in_right</h4>
             </div>
-            <div class="demo-item">
-                <div class="loader loader--square"></div>
-                <p>square</p>
-            </div>
-            <div class="demo-item">
-                <div class="loader loader--cube"></div>
-                <p>cube</p>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_slide_fade_in_right"&gt;&lt;/div&gt;</code>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="demo-section">
-        <h2>Loaders - Pulse & Special</h2>
-        <div class="demo-row">
-            <div class="demo-item">
-                <div class="loader loader--pulse"></div>
-                <p>pulse</p>
+    
+    <h2 class="demo-section-title">⬆️ Bounce Animations</h2>
+    <p class="demo-section-desc">Elastic bouncing effects</p>
+    <div class="demo-grid-fixed">
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_bounce"></div>
             </div>
-            <div class="demo-item">
-                <div class="loader loader--ripple">
-                    <span></span><span></span>
-                </div>
-                <p>ripple</p>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">bounce</h4>
             </div>
-            <div class="demo-item">
-                <div class="loader loader--heartbeat"></div>
-                <p>heartbeat</p>
-            </div>
-            <div class="demo-item">
-                <div class="loader loader--bounce">
-                    <span></span><span></span><span></span>
-                </div>
-                <p>bounce</p>
-            </div>
-            <div class="demo-item">
-                <div class="loader loader--orbit"></div>
-                <p>orbit</p>
-            </div>
-            <div class="demo-item">
-                <div class="loader loader--typing">
-                    <span></span><span></span><span></span>
-                </div>
-                <p>typing</p>
-            </div>
-            <div class="demo-item">
-                <div class="loader loader--clock"></div>
-                <p>clock</p>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_bounce"&gt;&lt;/div&gt;</code>
             </div>
         </div>
-    </section>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_bounce_extended"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">bounce_extended</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_bounce_extended"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_bounce_rotate"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">bounce_rotate</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_bounce_rotate"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_bounce_multi"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">bounce_multi</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_bounce_multi"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_elastic"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">elastic</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_elastic"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+    </div>
 
-</main>
-        </main>
+    
+    <h2 class="demo-section-title">🔍 Zoom Animations</h2>
+    <p class="demo-section-desc">Scale-based zoom effects</p>
+    <div class="demo-grid-fixed">
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_zoom"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">zoom</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_zoom"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_zoom_slow"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">zoom_slow</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_zoom_slow"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_zoom_fast"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">zoom_fast</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_zoom_fast"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_zoom_fade"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">zoom_fade</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_zoom_fade"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+    </div>
 
-        
+    
+    <h2 class="demo-section-title">📐 Scale Animations</h2>
+    <p class="demo-section-desc">Size transformation effects</p>
+    <div class="demo-grid-fixed">
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_scale_expand"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">scale_expand</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_scale_expand"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_scale_shrink"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">scale_shrink</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_scale_shrink"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+    </div>
+
+    
+    <h2 class="demo-section-title">🔄 Flip Animations</h2>
+    <p class="demo-section-desc">3D rotation effects</p>
+    <div class="demo-grid-fixed">
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_flip"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">flip</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_flip"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_flip_horizontal"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">flip_horizontal</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_flip_horizontal"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_flip_vertical"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">flip_vertical</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_flip_vertical"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_flip_diagonal"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">flip_diagonal</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_flip_diagonal"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_flip_180_horizontal"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">flip_180_horizontal</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_flip_180_horizontal"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_flip_180_vertical"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">flip_180_vertical</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_flip_180_vertical"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_flip_180_diagonal"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">flip_180_diagonal</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_flip_180_diagonal"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+    </div>
+
+    
+    <h2 class="demo-section-title">🔃 Spin Animations</h2>
+    <p class="demo-section-desc">Continuous rotation effects</p>
+    <div class="demo-grid-fixed">
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_spin"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">spin</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_spin"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_spin_reverse"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">spin_reverse</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_spin_reverse"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_spin_pulse"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">spin_pulse</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_spin_pulse"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_spin_flip"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">spin_flip</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_spin_flip"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_spin_grow"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">spin_grow</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_spin_grow"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_roll"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">roll</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_roll"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_roll_reverse"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">roll_reverse</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_roll_reverse"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_roll_slow"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">roll_slow</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_roll_slow"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_roll_vertical"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">roll_vertical</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_roll_vertical"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+    </div>
+
+    
+    <h2 class="demo-section-title">📳 Shake Animations</h2>
+    <p class="demo-section-desc">Vibration and shake effects</p>
+    <div class="demo-grid-fixed">
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_shake"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">shake</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_shake"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_shake_horizontal"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">shake_horizontal</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_shake_horizontal"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_shake_slow"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">shake_slow</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_shake_slow"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_wobble"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">wobble</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_wobble"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_wobble_slow"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">wobble_slow</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_wobble_slow"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_wobble_fast"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">wobble_fast</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_wobble_fast"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_wobble_scale"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">wobble_scale</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_wobble_scale"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_jiggle"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">jiggle</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_jiggle"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_jiggle_slow"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">jiggle_slow</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_jiggle_slow"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_jiggle_multi"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">jiggle_multi</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_jiggle_multi"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_jiggle_vertical"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">jiggle_vertical</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_jiggle_vertical"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+    </div>
+
+    
+    <h2 class="demo-section-title">💗 Pulse Animations</h2>
+    <p class="demo-section-desc">Breathing and pulsing effects</p>
+    <div class="demo-grid-fixed">
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_pulse"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">pulse</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_pulse"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_pulse_slow"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">pulse_slow</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_pulse_slow"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_pulse_fast"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">pulse_fast</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_pulse_fast"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_pulse_color"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">pulse_color</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_pulse_color"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_heartbeat"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">heartbeat</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_heartbeat"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_heartbeat_slow"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">heartbeat_slow</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_heartbeat_slow"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_heartbeat_fast"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">heartbeat_fast</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_heartbeat_fast"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_heartbeat_color"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">heartbeat_color</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_heartbeat_color"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+    </div>
+
+    
+    <h2 class="demo-section-title">👀 Attention Seekers</h2>
+    <p class="demo-section-desc">Effects to grab attention</p>
+    <div class="demo-grid-fixed">
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_flash"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">flash</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_flash"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_flash_fade"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">flash_fade</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_flash_fade"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_flash_fade_slow"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">flash_fade_slow</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_flash_fade_slow"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_flash_strobe"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">flash_strobe</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_flash_strobe"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_blink"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">blink</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_blink"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_blink_rapid"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">blink_rapid</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_blink_rapid"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_blink_soft"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">blink_soft</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_blink_soft"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_blink_alternate"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">blink_alternate</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_blink_alternate"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_beat"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">beat</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_beat"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_beat_double"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">beat_double</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_beat_double"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_beat_fade"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">beat_fade</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_beat_fade"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_pop"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">pop</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_pop"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_pop_slow"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">pop_slow</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_pop_slow"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_pop_fast"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">pop_fast</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_pop_fast"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_pop_rotate"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">pop_rotate</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_pop_rotate"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_tada"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">tada</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_tada"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_tada_slow"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">tada_slow</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_tada_slow"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_tada_fast"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">tada_fast</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_tada_fast"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_tada_fade"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">tada_fade</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_tada_fade"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+    </div>
+
+    
+    <h2 class="demo-section-title">🎯 Special Effects</h2>
+    <p class="demo-section-desc">Unique and complex animations</p>
+    <div class="demo-grid-fixed">
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_float"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">float</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_float"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_float_horizontal"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">float_horizontal</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_float_horizontal"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_float_rotate"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">float_rotate</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_float_rotate"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_sway"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">sway</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_sway"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_sway_slow"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">sway_slow</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_sway_slow"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_sway_fast"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">sway_fast</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_sway_fast"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_sway_fade"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">sway_fade</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_sway_fade"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_swing"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">swing</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_swing"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_swing_slow"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">swing_slow</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_swing_slow"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_swing_fast"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">swing_fast</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_swing_fast"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_swing_fade"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">swing_fade</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_swing_fade"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_twist"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">twist</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_twist"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_twist_slow"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">twist_slow</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_twist_slow"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_twist_fast"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">twist_fast</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_twist_fast"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_twist_color"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">twist_color</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_twist_color"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_nod"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">nod</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_nod"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_nod_slow"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">nod_slow</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_nod_slow"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_nod_continuous"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">nod_continuous</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_nod_continuous"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_nod_bounce"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">nod_bounce</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_nod_bounce"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_wave"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">wave</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_wave"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_wave_slow"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">wave_slow</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_wave_slow"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_wave_fast"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">wave_fast</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_wave_fast"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_wave_fade"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">wave_fade</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_wave_fade"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_glow"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">glow</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_glow"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_glow_soft"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">glow_soft</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_glow_soft"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_glow_pulse"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">glow_pulse</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_glow_pulse"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_glow_multicolor"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">glow_multicolor</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_glow_multicolor"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_ripple"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">ripple</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_ripple"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_ripple_slow"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">ripple_slow</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_ripple_slow"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_ripple_multi"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">ripple_multi</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_ripple_multi"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+        <div class="demo-card-fixed">
+            <div class="demo-card-fixed__preview">
+                <div class="demo-box animate_ripple_color"></div>
+            </div>
+            <div class="demo-card-fixed__info">
+                <h4 class="demo-card-fixed__title">ripple_color</h4>
+            </div>
+            <div class="demo-card-fixed__code">
+                <code>&lt;div class="animate_ripple_color"&gt;&lt;/div&gt;</code>
+            </div>
+        </div>
+    </div>
+
+</section>
+        </div>
+    </main>
 
 <footer class="footer">
     <div class="footer__content">
@@ -581,12 +1436,9 @@
         </div>
     </div>
 </footer>
-    </div>
 
-    <!-- Library JS -->
+    <!-- Core Scripts -->
     <script type="module" src="/js/move.gl.js"></script>
-    <!-- Demo Scripts -->
-    <script type="module" src="/js/demo.js"></script>
-</body>
+    <script type="module" src="/js/demo.js"></script></body>
 
 </html>

@@ -15,34 +15,32 @@
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-bounce-demo" id="bounce-demo"></div>
+            <div class="demo-box animate_bounce"></div>
             <p>bounce</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-bounce-in-demo" id="bounce-in-demo"></div>
-            <p>bounce-in</p>
+            <div class="demo-box animate_bounce_extended"></div>
+            <p>bounce-extended</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-bounce-out-demo" id="bounce-out-demo"></div>
-            <p>bounce-out</p>
+            <div class="demo-box animate_bounce_rotate"></div>
+            <p>bounce-rotate</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_bounce_multi"></div>
+            <p>bounce-multi</p>
         </div>
     </div>
-
-    <button class="btn btn--primary" onclick="replayBounce()">Replay Animations</button>
 </section>
 
 <section>
-    <h2>Continuous Bounce</h2>
-    <p>Looping bounce animations for attention-grabbing elements.</p>
+    <h2>Elastic Effects</h2>
+    <p>Elastic bounce effects with spring physics.</p>
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-bounce-loop"></div>
-            <p>bounce (infinite)</p>
-        </div>
-        <div class="demo-item">
-            <div class="demo-box animate-pulse-demo"></div>
-            <p>pulse</p>
+            <div class="demo-box animate_elastic"></div>
+            <p>elastic</p>
         </div>
     </div>
 </section>
@@ -52,33 +50,18 @@
 
     <div class="code-block"><span class="comment">// SCSS Mixin</span>
         .element {
-        @include bounce;
+        @include animate_bounce;
         }
 
-        .element-in {
-        @include bounce-in($duration: 0.6s);
-        }
-
-        <span class="comment">// Continuous bounce</span>
-        .notification {
-        @include bounce($iterations: infinite);
+        .element-extended {
+        @include animate_bounce_extended;
         }
 
         <span class="comment">// Utility classes</span>
-        &lt;div class="animate-bounce"&gt;...&lt;/div&gt;
-        &lt;div class="animate-bounce-in"&gt;...&lt;/div&gt;
+        &lt;div class="animate_bounce"&gt;...&lt;/div&gt;
+        &lt;div class="animate_bounce_extended"&gt;...&lt;/div&gt;
+        &lt;div class="animate_bounce_rotate"&gt;...&lt;/div&gt;
     </div>
 </section>
-
-<script>
-    function replayBounce() {
-        const demos = document.querySelectorAll('[id^="bounce-"]');
-        demos.forEach(demo => {
-            demo.style.animation = 'none';
-            demo.offsetHeight;
-            demo.style.animation = null;
-        });
-    }
-</script>
 
 {%- endblock %}

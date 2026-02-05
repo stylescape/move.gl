@@ -1,496 +1,1216 @@
 {% extends "base.html.jinja" %}
 
-{%- block title %}Effects — move.gl{%- endblock %}
+{%- block title %}Effects & Filters — move.gl{%- endblock %}
 
 {%- block header %}
-<p class="eyebrow">Mixins</p>
-<h1>CSS Effects</h1>
+<p class="eyebrow">Classes</p>
+<h1>CSS Effects & Filters</h1>
+{%- endblock %}
+
+{%- block styles %}
+<style>
+    .effect-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+
+    .effect-card {
+        background: var(--color-surface, #fff);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .effect-card__preview {
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .effect-card__preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .effect-card__info {
+        padding: 0.75rem 1rem;
+        text-align: center;
+    }
+
+    .effect-card__title {
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin: 0 0 0.25rem;
+        color: var(--color-text, #333);
+    }
+
+    .effect-card__code {
+        padding: 0.5rem 0.75rem;
+        background: var(--color-code-bg, #f5f5f5);
+        border-top: 1px solid var(--color-border, #e0e0e0);
+    }
+
+    .effect-card__code code {
+        font-size: 0.7rem;
+        word-break: break-all;
+        color: var(--color-code, #e91e63);
+    }
+
+    .demo-box-effect {
+        width: 80px;
+        height: 80px;
+        background: #fff;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .demo-box-shadow {
+        width: 80px;
+        height: 80px;
+        background: #fff;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        font-weight: 500;
+        color: #666;
+    }
+
+    .section-divider {
+        margin: 3rem 0 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--color-border, #e0e0e0);
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    h2+p {
+        color: var(--color-text-muted, #666);
+        margin-bottom: 1.5rem;
+    }
+</style>
 {%- endblock %}
 
 {%- block content %}
 
+{# ============================================================= #}
+{# BLUR FILTERS #}
+{# ============================================================= #}
 <section>
-    <h2>Basic Filter Effects</h2>
-    <p>CSS filter effects for visual manipulation. Compare with the original image on the left.</p>
+    <h2>🌫️ Blur Filters</h2>
+    <p>CSS blur filter effects at various intensities</p>
 
-    <div class="demo-row">
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--original">
-                <img src="https://picsum.photos/120/80?random=1" alt="original">
+    <div class="effect-grid">
+        <div class="effect-card">
+            <div class="effect-card__preview">
+                <img src="https://picsum.photos/200/150?random=1" alt="Original">
             </div>
-            <p>original</p>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">Original</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>No filter applied</code>
+            </div>
         </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--blur">
-                <img src="https://picsum.photos/120/80?random=1" alt="blur">
+        <div class="effect-card">
+            <div class="effect-card__preview filter--blur-sm">
+                <img src="https://picsum.photos/200/150?random=1" alt="blur-sm">
             </div>
-            <p>blur</p>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">blur-sm (2px)</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--blur-sm</code>
+            </div>
         </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--blur-light">
-                <img src="https://picsum.photos/120/80?random=1" alt="blur-light">
+        <div class="effect-card">
+            <div class="effect-card__preview filter--blur">
+                <img src="https://picsum.photos/200/150?random=1" alt="blur">
             </div>
-            <p>blur-light</p>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">blur (4px)</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--blur</code>
+            </div>
         </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--blur-heavy">
-                <img src="https://picsum.photos/120/80?random=1" alt="blur-heavy">
+        <div class="effect-card">
+            <div class="effect-card__preview filter--blur-md">
+                <img src="https://picsum.photos/200/150?random=1" alt="blur-md">
             </div>
-            <p>blur-heavy</p>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">blur-md (8px)</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--blur-md</code>
+            </div>
         </div>
-    </div>
-
-    <div class="demo-row">
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--original">
-                <img src="https://picsum.photos/120/80?random=2" alt="original">
+        <div class="effect-card">
+            <div class="effect-card__preview filter--blur-lg">
+                <img src="https://picsum.photos/200/150?random=1" alt="blur-lg">
             </div>
-            <p>original</p>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">blur-lg (16px)</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--blur-lg</code>
+            </div>
         </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--grayscale">
-                <img src="https://picsum.photos/120/80?random=2" alt="grayscale">
+        <div class="effect-card">
+            <div class="effect-card__preview filter--blur-xl">
+                <img src="https://picsum.photos/200/150?random=1" alt="blur-xl">
             </div>
-            <p>grayscale</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--grayscale-50">
-                <img src="https://picsum.photos/120/80?random=2" alt="grayscale-50">
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">blur-xl (24px)</h4>
             </div>
-            <p>grayscale-50%</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--sepia">
-                <img src="https://picsum.photos/120/80?random=2" alt="sepia">
+            <div class="effect-card__code">
+                <code>.filter--blur-xl</code>
             </div>
-            <p>sepia</p>
-        </div>
-    </div>
-
-    <div class="demo-row">
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--original">
-                <img src="https://picsum.photos/120/80?random=3" alt="original">
-            </div>
-            <p>original</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--brightness">
-                <img src="https://picsum.photos/120/80?random=3" alt="brightness">
-            </div>
-            <p>brightness (150%)</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--brightness-low">
-                <img src="https://picsum.photos/120/80?random=3" alt="brightness-low">
-            </div>
-            <p>brightness (50%)</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--contrast">
-                <img src="https://picsum.photos/120/80?random=3" alt="contrast">
-            </div>
-            <p>contrast</p>
-        </div>
-    </div>
-
-    <div class="demo-row">
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--original">
-                <img src="https://picsum.photos/120/80?random=4" alt="original">
-            </div>
-            <p>original</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--invert">
-                <img src="https://picsum.photos/120/80?random=4" alt="invert">
-            </div>
-            <p>invert</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--hue-rotate">
-                <img src="https://picsum.photos/120/80?random=4" alt="hue-rotate">
-            </div>
-            <p>hue-rotate (90°)</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--hue-rotate-180">
-                <img src="https://picsum.photos/120/80?random=4" alt="hue-rotate-180">
-            </div>
-            <p>hue-rotate (180°)</p>
-        </div>
-    </div>
-
-    <div class="demo-row">
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--original">
-                <img src="https://picsum.photos/120/80?random=5" alt="original">
-            </div>
-            <p>original</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--saturate">
-                <img src="https://picsum.photos/120/80?random=5" alt="saturate">
-            </div>
-            <p>saturate (200%)</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--desaturate">
-                <img src="https://picsum.photos/120/80?random=5" alt="desaturate">
-            </div>
-            <p>desaturate (25%)</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--drop-shadow">
-                <img src="https://picsum.photos/120/80?random=5" alt="drop-shadow">
-            </div>
-            <p>drop-shadow</p>
         </div>
     </div>
 </section>
 
-<section>
-    <h2>Filter Presets</h2>
-    <p>Pre-configured filter combinations for common effects.</p>
+{# ============================================================= #}
+{# GRAYSCALE FILTERS #}
+{# ============================================================= #}
+<section class="section-divider">
+    <h2>⬛ Grayscale Filters</h2>
+    <p>Convert images to grayscale at different intensities</p>
 
-    <div class="demo-row">
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--original">
-                <img src="https://picsum.photos/120/80?random=10" alt="original">
+    <div class="effect-grid">
+        <div class="effect-card">
+            <div class="effect-card__preview">
+                <img src="https://picsum.photos/200/150?random=2" alt="Original">
             </div>
-            <p>original</p>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">Original</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>No filter applied</code>
+            </div>
         </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--vintage">
-                <img src="https://picsum.photos/120/80?random=10" alt="vintage">
+        <div class="effect-card">
+            <div class="effect-card__preview filter--grayscale-0">
+                <img src="https://picsum.photos/200/150?random=2" alt="grayscale-0">
             </div>
-            <p>vintage</p>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">grayscale-0</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--grayscale-0</code>
+            </div>
         </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--dramatic">
-                <img src="https://picsum.photos/120/80?random=10" alt="dramatic">
+        <div class="effect-card">
+            <div class="effect-card__preview filter--grayscale-50">
+                <img src="https://picsum.photos/200/150?random=2" alt="grayscale-50">
             </div>
-            <p>dramatic</p>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">grayscale-50</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--grayscale-50</code>
+            </div>
         </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--faded">
-                <img src="https://picsum.photos/120/80?random=10" alt="faded">
+        <div class="effect-card">
+            <div class="effect-card__preview filter--grayscale">
+                <img src="https://picsum.photos/200/150?random=2" alt="grayscale">
             </div>
-            <p>faded</p>
-        </div>
-    </div>
-
-    <div class="demo-row">
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--original">
-                <img src="https://picsum.photos/120/80?random=11" alt="original">
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">grayscale (100%)</h4>
             </div>
-            <p>original</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--cold">
-                <img src="https://picsum.photos/120/80?random=11" alt="cold">
+            <div class="effect-card__code">
+                <code>.filter--grayscale</code>
             </div>
-            <p>cold</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--warm">
-                <img src="https://picsum.photos/120/80?random=11" alt="warm">
-            </div>
-            <p>warm</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--vivid">
-                <img src="https://picsum.photos/120/80?random=11" alt="vivid">
-            </div>
-            <p>vivid</p>
-        </div>
-    </div>
-
-    <div class="demo-row">
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--original">
-                <img src="https://picsum.photos/120/80?random=12" alt="original">
-            </div>
-            <p>original</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--noir">
-                <img src="https://picsum.photos/120/80?random=12" alt="noir">
-            </div>
-            <p>noir</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--dreamy">
-                <img src="https://picsum.photos/120/80?random=12" alt="dreamy">
-            </div>
-            <p>dreamy</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--xray">
-                <img src="https://picsum.photos/120/80?random=12" alt="xray">
-            </div>
-            <p>x-ray</p>
-        </div>
-    </div>
-
-    <div class="demo-row">
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--original">
-                <img src="https://picsum.photos/120/80?random=13" alt="original">
-            </div>
-            <p>original</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--duotone-blue">
-                <img src="https://picsum.photos/120/80?random=13" alt="duotone-blue">
-            </div>
-            <p>duotone-blue</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--duotone-purple">
-                <img src="https://picsum.photos/120/80?random=13" alt="duotone-purple">
-            </div>
-            <p>duotone-purple</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--duotone-orange">
-                <img src="https://picsum.photos/120/80?random=13" alt="duotone-orange">
-            </div>
-            <p>duotone-orange</p>
         </div>
     </div>
 </section>
 
-<section>
-    <h2>Opacity Effects</h2>
-    <p>Opacity level variations.</p>
+{# ============================================================= #}
+{# SEPIA FILTERS #}
+{# ============================================================= #}
+<section class="section-divider">
+    <h2>🟫 Sepia Filters</h2>
+    <p>Vintage sepia tone effects</p>
 
-    <div class="demo-row">
-        <div class="demo-item effect-demo">
-            <div class="effect-box opacity--100">
-                <div class="color-block"></div>
+    <div class="effect-grid">
+        <div class="effect-card">
+            <div class="effect-card__preview">
+                <img src="https://picsum.photos/200/150?random=3" alt="Original">
             </div>
-            <p>opacity 100%</p>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">Original</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>No filter applied</code>
+            </div>
         </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box opacity--75">
-                <div class="color-block"></div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--sepia-50">
+                <img src="https://picsum.photos/200/150?random=3" alt="sepia-50">
             </div>
-            <p>opacity 75%</p>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">sepia-50</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--sepia-50</code>
+            </div>
         </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box opacity--50">
-                <div class="color-block"></div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--sepia">
+                <img src="https://picsum.photos/200/150?random=3" alt="sepia">
             </div>
-            <p>opacity 50%</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box opacity--25">
-                <div class="color-block"></div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">sepia (100%)</h4>
             </div>
-            <p>opacity 25%</p>
+            <div class="effect-card__code">
+                <code>.filter--sepia</code>
+            </div>
         </div>
     </div>
 </section>
 
-<section>
-    <h2>Shadow Effects</h2>
-    <p>Box shadow variations for depth and emphasis.</p>
+{# ============================================================= #}
+{# BRIGHTNESS FILTERS #}
+{# ============================================================= #}
+<section class="section-divider">
+    <h2>☀️ Brightness Filters</h2>
+    <p>Adjust image brightness levels</p>
 
-    <div class="demo-row">
-        <div class="demo-item effect-demo">
-            <div class="effect-box shadow--light">Light</div>
-            <p>shadow-light</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box shadow--medium">Medium</div>
-            <p>shadow-medium</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box shadow--dark">Dark</div>
-            <p>shadow-dark</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box shadow--large">Large</div>
-            <p>shadow-large</p>
-        </div>
-    </div>
-
-    <div class="demo-row">
-        <div class="demo-item effect-demo">
-            <div class="effect-box shadow--soft">Soft</div>
-            <p>shadow-soft</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box shadow--inset">Inset</div>
-            <p>shadow-inset</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box shadow--colored">Colored</div>
-            <p>shadow-colored</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box shadow--intense">Intense</div>
-            <p>shadow-intense</p>
-        </div>
-    </div>
-</section>
-
-<section>
-    <h2>Directional Shadows</h2>
-    <p>Shadows pointing in different directions.</p>
-
-    <div class="demo-row">
-        <div class="demo-item effect-demo">
-            <div class="effect-box shadow--top">Top</div>
-            <p>shadow-top</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box shadow--right">Right</div>
-            <p>shadow-right</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box shadow--bottom">Bottom</div>
-            <p>shadow-bottom</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box shadow--left">Left</div>
-            <p>shadow-left</p>
-        </div>
-    </div>
-</section>
-
-<section>
-    <h2>Elevation Levels</h2>
-    <p>Material Design-inspired elevation shadows.</p>
-
-    <div class="demo-row">
-        <div class="demo-item effect-demo">
-            <div class="effect-box elevation--1">1</div>
-            <p>elevation-1</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box elevation--2">2</div>
-            <p>elevation-2</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box elevation--3">3</div>
-            <p>elevation-3</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box elevation--4">4</div>
-            <p>elevation-4</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box elevation--5">5</div>
-            <p>elevation-5</p>
-        </div>
-    </div>
-</section>
-
-<section>
-    <h2>Embossed Effects</h2>
-    <p>3D embossed and debossed appearances.</p>
-
-    <div class="demo-row">
-        <div class="demo-item effect-demo">
-            <div class="effect-box embossed--light">Light</div>
-            <p>embossed-light</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box embossed--heavy">Heavy</div>
-            <p>embossed-heavy</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box shadow--emphasize-dark">Emphasize</div>
-            <p>emphasize-dark</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box shadow--border">Border</div>
-            <p>shadow-border</p>
-        </div>
-    </div>
-</section>
-
-<section>
-    <h2>Backdrop Blur</h2>
-    <p>Frosted glass effect using backdrop-filter.</p>
-
-    <div class="demo-row">
-        <div class="demo-item effect-demo backdrop-container">
-            <div class="backdrop-bg"></div>
-            <div class="effect-box backdrop--blur">Backdrop Blur</div>
-            <p>backdrop-blur</p>
-        </div>
-    </div>
-</section>
-
-<section>
-    <h2>Interactive Filters</h2>
-    <p>Hover to see the filter transition effect.</p>
-
-    <div class="demo-row">
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--hover-blur">
-                <img src="https://picsum.photos/120/80?random=13" alt="hover-blur">
+    <div class="effect-grid">
+        <div class="effect-card">
+            <div class="effect-card__preview">
+                <img src="https://picsum.photos/200/150?random=4" alt="Original">
             </div>
-            <p>hover: blur</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--hover-grayscale">
-                <img src="https://picsum.photos/120/80?random=14" alt="hover-grayscale">
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">Original</h4>
             </div>
-            <p>hover: grayscale</p>
-        </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--hover-saturate">
-                <img src="https://picsum.photos/120/80?random=15" alt="hover-saturate">
+            <div class="effect-card__code">
+                <code>No filter applied</code>
             </div>
-            <p>hover: saturate</p>
         </div>
-        <div class="demo-item effect-demo">
-            <div class="effect-box effect--hover-brightness">
-                <img src="https://picsum.photos/120/80?random=16" alt="hover-brightness">
+        <div class="effect-card">
+            <div class="effect-card__preview filter--brightness-50">
+                <img src="https://picsum.photos/200/150?random=4" alt="brightness-50">
             </div>
-            <p>hover: brightness</p>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">brightness-50</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--brightness-50</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--brightness-75">
+                <img src="https://picsum.photos/200/150?random=4" alt="brightness-75">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">brightness-75</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--brightness-75</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--brightness-100">
+                <img src="https://picsum.photos/200/150?random=4" alt="brightness-100">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">brightness-100</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--brightness-100</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--brightness-125">
+                <img src="https://picsum.photos/200/150?random=4" alt="brightness-125">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">brightness-125</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--brightness-125</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--brightness-150">
+                <img src="https://picsum.photos/200/150?random=4" alt="brightness-150">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">brightness-150</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--brightness-150</code>
+            </div>
         </div>
     </div>
 </section>
 
-<section>
-    <h2>Usage</h2>
+{# ============================================================= #}
+{# CONTRAST FILTERS #}
+{# ============================================================= #}
+<section class="section-divider">
+    <h2>🔲 Contrast Filters</h2>
+    <p>Adjust image contrast levels</p>
 
-    <div class="code-block"><span class="comment">// Filter Mixins</span>
-        .image-blur {
-        @include filter_blur(4px);
+    <div class="effect-grid">
+        <div class="effect-card">
+            <div class="effect-card__preview">
+                <img src="https://picsum.photos/200/150?random=5" alt="Original">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">Original</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>No filter applied</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--contrast-50">
+                <img src="https://picsum.photos/200/150?random=5" alt="contrast-50">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">contrast-50</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--contrast-50</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--contrast-100">
+                <img src="https://picsum.photos/200/150?random=5" alt="contrast-100">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">contrast-100</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--contrast-100</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--contrast-150">
+                <img src="https://picsum.photos/200/150?random=5" alt="contrast-150">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">contrast-150</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--contrast-150</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--contrast-200">
+                <img src="https://picsum.photos/200/150?random=5" alt="contrast-200">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">contrast-200</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--contrast-200</code>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ============================================================= #}
+{# SATURATE FILTERS #}
+{# ============================================================= #}
+<section class="section-divider">
+    <h2>🎨 Saturate Filters</h2>
+    <p>Adjust color saturation levels</p>
+
+    <div class="effect-grid">
+        <div class="effect-card">
+            <div class="effect-card__preview">
+                <img src="https://picsum.photos/200/150?random=6" alt="Original">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">Original</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>No filter applied</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--saturate-0">
+                <img src="https://picsum.photos/200/150?random=6" alt="saturate-0">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">saturate-0</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--saturate-0</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--saturate-50">
+                <img src="https://picsum.photos/200/150?random=6" alt="saturate-50">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">saturate-50</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--saturate-50</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--saturate-150">
+                <img src="https://picsum.photos/200/150?random=6" alt="saturate-150">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">saturate-150</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--saturate-150</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--saturate-200">
+                <img src="https://picsum.photos/200/150?random=6" alt="saturate-200">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">saturate-200</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--saturate-200</code>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ============================================================= #}
+{# HUE ROTATE FILTERS #}
+{# ============================================================= #}
+<section class="section-divider">
+    <h2>🌈 Hue Rotate Filters</h2>
+    <p>Rotate the hue of colors</p>
+
+    <div class="effect-grid">
+        <div class="effect-card">
+            <div class="effect-card__preview">
+                <img src="https://picsum.photos/200/150?random=7" alt="Original">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">Original</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>No filter applied</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--hue-rotate-30">
+                <img src="https://picsum.photos/200/150?random=7" alt="hue-rotate-30">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">hue-rotate-30°</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--hue-rotate-30</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--hue-rotate-60">
+                <img src="https://picsum.photos/200/150?random=7" alt="hue-rotate-60">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">hue-rotate-60°</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--hue-rotate-60</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--hue-rotate-90">
+                <img src="https://picsum.photos/200/150?random=7" alt="hue-rotate-90">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">hue-rotate-90°</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--hue-rotate-90</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--hue-rotate-180">
+                <img src="https://picsum.photos/200/150?random=7" alt="hue-rotate-180">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">hue-rotate-180°</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--hue-rotate-180</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--hue-rotate-270">
+                <img src="https://picsum.photos/200/150?random=7" alt="hue-rotate-270">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">hue-rotate-270°</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--hue-rotate-270</code>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ============================================================= #}
+{# INVERT FILTERS #}
+{# ============================================================= #}
+<section class="section-divider">
+    <h2>🔄 Invert Filters</h2>
+    <p>Invert image colors</p>
+
+    <div class="effect-grid">
+        <div class="effect-card">
+            <div class="effect-card__preview">
+                <img src="https://picsum.photos/200/150?random=8" alt="Original">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">Original</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>No filter applied</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--invert-0">
+                <img src="https://picsum.photos/200/150?random=8" alt="invert-0">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">invert-0</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--invert-0</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--invert-50">
+                <img src="https://picsum.photos/200/150?random=8" alt="invert-50">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">invert-50</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--invert-50</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--invert">
+                <img src="https://picsum.photos/200/150?random=8" alt="invert">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">invert (100%)</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--invert</code>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ============================================================= #}
+{# DROP SHADOW FILTERS #}
+{# ============================================================= #}
+<section class="section-divider">
+    <h2>🌑 Drop Shadow Filters</h2>
+    <p>CSS filter drop-shadow effects</p>
+
+    <div class="effect-grid">
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: #f0f0f0;">
+                <img src="https://picsum.photos/100/100?random=9" alt="Original"
+                    style="width: 80px; height: 80px; border-radius: 8px;">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">Original</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>No filter applied</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--drop-shadow-sm" style="background: #f0f0f0;">
+                <img src="https://picsum.photos/100/100?random=9" alt="drop-shadow-sm"
+                    style="width: 80px; height: 80px; border-radius: 8px;">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">drop-shadow-sm</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--drop-shadow-sm</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--drop-shadow" style="background: #f0f0f0;">
+                <img src="https://picsum.photos/100/100?random=9" alt="drop-shadow"
+                    style="width: 80px; height: 80px; border-radius: 8px;">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">drop-shadow</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--drop-shadow</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--drop-shadow-md" style="background: #f0f0f0;">
+                <img src="https://picsum.photos/100/100?random=9" alt="drop-shadow-md"
+                    style="width: 80px; height: 80px; border-radius: 8px;">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">drop-shadow-md</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--drop-shadow-md</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--drop-shadow-lg" style="background: #f0f0f0;">
+                <img src="https://picsum.photos/100/100?random=9" alt="drop-shadow-lg"
+                    style="width: 80px; height: 80px; border-radius: 8px;">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">drop-shadow-lg</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--drop-shadow-lg</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--drop-shadow-xl" style="background: #f0f0f0;">
+                <img src="https://picsum.photos/100/100?random=9" alt="drop-shadow-xl"
+                    style="width: 80px; height: 80px; border-radius: 8px;">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">drop-shadow-xl</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--drop-shadow-xl</code>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ============================================================= #}
+{# FILTER PRESETS #}
+{# ============================================================= #}
+<section class="section-divider">
+    <h2>🎭 Filter Presets</h2>
+    <p>Pre-configured filter combinations for creative effects</p>
+
+    <div class="effect-grid">
+        <div class="effect-card">
+            <div class="effect-card__preview">
+                <img src="https://picsum.photos/200/150?random=10" alt="Original">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">Original</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>No filter applied</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--noir">
+                <img src="https://picsum.photos/200/150?random=10" alt="noir">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">Noir</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--noir</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--vintage">
+                <img src="https://picsum.photos/200/150?random=10" alt="vintage">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">Vintage</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--vintage</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--cold">
+                <img src="https://picsum.photos/200/150?random=10" alt="cold">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">Cold</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--cold</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview filter--warm">
+                <img src="https://picsum.photos/200/150?random=10" alt="warm">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">Warm</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.filter--warm</code>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ============================================================= #}
+{# BACKDROP FILTERS #}
+{# ============================================================= #}
+<section class="section-divider">
+    <h2>🌫️ Backdrop Filters</h2>
+    <p>CSS backdrop-filter effects for glass morphism</p>
+
+    <div class="effect-grid">
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                <div class="demo-box-effect backdrop--blur" style="background: rgba(255,255,255,0.2);">Blur</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">backdrop--blur</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.backdrop--blur</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                <div class="demo-box-effect backdrop--blur-sm" style="background: rgba(255,255,255,0.2);">Blur SM</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">backdrop--blur-sm</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.backdrop--blur-sm</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                <div class="demo-box-effect backdrop--blur-lg" style="background: rgba(255,255,255,0.2);">Blur LG</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">backdrop--blur-lg</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.backdrop--blur-lg</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                <div class="demo-box-effect backdrop--glass" style="background: rgba(255,255,255,0.2);">Glass</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">backdrop--glass</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.backdrop--glass</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                <div class="demo-box-effect backdrop--glass-dark" style="background: rgba(0,0,0,0.2); color: #fff;">
+                    Glass Dark</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">backdrop--glass-dark</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.backdrop--glass-dark</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                <div class="demo-box-effect backdrop--grayscale" style="background: rgba(255,255,255,0.2);">Grayscale
+                </div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">backdrop--grayscale</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.backdrop--grayscale</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                <div class="demo-box-effect backdrop--sepia" style="background: rgba(255,255,255,0.2);">Sepia</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">backdrop--sepia</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.backdrop--sepia</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                <div class="demo-box-effect backdrop--invert" style="background: rgba(255,255,255,0.2);">Invert</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">backdrop--invert</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.backdrop--invert</code>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ============================================================= #}
+{# BOX SHADOWS #}
+{# ============================================================= #}
+<section class="section-divider">
+    <h2>🌑 Box Shadows</h2>
+    <p>Box shadow utilities for depth and elevation</p>
+
+    <div class="effect-grid">
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: #f5f5f5;">
+                <div class="demo-box-shadow shadow">Default</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">shadow</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.shadow</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: #f5f5f5;">
+                <div class="demo-box-shadow shadow--sm">Small</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">shadow--sm</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.shadow--sm</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: #f5f5f5;">
+                <div class="demo-box-shadow shadow--md">Medium</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">shadow--md</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.shadow--md</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: #f5f5f5;">
+                <div class="demo-box-shadow shadow--lg">Large</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">shadow--lg</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.shadow--lg</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: #f5f5f5;">
+                <div class="demo-box-shadow shadow--xl">X-Large</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">shadow--xl</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.shadow--xl</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: #f5f5f5;">
+                <div class="demo-box-shadow shadow--inner">Inner</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">shadow--inner</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.shadow--inner</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: #f5f5f5;">
+                <div class="demo-box-shadow shadow--glow">Glow</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">shadow--glow</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.shadow--glow</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: #f5f5f5;">
+                <div class="demo-box-shadow shadow--glow-lg">Glow LG</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">shadow--glow-lg</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.shadow--glow-lg</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: #f5f5f5;">
+                <div class="demo-box-shadow shadow--primary">Primary</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">shadow--primary</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.shadow--primary</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: #f5f5f5;">
+                <div class="demo-box-shadow shadow--success">Success</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">shadow--success</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.shadow--success</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: #f5f5f5;">
+                <div class="demo-box-shadow shadow--warning">Warning</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">shadow--warning</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.shadow--warning</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: #f5f5f5;">
+                <div class="demo-box-shadow shadow--danger">Danger</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">shadow--danger</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.shadow--danger</code>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ============================================================= #}
+{# BLEND MODES #}
+{# ============================================================= #}
+<section class="section-divider">
+    <h2>🎭 Blend Modes</h2>
+    <p>CSS mix-blend-mode effects for creative layering</p>
+
+    <div class="effect-grid">
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: linear-gradient(135deg, #ff6b6b, #4ecdc4);">
+                <div class="demo-box-effect blend--multiply" style="background: #fff;">Multiply</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">blend--multiply</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.blend--multiply</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: linear-gradient(135deg, #ff6b6b, #4ecdc4);">
+                <div class="demo-box-effect blend--screen" style="background: #333;">Screen</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">blend--screen</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.blend--screen</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: linear-gradient(135deg, #ff6b6b, #4ecdc4);">
+                <div class="demo-box-effect blend--overlay" style="background: #888;">Overlay</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">blend--overlay</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.blend--overlay</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: linear-gradient(135deg, #ff6b6b, #4ecdc4);">
+                <div class="demo-box-effect blend--darken" style="background: #aaa;">Darken</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">blend--darken</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.blend--darken</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: linear-gradient(135deg, #ff6b6b, #4ecdc4);">
+                <div class="demo-box-effect blend--lighten" style="background: #555;">Lighten</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">blend--lighten</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.blend--lighten</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: linear-gradient(135deg, #ff6b6b, #4ecdc4);">
+                <div class="demo-box-effect blend--difference" style="background: #fff;">Difference</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">blend--difference</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.blend--difference</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: linear-gradient(135deg, #ff6b6b, #4ecdc4);">
+                <div class="demo-box-effect blend--exclusion" style="background: #888;">Exclusion</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">blend--exclusion</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.blend--exclusion</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview" style="background: linear-gradient(135deg, #ff6b6b, #4ecdc4);">
+                <div class="demo-box-effect blend--hue" style="background: #667eea;">Hue</div>
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">blend--hue</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.blend--hue</code>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ============================================================= #}
+{# MASKS #}
+{# ============================================================= #}
+<section class="section-divider">
+    <h2>🎭 Masks</h2>
+    <p>CSS mask effects for fade gradients</p>
+
+    <div class="effect-grid">
+        <div class="effect-card">
+            <div class="effect-card__preview mask--fade-t">
+                <img src="https://picsum.photos/200/150?random=20" alt="fade-t">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">mask--fade-t</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.mask--fade-t</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview mask--fade-b">
+                <img src="https://picsum.photos/200/150?random=20" alt="fade-b">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">mask--fade-b</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.mask--fade-b</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview mask--fade-l">
+                <img src="https://picsum.photos/200/150?random=20" alt="fade-l">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">mask--fade-l</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.mask--fade-l</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview mask--fade-r">
+                <img src="https://picsum.photos/200/150?random=20" alt="fade-r">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">mask--fade-r</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.mask--fade-r</code>
+            </div>
+        </div>
+        <div class="effect-card">
+            <div class="effect-card__preview mask--radial">
+                <img src="https://picsum.photos/200/150?random=20" alt="radial">
+            </div>
+            <div class="effect-card__info">
+                <h4 class="effect-card__title">mask--radial</h4>
+            </div>
+            <div class="effect-card__code">
+                <code>.mask--radial</code>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ============================================================= #}
+{# USAGE #}
+{# ============================================================= #}
+<section class="section-divider">
+    <h2>📖 Usage</h2>
+    <p>How to use filter classes and mixins</p>
+
+    <div class="code-block">
+        <span class="comment">// Using filter classes directly in HTML</span>
+        &lt;img class="filter--blur" src="photo.jpg"&gt;
+        &lt;img class="filter--grayscale" src="photo.jpg"&gt;
+        &lt;img class="filter--sepia filter--brightness-110" src="photo.jpg"&gt;
+
+        <span class="comment">// Using mixins in SCSS</span>
+        .my-image {
+        @include filter_blur(8px);
         }
 
-        .image-grayscale {
-        @include filter_grayscale(100%);
+        .vintage-photo {
+        @include filter_sepia(80%);
+        @include filter_brightness(1.1);
         }
 
-        .image-brightness {
-        @include filter_brightness(150%);
-        }
-
-        <span class="comment">// Shadow Mixins</span>
-        .card {
-        @include elevation(3);
-        }
-
-        .box {
-        @include box_shadow(0, 4px, 8px, 0, rgba(0,0,0, .2));
-        }
-
-        <span class="comment">// Opacity Mixin</span>
-        .faded {
-        @include set_opacity(0.5);
-        }
-
-        <span class="comment">// Opacity Transition</span>
-        .image {
-        @include opacity_transition(0.3s, 0.75);
+        <span class="comment">// Backdrop filters for glass effects</span>
+        .glass-card {
+        @include backdrop_blur(12px);
+        background: rgba(255, 255, 255, 0.2);
         }
     </div>
 </section>

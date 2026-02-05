@@ -28,6 +28,104 @@
 
 
 // ============================================================================
+// Keyframes
+// ============================================================================
+// These keyframes must be included at the root level to be available globally
+
+// Spinner keyframes
+@include keyframes_spinner_border;
+@include keyframes_spinner_grow;
+
+// Circle keyframes
+@include keyframes_circle_rotation;
+@include keyframes_circle_clip;
+@include keyframes_circle_rotation_back;
+@include keyframes_circle_pulse;
+@include keyframes_circle_ripple;
+
+// Progress keyframes
+@include keyframes_progress_fill;
+@include keyframes_progress_indeterminate;
+@include keyframes_progress_stripe;
+@include keyframes_progress_pulse;
+@include keyframes_progress_split;
+@include keyframes_progress_flow;
+@include keyframes_circle_progress;
+@include keyframes_dot_active;
+@include keyframes_segment_fill;
+
+// Bubble keyframes
+@include keyframes_bubble_scale;
+@include keyframes_bubble_fade;
+@include keyframes_bubble_flash;
+@include keyframes_bubble_pulse;
+@include keyframes_bubble_expand;
+@include keyframes_bubble_collision;
+@include keyframes_rotation;
+@include keyframes_flip;
+
+// Rectangle keyframes
+@include keyframes_rect_flip_x;
+@include keyframes_rect_scale_out;
+@include keyframes_rect_scale_fade;
+@include keyframes_rect_fill;
+@include keyframes_rect_diamond_fill;
+@include keyframes_rect_rotate_shrink;
+@include keyframes_rect_morph;
+@include keyframes_rect_walk;
+@include keyframes_rect_rotation_break;
+
+// Line/Bar keyframes
+@include keyframes_bar_height;
+@include keyframes_bar_bounce;
+@include keyframes_bar_scale_y;
+@include keyframes_bar_flash;
+@include keyframes_bar_wave;
+@include keyframes_bar_expand;
+@include keyframes_bar_reveal;
+@include keyframes_bar_spike;
+@include keyframes_bar_ht;
+@include keyframes_matrix;
+
+// Text keyframes
+@include keyframes_text_fill;
+@include keyframes_text_bounce;
+@include keyframes_text_dots;
+@include keyframes_text_letter_fade;
+@include keyframes_text_pulse;
+@include keyframes_text_spotlight;
+@include keyframes_text_cursor;
+@include keyframes_text_wave;
+@include keyframes_text_shake;
+
+// Object keyframes
+@include keyframes_paddles;
+@include keyframes_ball_bounce;
+@include keyframes_heartbeat;
+@include keyframes_star_twinkle;
+@include keyframes_bracket_swing;
+@include keyframes_rolling_rock;
+@include keyframes_pendulum;
+@include keyframes_coin_flip;
+@include keyframes_bounce_up;
+@include keyframes_bounce_shadow;
+@include keyframes_dna_rotate;
+@include keyframes_infinity_rotate;
+
+// Graph keyframes
+@include keyframes_write_down;
+@include keyframes_page_turn;
+@include keyframes_pencil_write;
+@include keyframes_checkmark;
+@include keyframes_hourglass_flip;
+@include keyframes_sand_fall;
+@include keyframes_clock_rotate;
+@include keyframes_envelope_open;
+@include keyframes_search_wobble;
+@include keyframes_gear_rotate;
+
+
+// ============================================================================
 // Base Loader Container
 // ============================================================================
 

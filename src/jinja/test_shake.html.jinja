@@ -15,20 +15,16 @@
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-shake-demo"></div>
+            <div class="demo-box animate_shake"></div>
             <p>shake</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-shake-slow-demo"></div>
+            <div class="demo-box animate_shake_slow"></div>
             <p>shake-slow</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-shake-horizontal-demo"></div>
+            <div class="demo-box animate_shake_horizontal"></div>
             <p>shake-horizontal</p>
-        </div>
-        <div class="demo-item">
-            <div class="demo-box animate-shake-vertical-demo"></div>
-            <p>shake-vertical</p>
         </div>
     </div>
 </section>
@@ -39,16 +35,44 @@
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-wobble-demo"></div>
+            <div class="demo-box animate_wobble"></div>
             <p>wobble</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-jiggle-demo"></div>
+            <div class="demo-box animate_wobble_slow"></div>
+            <p>wobble-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_wobble_fast"></div>
+            <p>wobble-fast</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_wobble_scale"></div>
+            <p>wobble-scale</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Jiggle Effects</h2>
+    <p>Quick jiggling motion effects.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_jiggle"></div>
             <p>jiggle</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-jello-demo"></div>
-            <p>jello</p>
+            <div class="demo-box animate_jiggle_slow"></div>
+            <p>jiggle-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_jiggle_multi"></div>
+            <p>jiggle-multi</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_jiggle_vertical"></div>
+            <p>jiggle-vertical</p>
         </div>
     </div>
 </section>
@@ -61,17 +85,13 @@
         @include animate_shake;
         }
 
-        <span class="comment">// With custom amplitude</span>
-        .element {
-        @include animate_shake(
-        $amplitude: 20deg,
-        $duration: 0.5s
-        );
+        .element-wobble {
+        @include animate_wobble;
         }
 
         <span class="comment">// Utility classes</span>
-        &lt;div class="animate-shake"&gt;...&lt;/div&gt;
-        &lt;div class="animate-wobble"&gt;...&lt;/div&gt;
+        &lt;div class="animate_shake"&gt;...&lt;/div&gt;
+        &lt;div class="animate_wobble"&gt;...&lt;/div&gt;
     </div>
 </section>
 

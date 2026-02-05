@@ -10,71 +10,69 @@
 {%- block content %}
 
 <section>
-    <h2>Elastic</h2>
-    <p>Elastic bounce effects with spring physics.</p>
+    <h2>Float Effects</h2>
+    <p>Subtle floating animations.</p>
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-elastic-in-demo" id="elastic-in-demo"></div>
-            <p>elastic-in</p>
-        </div>
-        <div class="demo-item">
-            <div class="demo-box animate-elastic-out-demo" id="elastic-out-demo"></div>
-            <p>elastic-out</p>
-        </div>
-    </div>
-
-    <button class="btn btn--primary" onclick="replayElastic()">Replay Animations</button>
-</section>
-
-<section>
-    <h2>Lightspeed</h2>
-    <p>Fast skewed entrance and exit animations.</p>
-
-    <div class="demo-row">
-        <div class="demo-item">
-            <div class="demo-box animate-lightspeed-in-demo" id="lightspeed-in-demo"></div>
-            <p>lightspeed-in</p>
-        </div>
-        <div class="demo-item">
-            <div class="demo-box animate-lightspeed-out-demo" id="lightspeed-out-demo"></div>
-            <p>lightspeed-out</p>
-        </div>
-    </div>
-
-    <button class="btn btn--primary" onclick="replayLightspeed()">Replay Animations</button>
-</section>
-
-<section>
-    <h2>Hinge</h2>
-    <p>Door hinge falling effect.</p>
-
-    <div class="demo-row">
-        <div class="demo-item">
-            <div class="demo-box animate-hinge-demo" id="hinge-demo"></div>
-            <p>hinge</p>
-        </div>
-    </div>
-
-    <button class="btn btn--primary" onclick="replayHinge()">Replay Animation</button>
-</section>
-
-<section>
-    <h2>Float & Glow</h2>
-    <p>Subtle floating and glowing effects.</p>
-
-    <div class="demo-row">
-        <div class="demo-item">
-            <div class="demo-box animate-float-demo"></div>
+            <div class="demo-box animate_float"></div>
             <p>float</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-glow-demo"></div>
+            <div class="demo-box animate_float_horizontal"></div>
+            <p>float-horizontal</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_float_rotate"></div>
+            <p>float-rotate</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Glow Effects</h2>
+    <p>Glowing box-shadow animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_glow"></div>
             <p>glow</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-ripple-demo"></div>
+            <div class="demo-box animate_glow_soft"></div>
+            <p>glow-soft</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_glow_pulse"></div>
+            <p>glow-pulse</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_glow_multicolor"></div>
+            <p>glow-multicolor</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Ripple Effects</h2>
+    <p>Ripple and wave animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_ripple"></div>
             <p>ripple</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_ripple_slow"></div>
+            <p>ripple-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_ripple_multi"></div>
+            <p>ripple-multi</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_ripple_color"></div>
+            <p>ripple-color</p>
         </div>
     </div>
 </section>
@@ -85,12 +83,20 @@
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-wave-demo"></div>
+            <div class="demo-box animate_wave"></div>
             <p>wave</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-twist-demo"></div>
+            <div class="demo-box animate_wave_slow"></div>
+            <p>wave-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_twist"></div>
             <p>twist</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_twist_fast"></div>
+            <p>twist-fast</p>
         </div>
     </div>
 </section>
@@ -100,45 +106,18 @@
 
     <div class="code-block"><span class="comment">// SCSS Mixin</span>
         .element {
-        @include animate_elastic_in;
+        @include animate_float;
         }
 
-        .element {
-        @include animate_lightspeed_in;
+        .element-glow {
+        @include animate_glow;
         }
 
         <span class="comment">// Utility classes</span>
-        &lt;div class="animate-elastic-in"&gt;...&lt;/div&gt;
-        &lt;div class="animate-lightspeed-in"&gt;...&lt;/div&gt;
-        &lt;div class="animate-float"&gt;...&lt;/div&gt;
+        &lt;div class="animate_float"&gt;...&lt;/div&gt;
+        &lt;div class="animate_glow"&gt;...&lt;/div&gt;
+        &lt;div class="animate_ripple"&gt;...&lt;/div&gt;
     </div>
 </section>
-
-<script>
-    function replayElastic() {
-        const demos = document.querySelectorAll('[id^="elastic-"]');
-        demos.forEach(demo => {
-            demo.style.animation = 'none';
-            demo.offsetHeight;
-            demo.style.animation = null;
-        });
-    }
-
-    function replayLightspeed() {
-        const demos = document.querySelectorAll('[id^="lightspeed-"]');
-        demos.forEach(demo => {
-            demo.style.animation = 'none';
-            demo.offsetHeight;
-            demo.style.animation = null;
-        });
-    }
-
-    function replayHinge() {
-        const demo = document.getElementById('hinge-demo');
-        demo.style.animation = 'none';
-        demo.offsetHeight;
-        demo.style.animation = null;
-    }
-</script>
 
 {%- endblock %}

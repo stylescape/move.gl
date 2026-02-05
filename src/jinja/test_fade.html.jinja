@@ -10,55 +10,51 @@
 {%- block content %}
 
 <section>
-    <h2>Fade In</h2>
-    <p>Smooth opacity transitions from invisible to visible.</p>
+    <h2>Fade Effects</h2>
+    <p>Smooth opacity transitions.</p>
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-fade-in-demo" id="fade-in-demo"></div>
+            <div class="demo-box animate_fade"></div>
+            <p>fade</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_fade_in"></div>
             <p>fade-in</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-fade-in-up-demo" id="fade-in-up-demo"></div>
-            <p>fade-in-up</p>
-        </div>
-        <div class="demo-item">
-            <div class="demo-box animate-fade-in-down-demo" id="fade-in-down-demo"></div>
-            <p>fade-in-down</p>
-        </div>
-        <div class="demo-item">
-            <div class="demo-box animate-fade-in-left-demo" id="fade-in-left-demo"></div>
-            <p>fade-in-left</p>
-        </div>
-        <div class="demo-item">
-            <div class="demo-box animate-fade-in-right-demo" id="fade-in-right-demo"></div>
-            <p>fade-in-right</p>
-        </div>
-    </div>
-
-    <button class="btn btn--primary" onclick="replayFadeIn()">Replay Animations</button>
-</section>
-
-<section>
-    <h2>Fade Out</h2>
-    <p>Smooth opacity transitions from visible to invisible.</p>
-
-    <div class="demo-row">
-        <div class="demo-item">
-            <div class="demo-box animate-fade-out-demo" id="fade-out-demo"></div>
+            <div class="demo-box animate_fade_out"></div>
             <p>fade-out</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-fade-out-up-demo" id="fade-out-up-demo"></div>
-            <p>fade-out-up</p>
-        </div>
-        <div class="demo-item">
-            <div class="demo-box animate-fade-out-down-demo" id="fade-out-down-demo"></div>
-            <p>fade-out-down</p>
+            <div class="demo-box animate_fade_gradual"></div>
+            <p>fade-gradual</p>
         </div>
     </div>
+</section>
 
-    <button class="btn btn--primary" onclick="replayFadeOut()">Replay Animations</button>
+<section>
+    <h2>Slide + Fade Effects</h2>
+    <p>Combined slide and fade animations.</p>
+
+    <div class="demo-row">
+        <div class="demo-item">
+            <div class="demo-box animate_slide_fade_in_up"></div>
+            <p>slide-fade-in-up</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_slide_fade_in_down"></div>
+            <p>slide-fade-in-down</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_slide_fade_in_left"></div>
+            <p>slide-fade-in-left</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_slide_fade_in_right"></div>
+            <p>slide-fade-in-right</p>
+        </div>
+    </div>
 </section>
 
 <section>
@@ -66,47 +62,18 @@
 
     <div class="code-block"><span class="comment">// SCSS Mixin</span>
         .element {
-        @include fade-in;
+        @include animate_fade;
         }
 
-        .element-up {
-        @include fade-in-up($duration: 0.5s, $distance: 20px);
-        }
-
-        <span class="comment">// With custom options</span>
-        .custom {
-        @include fade-in(
-        $duration: 0.8s,
-        $timing: ease-out,
-        $delay: 0.2s
-        );
+        .element-in {
+        @include animate_fade_in;
         }
 
         <span class="comment">// Utility classes</span>
-        &lt;div class="animate-fade-in"&gt;...&lt;/div&gt;
-        &lt;div class="animate-fade-in-up"&gt;...&lt;/div&gt;
-        &lt;div class="animate-fade-in-down"&gt;...&lt;/div&gt;
+        &lt;div class="animate_fade"&gt;...&lt;/div&gt;
+        &lt;div class="animate_fade_in"&gt;...&lt;/div&gt;
+        &lt;div class="animate_slide_fade_in_up"&gt;...&lt;/div&gt;
     </div>
 </section>
-
-<script>
-    function replayFadeIn() {
-        const demos = document.querySelectorAll('[id^="fade-in"]');
-        demos.forEach(demo => {
-            demo.style.animation = 'none';
-            demo.offsetHeight; // Trigger reflow
-            demo.style.animation = null;
-        });
-    }
-
-    function replayFadeOut() {
-        const demos = document.querySelectorAll('[id^="fade-out"]');
-        demos.forEach(demo => {
-            demo.style.animation = 'none';
-            demo.offsetHeight; // Trigger reflow
-            demo.style.animation = null;
-        });
-    }
-</script>
 
 {%- endblock %}

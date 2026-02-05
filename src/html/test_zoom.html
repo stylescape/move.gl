@@ -118,39 +118,27 @@
 
         <main>
 <section>
-    <h2>Zoom In</h2>
-    <p>Scale-based entrance animations.</p>
+    <h2>Zoom Effects</h2>
+    <p>Scale-based zoom animations.</p>
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-zoom-in-demo" id="zoom-in-demo"></div>
-            <p>zoom-in</p>
+            <div class="demo-box animate_zoom"></div>
+            <p>zoom</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-zoom-in-up-demo" id="zoom-in-up-demo"></div>
-            <p>zoom-in-up</p>
+            <div class="demo-box animate_zoom_slow"></div>
+            <p>zoom-slow</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-zoom-in-down-demo" id="zoom-in-down-demo"></div>
-            <p>zoom-in-down</p>
+            <div class="demo-box animate_zoom_fast"></div>
+            <p>zoom-fast</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_zoom_fade"></div>
+            <p>zoom-fade</p>
         </div>
     </div>
-
-    <button class="btn btn--primary" onclick="replayZoomIn()">Replay Animations</button>
-</section>
-
-<section>
-    <h2>Zoom Out</h2>
-    <p>Scale-based exit animations.</p>
-
-    <div class="demo-row">
-        <div class="demo-item">
-            <div class="demo-box animate-zoom-out-demo" id="zoom-out-demo"></div>
-            <p>zoom-out</p>
-        </div>
-    </div>
-
-    <button class="btn btn--primary" onclick="replayZoomOut()">Replay Animations</button>
 </section>
 
 <section>
@@ -158,43 +146,18 @@
 
     <div class="code-block"><span class="comment">// SCSS Mixin</span>
         .element {
-        @include zoom-in;
+        @include animate_zoom;
         }
 
-        .element-out {
-        @include zoom-out($duration: 0.3s);
-        }
-
-        <span class="comment">// With direction</span>
-        .card {
-        @include zoom-in-up($scale: 0.9);
+        .element-slow {
+        @include animate_zoom_slow;
         }
 
         <span class="comment">// Utility classes</span>
-        &lt;div class="animate-zoom-in"&gt;...&lt;/div&gt;
-        &lt;div class="animate-zoom-out"&gt;...&lt;/div&gt;
+        &lt;div class="animate_zoom"&gt;...&lt;/div&gt;
+        &lt;div class="animate_zoom_fast"&gt;...&lt;/div&gt;
     </div>
-</section>
-
-<script>
-    function replayZoomIn() {
-        const demos = document.querySelectorAll('[id^="zoom-in"]');
-        demos.forEach(demo => {
-            demo.style.animation = 'none';
-            demo.offsetHeight;
-            demo.style.animation = null;
-        });
-    }
-
-    function replayZoomOut() {
-        const demos = document.querySelectorAll('[id^="zoom-out"]');
-        demos.forEach(demo => {
-            demo.style.animation = 'none';
-            demo.offsetHeight;
-            demo.style.animation = null;
-        });
-    }
-</script>        </main>
+</section>        </main>
 
         
 

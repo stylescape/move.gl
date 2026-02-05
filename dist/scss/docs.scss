@@ -731,6 +731,13 @@ button.btn:active {
     gap: 48px;
     margin-bottom: 32px;
     padding: 24px;
+
+    // Timing demo row modifier
+    &--timing {
+        .demo-box.active {
+            transform: translateX(100px);
+        }
+    }
 }
 
 .demo-item {
@@ -750,6 +757,410 @@ button.btn:active {
     height: 60px;
     background: var(--color-primary);
     border-radius: 8px;
+}
+
+// -----------------------------------------------------------------------------
+// Demo Section Headers
+// -----------------------------------------------------------------------------
+
+.demo-section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 48px 0 8px;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:first-of-type {
+        margin-top: 32px;
+    }
+}
+
+.demo-section-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin: 0 0 24px;
+}
+
+// -----------------------------------------------------------------------------
+// Demo Grid (Fixed Layout for Loaders/Animations)
+// -----------------------------------------------------------------------------
+
+.demo-grid-fixed {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+.demo-card-fixed {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:hover {
+        border-color: var(--color-text-muted);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.demo-card-fixed__preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    min-height: 120px;
+    max-height: 120px;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
+    position: relative;
+}
+
+.demo-card-fixed__info {
+    padding: 16px;
+    flex: 1;
+}
+
+.demo-card-fixed__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin: 0 0 4px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.demo-card-fixed__desc {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+.demo-card-fixed__code {
+    padding: 12px 16px;
+    background: var(--color-code-bg);
+    border-top: 1px solid var(--color-border);
+
+    code {
+        display: block;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.7rem;
+        color: #9cdcfe;
+        background: transparent;
+        padding: 0;
+        white-space: nowrap;
+        overflow-x: auto;
+    }
+
+    .tag { color: #569cd6; }
+    .attr { color: #9cdcfe; }
+    .string { color: #ce9178; }
+}
+
+// Animation demo box within fixed cards
+.demo-card-fixed__preview .demo-box {
+    width: 50px;
+    height: 50px;
+    background: var(--color-primary);
+    border-radius: 8px;
+}
+
+// -----------------------------------------------------------------------------
+// Loader Demo Styling (Greyscale)
+// -----------------------------------------------------------------------------
+
+// Override loader colors for demo display - greyscale only, no white
+.demo-card-fixed__preview {
+
+    // Set demo background to light grey for visibility
+    background: #f0f0f0;
+
+    [data-theme="dark"] & {
+        background: #1a1a1a;
+    }
+
+    // Base loader element styling
+    .loader {
+        // Apply greyscale colors - use currentColor approach
+        color: #333333;
+
+        [data-theme="dark"] & {
+            color: #999999;
+        }
+    }
+
+    // Spinner and ring loaders - use border colors
+    .loader--spinner,
+    .loader--dual-ring,
+    .loader--circle-notch,
+    .loader--ring,
+    .loader--circle-spinner,
+    .loader--circle-dual,
+    .loader--circle-clip,
+    .loader--circle-clip-dual,
+    .loader--circle-nested,
+    .loader--circle-triple,
+    .loader--circle-pulse,
+    .loader--hourglass,
+    .loader--gradient {
+        border-color: #333333 transparent #333333 transparent;
+
+        &::after, &::before {
+            border-color: #333333 transparent #333333 transparent;
+        }
+
+        [data-theme="dark"] & {
+            border-color: #999999 transparent #999999 transparent;
+
+            &::after, &::before {
+                border-color: #999999 transparent #999999 transparent;
+            }
+        }
+    }
+
+    // Dots, bars, bubble loaders - use background color
+    .loader--dots > *,
+    .loader--dots-bounce > *,
+    .loader--dots-wave > *,
+    .loader--dots-fade > *,
+    .loader--dots-grow > *,
+    .loader--ellipsis > *,
+    .loader--typing > *,
+    .loader--bars > *,
+    .loader--wave-bar > *,
+    .loader--bar-bounce > *,
+    .loader--bar-pulse > *,
+    .loader--bar-flash > *,
+    .loader--bar-wave > *,
+    .loader--bar-equalizer > *,
+    .loader--bar-sound-wave > *,
+    .loader--bar-shrink > *,
+    .loader--bar-matrix > *,
+    .loader--bubble-rotate > *,
+    .loader--bubble-dots-bounce > *,
+    .loader--bubble-dots-flash > *,
+    .loader--bubble-dots-pulse > *,
+    .loader--bubble-dots-rotate > *,
+    .loader--bubble-expand > *,
+    .loader--bubble-collision > *,
+    .loader--chase > *,
+    .loader--pendulum > *,
+    .loader--bounce > *,
+    .loader--windmill > *,
+    .loader--folding > *,
+    .loader--wifi > *,
+    .loader--atom > *,
+    .loader--dna span,
+    .loader--progress-dots span,
+    .loader--progress-segments span,
+    .loader--rect-dual > *,
+    .loader--rect-expand > *,
+    .loader--rect-alternate > *,
+    .loader--rect-walk > *,
+    .loader--rect-nested > *,
+    .loader--rect-stepped > *,
+    .loader--ripple > *,
+    .loader--circle-ripple > * {
+        background-color: #333333 !important;
+
+        [data-theme="dark"] & {
+            background-color: #999999 !important;
+        }
+    }
+
+    // Single element loaders with background
+    .loader--pulse,
+    .loader--heartbeat,
+    .loader--square,
+    .loader--cube,
+    .loader--rect-flip,
+    .loader--rect-fill,
+    .loader--rect-shrink,
+    .loader--rect-morph,
+    .loader--rect-diamond,
+    .loader--morph,
+    .loader--bubble-flip,
+    .loader--circle-dot,
+    .loader--circle-orbit,
+    .loader--heart,
+    .loader--star,
+    .loader--coin,
+    .loader--seesaw,
+    .loader--orbit,
+    .loader--infinity {
+        background-color: #333333 !important;
+
+        [data-theme="dark"] & {
+            background-color: #999999 !important;
+        }
+    }
+
+    // Progress bars
+    .loader--progress,
+    .loader--progress-fill,
+    .loader--progress-indeterminate,
+    .loader--progress-stripe,
+    .loader--progress-stripe-fill,
+    .loader--progress-pulse,
+    .loader--progress-split,
+    .loader--progress-gradient {
+        background-color: #d0d0d0 !important;
+
+        &::after, &::before {
+            background-color: #333333 !important;
+        }
+
+        [data-theme="dark"] & {
+            background-color: #404040 !important;
+
+            &::after, &::before {
+                background-color: #999999 !important;
+            }
+        }
+    }
+
+    // Bar expand and reveal
+    .loader--bar-expand,
+    .loader--bar-reveal {
+        background-color: #d0d0d0 !important;
+
+        &::after {
+            background-color: #333333 !important;
+        }
+
+        [data-theme="dark"] & {
+            background-color: #404040 !important;
+
+            &::after {
+                background-color: #999999 !important;
+            }
+        }
+    }
+
+    // Text loaders
+    .loader--text-fill,
+    .loader--text-dots,
+    .loader--text-pulse,
+    .loader--text-spotlight,
+    .loader--text-typing,
+    .loader--text-shake,
+    .loader--text-gradient,
+    .loader--text-percentage {
+        color: #333333 !important;
+
+        [data-theme="dark"] & {
+            color: #999999 !important;
+        }
+    }
+
+    .loader--text-bounce span,
+    .loader--text-fade span,
+    .loader--text-wave span {
+        color: #333333 !important;
+
+        [data-theme="dark"] & {
+            color: #999999 !important;
+        }
+    }
+
+    // Text spinner icon
+    .loader--text-spinner span {
+        border-color: #333333 transparent #333333 transparent !important;
+
+        [data-theme="dark"] & {
+            border-color: #999999 transparent #999999 transparent !important;
+        }
+    }
+
+    // Skeleton loaders
+    .loader--skeleton-shimmer,
+    .loader--skeleton-pulse,
+    .loader--skeleton-wave,
+    .loader--skeleton-fade {
+        background-color: #d0d0d0 !important;
+
+        [data-theme="dark"] & {
+            background-color: #404040 !important;
+        }
+    }
+
+    // Graphic loaders (icons)
+    .loader--clipboard,
+    .loader--book,
+    .loader--document,
+    .loader--envelope,
+    .loader--search,
+    .loader--clock,
+    .loader--gear {
+        color: #333333 !important;
+
+        &::before, &::after {
+            background-color: #333333 !important;
+            border-color: #333333 !important;
+        }
+
+        [data-theme="dark"] & {
+            color: #999999 !important;
+
+            &::before, &::after {
+                background-color: #999999 !important;
+                border-color: #999999 !important;
+            }
+        }
+    }
+
+    // Object loaders
+    .loader--ping-pong > *,
+    .loader--rolling-rock > *,
+    .loader--bouncing-ball > *,
+    .loader--brackets > *,
+    .loader--flip-card > * {
+        background-color: #333333 !important;
+
+        [data-theme="dark"] & {
+            background-color: #999999 !important;
+        }
+    }
+
+    // Special border-based loaders
+    .loader--brackets::before,
+    .loader--brackets::after {
+        border-color: #333333 !important;
+
+        [data-theme="dark"] & {
+            border-color: #999999 !important;
+        }
+    }
+
+    // Battery loader
+    .loader--battery {
+        border-color: #333333 !important;
+
+        &::before, &::after {
+            background-color: #333333 !important;
+        }
+
+        [data-theme="dark"] & {
+            border-color: #999999 !important;
+
+            &::before, &::after {
+                background-color: #999999 !important;
+            }
+        }
+    }
+
+    // Progress circle SVG
+    .loader--progress-circle svg path {
+        stroke: #333333 !important;
+
+        [data-theme="dark"] & {
+            stroke: #999999 !important;
+        }
+    }
 }
 
 // -----------------------------------------------------------------------------

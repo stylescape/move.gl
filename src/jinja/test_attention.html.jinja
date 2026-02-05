@@ -15,12 +15,28 @@
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-flash-demo"></div>
+            <div class="demo-box animate_flash"></div>
             <p>flash</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-blink-demo"></div>
+            <div class="demo-box animate_flash_fade"></div>
+            <p>flash-fade</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_flash_strobe"></div>
+            <p>flash-strobe</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_blink"></div>
             <p>blink</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_blink_rapid"></div>
+            <p>blink-rapid</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_blink_soft"></div>
+            <p>blink-soft</p>
         </div>
     </div>
 </section>
@@ -31,12 +47,16 @@
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-beat-demo"></div>
+            <div class="demo-box animate_beat"></div>
             <p>beat</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-beat-fade-demo"></div>
+            <div class="demo-box animate_beat_fade"></div>
             <p>beat-fade</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_beat_double"></div>
+            <p>beat-double</p>
         </div>
     </div>
 </section>
@@ -47,20 +67,30 @@
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-tada-demo" id="tada-demo"></div>
+            <div class="demo-box animate_tada"></div>
             <p>tada</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-pop-demo" id="pop-demo"></div>
+            <div class="demo-box animate_tada_slow"></div>
+            <p>tada-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_tada_fast"></div>
+            <p>tada-fast</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_pop"></div>
             <p>pop</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-rubber-demo" id="rubber-demo"></div>
-            <p>rubber-band</p>
+            <div class="demo-box animate_pop_slow"></div>
+            <p>pop-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_pop_fast"></div>
+            <p>pop-fast</p>
         </div>
     </div>
-
-    <button class="btn btn--primary" onclick="replayTada()">Replay Animations</button>
 </section>
 
 <section>
@@ -69,16 +99,28 @@
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-swing-demo"></div>
+            <div class="demo-box animate_swing"></div>
             <p>swing</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-sway-demo"></div>
+            <div class="demo-box animate_swing_slow"></div>
+            <p>swing-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_sway"></div>
             <p>sway</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-nod-demo"></div>
+            <div class="demo-box animate_sway_slow"></div>
+            <p>sway-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_nod"></div>
             <p>nod</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_nod_slow"></div>
+            <p>nod-slow</p>
         </div>
     </div>
 </section>
@@ -91,26 +133,15 @@
         @include animate_tada;
         }
 
-        .element {
+        .element-flash {
         @include animate_flash;
         }
 
         <span class="comment">// Utility classes</span>
-        &lt;div class="animate-tada"&gt;...&lt;/div&gt;
-        &lt;div class="animate-flash"&gt;...&lt;/div&gt;
-        &lt;div class="animate-swing"&gt;...&lt;/div&gt;
+        &lt;div class="animate_tada"&gt;...&lt;/div&gt;
+        &lt;div class="animate_flash"&gt;...&lt;/div&gt;
+        &lt;div class="animate_swing"&gt;...&lt;/div&gt;
     </div>
 </section>
-
-<script>
-    function replayTada() {
-        const demos = document.querySelectorAll('[id$="-demo"]');
-        demos.forEach(demo => {
-            demo.style.animation = 'none';
-            demo.offsetHeight;
-            demo.style.animation = null;
-        });
-    }
-</script>
 
 {%- endblock %}

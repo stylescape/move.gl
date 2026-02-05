@@ -123,40 +123,26 @@
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-spin-demo"></div>
+            <div class="demo-box animate_spin"></div>
             <p>spin</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-spin-slow-demo"></div>
-            <p>spin-slow</p>
-        </div>
-        <div class="demo-item">
-            <div class="demo-box animate-spin-reverse-demo"></div>
+            <div class="demo-box animate_spin_reverse"></div>
             <p>spin-reverse</p>
         </div>
-    </div>
-</section>
-
-<section>
-    <h2>Rotate</h2>
-    <p>Rotation entrance and exit animations.</p>
-
-    <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-rotate-in-demo" id="rotate-in-demo"></div>
-            <p>rotate-in</p>
+            <div class="demo-box animate_spin_pulse"></div>
+            <p>spin-pulse</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-rotate-in-up-demo" id="rotate-in-up-demo"></div>
-            <p>rotate-in-up</p>
+            <div class="demo-box animate_spin_grow"></div>
+            <p>spin-grow</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-rotate-in-down-demo" id="rotate-in-down-demo"></div>
-            <p>rotate-in-down</p>
+            <div class="demo-box animate_spin_flip"></div>
+            <p>spin-flip</p>
         </div>
     </div>
-
-    <button class="btn btn--primary" onclick="replayRotate()">Replay Animations</button>
 </section>
 
 <section>
@@ -165,16 +151,22 @@
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-roll-in-demo" id="roll-in-demo"></div>
-            <p>roll-in</p>
+            <div class="demo-box animate_roll"></div>
+            <p>roll</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-roll-out-demo" id="roll-out-demo"></div>
-            <p>roll-out</p>
+            <div class="demo-box animate_roll_slow"></div>
+            <p>roll-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_roll_reverse"></div>
+            <p>roll-reverse</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_roll_vertical"></div>
+            <p>roll-vertical</p>
         </div>
     </div>
-
-    <button class="btn btn--primary" onclick="replayRoll()">Replay Animations</button>
 </section>
 
 <section>
@@ -185,39 +177,15 @@
         @include animate_spin;
         }
 
-        <span class="comment">// With custom parameters</span>
-        .element {
-        @include animate_spin(
-        $duration: 2s,
-        $timing_function: ease-in-out
-        );
+        .element-roll {
+        @include animate_roll;
         }
 
         <span class="comment">// Utility classes</span>
-        &lt;div class="animate-spin"&gt;...&lt;/div&gt;
-        &lt;div class="animate-rotate-in"&gt;...&lt;/div&gt;
+        &lt;div class="animate_spin"&gt;...&lt;/div&gt;
+        &lt;div class="animate_roll"&gt;...&lt;/div&gt;
     </div>
-</section>
-
-<script>
-    function replayRotate() {
-        const demos = document.querySelectorAll('[id^="rotate-"]');
-        demos.forEach(demo => {
-            demo.style.animation = 'none';
-            demo.offsetHeight;
-            demo.style.animation = null;
-        });
-    }
-
-    function replayRoll() {
-        const demos = document.querySelectorAll('[id^="roll-"]');
-        demos.forEach(demo => {
-            demo.style.animation = 'none';
-            demo.offsetHeight;
-            demo.style.animation = null;
-        });
-    }
-</script>        </main>
+</section>        </main>
 
         
 

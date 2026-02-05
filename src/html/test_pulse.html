@@ -123,16 +123,20 @@
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-pulse-demo"></div>
+            <div class="demo-box animate_pulse"></div>
             <p>pulse</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-pulse-slow-demo"></div>
+            <div class="demo-box animate_pulse_slow"></div>
             <p>pulse-slow</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-pulse-fast-demo"></div>
+            <div class="demo-box animate_pulse_fast"></div>
             <p>pulse-fast</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_pulse_color"></div>
+            <p>pulse-color</p>
         </div>
     </div>
 </section>
@@ -143,8 +147,20 @@
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-heartbeat-demo"></div>
+            <div class="demo-box animate_heartbeat"></div>
             <p>heartbeat</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_heartbeat_slow"></div>
+            <p>heartbeat-slow</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_heartbeat_fast"></div>
+            <p>heartbeat-fast</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_heartbeat_color"></div>
+            <p>heartbeat-color</p>
         </div>
     </div>
 </section>
@@ -157,18 +173,13 @@
         @include animate_pulse;
         }
 
-        <span class="comment">// With custom scale</span>
-        .element {
-        @include animate_pulse(
-        $scale_min: 0.9,
-        $scale_max: 1.2,
-        $duration: 1s
-        );
+        .element-heartbeat {
+        @include animate_heartbeat;
         }
 
         <span class="comment">// Utility classes</span>
-        &lt;div class="animate-pulse"&gt;...&lt;/div&gt;
-        &lt;div class="animate-pulse-slow"&gt;...&lt;/div&gt;
+        &lt;div class="animate_pulse"&gt;...&lt;/div&gt;
+        &lt;div class="animate_heartbeat"&gt;...&lt;/div&gt;
     </div>
 </section>        </main>
 

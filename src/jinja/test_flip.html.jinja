@@ -10,31 +10,45 @@
 {%- block content %}
 
 <section>
-    <h2>3D Flip Effects</h2>
+    <h2>Basic Flip Effects</h2>
     <p>Perspective-based rotation animations.</p>
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-flip-x-demo" id="flip-x-demo"></div>
-            <p>flip-x</p>
+            <div class="demo-box animate_flip"></div>
+            <p>flip</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate-flip-y-demo" id="flip-y-demo"></div>
-            <p>flip-y</p>
+            <div class="demo-box animate_flip_horizontal"></div>
+            <p>flip-horizontal</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_flip_vertical"></div>
+            <p>flip-vertical</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_flip_diagonal"></div>
+            <p>flip-diagonal</p>
         </div>
     </div>
-
-    <button class="btn btn--primary" onclick="replayFlip()">Replay Animations</button>
 </section>
 
 <section>
-    <h2>Continuous Flip</h2>
-    <p>Looping flip animations.</p>
+    <h2>180° Flip Effects</h2>
+    <p>Full 180-degree flip animations.</p>
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate-flip-loop"></div>
-            <p>flip (infinite)</p>
+            <div class="demo-box animate_flip_180_horizontal"></div>
+            <p>flip-180-horizontal</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_flip_180_vertical"></div>
+            <p>flip-180-vertical</p>
+        </div>
+        <div class="demo-item">
+            <div class="demo-box animate_flip_180_diagonal"></div>
+            <p>flip-180-diagonal</p>
         </div>
     </div>
 </section>
@@ -44,37 +58,17 @@
 
     <div class="code-block"><span class="comment">// SCSS Mixin</span>
         .card {
-        @include flip-x;
+        @include animate_flip;
         }
 
-        .card-y {
-        @include flip-y($duration: 0.8s);
-        }
-
-        <span class="comment">// With perspective</span>
-        .container {
-        perspective: 1000px;
-
-        .card {
-        @include flip-x;
-        }
+        .card-horizontal {
+        @include animate_flip_horizontal;
         }
 
         <span class="comment">// Utility classes</span>
-        &lt;div class="animate-flip-x"&gt;...&lt;/div&gt;
-        &lt;div class="animate-flip-y"&gt;...&lt;/div&gt;
+        &lt;div class="animate_flip"&gt;...&lt;/div&gt;
+        &lt;div class="animate_flip_horizontal"&gt;...&lt;/div&gt;
     </div>
 </section>
-
-<script>
-    function replayFlip() {
-        const demos = document.querySelectorAll('[id^="flip-"]');
-        demos.forEach(demo => {
-            demo.style.animation = 'none';
-            demo.offsetHeight;
-            demo.style.animation = null;
-        });
-    }
-</script>
 
 {%- endblock %}
