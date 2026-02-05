@@ -1,0 +1,128 @@
+////
+///
+/// Blend Mode Effects Mixin Module
+/// ===========================================================================
+///
+/// This module provides mixins for mix-blend-mode and background-blend-mode
+/// effects for creating composite visual effects.
+///
+/// @group Effects
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+
+// ============================================================================
+// Mix Blend Mode Mixins
+// ============================================================================
+
+///
+/// Sets mix-blend-mode property.
+///
+/// @param {String} $mode [normal] - The blend mode.
+///
+@mixin mix_blend($mode: normal) {
+    mix-blend-mode: $mode;
+}
+
+/// Normal blend mode
+@mixin blend_normal { mix-blend-mode: normal; }
+
+/// Multiply blend mode
+@mixin blend_multiply { mix-blend-mode: multiply; }
+
+/// Screen blend mode
+@mixin blend_screen { mix-blend-mode: screen; }
+
+/// Overlay blend mode
+@mixin blend_overlay { mix-blend-mode: overlay; }
+
+/// Darken blend mode
+@mixin blend_darken { mix-blend-mode: darken; }
+
+/// Lighten blend mode
+@mixin blend_lighten { mix-blend-mode: lighten; }
+
+/// Color dodge blend mode
+@mixin blend_color_dodge { mix-blend-mode: color-dodge; }
+
+/// Color burn blend mode
+@mixin blend_color_burn { mix-blend-mode: color-burn; }
+
+/// Hard light blend mode
+@mixin blend_hard_light { mix-blend-mode: hard-light; }
+
+/// Soft light blend mode
+@mixin blend_soft_light { mix-blend-mode: soft-light; }
+
+/// Difference blend mode
+@mixin blend_difference { mix-blend-mode: difference; }
+
+/// Exclusion blend mode
+@mixin blend_exclusion { mix-blend-mode: exclusion; }
+
+/// Hue blend mode
+@mixin blend_hue { mix-blend-mode: hue; }
+
+/// Saturation blend mode
+@mixin blend_saturation { mix-blend-mode: saturation; }
+
+/// Color blend mode
+@mixin blend_color { mix-blend-mode: color; }
+
+/// Luminosity blend mode
+@mixin blend_luminosity { mix-blend-mode: luminosity; }
+
+
+// ============================================================================
+// Background Blend Mode Mixins
+// ============================================================================
+
+///
+/// Sets background-blend-mode property.
+///
+/// @param {String} $mode [normal] - The blend mode.
+///
+@mixin bg_blend($mode: normal) {
+    background-blend-mode: $mode;
+}
+
+/// Normal background blend mode
+@mixin bg_blend_normal { background-blend-mode: normal; }
+
+/// Multiply background blend mode
+@mixin bg_blend_multiply { background-blend-mode: multiply; }
+
+/// Screen background blend mode
+@mixin bg_blend_screen { background-blend-mode: screen; }
+
+/// Overlay background blend mode
+@mixin bg_blend_overlay { background-blend-mode: overlay; }
+
+/// Darken background blend mode
+@mixin bg_blend_darken { background-blend-mode: darken; }
+
+/// Lighten background blend mode
+@mixin bg_blend_lighten { background-blend-mode: lighten; }
+
+/// Color dodge background blend mode
+@mixin bg_blend_color_dodge { background-blend-mode: color-dodge; }
+
+/// Color burn background blend mode
+@mixin bg_blend_color_burn { background-blend-mode: color-burn; }
+
+/// Hard light background blend mode
+@mixin bg_blend_hard_light { background-blend-mode: hard-light; }
+
+/// Soft light background blend mode
+@mixin bg_blend_soft_light { background-blend-mode: soft-light; }
+
+/// Difference background blend mode
+@mixin bg_blend_difference { background-blend-mode: difference; }
+
+/// Exclusion background blend mode
+@mixin bg_blend_exclusion { background-blend-mode: exclusion; }
+

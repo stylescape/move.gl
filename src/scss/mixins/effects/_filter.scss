@@ -1,7 +1,3 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Filter Effects Mixin Module
@@ -25,6 +21,7 @@
 // Use
 // ============================================================================
 
+@use "sass:list";
 @use "sass:math";
 
 
@@ -297,16 +294,16 @@
 ) {
     $filters: ();
 
-    @if $blur { $filters: append($filters, blur($blur)); }
-    @if $brightness { $filters: append($filters, brightness($brightness)); }
-    @if $contrast { $filters: append($filters, contrast($contrast)); }
-    @if $grayscale { $filters: append($filters, grayscale($grayscale)); }
-    @if $hue-rotate { $filters: append($filters, hue-rotate($hue-rotate)); }
-    @if $invert { $filters: append($filters, invert($invert)); }
-    @if $saturate { $filters: append($filters, saturate($saturate)); }
-    @if $sepia { $filters: append($filters, sepia($sepia)); }
+    @if $blur { $filters: list.append($filters, blur($blur)); }
+    @if $brightness { $filters: list.append($filters, brightness($brightness)); }
+    @if $contrast { $filters: list.append($filters, contrast($contrast)); }
+    @if $grayscale { $filters: list.append($filters, grayscale($grayscale)); }
+    @if $hue-rotate { $filters: list.append($filters, hue-rotate($hue-rotate)); }
+    @if $invert { $filters: list.append($filters, invert($invert)); }
+    @if $saturate { $filters: list.append($filters, saturate($saturate)); }
+    @if $sepia { $filters: list.append($filters, sepia($sepia)); }
 
-    @if length($filters) > 0 {
+    @if list.length($filters) > 0 {
         backdrop-filter: $filters;
         -webkit-backdrop-filter: $filters;
     }
