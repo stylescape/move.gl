@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="Virtual Keyboard Demo — Customizable on-screen keyboard with multiple layouts." />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <title>Virtual Keyboard Demo — move.gl</title>
+
+    <!-- Library CSS -->
+    <link rel="stylesheet" href="/css/move.gl.css" />
+    <!-- Documentation CSS -->
+    <link rel="stylesheet" href="/css/move.gl.docs.css" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="">
+
+<div class="nav-wrapper">
+    <nav class="nav">
+        <div class="nav__inner">
+            <a href="index.html" class="nav__logo">
+                <span class="nav__logo-text">move.gl</span>
+                <span class="nav__version">v0.0.1</span>
+            </a>
+            <div class="nav__right">
+
+<button type="button" class="theme-toggle" data-toggle="theme" title="Toggle dark mode" aria-label="Toggle dark mode">
+    <svg class="theme-icon theme-icon--light" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path
+            d="M8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zm7-5a.75.75 0 00-.75-.75h-1.5a.75.75 0 000 1.5h1.5A.75.75 0 0015 8zM3 8a.75.75 0 00-.75-.75H.75a.75.75 0 000 1.5h1.5A.75.75 0 003 8zm9.536-4.536a.75.75 0 00-1.06 0l-1.061 1.06a.75.75 0 001.06 1.061l1.061-1.06a.75.75 0 000-1.061zm-9.072 9.072a.75.75 0 00-1.06 0l-1.061 1.06a.75.75 0 101.06 1.061l1.061-1.06a.75.75 0 000-1.061zm9.072 0a.75.75 0 00-1.06 1.06l1.06 1.061a.75.75 0 101.061-1.06l-1.06-1.061zm-9.072-9.072a.75.75 0 00-1.06 1.06l1.06 1.061a.75.75 0 001.061-1.06l-1.06-1.061z" />
+    </svg>
+    <svg class="theme-icon theme-icon--dark" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M6.2 1A6.98 6.98 0 008 7a6.98 6.98 0 00-1.8 6A7 7 0 116.2 1z" />
+    </svg>
+</button>
+
+                <div class="nav__dropdown" id="nav-dropdown">
+                    <button type="button" class="nav__dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                        <span>Docs</span>
+                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M1 1l4 4 4-4" />
+                        </svg>
+                    </button>
+                    <div class="nav__dropdown-menu" role="menu">
+                        <div class="nav__dropdown-section">
+                            <span class="nav__dropdown-label">Learn</span>
+                            <a href="getting-started.html" role="menuitem">Getting Started</a>
+                            <a href="core-concepts.html" role="menuitem">Core Concepts</a>
+                        </div>
+                        <div class="nav__dropdown-section">
+                            <span class="nav__dropdown-label">Overview</span>
+                            <a href="test_overview.html" role="menuitem">All Animations</a>
+                        </div>
+                        <div class="nav__dropdown-section">
+                            <span class="nav__dropdown-label">Animations</span>
+                            <a href="test_fade.html" role="menuitem">Fade</a>
+                            <a href="test_slide.html" role="menuitem">Slide</a>
+                            <a href="test_bounce.html" role="menuitem">Bounce</a>
+                            <a href="test_zoom.html" role="menuitem">Zoom</a>
+                            <a href="test_flip.html" role="menuitem">Flip</a>
+                            <a href="test_scale.html" role="menuitem">Scale</a>
+                            <a href="test_spin.html" role="menuitem">Spin & Rotate</a>
+                            <a href="test_pulse.html" role="menuitem">Pulse</a>
+                            <a href="test_shake.html" role="menuitem">Shake & Wobble</a>
+                            <a href="test_attention.html" role="menuitem">Attention</a>
+                            <a href="test_special.html" role="menuitem">Special Effects</a>
+                        </div>
+                        <div class="nav__dropdown-section">
+                            <span class="nav__dropdown-label">Effects</span>
+                            <a href="test_loaders.html" role="menuitem">Loaders</a>
+                            <a href="test_transitions.html" role="menuitem">Transitions</a>
+                            <a href="test_transforms.html" role="menuitem">Transforms</a>
+                            <a href="test_effects.html" role="menuitem">Filter Effects</a>
+                            <a href="test_keyframes.html" role="menuitem">Keyframes</a>
+                            <a href="test_mouse.html" role="menuitem">Mouse Interactions</a>
+                        </div>
+                        <div class="nav__dropdown-section">
+                            <span class="nav__dropdown-label">TypeScript Demos</span>
+                            <a href="demo_draggable.html" role="menuitem">Draggable</a>
+                            <a href="demo_gesture.html" role="menuitem">Gesture Handler</a>
+                            <a href="demo_keyboard.html" role="menuitem">Virtual Keyboard</a>
+                            <a href="demo_screensaver.html" role="menuitem">Screensaver</a>
+                            <a href="demo_video_overlay.html" role="menuitem">Video Overlay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://github.com/stylescape/move.gl" class="nav__github" target="_blank"
+                    title="View on GitHub">
+                    <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+    <main class="main">
+        <div class="container"><header class="page-header">
+    <div class="page-header__badge">TypeScript Component</div>
+    <h1 class="page-header__title">Virtual Keyboard</h1>
+    <p class="page-header__description">
+        A fully customizable on-screen virtual keyboard with support for multiple layouts,
+        shift modes, and special character modes. Perfect for kiosks and touch interfaces.
+    </p>
+</header><section class="section">
+    <h2 class="section__title">Interactive Demo</h2>
+    <p class="section__description">Click keys on the virtual keyboard to type. Use mode buttons to switch layouts.</p>
+
+    <div class="keyboard-demo">
+        <input type="text" class="keyboard__input" id="keyboardInput" placeholder="Click keys to type..." readonly>
+
+        <div class="mode-buttons">
+            <button class="mode-btn active" onclick="switchMode('default')">ABC</button>
+            <button class="mode-btn" onclick="switchMode('shift')">⇧ SHIFT</button>
+            <button class="mode-btn" onclick="switchMode('special')">123</button>
+        </div>
+
+        <div class="keyboard" id="keyboard"></div>
+
+        <div class="keyboard__stats">
+            <div>Characters: <span id="charCount">0</span></div>
+            <div>Words: <span id="wordCount">0</span></div>
+            <div>Keypresses: <span id="keypressCount">0</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section__title">Features</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h4>⌨️ Full Keyboard</h4>
+            <p>Complete QWERTY layout with all letters, numbers, and common symbols.</p>
+        </div>
+        <div class="feature-card">
+            <h4>⇧ Shift Mode</h4>
+            <p>Toggle uppercase letters with shift key support.</p>
+        </div>
+        <div class="feature-card">
+            <h4>🔢 Special Characters</h4>
+            <p>Dedicated mode for numbers and special symbols.</p>
+        </div>
+        <div class="feature-card">
+            <h4>🎨 Customizable</h4>
+            <p>Easily customize layouts, styles, and key mappings.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section__title">Usage</h2>
+    <div class="code-block">
+        <code><span class="keyword">import</span> { VirtualKeyboard } <span class="keyword">from</span> <span class="string">'move.gl'</span>;
+
+<span class="keyword">const</span> keyboard = <span class="keyword">new</span> <span class="function">VirtualKeyboard</span>({
+    containerId: <span class="string">'keyboard-container'</span>,
+    inputId: <span class="string">'text-input'</span>,
+    <span class="function">onKeyPress</span>: (key) => console.<span class="function">log</span>(<span class="string">`Key: ${key}`</span>)
+});
+
+<span class="comment">// Switch keyboard mode</span>
+keyboard.<span class="function">switchMode</span>(<span class="string">'shift'</span>);
+keyboard.<span class="function">switchMode</span>(<span class="string">'special'</span>);
+keyboard.<span class="function">switchMode</span>(<span class="string">'default'</span>);</code>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section__title">More TypeScript Demos</h2>
+    <div class="feature-grid">        <a href="demo_draggable.html" class="feature-card" style="text-decoration: none;">
+            <h4>🖱️ Draggable</h4>
+            <p>Make any element draggable with mouse and touch support.</p>
+        </a>        <a href="demo_gesture.html" class="feature-card" style="text-decoration: none;">
+            <h4>👆 Gesture Handler</h4>
+            <p>Touch gestures: tap, swipe, pinch, and rotate detection.</p>
+        </a>        <a href="demo_screensaver.html" class="feature-card" style="text-decoration: none;">
+            <h4>🌙 Screensaver</h4>
+            <p>Inactivity-based screensaver with video and audio support.</p>
+        </a>        <a href="demo_video_overlay.html" class="feature-card" style="text-decoration: none;">
+            <h4>🎬 Video Overlay</h4>
+            <p>Transparent video overlay with fade effects.</p>
+        </a>    </div>
+</section>
+        </div>
+    </main>
+
+<footer class="footer">
+    <div class="footer__content">
+        <div class="footer__left">
+            <span class="footer__brand">move.gl</span>
+            <span class="footer__tagline">Motion & Animation Library</span>
+        </div>
+        <div class="footer__right">
+            <div class="footer__links">
+                <a href="https://github.com/stylescape/move.gl" class="footer__link" target="_blank">GitHub</a>
+                <a href="https://www.npmjs.com/package/move.gl" class="footer__link" target="_blank">npm</a>
+                <a href="https://www.scape.agency" class="footer__link" target="_blank">Scape Agency</a>
+            </div>
+            <span class="footer__copyright">© 2024 Scape Agency. MIT License.</span>
+        </div>
+    </div>
+</footer>
+
+    <!-- Core Scripts -->
+    <script type="module" src="/js/move.gl.js"></script>
+    <script type="module" src="/js/demo.js"></script></body>
+
+</html>
