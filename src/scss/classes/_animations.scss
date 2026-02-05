@@ -2,6 +2,8 @@
 // StyleScape | Animations
 // ============================================================================
 
+@use "../variables" as *;
+@use "../mixins" as *;
 @use "../dev" as *;
 
 
@@ -390,18 +392,6 @@
 // Slide Animations
 // ----------------------------------------------------------------------------
 
-.animate_slide {
-    @include animate_slide(left, 100%);
-}
-
-.animate_slide_up {
-    @include animate_slide_up();
-}
-
-.animate_slide_down {
-    @include animate_slide_down();
-}
-
 .animate_slide_in_left {
     @include animate_slide_in_left();
 }
@@ -410,15 +400,44 @@
     @include animate_slide_in_right();
 }
 
+.animate_slide_in_up {
+    @include animate_slide_in_up();
+}
+
+.animate_slide_in_down {
+    @include animate_slide_in_down();
+}
+
 .animate_slide_out_left {
     @include animate_slide_out_left();
 }
+
 .animate_slide_out_right {
     @include animate_slide_out_right();
 }
 
-.animate_slide_in_fade {
-    @include animate_slide_in_fade(left, 100%);
+.animate_slide_out_up {
+    @include animate_slide_out_up();
+}
+
+.animate_slide_out_down {
+    @include animate_slide_out_down();
+}
+
+.animate_slide_fade_in_up {
+    @include animate_slide_fade_in_up();
+}
+
+.animate_slide_fade_in_down {
+    @include animate_slide_fade_in_down();
+}
+
+.animate_slide_fade_in_left {
+    @include animate_slide_fade_in_left();
+}
+
+.animate_slide_fade_in_right {
+    @include animate_slide_fade_in_right();
 }
 
 

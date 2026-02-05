@@ -1,0 +1,114 @@
+// ============================================================================
+// move.gl | Screensaver Classes
+// ============================================================================
+// Copyright 2025 Scape Agency BV
+// Licensed under MIT License
+// ============================================================================
+
+////
+/// Screensaver Classes
+/// ===========================================================================
+///
+/// This module provides ready-to-use CSS classes for screensaver overlays.
+/// Use these classes to create inactivity-based screensavers for kiosks,
+/// digital signage, and interactive installations.
+///
+/// @group Classes
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+////
+
+@use "../mixins" as *;
+
+
+// ============================================================================
+// Screensaver Keyframes
+// ============================================================================
+
+@include keyframes_screensaver_float;
+
+
+// ============================================================================
+// Screensaver Container
+// ============================================================================
+
+/// Main screensaver overlay
+.screensaver {
+    @include screensaver_container;
+
+    &.active {
+        @include screensaver_active;
+    }
+}
+
+
+// ============================================================================
+// Screensaver Content
+// ============================================================================
+
+/// Screensaver content wrapper
+.screensaver__content {
+    @include screensaver_content;
+}
+
+/// Screensaver icon
+.screensaver__icon {
+    @include screensaver_icon;
+}
+
+/// Screensaver title
+.screensaver__title {
+    @include screensaver_title;
+}
+
+/// Screensaver subtitle/hint
+.screensaver__hint {
+    @include screensaver_hint;
+}
+
+
+// ============================================================================
+// Screensaver Video
+// ============================================================================
+
+/// Video element for screensaver
+.screensaver__video {
+    @include screensaver_video;
+    pointer-events: none;
+}
+
+
+// ============================================================================
+// Screensaver Gradient Overlay
+// ============================================================================
+
+/// Gradient overlay for screensaver
+.screensaver__overlay {
+    @include screensaver_gradient_overlay;
+}
+
+
+// ============================================================================
+// Screensaver Themes
+// ============================================================================
+
+/// Dark screensaver theme
+.screensaver--dark {
+    @include screensaver_dark;
+}
+
+/// Light screensaver theme
+.screensaver--light {
+    @include screensaver_light;
+}
+
+/// Gradient screensaver theme
+.screensaver--gradient {
+    --screensaver-bg: transparent;
+
+    .screensaver__overlay {
+        opacity: 1;
+    }
+}

@@ -49,7 +49,12 @@
 // ==========================================================================
 
 @forward "animations";
-@forward "keyframes";
+
+// NOTE: The keyframes module is NOT forwarded directly because:
+// 1. The animations module already uses keyframes internally via @use
+// 2. Animation mixins are the intended public API for end users
+// 3. Forwarding both causes naming conflicts (e.g., keyframes-fade-in exists in both)
+// If you need direct access to keyframes mixins, use: @use "move.gl/mixins/keyframes" as keyframes;
 
 // ==========================================================================
 // Effect Mixins
@@ -62,3 +67,10 @@
 // ==========================================================================
 
 @forward "loaders";
+
+// ==========================================================================
+// Component Mixins
+// ==========================================================================
+
+@forward "keyboard";
+@forward "screensaver";
