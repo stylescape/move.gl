@@ -1,14 +1,11 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Jiggle Animations Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// Provides quick, nervous jiggling animations for horizontal and vertical
+/// movement. Includes rotation variants and customizable amplitude. Useful
+/// for error states, notifications, and playful interactions.
 ///
 /// @group Animations
 /// @author Scape Agency
@@ -58,12 +55,7 @@
         $timing_function,
         $iteration_count,
     );
-    @keyframes animate_jiggle {
-        0%, 100% { transform: translateX(0); }
-        25% { transform: translateX(-$amplitude); }
-        50% { transform: translateX($amplitude); }
-        75% { transform: translateX(-$amplitude); }
-    }
+    @include keyframes_animate_jiggle($amplitude);
 }
 
 
@@ -90,12 +82,7 @@
         $timing_function,
         $iteration_count,
     );
-    @keyframes animate_jiggle_vertical {
-        0%, 100% { transform: translateY(0); }
-        25% { transform: translateY(-$amplitude); }
-        50% { transform: translateY($amplitude); }
-        75% { transform: translateY(-$amplitude); }
-    }
+    @include keyframes_animate_jiggle_vertical($amplitude);
 }
 
 
@@ -123,12 +110,7 @@
         $timing_function,
         $iteration_count,
     );
-    @keyframes animate_jiggle_multi {
-        0%, 100% { transform: translate(0, 0); }
-        25% { transform: translate(-$amplitude, $amplitude); }
-        50% { transform: translate($amplitude, -$amplitude); }
-        75% { transform: translate(-$amplitude, $amplitude); }
-    }
+    @include keyframes_animate_jiggle_multi($amplitude);
 }
 
 
@@ -154,10 +136,5 @@
         $timing_function,
         $iteration_count,
     );
-    @keyframes animate_jiggle_slow {
-        0%, 100% { transform: translateX(0); }
-        25% { transform: translateX(-$amplitude); }
-        50% { transform: translateX($amplitude); }
-        75% { transform: translateX(-$amplitude); }
-    }
+    @include keyframes_animate_jiggle_slow($amplitude);
 }

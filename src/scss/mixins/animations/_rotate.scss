@@ -1,20 +1,16 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Rotate Animations Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// Provides rotation-based animations with support for 2D and 3D rotations.
+/// Includes rotate in/out effects from various corners and origins. Useful
+/// for entrance/exit animations and attention-grabbing effects.
 ///
 /// @group Animations
 /// @author Scape Agency
 /// @link https://move.gl
 /// @since 0.1.0 initial release
-/// @todo None
 /// @access public
 ///
 ////
@@ -31,126 +27,430 @@
 
 
 // ============================================================================
-// Mixins
+// Basic Rotate Mixins
 // ============================================================================
 
+///
+/// Rotate Animation
+/// ---------------------------------------------------------------------------
+/// Creates a continuous rotation animation.
+///
+/// @name animate_rotate
+/// @param {Angle} $start_angle [0deg] - Starting rotation angle
+/// @param {Angle} $end_angle [$animate_angle_full] - Ending rotation angle
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [linear] - Timing function
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+///
+/// @example scss - Basic usage
+///   .spinner {
+///     @include animate_rotate;
+///   }
+///
+@mixin animate_rotate(
+    $start_angle: 0deg,
+    $end_angle: $animate_angle_full,
+    $duration: $animate_base_duration,
+    $timing_function: linear,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_rotate,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @include keyframes_rotate($start_angle, $end_angle);
+}
 
 
+// ============================================================================
+// Rotate In Mixins
+// ============================================================================
 
-// @-webkit-keyframes rotateIn {
-//     from {
-//       -webkit-transform-origin: center;
-//       transform-origin: center;
-//       -webkit-transform: rotate3d(0, 0, 1, -200deg);
-//       transform: rotate3d(0, 0, 1, -200deg);
-//       opacity: 0;
-//     }
+///
+/// Rotate In Animation
+/// ---------------------------------------------------------------------------
+/// Creates an entrance animation that rotates element in from center.
+///
+/// @name animate_rotate_in
+/// @param {Angle} $angle [$animate_rotate_in_angle] - Starting rotation angle
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+///
+/// @example scss - Usage
+///   .modal {
+///     @include animate_rotate_in;
+///   }
+///
+@mixin animate_rotate_in(
+    $angle: $animate_rotate_in_angle,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function
+) {
+    @include animate_base(
+        animate_rotate_in,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_rotate_in($angle);
+}
 
-//     100% {
-//       -webkit-transform-origin: center;
-//       transform-origin: center;
-//       -webkit-transform: none;
-//       transform: none;
-//       opacity: 1;
-//     }
-//   }
 
-//   @keyframes rotateIn {
-//     from {
-//       -webkit-transform-origin: center;
-//       transform-origin: center;
-//       -webkit-transform: rotate3d(0, 0, 1, -200deg);
-//       transform: rotate3d(0, 0, 1, -200deg);
-//       opacity: 0;
-//     }
+///
+/// Rotate In Down Left Animation
+/// ---------------------------------------------------------------------------
+/// Creates an entrance animation that rotates element in from bottom left corner.
+///
+/// @name animate_rotate_in_down_left
+/// @param {Angle} $angle [-$animate_rotate_corner_angle] - Starting rotation angle
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+///
+@mixin animate_rotate_in_down_left(
+    $angle: -$animate_rotate_corner_angle,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function
+) {
+    @include animate_base(
+        animate_rotate_in_down_left,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_rotate_in_down_left($angle);
+}
 
-//     100% {
-//       -webkit-transform-origin: center;
-//       transform-origin: center;
-//       -webkit-transform: none;
-//       transform: none;
-//       opacity: 1;
-//     }
-//   }
 
-//   .rotateIn {
-//     -webkit-animation-name: rotateIn;
-//     animation-name: rotateIn;
-//   }
+///
+/// Rotate In Down Right Animation
+/// ---------------------------------------------------------------------------
+/// Creates an entrance animation that rotates element in from bottom right corner.
+///
+/// @name animate_rotate_in_down_right
+/// @param {Angle} $angle [$animate_rotate_corner_angle] - Starting rotation angle
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+///
+@mixin animate_rotate_in_down_right(
+    $angle: $animate_rotate_corner_angle,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function
+) {
+    @include animate_base(
+        animate_rotate_in_down_right,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_rotate_in_down_right($angle);
+}
 
-//   @-webkit-keyframes rotateInDownLeft {
-//     from {
-//       -webkit-transform-origin: left bottom;
-//       transform-origin: left bottom;
-//       -webkit-transform: rotate3d(0, 0, 1, -45deg);
-//       transform: rotate3d(0, 0, 1, -45deg);
-//       opacity: 0;
-//     }
 
-//     100% {
-//       -webkit-transform-origin: left bottom;
-//       transform-origin: left bottom;
-//       -webkit-transform: none;
-//       transform: none;
-//       opacity: 1;
-//     }
-//   }
+///
+/// Rotate In Up Left Animation
+/// ---------------------------------------------------------------------------
+/// Creates an entrance animation that rotates element in from top left corner.
+///
+/// @name animate_rotate_in_up_left
+/// @param {Angle} $angle [$animate_rotate_corner_angle] - Starting rotation angle
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+///
+@mixin animate_rotate_in_up_left(
+    $angle: $animate_rotate_corner_angle,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function
+) {
+    @include animate_base(
+        animate_rotate_in_up_left,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_rotate_in_up_left($angle);
+}
 
-//   @keyframes rotateInDownLeft {
-//     from {
-//       -webkit-transform-origin: left bottom;
-//       transform-origin: left bottom;
-//       -webkit-transform: rotate3d(0, 0, 1, -45deg);
-//       transform: rotate3d(0, 0, 1, -45deg);
-//       opacity: 0;
-//     }
 
-//     100% {
-//       -webkit-transform-origin: left bottom;
-//       transform-origin: left bottom;
-//       -webkit-transform: none;
-//       transform: none;
-//       opacity: 1;
-//     }
-//   }
+///
+/// Rotate In Up Right Animation
+/// ---------------------------------------------------------------------------
+/// Creates an entrance animation that rotates element in from top right corner.
+///
+/// @name animate_rotate_in_up_right
+/// @param {Angle} $angle [-90deg] - Starting rotation angle
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+///
+@mixin animate_rotate_in_up_right(
+    $angle: -90deg,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function
+) {
+    @include animate_base(
+        animate_rotate_in_up_right,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_rotate_in_up_right($angle);
+}
 
-//   .rotateInDownLeft {
-//     -webkit-animation-name: rotateInDownLeft;
-//     animation-name: rotateInDownLeft;
-//   }
 
-//   @-webkit-keyframes rotateInDownRight {
-//     from {
-//       -webkit-transform-origin: right bottom;
-//       transform-origin: right bottom;
-//       -webkit-transform: rotate3d(0, 0, 1, 45deg);
-//       transform: rotate3d(0, 0, 1, 45deg);
-//       opacity: 0;
-//     }
+// ============================================================================
+// Rotate Out Mixins
+// ============================================================================
 
-//     100% {
-//       -webkit-transform-origin: right bottom;
-//       transform-origin: right bottom;
-//       -webkit-transform: none;
-//       transform: none;
-//       opacity: 1;
-//     }
-//   }
+///
+/// Rotate Out Animation
+/// ---------------------------------------------------------------------------
+/// Creates an exit animation that rotates element out from center.
+///
+/// @name animate_rotate_out
+/// @param {Angle} $angle [$animate_rotate_out_angle] - Ending rotation angle
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+///
+@mixin animate_rotate_out(
+    $angle: $animate_rotate_out_angle,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function
+) {
+    @include animate_base(
+        animate_rotate_out,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_rotate_out($angle);
+}
 
-//   @keyframes rotateInDownRight {
-//     from {
-//       -webkit-transform-origin: right bottom;
-//       transform-origin: right bottom;
-//       -webkit-transform: rotate3d(0, 0, 1, 45deg);
-//       transform: rotate3d(0, 0, 1, 45deg);
-//       opacity: 0;
-//     }
 
-//     100% {
-//       -webkit-transform-origin: right bottom;
-//       transform-origin: right bottom;
-//       -webkit-transform: none;
-//       transform: none;
+///
+/// Rotate Out Down Left Animation
+/// ---------------------------------------------------------------------------
+/// Creates an exit animation that rotates element out to bottom left corner.
+///
+/// @name animate_rotate_out_down_left
+/// @param {Angle} $angle [$animate_rotate_corner_angle] - Ending rotation angle
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+///
+@mixin animate_rotate_out_down_left(
+    $angle: $animate_rotate_corner_angle,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function
+) {
+    @include animate_base(
+        animate_rotate_out_down_left,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_rotate_out_down_left($angle);
+}
+
+
+///
+/// Rotate Out Down Right Animation
+/// ---------------------------------------------------------------------------
+/// Creates an exit animation that rotates element out to bottom right corner.
+///
+/// @name animate_rotate_out_down_right
+/// @param {Angle} $angle [-$animate_rotate_corner_angle] - Ending rotation angle
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+///
+@mixin animate_rotate_out_down_right(
+    $angle: -$animate_rotate_corner_angle,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function
+) {
+    @include animate_base(
+        animate_rotate_out_down_right,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_rotate_out_down_right($angle);
+}
+
+
+///
+/// Rotate Out Up Left Animation
+/// ---------------------------------------------------------------------------
+/// Creates an exit animation that rotates element out to top left corner.
+///
+/// @name animate_rotate_out_up_left
+/// @param {Angle} $angle [-$animate_rotate_corner_angle] - Ending rotation angle
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+///
+@mixin animate_rotate_out_up_left(
+    $angle: -$animate_rotate_corner_angle,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function
+) {
+    @include animate_base(
+        animate_rotate_out_up_left,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_rotate_out_up_left($angle);
+}
+
+
+///
+/// Rotate Out Up Right Animation
+/// ---------------------------------------------------------------------------
+/// Creates an exit animation that rotates element out to top right corner.
+///
+/// @name animate_rotate_out_up_right
+/// @param {Angle} $angle [90deg] - Ending rotation angle
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+///
+@mixin animate_rotate_out_up_right(
+    $angle: 90deg,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function
+) {
+    @include animate_base(
+        animate_rotate_out_up_right,
+        $duration,
+        $timing_function,
+        1,
+        $fill_mode: both
+    );
+    @include keyframes_rotate_out_up_right($angle);
+}
+
+
+// ============================================================================
+// Special Rotate Mixins
+// ============================================================================
+
+///
+/// Pendulum Rotate Animation
+/// ---------------------------------------------------------------------------
+/// Creates a pendulum-like swinging rotation from top center origin.
+///
+/// @name animate_rotate_pendulum
+/// @param {Angle} $angle [15deg] - Maximum swing angle
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+///
+@mixin animate_rotate_pendulum(
+    $angle: 15deg,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_rotate_pendulum,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @include keyframes_rotate_pendulum($angle);
+}
+
+
+///
+/// Wobble Rotate Animation
+/// ---------------------------------------------------------------------------
+/// Creates a wobbling rotation effect that gradually settles.
+///
+/// @name animate_rotate_wobble
+/// @param {Angle} $angle [5deg] - Wobble angle
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+///
+@mixin animate_rotate_wobble(
+    $angle: 5deg,
+    $duration: $animate_base_duration,
+    $timing_function: $animate_base_timing_function,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_rotate_wobble,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @include keyframes_rotate_wobble($angle);
+}
+
+
+// ============================================================================
+// 3D Rotate Mixins
+// ============================================================================
+
+///
+/// 3D Rotate X Animation
+/// ---------------------------------------------------------------------------
+/// Creates a 3D rotation around the X-axis with perspective.
+///
+/// @name animate_rotate_x
+/// @param {Angle} $angle [$animate_angle_full] - Rotation angle
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [linear] - Timing function
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+///
+@mixin animate_rotate_x(
+    $angle: $animate_angle_full,
+    $duration: $animate_base_duration,
+    $timing_function: linear,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_rotate_x,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @include keyframes_rotate_x($angle);
+}
+
+
+///
+/// 3D Rotate Y Animation
+/// ---------------------------------------------------------------------------
+/// Creates a 3D rotation around the Y-axis with perspective.
+///
+/// @name animate_rotate_y
+/// @param {Angle} $angle [$animate_angle_full] - Rotation angle
+/// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $timing_function [linear] - Timing function
+/// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+///
+@mixin animate_rotate_y(
+    $angle: $animate_angle_full,
+    $duration: $animate_base_duration,
+    $timing_function: linear,
+    $iteration_count: $animate_base_iteration_count
+) {
+    @include animate_base(
+        animate_rotate_y,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @include keyframes_rotate_y($angle);
+}
 //       opacity: 1;
 //     }
 //   }

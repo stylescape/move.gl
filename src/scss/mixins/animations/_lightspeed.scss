@@ -1,14 +1,11 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Lightspeed Animations Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// Provides high-speed entrance and exit animations with skew effects.
+/// Creates dramatic, sci-fi style transitions. Ideal for dynamic content
+/// reveals and attention-grabbing entrances.
 ///
 /// @group Animations
 /// @author Scape Agency
@@ -35,95 +32,81 @@
 // ============================================================================
 
 
+///
+/// Lightspeed In Animation
+/// High-speed entrance from the right with skew effect.
+///
+/// @name animate_lightspeed_in
+/// @param {Number|String} $distance [100%] - The starting distance offscreen.
+/// @param {Angle} $skew_start [-30deg] - The initial skew angle.
+/// @param {Duration} $duration [$animate_base_duration] - The animation duration.
+/// @param {String} $timing_function [ease-out] - The timing function.
+///
+@mixin animate_lightspeed_in(
+    $distance: 100%,
+    $skew_start: -30deg,
+    $duration: $animate_base_duration,
+    $timing_function: ease-out
+) {
+    @include animate_base(
+        animate_lightspeed_in,
+        $duration,
+        $timing_function,
+        1
+    );
+    @include keyframes_animate_lightspeed_in($distance, $skew_start);
+}
 
 
+///
+/// Lightspeed Out Animation
+/// High-speed exit to the right with skew effect.
+///
+/// @name animate_lightspeed_out
+/// @param {Number|String} $distance [100%] - The ending distance offscreen.
+/// @param {Angle} $skew_end [30deg] - The final skew angle.
+/// @param {Duration} $duration [$animate_base_duration] - The animation duration.
+/// @param {String} $timing_function [ease-in] - The timing function.
+///
+@mixin animate_lightspeed_out(
+    $distance: 100%,
+    $skew_end: 30deg,
+    $duration: $animate_base_duration,
+    $timing_function: ease-in
+) {
+    @include animate_base(
+        animate_lightspeed_out,
+        $duration,
+        $timing_function,
+        1
+    );
+    @include keyframes_animate_lightspeed_out($distance, $skew_end);
+}
 
-// @-webkit-keyframes lightSpeedIn {
-//     from {
-//       -webkit-transform: translate3d(100%, 0, 0) skewX(-30deg);
-//       transform: translate3d(100%, 0, 0) skewX(-30deg);
-//       opacity: 0;
-//     }
 
-//     60% {
-//       -webkit-transform: skewX(20deg);
-//       transform: skewX(20deg);
-//       opacity: 1;
-//     }
+///
+/// Lightspeed In Left Animation
+/// High-speed entrance from the left.
+///
+/// @name animate_lightspeed_in_left
+/// @param {Duration} $duration [$animate_base_duration] - The animation duration.
+///
+@mixin animate_lightspeed_in_left(
+    $duration: $animate_base_duration
+) {
+    @include animate_lightspeed_in(-100%, 30deg, $duration);
+}
 
-//     80% {
-//       -webkit-transform: skewX(-5deg);
-//       transform: skewX(-5deg);
-//       opacity: 1;
-//     }
 
-//     100% {
-//       -webkit-transform: none;
-//       transform: none;
-//       opacity: 1;
-//     }
-//   }
-
-//   @keyframes lightSpeedIn {
-//     from {
-//       -webkit-transform: translate3d(100%, 0, 0) skewX(-30deg);
-//       transform: translate3d(100%, 0, 0) skewX(-30deg);
-//       opacity: 0;
-//     }
-
-//     60% {
-//       -webkit-transform: skewX(20deg);
-//       transform: skewX(20deg);
-//       opacity: 1;
-//     }
-
-//     80% {
-//       -webkit-transform: skewX(-5deg);
-//       transform: skewX(-5deg);
-//       opacity: 1;
-//     }
-
-//     100% {
-//       -webkit-transform: none;
-//       transform: none;
-//       opacity: 1;
-//     }
-//   }
-
-//   .lightSpeedIn {
-//     -webkit-animation-name: lightSpeedIn;
-//     animation-name: lightSpeedIn;
-//     -webkit-animation-timing-function: ease-out;
-//     animation-timing-function: ease-out;
-//   }
-
-//   @-webkit-keyframes lightSpeedOut {
-//     from {
-//       opacity: 1;
-//     }
-
-//     100% {
-//       -webkit-transform: translate3d(100%, 0, 0) skewX(30deg);
-//       transform: translate3d(100%, 0, 0) skewX(30deg);
-//       opacity: 0;
-//     }
-//   }
-
-//   @keyframes lightSpeedOut {
-//     from {
-//       opacity: 1;
-//     }
-
-//     100% {
-//       -webkit-transform: translate3d(100%, 0, 0) skewX(30deg);
-//       transform: translate3d(100%, 0, 0) skewX(30deg);
-//       opacity: 0;
-//     }
-//   }
-
-//   .lightSpeedOut {
-//     -webkit-animation-name: lightSpeedOut;
-//     animation-name: lightSpeedOut;
-//     -webkit-animation-timing-function: ease-in;
-//     animation-timing-function: ease-in;
-//   }
+///
+/// Lightspeed Out Left Animation
+/// High-speed exit to the left.
+///
+/// @name animate_lightspeed_out_left
+/// @param {Duration} $duration [$animate_base_duration] - The animation duration.
+///
+@mixin animate_lightspeed_out_left(
+    $duration: $animate_base_duration
+) {
+    @include animate_lightspeed_out(-100%, -30deg, $duration);
+}

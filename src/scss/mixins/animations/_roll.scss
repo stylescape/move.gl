@@ -1,14 +1,11 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Roll Animations Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// Provides rolling animations that combine translation with rotation.
+/// Elements appear to roll in or out of view. Useful for dynamic entrances,
+/// playful transitions, and physics-inspired effects.
 ///
 /// @group Animations
 /// @author Scape Agency
@@ -26,6 +23,7 @@
 
 @use "../../dev" as *;
 @use "../../variables" as *;
+@use "../keyframes" as *;
 @use "base" as *;
 
 
@@ -40,14 +38,14 @@
 /// horizontally.
 ///
 /// @name animate_roll
-/// @param {Number|String} $translate-distance [100%] - The distance to translate the element horizontally.
+/// @param {Number|String} $translate_distance [100%] - The distance to translate the element horizontally.
 /// @param {Number|String} $rotation_angle [360deg] - The rotation angle for the roll.
-/// @param {Number|String} $duration [$animate_base_duration/// 2] - The duration of the roll animation.
+/// @param {Number|String} $duration [$animate_base_duration * 2] - The duration of the roll animation.
 /// @param {String} $timing_function [ease-in-out] - The timing function for the roll animation.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
 ///
 @mixin animate_roll(
-    $translate-distance: 100%,
+    $translate_distance: 100%,
     $rotation_angle: 360deg,
     $duration: $animate_base_duration * 2,
     $timing_function: ease-in-out,
@@ -59,10 +57,7 @@
         $timing_function,
         $iteration_count,
     );
-    @keyframes animate_roll {
-        0% { transform: translateX(0) rotate(0deg); }
-        100% { transform: translateX($translate-distance) rotate($rotation_angle); }
-    }
+    @include keyframes_animate_roll($translate_distance, $rotation_angle);
 }
 
 
@@ -92,10 +87,7 @@
         $timing_function,
         $iteration_count,
     );
-    @keyframes animate_roll_reverse {
-        0% { transform: translateX(0) rotate(0deg); }
-        100% { transform: translateX($translate-distance) rotate($rotation_angle); }
-    }
+    @include keyframes_animate_roll_reverse($translate-distance, $rotation_angle);
 }
 
 
@@ -125,10 +117,7 @@
         $timing_function,
         $iteration_count,
     );
-    @keyframes animate_roll_slow {
-        0% { transform: translateX(0) rotate(0deg); }
-        100% { transform: translateX($translate-distance) rotate($rotation_angle); }
-    }
+    @include keyframes_animate_roll_slow($translate-distance, $rotation_angle);
 }
 
 
@@ -159,102 +148,60 @@
         $timing_function,
         $iteration_count,
     );
-    @keyframes animate_roll_vertical {
-        0% { transform: translateY(0) rotate(0deg); }
-        100% { transform: translateY($translate-distance) rotate($rotation_angle); }
-    }
+    @include keyframes_animate_roll_vertical($translate-distance, $rotation_angle);
 }
 
 
 
 
 
-// originally authored by Nick Pettit - https://github.com/nickpettit/glide
+// Roll In Animation (from animate.css by Nick Pettit)
+// ----------------------------------------------------------------------------
 
-// @-webkit-keyframes rollIn {
-//     from {
-//       opacity: 0;
-//       -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
-//       transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
-//     }
+///
+/// Roll In Animation
+/// Creates a rolling entrance animation where the element rolls in from the left.
+/// Originally authored by Nick Pettit - https://github.com/nickpettit/glide
+///
+/// @name animate_roll_in
+/// @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
+/// @param {String} $timing_function [ease-out] - The timing function.
+///
+@mixin animate_roll_in(
+    $duration: $animate_base_duration,
+    $timing_function: ease-out
+) {
+    @include animate_base(
+        animate_roll_in,
+        $duration,
+        $timing_function,
+        1
+    );
+    @include keyframes_animate_roll_in();
+}
 
-//     100% {
-//       opacity: 1;
-//       -webkit-transform: none;
-//       transform: none;
-//     }
-//   }
 
-//   @keyframes rollIn {
-//     from {
-//       opacity: 0;
-//       -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
-//       transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
-//     }
+// Roll Out Animation
+// ----------------------------------------------------------------------------
 
-//     100% {
-//       opacity: 1;
-//       -webkit-transform: none;
-//       transform: none;
-//     }
-//   }
-
-//   .rollIn {
-//     -webkit-animation-name: rollIn;
-//     animation-name: rollIn;
-//   }
-
-//   /* originally authored by Nick Pettit - https://github.com/nickpettit/glide///
-
-//   @-webkit-keyframes rollOut {
-//     from {
-//       opacity: 1;
-//     }
-
-//     100% {
-//       opacity: 0;
-//       -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg);
-//       transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg);
-//     }
-//   }
-
-//   @keyframes rollOut {
-//     from {
-//       opacity: 1;
-//     }
-
-//     100% {
-//       opacity: 0;
-//       -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg);
-//       transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg);
-//     }
-//   }
-
-//   .rollOut {
-//     -webkit-animation-name: rollOut;
-//     animation-name: rollOut;
-//   }
-
-//   @-webkit-keyframes zoomIn {
-//     from {
-//       opacity: 0;
-//       -webkit-transform: scale3d(.3, .3, .3);
-//       transform: scale3d(.3, .3, .3);
-//     }
-
-//     50% {
-//       opacity: 1;
-//     }
-//   }
-
-//   @keyframes zoomIn {
-//     from {
-//       opacity: 0;
-//       -webkit-transform: scale3d(.3, .3, .3);
-//       transform: scale3d(.3, .3, .3);
-//     }
-
-//     50% {
-//       opacity: 1;
-//     }
-//   }
+///
+/// Roll Out Animation
+/// Creates a rolling exit animation where the element rolls out to the right.
+/// Originally authored by Nick Pettit - https://github.com/nickpettit/glide
+///
+/// @name animate_roll_out
+/// @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
+/// @param {String} $timing_function [ease-in] - The timing function.
+///
+@mixin animate_roll_out(
+    $duration: $animate_base_duration,
+    $timing_function: ease-in
+) {
+    @include animate_base(
+        animate_roll_out,
+        $duration,
+        $timing_function,
+        1
+    );
+    @include keyframes_animate_roll_out();
+}

@@ -1,14 +1,11 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Blink Animations Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// Provides blinking animations for cursor effects, status indicators, and
+/// attention elements. Includes rapid, slow, and fade variants with
+/// customizable opacity levels and timing functions.
 ///
 /// @group Animations
 /// @author Scape Agency
@@ -60,10 +57,7 @@
         $timing_function,
         $iteration_count
     );
-    @keyframes animate_blink {
-        0%, 100% { opacity: $start-opacity; }
-        50% { opacity: $blink-opacity; }
-    }
+    @include keyframes_animate_blink($start_opacity, $blink_opacity);
 }
 
 
@@ -88,10 +82,7 @@
         $timing_function,
         $iteration_count
     );
-    @keyframes animate_blink_rapid {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
-    }
+    @include keyframes_animate_blink_rapid();
 }
 
 
@@ -116,10 +107,7 @@
         $timing_function,
         $iteration_count
     );
-    @keyframes animate_blink_soft {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.3; }
-    }
+    @include keyframes_animate_blink_soft();
 }
 
 
@@ -144,8 +132,5 @@
         $timing_function,
         $iteration_count
     );
-    @keyframes animate_blink_alternate {
-        0%, 100% { opacity: 1; }
-        25%, 75% { opacity: 0; }
-    }
+    @include keyframes_animate_blink_alternate();
 }

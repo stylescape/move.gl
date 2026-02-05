@@ -1,14 +1,11 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Ripple Animations Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// Provides expanding ripple effects that scale and fade. Creates material
+/// design-style touch feedback and water ripple effects. Ideal for buttons,
+/// click feedback, and ambient decorations.
 ///
 /// @group Animations
 /// @author Scape Agency
@@ -60,10 +57,7 @@
         $timing_function,
         infinite,
     );
-    @keyframes animate_ripple {
-        0% { transform: scale($scale_start); opacity: $opacity_start; }
-        100% { transform: scale($scale_end); opacity: $opacity_end; }
-    }
+    @include keyframes_animate_ripple($scale_start, $scale_end, $opacity_start, $opacity_end);
 }
 
 
@@ -93,10 +87,7 @@
         $timing_function,
         infinite,
     );
-    @keyframes animate_ripple_slow {
-        0% { transform: scale(1); opacity: 1; }
-        100% { transform: scale($scale_end); opacity: $opacity_end; }
-    }
+    @include keyframes_animate_ripple_slow($scale_end, $opacity_end);
 }
 
 
@@ -126,11 +117,7 @@
         $timing_function,
         infinite,
     );
-    @keyframes animate_ripple_multi {
-        0%, 100% { transform: scale(1); opacity: 1; }
-        50% { transform: scale($scale_first); opacity: 0.5; }
-        100% { transform: scale($scale_second); opacity: $opacity_end; }
-    }
+    @include keyframes_animate_ripple_multi($scale_first, $scale_second, $opacity_end);
 }
 
 
@@ -162,8 +149,5 @@
         $timing_function,
         infinite,
     );
-    @keyframes animate_ripple_color {
-        0% { transform: scale(1); opacity: 1; background-color: $color_start; }
-        100% { transform: scale($scale_end); opacity: $opacity_end; background-color: $color_end; }
-    }
+    @include keyframes_animate_ripple_color($scale_end, $opacity_end, $color_start, $color_end);
 }

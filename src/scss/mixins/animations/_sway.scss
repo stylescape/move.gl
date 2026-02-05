@@ -1,14 +1,11 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Sway Animations Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// Provides gentle swaying animations that simulate wind or pendulum motion.
+/// Includes variants for different speeds and depths. Ideal for trees,
+/// flags, hanging objects, and relaxed ambient effects.
 ///
 /// @group Animations
 /// @author Scape Agency
@@ -58,10 +55,7 @@
         $timing_function,
         $iteration_count,
     );
-    @keyframes animate_sway {
-        0%, 100% { transform: rotate(0deg); }
-        50% { transform: rotate($angle); }
-    }
+    @include keyframes_animate_sway($angle);
 }
 
 
@@ -90,10 +84,7 @@
         $timing_function,
         $iteration_count,
     );
-    @keyframes animate_sway_slow {
-        0%, 100% { transform: rotate(0deg); }
-        50% { transform: rotate($angle); }
-    }
+    @include keyframes_animate_sway_slow($angle);
 }
 
 
@@ -122,10 +113,7 @@
         $timing_function,
         $iteration_count,
     );
-    @keyframes animate_sway_fast {
-        0%, 100% { transform: rotate(0deg); }
-        50% { transform: rotate($angle); }
-    }
+    @include keyframes_animate_sway_fast($angle);
 }
 
 
@@ -154,14 +142,5 @@
         $timing_function,
         $iteration_count,
     );
-    @keyframes animate_sway_fade {
-        0%, 100% {
-            transform: rotate(0deg);
-            opacity: 1;
-        }
-        50% {
-            transform: rotate($angle);
-            opacity: 0.5;
-        }
-    }
+    @include keyframes_animate_sway_fade($angle);
 }

@@ -1,14 +1,11 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Hinge Animations Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// Provides hinge-style exit animations where elements swing and fall.
+/// Simulates a door or panel coming off its hinge. Useful for dramatic
+/// exit effects and playful dismissal animations.
 ///
 /// @group Animations
 /// @author Scape Agency
@@ -35,84 +32,75 @@
 // ============================================================================
 
 
+///
+/// Hinge Animation
+/// Creates a hinge effect where the element swings and falls off.
+///
+/// @name animate_hinge
+/// @param {String} $origin [top left] - The transform origin (hinge point).
+/// @param {Angle} $swing_angle [80deg] - The maximum swing angle.
+/// @param {Number|String} $fall_distance [700px] - The distance to fall.
+/// @param {Duration} $duration [2s] - The animation duration.
+/// @param {String} $timing_function [ease-in-out] - The timing function.
+///
+@mixin animate_hinge(
+    $origin: top left,
+    $swing_angle: 80deg,
+    $fall_distance: 700px,
+    $duration: 2s,
+    $timing_function: ease-in-out
+) {
+    @include animate_base(
+        animate_hinge,
+        $duration,
+        $timing_function,
+        1
+    );
+    transform-origin: $origin;
+    @keyframes animate_hinge {
+        0% {
+            transform: rotate3d(0, 0, 1, 0deg);
+            opacity: 1;
+        }
+        20%, 60% {
+            transform: rotate3d(0, 0, 1, $swing_angle);
+            opacity: 1;
+        }
+        40%, 80% {
+            transform: rotate3d(0, 0, 1, $swing_angle * 0.75);
+            opacity: 1;
+        }
+        100% {
+            transform: translate3d(0, $fall_distance, 0);
+            opacity: 0;
+        }
+    }
+}
 
 
+///
+/// Hinge Left Animation
+/// Creates a hinge effect from the left side.
+///
+/// @name animate_hinge_left
+/// @param {Duration} $duration [2s] - The animation duration.
+///
+@mixin animate_hinge_left(
+    $duration: 2s
+) {
+    @include animate_hinge(top left, 80deg, 700px, $duration);
+}
 
-// .animated.hinge {
-//     -webkit-animation-duration: 2s;
-//     animation-duration: 2s;
-//   }
 
-
-//   @-webkit-keyframes hinge {
-//     0% {
-//       -webkit-transform-origin: top left;
-//       transform-origin: top left;
-//       -webkit-animation-timing-function: ease-in-out;
-//       animation-timing-function: ease-in-out;
-//     }
-
-//     20%, 60% {
-//       -webkit-transform: rotate3d(0, 0, 1, 80deg);
-//       transform: rotate3d(0, 0, 1, 80deg);
-//       -webkit-transform-origin: top left;
-//       transform-origin: top left;
-//       -webkit-animation-timing-function: ease-in-out;
-//       animation-timing-function: ease-in-out;
-//     }
-
-//     40%, 80% {
-//       -webkit-transform: rotate3d(0, 0, 1, 60deg);
-//       transform: rotate3d(0, 0, 1, 60deg);
-//       -webkit-transform-origin: top left;
-//       transform-origin: top left;
-//       -webkit-animation-timing-function: ease-in-out;
-//       animation-timing-function: ease-in-out;
-//       opacity: 1;
-//     }
-
-//     100% {
-//       -webkit-transform: translate3d(0, 700px, 0);
-//       transform: translate3d(0, 700px, 0);
-//       opacity: 0;
-//     }
-//   }
-
-//   @keyframes hinge {
-//     0% {
-//       -webkit-transform-origin: top left;
-//       transform-origin: top left;
-//       -webkit-animation-timing-function: ease-in-out;
-//       animation-timing-function: ease-in-out;
-//     }
-
-//     20%, 60% {
-//       -webkit-transform: rotate3d(0, 0, 1, 80deg);
-//       transform: rotate3d(0, 0, 1, 80deg);
-//       -webkit-transform-origin: top left;
-//       transform-origin: top left;
-//       -webkit-animation-timing-function: ease-in-out;
-//       animation-timing-function: ease-in-out;
-//     }
-
-//     40%, 80% {
-//       -webkit-transform: rotate3d(0, 0, 1, 60deg);
-//       transform: rotate3d(0, 0, 1, 60deg);
-//       -webkit-transform-origin: top left;
-//       transform-origin: top left;
-//       -webkit-animation-timing-function: ease-in-out;
-//       animation-timing-function: ease-in-out;
-//       opacity: 1;
-//     }
-
-//     100% {
-//       -webkit-transform: translate3d(0, 700px, 0);
-//       transform: translate3d(0, 700px, 0);
-//       opacity: 0;
-//     }
-//   }
-
-//   .hinge {
-//     -webkit-animation-name: hinge;
-//     animation-name: hinge;
-//   }
+///
+/// Hinge Right Animation
+/// Creates a hinge effect from the right side.
+///
+/// @name animate_hinge_right
+/// @param {Duration} $duration [2s] - The animation duration.
+///
+@mixin animate_hinge_right(
+    $duration: 2s
+) {
+    @include animate_hinge(top right, -80deg, 700px, $duration);
+}

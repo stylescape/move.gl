@@ -1,14 +1,11 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Rubber Animations Mixin Module
 /// ===========================================================================
 ///
-/// This module ...
-///
+/// Provides rubber band-style stretching and squashing animations.
+/// Creates elastic, bouncy effects that simulate rubber material physics.
+/// Perfect for playful UI elements and attention-grabbing effects.
 ///
 /// @group Animations
 /// @author Scape Agency
@@ -35,82 +32,79 @@
 // ============================================================================
 
 
+///
+/// Rubber Band Animation
+/// Creates a rubber band-style stretching and squashing effect.
+///
+/// @name animate_rubber_band
+/// @param {Number} $intensity [1.25] - The stretch/squash intensity factor.
+/// @param {Duration} $duration [$animate_base_duration] - The animation duration.
+/// @param {String} $timing_function [ease-in-out] - The timing function.
+/// @param {Number|String} $iteration_count [1] - Number of iterations.
+///
+@mixin animate_rubber_band(
+    $intensity: 1.25,
+    $duration: $animate_base_duration,
+    $timing_function: ease-in-out,
+    $iteration_count: 1
+) {
+    @include animate_base(
+        animate_rubber_band,
+        $duration,
+        $timing_function,
+        $iteration_count
+    );
+    @include keyframes_animate_rubber_band($intensity);
+}
 
-// @-webkit-keyframes rubberBand {
-//     from {
-//       -webkit-transform: scale3d(1, 1, 1);
-//       transform: scale3d(1, 1, 1);
-//     }
 
-//     30% {
-//       -webkit-transform: scale3d(1.25, 0.75, 1);
-//       transform: scale3d(1.25, 0.75, 1);
-//     }
+///
+/// Subtle Rubber Band Animation
+/// A gentler rubber band effect.
+///
+/// @name animate_rubber_band_subtle
+/// @param {Duration} $duration [$animate_base_duration] - The animation duration.
+///
+@mixin animate_rubber_band_subtle(
+    $duration: $animate_base_duration
+) {
+    @include animate_rubber_band(1.1, $duration);
+}
 
-//     40% {
-//       -webkit-transform: scale3d(0.75, 1.25, 1);
-//       transform: scale3d(0.75, 1.25, 1);
-//     }
 
-//     50% {
-//       -webkit-transform: scale3d(1.15, 0.85, 1);
-//       transform: scale3d(1.15, 0.85, 1);
-//     }
+///
+/// Intense Rubber Band Animation
+/// A more dramatic rubber band effect.
+///
+/// @name animate_rubber_band_intense
+/// @param {Duration} $duration [$animate_base_duration] - The animation duration.
+///
+@mixin animate_rubber_band_intense(
+    $duration: $animate_base_duration
+) {
+    @include animate_rubber_band(1.4, $duration);
+}
 
-//     65% {
-//       -webkit-transform: scale3d(.95, 1.05, 1);
-//       transform: scale3d(.95, 1.05, 1);
-//     }
 
-//     75% {
-//       -webkit-transform: scale3d(1.05, .95, 1);
-//       transform: scale3d(1.05, .95, 1);
-//     }
-
-//     100% {
-//       -webkit-transform: scale3d(1, 1, 1);
-//       transform: scale3d(1, 1, 1);
-//     }
-//   }
-
-//   @keyframes rubberBand {
-//     from {
-//       -webkit-transform: scale3d(1, 1, 1);
-//       transform: scale3d(1, 1, 1);
-//     }
-
-//     30% {
-//       -webkit-transform: scale3d(1.25, 0.75, 1);
-//       transform: scale3d(1.25, 0.75, 1);
-//     }
-
-//     40% {
-//       -webkit-transform: scale3d(0.75, 1.25, 1);
-//       transform: scale3d(0.75, 1.25, 1);
-//     }
-
-//     50% {
-//       -webkit-transform: scale3d(1.15, 0.85, 1);
-//       transform: scale3d(1.15, 0.85, 1);
-//     }
-
-//     65% {
-//       -webkit-transform: scale3d(.95, 1.05, 1);
-//       transform: scale3d(.95, 1.05, 1);
-//     }
-
-//     75% {
-//       -webkit-transform: scale3d(1.05, .95, 1);
-//       transform: scale3d(1.05, .95, 1);
-//     }
-
-//     100% {
-//       -webkit-transform: scale3d(1, 1, 1);
-//       transform: scale3d(1, 1, 1);
-//     }
-//   }
-
-//   .rubberBand {
-//     -webkit-animation-name: rubberBand;
-//     animation-name: rubberBand;
-//   }
+///
+/// Rubber Squeeze Animation
+/// Creates a horizontal squeeze effect.
+///
+/// @name animate_rubber_squeeze
+/// @param {Number} $squeeze [0.8] - The squeeze factor (< 1 = thinner).
+/// @param {Duration} $duration [$animate_base_duration_fast] - The animation duration.
+/// @param {String} $timing_function [ease-out] - The timing function.
+///
+@mixin animate_rubber_squeeze(
+    $squeeze: 0.8,
+    $duration: $animate_base_duration_fast,
+    $timing_function: ease-out
+) {
+    @include animate_base(
+        animate_rubber_squeeze,
+        $duration,
+        $timing_function,
+        1
+    );
+    @include keyframes_animate_rubber_squeeze($squeeze);
+}
