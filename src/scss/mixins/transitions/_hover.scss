@@ -1,0 +1,355 @@
+////
+///
+/// Hover Effects Mixin Module
+/// ===========================================================================
+///
+/// This module provides hover effect mixins for interactive elements
+/// including scale, lift, glow, shadow, color, and combined effects.
+///
+/// @group Transitions
+/// @author Scape Agency
+/// @link https://move.gl
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "sass:color";
+
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+/// Default transition duration
+$hover-duration: 0.3s !default;
+
+/// Default timing function
+$hover-timing: ease !default;
+
+
+// ============================================================================
+// Base Transition Mixins
+// ============================================================================
+
+///
+/// Base hover transition setup.
+///
+/// @param {String} $property [all] - CSS property to transition.
+/// @param {Time} $duration [$hover-duration] - Transition duration.
+/// @param {String} $timing [$hover-timing] - Timing function.
+///
+@mixin hover_transition($property: all, $duration: $hover-duration, $timing: $hover-timing) {
+    transition: $property $duration $timing;
+}
+
+
+// ============================================================================
+// Transform Hover Effects
+// ============================================================================
+
+///
+/// Scale on hover effect.
+///
+/// @param {Number} $scale [1.1] - Scale factor on hover.
+/// @param {Time} $duration [$hover-duration] - Transition duration.
+///
+@mixin hover_scale($scale: 1.1, $duration: $hover-duration) {
+    @include hover_transition(transform, $duration);
+    cursor: pointer;
+
+    &:hover {
+        transform: scale($scale);
+    }
+}
+
+///
+/// Lift on hover effect (translateY with shadow).
+///
+/// @param {Length} $distance [-5px] - Lift distance.
+/// @param {Color} $shadow-color [rgba(0,0,0,0.15)] - Shadow color.
+/// @param {Time} $duration [$hover-duration] - Transition duration.
+///
+@mixin hover_lift($distance: -5px, $shadow-color: rgba(0, 0, 0, 0.15), $duration: $hover-duration) {
+    @include hover_transition(#{transform, box-shadow}, $duration);
+    cursor: pointer;
+
+    &:hover {
+        transform: translateY($distance);
+        box-shadow: 0 10px 20px $shadow-color;
+    }
+}
+
+///
+/// Rotate on hover effect.
+///
+/// @param {Angle} $angle [5deg] - Rotation angle.
+/// @param {Time} $duration [$hover-duration] - Transition duration.
+///
+@mixin hover_rotate($angle: 5deg, $duration: $hover-duration) {
+    @include hover_transition(transform, $duration);
+    cursor: pointer;
+
+    &:hover {
+        transform: rotate($angle);
+    }
+}
+
+///
+/// Translate on hover effect.
+///
+/// @param {Length} $x [0] - Horizontal translation.
+/// @param {Length} $y [-10px] - Vertical translation.
+/// @param {Time} $duration [$hover-duration] - Transition duration.
+///
+@mixin hover_translate($x: 0, $y: -10px, $duration: $hover-duration) {
+    @include hover_transition(transform, $duration);
+    cursor: pointer;
+
+    &:hover {
+        transform: translate($x, $y);
+    }
+}
+
+///
+/// Skew on hover effect.
+///
+/// @param {Angle} $x [5deg] - X-axis skew.
+/// @param {Angle} $y [0] - Y-axis skew.
+/// @param {Time} $duration [$hover-duration] - Transition duration.
+///
+@mixin hover_skew($x: 5deg, $y: 0, $duration: $hover-duration) {
+    @include hover_transition(transform, $duration);
+    cursor: pointer;
+
+    &:hover {
+        transform: skew($x, $y);
+    }
+}
+
+
+// ============================================================================
+// Visual Hover Effects
+// ============================================================================
+
+///
+/// Glow on hover effect.
+///
+/// @param {Color} $color [rgba(59, 130, 246, 0.5)] - Glow color.
+/// @param {Length} $spread [20px] - Glow spread.
+/// @param {Time} $duration [$hover-duration] - Transition duration.
+///
+@mixin hover_glow($color: rgba(59, 130, 246, 0.5), $spread: 20px, $duration: $hover-duration) {
+    @include hover_transition(box-shadow, $duration);
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 0 $spread $color;
+    }
+}
+
+///
+/// Shadow on hover effect.
+///
+/// @param {Length} $blur [25px] - Shadow blur.
+/// @param {Color} $color [rgba(0,0,0,0.2)] - Shadow color.
+/// @param {Time} $duration [$hover-duration] - Transition duration.
+///
+@mixin hover_shadow($blur: 25px, $color: rgba(0, 0, 0, 0.2), $duration: $hover-duration) {
+    @include hover_transition(box-shadow, $duration);
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 8px $blur $color;
+    }
+}
+
+///
+/// Brighten on hover effect.
+///
+/// @param {Color} $color [#e0f2fe] - Hover background color.
+/// @param {Time} $duration [$hover-duration] - Transition duration.
+///
+@mixin hover_brighten($color: #e0f2fe, $duration: $hover-duration) {
+    @include hover_transition(background-color, $duration);
+    cursor: pointer;
+
+    &:hover {
+        background-color: $color;
+    }
+}
+
+///
+/// Darken on hover effect.
+///
+/// @param {Color} $color [#cbd5e1] - Hover background color.
+/// @param {Time} $duration [$hover-duration] - Transition duration.
+///
+@mixin hover_darken($color: #cbd5e1, $duration: $hover-duration) {
+    @include hover_transition(background-color, $duration);
+    cursor: pointer;
+
+    &:hover {
+        background-color: $color;
+    }
+}
+
+///
+/// Opacity on hover effect.
+///
+/// @param {Number} $opacity [0.5] - Hover opacity.
+/// @param {Time} $duration [$hover-duration] - Transition duration.
+///
+@mixin hover_opacity($opacity: 0.5, $duration: $hover-duration) {
+    @include hover_transition(opacity, $duration);
+    cursor: pointer;
+
+    &:hover {
+        opacity: $opacity;
+    }
+}
+
+
+// ============================================================================
+// Filter Hover Effects
+// ============================================================================
+
+///
+/// Blur on hover effect.
+///
+/// @param {Length} $blur [4px] - Blur amount.
+/// @param {Time} $duration [$hover-duration] - Transition duration.
+///
+@mixin hover_blur($blur: 4px, $duration: $hover-duration) {
+    @include hover_transition(filter, $duration);
+
+    &:hover {
+        filter: blur($blur);
+    }
+}
+
+///
+/// Grayscale on hover effect (removes grayscale).
+///
+/// @param {Time} $duration [$hover-duration] - Transition duration.
+///
+@mixin hover_grayscale($duration: $hover-duration) {
+    filter: grayscale(100%);
+    @include hover_transition(filter, $duration);
+
+    &:hover {
+        filter: grayscale(0%);
+    }
+}
+
+///
+/// Saturate on hover effect.
+///
+/// @param {Percentage} $amount [200%] - Saturation amount.
+/// @param {Time} $duration [$hover-duration] - Transition duration.
+///
+@mixin hover_saturate($amount: 200%, $duration: $hover-duration) {
+    @include hover_transition(filter, $duration);
+
+    &:hover {
+        filter: saturate($amount);
+    }
+}
+
+///
+/// Brightness on hover effect.
+///
+/// @param {Percentage} $amount [130%] - Brightness amount.
+/// @param {Time} $duration [$hover-duration] - Transition duration.
+///
+@mixin hover_brightness($amount: 130%, $duration: $hover-duration) {
+    @include hover_transition(filter, $duration);
+
+    &:hover {
+        filter: brightness($amount);
+    }
+}
+
+
+// ============================================================================
+// Animated Hover Effects
+// ============================================================================
+
+/// Shake hover keyframes
+@keyframes hover-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
+}
+
+///
+/// Shake on hover effect.
+///
+/// @param {Time} $duration [0.3s] - Animation duration.
+///
+@mixin hover_shake($duration: 0.3s) {
+    cursor: pointer;
+
+    &:hover {
+        animation: hover-shake $duration ease infinite;
+    }
+}
+
+
+// ============================================================================
+// Combined Hover Effects
+// ============================================================================
+
+///
+/// Scale and rotate combined hover effect.
+///
+/// @param {Number} $scale [1.2] - Scale factor.
+/// @param {Angle} $rotate [10deg] - Rotation angle.
+/// @param {Time} $duration [$hover-duration] - Transition duration.
+///
+@mixin hover_scale_rotate($scale: 1.2, $rotate: 10deg, $duration: $hover-duration) {
+    @include hover_transition(transform, $duration);
+    cursor: pointer;
+
+    &:hover {
+        transform: scale($scale) rotate($rotate);
+    }
+}
+
+///
+/// Lift and scale combined hover effect.
+///
+/// @param {Length} $lift [-10px] - Lift distance.
+/// @param {Number} $scale [1.1] - Scale factor.
+/// @param {Time} $duration [$hover-duration] - Transition duration.
+///
+@mixin hover_lift_scale($lift: -10px, $scale: 1.1, $duration: $hover-duration) {
+    @include hover_transition(transform, $duration);
+    cursor: pointer;
+
+    &:hover {
+        transform: translateY($lift) scale($scale);
+    }
+}
+
+///
+/// 3D rotate combined hover effect.
+///
+/// @param {Angle} $rotateY [30deg] - Y-axis rotation.
+/// @param {Angle} $rotateX [15deg] - X-axis rotation.
+/// @param {Number} $scale [1.1] - Scale factor.
+/// @param {Time} $duration [$hover-duration] - Transition duration.
+///
+@mixin hover_3d_rotate($rotateY: 30deg, $rotateX: 15deg, $scale: 1.1, $duration: $hover-duration) {
+    @include hover_transition(transform, $duration);
+    cursor: pointer;
+
+    &:hover {
+        transform: rotateY($rotateY) rotateX($rotateX) scale($scale);
+    }
+}
