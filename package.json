@@ -57,7 +57,7 @@
         "micromatch": "^4.0.8",
         "nunjucks": "^3.2.4",
         "sass": "^1.97.3",
-        "serve-static": "^1.16.2",
+        "serve-static": "^2.2.1",
         "ts-node": "^10.9.2",
         "typescript": "^5.9.3",
         "vite": "^7.3.1"
