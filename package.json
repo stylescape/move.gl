@@ -40,7 +40,7 @@
     "module": "dist/js/move.gl.js",
     "style": "dist/css/move.gl.css",
     "scripts": {
-        "build": "npx kist --config ./kist.pro.yml",
+        "build": "npx kist --config ./kist.yml",
         "watch": "npx kist --config ./kist.yml --live",
         "dev": "vite"
     },
@@ -52,8 +52,10 @@
         "unit.gl": "^0.2.3"
     },
     "devDependencies": {
+        "@getkist/action-nunjucks": "^2.0.9",
+        "@getkist/action-sass": "^1.0.4",
         "@types/node": "^25.2.0",
-        "kist": "^0.1.58",
+        "kist": "^0.1.60",
         "micromatch": "^4.0.8",
         "nunjucks": "^3.2.4",
         "sass": "^1.97.3",
@@ -78,7 +80,9 @@
     },
     "typesVersions": {
         "*": {
-            "*": ["./ts/index.d.ts"]
+            "*": [
+                "./ts/index.d.ts"
+            ]
         }
     }
 }
