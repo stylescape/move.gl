@@ -91,3 +91,38 @@ stages:
                     tsConfigPath: "./tsconfig.json"
                     filePaths:
                         - "src/ts/index.ts"
+
+            # Generate package.json for distribution
+            # -----------------------------------------------------------------
+            -
+                name: GeneratePackageJSON
+                action: PackageManagerAction
+                options:
+                    packageJsonPath: "./package.json"
+                    outputDir: "./dist"
+                    fields:
+                        - name
+                        - version
+                        - description
+                        - keywords
+                        - license
+                        - homepage
+                        - author
+                        - contributors
+                        - repository
+                        - funding
+                        - sass
+                        - style
+                        - exports
+
+            # Version synchronization
+            # -----------------------------------------------------------------
+            -
+                name: SyncVersion
+                action: VersionWriteAction
+                options:
+                    files:
+                        - path: "./CITATION.cff"
+                          key: "version: "
+                        - path: "./VERSION"
+                          key: "v"
