@@ -56,12 +56,13 @@
   "style": "dist/css/move.gl.css",
   "exports": {
     ".": {
-      "sass": "./scss/index.scss",
-      "types": "./ts/index.d.ts",
-      "import": "./js/move.gl.js",
-      "default": "./js/move.gl.js"
+      "sass": "./src/scss/index.scss",
+      "types": "./dist/js/index.d.ts",
+      "import": "./dist/js/index.mjs",
+      "require": "./dist/js/index.cjs"
     },
-    "./css/move.gl.css": "./css/move.gl.css",
-    "./css/move.gl.min.css": "./css/move.gl.min.css"
+    "./scss": "./dist/scss/index.scss",
+    "./css/move.gl.css": "./dist/css/move.gl.css",
+    "./css/move.gl.min.css": "./dist/css/move.gl.min.css"
   }
 }

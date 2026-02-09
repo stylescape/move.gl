@@ -35,12 +35,14 @@
         }
     ],
     "type": "module",
-    "main": "src/ts/index.ts",
+    "main": "./dist/js/index.cjs",
+    "module": "./dist/js/index.mjs",
+    "types": "./dist/js/index.d.ts",
     "sass": "src/scss/index.scss",
-    "module": "dist/js/move.gl.js",
     "style": "dist/css/move.gl.css",
     "scripts": {
-        "build": "npx kist --config ./kist.yml",
+        "build": "npx kist --config ./kist.yml && npm run build:ts",
+        "build:ts": "tsup",
         "watch": "npx kist --config ./kist.yml --live",
         "dev": "vite"
     },
@@ -61,6 +63,7 @@
         "sass": "^1.97.3",
         "serve-static": "^2.2.1",
         "ts-node": "^10.9.2",
+        "tsup": "^8.5.1",
         "typescript": "^5.9.3",
         "vite": "^7.3.1"
     },
@@ -70,13 +73,14 @@
     ],
     "exports": {
         ".": {
-            "sass": "./scss/index.scss",
-            "types": "./ts/index.d.ts",
-            "import": "./js/move.gl.js",
-            "default": "./js/move.gl.js"
+            "sass": "./src/scss/index.scss",
+            "types": "./dist/js/index.d.ts",
+            "import": "./dist/js/index.mjs",
+            "require": "./dist/js/index.cjs"
         },
-        "./css/move.gl.css": "./css/move.gl.css",
-        "./css/move.gl.min.css": "./css/move.gl.min.css"
+        "./scss": "./dist/scss/index.scss",
+        "./css/move.gl.css": "./dist/css/move.gl.css",
+        "./css/move.gl.min.css": "./dist/css/move.gl.min.css"
     },
     "typesVersions": {
         "*": {

@@ -81,17 +81,6 @@ stages:
                     srcDir: "./src/ts"
                     destDir: "./dist/ts"
 
-            # Compile TS to JS
-            # -----------------------------------------------------------------
-
-            -
-                name: Compile TS to JS
-                action: TypeScriptCompilerAction
-                options:
-                    tsConfigPath: "./tsconfig.json"
-                    filePaths:
-                        - "src/ts/index.ts"
-
             # Generate package.json for distribution
             # -----------------------------------------------------------------
             -
