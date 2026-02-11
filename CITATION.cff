@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: move.gl
-version: 0.0.1
+version: 0.0.2
 date-released: 2024-08-01
 url: "https://github.com/stylescape/move.gl"
 message: >-
@@ -13,4 +13,6 @@ authors:
     email: lars@scape.agency
     affiliation: Scape Agency
     orcid: 'https://orcid.org/0000-0002-8790-8630'
+
+
 
