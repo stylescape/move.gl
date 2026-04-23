@@ -5241,7 +5241,7 @@ body {
 .loader--hourglass::before {
   top: 0;
   height: 45%;
-  border-radius: 48px 48px 0 0;
+  border-radius: 0 48px 0 0;
   background: var(--loader-sand, #FF3D00);
   clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 50%, 0 100%);
   animation: sand-fall 2s ease-in-out infinite;
@@ -5417,7 +5417,7 @@ body {
   align-items: center;
   padding: 8px 12px;
   background: rgba(0, 0, 0, 0.1);
-  border-radius: 16px;
+  border-radius: 0;
 }
 .loader--typing > * {
   width: 8px;
@@ -5467,7 +5467,7 @@ body {
 .loader--bars > * {
   width: 6px;
   background: currentColor;
-  border-radius: 2px;
+  border-radius: 0;
   animation: loader-bars-wave 1.2s ease-in-out infinite;
 }
 .loader--bars > *:nth-child(1) {
@@ -5493,7 +5493,7 @@ body {
 .loader--wave-bar > * {
   flex: 1;
   background: currentColor;
-  border-radius: 2px;
+  border-radius: 0;
   animation: loader-wave-bar 1s ease-in-out infinite;
 }
 .loader--wave-bar > *:nth-child(1) {
@@ -5516,7 +5516,7 @@ body {
   width: 100px;
   height: 4px;
   background: rgba(0, 0, 0, 0.1);
-  border-radius: 2px;
+  border-radius: 0;
   overflow: hidden;
 }
 .loader--progress::after {
@@ -5525,7 +5525,7 @@ body {
   width: 40%;
   height: 100%;
   background: currentColor;
-  border-radius: 2px;
+  border-radius: 0;
   animation: loader-progress-slide 1.5s ease-in-out infinite;
 }
 
@@ -5841,7 +5841,7 @@ body {
   width: 50px;
   height: 24px;
   border: 3px solid rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+  border-radius: 0;
   position: relative;
 }
 .loader--battery::before {
@@ -5863,7 +5863,7 @@ body {
   bottom: 3px;
   width: 0%;
   background: currentColor;
-  border-radius: 2px;
+  border-radius: 0;
   animation: loader-battery-charge 2s ease-in-out infinite;
 }
 
@@ -6019,7 +6019,7 @@ body {
   right: 0;
   height: 4px;
   background: currentColor;
-  border-radius: 2px;
+  border-radius: 0;
   transform-origin: center center;
   animation: loader-seesaw 1s ease-in-out infinite;
 }
@@ -6065,7 +6065,7 @@ body {
 .loader--progress-stripe {
   width: 240px;
   height: 10px;
-  border-radius: 5px;
+  border-radius: 0;
   background: repeating-linear-gradient(135deg, var(--loader-color, #FFF) 0 10px, var(--loader-accent, rgba(255, 255, 255, 0.5)) 10px 20px) 0/200%;
   animation: progress-stripe 1s linear infinite;
 }
@@ -6073,7 +6073,7 @@ body {
 .loader--progress-stripe-fill {
   width: 240px;
   height: 10px;
-  border-radius: 5px;
+  border-radius: 0;
   background: var(--loader-bg, rgba(255, 255, 255, 0.15));
   position: relative;
   overflow: hidden;
@@ -6094,7 +6094,7 @@ body {
 .loader--progress-pulse {
   width: 240px;
   height: 8px;
-  border-radius: 4px;
+  border-radius: 0;
   background: var(--loader-bg, rgba(255, 255, 255, 0.15));
   position: relative;
   overflow: hidden;
@@ -6132,7 +6132,7 @@ body {
 .loader--progress-gradient {
   width: 240px;
   height: 8px;
-  border-radius: 4px;
+  border-radius: 0;
   background: linear-gradient(90deg, var(--loader-start, #FF3D00) 50%, var(--loader-end, #FFF) 0) calc(100% - var(--_p, 0%))/200%, linear-gradient(var(--loader-bg, rgba(255, 255, 255, 0.15)) 0 0) 0%/var(--_p, 0%);
   background-repeat: no-repeat;
   animation: progress-flow 1.5s linear infinite;
@@ -6194,7 +6194,7 @@ body {
   flex: 1;
   height: 100%;
   background: var(--loader-inactive, rgba(255, 255, 255, 0.15));
-  border-radius: 2px;
+  border-radius: 0;
   animation: segment-fill 2s ease infinite;
 }
 .loader--progress-segments span:nth-child(1) {
@@ -6768,7 +6768,7 @@ body {
 .loader--bar-bounce {
   width: 8px;
   height: 40px;
-  border-radius: 4px;
+  border-radius: 0;
   display: inline-block;
   margin-left: 20px;
   margin-top: 10px;
@@ -6783,7 +6783,7 @@ body {
   box-sizing: border-box;
   width: 8px;
   height: 40px;
-  border-radius: 4px;
+  border-radius: 0;
   background: currentColor;
   position: absolute;
   bottom: 0;
@@ -6798,7 +6798,7 @@ body {
 .loader--bar-pulse {
   width: 8px;
   height: 40px;
-  border-radius: 4px;
+  border-radius: 0;
   display: block;
   margin: 20px auto;
   position: relative;
@@ -6811,7 +6811,7 @@ body {
   content: "";
   width: 8px;
   height: 40px;
-  border-radius: 4px;
+  border-radius: 0;
   background: currentColor;
   position: absolute;
   top: 50%;
@@ -6832,7 +6832,7 @@ body {
   margin: auto;
   left: -20px;
   position: relative;
-  border-radius: 4px;
+  border-radius: 0;
   box-sizing: border-box;
   animation: bar-flash 1s linear infinite alternate;
 }
@@ -6842,7 +6842,7 @@ body {
   height: 48px;
   display: inline-block;
   position: relative;
-  border-radius: 4px;
+  border-radius: 0;
   color: var(--loader-color, #FFF);
   box-sizing: border-box;
   animation: bar-wave 0.6s linear infinite;
@@ -6879,7 +6879,7 @@ body {
   display: inline-block;
   margin-top: 20px;
   position: relative;
-  border-radius: 4px;
+  border-radius: 0;
   color: var(--loader-color, #FFF);
   background: currentColor;
   box-sizing: border-box;
@@ -6890,7 +6890,7 @@ body {
   box-sizing: border-box;
   width: 4.8px;
   height: 4.8px;
-  border-radius: 4px;
+  border-radius: 0;
   background: currentColor;
   position: absolute;
   left: 0;
@@ -6907,7 +6907,7 @@ body {
   height: 48px;
   display: inline-block;
   position: relative;
-  border-radius: 4px;
+  border-radius: 0;
   box-sizing: border-box;
   animation: bar-reveal 1s linear infinite alternate;
 }
@@ -6925,7 +6925,7 @@ body {
 .loader--bar-shrink {
   height: 30px;
   width: 10px;
-  border-radius: 4px;
+  border-radius: 0;
   color: var(--loader-color, #FFF);
   background: currentColor;
   position: relative;
@@ -7170,7 +7170,7 @@ body {
 
 .loader--skeleton-shimmer {
   background-color: var(--skeleton-bg, rgba(255, 255, 255, 0.1));
-  border-radius: 4px;
+  border-radius: 0;
   position: relative;
   overflow: hidden;
   background: linear-gradient(90deg, var(--skeleton-bg, rgba(255, 255, 255, 0.1)) 0%, var(--skeleton-highlight, rgba(255, 255, 255, 0.2)) 50%, var(--skeleton-bg, rgba(255, 255, 255, 0.1)) 100%);
@@ -7180,7 +7180,7 @@ body {
 
 .loader--skeleton-pulse {
   background-color: var(--skeleton-bg, rgba(255, 255, 255, 0.1));
-  border-radius: 4px;
+  border-radius: 0;
   position: relative;
   overflow: hidden;
   animation: skeleton-pulse 1.5s ease-in-out infinite;
@@ -7188,7 +7188,7 @@ body {
 
 .loader--skeleton-wave {
   background-color: var(--skeleton-bg, rgba(255, 255, 255, 0.1));
-  border-radius: 4px;
+  border-radius: 0;
   position: relative;
   overflow: hidden;
 }
@@ -7205,7 +7205,7 @@ body {
 
 .loader--skeleton-fade {
   background-color: var(--skeleton-bg, rgba(255, 255, 255, 0.1));
-  border-radius: 4px;
+  border-radius: 0;
   position: relative;
   overflow: hidden;
   animation: skeleton-fade 2s ease-in-out infinite;
@@ -7216,7 +7216,7 @@ body {
   width: 100px;
   height: 130px;
   background: var(--loader-bg, #FFF);
-  border-radius: 4px;
+  border-radius: 0;
 }
 .loader--clipboard::before {
   content: "";
@@ -7251,7 +7251,7 @@ body {
   background: var(--loader-cover, #979794);
   box-sizing: border-box;
   position: relative;
-  border-radius: 8px;
+  border-radius: 0;
   perspective: 1000px;
 }
 .loader--book::before {
@@ -7261,7 +7261,7 @@ body {
   right: 10px;
   top: 10px;
   bottom: 10px;
-  border-radius: 8px;
+  border-radius: 0;
   background: var(--loader-page, #F5F5F5) no-repeat;
   background-size: 60px 10px;
   background-image: linear-gradient(var(--loader-line, #DDD) 100px, transparent 0), linear-gradient(var(--loader-line, #DDD) 100px, transparent 0), linear-gradient(var(--loader-line, #DDD) 100px, transparent 0), linear-gradient(var(--loader-line, #DDD) 100px, transparent 0), linear-gradient(var(--loader-line, #DDD) 100px, transparent 0), linear-gradient(var(--loader-line, #DDD) 100px, transparent 0);
@@ -7275,7 +7275,7 @@ body {
   right: 10px;
   top: 10px;
   bottom: 10px;
-  border-radius: 8px;
+  border-radius: 0;
   background: var(--loader-page, #FFF) no-repeat;
   background-size: 60px 10px;
   background-image: linear-gradient(var(--loader-line, #DDD) 100px, transparent 0), linear-gradient(var(--loader-line, #DDD) 100px, transparent 0), linear-gradient(var(--loader-line, #DDD) 100px, transparent 0);
@@ -7289,7 +7289,7 @@ body {
   width: 60px;
   height: 80px;
   background: var(--loader-bg, #FFF);
-  border-radius: 4px;
+  border-radius: 0;
   position: relative;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
@@ -7585,7 +7585,7 @@ body {
   padding: 1rem;
   font-size: 18px;
   border: 2px solid var(--keyboard-input-border, #444);
-  border-radius: 8px;
+  border-radius: 0;
   background: var(--keyboard-input-bg, #0d1117);
   color: var(--keyboard-input-color, white);
   margin-bottom: 1.5rem;
@@ -7605,7 +7605,7 @@ body {
 .keyboard__mode-btn {
   padding: 0.5rem 1rem;
   border: 2px solid var(--keyboard-mode-border, #667eea);
-  border-radius: 8px;
+  border-radius: 0;
   background: transparent;
   color: var(--keyboard-mode-color, #667eea);
   font-weight: 500;
