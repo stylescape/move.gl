@@ -2,7 +2,7 @@
 content = """// ============================================================================
 // move.gl | Loaders Mixin Index
 // ============================================================================
-// Copyright 2025 Scape Agency BV
+// Copyright 2026 Scape Press BV
 // Licensed under MIT License
 // ============================================================================
 
@@ -13,7 +13,7 @@ content = """// ================================================================
 /// This module provides loading animation mixins for spinners and progress.
 ///
 /// @group Loaders
-/// @author Scape Agency
+/// @author Scape Press
 /// @link https://move.gl
 /// @since 0.1.0 initial release
 /// @access public

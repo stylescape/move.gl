@@ -9,4 +9,4 @@
 
 **move.gl** is a move framework.
 
-**move.gl** is an open-source project by [Scape Agency](https://www.scape.agency "Scape Agency website").
+**move.gl** is an open-source project by [Scape Press](https://www.scape.press "Scape Press website").
