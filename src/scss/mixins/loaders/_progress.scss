@@ -18,8 +18,7 @@
 /// @access public
 ////
 
-@use "../../variables" as *;
-
+@use '../../variables' as *;
 
 // ============================================================================
 // Keyframes
@@ -30,8 +29,12 @@
 ///
 @mixin keyframes_progress_fill {
     @keyframes progress-fill {
-        0% { width: 0%; }
-        100% { width: 100%; }
+        0% {
+            width: 0%;
+        }
+        100% {
+            width: 100%;
+        }
     }
 }
 
@@ -40,9 +43,18 @@
 ///
 @mixin keyframes_progress_indeterminate {
     @keyframes progress-indeterminate {
-        0% { left: 0; right: 100%; }
-        50% { left: 25%; right: 0; }
-        100% { left: 100%; right: 0; }
+        0% {
+            left: 0;
+            right: 100%;
+        }
+        50% {
+            left: 25%;
+            right: 0;
+        }
+        100% {
+            left: 100%;
+            right: 0;
+        }
     }
 }
 
@@ -51,8 +63,12 @@
 ///
 @mixin keyframes_progress_stripe {
     @keyframes progress-stripe {
-        0% { background-position: 0 0; }
-        100% { background-position: 30px 0; }
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: 30px 0;
+        }
     }
 }
 
@@ -61,10 +77,22 @@
 ///
 @mixin keyframes_progress_pulse {
     @keyframes progress-pulse {
-        0% { transform: scaleX(0.1); transform-origin: left; }
-        50% { transform: scaleX(1); transform-origin: left; }
-        51% { transform: scaleX(1); transform-origin: right; }
-        100% { transform: scaleX(0.1); transform-origin: right; }
+        0% {
+            transform: scaleX(0.1);
+            transform-origin: left;
+        }
+        50% {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        51% {
+            transform: scaleX(1);
+            transform-origin: right;
+        }
+        100% {
+            transform: scaleX(0.1);
+            transform-origin: right;
+        }
     }
 }
 
@@ -73,9 +101,18 @@
 ///
 @mixin keyframes_progress_split {
     @keyframes progress-split {
-        0% { width: 0; left: 50%; }
-        50% { width: 100%; left: 0%; }
-        100% { width: 0; left: 50%; }
+        0% {
+            width: 0;
+            left: 50%;
+        }
+        50% {
+            width: 100%;
+            left: 0%;
+        }
+        100% {
+            width: 0;
+            left: 50%;
+        }
     }
 }
 
@@ -84,8 +121,20 @@
 ///
 @mixin keyframes_progress_flow {
     @keyframes progress-flow {
-        0% { background-position: -200% 0, 0 0, 0 0, 0 0; }
-        100% { background-position: 200% 0, 0 0, 0 0, 0 0; }
+        0% {
+            background-position:
+                -200% 0,
+                0 0,
+                0 0,
+                0 0;
+        }
+        100% {
+            background-position:
+                200% 0,
+                0 0,
+                0 0,
+                0 0;
+        }
     }
 }
 
@@ -94,8 +143,12 @@
 ///
 @mixin keyframes_circle_progress {
     @keyframes circle-progress {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
     }
 }
 
@@ -104,8 +157,13 @@
 ///
 @mixin keyframes_dot_active {
     @keyframes dot-active {
-        0%, 100% { background: var(--loader-inactive, rgba(255, 255, 255, 0.3)); }
-        50% { background: var(--loader-color, #FFF); }
+        0%,
+        100% {
+            background: var(--loader-inactive, rgba(255, 255, 255, 0.3));
+        }
+        50% {
+            background: var(--loader-color, #fff);
+        }
     }
 }
 
@@ -114,11 +172,16 @@
 ///
 @mixin keyframes_segment_fill {
     @keyframes segment-fill {
-        0%, 20% { background: var(--loader-inactive, rgba(255, 255, 255, 0.15)); }
-        40%, 100% { background: var(--loader-color, #FFF); }
+        0%,
+        20% {
+            background: var(--loader-inactive, rgba(255, 255, 255, 0.15));
+        }
+        40%,
+        100% {
+            background: var(--loader-color, #fff);
+        }
     }
 }
-
 
 // ============================================================================
 // Progress Loader Mixins
@@ -211,12 +274,12 @@
     width: $width;
     height: $height;
     border-radius: calc($height / 2);
-    background:
-        repeating-linear-gradient(
+    background: repeating-linear-gradient(
             135deg,
             var(--loader-color, $color) 0 10px,
             var(--loader-accent, rgba($color, 0.5)) 10px 20px
-        ) 0 / 200%;
+        )
+        0 / 200%;
     animation: progress-stripe $duration linear infinite;
 }
 
@@ -253,12 +316,11 @@
         height: 100%;
         width: 0%;
         border-radius: inherit;
-        background:
-            repeating-linear-gradient(
-                135deg,
-                var(--loader-color, $fill-color) 0 10px,
-                rgba($fill-color, 0.5) 10px 20px
-            );
+        background: repeating-linear-gradient(
+            135deg,
+            var(--loader-color, $fill-color) 0 10px,
+            rgba($fill-color, 0.5) 10px 20px
+        );
         background-size: 200% 100%;
         animation:
             progress-fill $fill-duration ease infinite,
@@ -358,7 +420,12 @@
     height: $height;
     border-radius: calc($height / 2);
     background:
-        linear-gradient(90deg, var(--loader-start, $start-color) 50%, var(--loader-end, $end-color) 0) calc(100% - var(--_p, 0%)) / 200%,
+        linear-gradient(
+                90deg,
+                var(--loader-start, $start-color) 50%,
+                var(--loader-end, $end-color) 0
+            )
+            calc(100% - var(--_p, 0%)) / 200%,
         linear-gradient(var(--loader-bg, $bg-color) 0 0) 0% / var(--_p, 0%);
     background-repeat: no-repeat;
     animation: progress-flow $duration linear infinite;

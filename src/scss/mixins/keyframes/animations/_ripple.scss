@@ -19,18 +19,15 @@
 /// @access public
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../../variables" as *;
-
+@use '../../../variables' as *;
 
 // ============================================================================
 // Keyframes
 // ============================================================================
-
 
 ///
 /// Ripple Keyframes
@@ -40,13 +37,23 @@
 /// @param {Number} $opacity_start [1] - The initial opacity.
 /// @param {Number} $opacity_end [0] - The final opacity.
 ///
-@mixin keyframes_animate_ripple($scale_start: 1, $scale_end: $animate_scale_zoom, $opacity_start: 1, $opacity_end: 0) {
+@mixin keyframes_animate_ripple(
+    $scale_start: 1,
+    $scale_end: $animate_scale_zoom,
+    $opacity_start: 1,
+    $opacity_end: 0
+) {
     @keyframes animate_ripple {
-        0% { transform: scale($scale_start); opacity: $opacity_start; }
-        100% { transform: scale($scale_end); opacity: $opacity_end; }
+        0% {
+            transform: scale($scale_start);
+            opacity: $opacity_start;
+        }
+        100% {
+            transform: scale($scale_end);
+            opacity: $opacity_end;
+        }
     }
 }
-
 
 ///
 /// Ripple Slow Keyframes
@@ -56,11 +63,16 @@
 ///
 @mixin keyframes_animate_ripple_slow($scale_end: $animate_scale_zoom, $opacity_end: 0) {
     @keyframes animate_ripple_slow {
-        0% { transform: scale(1); opacity: 1; }
-        100% { transform: scale($scale_end); opacity: $opacity_end; }
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: scale($scale_end);
+            opacity: $opacity_end;
+        }
     }
 }
-
 
 ///
 /// Ripple Multi Keyframes
@@ -69,14 +81,27 @@
 /// @param {Number} $scale_second [1.5] - The scale at second stage.
 /// @param {Number} $opacity_end [0] - The final opacity.
 ///
-@mixin keyframes_animate_ripple_multi($scale_first: $animate_scale_pop, $scale_second: $animate_scale_zoom, $opacity_end: 0) {
+@mixin keyframes_animate_ripple_multi(
+    $scale_first: $animate_scale_pop,
+    $scale_second: $animate_scale_zoom,
+    $opacity_end: 0
+) {
     @keyframes animate_ripple_multi {
-        0%, 100% { transform: scale(1); opacity: 1; }
-        50% { transform: scale($scale_first); opacity: 0.5; }
-        100% { transform: scale($scale_second); opacity: $opacity_end; }
+        0%,
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale($scale_first);
+            opacity: 0.5;
+        }
+        100% {
+            transform: scale($scale_second);
+            opacity: $opacity_end;
+        }
     }
 }
-
 
 ///
 /// Ripple Color Keyframes
@@ -86,9 +111,22 @@
 /// @param {Color} $color_start [transparent] - The starting color.
 /// @param {Color} $color_end [transparent] - The ending color.
 ///
-@mixin keyframes_animate_ripple_color($scale_end: $animate_scale_zoom, $opacity_end: 0, $color_start: transparent, $color_end: transparent) {
+@mixin keyframes_animate_ripple_color(
+    $scale_end: $animate_scale_zoom,
+    $opacity_end: 0,
+    $color_start: transparent,
+    $color_end: transparent
+) {
     @keyframes animate_ripple_color {
-        0% { transform: scale(1); opacity: 1; background-color: $color_start; }
-        100% { transform: scale($scale_end); opacity: $opacity_end; background-color: $color_end; }
+        0% {
+            transform: scale(1);
+            opacity: 1;
+            background-color: $color_start;
+        }
+        100% {
+            transform: scale($scale_end);
+            opacity: $opacity_end;
+            background-color: $color_end;
+        }
     }
 }

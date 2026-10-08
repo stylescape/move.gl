@@ -14,7 +14,6 @@
 ///
 ////
 
-
 // ============================================================================
 // Mix Blend Mode Mixins
 // ============================================================================
@@ -29,53 +28,84 @@
 }
 
 /// Normal blend mode
-@mixin blend_normal { mix-blend-mode: normal; }
+@mixin blend_normal {
+    mix-blend-mode: normal;
+}
 
 /// Multiply blend mode
-@mixin blend_multiply { mix-blend-mode: multiply; }
+@mixin blend_multiply {
+    mix-blend-mode: multiply;
+}
 
 /// Screen blend mode
-@mixin blend_screen { mix-blend-mode: screen; }
+@mixin blend_screen {
+    mix-blend-mode: screen;
+}
 
 /// Overlay blend mode
-@mixin blend_overlay { mix-blend-mode: overlay; }
+@mixin blend_overlay {
+    mix-blend-mode: overlay;
+}
 
 /// Darken blend mode
-@mixin blend_darken { mix-blend-mode: darken; }
+@mixin blend_darken {
+    mix-blend-mode: darken;
+}
 
 /// Lighten blend mode
-@mixin blend_lighten { mix-blend-mode: lighten; }
+@mixin blend_lighten {
+    mix-blend-mode: lighten;
+}
 
 /// Color dodge blend mode
-@mixin blend_color_dodge { mix-blend-mode: color-dodge; }
+@mixin blend_color_dodge {
+    mix-blend-mode: color-dodge;
+}
 
 /// Color burn blend mode
-@mixin blend_color_burn { mix-blend-mode: color-burn; }
+@mixin blend_color_burn {
+    mix-blend-mode: color-burn;
+}
 
 /// Hard light blend mode
-@mixin blend_hard_light { mix-blend-mode: hard-light; }
+@mixin blend_hard_light {
+    mix-blend-mode: hard-light;
+}
 
 /// Soft light blend mode
-@mixin blend_soft_light { mix-blend-mode: soft-light; }
+@mixin blend_soft_light {
+    mix-blend-mode: soft-light;
+}
 
 /// Difference blend mode
-@mixin blend_difference { mix-blend-mode: difference; }
+@mixin blend_difference {
+    mix-blend-mode: difference;
+}
 
 /// Exclusion blend mode
-@mixin blend_exclusion { mix-blend-mode: exclusion; }
+@mixin blend_exclusion {
+    mix-blend-mode: exclusion;
+}
 
 /// Hue blend mode
-@mixin blend_hue { mix-blend-mode: hue; }
+@mixin blend_hue {
+    mix-blend-mode: hue;
+}
 
 /// Saturation blend mode
-@mixin blend_saturation { mix-blend-mode: saturation; }
+@mixin blend_saturation {
+    mix-blend-mode: saturation;
+}
 
 /// Color blend mode
-@mixin blend_color { mix-blend-mode: color; }
+@mixin blend_color {
+    mix-blend-mode: color;
+}
 
 /// Luminosity blend mode
-@mixin blend_luminosity { mix-blend-mode: luminosity; }
-
+@mixin blend_luminosity {
+    mix-blend-mode: luminosity;
+}
 
 // ============================================================================
 // Background Blend Mode Mixins
@@ -91,38 +121,61 @@
 }
 
 /// Normal background blend mode
-@mixin bg_blend_normal { background-blend-mode: normal; }
+@mixin bg_blend_normal {
+    background-blend-mode: normal;
+}
 
 /// Multiply background blend mode
-@mixin bg_blend_multiply { background-blend-mode: multiply; }
+@mixin bg_blend_multiply {
+    background-blend-mode: multiply;
+}
 
 /// Screen background blend mode
-@mixin bg_blend_screen { background-blend-mode: screen; }
+@mixin bg_blend_screen {
+    background-blend-mode: screen;
+}
 
 /// Overlay background blend mode
-@mixin bg_blend_overlay { background-blend-mode: overlay; }
+@mixin bg_blend_overlay {
+    background-blend-mode: overlay;
+}
 
 /// Darken background blend mode
-@mixin bg_blend_darken { background-blend-mode: darken; }
+@mixin bg_blend_darken {
+    background-blend-mode: darken;
+}
 
 /// Lighten background blend mode
-@mixin bg_blend_lighten { background-blend-mode: lighten; }
+@mixin bg_blend_lighten {
+    background-blend-mode: lighten;
+}
 
 /// Color dodge background blend mode
-@mixin bg_blend_color_dodge { background-blend-mode: color-dodge; }
+@mixin bg_blend_color_dodge {
+    background-blend-mode: color-dodge;
+}
 
 /// Color burn background blend mode
-@mixin bg_blend_color_burn { background-blend-mode: color-burn; }
+@mixin bg_blend_color_burn {
+    background-blend-mode: color-burn;
+}
 
 /// Hard light background blend mode
-@mixin bg_blend_hard_light { background-blend-mode: hard-light; }
+@mixin bg_blend_hard_light {
+    background-blend-mode: hard-light;
+}
 
 /// Soft light background blend mode
-@mixin bg_blend_soft_light { background-blend-mode: soft-light; }
+@mixin bg_blend_soft_light {
+    background-blend-mode: soft-light;
+}
 
 /// Difference background blend mode
-@mixin bg_blend_difference { background-blend-mode: difference; }
+@mixin bg_blend_difference {
+    background-blend-mode: difference;
+}
 
 /// Exclusion background blend mode
-@mixin bg_blend_exclusion { background-blend-mode: exclusion; }
-
+@mixin bg_blend_exclusion {
+    background-blend-mode: exclusion;
+}

@@ -19,8 +19,7 @@
 /// @access public
 ////
 
-@use "../../variables" as *;
-
+@use '../../variables' as *;
 
 // ============================================================================
 // Keyframes
@@ -31,10 +30,22 @@
 ///
 @mixin keyframes_write_down {
     @keyframes write-down {
-        0% { height: 0%; opacity: 0; }
-        20% { height: 0%; opacity: 1; }
-        80% { height: 65%; opacity: 1; }
-        100% { height: 65%; opacity: 0; }
+        0% {
+            height: 0%;
+            opacity: 0;
+        }
+        20% {
+            height: 0%;
+            opacity: 1;
+        }
+        80% {
+            height: 65%;
+            opacity: 1;
+        }
+        100% {
+            height: 65%;
+            opacity: 0;
+        }
     }
 }
 
@@ -43,8 +54,13 @@
 ///
 @mixin keyframes_page_turn {
     @keyframes page-turn {
-        0%, 100% { transform: rotateY(0deg); }
-        50% { transform: rotateY(-180deg); }
+        0%,
+        100% {
+            transform: rotateY(0deg);
+        }
+        50% {
+            transform: rotateY(-180deg);
+        }
     }
 }
 
@@ -53,11 +69,21 @@
 ///
 @mixin keyframes_pencil_write {
     @keyframes pencil-write {
-        0% { transform: translate(0, 0) rotate(-45deg); }
-        25% { transform: translate(10px, 0) rotate(-45deg); }
-        50% { transform: translate(20px, 0) rotate(-45deg); }
-        75% { transform: translate(10px, 0) rotate(-45deg); }
-        100% { transform: translate(0, 0) rotate(-45deg); }
+        0% {
+            transform: translate(0, 0) rotate(-45deg);
+        }
+        25% {
+            transform: translate(10px, 0) rotate(-45deg);
+        }
+        50% {
+            transform: translate(20px, 0) rotate(-45deg);
+        }
+        75% {
+            transform: translate(10px, 0) rotate(-45deg);
+        }
+        100% {
+            transform: translate(0, 0) rotate(-45deg);
+        }
     }
 }
 
@@ -66,8 +92,12 @@
 ///
 @mixin keyframes_checkmark {
     @keyframes checkmark {
-        0% { stroke-dashoffset: 100; }
-        100% { stroke-dashoffset: 0; }
+        0% {
+            stroke-dashoffset: 100;
+        }
+        100% {
+            stroke-dashoffset: 0;
+        }
     }
 }
 
@@ -76,9 +106,15 @@
 ///
 @mixin keyframes_hourglass_flip {
     @keyframes hourglass-flip {
-        0% { transform: rotate(0deg); }
-        50% { transform: rotate(180deg); }
-        100% { transform: rotate(180deg); }
+        0% {
+            transform: rotate(0deg);
+        }
+        50% {
+            transform: rotate(180deg);
+        }
+        100% {
+            transform: rotate(180deg);
+        }
     }
 }
 
@@ -87,9 +123,15 @@
 ///
 @mixin keyframes_sand_fall {
     @keyframes sand-fall {
-        0% { clip-path: polygon(0 0, 100% 0, 100% 0%, 50% 50%, 0 0%); }
-        50% { clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 50%, 0 100%); }
-        100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 50%, 0 100%); }
+        0% {
+            clip-path: polygon(0 0, 100% 0, 100% 0%, 50% 50%, 0 0%);
+        }
+        50% {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 50%, 0 100%);
+        }
+        100% {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 50%, 0 100%);
+        }
     }
 }
 
@@ -98,11 +140,14 @@
 ///
 @mixin keyframes_clock_rotate {
     @keyframes clock-rotate {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
     }
 }
-
 
 // ============================================================================
 // Graphic Loader Mixins
@@ -140,9 +185,17 @@
         left: 50%;
         top: 0;
         background-image:
-            radial-gradient(ellipse at center, transparent 24%, var(--loader-accent, $clip-color) 25%, var(--loader-accent, $clip-color) 64%, transparent 65%),
+            radial-gradient(
+                ellipse at center,
+                transparent 24%,
+                var(--loader-accent, $clip-color) 25%,
+                var(--loader-accent, $clip-color) 64%,
+                transparent 65%
+            ),
             linear-gradient(to bottom, transparent 34%, var(--loader-accent, $clip-color) 35%);
-        background-size: 12px 12px, 100% auto;
+        background-size:
+            12px 12px,
+            100% auto;
         background-repeat: no-repeat;
         background-position: center top;
         transform: translate(-50%, -65%);
@@ -157,7 +210,11 @@
         transform: translateX(-50%);
         width: 66%;
         height: 60%;
-        background: linear-gradient(to bottom, var(--loader-line, $line-color) 30%, transparent 31%);
+        background: linear-gradient(
+            to bottom,
+            var(--loader-line, $line-color) 30%,
+            transparent 31%
+        );
         background-size: 100% 16px;
         animation: write-down $duration ease-out infinite;
     }
@@ -177,8 +234,8 @@
     $width: 200px,
     $height: 140px,
     $cover-color: #979794,
-    $page-color: #F5F5F5,
-    $line-color: #DDD,
+    $page-color: #f5f5f5,
+    $line-color: #ddd,
     $duration: 2s
 ) {
     width: $width;
@@ -206,7 +263,13 @@
             linear-gradient(var(--loader-line, $line-color) 100px, transparent 0),
             linear-gradient(var(--loader-line, $line-color) 100px, transparent 0),
             linear-gradient(var(--loader-line, $line-color) 100px, transparent 0);
-        background-position: 15px 30px, 15px 60px, 15px 90px, 105px 30px, 105px 60px, 105px 90px;
+        background-position:
+            15px 30px,
+            15px 60px,
+            15px 90px,
+            105px 30px,
+            105px 60px,
+            105px 90px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
     }
 
@@ -218,13 +281,16 @@
         top: 10px;
         bottom: 10px;
         border-radius: 8px;
-        background: var(--loader-page, #FFF) no-repeat;
+        background: var(--loader-page, #fff) no-repeat;
         background-size: 60px 10px;
         background-image:
             linear-gradient(var(--loader-line, $line-color) 100px, transparent 0),
             linear-gradient(var(--loader-line, $line-color) 100px, transparent 0),
             linear-gradient(var(--loader-line, $line-color) 100px, transparent 0);
-        background-position: 50% 30px, 50% 60px, 50% 90px;
+        background-position:
+            50% 30px,
+            50% 60px,
+            50% 90px;
         transform: rotateY(0deg);
         transform-origin: left center;
         animation: page-turn $duration ease-in-out infinite;
@@ -341,7 +407,7 @@
     $width: 60px,
     $height: 80px,
     $bg-color: $loader-color,
-    $line-color: #DDD,
+    $line-color: #ddd,
     $border-radius: 4px,
     $duration: 1.5s
 ) {
@@ -359,14 +425,13 @@
         left: 15%;
         right: 15%;
         height: 50%;
-        background:
-            repeating-linear-gradient(
-                to bottom,
-                var(--loader-line, $line-color) 0,
-                var(--loader-line, $line-color) 4px,
-                transparent 4px,
-                transparent 12px
-            );
+        background: repeating-linear-gradient(
+            to bottom,
+            var(--loader-line, $line-color) 0,
+            var(--loader-line, $line-color) 4px,
+            transparent 4px,
+            transparent 12px
+        );
         animation: skeleton-pulse $duration ease-in-out infinite;
     }
 
@@ -397,7 +462,7 @@
     $width: 60px,
     $height: 40px,
     $bg-color: $loader-color,
-    $flap-color: #DDD,
+    $flap-color: #ddd,
     $duration: 2s
 ) {
     width: $width;
@@ -445,8 +510,13 @@
 ///
 @mixin keyframes_envelope_open {
     @keyframes envelope-open {
-        0%, 100% { transform: rotateX(0deg); }
-        50% { transform: rotateX(-180deg); }
+        0%,
+        100% {
+            transform: rotateX(0deg);
+        }
+        50% {
+            transform: rotateX(-180deg);
+        }
     }
 }
 
@@ -458,12 +528,7 @@
 /// @param {Length} $stroke [4px] - Border width.
 /// @param {Time} $duration [1s] - Animation duration.
 ///
-@mixin loader_search(
-    $size: 32px,
-    $color: $loader-color,
-    $stroke: 4px,
-    $duration: $loader-speed
-) {
+@mixin loader_search($size: 32px, $color: $loader-color, $stroke: 4px, $duration: $loader-speed) {
     width: $size;
     height: $size;
     border: $stroke solid var(--loader-color, $color);
@@ -490,8 +555,13 @@
 ///
 @mixin keyframes_search_wobble {
     @keyframes search-wobble {
-        0%, 100% { transform: rotate(-15deg); }
-        50% { transform: rotate(15deg); }
+        0%,
+        100% {
+            transform: rotate(-15deg);
+        }
+        50% {
+            transform: rotate(15deg);
+        }
     }
 }
 
@@ -503,12 +573,7 @@
 /// @param {Number} $teeth [8] - Number of teeth.
 /// @param {Time} $duration [2s] - Animation duration.
 ///
-@mixin loader_gear(
-    $size: 48px,
-    $color: $loader-color,
-    $teeth: 8,
-    $duration: 2s
-) {
+@mixin loader_gear($size: 48px, $color: $loader-color, $teeth: 8, $duration: 2s) {
     width: $size;
     height: $size;
     position: relative;
@@ -536,7 +601,11 @@
 ///
 @mixin keyframes_gear_rotate {
     @keyframes gear-rotate {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
     }
 }

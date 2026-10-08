@@ -18,8 +18,7 @@
 /// @access public
 ////
 
-@use "../../variables" as *;
-
+@use '../../variables' as *;
 
 // ============================================================================
 // Keyframes
@@ -30,8 +29,12 @@
 ///
 @mixin keyframes_circle_rotation {
     @keyframes circle-rotation {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
     }
 }
 
@@ -40,11 +43,21 @@
 ///
 @mixin keyframes_circle_clip {
     @keyframes circle-clip {
-        0% { clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0); }
-        25% { clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0); }
-        50% { clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%); }
-        75% { clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%); }
-        100% { clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0); }
+        0% {
+            clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+        }
+        25% {
+            clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+        }
+        50% {
+            clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+        }
+        75% {
+            clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+        }
+        100% {
+            clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+        }
     }
 }
 
@@ -53,8 +66,12 @@
 ///
 @mixin keyframes_circle_rotation_back {
     @keyframes circle-rotation-back {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(-360deg); }
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(-360deg);
+        }
     }
 }
 
@@ -87,7 +104,6 @@
         }
     }
 }
-
 
 // ============================================================================
 // Circle/Spinner Loader Mixins
@@ -359,11 +375,7 @@
 /// @param {Color} $color [#FFF] - Ring color.
 /// @param {Time} $duration [1.5s] - Animation duration.
 ///
-@mixin loader_circle_pulse(
-    $size: $loader-size,
-    $color: $loader-color,
-    $duration: 1.5s
-) {
+@mixin loader_circle_pulse($size: $loader-size, $color: $loader-color, $duration: 1.5s) {
     width: var(--loader-size, $size);
     height: var(--loader-size, $size);
     border-radius: 50%;

@@ -15,14 +15,12 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../../variables" as *;
-@use "../_base" as *;
-
+@use '../../../variables' as *;
+@use '../_base' as *;
 
 // ============================================================================
 // Basic Scale Keyframes
@@ -36,7 +34,8 @@
 ///
 @mixin keyframes_scale($scale_start: 1, $scale_end: $animate_scale_pop) {
     @include keyframes(animate_scale) {
-        0%, 100% {
+        0%,
+        100% {
             transform: scale($scale_start);
         }
         50% {
@@ -50,7 +49,8 @@
 ///
 @mixin keyframes_animate_scale($scale: $animate_scale_pop) {
     @include keyframes(animate_scale) {
-        0%, 100% {
+        0%,
+        100% {
             transform: scale(var(--animate-scale-base, #{$animate_scale_base}));
         }
         50% {
@@ -58,7 +58,6 @@
         }
     }
 }
-
 
 // ============================================================================
 // Expand Keyframes
@@ -72,7 +71,8 @@
 ///
 @mixin keyframes_scale_expand($scale_start: 1, $scale_end: $animate_scale_pop) {
     @include keyframes(animate_scale_expand) {
-        0%, 100% {
+        0%,
+        100% {
             transform: scale($scale_start);
         }
         50% {
@@ -80,7 +80,6 @@
         }
     }
 }
-
 
 // ============================================================================
 // Shrink Keyframes
@@ -92,7 +91,10 @@
 /// @param {Number} $scale_min [0.8] - Minimum scale
 /// @param {Number} $scale_max [1.2] - Maximum scale
 ///
-@mixin keyframes_scale_shrink($scale_min: $animate_scale_shrink_min, $scale_max: $animate_scale_pop) {
+@mixin keyframes_scale_shrink(
+    $scale_min: $animate_scale_shrink_min,
+    $scale_max: $animate_scale_pop
+) {
     @include keyframes(animate_scale_shrink) {
         0% {
             transform: scale($scale_max);
@@ -105,7 +107,6 @@
         }
     }
 }
-
 
 // ============================================================================
 // Scale In Keyframes
@@ -169,7 +170,6 @@
     }
 }
 
-
 // ============================================================================
 // Scale Out Keyframes
 // ============================================================================
@@ -210,7 +210,6 @@
     }
 }
 
-
 // ============================================================================
 // Bounce Scale Keyframes
 // ============================================================================
@@ -222,7 +221,8 @@
 ///
 @mixin keyframes_scale_bounce($scale: $animate_scale_pop) {
     @include keyframes(animate_scale_bounce) {
-        0%, 100% {
+        0%,
+        100% {
             transform: scale(1);
         }
         30% {
@@ -237,7 +237,6 @@
     }
 }
 
-
 // ============================================================================
 // Scale X/Y Keyframes
 // ============================================================================
@@ -249,7 +248,8 @@
 ///
 @mixin keyframes_scale_x($scale_x: $animate_scale_pop) {
     @include keyframes(animate_scale_x) {
-        0%, 100% {
+        0%,
+        100% {
             transform: scaleX(1);
         }
         50% {
@@ -265,7 +265,8 @@
 ///
 @mixin keyframes_scale_y($scale_y: $animate_scale_pop) {
     @include keyframes(animate_scale_y) {
-        0%, 100% {
+        0%,
+        100% {
             transform: scaleY(1);
         }
         50% {
@@ -273,7 +274,6 @@
         }
     }
 }
-
 
 // ============================================================================
 // Scale Transition Classes (CSS utility classes)

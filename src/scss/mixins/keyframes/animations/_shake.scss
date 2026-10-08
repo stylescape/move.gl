@@ -15,14 +15,12 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../../variables" as *;
-@use "../_base" as *;
-
+@use '../../../variables' as *;
+@use '../_base' as *;
 
 // ============================================================================
 // Basic Shake Keyframes
@@ -41,10 +39,12 @@
         4% {
             transform: rotate($amplitude);
         }
-        8%, 24% {
+        8%,
+        24% {
             transform: rotate(-$amplitude * 1.2);
         }
-        12%, 28% {
+        12%,
+        28% {
             transform: rotate($amplitude * 1.2);
         }
         16% {
@@ -59,7 +59,8 @@
         36% {
             transform: rotate($amplitude * 0.8);
         }
-        40%, 100% {
+        40%,
+        100% {
             transform: rotate(0deg);
         }
     }
@@ -70,18 +71,25 @@
 ///
 @mixin keyframes_animate_shake($amplitude: $animate_angle_shake) {
     @include keyframes(animate_shake) {
-        0%, 100% {
+        0%,
+        100% {
             transform: rotate(0deg);
         }
-        10%, 30%, 50%, 70%, 90% {
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {
             transform: rotate(calc(-1 * var(--animate-shake-angle, #{$amplitude})));
         }
-        20%, 40%, 60%, 80% {
+        20%,
+        40%,
+        60%,
+        80% {
             transform: rotate(var(--animate-shake-angle, #{$amplitude}));
         }
     }
 }
-
 
 // ============================================================================
 // Slow Shake Keyframes
@@ -94,18 +102,25 @@
 ///
 @mixin keyframes_shake_slow($amplitude: $animate_angle_gentle) {
     @include keyframes(animate_shake_slow) {
-        0%, 100% {
+        0%,
+        100% {
             transform: rotate(0deg);
         }
-        10%, 30%, 50%, 70%, 90% {
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {
             transform: rotate(-$amplitude);
         }
-        20%, 40%, 60%, 80% {
+        20%,
+        40%,
+        60%,
+        80% {
             transform: rotate($amplitude);
         }
     }
 }
-
 
 // ============================================================================
 // Horizontal Shake Keyframes
@@ -118,18 +133,25 @@
 ///
 @mixin keyframes_shake_horizontal($distance: $animate_translate_shake) {
     @include keyframes(animate_shake_horizontal) {
-        0%, 100% {
+        0%,
+        100% {
             transform: translateX(0);
         }
-        10%, 30%, 50%, 70%, 90% {
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {
             transform: translateX(-$distance);
         }
-        20%, 40%, 60%, 80% {
+        20%,
+        40%,
+        60%,
+        80% {
             transform: translateX($distance);
         }
     }
 }
-
 
 // ============================================================================
 // Vertical Shake Keyframes
@@ -142,18 +164,25 @@
 ///
 @mixin keyframes_shake_vertical($distance: $animate_translate_shake) {
     @include keyframes(animate_shake_vertical) {
-        0%, 100% {
+        0%,
+        100% {
             transform: translateY(0);
         }
-        10%, 30%, 50%, 70%, 90% {
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {
             transform: translateY(-$distance);
         }
-        20%, 40%, 60%, 80% {
+        20%,
+        40%,
+        60%,
+        80% {
             transform: translateY($distance);
         }
     }
 }
-
 
 // ============================================================================
 // Intense Shake Keyframes
@@ -167,7 +196,8 @@
 ///
 @mixin keyframes_shake_intense($amplitude: $animate_angle_rapid, $distance: 5px) {
     @include keyframes(animate_shake_intense) {
-        0%, 100% {
+        0%,
+        100% {
             transform: translateX(0) rotate(0);
         }
         10% {
@@ -200,7 +230,6 @@
     }
 }
 
-
 // ============================================================================
 // Jitter Shake Keyframes
 // ============================================================================
@@ -212,7 +241,8 @@
 ///
 @mixin keyframes_shake_jitter($distance: 2px) {
     @include keyframes(animate_shake_jitter) {
-        0%, 100% {
+        0%,
+        100% {
             transform: translate(0, 0);
         }
         10% {
@@ -245,7 +275,6 @@
     }
 }
 
-
 // ============================================================================
 // Nod Shake Keyframes
 // ============================================================================
@@ -257,7 +286,8 @@
 ///
 @mixin keyframes_shake_nod($angle: 5deg) {
     @include keyframes(animate_shake_nod) {
-        0%, 100% {
+        0%,
+        100% {
             transform: rotateX(0deg);
         }
         25% {

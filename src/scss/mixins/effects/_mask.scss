@@ -14,7 +14,6 @@
 ///
 ////
 
-
 // ============================================================================
 // Gradient Mask Mixins
 // ============================================================================
@@ -59,7 +58,6 @@
     -webkit-mask-image: linear-gradient(to right, black $solid, transparent 100%);
 }
 
-
 // ============================================================================
 // Radial Mask Mixins
 // ============================================================================
@@ -73,4 +71,3 @@
     mask-image: radial-gradient(circle, black $solid, transparent 100%);
     -webkit-mask-image: radial-gradient(circle, black $solid, transparent 100%);
 }
-

@@ -18,60 +18,53 @@
 /// @access public
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../variables" as *;
-
+@use '../../variables' as *;
 
 // ============================================================================
 // Base loader mixin
 // ============================================================================
 
-@forward "base";
-
+@forward 'base';
 
 // ============================================================================
 // Legacy loaders
 // ============================================================================
 
-@forward "spinner";
-@forward "progress";
-
+@forward 'spinner';
+@forward 'progress';
 
 // ============================================================================
 // Animation-based loaders
 // ============================================================================
 
-@forward "dots";
-@forward "bars";
-@forward "rings" hide loader_hourglass;
-@forward "special" hide loader_clock, loader_gear, loader_pendulum, loader_dna, loader_infinity;
-
+@forward 'dots';
+@forward 'bars';
+@forward 'rings' hide loader_hourglass;
+@forward 'special' hide loader_clock, loader_gear, loader_pendulum, loader_dna, loader_infinity;
 
 // ============================================================================
 // Shape-based loaders
 // ============================================================================
 
-@forward "bubble";
-@forward "circle";
-@forward "rect";
-@forward "line";
-
+@forward 'bubble';
+@forward 'circle';
+@forward 'rect';
+@forward 'line';
 
 // ============================================================================
 // Content loaders
 // ============================================================================
 
-@forward "text";
-@forward "skeleton";
-
+@forward 'text';
+@forward 'skeleton';
 
 // ============================================================================
 // Graphic loaders
 // ============================================================================
 
-@forward "graph";
-@forward "objects";
+@forward 'graph';
+@forward 'objects';

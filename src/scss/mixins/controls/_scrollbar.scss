@@ -15,22 +15,18 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "sass:math";
-@use "sass:color";
-@use "../../variables" as *;
-@use "../../maps" as *;
-
+@use 'sass:math';
+@use 'sass:color';
+@use '../../variables' as *;
+@use '../../maps' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
-
-
 
 /*
 ::-webkit-scrollbar              {}
@@ -51,7 +47,6 @@ https://gist.github.com/JuanMaRuiz/7927982
 ::-webkit-scrollbar-corner        — the bottom corner of the scrollbar, where both horizontal and vertical scrollbars meet.
 ::-webkit-resizer                 — the draggable resizing handle that appears at the bottom corner of some elements.
 */
-
 
 // width
 *::-webkit-scrollbar {
@@ -84,7 +79,7 @@ https://gist.github.com/JuanMaRuiz/7927982
 }
 
 // Track Piece
-*::-webkit-scrollbar-track-piece{
+*::-webkit-scrollbar-track-piece {
     //display: none;
     // width: 8px;
     // display: none;
@@ -112,11 +107,9 @@ https://gist.github.com/JuanMaRuiz/7927982
 
 // Handle on hover
 *::-webkit-scrollbar-thumb:hover {
-  //background:$color_02;
-  //opacity: 1;
-
+    //background:$color_02;
+    //opacity: 1;
 }
-
 
 ::-webkit-scrollbar-thumb:vertical {
     ///height: 50px;
@@ -124,18 +117,12 @@ https://gist.github.com/JuanMaRuiz/7927982
     //-webkit-border-radius: 8px;
 }
 
-
-
-
 ::-webkit-scrollbar-button:start:decrement,
 body::-webkit-scrollbar-button:end:increment {
     //display: block;
     //height: 0;
     //background-color: transparent;
 }
-
-
-
 
 // SCSS Mixin for Custom Scrollbars
 // This mixin allows for customization of the scrollbar's appearance. Note that scrollbar customization is primarily supported in WebKit-based browsers (like Chrome and Safari) and partially in Firefox.
@@ -162,7 +149,7 @@ body::-webkit-scrollbar-button:end:increment {
         border-radius: math.div($width, 2);
         border: 2px solid $track-color;
         &:hover {
-        background: color.adjust($thumb-color, $lightness: -10%);
+            background: color.adjust($thumb-color, $lightness: -10%);
         }
     }
 
@@ -173,24 +160,21 @@ body::-webkit-scrollbar-button:end:increment {
     // For other browsers, there's limited support for customization.
 }
 
-
 // Usage Example
 // You can apply this mixin to any element that has overflow content, such as a container with scrollable content.
 
-
 .scrollable-content {
-    @include custom-scrollbar(10px, #e0e0e0, #4A4A4A); // Customize the width, track color, and thumb color
+    @include custom-scrollbar(
+        10px,
+        #e0e0e0,
+        #4a4a4a
+    ); // Customize the width, track color, and thumb color
     max-height: 300px;
     overflow-y: scroll;
 }
 
-
-
-
-
 // Extended Custom Scrollbar Mixin
 // This extended version includes additional styling options for the scrollbar thumb, including hover and active states, and introduces a more detailed approach to styling the scrollbar track and corner.
-
 
 @mixin extended-custom-scrollbar(
     $width: 12px,
@@ -226,11 +210,11 @@ body::-webkit-scrollbar-button:end:increment {
         border: 3px solid $track-color;
 
         &:hover {
-        background: $thumb-hover-color;
+            background: $thumb-hover-color;
         }
 
         &:active {
-        background: $thumb-active-color;
+            background: $thumb-active-color;
         }
     }
 
@@ -248,7 +232,6 @@ body::-webkit-scrollbar-button:end:increment {
 // Usage Example with Extended Options
 // Apply this mixin to any scrollable element to enhance its appearance with a custom scrollbar that includes interactive states for better user engagement.
 
-
 .detailed-scrollable-content {
     @include extended-custom-scrollbar(8px, #eaeaea, #bcbcbc, #a8a8a8, #989898);
     max-height: 400px;
@@ -256,7 +239,6 @@ body::-webkit-scrollbar-button:end:increment {
 }
 // Advanced Customization for Specific Elements
 // You can also target specific parts of the scrollbar for even more detailed customization. For instance, you might want to style only the vertical or horizontal scrollbar, or apply unique styles to the scrollbar buttons (arrows), which some browsers display.
-
 
 .unique-vertical-scrollbar {
     &::-webkit-scrollbar {
@@ -279,5 +261,3 @@ body::-webkit-scrollbar-button:end:increment {
         border-radius: 5px;
     }
 }
-
-

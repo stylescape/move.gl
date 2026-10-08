@@ -14,48 +14,79 @@
 ///
 ////
 
-
 // ============================================================================
 // Keyframes
 // ============================================================================
 
 /// Basic spin animation
 @keyframes loader-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /// Ripple animation keyframes
 @keyframes loader-ripple {
-    0% { transform: scale(0.5); opacity: 1; }
-    100% { transform: scale(1.5); opacity: 0; }
+    0% {
+        transform: scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
 }
 
 /// Pulse animation keyframes
 @keyframes loader-pulse {
-    0% { transform: scale(0.8); opacity: 1; }
-    50% { transform: scale(1); opacity: 0.5; }
-    100% { transform: scale(0.8); opacity: 1; }
+    0% {
+        transform: scale(0.8);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(0.8);
+        opacity: 1;
+    }
 }
 
 /// Orbit animation keyframes (top)
 @keyframes loader-orbit-top {
-    0%, 100% { top: 0; }
-    50% { top: calc(100% - 12px); }
+    0%,
+    100% {
+        top: 0;
+    }
+    50% {
+        top: calc(100% - 12px);
+    }
 }
 
 /// Orbit animation keyframes (bottom)
 @keyframes loader-orbit-bottom {
-    0%, 100% { bottom: 0; }
-    50% { bottom: calc(100% - 12px); }
+    0%,
+    100% {
+        bottom: 0;
+    }
+    50% {
+        bottom: calc(100% - 12px);
+    }
 }
 
 /// Atom orbit animation
 @keyframes loader-atom-orbit {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
-
 
 // ============================================================================
 // Mixins
@@ -71,7 +102,13 @@
 /// @param {Color} $bg [rgba(0,0,0,0.1)] - Track background color.
 /// @param {Time} $duration [0.8s] - Animation duration.
 ///
-@mixin loader_spinner($size: 40px, $border-width: 3px, $color: currentColor, $bg: rgba(0, 0, 0, 0.1), $duration: 0.8s) {
+@mixin loader_spinner(
+    $size: 40px,
+    $border-width: 3px,
+    $color: currentColor,
+    $bg: rgba(0, 0, 0, 0.1),
+    $duration: 0.8s
+) {
     width: $size;
     height: $size;
     border: $border-width solid $bg;
@@ -145,7 +182,13 @@
 /// @param {Color} $bg [rgba(0,0,0,0.1)] - Track background color.
 /// @param {Time} $duration [0.8s] - Animation duration.
 ///
-@mixin loader_circle_notch($size: 40px, $border-width: 3px, $color: currentColor, $bg: rgba(0, 0, 0, 0.1), $duration: 0.8s) {
+@mixin loader_circle_notch(
+    $size: 40px,
+    $border-width: 3px,
+    $color: currentColor,
+    $bg: rgba(0, 0, 0, 0.1),
+    $duration: 0.8s
+) {
     width: $size;
     height: $size;
     border: $border-width solid $bg;
@@ -219,7 +262,13 @@
 /// @param {Color} $bg [rgba(0,0,0,0.1)] - Track background color.
 /// @param {Time} $duration [1s] - Animation duration.
 ///
-@mixin loader_ring($size: 40px, $border-width: 4px, $color: currentColor, $bg: rgba(0, 0, 0, 0.1), $duration: 1s) {
+@mixin loader_ring(
+    $size: 40px,
+    $border-width: 4px,
+    $color: currentColor,
+    $bg: rgba(0, 0, 0, 0.1),
+    $duration: 1s
+) {
     width: $size;
     height: $size;
     border: $border-width solid $bg;
@@ -301,12 +350,39 @@
         background: $color;
         border-radius: 50%;
 
-        &:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); opacity: 1; }
-        &:nth-child(2) { top: 15%; right: 15%; opacity: 0.85; }
-        &:nth-child(3) { top: 50%; right: 0; transform: translateY(-50%); opacity: 0.7; }
-        &:nth-child(4) { bottom: 15%; right: 15%; opacity: 0.55; }
-        &:nth-child(5) { bottom: 0; left: 50%; transform: translateX(-50%); opacity: 0.4; }
-        &:nth-child(6) { bottom: 15%; left: 15%; opacity: 0.25; }
+        &:nth-child(1) {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 1;
+        }
+        &:nth-child(2) {
+            top: 15%;
+            right: 15%;
+            opacity: 0.85;
+        }
+        &:nth-child(3) {
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            opacity: 0.7;
+        }
+        &:nth-child(4) {
+            bottom: 15%;
+            right: 15%;
+            opacity: 0.55;
+        }
+        &:nth-child(5) {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.4;
+        }
+        &:nth-child(6) {
+            bottom: 15%;
+            left: 15%;
+            opacity: 0.25;
+        }
     }
 }
 
@@ -320,7 +396,13 @@
 /// @param {Color} $color [currentColor] - Color.
 /// @param {Time} $duration [1s] - Animation duration.
 ///
-@mixin loader_atom($size: 40px, $center-size: 8px, $orbit-width: 2px, $color: currentColor, $duration: 1s) {
+@mixin loader_atom(
+    $size: 40px,
+    $center-size: 8px,
+    $orbit-width: 2px,
+    $color: currentColor,
+    $duration: 1s
+) {
     width: $size;
     height: $size;
     position: relative;
@@ -344,9 +426,17 @@
         border-top-color: $color;
         border-radius: 50%;
 
-        &:nth-child(1) { animation: loader-atom-orbit $duration linear infinite; }
-        &:nth-child(2) { transform: rotate(60deg); animation: loader-atom-orbit $duration linear infinite; }
-        &:nth-child(3) { transform: rotate(120deg); animation: loader-atom-orbit $duration linear infinite; }
+        &:nth-child(1) {
+            animation: loader-atom-orbit $duration linear infinite;
+        }
+        &:nth-child(2) {
+            transform: rotate(60deg);
+            animation: loader-atom-orbit $duration linear infinite;
+        }
+        &:nth-child(3) {
+            transform: rotate(120deg);
+            animation: loader-atom-orbit $duration linear infinite;
+        }
     }
 }
 
