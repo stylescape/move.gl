@@ -38,6 +38,9 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [1] - Number of iterations
+/// @param {String} $name [animate_jello] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Basic usage
 ///   .button {
@@ -48,11 +51,12 @@
     $intensity: 12.5deg,
     $duration: $animate_base_duration,
     $timing_function: ease-in-out,
-    $iteration_count: 1
+    $iteration_count: 1,
+    $name: animate_jello
 ) {
-    @include animate_base(animate_jello, $duration, $timing_function, $iteration_count);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
     transform-origin: center;
-    @keyframes animate_jello {
+    @keyframes #{$name} {
         0%,
         11.1%,
         100% {
@@ -89,14 +93,17 @@
 ///
 /// @name animate_jello_subtle
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
+/// @param {String} $name [animate_jello] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Usage
 ///   .card {
 ///     @include animate_jello_subtle;
 ///   }
 ///
-@mixin animate_jello_subtle($duration: $animate_base_duration) {
-    @include animate_jello(6deg, $duration);
+@mixin animate_jello_subtle($duration: $animate_base_duration, $name: animate_jello) {
+    @include animate_jello(6deg, $duration, $name: $name);
 }
 
 ///
@@ -105,7 +112,10 @@
 ///
 /// @name animate_jello_intense
 /// @param {Duration} $duration [$animate_base_duration] - The animation duration.
+/// @param {String} $name [animate_jello] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
-@mixin animate_jello_intense($duration: $animate_base_duration) {
-    @include animate_jello(20deg, $duration);
+@mixin animate_jello_intense($duration: $animate_base_duration, $name: animate_jello) {
+    @include animate_jello(20deg, $duration, $name: $name);
 }

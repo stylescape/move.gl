@@ -31,8 +31,10 @@
 ///
 /// Standard beat animation - single pulse.
 ///
-@mixin keyframes_beat {
-    @include keyframes(beat) {
+/// @param {String} $name [beat] - Keyframes name
+///
+@mixin keyframes_beat($name: beat) {
+    @include keyframes($name) {
         0%, 90% {
             transform: scale(
                 var(
@@ -50,8 +52,10 @@
 ///
 /// Beat with fade effect.
 ///
-@mixin keyframes_beat_fade {
-    @include keyframes(beat-fade) {
+/// @param {String} $name [beat-fade] - Keyframes name
+///
+@mixin keyframes_beat_fade($name: beat-fade) {
+    @include keyframes($name) {
         0%, 100% {
             opacity: var(--animate-opacity-fade, #{$animate_opacity_fade});
             transform: scale(var(--animate-scale-base, #{$animate_scale_base}));
@@ -66,8 +70,10 @@
 ///
 /// Double beat animation - two quick pulses.
 ///
-@mixin keyframes_beat_double {
-    @include keyframes(beat-double) {
+/// @param {String} $name [beat-double] - Keyframes name
+///
+@mixin keyframes_beat_double($name: beat-double) {
+    @include keyframes($name) {
         0%, 100% {
             transform: scale(var(--animate-scale-base, #{$animate_scale_base}));
         }
@@ -91,8 +97,10 @@
 ///
 /// Realistic heartbeat animation.
 ///
-@mixin keyframes_heartbeat {
-    @include keyframes(heartbeat) {
+/// @param {String} $name [heartbeat] - Keyframes name
+///
+@mixin keyframes_heartbeat($name: heartbeat) {
+    @include keyframes($name) {
         0% { transform: scale(1); }
         14% { transform: scale($animate_heartbeat_scale_small); }
         28% { transform: scale(1); }
@@ -105,8 +113,10 @@
 ///
 /// Fast heartbeat - excited/urgent state.
 ///
-@mixin keyframes_heartbeat_fast {
-    @include keyframes(heartbeat-fast) {
+/// @param {String} $name [heartbeat-fast] - Keyframes name
+///
+@mixin keyframes_heartbeat_fast($name: heartbeat-fast) {
+    @include keyframes($name) {
         0% { transform: scale(1); }
         10% { transform: scale($animate_scale_beat_double_large * 0.76667); }
         20% { transform: scale(1); }
@@ -119,8 +129,10 @@
 ///
 /// Slow heartbeat - calm/relaxed state.
 ///
-@mixin keyframes_heartbeat_slow {
-    @include keyframes(heartbeat-slow) {
+/// @param {String} $name [heartbeat-slow] - Keyframes name
+///
+@mixin keyframes_heartbeat_slow($name: heartbeat-slow) {
+    @include keyframes($name) {
         0% { transform: scale(1); }
         20% { transform: scale(1.08); }
         40% { transform: scale(1); }
@@ -137,8 +149,10 @@
 ///
 /// Pulse beat with opacity change.
 ///
-@mixin keyframes_pulse_beat {
-    @include keyframes(pulse-beat) {
+/// @param {String} $name [pulse-beat] - Keyframes name
+///
+@mixin keyframes_pulse_beat($name: pulse-beat) {
+    @include keyframes($name) {
         0%, 100% {
             transform: scale(1);
             opacity: 1;
@@ -154,9 +168,10 @@
 /// Pulse beat with glow effect.
 ///
 /// @param {Color} $color [currentColor] - Glow color.
+/// @param {String} $name [pulse-beat-glow] - Keyframes name
 ///
-@mixin keyframes_pulse_beat_glow($color: currentColor) {
-    @include keyframes(pulse-beat-glow) {
+@mixin keyframes_pulse_beat_glow($color: currentColor, $name: pulse-beat-glow) {
+    @include keyframes($name) {
         0%, 100% {
             transform: scale(1);
             box-shadow: 0 0 0 0 keyframes_alpha($color, 0.4);
@@ -172,9 +187,10 @@
 /// Expanding ring pulse for beat effects.
 ///
 /// @param {Color} $color [currentColor] - Ring color.
+/// @param {String} $name [beat-ring] - Keyframes name
 ///
-@mixin keyframes_beat_ring($color: currentColor) {
-    @include keyframes(beat-ring) {
+@mixin keyframes_beat_ring($color: currentColor, $name: beat-ring) {
+    @include keyframes($name) {
         0% {
             box-shadow: 0 0 0 0 keyframes_alpha($color, 0.6);
         }
@@ -192,8 +208,10 @@
 ///
 /// Triple beat pattern.
 ///
-@mixin keyframes_beat_triple {
-    @include keyframes(beat-triple) {
+/// @param {String} $name [beat-triple] - Keyframes name
+///
+@mixin keyframes_beat_triple($name: beat-triple) {
+    @include keyframes($name) {
         0%, 100% { transform: scale(1); }
         15% { transform: scale($animate_heartbeat_scale_small); }
         30% { transform: scale(1); }
@@ -207,8 +225,10 @@
 ///
 /// Syncopated beat pattern.
 ///
-@mixin keyframes_beat_syncopated {
-    @include keyframes(beat-syncopated) {
+/// @param {String} $name [beat-syncopated] - Keyframes name
+///
+@mixin keyframes_beat_syncopated($name: beat-syncopated) {
+    @include keyframes($name) {
         0%, 100% { transform: scale(1); }
         10% { transform: scale($animate_scale_beat_double_large * 0.76667); }
         20% { transform: scale(1); }
@@ -227,9 +247,10 @@
 ///
 /// Parameterized beat animation keyframes.
 /// @param {Number} $scale - The scale factor for the beat effect.
+/// @param {String} $name [animate_beat] - Keyframes name
 ///
-@mixin keyframes_animate_beat($scale: $animate_scale_beat) {
-    @keyframes animate_beat {
+@mixin keyframes_animate_beat($scale: $animate_scale_beat, $name: animate_beat) {
+    @keyframes #{$name} {
         0%, 90% {
             transform: scale(1);
         }
@@ -243,9 +264,10 @@
 /// Parameterized beat fade animation keyframes.
 /// @param {Number} $opacity - The opacity at start/end.
 /// @param {Number} $scale - The scale factor.
+/// @param {String} $name [animate_beat_fade] - Keyframes name
 ///
-@mixin keyframes_animate_beat_fade($opacity: $animate_opacity_fade, $scale: $animate_scale_beat_fade) {
-    @keyframes animate_beat_fade {
+@mixin keyframes_animate_beat_fade($opacity: $animate_opacity_fade, $scale: $animate_scale_beat_fade, $name: animate_beat_fade) {
+    @keyframes #{$name} {
         0%, 100% {
             opacity: $opacity;
             transform: scale(1);
@@ -261,9 +283,10 @@
 /// Parameterized double beat animation keyframes.
 /// @param {Number} $scale_small - The smaller scale factor.
 /// @param {Number} $scale_large - The larger scale factor.
+/// @param {String} $name [animate_beat_double] - Keyframes name
 ///
-@mixin keyframes_animate_beat_double($scale_small: $animate_scale_beat_double_small, $scale_large: $animate_scale_beat_double_large) {
-    @keyframes animate_beat_double {
+@mixin keyframes_animate_beat_double($scale_small: $animate_scale_beat_double_small, $scale_large: $animate_scale_beat_double_large, $name: animate_beat_double) {
+    @keyframes #{$name} {
         0%, 100% {
             transform: scale(1);
         }

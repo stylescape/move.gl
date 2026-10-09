@@ -38,6 +38,9 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_zoom] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Basic usage
 ///   .image {
@@ -48,10 +51,11 @@
     $scale: $animate_scale_zoom,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_zoom
 ) {
-    @include animate_base(animate_zoom, $duration, $timing_function, $iteration_count);
-    @include keyframes_zoom($scale);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_zoom($scale, $name: $name);
 }
 
 ///
@@ -64,15 +68,19 @@
 /// @param {Time} $duration [$animate_base_duration_slow] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_zoom_slow] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_zoom_slow(
     $scale: $animate_scale_zoom_slow,
     $duration: $animate_base_duration_slow,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_zoom_slow
 ) {
-    @include animate_base(animate_zoom_slow, $duration, $timing_function, $iteration_count);
-    @include keyframes_zoom_slow($scale);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_zoom_slow($scale, $name: $name);
 }
 
 ///
@@ -85,15 +93,19 @@
 /// @param {Time} $duration [$animate_base_duration_fast] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_zoom_fast] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_zoom_fast(
     $scale: $animate_scale_zoom_fast,
     $duration: $animate_base_duration_fast,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_zoom_fast
 ) {
-    @include animate_base(animate_zoom_fast, $duration, $timing_function, $iteration_count);
-    @include keyframes_zoom_fast($scale);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_zoom_fast($scale, $name: $name);
 }
 
 ///
@@ -107,16 +119,20 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_zoom_fade] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_zoom_fade(
     $scale: 1.5,
     $opacity_min: 0.5,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_zoom_fade
 ) {
-    @include animate_base(animate_zoom_fade, $duration, $timing_function, $iteration_count);
-    @include keyframes_zoom_fade($scale, $opacity_min);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_zoom_fade($scale, $opacity_min, $name: $name);
 }
 
 ///
@@ -128,14 +144,18 @@
 /// @param {Number} $start_scale [0.5] - Starting scale
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-out] - Timing function
+/// @param {String} $name [animate_zoom_in] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_zoom_in(
     $start_scale: 0.5,
     $duration: $animate_base_duration,
-    $timing_function: ease-out
+    $timing_function: ease-out,
+    $name: animate_zoom_in
 ) {
-    @include animate_base(animate_zoom_in, $duration, $timing_function, 1, $fill_mode: both);
-    @include keyframes_zoom_in($start_scale);
+    @include animate_base($name, $duration, $timing_function, 1, $fill_mode: both);
+    @include keyframes_zoom_in($start_scale, $name: $name);
 }
 
 ///
@@ -147,14 +167,18 @@
 /// @param {Number} $end_scale [0.5] - Ending scale
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-in] - Timing function
+/// @param {String} $name [animate_zoom_out] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_zoom_out(
     $end_scale: 0.5,
     $duration: $animate_base_duration,
-    $timing_function: ease-in
+    $timing_function: ease-in,
+    $name: animate_zoom_out
 ) {
-    @include animate_base(animate_zoom_out, $duration, $timing_function, 1, $fill_mode: both);
-    @include keyframes_zoom_out($end_scale);
+    @include animate_base($name, $duration, $timing_function, 1, $fill_mode: both);
+    @include keyframes_zoom_out($end_scale, $name: $name);
 }
 
 ///
@@ -168,16 +192,20 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_zoom_rotate] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_zoom_rotate(
     $scale: 1.5,
     $rotation: 15deg,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_zoom_rotate
 ) {
-    @include animate_base(animate_zoom_rotate, $duration, $timing_function, $iteration_count);
-    @include keyframes_zoom_rotate($scale, $rotation);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_zoom_rotate($scale, $rotation, $name: $name);
 }
 
 ///
@@ -190,15 +218,19 @@
 /// @param {Length} $distance [20px] - Distance to travel
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-out] - Timing function
+/// @param {String} $name [animate_zoom_in_up] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_zoom_in_up(
     $start_scale: 0.5,
     $distance: 20px,
     $duration: $animate_base_duration,
-    $timing_function: ease-out
+    $timing_function: ease-out,
+    $name: animate_zoom_in_up
 ) {
-    @include animate_base(animate_zoom_in_up, $duration, $timing_function, 1, $fill_mode: both);
-    @include keyframes_zoom_in_up($start_scale, $distance);
+    @include animate_base($name, $duration, $timing_function, 1, $fill_mode: both);
+    @include keyframes_zoom_in_up($start_scale, $distance, $name: $name);
 }
 
 ///
@@ -211,15 +243,19 @@
 /// @param {Length} $distance [20px] - Distance to travel
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-out] - Timing function
+/// @param {String} $name [animate_zoom_in_down] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_zoom_in_down(
     $start_scale: 0.5,
     $distance: 20px,
     $duration: $animate_base_duration,
-    $timing_function: ease-out
+    $timing_function: ease-out,
+    $name: animate_zoom_in_down
 ) {
-    @include animate_base(animate_zoom_in_down, $duration, $timing_function, 1, $fill_mode: both);
-    @include keyframes_zoom_in_down($start_scale, $distance);
+    @include animate_base($name, $duration, $timing_function, 1, $fill_mode: both);
+    @include keyframes_zoom_in_down($start_scale, $distance, $name: $name);
 }
 
 ///
@@ -232,15 +268,19 @@
 /// @param {Length} $distance [20px] - Distance to travel
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-out] - Timing function
+/// @param {String} $name [animate_zoom_in_left] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_zoom_in_left(
     $start_scale: 0.5,
     $distance: 20px,
     $duration: $animate_base_duration,
-    $timing_function: ease-out
+    $timing_function: ease-out,
+    $name: animate_zoom_in_left
 ) {
-    @include animate_base(animate_zoom_in_left, $duration, $timing_function, 1, $fill_mode: both);
-    @include keyframes_zoom_in_left($start_scale, $distance);
+    @include animate_base($name, $duration, $timing_function, 1, $fill_mode: both);
+    @include keyframes_zoom_in_left($start_scale, $distance, $name: $name);
 }
 
 ///
@@ -253,15 +293,19 @@
 /// @param {Length} $distance [20px] - Distance to travel
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-out] - Timing function
+/// @param {String} $name [animate_zoom_in_right] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_zoom_in_right(
     $start_scale: 0.5,
     $distance: 20px,
     $duration: $animate_base_duration,
-    $timing_function: ease-out
+    $timing_function: ease-out,
+    $name: animate_zoom_in_right
 ) {
-    @include animate_base(animate_zoom_in_right, $duration, $timing_function, 1, $fill_mode: both);
-    @include keyframes_zoom_in_right($start_scale, $distance);
+    @include animate_base($name, $duration, $timing_function, 1, $fill_mode: both);
+    @include keyframes_zoom_in_right($start_scale, $distance, $name: $name);
 }
 
 ///
@@ -274,21 +318,25 @@
 /// @param {Length} $distance [20px] - Distance to travel
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-in] - Timing function
+/// @param {String} $name [animate_zoom_out_up] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_zoom_out_up(
     $end_scale: 0.5,
     $distance: 20px,
     $duration: $animate_base_duration,
-    $timing_function: ease-in
+    $timing_function: ease-in,
+    $name: animate_zoom_out_up
 ) {
     @include animate_base(
-        animate_zoom_out_up,
+        $name,
         $duration,
         $timing_function,
         1,
         $fill_mode: forwards
     );
-    @include keyframes_zoom_out_up($end_scale, $distance);
+    @include keyframes_zoom_out_up($end_scale, $distance, $name: $name);
 }
 
 ///
@@ -301,19 +349,23 @@
 /// @param {Length} $distance [20px] - Distance to travel
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-in] - Timing function
+/// @param {String} $name [animate_zoom_out_down] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_zoom_out_down(
     $end_scale: 0.5,
     $distance: 20px,
     $duration: $animate_base_duration,
-    $timing_function: ease-in
+    $timing_function: ease-in,
+    $name: animate_zoom_out_down
 ) {
     @include animate_base(
-        animate_zoom_out_down,
+        $name,
         $duration,
         $timing_function,
         1,
         $fill_mode: forwards
     );
-    @include keyframes_zoom_out_down($end_scale, $distance);
+    @include keyframes_zoom_out_down($end_scale, $distance, $name: $name);
 }

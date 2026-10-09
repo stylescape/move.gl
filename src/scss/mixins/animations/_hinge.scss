@@ -39,6 +39,9 @@
 /// @param {Length} $fall_distance [700px] - Distance to fall
 /// @param {Time} $duration [2s] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
+/// @param {String} $name [animate_hinge] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Basic usage
 ///   .modal-close {
@@ -50,11 +53,12 @@
     $swing_angle: 80deg,
     $fall_distance: 700px,
     $duration: 2s,
-    $timing_function: ease-in-out
+    $timing_function: ease-in-out,
+    $name: animate_hinge
 ) {
-    @include animate_base(animate_hinge, $duration, $timing_function, 1);
+    @include animate_base($name, $duration, $timing_function, 1);
     transform-origin: $origin;
-    @keyframes animate_hinge {
+    @keyframes #{$name} {
         0% {
             transform: rotate3d(0, 0, 1, 0deg);
             opacity: 1;
@@ -83,14 +87,17 @@
 ///
 /// @name animate_hinge_left
 /// @param {Time} $duration [2s] - Animation duration
+/// @param {String} $name [animate_hinge] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Usage
 ///   .panel {
 ///     @include animate_hinge_left;
 ///   }
 ///
-@mixin animate_hinge_left($duration: 2s) {
-    @include animate_hinge(top left, 80deg, 700px, $duration);
+@mixin animate_hinge_left($duration: 2s, $name: animate_hinge) {
+    @include animate_hinge(top left, 80deg, 700px, $duration, $name: $name);
 }
 
 ///
@@ -100,7 +107,10 @@
 ///
 /// @name animate_hinge_right
 /// @param {Time} $duration [2s] - Animation duration
+/// @param {String} $name [animate_hinge] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
-@mixin animate_hinge_right($duration: 2s) {
-    @include animate_hinge(top right, -80deg, 700px, $duration);
+@mixin animate_hinge_right($duration: 2s, $name: animate_hinge) {
+    @include animate_hinge(top right, -80deg, 700px, $duration, $name: $name);
 }

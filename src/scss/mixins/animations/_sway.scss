@@ -38,6 +38,9 @@
 /// @param {Time} $duration - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count - Number of iterations
+/// @param {String} $name [animate_sway] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Basic usage
 ///   .tree {
@@ -48,10 +51,11 @@
     $angle: 5deg,
     $duration: $animate_base_duration * 2,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_sway
 ) {
-    @include animate_base(animate_sway, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_sway($angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_sway($angle, $name: $name);
 }
 
 // Gentle Sway Animation
@@ -65,15 +69,19 @@
 /// @param {Duration} $duration [$animate_base_duration_slow/// 2] - The duration of the sway animation.
 /// @param {String} $timing_function [ease-in-out] - The timing function for the sway animation.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {String} $name [animate_sway_slow] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_sway_slow(
     $angle: 3deg,
     $duration: $animate_base_duration_slow * 2,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_sway_slow
 ) {
-    @include animate_base(animate_sway_slow, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_sway_slow($angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_sway_slow($angle, $name: $name);
 }
 
 // Rapid Sway Animation
@@ -87,15 +95,19 @@
 /// @param {Duration} $duration [$animate_base_duration_fast/// 2] - The duration of the sway animation.
 /// @param {String} $timing_function [ease-in-out] - The timing function for the sway animation.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {String} $name [animate_sway_fast] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_sway_fast(
     $angle: 10deg,
     $duration: $animate_base_duration_fast * 2,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_sway_fast
 ) {
-    @include animate_base(animate_sway_fast, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_sway_fast($angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_sway_fast($angle, $name: $name);
 }
 
 // Sway with Fade Animation
@@ -109,13 +121,17 @@
 /// @param {Duration} $duration [$animate_base_duration/// 2] - The duration of the sway animation.
 /// @param {String} $timing_function [ease-in-out] - The timing function for the sway animation.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {String} $name [animate_sway_fade] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_sway_fade(
     $angle: 5deg,
     $duration: $animate_base_duration * 2,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_sway_fade
 ) {
-    @include animate_base(animate_sway_fade, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_sway_fade($angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_sway_fade($angle, $name: $name);
 }

@@ -36,8 +36,9 @@
 /// Rubber Band Keyframes
 /// @name keyframes_animate_rubber_band
 /// @param {Number} $intensity [1.25] - The stretch/squash intensity factor.
+/// @param {String} $name [animate_rubber_band] - Keyframes name
 ///
-@mixin keyframes_animate_rubber_band($intensity: $animate_scale_rubber_intensity) {
+@mixin keyframes_animate_rubber_band($intensity: $animate_scale_rubber_intensity, $name: animate_rubber_band) {
     $squash: 2 - $intensity;
     $settle1: 1 + ($intensity - 1) * 0.6;
     $settle1_inv: 2 - $settle1;
@@ -46,7 +47,7 @@
     $settle3: 1 + ($intensity - 1) * 0.2;
     $settle3_inv: 2 - $settle3;
 
-    @keyframes animate_rubber_band {
+    @keyframes #{$name} {
         0%, 100% {
             transform: scale3d(1, 1, 1);
         }
@@ -73,11 +74,12 @@
 /// Rubber Squeeze Keyframes
 /// @name keyframes_animate_rubber_squeeze
 /// @param {Number} $squeeze [0.8] - The squeeze factor.
+/// @param {String} $name [animate_rubber_squeeze] - Keyframes name
 ///
-@mixin keyframes_animate_rubber_squeeze($squeeze: $animate_scale_rubber_squeeze) {
+@mixin keyframes_animate_rubber_squeeze($squeeze: $animate_scale_rubber_squeeze, $name: animate_rubber_squeeze) {
     $stretch: 2 - $squeeze;
 
-    @keyframes animate_rubber_squeeze {
+    @keyframes #{$name} {
         0%, 100% {
             transform: scale3d(1, 1, 1);
         }

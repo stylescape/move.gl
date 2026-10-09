@@ -38,6 +38,9 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration.
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+/// @param {String} $name [animate_wobble] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Basic usage
 ///   .element {
@@ -48,10 +51,11 @@
     $angle: $animate_angle_wobble,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_wobble
 ) {
-    @include animate_base(animate_wobble, $duration, $timing_function, $iteration_count);
-    @include keyframes_wobble($angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_wobble($angle, $name: $name);
 }
 
 ///
@@ -64,15 +68,19 @@
 /// @param {Time} $duration [$animate_base_duration_slow] - Animation duration.
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+/// @param {String} $name [animate_wobble_slow] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_wobble_slow(
     $angle: $animate_angle_wobble_slow,
     $duration: $animate_base_duration_slow,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_wobble_slow
 ) {
-    @include animate_base(animate_wobble_slow, $duration, $timing_function, $iteration_count);
-    @include keyframes_wobble_slow($angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_wobble_slow($angle, $name: $name);
 }
 
 ///
@@ -85,15 +93,19 @@
 /// @param {Time} $duration [$animate_base_duration_fast] - Animation duration.
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+/// @param {String} $name [animate_wobble_fast] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_wobble_fast(
     $angle: $animate_angle_wobble_fast,
     $duration: $animate_base_duration_fast,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_wobble_fast
 ) {
-    @include animate_base(animate_wobble_fast, $duration, $timing_function, $iteration_count);
-    @include keyframes_wobble_fast($angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_wobble_fast($angle, $name: $name);
 }
 
 ///
@@ -107,16 +119,20 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration.
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+/// @param {String} $name [animate_wobble_scale] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_wobble_scale(
     $angle: $animate_angle_wobble,
     $scale: 1.1,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_wobble_scale
 ) {
-    @include animate_base(animate_wobble_scale, $duration, $timing_function, $iteration_count);
-    @include keyframes_wobble_scale($angle, $scale);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_wobble_scale($angle, $scale, $name: $name);
 }
 
 ///
@@ -128,6 +144,9 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration.
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+/// @param {String} $name [animate_wobble_advanced] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Usage
 ///   .attention-element {
@@ -137,10 +156,11 @@
 @mixin animate_wobble_advanced(
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_wobble_advanced
 ) {
-    @include animate_base(animate_wobble_advanced, $duration, $timing_function, $iteration_count);
-    @include keyframes_wobble_advanced();
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_wobble_advanced($name: $name);
 }
 
 ///
@@ -153,15 +173,19 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration.
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+/// @param {String} $name [animate_wobble_horizontal] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_wobble_horizontal(
     $distance: 5%,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_wobble_horizontal
 ) {
-    @include animate_base(animate_wobble_horizontal, $duration, $timing_function, $iteration_count);
-    @include keyframes_wobble_horizontal($distance);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_wobble_horizontal($distance, $name: $name);
 }
 
 ///
@@ -174,15 +198,19 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration.
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+/// @param {String} $name [animate_wobble_vertical] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_wobble_vertical(
     $distance: 5%,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_wobble_vertical
 ) {
-    @include animate_base(animate_wobble_vertical, $duration, $timing_function, $iteration_count);
-    @include keyframes_wobble_vertical($distance);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_wobble_vertical($distance, $name: $name);
 }
 
 ///
@@ -195,15 +223,19 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration.
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+/// @param {String} $name [animate_wobble_skew] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_wobble_skew(
     $skew: 5deg,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_wobble_skew
 ) {
-    @include animate_base(animate_wobble_skew, $duration, $timing_function, $iteration_count);
-    @include keyframes_wobble_skew($skew);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_wobble_skew($skew, $name: $name);
 }
 
 ///
@@ -216,13 +248,17 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration.
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+/// @param {String} $name [animate_wobble_pendulum] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_wobble_pendulum(
     $angle: 10deg,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_wobble_pendulum
 ) {
-    @include animate_base(animate_wobble_pendulum, $duration, $timing_function, $iteration_count);
-    @include keyframes_wobble_pendulum($angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_wobble_pendulum($angle, $name: $name);
 }

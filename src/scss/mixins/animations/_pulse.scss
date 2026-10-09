@@ -42,6 +42,9 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [linear] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_pulse] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Basic usage
 ///   .notification {
@@ -53,15 +56,16 @@
     $scale_max: $animate_scale_pulse,
     $duration: $animate_base_duration,
     $timing_function: linear,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_pulse
 ) {
     @include animate_base(
-        animate_pulse,
+        $name,
         $duration,
         $timing_function,
         $iteration_count
     );
-    @include keyframes_pulse($scale_min, $scale_max);
+    @include keyframes_pulse($scale_min, $scale_max, $name: $name);
 }
 
 
@@ -76,21 +80,25 @@
 /// @param {Time} $duration [$animate_base_duration_slow] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_pulse_slow] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_pulse_slow(
     $scale_min: 0.95,
     $scale_max: 1.05,
     $duration: $animate_base_duration_slow,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_pulse_slow
 ) {
     @include animate_base(
-        animate_pulse_slow,
+        $name,
         $duration,
         $timing_function,
         $iteration_count
     );
-    @include keyframes_pulse_slow($scale_min, $scale_max);
+    @include keyframes_pulse_slow($scale_min, $scale_max, $name: $name);
 }
 
 
@@ -105,21 +113,25 @@
 /// @param {Time} $duration [$animate_base_duration_fast] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_pulse_fast] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_pulse_fast(
     $scale_min: 0.9,
     $scale_max: 1.2,
     $duration: $animate_base_duration_fast,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_pulse_fast
 ) {
     @include animate_base(
-        animate_pulse_fast,
+        $name,
         $duration,
         $timing_function,
         $iteration_count
     );
-    @include keyframes_pulse_fast($scale_min, $scale_max);
+    @include keyframes_pulse_fast($scale_min, $scale_max, $name: $name);
 }
 
 
@@ -134,6 +146,9 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_pulse_color] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Usage
 ///   .alert {
@@ -145,15 +160,16 @@
     $color_end: $animate_base_color_end,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_pulse_color
 ) {
     @include animate_base(
-        animate_pulse_color,
+        $name,
         $duration,
         $timing_function,
         $iteration_count
     );
-    @include keyframes_pulse_color($color_start, $color_end);
+    @include keyframes_pulse_color($color_start, $color_end, $name: $name);
 }
 
 
@@ -168,21 +184,25 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-out] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_pulse_ring] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_pulse_ring(
     $ring_color: rgba(0, 0, 0, 0.3),
     $ring_size: 20px,
     $duration: $animate_base_duration,
     $timing_function: ease-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_pulse_ring
 ) {
     @include animate_base(
-        animate_pulse_ring,
+        $name,
         $duration,
         $timing_function,
         $iteration_count
     );
-    @include keyframes_pulse_ring($ring_color, $ring_size);
+    @include keyframes_pulse_ring($ring_color, $ring_size, $name: $name);
 }
 
 
@@ -197,21 +217,25 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_pulse_glow] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_pulse_glow(
     $glow_color: rgba(255, 255, 255, 0.5),
     $glow_size: 10px,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_pulse_glow
 ) {
     @include animate_base(
-        animate_pulse_glow,
+        $name,
         $duration,
         $timing_function,
         $iteration_count
     );
-    @include keyframes_pulse_glow($glow_color, $glow_size);
+    @include keyframes_pulse_glow($glow_color, $glow_size, $name: $name);
 }
 
 
@@ -227,6 +251,9 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_pulse_fade] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_pulse_fade(
     $scale_min: 1,
@@ -234,15 +261,16 @@
     $opacity_min: 0.5,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_pulse_fade
 ) {
     @include animate_base(
-        animate_pulse_fade,
+        $name,
         $duration,
         $timing_function,
         $iteration_count
     );
-    @include keyframes_pulse_fade($scale_max, $opacity_min, $scale_min);
+    @include keyframes_pulse_fade($scale_max, $opacity_min, $scale_min, $name: $name);
 }
 
 
@@ -257,19 +285,23 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_pulse_double] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_pulse_double(
     $scale_min: 1,
     $scale_max: 1.15,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_pulse_double
 ) {
     @include animate_base(
-        animate_pulse_double,
+        $name,
         $duration,
         $timing_function,
         $iteration_count
     );
-    @include keyframes_pulse_double($scale_min, $scale_max);
+    @include keyframes_pulse_double($scale_min, $scale_max, $name: $name);
 }

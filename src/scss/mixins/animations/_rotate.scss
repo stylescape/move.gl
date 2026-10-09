@@ -39,6 +39,9 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [linear] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_rotate] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Basic usage
 ///   .spinner {
@@ -50,10 +53,11 @@
     $end_angle: $animate_angle_full,
     $duration: $animate_base_duration,
     $timing_function: linear,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_rotate
 ) {
-    @include animate_base(animate_rotate, $duration, $timing_function, $iteration_count);
-    @include keyframes_rotate($start_angle, $end_angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_rotate($start_angle, $end_angle, $name: $name);
 }
 
 // ============================================================================
@@ -69,6 +73,9 @@
 /// @param {Angle} $angle [$animate_rotate_in_angle] - Starting rotation angle
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+/// @param {String} $name [animate_rotate_in] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Usage
 ///   .modal {
@@ -78,10 +85,11 @@
 @mixin animate_rotate_in(
     $angle: $animate_rotate_in_angle,
     $duration: $animate_base_duration,
-    $timing_function: $animate_base_timing_function
+    $timing_function: $animate_base_timing_function,
+    $name: animate_rotate_in
 ) {
-    @include animate_base(animate_rotate_in, $duration, $timing_function, 1, $fill_mode: both);
-    @include keyframes_rotate_in($angle);
+    @include animate_base($name, $duration, $timing_function, 1, $fill_mode: both);
+    @include keyframes_rotate_in($angle, $name: $name);
 }
 
 ///
@@ -93,20 +101,24 @@
 /// @param {Angle} $angle [-$animate_rotate_corner_angle] - Starting rotation angle
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+/// @param {String} $name [animate_rotate_in_down_left] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_rotate_in_down_left(
     $angle: -$animate_rotate_corner_angle,
     $duration: $animate_base_duration,
-    $timing_function: $animate_base_timing_function
+    $timing_function: $animate_base_timing_function,
+    $name: animate_rotate_in_down_left
 ) {
     @include animate_base(
-        animate_rotate_in_down_left,
+        $name,
         $duration,
         $timing_function,
         1,
         $fill_mode: both
     );
-    @include keyframes_rotate_in_down_left($angle);
+    @include keyframes_rotate_in_down_left($angle, $name: $name);
 }
 
 ///
@@ -118,20 +130,24 @@
 /// @param {Angle} $angle [$animate_rotate_corner_angle] - Starting rotation angle
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+/// @param {String} $name [animate_rotate_in_down_right] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_rotate_in_down_right(
     $angle: $animate_rotate_corner_angle,
     $duration: $animate_base_duration,
-    $timing_function: $animate_base_timing_function
+    $timing_function: $animate_base_timing_function,
+    $name: animate_rotate_in_down_right
 ) {
     @include animate_base(
-        animate_rotate_in_down_right,
+        $name,
         $duration,
         $timing_function,
         1,
         $fill_mode: both
     );
-    @include keyframes_rotate_in_down_right($angle);
+    @include keyframes_rotate_in_down_right($angle, $name: $name);
 }
 
 ///
@@ -143,20 +159,24 @@
 /// @param {Angle} $angle [$animate_rotate_corner_angle] - Starting rotation angle
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+/// @param {String} $name [animate_rotate_in_up_left] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_rotate_in_up_left(
     $angle: $animate_rotate_corner_angle,
     $duration: $animate_base_duration,
-    $timing_function: $animate_base_timing_function
+    $timing_function: $animate_base_timing_function,
+    $name: animate_rotate_in_up_left
 ) {
     @include animate_base(
-        animate_rotate_in_up_left,
+        $name,
         $duration,
         $timing_function,
         1,
         $fill_mode: both
     );
-    @include keyframes_rotate_in_up_left($angle);
+    @include keyframes_rotate_in_up_left($angle, $name: $name);
 }
 
 ///
@@ -168,20 +188,24 @@
 /// @param {Angle} $angle [-90deg] - Starting rotation angle
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+/// @param {String} $name [animate_rotate_in_up_right] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_rotate_in_up_right(
     $angle: -90deg,
     $duration: $animate_base_duration,
-    $timing_function: $animate_base_timing_function
+    $timing_function: $animate_base_timing_function,
+    $name: animate_rotate_in_up_right
 ) {
     @include animate_base(
-        animate_rotate_in_up_right,
+        $name,
         $duration,
         $timing_function,
         1,
         $fill_mode: both
     );
-    @include keyframes_rotate_in_up_right($angle);
+    @include keyframes_rotate_in_up_right($angle, $name: $name);
 }
 
 // ============================================================================
@@ -197,14 +221,18 @@
 /// @param {Angle} $angle [$animate_rotate_out_angle] - Ending rotation angle
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+/// @param {String} $name [animate_rotate_out] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_rotate_out(
     $angle: $animate_rotate_out_angle,
     $duration: $animate_base_duration,
-    $timing_function: $animate_base_timing_function
+    $timing_function: $animate_base_timing_function,
+    $name: animate_rotate_out
 ) {
-    @include animate_base(animate_rotate_out, $duration, $timing_function, 1, $fill_mode: both);
-    @include keyframes_rotate_out($angle);
+    @include animate_base($name, $duration, $timing_function, 1, $fill_mode: both);
+    @include keyframes_rotate_out($angle, $name: $name);
 }
 
 ///
@@ -216,20 +244,24 @@
 /// @param {Angle} $angle [$animate_rotate_corner_angle] - Ending rotation angle
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+/// @param {String} $name [animate_rotate_out_down_left] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_rotate_out_down_left(
     $angle: $animate_rotate_corner_angle,
     $duration: $animate_base_duration,
-    $timing_function: $animate_base_timing_function
+    $timing_function: $animate_base_timing_function,
+    $name: animate_rotate_out_down_left
 ) {
     @include animate_base(
-        animate_rotate_out_down_left,
+        $name,
         $duration,
         $timing_function,
         1,
         $fill_mode: both
     );
-    @include keyframes_rotate_out_down_left($angle);
+    @include keyframes_rotate_out_down_left($angle, $name: $name);
 }
 
 ///
@@ -241,20 +273,24 @@
 /// @param {Angle} $angle [-$animate_rotate_corner_angle] - Ending rotation angle
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+/// @param {String} $name [animate_rotate_out_down_right] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_rotate_out_down_right(
     $angle: -$animate_rotate_corner_angle,
     $duration: $animate_base_duration,
-    $timing_function: $animate_base_timing_function
+    $timing_function: $animate_base_timing_function,
+    $name: animate_rotate_out_down_right
 ) {
     @include animate_base(
-        animate_rotate_out_down_right,
+        $name,
         $duration,
         $timing_function,
         1,
         $fill_mode: both
     );
-    @include keyframes_rotate_out_down_right($angle);
+    @include keyframes_rotate_out_down_right($angle, $name: $name);
 }
 
 ///
@@ -266,20 +302,24 @@
 /// @param {Angle} $angle [-$animate_rotate_corner_angle] - Ending rotation angle
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+/// @param {String} $name [animate_rotate_out_up_left] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_rotate_out_up_left(
     $angle: -$animate_rotate_corner_angle,
     $duration: $animate_base_duration,
-    $timing_function: $animate_base_timing_function
+    $timing_function: $animate_base_timing_function,
+    $name: animate_rotate_out_up_left
 ) {
     @include animate_base(
-        animate_rotate_out_up_left,
+        $name,
         $duration,
         $timing_function,
         1,
         $fill_mode: both
     );
-    @include keyframes_rotate_out_up_left($angle);
+    @include keyframes_rotate_out_up_left($angle, $name: $name);
 }
 
 ///
@@ -291,20 +331,24 @@
 /// @param {Angle} $angle [90deg] - Ending rotation angle
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+/// @param {String} $name [animate_rotate_out_up_right] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_rotate_out_up_right(
     $angle: 90deg,
     $duration: $animate_base_duration,
-    $timing_function: $animate_base_timing_function
+    $timing_function: $animate_base_timing_function,
+    $name: animate_rotate_out_up_right
 ) {
     @include animate_base(
-        animate_rotate_out_up_right,
+        $name,
         $duration,
         $timing_function,
         1,
         $fill_mode: both
     );
-    @include keyframes_rotate_out_up_right($angle);
+    @include keyframes_rotate_out_up_right($angle, $name: $name);
 }
 
 // ============================================================================
@@ -321,15 +365,19 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_rotate_pendulum] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_rotate_pendulum(
     $angle: 15deg,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_rotate_pendulum
 ) {
-    @include animate_base(animate_rotate_pendulum, $duration, $timing_function, $iteration_count);
-    @include keyframes_rotate_pendulum($angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_rotate_pendulum($angle, $name: $name);
 }
 
 ///
@@ -342,15 +390,19 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_rotate_wobble] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_rotate_wobble(
     $angle: 5deg,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_rotate_wobble
 ) {
-    @include animate_base(animate_rotate_wobble, $duration, $timing_function, $iteration_count);
-    @include keyframes_rotate_wobble($angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_rotate_wobble($angle, $name: $name);
 }
 
 // ============================================================================
@@ -367,15 +419,19 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [linear] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_rotate_x] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_rotate_x(
     $angle: $animate_angle_full,
     $duration: $animate_base_duration,
     $timing_function: linear,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_rotate_x
 ) {
-    @include animate_base(animate_rotate_x, $duration, $timing_function, $iteration_count);
-    @include keyframes_rotate_x($angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_rotate_x($angle, $name: $name);
 }
 
 ///
@@ -388,15 +444,19 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [linear] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_rotate_y] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_rotate_y(
     $angle: $animate_angle_full,
     $duration: $animate_base_duration,
     $timing_function: linear,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_rotate_y
 ) {
-    @include animate_base(animate_rotate_y, $duration, $timing_function, $iteration_count);
-    @include keyframes_rotate_y($angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_rotate_y($angle, $name: $name);
 }
 //       opacity: 1;
 //     }

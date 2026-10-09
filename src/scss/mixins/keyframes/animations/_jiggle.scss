@@ -36,9 +36,10 @@
 /// Jiggle Keyframes
 /// @name keyframes_animate_jiggle
 /// @param {Length} $amplitude [5px] - The distance to move.
+/// @param {String} $name [animate_jiggle] - Keyframes name
 ///
-@mixin keyframes_animate_jiggle($amplitude: $animate_jiggle_amplitude) {
-    @keyframes animate_jiggle {
+@mixin keyframes_animate_jiggle($amplitude: $animate_jiggle_amplitude, $name: animate_jiggle) {
+    @keyframes #{$name} {
         0%, 100% { transform: translateX(0); }
         25% { transform: translateX(-$amplitude); }
         50% { transform: translateX($amplitude); }
@@ -51,9 +52,10 @@
 /// Jiggle Vertical Keyframes
 /// @name keyframes_animate_jiggle_vertical
 /// @param {Length} $amplitude [5px] - The distance to move.
+/// @param {String} $name [animate_jiggle_vertical] - Keyframes name
 ///
-@mixin keyframes_animate_jiggle_vertical($amplitude: $animate_jiggle_amplitude) {
-    @keyframes animate_jiggle_vertical {
+@mixin keyframes_animate_jiggle_vertical($amplitude: $animate_jiggle_amplitude, $name: animate_jiggle_vertical) {
+    @keyframes #{$name} {
         0%, 100% { transform: translateY(0); }
         25% { transform: translateY(-$amplitude); }
         50% { transform: translateY($amplitude); }
@@ -66,9 +68,10 @@
 /// Jiggle Multi Keyframes
 /// @name keyframes_animate_jiggle_multi
 /// @param {Length} $amplitude [5px] - The distance to move.
+/// @param {String} $name [animate_jiggle_multi] - Keyframes name
 ///
-@mixin keyframes_animate_jiggle_multi($amplitude: $animate_jiggle_amplitude) {
-    @keyframes animate_jiggle_multi {
+@mixin keyframes_animate_jiggle_multi($amplitude: $animate_jiggle_amplitude, $name: animate_jiggle_multi) {
+    @keyframes #{$name} {
         0%, 100% { transform: translate(0, 0); }
         25% { transform: translate(-$amplitude, $amplitude); }
         50% { transform: translate($amplitude, -$amplitude); }
@@ -81,9 +84,10 @@
 /// Jiggle Slow Keyframes
 /// @name keyframes_animate_jiggle_slow
 /// @param {Length} $amplitude [3px] - The distance to move.
+/// @param {String} $name [animate_jiggle_slow] - Keyframes name
 ///
-@mixin keyframes_animate_jiggle_slow($amplitude: $animate_jiggle_amplitude_slow) {
-    @keyframes animate_jiggle_slow {
+@mixin keyframes_animate_jiggle_slow($amplitude: $animate_jiggle_amplitude_slow, $name: animate_jiggle_slow) {
+    @keyframes #{$name} {
         0%, 100% { transform: translateX(0); }
         25% { transform: translateX(-$amplitude); }
         50% { transform: translateX($amplitude); }

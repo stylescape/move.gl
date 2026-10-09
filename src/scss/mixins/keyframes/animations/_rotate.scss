@@ -31,9 +31,10 @@
 ///
 /// @param {Angle} $start_angle [0deg] - Starting angle
 /// @param {Angle} $end_angle [360deg] - Ending angle
+/// @param {String} $name [animate_rotate] - Keyframes name
 ///
-@mixin keyframes_rotate($start_angle: 0deg, $end_angle: 360deg) {
-    @include keyframes(animate_rotate) {
+@mixin keyframes_rotate($start_angle: 0deg, $end_angle: 360deg, $name: animate_rotate) {
+    @include keyframes($name) {
         from {
             transform: rotate($start_angle);
         }
@@ -46,8 +47,10 @@
 ///
 /// Rotation with CSS custom property support.
 ///
-@mixin keyframes_animate_rotate() {
-    @include keyframes(animate_rotate) {
+/// @param {String} $name [animate_rotate] - Keyframes name
+///
+@mixin keyframes_animate_rotate($name: animate_rotate) {
+    @include keyframes($name) {
         from {
             transform: rotate(var(--animate-rotate-start, 0deg));
         }
@@ -65,9 +68,10 @@
 /// Rotate in from center.
 ///
 /// @param {Angle} $angle [-200deg] - Starting rotation angle
+/// @param {String} $name [animate_rotate_in] - Keyframes name
 ///
-@mixin keyframes_rotate_in($angle: $animate_rotate_in_angle) {
-    @include keyframes(animate_rotate_in) {
+@mixin keyframes_rotate_in($angle: $animate_rotate_in_angle, $name: animate_rotate_in) {
+    @include keyframes($name) {
         from {
             transform-origin: center;
             transform: rotate3d(0, 0, 1, $angle);
@@ -85,9 +89,10 @@
 /// Rotate in from bottom left corner.
 ///
 /// @param {Angle} $angle [-45deg] - Starting rotation angle
+/// @param {String} $name [animate_rotate_in_down_left] - Keyframes name
 ///
-@mixin keyframes_rotate_in_down_left($angle: $animate_rotate_corner_in_down_left) {
-    @include keyframes(animate_rotate_in_down_left) {
+@mixin keyframes_rotate_in_down_left($angle: $animate_rotate_corner_in_down_left, $name: animate_rotate_in_down_left) {
+    @include keyframes($name) {
         from {
             transform-origin: left bottom;
             transform: rotate3d(0, 0, 1, $angle);
@@ -105,9 +110,10 @@
 /// Rotate in from bottom right corner.
 ///
 /// @param {Angle} $angle [45deg] - Starting rotation angle
+/// @param {String} $name [animate_rotate_in_down_right] - Keyframes name
 ///
-@mixin keyframes_rotate_in_down_right($angle: $animate_rotate_corner_in_down_right) {
-    @include keyframes(animate_rotate_in_down_right) {
+@mixin keyframes_rotate_in_down_right($angle: $animate_rotate_corner_in_down_right, $name: animate_rotate_in_down_right) {
+    @include keyframes($name) {
         from {
             transform-origin: right bottom;
             transform: rotate3d(0, 0, 1, $angle);
@@ -125,9 +131,10 @@
 /// Rotate in from top left corner.
 ///
 /// @param {Angle} $angle [45deg] - Starting rotation angle
+/// @param {String} $name [animate_rotate_in_up_left] - Keyframes name
 ///
-@mixin keyframes_rotate_in_up_left($angle: $animate_rotate_corner_in_up_left) {
-    @include keyframes(animate_rotate_in_up_left) {
+@mixin keyframes_rotate_in_up_left($angle: $animate_rotate_corner_in_up_left, $name: animate_rotate_in_up_left) {
+    @include keyframes($name) {
         from {
             transform-origin: left bottom;
             transform: rotate3d(0, 0, 1, $angle);
@@ -145,9 +152,10 @@
 /// Rotate in from top right corner.
 ///
 /// @param {Angle} $angle [-90deg] - Starting rotation angle
+/// @param {String} $name [animate_rotate_in_up_right] - Keyframes name
 ///
-@mixin keyframes_rotate_in_up_right($angle: $animate_rotate_corner_in_up_right) {
-    @include keyframes(animate_rotate_in_up_right) {
+@mixin keyframes_rotate_in_up_right($angle: $animate_rotate_corner_in_up_right, $name: animate_rotate_in_up_right) {
+    @include keyframes($name) {
         from {
             transform-origin: right bottom;
             transform: rotate3d(0, 0, 1, $angle);
@@ -169,9 +177,10 @@
 /// Rotate out to center.
 ///
 /// @param {Angle} $angle [200deg] - Ending rotation angle
+/// @param {String} $name [animate_rotate_out] - Keyframes name
 ///
-@mixin keyframes_rotate_out($angle: $animate_rotate_out_angle) {
-    @include keyframes(animate_rotate_out) {
+@mixin keyframes_rotate_out($angle: $animate_rotate_out_angle, $name: animate_rotate_out) {
+    @include keyframes($name) {
         from {
             transform-origin: center;
             opacity: 1;
@@ -188,9 +197,10 @@
 /// Rotate out to bottom left corner.
 ///
 /// @param {Angle} $angle [45deg] - Ending rotation angle
+/// @param {String} $name [animate_rotate_out_down_left] - Keyframes name
 ///
-@mixin keyframes_rotate_out_down_left($angle: $animate_rotate_corner_angle) {
-    @include keyframes(animate_rotate_out_down_left) {
+@mixin keyframes_rotate_out_down_left($angle: $animate_rotate_corner_angle, $name: animate_rotate_out_down_left) {
+    @include keyframes($name) {
         from {
             transform-origin: left bottom;
             opacity: 1;
@@ -207,9 +217,10 @@
 /// Rotate out to bottom right corner.
 ///
 /// @param {Angle} $angle [-45deg] - Ending rotation angle
+/// @param {String} $name [animate_rotate_out_down_right] - Keyframes name
 ///
-@mixin keyframes_rotate_out_down_right($angle: -$animate_rotate_corner_angle) {
-    @include keyframes(animate_rotate_out_down_right) {
+@mixin keyframes_rotate_out_down_right($angle: -$animate_rotate_corner_angle, $name: animate_rotate_out_down_right) {
+    @include keyframes($name) {
         from {
             transform-origin: right bottom;
             opacity: 1;
@@ -226,9 +237,10 @@
 /// Rotate out to top left corner.
 ///
 /// @param {Angle} $angle [-45deg] - Ending rotation angle
+/// @param {String} $name [animate_rotate_out_up_left] - Keyframes name
 ///
-@mixin keyframes_rotate_out_up_left($angle: -$animate_rotate_corner_angle) {
-    @include keyframes(animate_rotate_out_up_left) {
+@mixin keyframes_rotate_out_up_left($angle: -$animate_rotate_corner_angle, $name: animate_rotate_out_up_left) {
+    @include keyframes($name) {
         from {
             transform-origin: left bottom;
             opacity: 1;
@@ -245,9 +257,10 @@
 /// Rotate out to top right corner.
 ///
 /// @param {Angle} $angle [90deg] - Ending rotation angle
+/// @param {String} $name [animate_rotate_out_up_right] - Keyframes name
 ///
-@mixin keyframes_rotate_out_up_right($angle: $animate_flip_out_angle) {
-    @include keyframes(animate_rotate_out_up_right) {
+@mixin keyframes_rotate_out_up_right($angle: $animate_flip_out_angle, $name: animate_rotate_out_up_right) {
+    @include keyframes($name) {
         from {
             transform-origin: right bottom;
             opacity: 1;
@@ -268,9 +281,10 @@
 /// Pendulum-like rotation effect.
 ///
 /// @param {Angle} $angle [15deg] - Maximum swing angle
+/// @param {String} $name [animate_rotate_pendulum] - Keyframes name
 ///
-@mixin keyframes_rotate_pendulum($angle: $animate_angle_rapid) {
-    @include keyframes(animate_rotate_pendulum) {
+@mixin keyframes_rotate_pendulum($angle: $animate_angle_rapid, $name: animate_rotate_pendulum) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: rotate(0deg);
@@ -293,9 +307,10 @@
 /// Wobbling rotation effect.
 ///
 /// @param {Angle} $angle [5deg] - Wobble angle
+/// @param {String} $name [animate_rotate_wobble] - Keyframes name
 ///
-@mixin keyframes_rotate_wobble($angle: 5deg) {
-    @include keyframes(animate_rotate_wobble) {
+@mixin keyframes_rotate_wobble($angle: 5deg, $name: animate_rotate_wobble) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: rotate(0deg);
@@ -326,9 +341,10 @@
 /// 3D rotation on X-axis.
 ///
 /// @param {Angle} $angle [360deg] - Rotation angle
+/// @param {String} $name [animate_rotate_x] - Keyframes name
 ///
-@mixin keyframes_rotate_x($angle: 360deg) {
-    @include keyframes(animate_rotate_x) {
+@mixin keyframes_rotate_x($angle: 360deg, $name: animate_rotate_x) {
+    @include keyframes($name) {
         from {
             transform: perspective(400px) rotateX(0deg);
         }
@@ -342,9 +358,10 @@
 /// 3D rotation on Y-axis.
 ///
 /// @param {Angle} $angle [360deg] - Rotation angle
+/// @param {String} $name [animate_rotate_y] - Keyframes name
 ///
-@mixin keyframes_rotate_y($angle: 360deg) {
-    @include keyframes(animate_rotate_y) {
+@mixin keyframes_rotate_y($angle: 360deg, $name: animate_rotate_y) {
+    @include keyframes($name) {
         from {
             transform: perspective(400px) rotateY(0deg);
         }

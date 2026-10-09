@@ -40,6 +40,9 @@
 /// @param {Time} $duration - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count - Number of iterations
+/// @param {String} $name [animate_roll] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Basic usage
 ///   .ball {
@@ -51,10 +54,11 @@
     $rotation_angle: 360deg,
     $duration: $animate_base_duration * 2,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_roll
 ) {
-    @include animate_base(animate_roll, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_roll($translate_distance, $rotation_angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_roll($translate_distance, $rotation_angle, $name: $name);
 }
 
 ///
@@ -69,6 +73,9 @@
 /// @param {Time} $duration - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count - Number of iterations
+/// @param {String} $name [animate_roll_reverse] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Usage
 ///   .reverse-ball {
@@ -80,10 +87,11 @@
     $rotation_angle: -360deg,
     $duration: $animate_base_duration * 2,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_roll_reverse
 ) {
-    @include animate_base(animate_roll_reverse, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_roll_reverse($translate-distance, $rotation_angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_roll_reverse($translate-distance, $rotation_angle, $name: $name);
 }
 
 // Slow Roll Animation
@@ -98,16 +106,20 @@
 /// @param {Number|String} $duration [$animate_base_duration_slow/// 2] - The duration of the roll animation.
 /// @param {String} $timing_function [ease-in-out] - The timing function for the roll animation.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {String} $name [animate_roll_slow] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_roll_slow(
     $translate-distance: 100%,
     $rotation_angle: 360deg,
     $duration: $animate_base_duration_slow * 2,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_roll_slow
 ) {
-    @include animate_base(animate_roll_slow, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_roll_slow($translate-distance, $rotation_angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_roll_slow($translate-distance, $rotation_angle, $name: $name);
 }
 
 // Vertical Roll Animation
@@ -122,16 +134,20 @@
 /// @param {Number|String} $duration [$animate_base_duration/// 2] - The duration of the roll animation.
 /// @param {String} $timing_function [ease-in-out] - The timing function for the roll animation.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {String} $name [animate_roll_vertical] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_roll_vertical(
     $translate-distance: 100%,
     $rotation_angle: 360deg,
     $duration: $animate_base_duration * 2,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_roll_vertical
 ) {
-    @include animate_base(animate_roll_vertical, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_roll_vertical($translate-distance, $rotation_angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_roll_vertical($translate-distance, $rotation_angle, $name: $name);
 }
 
 // Roll In Animation (from animate.css by Nick Pettit)
@@ -145,10 +161,13 @@
 /// @name animate_roll_in
 /// @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
 /// @param {String} $timing_function [ease-out] - The timing function.
+/// @param {String} $name [animate_roll_in] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
-@mixin animate_roll_in($duration: $animate_base_duration, $timing_function: ease-out) {
-    @include animate_base(animate_roll_in, $duration, $timing_function, 1);
-    @include keyframes_animate_roll_in();
+@mixin animate_roll_in($duration: $animate_base_duration, $timing_function: ease-out, $name: animate_roll_in) {
+    @include animate_base($name, $duration, $timing_function, 1);
+    @include keyframes_animate_roll_in($name: $name);
 }
 
 // Roll Out Animation
@@ -162,8 +181,11 @@
 /// @name animate_roll_out
 /// @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
 /// @param {String} $timing_function [ease-in] - The timing function.
+/// @param {String} $name [animate_roll_out] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
-@mixin animate_roll_out($duration: $animate_base_duration, $timing_function: ease-in) {
-    @include animate_base(animate_roll_out, $duration, $timing_function, 1);
-    @include keyframes_animate_roll_out();
+@mixin animate_roll_out($duration: $animate_base_duration, $timing_function: ease-in, $name: animate_roll_out) {
+    @include animate_base($name, $duration, $timing_function, 1);
+    @include keyframes_animate_roll_out($name: $name);
 }

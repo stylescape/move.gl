@@ -36,14 +36,16 @@
 /// @param {Number} $scale_end [1.5] - The final scale.
 /// @param {Number} $opacity_start [1] - The initial opacity.
 /// @param {Number} $opacity_end [0] - The final opacity.
+/// @param {String} $name [animate_ripple] - Keyframes name
 ///
 @mixin keyframes_animate_ripple(
     $scale_start: 1,
     $scale_end: $animate_scale_zoom,
     $opacity_start: 1,
-    $opacity_end: 0
+    $opacity_end: 0,
+    $name: animate_ripple
 ) {
-    @keyframes animate_ripple {
+    @keyframes #{$name} {
         0% {
             transform: scale($scale_start);
             opacity: $opacity_start;
@@ -60,9 +62,10 @@
 /// @name keyframes_animate_ripple_slow
 /// @param {Number} $scale_end [1.5] - The final scale.
 /// @param {Number} $opacity_end [0] - The final opacity.
+/// @param {String} $name [animate_ripple_slow] - Keyframes name
 ///
-@mixin keyframes_animate_ripple_slow($scale_end: $animate_scale_zoom, $opacity_end: 0) {
-    @keyframes animate_ripple_slow {
+@mixin keyframes_animate_ripple_slow($scale_end: $animate_scale_zoom, $opacity_end: 0, $name: animate_ripple_slow) {
+    @keyframes #{$name} {
         0% {
             transform: scale(1);
             opacity: 1;
@@ -80,13 +83,15 @@
 /// @param {Number} $scale_first [1.2] - The scale at first stage.
 /// @param {Number} $scale_second [1.5] - The scale at second stage.
 /// @param {Number} $opacity_end [0] - The final opacity.
+/// @param {String} $name [animate_ripple_multi] - Keyframes name
 ///
 @mixin keyframes_animate_ripple_multi(
     $scale_first: $animate_scale_pop,
     $scale_second: $animate_scale_zoom,
-    $opacity_end: 0
+    $opacity_end: 0,
+    $name: animate_ripple_multi
 ) {
-    @keyframes animate_ripple_multi {
+    @keyframes #{$name} {
         0%,
         100% {
             transform: scale(1);
@@ -110,14 +115,16 @@
 /// @param {Number} $opacity_end [0] - The final opacity.
 /// @param {Color} $color_start [transparent] - The starting color.
 /// @param {Color} $color_end [transparent] - The ending color.
+/// @param {String} $name [animate_ripple_color] - Keyframes name
 ///
 @mixin keyframes_animate_ripple_color(
     $scale_end: $animate_scale_zoom,
     $opacity_end: 0,
     $color_start: transparent,
-    $color_end: transparent
+    $color_end: transparent,
+    $name: animate_ripple_color
 ) {
-    @keyframes animate_ripple_color {
+    @keyframes #{$name} {
         0% {
             transform: scale(1);
             opacity: 1;

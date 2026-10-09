@@ -34,9 +34,10 @@
 /// @name keyframes_animate_blink
 /// @param {Number} $start_opacity [1] - The opacity at start and end.
 /// @param {Number} $blink_opacity [0] - The opacity during the blink.
+/// @param {String} $name [animate_blink] - Keyframes name
 ///
-@mixin keyframes_animate_blink($start_opacity: 1, $blink_opacity: 0) {
-    @keyframes animate_blink {
+@mixin keyframes_animate_blink($start_opacity: 1, $blink_opacity: 0, $name: animate_blink) {
+    @keyframes #{$name} {
         0%,
         100% {
             opacity: $start_opacity;
@@ -50,9 +51,10 @@
 ///
 /// Blink Rapid Keyframes
 /// @name keyframes_animate_blink_rapid
+/// @param {String} $name [animate_blink_rapid] - Keyframes name
 ///
-@mixin keyframes_animate_blink_rapid() {
-    @keyframes animate_blink_rapid {
+@mixin keyframes_animate_blink_rapid($name: animate_blink_rapid) {
+    @keyframes #{$name} {
         0%,
         100% {
             opacity: 1;
@@ -66,9 +68,10 @@
 ///
 /// Blink Soft Keyframes
 /// @name keyframes_animate_blink_soft
+/// @param {String} $name [animate_blink_soft] - Keyframes name
 ///
-@mixin keyframes_animate_blink_soft() {
-    @keyframes animate_blink_soft {
+@mixin keyframes_animate_blink_soft($name: animate_blink_soft) {
+    @keyframes #{$name} {
         0%,
         100% {
             opacity: 1;
@@ -82,9 +85,10 @@
 ///
 /// Blink Alternate Keyframes
 /// @name keyframes_animate_blink_alternate
+/// @param {String} $name [animate_blink_alternate] - Keyframes name
 ///
-@mixin keyframes_animate_blink_alternate() {
-    @keyframes animate_blink_alternate {
+@mixin keyframes_animate_blink_alternate($name: animate_blink_alternate) {
+    @keyframes #{$name} {
         0%,
         100% {
             opacity: 1;

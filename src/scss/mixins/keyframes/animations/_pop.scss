@@ -36,9 +36,10 @@
 /// Pop Keyframes
 /// @name keyframes_animate_pop
 /// @param {Number} $scale [1.2] - The scale factor.
+/// @param {String} $name [animate_pop] - Keyframes name
 ///
-@mixin keyframes_animate_pop($scale: $animate_scale_pop) {
-    @keyframes animate_pop {
+@mixin keyframes_animate_pop($scale: $animate_scale_pop, $name: animate_pop) {
+    @keyframes #{$name} {
         0%, 100% { transform: scale(1); }
         50% { transform: scale($scale); }
     }
@@ -49,9 +50,10 @@
 /// Pop Fast Keyframes
 /// @name keyframes_animate_pop_fast
 /// @param {Number} $scale [1.2] - The scale factor.
+/// @param {String} $name [animate_pop_fast] - Keyframes name
 ///
-@mixin keyframes_animate_pop_fast($scale: $animate_scale_pop) {
-    @keyframes animate_pop_fast {
+@mixin keyframes_animate_pop_fast($scale: $animate_scale_pop, $name: animate_pop_fast) {
+    @keyframes #{$name} {
         0%, 100% { transform: scale(1); }
         50% { transform: scale($scale); }
     }
@@ -62,9 +64,10 @@
 /// Pop Slow Keyframes
 /// @name keyframes_animate_pop_slow
 /// @param {Number} $scale [1.1] - The scale factor.
+/// @param {String} $name [animate_pop_slow] - Keyframes name
 ///
-@mixin keyframes_animate_pop_slow($scale: $animate_scale_bounce) {
-    @keyframes animate_pop_slow {
+@mixin keyframes_animate_pop_slow($scale: $animate_scale_bounce, $name: animate_pop_slow) {
+    @keyframes #{$name} {
         0%, 100% { transform: scale(1); }
         50% { transform: scale($scale); }
     }
@@ -76,9 +79,10 @@
 /// @name keyframes_animate_pop_rotate
 /// @param {Number} $scale [1.2] - The scale factor.
 /// @param {Angle} $rotation_angle [10deg] - The rotation angle.
+/// @param {String} $name [animate_pop_rotate] - Keyframes name
 ///
-@mixin keyframes_animate_pop_rotate($scale: $animate_scale_pop, $rotation_angle: $animate_angle_pop_rotate) {
-    @keyframes animate_pop_rotate {
+@mixin keyframes_animate_pop_rotate($scale: $animate_scale_pop, $rotation_angle: $animate_angle_pop_rotate, $name: animate_pop_rotate) {
+    @keyframes #{$name} {
         0%, 100% { transform: scale(1) rotate(0); }
         50% { transform: scale($scale) rotate($rotation_angle); }
     }

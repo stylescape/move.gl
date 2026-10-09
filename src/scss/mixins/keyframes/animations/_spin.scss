@@ -33,9 +33,10 @@
 ///
 /// @param {Angle} $start_angle [0deg] - Starting angle
 /// @param {Angle} $end_angle [360deg] - Ending angle
+/// @param {String} $name [animate_spin] - Keyframes name
 ///
-@mixin keyframes_spin($start_angle: 0deg, $end_angle: 360deg) {
-    @include keyframes(animate_spin) {
+@mixin keyframes_spin($start_angle: 0deg, $end_angle: 360deg, $name: animate_spin) {
+    @include keyframes($name) {
         from {
             transform: rotate($start_angle);
         }
@@ -48,8 +49,10 @@
 ///
 /// Spin with CSS custom property support.
 ///
-@mixin keyframes_animate_spin() {
-    @include keyframes(animate_spin) {
+/// @param {String} $name [animate_spin] - Keyframes name
+///
+@mixin keyframes_animate_spin($name: animate_spin) {
+    @include keyframes($name) {
         from {
             transform: rotate(var(--animate-spin-start, 0deg));
         }
@@ -69,9 +72,10 @@
 ///
 /// @param {Angle} $start_angle [360deg] - Starting angle
 /// @param {Angle} $end_angle [0deg] - Ending angle
+/// @param {String} $name [animate_spin_reverse] - Keyframes name
 ///
-@mixin keyframes_spin_reverse($start_angle: 360deg, $end_angle: 0deg) {
-    @include keyframes(animate_spin_reverse) {
+@mixin keyframes_spin_reverse($start_angle: 360deg, $end_angle: 0deg, $name: animate_spin_reverse) {
+    @include keyframes($name) {
         from {
             transform: rotate($start_angle);
         }
@@ -90,9 +94,10 @@
 /// Spin combined with growing effect.
 ///
 /// @param {Number} $scale [1.2] - Maximum scale
+/// @param {String} $name [animate_spin_grow] - Keyframes name
 ///
-@mixin keyframes_spin_grow($scale: $animate_scale_pop) {
-    @include keyframes(animate_spin_grow) {
+@mixin keyframes_spin_grow($scale: $animate_scale_pop, $name: animate_spin_grow) {
+    @include keyframes($name) {
         0%, 100% {
             transform: scale(1) rotate(0deg);
         }
@@ -106,9 +111,10 @@
 /// Spin combined with shrinking effect.
 ///
 /// @param {Number} $scale [0.8] - Minimum scale
+/// @param {String} $name [animate_spin_shrink] - Keyframes name
 ///
-@mixin keyframes_spin_shrink($scale: $animate_scale_shrink_min) {
-    @include keyframes(animate_spin_shrink) {
+@mixin keyframes_spin_shrink($scale: $animate_scale_shrink_min, $name: animate_spin_shrink) {
+    @include keyframes($name) {
         0%, 100% {
             transform: scale(1) rotate(0deg);
         }
@@ -129,9 +135,10 @@
 /// @param {Number} $scale_min [1] - Minimum scale
 /// @param {Number} $scale_max [1.1] - Maximum scale
 /// @param {Angle} $rotation [360deg] - Full rotation
+/// @param {String} $name [animate_spin_pulse] - Keyframes name
 ///
-@mixin keyframes_spin_pulse($scale_min: 1, $scale_max: $animate_scale_bounce, $rotation: $animate_angle_full) {
-    @include keyframes(animate_spin_pulse) {
+@mixin keyframes_spin_pulse($scale_min: 1, $scale_max: $animate_scale_bounce, $rotation: $animate_angle_full, $name: animate_spin_pulse) {
+    @include keyframes($name) {
         0%, 100% {
             transform: rotate(0deg) scale($scale_min);
         }
@@ -151,9 +158,10 @@
 ///
 /// @param {Angle} $rotation [360deg] - Z-axis rotation
 /// @param {Angle} $flip [180deg] - Y-axis flip
+/// @param {String} $name [animate_spin_flip] - Keyframes name
 ///
-@mixin keyframes_spin_flip($rotation: $animate_angle_full, $flip: 180deg) {
-    @include keyframes(animate_spin_flip) {
+@mixin keyframes_spin_flip($rotation: $animate_angle_full, $flip: 180deg, $name: animate_spin_flip) {
+    @include keyframes($name) {
         0% {
             transform: rotateZ(0deg) rotateY(0deg);
         }
@@ -174,8 +182,10 @@
 ///
 /// Loader-style spin with easing.
 ///
-@mixin keyframes_spin_loader() {
-    @include keyframes(animate_spin_loader) {
+/// @param {String} $name [animate_spin_loader] - Keyframes name
+///
+@mixin keyframes_spin_loader($name: animate_spin_loader) {
+    @include keyframes($name) {
         0% {
             transform: rotate(0deg);
         }
@@ -188,8 +198,10 @@
 ///
 /// Dual ring loader spin.
 ///
-@mixin keyframes_spin_dual() {
-    @include keyframes(animate_spin_dual) {
+/// @param {String} $name [animate_spin_dual] - Keyframes name
+///
+@mixin keyframes_spin_dual($name: animate_spin_dual) {
+    @include keyframes($name) {
         0% {
             transform: rotate(0deg);
         }
@@ -211,9 +223,10 @@
 /// Spin with wobbling effect.
 ///
 /// @param {Angle} $wobble [5deg] - Wobble angle
+/// @param {String} $name [animate_spin_wobble] - Keyframes name
 ///
-@mixin keyframes_spin_wobble($wobble: $animate_angle_gentle) {
-    @include keyframes(animate_spin_wobble) {
+@mixin keyframes_spin_wobble($wobble: $animate_angle_gentle, $name: animate_spin_wobble) {
+    @include keyframes($name) {
         0% {
             transform: rotate(0deg) rotateX(0deg);
         }
@@ -242,9 +255,10 @@
 ///
 /// @param {Angle} $angle [360deg] - Rotation angle
 /// @param {Angle} $start_angle [0deg] - Starting rotation angle
+/// @param {String} $name [animate_spin_x] - Keyframes name
 ///
-@mixin keyframes_spin_x($angle: $animate_angle_full, $start_angle: 0deg) {
-    @include keyframes(animate_spin_x) {
+@mixin keyframes_spin_x($angle: $animate_angle_full, $start_angle: 0deg, $name: animate_spin_x) {
+    @include keyframes($name) {
         from {
             transform: perspective(400px) rotateX($start_angle);
         }
@@ -259,9 +273,10 @@
 ///
 /// @param {Angle} $angle [360deg] - Rotation angle
 /// @param {Angle} $start_angle [0deg] - Starting rotation angle
+/// @param {String} $name [animate_spin_y] - Keyframes name
 ///
-@mixin keyframes_spin_y($angle: $animate_angle_full, $start_angle: 0deg) {
-    @include keyframes(animate_spin_y) {
+@mixin keyframes_spin_y($angle: $animate_angle_full, $start_angle: 0deg, $name: animate_spin_y) {
+    @include keyframes($name) {
         from {
             transform: perspective(400px) rotateY($start_angle);
         }

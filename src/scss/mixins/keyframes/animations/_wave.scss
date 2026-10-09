@@ -33,9 +33,10 @@
 /// Wave Keyframes
 /// @name keyframes_animate_wave
 /// @param {Angle} $angle [20deg] - The maximum rotation angle during the wave.
+/// @param {String} $name [animate_wave] - Keyframes name
 ///
-@mixin keyframes_animate_wave($angle: $animate_angle_wave) {
-    @keyframes animate_wave {
+@mixin keyframes_animate_wave($angle: $animate_angle_wave, $name: animate_wave) {
+    @keyframes #{$name} {
         0%,
         100% {
             transform: rotate(0deg);
@@ -50,9 +51,10 @@
 /// Wave Slow Keyframes
 /// @name keyframes_animate_wave_slow
 /// @param {Angle} $angle [10deg] - The maximum rotation angle.
+/// @param {String} $name [animate_wave_slow] - Keyframes name
 ///
-@mixin keyframes_animate_wave_slow($angle: $animate_angle_wave_slow) {
-    @keyframes animate_wave_slow {
+@mixin keyframes_animate_wave_slow($angle: $animate_angle_wave_slow, $name: animate_wave_slow) {
+    @keyframes #{$name} {
         0%,
         100% {
             transform: rotate(0deg);
@@ -67,9 +69,10 @@
 /// Wave Fast Keyframes
 /// @name keyframes_animate_wave_fast
 /// @param {Angle} $angle [30deg] - The maximum rotation angle.
+/// @param {String} $name [animate_wave_fast] - Keyframes name
 ///
-@mixin keyframes_animate_wave_fast($angle: $animate_angle_wave_fast) {
-    @keyframes animate_wave_fast {
+@mixin keyframes_animate_wave_fast($angle: $animate_angle_wave_fast, $name: animate_wave_fast) {
+    @keyframes #{$name} {
         0%,
         100% {
             transform: rotate(0deg);
@@ -84,9 +87,10 @@
 /// Wave Fade Keyframes
 /// @name keyframes_animate_wave_fade
 /// @param {Angle} $angle [20deg] - The maximum rotation angle.
+/// @param {String} $name [animate_wave_fade] - Keyframes name
 ///
-@mixin keyframes_animate_wave_fade($angle: $animate_angle_wave) {
-    @keyframes animate_wave_fade {
+@mixin keyframes_animate_wave_fade($angle: $animate_angle_wave, $name: animate_wave_fade) {
+    @keyframes #{$name} {
         0%,
         100% {
             transform: rotate(0deg);

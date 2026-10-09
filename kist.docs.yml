@@ -52,3 +52,7 @@ stages:
                         - "base.html.jinja"
                         - "partials/**"
                     stripExtension: ".jinja"
+                    # Template context: `version` for the navbar badge, kept
+                    # in sync with package.json by bin/sync-banner-version.mjs.
+                    contextFiles:
+                        - "./src/jinja/index.json"

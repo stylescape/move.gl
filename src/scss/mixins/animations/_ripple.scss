@@ -40,6 +40,9 @@
 /// @param {Number} $opacity_end [0] - Final opacity of the ripple
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-out] - Timing function
+/// @param {String} $name [animate_ripple] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Basic usage
 ///   .touch-ripple {
@@ -52,10 +55,11 @@
     $opacity_start: 1,
     $opacity_end: 0,
     $duration: $animate_base_duration,
-    $timing_function: ease-out
+    $timing_function: ease-out,
+    $name: animate_ripple
 ) {
-    @include animate_base(animate_ripple, $duration, $timing_function, infinite);
-    @include keyframes_animate_ripple($scale_start, $scale_end, $opacity_start, $opacity_end);
+    @include animate_base($name, $duration, $timing_function, infinite);
+    @include keyframes_animate_ripple($scale_start, $scale_end, $opacity_start, $opacity_end, $name: $name);
 }
 
 ///
@@ -68,6 +72,9 @@
 /// @param {Number} $opacity_end [0] - Final opacity of the ripple
 /// @param {Time} $duration [2s] - Animation duration
 /// @param {String} $timing_function [ease-out] - Timing function
+/// @param {String} $name [animate_ripple_slow] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Usage
 ///   .water-ripple {
@@ -78,10 +85,11 @@
     $scale_end: 1.5,
     $opacity_end: 0,
     $duration: 2s,
-    $timing_function: ease-out
+    $timing_function: ease-out,
+    $name: animate_ripple_slow
 ) {
-    @include animate_base(animate_ripple_slow, $duration, $timing_function, infinite);
-    @include keyframes_animate_ripple_slow($scale_end, $opacity_end);
+    @include animate_base($name, $duration, $timing_function, infinite);
+    @include keyframes_animate_ripple_slow($scale_end, $opacity_end, $name: $name);
 }
 
 // Multi-Ripple Animation
@@ -96,16 +104,20 @@
 /// @param {Number} $opacity_end [0] - The final opacity of the ripple.
 /// @param {Number|String} $duration [$animate_base_duration] - The duration of the ripple animation.
 /// @param {String} $timing_function [ease-out] - The timing function for the ripple animation.
+/// @param {String} $name [animate_ripple_multi] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_ripple_multi(
     $scale_first: 1.2,
     $scale_second: 1.5,
     $opacity_end: 0,
     $duration: $animate_base_duration,
-    $timing_function: ease-out
+    $timing_function: ease-out,
+    $name: animate_ripple_multi
 ) {
-    @include animate_base(animate_ripple_multi, $duration, $timing_function, infinite);
-    @include keyframes_animate_ripple_multi($scale_first, $scale_second, $opacity_end);
+    @include animate_base($name, $duration, $timing_function, infinite);
+    @include keyframes_animate_ripple_multi($scale_first, $scale_second, $opacity_end, $name: $name);
 }
 
 // Ripple with Color Change
@@ -121,6 +133,9 @@
 /// @param {Color} $color_end [$animate_base_color_end] - The ending color of the ripple.
 /// @param {Number|String} $duration [$animate_base_duration] - The duration of the ripple animation.
 /// @param {String} $timing_function [ease-out] - The timing function for the ripple animation.
+/// @param {String} $name [animate_ripple_color] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_ripple_color(
     $scale_end: 1.5,
@@ -128,8 +143,9 @@
     $color_start: $animate_base_color_start,
     $color_end: $animate_base_color_end,
     $duration: $animate_base_duration,
-    $timing_function: ease-out
+    $timing_function: ease-out,
+    $name: animate_ripple_color
 ) {
-    @include animate_base(animate_ripple_color, $duration, $timing_function, infinite);
-    @include keyframes_animate_ripple_color($scale_end, $opacity_end, $color_start, $color_end);
+    @include animate_base($name, $duration, $timing_function, infinite);
+    @include keyframes_animate_ripple_color($scale_end, $opacity_end, $color_start, $color_end, $name: $name);
 }

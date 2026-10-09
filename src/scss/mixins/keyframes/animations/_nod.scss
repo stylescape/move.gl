@@ -36,9 +36,10 @@
 /// Nod Keyframes
 /// @name keyframes_animate_nod
 /// @param {Angle} $angle [10deg] - The angle of rotation.
+/// @param {String} $name [animate_nod] - Keyframes name
 ///
-@mixin keyframes_animate_nod($angle: $animate_angle_nod) {
-    @keyframes animate_nod {
+@mixin keyframes_animate_nod($angle: $animate_angle_nod, $name: animate_nod) {
+    @keyframes #{$name} {
         0%, 100% { transform: rotateX(0deg); }
         50% { transform: rotateX($angle); }
     }
@@ -49,9 +50,10 @@
 /// Nod Slow Keyframes
 /// @name keyframes_animate_nod_slow
 /// @param {Angle} $angle [10deg] - The angle of rotation.
+/// @param {String} $name [animate_nod_slow] - Keyframes name
 ///
-@mixin keyframes_animate_nod_slow($angle: $animate_angle_nod) {
-    @keyframes animate_nod_slow {
+@mixin keyframes_animate_nod_slow($angle: $animate_angle_nod, $name: animate_nod_slow) {
+    @keyframes #{$name} {
         0%, 100% { transform: rotateX(0deg); }
         50% { transform: rotateX($angle); }
     }
@@ -63,9 +65,10 @@
 /// @name keyframes_animate_nod_bounce
 /// @param {Angle} $angle [10deg] - The angle of rotation.
 /// @param {Length} $bounce_height [5px] - The height of the bounce.
+/// @param {String} $name [animate_nod_bounce] - Keyframes name
 ///
-@mixin keyframes_animate_nod_bounce($angle: $animate_angle_nod, $bounce_height: $animate_translate_nod_bounce) {
-    @keyframes animate_nod_bounce {
+@mixin keyframes_animate_nod_bounce($angle: $animate_angle_nod, $bounce_height: $animate_translate_nod_bounce, $name: animate_nod_bounce) {
+    @keyframes #{$name} {
         0%, 100% { transform: rotateX(0deg) translateY(0); }
         50% { transform: rotateX($angle) translateY(-$bounce_height); }
     }
@@ -76,9 +79,10 @@
 /// Nod Continuous Keyframes
 /// @name keyframes_animate_nod_continuous
 /// @param {Angle} $angle [10deg] - The angle of rotation.
+/// @param {String} $name [animate_nod_continuous] - Keyframes name
 ///
-@mixin keyframes_animate_nod_continuous($angle: $animate_angle_nod) {
-    @keyframes animate_nod_continuous {
+@mixin keyframes_animate_nod_continuous($angle: $animate_angle_nod, $name: animate_nod_continuous) {
+    @keyframes #{$name} {
         0% { transform: rotateX(0deg); }
         25%, 75% { transform: rotateX($angle); }
         50%, 100% { transform: rotateX(-$angle); }

@@ -40,6 +40,9 @@
 /// @param {Number|String} $iteration_count - Number of iterations
 /// @param {Number} $start_opacity [1] - Opacity at start and end
 /// @param {Number} $blink_opacity [0] - Opacity during blink
+/// @param {String} $name [animate_blink] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Basic usage
 ///   .cursor {
@@ -51,10 +54,11 @@
     $timing_function: step-end,
     $iteration_count: $animate_base_iteration_count,
     $start_opacity: 1,
-    $blink_opacity: 0
+    $blink_opacity: 0,
+    $name: animate_blink
 ) {
-    @include animate_base(animate_blink, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_blink($start_opacity, $blink_opacity);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_blink($start_opacity, $blink_opacity, $name: $name);
 }
 
 ///
@@ -67,6 +71,9 @@
 /// @param {Time} $duration [$animate_base_duration_fast] - Animation duration
 /// @param {String} $timing_function [steps(2, end)] - Timing function
 /// @param {Number|String} $iteration_count - Number of iterations
+/// @param {String} $name [animate_blink_rapid] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Usage
 ///   .alert {
@@ -76,10 +83,11 @@
 @mixin animate_blink_rapid(
     $duration: $animate_base_duration_fast,
     $timing_function: steps(2, end),
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_blink_rapid
 ) {
-    @include animate_base(animate_blink_rapid, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_blink_rapid();
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_blink_rapid($name: $name);
 }
 
 ///
@@ -92,6 +100,9 @@
 /// @param {Time} $duration [$animate_base_duration_slow] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count - Number of iterations
+/// @param {String} $name [animate_blink_soft] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Usage
 ///   .status {
@@ -101,10 +112,11 @@
 @mixin animate_blink_soft(
     $duration: $animate_base_duration_slow,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_blink_soft
 ) {
-    @include animate_base(animate_blink_soft, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_blink_soft();
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_blink_soft($name: $name);
 }
 
 ///
@@ -117,6 +129,9 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [linear] - Timing function
 /// @param {Number|String} $iteration_count - Number of iterations
+/// @param {String} $name [animate_blink_alternate] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Usage
 ///   .indicator {
@@ -126,8 +141,9 @@
 @mixin animate_blink_alternate(
     $duration: $animate_base_duration,
     $timing_function: linear,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_blink_alternate
 ) {
-    @include animate_base(animate_blink_alternate, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_blink_alternate();
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_blink_alternate($name: $name);
 }

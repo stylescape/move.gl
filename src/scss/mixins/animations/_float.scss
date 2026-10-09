@@ -40,6 +40,9 @@
 /// @param {Time} $duration [$animate_base_duration_slow] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count - Number of iterations
+/// @param {String} $name [animate_float] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Basic usage
 ///   .cloud {
@@ -52,10 +55,11 @@
     $end_position: 0,
     $duration: $animate_base_duration_slow,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_float
 ) {
-    @include animate_base(animate_float, $duration, $timing_function, $iteration_count);
-    @keyframes animate_float {
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @keyframes #{$name} {
         0%,
         100% {
             transform: translateY($start_position);
@@ -76,6 +80,9 @@
 /// @param {Time} $duration [$animate_base_duration_slow] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count - Number of iterations
+/// @param {String} $name [animate_float_horizontal] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Usage
 ///   .icon {
@@ -86,10 +93,11 @@
     $horizontal-distance: 10px,
     $duration: $animate_base_duration_slow,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_float_horizontal
 ) {
-    @include animate_base(animate_float_horizontal, $duration, $timing_function, $iteration_count);
-    @keyframes animate_float_horizontal {
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @keyframes #{$name} {
         0%,
         100% {
             transform: translateX(0);
@@ -111,6 +119,9 @@
 /// @param {Time} $duration [$animate_base_duration_slow] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count - Number of iterations
+/// @param {String} $name [animate_float_rotate] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Usage
 ///   .leaf {
@@ -121,10 +132,11 @@
     $rotation_angle: 15deg,
     $duration: $animate_base_duration_slow,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_float_rotate
 ) {
-    @include animate_base(animate_float_rotate, $duration, $timing_function, $iteration_count);
-    @keyframes animate_float_rotate {
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @keyframes #{$name} {
         0%,
         100% {
             transform: translateY(0) rotate(0);

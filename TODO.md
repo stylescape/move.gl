@@ -10,16 +10,13 @@ Left open after the pass that fixed the build, the TypeScript components, the li
 
 ### Verification
 
-- [ ] Check the demo pages in a real browser (`npm run dev`): layout, animations, theme toggle. So far they were only served and smoke-tested in happy-dom (no runtime errors on all 27 pages, every button clicked once).
-- [ ] Try `Draggable`, `TouchGestureHandler` (pinch/rotate) and the virtual keyboard on a real touch device.
+- [ ] `Draggable`, `TouchGestureHandler` and the virtual keyboard on a real touch device. Checked on 2026-10-09 in headless Chromium with touch emulation (CDP `Input.dispatchTouchEvent`): one-finger drag stays inside its parent, tap, swipe, pinch (scale 1.5 → 3.5) and a 90° rotate are reported, and keyboard taps type, shift and switch to `?123`. Emulation cannot show real-device latency, palm rejection or browser gesture conflicts.
+- [ ] The demo pages use the vendored stylescape 0.4.1, so axe (2026-10-09, headless Chromium, light and dark) reports `color-contrast` on `.ss-c-button--primary`, `.ss-c-footer__copyright`, section titles and links. stylescape 0.5.1 (on npm) darkens those tokens; update the demo's stylescape and re-run. Otherwise all 27 pages load without console errors or failed requests, the theme toggle works and persists, and nothing overflows at 375px.
 - [ ] Add a `lint` script. `eslint.config.js` only covers plain JS and ESLint isn't installed; linting the TypeScript needs `eslint`, `@eslint/js`, `eslint-config-prettier` and `typescript-eslint`.
-- [ ] Automate the two checks that were run by hand during the bug-fix pass: install the packed `dist/` tarball into a scratch project (ESM import, CommonJS require, types, `@use "pkg:move.gl"`), and load every built demo page with `demo.js` in happy-dom.
 
 ### Library SCSS
 
-- [ ] Most `animate_*` mixins write a fixed `@keyframes` name, so including one twice with different settings makes the last one win for both. `animate_flip` / `keyframes_flip` got an optional `$name` parameter for this; apply the same pattern to the others.
-- [ ] Mixin names defined in more than one module: `keyframes_fade_in` / `keyframes_fade_out` (effects and keyframes), `keyframes_heartbeat` (loaders and keyframes), `keyframes_flip` (bubble loader and keyframes). They don't clash today but will if those modules are ever forwarded together.
-- [ ] `filter_hover($default-filter: none, $hover-filter, …)` has a required parameter after an optional one; reorder at the next breaking release.
+- [ ] Mixin names defined in more than one module: `keyframes_fade_in` / `keyframes_fade_out` (effects and keyframes), `keyframes_heartbeat` (loaders and keyframes), `keyframes_flip` (bubble loader and keyframes). They don't clash today but will if those modules are ever forwarded together. (2026-10-09: the keyframes module is not forwarded by `index.scss`, so package users can't hit this; deduplicating means renaming public `effects` / `loaders` mixins, which needs a naming decision.)
 
 ### Docs and demo site
 

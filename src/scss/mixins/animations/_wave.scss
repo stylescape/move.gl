@@ -38,6 +38,9 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count - Number of iterations
+/// @param {String} $name [animate_wave] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Basic usage
 ///   .hand-wave {
@@ -48,10 +51,11 @@
     $angle: 20deg,
     $duration: $animate_base_duration,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_wave
 ) {
-    @include animate_base(animate_wave, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_wave($angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_wave($angle, $name: $name);
 }
 
 // Gentle Wave Animation
@@ -65,15 +69,19 @@
 /// @param {Duration} $duration [$animate_base_duration_slow] - The duration of the animation.
 /// @param {String} $timing_function [ease-in-out] - The timing function for the animation.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {String} $name [animate_wave_slow] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_wave_slow(
     $angle: 10deg,
     $duration: $animate_base_duration_slow,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_wave_slow
 ) {
-    @include animate_base(animate_wave_slow, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_wave_slow($angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_wave_slow($angle, $name: $name);
 }
 
 // Rapid Wave Animation
@@ -87,15 +95,19 @@
 /// @param {Duration} $duration [$animate_base_duration_fast] - The duration of the animation.
 /// @param {String} $timing_function [ease-in-out] - The timing function for the animation.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {String} $name [animate_wave_fast] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_wave_fast(
     $angle: 30deg,
     $duration: $animate_base_duration_fast,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_wave_fast
 ) {
-    @include animate_base(animate_wave_fast, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_wave_fast($angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_wave_fast($angle, $name: $name);
 }
 
 // Wave with Fade Animation
@@ -109,13 +121,17 @@
 /// @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
 /// @param {String} $timing_function [ease-in-out] - The timing function for the animation.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {String} $name [animate_wave_fade] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_wave_fade(
     $angle: 20deg,
     $duration: $animate_base_duration,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_wave_fade
 ) {
-    @include animate_base(animate_wave_fade, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_wave_fade($angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_wave_fade($angle, $name: $name);
 }

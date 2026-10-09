@@ -33,9 +33,10 @@
 ///
 /// @param {Number} $scale_min [1] - Minimum scale
 /// @param {Number} $scale_max [$animate_scale_pulse] - Maximum scale
+/// @param {String} $name [animate_pulse] - Keyframes name
 ///
-@mixin keyframes_pulse($scale_min: 1, $scale_max: $animate_scale_pulse) {
-    @include keyframes(animate_pulse) {
+@mixin keyframes_pulse($scale_min: 1, $scale_max: $animate_scale_pulse, $name: animate_pulse) {
+    @include keyframes($name) {
         0%, 100% {
             transform: scale($scale_min);
         }
@@ -48,8 +49,10 @@
 ///
 /// Pulse with CSS custom property support.
 ///
-@mixin keyframes_animate_pulse($scale_max: $animate_scale_pulse) {
-    @include keyframes(animate_pulse) {
+/// @param {String} $name [animate_pulse] - Keyframes name
+///
+@mixin keyframes_animate_pulse($scale_max: $animate_scale_pulse, $name: animate_pulse) {
+    @include keyframes($name) {
         0%, 100% {
             transform: scale(var(--animate-scale-base, #{$animate_scale_base}));
         }
@@ -69,9 +72,10 @@
 ///
 /// @param {Number} $scale_min [$animate_scale_pulse_slow_min] - Minimum scale
 /// @param {Number} $scale_max [$animate_scale_pulse_slow_max] - Maximum scale
+/// @param {String} $name [animate_pulse_slow] - Keyframes name
 ///
-@mixin keyframes_pulse_slow($scale_min: $animate_scale_pulse_slow_min, $scale_max: $animate_scale_pulse_slow_max) {
-    @include keyframes(animate_pulse_slow) {
+@mixin keyframes_pulse_slow($scale_min: $animate_scale_pulse_slow_min, $scale_max: $animate_scale_pulse_slow_max, $name: animate_pulse_slow) {
+    @include keyframes($name) {
         0%, 100% {
             transform: scale($scale_min);
         }
@@ -91,9 +95,10 @@
 ///
 /// @param {Number} $scale_min [$animate_scale_pulse_fast_min] - Minimum scale
 /// @param {Number} $scale_max [$animate_scale_pulse_fast_max] - Maximum scale
+/// @param {String} $name [animate_pulse_fast] - Keyframes name
 ///
-@mixin keyframes_pulse_fast($scale_min: $animate_scale_pulse_fast_min, $scale_max: $animate_scale_pulse_fast_max) {
-    @include keyframes(animate_pulse_fast) {
+@mixin keyframes_pulse_fast($scale_min: $animate_scale_pulse_fast_min, $scale_max: $animate_scale_pulse_fast_max, $name: animate_pulse_fast) {
+    @include keyframes($name) {
         0%, 100% {
             transform: scale($scale_min);
         }
@@ -113,9 +118,10 @@
 ///
 /// @param {Color} $color_start [$animate_base_color_start] - Starting color
 /// @param {Color} $color_end [$animate_base_color_end] - Ending color
+/// @param {String} $name [animate_pulse_color] - Keyframes name
 ///
-@mixin keyframes_pulse_color($color_start: $animate_base_color_start, $color_end: $animate_base_color_end) {
-    @include keyframes(animate_pulse_color) {
+@mixin keyframes_pulse_color($color_start: $animate_base_color_start, $color_end: $animate_base_color_end, $name: animate_pulse_color) {
+    @include keyframes($name) {
         0%, 100% {
             background-color: $color_start;
         }
@@ -135,9 +141,10 @@
 ///
 /// @param {Color} $ring_color [$animate_color_pulse_ring] - Ring color
 /// @param {Length} $ring_size [$animate_pulse_ring_size] - Maximum ring expansion
+/// @param {String} $name [animate_pulse_ring] - Keyframes name
 ///
-@mixin keyframes_pulse_ring($ring_color: $animate_color_pulse_ring, $ring_size: $animate_pulse_ring_size) {
-    @include keyframes(animate_pulse_ring) {
+@mixin keyframes_pulse_ring($ring_color: $animate_color_pulse_ring, $ring_size: $animate_pulse_ring_size, $name: animate_pulse_ring) {
+    @include keyframes($name) {
         0% {
             box-shadow: 0 0 0 0 $ring_color;
         }
@@ -158,13 +165,15 @@
 /// @param {Number} $scale_max [$animate_scale_pulse_fade_max] - Maximum scale
 /// @param {Number} $opacity_min [$animate_opacity_pulse_min] - Minimum opacity
 /// @param {Number} $scale_min [1] - Resting scale
+/// @param {String} $name [animate_pulse_fade] - Keyframes name
 ///
 @mixin keyframes_pulse_fade(
     $scale_max: $animate_scale_pulse_fade_max,
     $opacity_min: $animate_opacity_pulse_min,
-    $scale_min: 1
+    $scale_min: 1,
+    $name: animate_pulse_fade
 ) {
-    @include keyframes(animate_pulse_fade) {
+    @include keyframes($name) {
         0%, 100% {
             transform: scale($scale_min);
             opacity: 1;
@@ -187,9 +196,10 @@
 /// @param {Color} $glow_color [currentColor] - Glow color
 /// @param {Length} $glow_size [10px] - Maximum glow size
 /// @param {Number} $scale_max [1.05] - Maximum scale
+/// @param {String} $name [animate_pulse_glow] - Keyframes name
 ///
-@mixin keyframes_pulse_glow($glow_color: currentColor, $glow_size: 10px, $scale_max: 1.05) {
-    @include keyframes(animate_pulse_glow) {
+@mixin keyframes_pulse_glow($glow_color: currentColor, $glow_size: 10px, $scale_max: 1.05, $name: animate_pulse_glow) {
+    @include keyframes($name) {
         0%, 100% {
             transform: scale(1);
             box-shadow: 0 0 0 0 keyframes_alpha($glow_color, 0.4);
@@ -211,9 +221,10 @@
 ///
 /// @param {Number} $scale_small [1.05] - First pulse scale
 /// @param {Number} $scale_large [1.1] - Second pulse scale
+/// @param {String} $name [animate_pulse_double] - Keyframes name
 ///
-@mixin keyframes_pulse_double($scale_small: 1.05, $scale_large: 1.1) {
-    @include keyframes(animate_pulse_double) {
+@mixin keyframes_pulse_double($scale_small: 1.05, $scale_large: 1.1, $name: animate_pulse_double) {
+    @include keyframes($name) {
         0%, 100% {
             transform: scale(1);
         }

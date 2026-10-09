@@ -32,9 +32,10 @@
 /// Slide in from left.
 ///
 /// @param {Length} $distance [$animate_translate_slide] - Starting distance
+/// @param {String} $name [animate_slide_in_left] - Keyframes name
 ///
-@mixin keyframes_slide_in_left($distance: $animate_translate_slide) {
-    @include keyframes(animate_slide_in_left) {
+@mixin keyframes_slide_in_left($distance: $animate_translate_slide, $name: animate_slide_in_left) {
+    @include keyframes($name) {
         from {
             transform: translateX(-$distance);
             opacity: 0;
@@ -50,9 +51,10 @@
 /// Slide in from right.
 ///
 /// @param {Length} $distance [$animate_translate_slide] - Starting distance
+/// @param {String} $name [animate_slide_in_right] - Keyframes name
 ///
-@mixin keyframes_slide_in_right($distance: $animate_translate_slide) {
-    @include keyframes(animate_slide_in_right) {
+@mixin keyframes_slide_in_right($distance: $animate_translate_slide, $name: animate_slide_in_right) {
+    @include keyframes($name) {
         from {
             transform: translateX($distance);
             opacity: 0;
@@ -68,9 +70,10 @@
 /// Slide in from top.
 ///
 /// @param {Length} $distance [$animate_translate_slide] - Starting distance
+/// @param {String} $name [animate_slide_in_up] - Keyframes name
 ///
-@mixin keyframes_slide_in_up($distance: $animate_translate_slide) {
-    @include keyframes(animate_slide_in_up) {
+@mixin keyframes_slide_in_up($distance: $animate_translate_slide, $name: animate_slide_in_up) {
+    @include keyframes($name) {
         from {
             transform: translateY($distance);
             opacity: 0;
@@ -86,9 +89,10 @@
 /// Slide in from bottom.
 ///
 /// @param {Length} $distance [$animate_translate_slide] - Starting distance
+/// @param {String} $name [animate_slide_in_down] - Keyframes name
 ///
-@mixin keyframes_slide_in_down($distance: $animate_translate_slide) {
-    @include keyframes(animate_slide_in_down) {
+@mixin keyframes_slide_in_down($distance: $animate_translate_slide, $name: animate_slide_in_down) {
+    @include keyframes($name) {
         from {
             transform: translateY(-$distance);
             opacity: 0;
@@ -109,9 +113,10 @@
 /// Slide out to left.
 ///
 /// @param {Length} $distance [$animate_translate_slide] - Ending distance
+/// @param {String} $name [animate_slide_out_left] - Keyframes name
 ///
-@mixin keyframes_slide_out_left($distance: $animate_translate_slide) {
-    @include keyframes(animate_slide_out_left) {
+@mixin keyframes_slide_out_left($distance: $animate_translate_slide, $name: animate_slide_out_left) {
+    @include keyframes($name) {
         from {
             transform: translateX(0);
             opacity: 1;
@@ -127,9 +132,10 @@
 /// Slide out to right.
 ///
 /// @param {Length} $distance [$animate_translate_slide] - Ending distance
+/// @param {String} $name [animate_slide_out_right] - Keyframes name
 ///
-@mixin keyframes_slide_out_right($distance: $animate_translate_slide) {
-    @include keyframes(animate_slide_out_right) {
+@mixin keyframes_slide_out_right($distance: $animate_translate_slide, $name: animate_slide_out_right) {
+    @include keyframes($name) {
         from {
             transform: translateX(0);
             opacity: 1;
@@ -145,9 +151,10 @@
 /// Slide out to top.
 ///
 /// @param {Length} $distance [$animate_translate_slide] - Ending distance
+/// @param {String} $name [animate_slide_out_up] - Keyframes name
 ///
-@mixin keyframes_slide_out_up($distance: $animate_translate_slide) {
-    @include keyframes(animate_slide_out_up) {
+@mixin keyframes_slide_out_up($distance: $animate_translate_slide, $name: animate_slide_out_up) {
+    @include keyframes($name) {
         from {
             transform: translateY(0);
             opacity: 1;
@@ -163,9 +170,10 @@
 /// Slide out to bottom.
 ///
 /// @param {Length} $distance [$animate_translate_slide] - Ending distance
+/// @param {String} $name [animate_slide_out_down] - Keyframes name
 ///
-@mixin keyframes_slide_out_down($distance: $animate_translate_slide) {
-    @include keyframes(animate_slide_out_down) {
+@mixin keyframes_slide_out_down($distance: $animate_translate_slide, $name: animate_slide_out_down) {
+    @include keyframes($name) {
         from {
             transform: translateY(0);
             opacity: 1;
@@ -186,9 +194,10 @@
 /// Slide with fade in from above.
 ///
 /// @param {Length} $distance [50px] - Starting distance
+/// @param {String} $name [animate_slide_fade_in_up] - Keyframes name
 ///
-@mixin keyframes_slide_fade_in_up($distance: $animate_translate_slide_fade) {
-    @include keyframes(animate_slide_fade_in_up) {
+@mixin keyframes_slide_fade_in_up($distance: $animate_translate_slide_fade, $name: animate_slide_fade_in_up) {
+    @include keyframes($name) {
         from {
             transform: translateY($distance);
             opacity: 0;
@@ -204,9 +213,10 @@
 /// Slide with fade in from below.
 ///
 /// @param {Length} $distance [50px] - Starting distance
+/// @param {String} $name [animate_slide_fade_in_down] - Keyframes name
 ///
-@mixin keyframes_slide_fade_in_down($distance: $animate_translate_slide_fade) {
-    @include keyframes(animate_slide_fade_in_down) {
+@mixin keyframes_slide_fade_in_down($distance: $animate_translate_slide_fade, $name: animate_slide_fade_in_down) {
+    @include keyframes($name) {
         from {
             transform: translateY(-$distance);
             opacity: 0;
@@ -222,9 +232,10 @@
 /// Slide with fade in from left.
 ///
 /// @param {Length} $distance [50px] - Starting distance
+/// @param {String} $name [animate_slide_fade_in_left] - Keyframes name
 ///
-@mixin keyframes_slide_fade_in_left($distance: $animate_translate_slide_fade) {
-    @include keyframes(animate_slide_fade_in_left) {
+@mixin keyframes_slide_fade_in_left($distance: $animate_translate_slide_fade, $name: animate_slide_fade_in_left) {
+    @include keyframes($name) {
         from {
             transform: translateX(-$distance);
             opacity: 0;
@@ -240,9 +251,10 @@
 /// Slide with fade in from right.
 ///
 /// @param {Length} $distance [50px] - Starting distance
+/// @param {String} $name [animate_slide_fade_in_right] - Keyframes name
 ///
-@mixin keyframes_slide_fade_in_right($distance: $animate_translate_slide_fade) {
-    @include keyframes(animate_slide_fade_in_right) {
+@mixin keyframes_slide_fade_in_right($distance: $animate_translate_slide_fade, $name: animate_slide_fade_in_right) {
+    @include keyframes($name) {
         from {
             transform: translateX($distance);
             opacity: 0;
@@ -263,9 +275,10 @@
 /// Continuous horizontal slide loop.
 ///
 /// @param {Length} $distance [100%] - Slide distance
+/// @param {String} $name [animate_slide_loop_horizontal] - Keyframes name
 ///
-@mixin keyframes_slide_loop_horizontal($distance: 100%) {
-    @include keyframes(animate_slide_loop_horizontal) {
+@mixin keyframes_slide_loop_horizontal($distance: 100%, $name: animate_slide_loop_horizontal) {
+    @include keyframes($name) {
         0% {
             transform: translateX(0);
         }
@@ -279,9 +292,10 @@
 /// Continuous vertical slide loop.
 ///
 /// @param {Length} $distance [100%] - Slide distance
+/// @param {String} $name [animate_slide_loop_vertical] - Keyframes name
 ///
-@mixin keyframes_slide_loop_vertical($distance: 100%) {
-    @include keyframes(animate_slide_loop_vertical) {
+@mixin keyframes_slide_loop_vertical($distance: 100%, $name: animate_slide_loop_vertical) {
+    @include keyframes($name) {
         0% {
             transform: translateY(0);
         }
@@ -300,9 +314,10 @@
 /// Slide in from left with bounce.
 ///
 /// @param {Length} $distance [100%] - Starting distance
+/// @param {String} $name [animate_slide_in_bounce_left] - Keyframes name
 ///
-@mixin keyframes_slide_in_bounce_left($distance: 100%) {
-    @include keyframes(animate_slide_in_bounce_left) {
+@mixin keyframes_slide_in_bounce_left($distance: 100%, $name: animate_slide_in_bounce_left) {
+    @include keyframes($name) {
         0% {
             transform: translateX(-$distance);
             opacity: 0;
@@ -324,9 +339,10 @@
 /// Slide in from right with bounce.
 ///
 /// @param {Length} $distance [100%] - Starting distance
+/// @param {String} $name [animate_slide_in_bounce_right] - Keyframes name
 ///
-@mixin keyframes_slide_in_bounce_right($distance: 100%) {
-    @include keyframes(animate_slide_in_bounce_right) {
+@mixin keyframes_slide_in_bounce_right($distance: 100%, $name: animate_slide_in_bounce_right) {
+    @include keyframes($name) {
         0% {
             transform: translateX($distance);
             opacity: 0;
@@ -348,9 +364,10 @@
 /// Slide in from below with bounce.
 ///
 /// @param {Length} $distance [100%] - Starting distance
+/// @param {String} $name [animate_slide_in_bounce_up] - Keyframes name
 ///
-@mixin keyframes_slide_in_bounce_up($distance: 100%) {
-    @include keyframes(animate_slide_in_bounce_up) {
+@mixin keyframes_slide_in_bounce_up($distance: 100%, $name: animate_slide_in_bounce_up) {
+    @include keyframes($name) {
         0% {
             transform: translateY($distance);
             opacity: 0;
@@ -372,9 +389,10 @@
 /// Slide in from above with bounce.
 ///
 /// @param {Length} $distance [100%] - Starting distance
+/// @param {String} $name [animate_slide_in_bounce_down] - Keyframes name
 ///
-@mixin keyframes_slide_in_bounce_down($distance: 100%) {
-    @include keyframes(animate_slide_in_bounce_down) {
+@mixin keyframes_slide_in_bounce_down($distance: 100%, $name: animate_slide_in_bounce_down) {
+    @include keyframes($name) {
         0% {
             transform: translateY(-$distance);
             opacity: 0;

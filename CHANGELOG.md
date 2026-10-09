@@ -12,6 +12,7 @@ All notable changes to move.gl are documented here. The format follows
 - `VirtualKeyboard` renders `<button class="key">` elements instead of `<div>`s, its default layout adds `Shift`, `Space`, `?123` and `ABC` keys, and it throws when the input or keyboard element is missing.
 - The `focus_*` mixins (and new `focus--*` classes) style `:focus-visible` instead of `:focus`.
 - Removed the unused, non-compiling `mixins/_shape.scss`, `_boot.scss` and `_accessibility.scss`, and the `-webkit-` copy of every `@keyframes` block.
+- `filter_hover` takes the hover filter first: `filter_hover($hover-filter, $default-filter: none, $duration: 0.3s)`. Positional calls that passed the default filter first must swap the first two arguments.
 
 ### Fixed
 
@@ -26,12 +27,17 @@ All notable changes to move.gl are documented here. The format follows
 - Sass: skeleton loaders and several hover/scroll effects referenced keyframes that were never emitted; six flip classes overwrote each other's keyframes; about 40 mixins failed to compile with their default arguments; deprecated global Sass functions were replaced with module functions.
 - Duplicate `.cursor--*` and `.hover--scale` rules removed; the license banner now heads the CSS and names move.gl.
 - Demo site: restored its build (`npm run build:docs`), page titles, broken demo controls and code samples that documented non-existent APIs.
+- README: the `animate-fade-in` example passed its duration as the start opacity.
+- Demo site: 17 loaders on the loaders page (dots, bars, chase, windmill, …) rendered empty because their markup lacked the child elements the loader styles animate; the navbar badge said v0.0.1 and now shows the `package.json` version (`script/sync-banner-version.mjs` also writes `src/jinja/index.json`).
 
 ### Added
 
 - `Draggable` options and `isDragging`; `Screensaver#start()` / `stop()`; `VirtualKeyboard` options (`layout`, `onKeyPress`) and `mode`.
 - `touch--target`, `touch--feedback`, `touch--scroll` and `focus--default/ring/glow/outline` classes.
 - `npm test` (vitest + happy-dom), `npm run typecheck`, and a MkDocs site with Quick Start, Sass and TypeScript references.
+- Every `animate_*` mixin in `mixins/animations` and every `keyframes_*` mixin in `mixins/keyframes/animations` takes an optional `$name` (default: the previous fixed name), so one animation can be included with different settings without the last `@keyframes` overriding the others.
+- Sass tests for the mixins (`test/scss/`), run by `npm test`.
+- `npm run check:package` (after `npm run build && npm run build:docs`): packs `dist/`, installs the tarball into a scratch project and checks the ESM import, CommonJS require, type declarations and `@use "pkg:move.gl"`, then loads every demo page with `demo.js` in happy-dom and clicks every button.
 
 ## [0.0.2]
 

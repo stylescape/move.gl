@@ -39,3 +39,5 @@ The most common mixins; every class in `move.gl.css` is generated from a mixin o
 | `filter-grayscale($amount)` | Grayscale filter   |
 
 Mixin names use underscores in the source (`animate_fade_in`); Sass treats `-` and `_` as the same, so either spelling works.
+
+Each `animate_*` mixin writes a `@keyframes` block with a fixed default name. When you include the same animation more than once with different settings, pass a unique `$name` to each (`@include move.animate-shake(20deg, $name: shake-large)`), otherwise the last `@keyframes` wins for all of them.

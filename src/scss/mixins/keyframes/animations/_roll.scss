@@ -34,12 +34,14 @@
 /// @name keyframes_animate_roll
 /// @param {Number|String} $translate_distance [100%] - The distance to translate.
 /// @param {Angle} $rotation_angle [360deg] - The rotation angle.
+/// @param {String} $name [animate_roll] - Keyframes name
 ///
 @mixin keyframes_animate_roll(
     $translate_distance: $animate_translate_slide,
-    $rotation_angle: $animate_angle_full
+    $rotation_angle: $animate_angle_full,
+    $name: animate_roll
 ) {
-    @keyframes animate_roll {
+    @keyframes #{$name} {
         0% {
             transform: translateX(0) rotate(0deg);
         }
@@ -54,12 +56,14 @@
 /// @name keyframes_animate_roll_reverse
 /// @param {Number|String} $translate_distance [-100%] - The distance to translate.
 /// @param {Angle} $rotation_angle [-360deg] - The rotation angle.
+/// @param {String} $name [animate_roll_reverse] - Keyframes name
 ///
 @mixin keyframes_animate_roll_reverse(
     $translate_distance: -$animate_translate_slide,
-    $rotation_angle: -$animate_angle_full
+    $rotation_angle: -$animate_angle_full,
+    $name: animate_roll_reverse
 ) {
-    @keyframes animate_roll_reverse {
+    @keyframes #{$name} {
         0% {
             transform: translateX(0) rotate(0deg);
         }
@@ -74,12 +78,14 @@
 /// @name keyframes_animate_roll_slow
 /// @param {Number|String} $translate_distance [100%] - The distance to translate.
 /// @param {Angle} $rotation_angle [360deg] - The rotation angle.
+/// @param {String} $name [animate_roll_slow] - Keyframes name
 ///
 @mixin keyframes_animate_roll_slow(
     $translate_distance: $animate_translate_slide,
-    $rotation_angle: $animate_angle_full
+    $rotation_angle: $animate_angle_full,
+    $name: animate_roll_slow
 ) {
-    @keyframes animate_roll_slow {
+    @keyframes #{$name} {
         0% {
             transform: translateX(0) rotate(0deg);
         }
@@ -94,12 +100,14 @@
 /// @name keyframes_animate_roll_vertical
 /// @param {Number|String} $translate_distance [100%] - The distance to translate.
 /// @param {Angle} $rotation_angle [360deg] - The rotation angle.
+/// @param {String} $name [animate_roll_vertical] - Keyframes name
 ///
 @mixin keyframes_animate_roll_vertical(
     $translate_distance: $animate_translate_slide,
-    $rotation_angle: $animate_angle_full
+    $rotation_angle: $animate_angle_full,
+    $name: animate_roll_vertical
 ) {
-    @keyframes animate_roll_vertical {
+    @keyframes #{$name} {
         0% {
             transform: translateY(0) rotate(0deg);
         }
@@ -112,9 +120,10 @@
 ///
 /// Roll In Keyframes (from animate.css by Nick Pettit)
 /// @name keyframes_animate_roll_in
+/// @param {String} $name [animate_roll_in] - Keyframes name
 ///
-@mixin keyframes_animate_roll_in() {
-    @keyframes animate_roll_in {
+@mixin keyframes_animate_roll_in($name: animate_roll_in) {
+    @keyframes #{$name} {
         0% {
             opacity: 0;
             transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
@@ -129,9 +138,10 @@
 ///
 /// Roll Out Keyframes
 /// @name keyframes_animate_roll_out
+/// @param {String} $name [animate_roll_out] - Keyframes name
 ///
-@mixin keyframes_animate_roll_out() {
-    @keyframes animate_roll_out {
+@mixin keyframes_animate_roll_out($name: animate_roll_out) {
+    @keyframes #{$name} {
         0% {
             opacity: 1;
             transform: none;

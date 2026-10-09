@@ -37,9 +37,10 @@
 /// @name keyframes_animate_twist
 /// @param {Number} $scale_end [0.9] - The scale factor at midpoint.
 /// @param {Angle} $rotation [10deg] - The rotation angle at midpoint.
+/// @param {String} $name [animate_twist] - Keyframes name
 ///
-@mixin keyframes_animate_twist($scale_end: $animate_scale_twist_end, $rotation: $animate_angle_twist) {
-    @keyframes animate_twist {
+@mixin keyframes_animate_twist($scale_end: $animate_scale_twist_end, $rotation: $animate_angle_twist, $name: animate_twist) {
+    @keyframes #{$name} {
         0%, 100% { transform: scale(1) rotate(0deg); }
         50% { transform: scale($scale_end) rotate($rotation); }
     }
@@ -51,9 +52,10 @@
 /// @name keyframes_animate_twist_slow
 /// @param {Number} $scale_end [0.95] - The scale factor at midpoint.
 /// @param {Angle} $rotation [5deg] - The rotation angle at midpoint.
+/// @param {String} $name [animate_twist_slow] - Keyframes name
 ///
-@mixin keyframes_animate_twist_slow($scale_end: $animate_scale_twist_slow_end, $rotation: $animate_angle_twist_slow) {
-    @keyframes animate_twist_slow {
+@mixin keyframes_animate_twist_slow($scale_end: $animate_scale_twist_slow_end, $rotation: $animate_angle_twist_slow, $name: animate_twist_slow) {
+    @keyframes #{$name} {
         0%, 100% { transform: scale(1) rotate(0deg); }
         50% { transform: scale($scale_end) rotate($rotation); }
     }
@@ -65,9 +67,10 @@
 /// @name keyframes_animate_twist_fast
 /// @param {Number} $scale_end [0.85] - The scale factor at midpoint.
 /// @param {Angle} $rotation [15deg] - The rotation angle at midpoint.
+/// @param {String} $name [animate_twist_fast] - Keyframes name
 ///
-@mixin keyframes_animate_twist_fast($scale_end: $animate_scale_twist_fast_end, $rotation: $animate_angle_twist_fast) {
-    @keyframes animate_twist_fast {
+@mixin keyframes_animate_twist_fast($scale_end: $animate_scale_twist_fast_end, $rotation: $animate_angle_twist_fast, $name: animate_twist_fast) {
+    @keyframes #{$name} {
         0%, 100% { transform: scale(1) rotate(0deg); }
         50% { transform: scale($scale_end) rotate($rotation); }
     }
@@ -81,9 +84,10 @@
 /// @param {Angle} $rotation [10deg] - The rotation angle at midpoint.
 /// @param {Color} $color_start [inherit] - The starting color.
 /// @param {Color} $color_end [inherit] - The ending color.
+/// @param {String} $name [animate_twist_color] - Keyframes name
 ///
-@mixin keyframes_animate_twist_color($scale_end: $animate_scale_twist_end, $rotation: $animate_angle_twist, $color_start: inherit, $color_end: inherit) {
-    @keyframes animate_twist_color {
+@mixin keyframes_animate_twist_color($scale_end: $animate_scale_twist_end, $rotation: $animate_angle_twist, $color_start: inherit, $color_end: inherit, $name: animate_twist_color) {
+    @keyframes #{$name} {
         0%, 100% {
             transform: scale(1) rotate(0deg);
             color: $color_start;

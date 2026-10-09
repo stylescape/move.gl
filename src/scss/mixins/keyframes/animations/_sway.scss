@@ -36,9 +36,10 @@
 /// Sway Keyframes
 /// @name keyframes_animate_sway
 /// @param {Angle} $angle [5deg] - The maximum angle to sway.
+/// @param {String} $name [animate_sway] - Keyframes name
 ///
-@mixin keyframes_animate_sway($angle: $animate_angle_sway) {
-    @keyframes animate_sway {
+@mixin keyframes_animate_sway($angle: $animate_angle_sway, $name: animate_sway) {
+    @keyframes #{$name} {
         0%, 100% { transform: rotate(0deg); }
         50% { transform: rotate($angle); }
     }
@@ -49,9 +50,10 @@
 /// Sway Slow Keyframes
 /// @name keyframes_animate_sway_slow
 /// @param {Angle} $angle [3deg] - The maximum angle to sway.
+/// @param {String} $name [animate_sway_slow] - Keyframes name
 ///
-@mixin keyframes_animate_sway_slow($angle: $animate_angle_sway_slow) {
-    @keyframes animate_sway_slow {
+@mixin keyframes_animate_sway_slow($angle: $animate_angle_sway_slow, $name: animate_sway_slow) {
+    @keyframes #{$name} {
         0%, 100% { transform: rotate(0deg); }
         50% { transform: rotate($angle); }
     }
@@ -62,9 +64,10 @@
 /// Sway Fast Keyframes
 /// @name keyframes_animate_sway_fast
 /// @param {Angle} $angle [10deg] - The maximum angle to sway.
+/// @param {String} $name [animate_sway_fast] - Keyframes name
 ///
-@mixin keyframes_animate_sway_fast($angle: $animate_angle_sway_fast) {
-    @keyframes animate_sway_fast {
+@mixin keyframes_animate_sway_fast($angle: $animate_angle_sway_fast, $name: animate_sway_fast) {
+    @keyframes #{$name} {
         0%, 100% { transform: rotate(0deg); }
         50% { transform: rotate($angle); }
     }
@@ -75,9 +78,10 @@
 /// Sway Fade Keyframes
 /// @name keyframes_animate_sway_fade
 /// @param {Angle} $angle [5deg] - The maximum angle to sway.
+/// @param {String} $name [animate_sway_fade] - Keyframes name
 ///
-@mixin keyframes_animate_sway_fade($angle: $animate_angle_sway) {
-    @keyframes animate_sway_fade {
+@mixin keyframes_animate_sway_fade($angle: $animate_angle_sway, $name: animate_sway_fade) {
+    @keyframes #{$name} {
         0%, 100% {
             transform: rotate(0deg);
             opacity: 1;

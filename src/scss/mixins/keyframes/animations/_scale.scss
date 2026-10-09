@@ -31,9 +31,10 @@
 ///
 /// @param {Number} $scale_start [1] - Starting scale
 /// @param {Number} $scale_end [1.2] - Ending/midpoint scale
+/// @param {String} $name [animate_scale] - Keyframes name
 ///
-@mixin keyframes_scale($scale_start: 1, $scale_end: $animate_scale_pop) {
-    @include keyframes(animate_scale) {
+@mixin keyframes_scale($scale_start: 1, $scale_end: $animate_scale_pop, $name: animate_scale) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: scale($scale_start);
@@ -47,8 +48,10 @@
 ///
 /// Scale with CSS custom property support.
 ///
-@mixin keyframes_animate_scale($scale: $animate_scale_pop) {
-    @include keyframes(animate_scale) {
+/// @param {String} $name [animate_scale] - Keyframes name
+///
+@mixin keyframes_animate_scale($scale: $animate_scale_pop, $name: animate_scale) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: scale(var(--animate-scale-base, #{$animate_scale_base}));
@@ -68,9 +71,10 @@
 ///
 /// @param {Number} $scale_start [1] - Starting scale
 /// @param {Number} $scale_end [1.2] - Maximum scale
+/// @param {String} $name [animate_scale_expand] - Keyframes name
 ///
-@mixin keyframes_scale_expand($scale_start: 1, $scale_end: $animate_scale_pop) {
-    @include keyframes(animate_scale_expand) {
+@mixin keyframes_scale_expand($scale_start: 1, $scale_end: $animate_scale_pop, $name: animate_scale_expand) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: scale($scale_start);
@@ -90,12 +94,14 @@
 ///
 /// @param {Number} $scale_min [0.8] - Minimum scale
 /// @param {Number} $scale_max [1.2] - Maximum scale
+/// @param {String} $name [animate_scale_shrink] - Keyframes name
 ///
 @mixin keyframes_scale_shrink(
     $scale_min: $animate_scale_shrink_min,
-    $scale_max: $animate_scale_pop
+    $scale_max: $animate_scale_pop,
+    $name: animate_scale_shrink
 ) {
-    @include keyframes(animate_scale_shrink) {
+    @include keyframes($name) {
         0% {
             transform: scale($scale_max);
         }
@@ -116,9 +122,10 @@
 /// Scale in from small.
 ///
 /// @param {Number} $start_scale [0] - Starting scale
+/// @param {String} $name [animate_scale_in] - Keyframes name
 ///
-@mixin keyframes_scale_in($start_scale: 0) {
-    @include keyframes(animate_scale_in) {
+@mixin keyframes_scale_in($start_scale: 0, $name: animate_scale_in) {
+    @include keyframes($name) {
         from {
             transform: scale($start_scale);
             opacity: 0;
@@ -134,9 +141,10 @@
 /// Scale in from center.
 ///
 /// @param {Number} $start_scale [0.5] - Starting scale
+/// @param {String} $name [animate_scale_in_center] - Keyframes name
 ///
-@mixin keyframes_scale_in_center($start_scale: $animate_scale_in_center) {
-    @include keyframes(animate_scale_in_center) {
+@mixin keyframes_scale_in_center($start_scale: $animate_scale_in_center, $name: animate_scale_in_center) {
+    @include keyframes($name) {
         from {
             transform: scale($start_scale);
             opacity: 0;
@@ -153,9 +161,10 @@
 ///
 /// @param {Number} $start_scale [0] - Starting scale
 /// @param {Number} $overshoot [1.1] - Overshoot scale
+/// @param {String} $name [animate_scale_in_pop] - Keyframes name
 ///
-@mixin keyframes_scale_in_pop($start_scale: 0, $overshoot: $animate_scale_overshoot) {
-    @include keyframes(animate_scale_in_pop) {
+@mixin keyframes_scale_in_pop($start_scale: 0, $overshoot: $animate_scale_overshoot, $name: animate_scale_in_pop) {
+    @include keyframes($name) {
         0% {
             transform: scale($start_scale);
             opacity: 0;
@@ -178,9 +187,10 @@
 /// Scale out to nothing.
 ///
 /// @param {Number} $end_scale [0] - Ending scale
+/// @param {String} $name [animate_scale_out] - Keyframes name
 ///
-@mixin keyframes_scale_out($end_scale: 0) {
-    @include keyframes(animate_scale_out) {
+@mixin keyframes_scale_out($end_scale: 0, $name: animate_scale_out) {
+    @include keyframes($name) {
         from {
             transform: scale(1);
             opacity: 1;
@@ -196,9 +206,10 @@
 /// Scale out from center.
 ///
 /// @param {Number} $end_scale [0.5] - Ending scale
+/// @param {String} $name [animate_scale_out_center] - Keyframes name
 ///
-@mixin keyframes_scale_out_center($end_scale: $animate_scale_in_center) {
-    @include keyframes(animate_scale_out_center) {
+@mixin keyframes_scale_out_center($end_scale: $animate_scale_in_center, $name: animate_scale_out_center) {
+    @include keyframes($name) {
         from {
             transform: scale(1);
             opacity: 1;
@@ -218,9 +229,10 @@
 /// Scale with bounce effect.
 ///
 /// @param {Number} $scale [1.2] - Target scale
+/// @param {String} $name [animate_scale_bounce] - Keyframes name
 ///
-@mixin keyframes_scale_bounce($scale: $animate_scale_pop) {
-    @include keyframes(animate_scale_bounce) {
+@mixin keyframes_scale_bounce($scale: $animate_scale_pop, $name: animate_scale_bounce) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: scale(1);
@@ -245,9 +257,10 @@
 /// Scale on X-axis only.
 ///
 /// @param {Number} $scale_x [1.2] - X-axis scale
+/// @param {String} $name [animate_scale_x] - Keyframes name
 ///
-@mixin keyframes_scale_x($scale_x: $animate_scale_pop) {
-    @include keyframes(animate_scale_x) {
+@mixin keyframes_scale_x($scale_x: $animate_scale_pop, $name: animate_scale_x) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: scaleX(1);
@@ -262,9 +275,10 @@
 /// Scale on Y-axis only.
 ///
 /// @param {Number} $scale_y [1.2] - Y-axis scale
+/// @param {String} $name [animate_scale_y] - Keyframes name
 ///
-@mixin keyframes_scale_y($scale_y: $animate_scale_pop) {
-    @include keyframes(animate_scale_y) {
+@mixin keyframes_scale_y($scale_y: $animate_scale_pop, $name: animate_scale_y) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: scaleY(1);
@@ -282,8 +296,10 @@
 ///
 /// Keyframes for scale-in transition class.
 ///
-@mixin keyframes_scale_transition_in() {
-    @include keyframes(scale_transition_in) {
+/// @param {String} $name [scale_transition_in] - Keyframes name
+///
+@mixin keyframes_scale_transition_in($name: scale_transition_in) {
+    @include keyframes($name) {
         from {
             transform: scale(0);
         }
@@ -296,8 +312,10 @@
 ///
 /// Keyframes for scale-out transition class.
 ///
-@mixin keyframes_scale_transition_out() {
-    @include keyframes(scale_transition_out) {
+/// @param {String} $name [scale_transition_out] - Keyframes name
+///
+@mixin keyframes_scale_transition_out($name: scale_transition_out) {
+    @include keyframes($name) {
         from {
             transform: scale(1);
         }

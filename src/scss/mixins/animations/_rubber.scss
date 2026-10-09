@@ -38,6 +38,9 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [1] - Number of iterations
+/// @param {String} $name [animate_rubber_band] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Basic usage
 ///   .bouncy-element {
@@ -48,10 +51,11 @@
     $intensity: 1.25,
     $duration: $animate_base_duration,
     $timing_function: ease-in-out,
-    $iteration_count: 1
+    $iteration_count: 1,
+    $name: animate_rubber_band
 ) {
-    @include animate_base(animate_rubber_band, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_rubber_band($intensity);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_rubber_band($intensity, $name: $name);
 }
 
 ///
@@ -60,9 +64,12 @@
 ///
 /// @name animate_rubber_band_subtle
 /// @param {Duration} $duration [$animate_base_duration] - The animation duration.
+/// @param {String} $name [animate_rubber_band] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
-@mixin animate_rubber_band_subtle($duration: $animate_base_duration) {
-    @include animate_rubber_band(1.1, $duration);
+@mixin animate_rubber_band_subtle($duration: $animate_base_duration, $name: animate_rubber_band) {
+    @include animate_rubber_band(1.1, $duration, $name: $name);
 }
 
 ///
@@ -71,9 +78,12 @@
 ///
 /// @name animate_rubber_band_intense
 /// @param {Duration} $duration [$animate_base_duration] - The animation duration.
+/// @param {String} $name [animate_rubber_band] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
-@mixin animate_rubber_band_intense($duration: $animate_base_duration) {
-    @include animate_rubber_band(1.4, $duration);
+@mixin animate_rubber_band_intense($duration: $animate_base_duration, $name: animate_rubber_band) {
+    @include animate_rubber_band(1.4, $duration, $name: $name);
 }
 
 ///
@@ -84,12 +94,16 @@
 /// @param {Number} $squeeze [0.8] - The squeeze factor (< 1 = thinner).
 /// @param {Duration} $duration [$animate_base_duration_fast] - The animation duration.
 /// @param {String} $timing_function [ease-out] - The timing function.
+/// @param {String} $name [animate_rubber_squeeze] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_rubber_squeeze(
     $squeeze: 0.8,
     $duration: $animate_base_duration_fast,
-    $timing_function: ease-out
+    $timing_function: ease-out,
+    $name: animate_rubber_squeeze
 ) {
-    @include animate_base(animate_rubber_squeeze, $duration, $timing_function, 1);
-    @include keyframes_animate_rubber_squeeze($squeeze);
+    @include animate_base($name, $duration, $timing_function, 1);
+    @include keyframes_animate_rubber_squeeze($squeeze, $name: $name);
 }

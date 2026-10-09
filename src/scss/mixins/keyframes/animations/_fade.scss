@@ -31,9 +31,10 @@
 ///
 /// @param {Number} $start_opacity [1] - Starting/ending opacity
 /// @param {Number} $mid_opacity [0] - Middle keyframe opacity
+/// @param {String} $name [animate_fade] - Keyframes name
 ///
-@mixin keyframes_fade($start_opacity: 1, $mid_opacity: 0) {
-    @include keyframes(animate_fade) {
+@mixin keyframes_fade($start_opacity: 1, $mid_opacity: 0, $name: animate_fade) {
+    @include keyframes($name) {
         0%,
         100% {
             opacity: $start_opacity;
@@ -47,11 +48,14 @@
 ///
 /// Fade animation with CSS custom property support.
 ///
+/// @param {String} $name [animate_fade] - Keyframes name
+///
 @mixin keyframes_animate_fade(
     $start_opacity: $animate_opacity_start,
-    $mid_opacity: $animate_opacity_fade
+    $mid_opacity: $animate_opacity_fade,
+    $name: animate_fade
 ) {
-    @include keyframes(animate_fade) {
+    @include keyframes($name) {
         0%,
         100% {
             opacity: var(--animate-opacity-start, #{$start_opacity});
@@ -71,9 +75,10 @@
 ///
 /// @param {Number} $start_opacity [0] - Starting opacity
 /// @param {Number} $end_opacity [1] - Ending opacity
+/// @param {String} $name [animate_fade_in] - Keyframes name
 ///
-@mixin keyframes_fade_in($start_opacity: 0, $end_opacity: 1) {
-    @include keyframes(animate_fade_in) {
+@mixin keyframes_fade_in($start_opacity: 0, $end_opacity: 1, $name: animate_fade_in) {
+    @include keyframes($name) {
         from {
             opacity: $start_opacity;
         }
@@ -87,9 +92,10 @@
 /// Fade in from above.
 ///
 /// @param {Length} $distance [$animate_translate_fade] - Starting distance
+/// @param {String} $name [animate_fade_in_down] - Keyframes name
 ///
-@mixin keyframes_fade_in_down($distance: $animate_translate_fade) {
-    @include keyframes(animate_fade_in_down) {
+@mixin keyframes_fade_in_down($distance: $animate_translate_fade, $name: animate_fade_in_down) {
+    @include keyframes($name) {
         from {
             opacity: 0;
             transform: translateY(-$distance);
@@ -105,9 +111,10 @@
 /// Fade in from below.
 ///
 /// @param {Length} $distance [$animate_translate_fade] - Starting distance
+/// @param {String} $name [animate_fade_in_up] - Keyframes name
 ///
-@mixin keyframes_fade_in_up($distance: $animate_translate_fade) {
-    @include keyframes(animate_fade_in_up) {
+@mixin keyframes_fade_in_up($distance: $animate_translate_fade, $name: animate_fade_in_up) {
+    @include keyframes($name) {
         from {
             opacity: 0;
             transform: translateY($distance);
@@ -123,9 +130,10 @@
 /// Fade in from left.
 ///
 /// @param {Length} $distance [$animate_translate_fade] - Starting distance
+/// @param {String} $name [animate_fade_in_left] - Keyframes name
 ///
-@mixin keyframes_fade_in_left($distance: $animate_translate_fade) {
-    @include keyframes(animate_fade_in_left) {
+@mixin keyframes_fade_in_left($distance: $animate_translate_fade, $name: animate_fade_in_left) {
+    @include keyframes($name) {
         from {
             opacity: 0;
             transform: translateX(-$distance);
@@ -141,9 +149,10 @@
 /// Fade in from right.
 ///
 /// @param {Length} $distance [$animate_translate_fade] - Starting distance
+/// @param {String} $name [animate_fade_in_right] - Keyframes name
 ///
-@mixin keyframes_fade_in_right($distance: $animate_translate_fade) {
-    @include keyframes(animate_fade_in_right) {
+@mixin keyframes_fade_in_right($distance: $animate_translate_fade, $name: animate_fade_in_right) {
+    @include keyframes($name) {
         from {
             opacity: 0;
             transform: translateX($distance);
@@ -164,9 +173,10 @@
 ///
 /// @param {Number} $start_opacity [1] - Starting opacity
 /// @param {Number} $end_opacity [0] - Ending opacity
+/// @param {String} $name [animate_fade_out] - Keyframes name
 ///
-@mixin keyframes_fade_out($start_opacity: 1, $end_opacity: 0) {
-    @include keyframes(animate_fade_out) {
+@mixin keyframes_fade_out($start_opacity: 1, $end_opacity: 0, $name: animate_fade_out) {
+    @include keyframes($name) {
         from {
             opacity: $start_opacity;
         }
@@ -180,9 +190,10 @@
 /// Fade out to above.
 ///
 /// @param {Length} $distance [20px] - Ending distance
+/// @param {String} $name [animate_fade_out_up] - Keyframes name
 ///
-@mixin keyframes_fade_out_up($distance: 20px) {
-    @include keyframes(animate_fade_out_up) {
+@mixin keyframes_fade_out_up($distance: 20px, $name: animate_fade_out_up) {
+    @include keyframes($name) {
         from {
             opacity: 1;
             transform: translateY(0);
@@ -198,9 +209,10 @@
 /// Fade out to below.
 ///
 /// @param {Length} $distance [20px] - Ending distance
+/// @param {String} $name [animate_fade_out_down] - Keyframes name
 ///
-@mixin keyframes_fade_out_down($distance: 20px) {
-    @include keyframes(animate_fade_out_down) {
+@mixin keyframes_fade_out_down($distance: 20px, $name: animate_fade_out_down) {
+    @include keyframes($name) {
         from {
             opacity: 1;
             transform: translateY(0);
@@ -216,9 +228,10 @@
 /// Fade out to left.
 ///
 /// @param {Length} $distance [$animate_translate_fade] - Ending distance
+/// @param {String} $name [animate_fade_out_left] - Keyframes name
 ///
-@mixin keyframes_fade_out_left($distance: $animate_translate_fade) {
-    @include keyframes(animate_fade_out_left) {
+@mixin keyframes_fade_out_left($distance: $animate_translate_fade, $name: animate_fade_out_left) {
+    @include keyframes($name) {
         from {
             opacity: 1;
             transform: translateX(0);
@@ -234,9 +247,10 @@
 /// Fade out to right.
 ///
 /// @param {Length} $distance [$animate_translate_fade] - Ending distance
+/// @param {String} $name [animate_fade_out_right] - Keyframes name
 ///
-@mixin keyframes_fade_out_right($distance: $animate_translate_fade) {
-    @include keyframes(animate_fade_out_right) {
+@mixin keyframes_fade_out_right($distance: $animate_translate_fade, $name: animate_fade_out_right) {
+    @include keyframes($name) {
         from {
             opacity: 1;
             transform: translateX(0);
@@ -257,9 +271,10 @@
 ///
 /// @param {Number} $start_opacity [1] - Starting/ending opacity
 /// @param {Number} $end_opacity [0.5] - Midpoint opacity
+/// @param {String} $name [animate_fade_gradual] - Keyframes name
 ///
-@mixin keyframes_fade_gradual($start_opacity: 1, $end_opacity: 0.5) {
-    @include keyframes(animate_fade_gradual) {
+@mixin keyframes_fade_gradual($start_opacity: 1, $end_opacity: 0.5, $name: animate_fade_gradual) {
+    @include keyframes($name) {
         0%,
         100% {
             opacity: $start_opacity;
@@ -278,9 +293,10 @@
 /// Fade in with scale up.
 ///
 /// @param {Number} $start_scale [$animate_scale_fade_in_start] - Starting scale
+/// @param {String} $name [animate_fade_in_scale] - Keyframes name
 ///
-@mixin keyframes_fade_in_scale($start_scale: $animate_scale_fade_in_start) {
-    @include keyframes(animate_fade_in_scale) {
+@mixin keyframes_fade_in_scale($start_scale: $animate_scale_fade_in_start, $name: animate_fade_in_scale) {
+    @include keyframes($name) {
         from {
             opacity: 0;
             transform: scale($start_scale);
@@ -296,9 +312,10 @@
 /// Fade out with scale down.
 ///
 /// @param {Number} $end_scale [$animate_scale_fade_out_end] - Ending scale
+/// @param {String} $name [animate_fade_out_scale] - Keyframes name
 ///
-@mixin keyframes_fade_out_scale($end_scale: $animate_scale_fade_out_end) {
-    @include keyframes(animate_fade_out_scale) {
+@mixin keyframes_fade_out_scale($end_scale: $animate_scale_fade_out_end, $name: animate_fade_out_scale) {
+    @include keyframes($name) {
         from {
             opacity: 1;
             transform: scale(1);

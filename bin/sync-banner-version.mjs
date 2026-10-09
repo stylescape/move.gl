@@ -1,7 +1,8 @@
 // ============================================================================
 // move.gl | Sync CSS banner version
 // ============================================================================
-// Copies the package.json version into the banner in src/scss/_header.scss.
+// Copies the package.json version into the banner in src/scss/_header.scss
+// and into src/jinja/index.json (the demo site's template context).
 // kist's VersionWriteAction can't do this: it only matches lines that end in
 // a bare version number, and the Sass argument is a quoted string.
 // ============================================================================
@@ -20,4 +21,10 @@ if (!pattern.test(header)) {
 const synced = header.replace(pattern, `$1${version}$2`);
 if (synced !== header) {
     await writeFile(headerUrl, synced);
+}
+
+const contextUrl = new URL('../src/jinja/index.json', import.meta.url);
+const context = JSON.parse(await readFile(contextUrl, 'utf8'));
+if (context.version !== version) {
+    await writeFile(contextUrl, `${JSON.stringify({ ...context, version }, null, 4)}\n`);
 }

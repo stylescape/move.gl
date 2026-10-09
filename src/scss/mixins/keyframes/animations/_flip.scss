@@ -59,8 +59,10 @@
 ///
 /// Flip with CSS custom property support.
 ///
-@mixin keyframes_animate_flip($rotate_x: 0, $rotate_y: 1, $rotate_z: 0) {
-    @include keyframes(animate_flip) {
+/// @param {String} $name [animate_flip] - Keyframes name
+///
+@mixin keyframes_animate_flip($rotate_x: 0, $rotate_y: 1, $rotate_z: 0, $name: animate_flip) {
+    @include keyframes($name) {
         0% {
             transform: rotate3d($rotate_x, $rotate_y, $rotate_z, 0deg);
         }
@@ -79,9 +81,10 @@
 /// Flip in on X-axis (from top).
 ///
 /// @param {Angle} $start_angle [-90deg] - Starting rotation angle
+/// @param {String} $name [animate_flip_in_x] - Keyframes name
 ///
-@mixin keyframes_flip_in_x($start_angle: $animate_flip_in_angle) {
-    @include keyframes(animate_flip_in_x) {
+@mixin keyframes_flip_in_x($start_angle: $animate_flip_in_angle, $name: animate_flip_in_x) {
+    @include keyframes($name) {
         from {
             transform: perspective(400px) rotateX($start_angle);
             opacity: 0;
@@ -106,9 +109,10 @@
 /// Flip in on Y-axis (from side).
 ///
 /// @param {Angle} $start_angle [-90deg] - Starting rotation angle
+/// @param {String} $name [animate_flip_in_y] - Keyframes name
 ///
-@mixin keyframes_flip_in_y($start_angle: $animate_flip_in_angle) {
-    @include keyframes(animate_flip_in_y) {
+@mixin keyframes_flip_in_y($start_angle: $animate_flip_in_angle, $name: animate_flip_in_y) {
+    @include keyframes($name) {
         from {
             transform: perspective(400px) rotateY($start_angle);
             opacity: 0;
@@ -138,9 +142,10 @@
 /// Flip out on X-axis.
 ///
 /// @param {Angle} $end_angle [90deg] - Ending rotation angle
+/// @param {String} $name [animate_flip_out_x] - Keyframes name
 ///
-@mixin keyframes_flip_out_x($end_angle: $animate_flip_out_angle) {
-    @include keyframes(animate_flip_out_x) {
+@mixin keyframes_flip_out_x($end_angle: $animate_flip_out_angle, $name: animate_flip_out_x) {
+    @include keyframes($name) {
         from {
             transform: perspective(400px);
         }
@@ -159,9 +164,10 @@
 /// Flip out on Y-axis.
 ///
 /// @param {Angle} $end_angle [90deg] - Ending rotation angle
+/// @param {String} $name [animate_flip_out_y] - Keyframes name
 ///
-@mixin keyframes_flip_out_y($end_angle: $animate_flip_out_angle) {
-    @include keyframes(animate_flip_out_y) {
+@mixin keyframes_flip_out_y($end_angle: $animate_flip_out_angle, $name: animate_flip_out_y) {
+    @include keyframes($name) {
         from {
             transform: perspective(400px);
         }
@@ -184,8 +190,10 @@
 ///
 /// Card flip effect - front to back.
 ///
-@mixin keyframes_card_flip() {
-    @include keyframes(animate_card_flip) {
+/// @param {String} $name [animate_card_flip] - Keyframes name
+///
+@mixin keyframes_card_flip($name: animate_card_flip) {
+    @include keyframes($name) {
         0% {
             transform: perspective(1000px) rotateY(0deg);
         }
@@ -198,8 +206,10 @@
 ///
 /// Card flip effect - back to front.
 ///
-@mixin keyframes_card_flip_back() {
-    @include keyframes(animate_card_flip_back) {
+/// @param {String} $name [animate_card_flip_back] - Keyframes name
+///
+@mixin keyframes_card_flip_back($name: animate_card_flip_back) {
+    @include keyframes($name) {
         0% {
             transform: perspective(1000px) rotateY(180deg);
         }
@@ -218,9 +228,10 @@
 /// Flip combined with scale effect.
 ///
 /// @param {Number} $scale [0.8] - Scale at midpoint
+/// @param {String} $name [animate_flip_scale] - Keyframes name
 ///
-@mixin keyframes_flip_scale($scale: $animate_scale_flip) {
-    @include keyframes(animate_flip_scale) {
+@mixin keyframes_flip_scale($scale: $animate_scale_flip, $name: animate_flip_scale) {
+    @include keyframes($name) {
         0%, 100% {
             transform: perspective(400px) rotateY(0deg) scale(1);
         }
@@ -239,9 +250,10 @@
 /// Flip on diagonal axis.
 ///
 /// @param {Angle} $angle [360deg] - Rotation angle
+/// @param {String} $name [animate_flip_diagonal] - Keyframes name
 ///
-@mixin keyframes_flip_diagonal($angle: $animate_flip_diagonal_angle) {
-    @include keyframes(animate_flip_diagonal) {
+@mixin keyframes_flip_diagonal($angle: $animate_flip_diagonal_angle, $name: animate_flip_diagonal) {
+    @include keyframes($name) {
         0% {
             transform: rotate3d(1, 1, 0, 0deg);
         }
@@ -255,9 +267,10 @@
 /// Flip on opposite diagonal axis.
 ///
 /// @param {Angle} $angle [360deg] - Rotation angle
+/// @param {String} $name [animate_flip_diagonal_alt] - Keyframes name
 ///
-@mixin keyframes_flip_diagonal_alt($angle: $animate_flip_diagonal_angle) {
-    @include keyframes(animate_flip_diagonal_alt) {
+@mixin keyframes_flip_diagonal_alt($angle: $animate_flip_diagonal_angle, $name: animate_flip_diagonal_alt) {
+    @include keyframes($name) {
         0% {
             transform: rotate3d(1, -1, 0, 0deg);
         }

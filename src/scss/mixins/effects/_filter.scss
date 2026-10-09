@@ -218,11 +218,11 @@
 ///
 /// Applies a hover filter effect with transition.
 ///
-/// @param {String} $default-filter [none] - Default filter state.
 /// @param {String} $hover-filter - Filter to apply on hover.
+/// @param {String} $default-filter [none] - Default filter state.
 /// @param {Time} $duration [0.3s] - Transition duration.
 ///
-@mixin filter_hover($default-filter: none, $hover-filter, $duration: 0.3s) {
+@mixin filter_hover($hover-filter, $default-filter: none, $duration: 0.3s) {
     filter: $default-filter;
     transition: filter $duration ease;
 

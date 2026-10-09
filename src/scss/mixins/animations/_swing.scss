@@ -38,6 +38,9 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count - Number of iterations
+/// @param {String} $name [animate_swing] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Basic usage
 ///   .pendulum {
@@ -48,10 +51,11 @@
     $angle: 15deg,
     $duration: $animate_base_duration,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_swing
 ) {
-    @include animate_base(animate_swing, $duration, $timing_function, $iteration_count);
-    @keyframes animate_swing {
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @keyframes #{$name} {
         0%,
         100% {
             transform: rotate(0deg);
@@ -76,15 +80,19 @@
 /// @param {Duration} $duration [$animate_base_duration_slow] - The duration of the swing animation.
 /// @param {String} $timing_function [ease-in-out] - The timing function for the swing animation.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {String} $name [animate_swing_slow] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_swing_slow(
     $angle: 10deg,
     $duration: $animate_base_duration_slow,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_swing_slow
 ) {
-    @include animate_base(animate_swing_slow, $duration, $timing_function, $iteration_count);
-    @keyframes animate_swing_slow {
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @keyframes #{$name} {
         0%,
         100% {
             transform: rotate(0deg);
@@ -110,15 +118,19 @@
 /// @param {Duration} $duration [$animate_base_duration_fast] - The duration of the swing animation.
 /// @param {String} $timing_function [ease-in-out] - The timing function for the swing animation.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {String} $name [animate_swing_fast] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_swing_fast(
     $angle: 20deg,
     $duration: $animate_base_duration_fast,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_swing_fast
 ) {
-    @include animate_base(animate_swing_fast, $duration, $timing_function, $iteration_count);
-    @keyframes animate_swing_fast {
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @keyframes #{$name} {
         0%,
         100% {
             transform: rotate(0deg);
@@ -144,15 +156,19 @@
 /// @param {Duration} $duration [$animate_base_duration] - The duration of the swing animation.
 /// @param {String} $timing_function [ease-in-out] - The timing function for the swing animation.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - The number of iterations the animation will run.
+/// @param {String} $name [animate_swing_fade] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_swing_fade(
     $angle: 15deg,
     $duration: $animate_base_duration,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_swing_fade
 ) {
-    @include animate_base(animate_swing_fade, $duration, $timing_function, $iteration_count);
-    @keyframes animate_swing_fade {
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @keyframes #{$name} {
         0%,
         100% {
             transform: rotate(0deg);

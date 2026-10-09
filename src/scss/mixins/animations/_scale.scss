@@ -39,6 +39,9 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration.
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+/// @param {String} $name [animate_scale] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Basic usage
 ///   .element {
@@ -50,10 +53,11 @@
     $scale_end: $animate_scale_pop,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_scale
 ) {
-    @include animate_base(animate_scale, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_scale($scale_end);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_scale($scale_end, $name: $name);
 }
 
 ///
@@ -67,16 +71,20 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration.
 /// @param {String} $timing_function [ease-out] - Timing function.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+/// @param {String} $name [animate_scale_expand] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_scale_expand(
     $scale_start: $animate_scale_base,
     $scale_end: $animate_scale_pop,
     $duration: $animate_base_duration,
     $timing_function: ease-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_scale_expand
 ) {
-    @include animate_base(animate_scale_expand, $duration, $timing_function, $iteration_count);
-    @include keyframes_scale_expand($scale_start, $scale_end);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_scale_expand($scale_start, $scale_end, $name: $name);
 }
 
 ///
@@ -90,16 +98,20 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration.
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+/// @param {String} $name [animate_scale_shrink] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_scale_shrink(
     $scale_min: 0.8,
     $scale_max: 1.2,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_scale_shrink
 ) {
-    @include animate_base(animate_scale_shrink, $duration, $timing_function, $iteration_count);
-    @include keyframes_scale_shrink($scale_min, $scale_max);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_scale_shrink($scale_min, $scale_max, $name: $name);
 }
 
 // ============================================================================
@@ -115,14 +127,18 @@
 /// @param {Number} $start_scale [0] - Starting scale
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+/// @param {String} $name [animate_scale_in] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_scale_in(
     $start_scale: 0,
     $duration: $animate_base_duration,
-    $timing_function: $animate_base_timing_function
+    $timing_function: $animate_base_timing_function,
+    $name: animate_scale_in
 ) {
-    @include animate_base(animate_scale_in, $duration, $timing_function, 1, $fill_mode: both);
-    @include keyframes_scale_in($start_scale);
+    @include animate_base($name, $duration, $timing_function, 1, $fill_mode: both);
+    @include keyframes_scale_in($start_scale, $name: $name);
 }
 
 ///
@@ -134,20 +150,24 @@
 /// @param {Number} $start_scale [0.5] - Starting scale
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+/// @param {String} $name [animate_scale_in_center] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_scale_in_center(
     $start_scale: 0.5,
     $duration: $animate_base_duration,
-    $timing_function: $animate_base_timing_function
+    $timing_function: $animate_base_timing_function,
+    $name: animate_scale_in_center
 ) {
     @include animate_base(
-        animate_scale_in_center,
+        $name,
         $duration,
         $timing_function,
         1,
         $fill_mode: both
     );
-    @include keyframes_scale_in_center($start_scale);
+    @include keyframes_scale_in_center($start_scale, $name: $name);
 }
 
 ///
@@ -160,15 +180,19 @@
 /// @param {Number} $overshoot [1.1] - Overshoot scale
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function_elastic] - Timing function
+/// @param {String} $name [animate_scale_in_pop] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_scale_in_pop(
     $start_scale: 0,
     $overshoot: 1.1,
     $duration: $animate_base_duration,
-    $timing_function: $animate_base_timing_function_elastic
+    $timing_function: $animate_base_timing_function_elastic,
+    $name: animate_scale_in_pop
 ) {
-    @include animate_base(animate_scale_in_pop, $duration, $timing_function, 1, $fill_mode: both);
-    @include keyframes_scale_in_pop($start_scale, $overshoot);
+    @include animate_base($name, $duration, $timing_function, 1, $fill_mode: both);
+    @include keyframes_scale_in_pop($start_scale, $overshoot, $name: $name);
 }
 
 ///
@@ -180,14 +204,18 @@
 /// @param {Number} $end_scale [0] - Ending scale
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+/// @param {String} $name [animate_scale_out] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_scale_out(
     $end_scale: 0,
     $duration: $animate_base_duration,
-    $timing_function: $animate_base_timing_function
+    $timing_function: $animate_base_timing_function,
+    $name: animate_scale_out
 ) {
-    @include animate_base(animate_scale_out, $duration, $timing_function, 1, $fill_mode: both);
-    @include keyframes_scale_out($end_scale);
+    @include animate_base($name, $duration, $timing_function, 1, $fill_mode: both);
+    @include keyframes_scale_out($end_scale, $name: $name);
 }
 
 ///
@@ -199,20 +227,24 @@
 /// @param {Number} $end_scale [0.5] - Ending scale
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function
+/// @param {String} $name [animate_scale_out_center] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_scale_out_center(
     $end_scale: 0.5,
     $duration: $animate_base_duration,
-    $timing_function: $animate_base_timing_function
+    $timing_function: $animate_base_timing_function,
+    $name: animate_scale_out_center
 ) {
     @include animate_base(
-        animate_scale_out_center,
+        $name,
         $duration,
         $timing_function,
         1,
         $fill_mode: both
     );
-    @include keyframes_scale_out_center($end_scale);
+    @include keyframes_scale_out_center($end_scale, $name: $name);
 }
 
 // ============================================================================
@@ -229,15 +261,19 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_timing_function_bounce] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_scale_bounce] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_scale_bounce(
     $scale: $animate_scale_pop,
     $duration: $animate_base_duration,
     $timing_function: $animate_timing_function_bounce,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_scale_bounce
 ) {
-    @include animate_base(animate_scale_bounce, $duration, $timing_function, $iteration_count);
-    @include keyframes_scale_bounce($scale);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_scale_bounce($scale, $name: $name);
 }
 
 // ============================================================================
@@ -254,15 +290,19 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_scale_x] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_scale_x(
     $scale_x: 1.2,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_scale_x
 ) {
-    @include animate_base(animate_scale_x, $duration, $timing_function, $iteration_count);
-    @include keyframes_scale_x($scale_x);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_scale_x($scale_x, $name: $name);
 }
 
 ///
@@ -275,15 +315,19 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [$animate_base_timing_function] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_scale_y] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_scale_y(
     $scale_y: 1.2,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_scale_y
 ) {
-    @include animate_base(animate_scale_y, $duration, $timing_function, $iteration_count);
-    @include keyframes_scale_y($scale_y);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_scale_y($scale_y, $name: $name);
 }
 
 // ============================================================================

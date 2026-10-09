@@ -78,20 +78,24 @@
 /// @param {Angle} $start_angle [90deg] - Starting angle.
 /// @param {Time} $duration [$animate_base_duration] - Animation duration.
 /// @param {String} $timing_function [ease-out] - Timing function.
+/// @param {String} $name [animate_flip_in_x] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_flip_in_x(
     $start_angle: 90deg,
     $duration: $animate_base_duration,
-    $timing_function: ease-out
+    $timing_function: ease-out,
+    $name: animate_flip_in_x
 ) {
     @include animate_base(
-        animate_flip_in_x,
+        $name,
         $duration,
         $timing_function,
         1,
         $fill_mode: both
     );
-    @include keyframes_flip_in_x($start_angle);
+    @include keyframes_flip_in_x($start_angle, $name: $name);
 }
 
 
@@ -104,20 +108,24 @@
 /// @param {Angle} $start_angle [90deg] - Starting angle.
 /// @param {Time} $duration [$animate_base_duration] - Animation duration.
 /// @param {String} $timing_function [ease-out] - Timing function.
+/// @param {String} $name [animate_flip_in_y] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_flip_in_y(
     $start_angle: 90deg,
     $duration: $animate_base_duration,
-    $timing_function: ease-out
+    $timing_function: ease-out,
+    $name: animate_flip_in_y
 ) {
     @include animate_base(
-        animate_flip_in_y,
+        $name,
         $duration,
         $timing_function,
         1,
         $fill_mode: both
     );
-    @include keyframes_flip_in_y($start_angle);
+    @include keyframes_flip_in_y($start_angle, $name: $name);
 }
 
 
@@ -130,20 +138,24 @@
 /// @param {Angle} $end_angle [90deg] - Ending angle.
 /// @param {Time} $duration [$animate_base_duration] - Animation duration.
 /// @param {String} $timing_function [ease-in] - Timing function.
+/// @param {String} $name [animate_flip_out_x] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_flip_out_x(
     $end_angle: 90deg,
     $duration: $animate_base_duration,
-    $timing_function: ease-in
+    $timing_function: ease-in,
+    $name: animate_flip_out_x
 ) {
     @include animate_base(
-        animate_flip_out_x,
+        $name,
         $duration,
         $timing_function,
         1,
         $fill_mode: forwards
     );
-    @include keyframes_flip_out_x($end_angle);
+    @include keyframes_flip_out_x($end_angle, $name: $name);
 }
 
 
@@ -156,20 +168,24 @@
 /// @param {Angle} $end_angle [90deg] - Ending angle.
 /// @param {Time} $duration [$animate_base_duration] - Animation duration.
 /// @param {String} $timing_function [ease-in] - Timing function.
+/// @param {String} $name [animate_flip_out_y] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_flip_out_y(
     $end_angle: 90deg,
     $duration: $animate_base_duration,
-    $timing_function: ease-in
+    $timing_function: ease-in,
+    $name: animate_flip_out_y
 ) {
     @include animate_base(
-        animate_flip_out_y,
+        $name,
         $duration,
         $timing_function,
         1,
         $fill_mode: forwards
     );
-    @include keyframes_flip_out_y($end_angle);
+    @include keyframes_flip_out_y($end_angle, $name: $name);
 }
 
 
@@ -183,22 +199,26 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration.
 /// @param {String} $timing_function [ease-in-out] - Timing function.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+/// @param {String} $name [animate_card_flip] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_card_flip(
     $perspective: 1000px,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_card_flip
 ) {
     perspective: $perspective;
 
     @include animate_base(
-        animate_card_flip,
+        $name,
         $duration,
         $timing_function,
         $iteration_count
     );
-    @include keyframes_card_flip();
+    @include keyframes_card_flip($name: $name);
 }
 
 
@@ -212,20 +232,24 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration.
 /// @param {String} $timing_function [ease-in-out] - Timing function.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+/// @param {String} $name [animate_flip_scale] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_flip_scale(
     $scale: 1.1,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_flip_scale
 ) {
     @include animate_base(
-        animate_flip_scale,
+        $name,
         $duration,
         $timing_function,
         $iteration_count
     );
-    @include keyframes_flip_scale($scale);
+    @include keyframes_flip_scale($scale, $name: $name);
 }
 
 
@@ -238,17 +262,21 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration.
 /// @param {String} $timing_function [ease-in-out] - Timing function.
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations.
+/// @param {String} $name [animate_flip_diagonal] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_flip_diagonal(
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_flip_diagonal
 ) {
     @include animate_base(
-        animate_flip_diagonal,
+        $name,
         $duration,
         $timing_function,
         $iteration_count
     );
-    @include keyframes_flip_diagonal();
+    @include keyframes_flip_diagonal($name: $name);
 }

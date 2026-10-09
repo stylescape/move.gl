@@ -30,9 +30,10 @@
 /// Standard rotational shake.
 ///
 /// @param {Angle} $amplitude [$animate_angle_shake] - Maximum rotation angle
+/// @param {String} $name [animate_shake] - Keyframes name
 ///
-@mixin keyframes_shake($amplitude: $animate_angle_shake) {
-    @include keyframes(animate_shake) {
+@mixin keyframes_shake($amplitude: $animate_angle_shake, $name: animate_shake) {
+    @include keyframes($name) {
         0% {
             transform: rotate(-$amplitude);
         }
@@ -69,8 +70,10 @@
 ///
 /// Shake with CSS custom property support.
 ///
-@mixin keyframes_animate_shake($amplitude: $animate_angle_shake) {
-    @include keyframes(animate_shake) {
+/// @param {String} $name [animate_shake] - Keyframes name
+///
+@mixin keyframes_animate_shake($amplitude: $animate_angle_shake, $name: animate_shake) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: rotate(0deg);
@@ -99,9 +102,10 @@
 /// Gentler, slower shake.
 ///
 /// @param {Angle} $amplitude [$animate_angle_gentle] - Maximum rotation angle
+/// @param {String} $name [animate_shake_slow] - Keyframes name
 ///
-@mixin keyframes_shake_slow($amplitude: $animate_angle_gentle) {
-    @include keyframes(animate_shake_slow) {
+@mixin keyframes_shake_slow($amplitude: $animate_angle_gentle, $name: animate_shake_slow) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: rotate(0deg);
@@ -130,9 +134,10 @@
 /// Horizontal shake (translateX).
 ///
 /// @param {Length} $distance [$animate_translate_shake] - Horizontal distance
+/// @param {String} $name [animate_shake_horizontal] - Keyframes name
 ///
-@mixin keyframes_shake_horizontal($distance: $animate_translate_shake) {
-    @include keyframes(animate_shake_horizontal) {
+@mixin keyframes_shake_horizontal($distance: $animate_translate_shake, $name: animate_shake_horizontal) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: translateX(0);
@@ -161,9 +166,10 @@
 /// Vertical shake (translateY).
 ///
 /// @param {Length} $distance [$animate_translate_shake] - Vertical distance
+/// @param {String} $name [animate_shake_vertical] - Keyframes name
 ///
-@mixin keyframes_shake_vertical($distance: $animate_translate_shake) {
-    @include keyframes(animate_shake_vertical) {
+@mixin keyframes_shake_vertical($distance: $animate_translate_shake, $name: animate_shake_vertical) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: translateY(0);
@@ -193,9 +199,10 @@
 ///
 /// @param {Angle} $amplitude [$animate_angle_rapid] - Maximum rotation angle
 /// @param {Length} $distance [5px] - Translation distance
+/// @param {String} $name [animate_shake_intense] - Keyframes name
 ///
-@mixin keyframes_shake_intense($amplitude: $animate_angle_rapid, $distance: 5px) {
-    @include keyframes(animate_shake_intense) {
+@mixin keyframes_shake_intense($amplitude: $animate_angle_rapid, $distance: 5px, $name: animate_shake_intense) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: translateX(0) rotate(0);
@@ -238,9 +245,10 @@
 /// Random-like jitter shake.
 ///
 /// @param {Length} $distance [2px] - Maximum jitter distance
+/// @param {String} $name [animate_shake_jitter] - Keyframes name
 ///
-@mixin keyframes_shake_jitter($distance: 2px) {
-    @include keyframes(animate_shake_jitter) {
+@mixin keyframes_shake_jitter($distance: 2px, $name: animate_shake_jitter) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: translate(0, 0);
@@ -283,9 +291,10 @@
 /// Nodding shake (up and down motion).
 ///
 /// @param {Angle} $angle [5deg] - Rotation angle
+/// @param {String} $name [animate_shake_nod] - Keyframes name
 ///
-@mixin keyframes_shake_nod($angle: 5deg) {
-    @include keyframes(animate_shake_nod) {
+@mixin keyframes_shake_nod($angle: 5deg, $name: animate_shake_nod) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: rotateX(0deg);

@@ -39,6 +39,9 @@
 /// @param {Time} $duration [$animate_base_duration_fast] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count - Number of iterations
+/// @param {String} $name [animate_jiggle] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Basic usage
 ///   .error-input {
@@ -49,10 +52,11 @@
     $amplitude: 5px,
     $duration: $animate_base_duration_fast,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_jiggle
 ) {
-    @include animate_base(animate_jiggle, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_jiggle($amplitude);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_jiggle($amplitude, $name: $name);
 }
 
 ///
@@ -65,6 +69,9 @@
 /// @param {Time} $duration [$animate_base_duration_fast] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count - Number of iterations
+/// @param {String} $name [animate_jiggle_vertical] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Usage
 ///   .notification {
@@ -75,10 +82,11 @@
     $amplitude: 5px,
     $duration: $animate_base_duration_fast,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_jiggle_vertical
 ) {
-    @include animate_base(animate_jiggle_vertical, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_jiggle_vertical($amplitude);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_jiggle_vertical($amplitude, $name: $name);
 }
 
 ///
@@ -92,6 +100,9 @@
 /// @param {Time} $duration [$animate_base_duration_fast] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count - Number of iterations
+/// @param {String} $name [animate_jiggle_multi] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Usage
 ///   .playful-icon {
@@ -102,10 +113,11 @@
     $amplitude: 5px,
     $duration: $animate_base_duration_fast,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_jiggle_multi
 ) {
-    @include animate_base(animate_jiggle_multi, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_jiggle_multi($amplitude);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_jiggle_multi($amplitude, $name: $name);
 }
 
 ///
@@ -118,6 +130,9 @@
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count - Number of iterations
+/// @param {String} $name [animate_jiggle_slow] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Usage
 ///   .subtle-notification {
@@ -128,8 +143,9 @@
     $amplitude: 3px,
     $duration: $animate_base_duration,
     $timing_function: ease-in-out,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_jiggle_slow
 ) {
-    @include animate_base(animate_jiggle_slow, $duration, $timing_function, $iteration_count);
-    @include keyframes_animate_jiggle_slow($amplitude);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_animate_jiggle_slow($amplitude, $name: $name);
 }

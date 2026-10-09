@@ -30,9 +30,10 @@
 /// Standard wobble effect.
 ///
 /// @param {Angle} $angle [$animate_angle_wobble] - Maximum wobble angle
+/// @param {String} $name [animate_wobble] - Keyframes name
 ///
-@mixin keyframes_wobble($angle: $animate_angle_wobble) {
-    @include keyframes(animate_wobble) {
+@mixin keyframes_wobble($angle: $animate_angle_wobble, $name: animate_wobble) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: rotate(0deg);
@@ -52,8 +53,10 @@
 ///
 /// Wobble with CSS custom property support.
 ///
-@mixin keyframes_animate_wobble($angle: $animate_angle_wobble) {
-    @include keyframes(animate_wobble) {
+/// @param {String} $name [animate_wobble] - Keyframes name
+///
+@mixin keyframes_animate_wobble($angle: $animate_angle_wobble, $name: animate_wobble) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: rotate(0deg);
@@ -78,9 +81,10 @@
 /// Gentler, slower wobble.
 ///
 /// @param {Angle} $angle [3deg] - Maximum wobble angle
+/// @param {String} $name [animate_wobble_slow] - Keyframes name
 ///
-@mixin keyframes_wobble_slow($angle: $animate_angle_wobble_slow) {
-    @include keyframes(animate_wobble_slow) {
+@mixin keyframes_wobble_slow($angle: $animate_angle_wobble_slow, $name: animate_wobble_slow) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: rotate(0deg);
@@ -105,9 +109,10 @@
 /// Faster, more intense wobble.
 ///
 /// @param {Angle} $angle [10deg] - Maximum wobble angle
+/// @param {String} $name [animate_wobble_fast] - Keyframes name
 ///
-@mixin keyframes_wobble_fast($angle: $animate_angle_wobble_fast) {
-    @include keyframes(animate_wobble_fast) {
+@mixin keyframes_wobble_fast($angle: $animate_angle_wobble_fast, $name: animate_wobble_fast) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: rotate(0deg);
@@ -133,9 +138,10 @@
 ///
 /// @param {Angle} $angle [5deg] - Wobble angle
 /// @param {Number} $scale [1.1] - Scale factor
+/// @param {String} $name [animate_wobble_scale] - Keyframes name
 ///
-@mixin keyframes_wobble_scale($angle: $animate_angle_gentle, $scale: $animate_scale_bounce) {
-    @include keyframes(animate_wobble_scale) {
+@mixin keyframes_wobble_scale($angle: $animate_angle_gentle, $scale: $animate_scale_bounce, $name: animate_wobble_scale) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: scale(1) rotate(0deg);
@@ -159,8 +165,10 @@
 ///
 /// Complex wobble with translation (Animate.css style).
 ///
-@mixin keyframes_wobble_advanced() {
-    @include keyframes(animate_wobble_advanced) {
+/// @param {String} $name [animate_wobble_advanced] - Keyframes name
+///
+@mixin keyframes_wobble_advanced($name: animate_wobble_advanced) {
+    @include keyframes($name) {
         from {
             transform: none;
         }
@@ -193,9 +201,10 @@
 /// Horizontal wobble (translateX).
 ///
 /// @param {Length} $distance [5%] - Maximum horizontal distance
+/// @param {String} $name [animate_wobble_horizontal] - Keyframes name
 ///
-@mixin keyframes_wobble_horizontal($distance: $animate_wobble_distance) {
-    @include keyframes(animate_wobble_horizontal) {
+@mixin keyframes_wobble_horizontal($distance: $animate_wobble_distance, $name: animate_wobble_horizontal) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: translateX(0);
@@ -220,9 +229,10 @@
 /// Vertical wobble (translateY).
 ///
 /// @param {Length} $distance [5%] - Maximum vertical distance
+/// @param {String} $name [animate_wobble_vertical] - Keyframes name
 ///
-@mixin keyframes_wobble_vertical($distance: $animate_wobble_distance) {
-    @include keyframes(animate_wobble_vertical) {
+@mixin keyframes_wobble_vertical($distance: $animate_wobble_distance, $name: animate_wobble_vertical) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: translateY(0);
@@ -247,9 +257,10 @@
 /// Wobble with skew effect.
 ///
 /// @param {Angle} $skew [5deg] - Maximum skew angle
+/// @param {String} $name [animate_wobble_skew] - Keyframes name
 ///
-@mixin keyframes_wobble_skew($skew: $animate_angle_wobble_skew) {
-    @include keyframes(animate_wobble_skew) {
+@mixin keyframes_wobble_skew($skew: $animate_angle_wobble_skew, $name: animate_wobble_skew) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: skewX(0deg);
@@ -274,9 +285,10 @@
 /// Pendulum-style wobble from top origin.
 ///
 /// @param {Angle} $angle [10deg] - Maximum swing angle
+/// @param {String} $name [animate_wobble_pendulum] - Keyframes name
 ///
-@mixin keyframes_wobble_pendulum($angle: $animate_angle_wobble_pendulum) {
-    @include keyframes(animate_wobble_pendulum) {
+@mixin keyframes_wobble_pendulum($angle: $animate_angle_wobble_pendulum, $name: animate_wobble_pendulum) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: rotate(0deg);

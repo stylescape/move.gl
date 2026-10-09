@@ -37,6 +37,9 @@
 /// @param {Number} $scale [1.2] - Scale factor for the pop effect
 /// @param {Time} $duration [$animate_base_duration_fast] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
+/// @param {String} $name [animate_pop] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Basic usage
 ///   .button {
@@ -46,10 +49,11 @@
 @mixin animate_pop(
     $scale: 1.2,
     $duration: $animate_base_duration_fast,
-    $timing_function: ease-in-out
+    $timing_function: ease-in-out,
+    $name: animate_pop
 ) {
-    @include animate_base(animate_pop, $duration, $timing_function, 1);
-    @include keyframes_animate_pop($scale);
+    @include animate_base($name, $duration, $timing_function, 1);
+    @include keyframes_animate_pop($scale, $name: $name);
 }
 
 ///
@@ -61,6 +65,9 @@
 /// @param {Number} $scale [1.2] - Scale factor for the pop effect
 /// @param {Time} $duration [$animate_base_duration_fast] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
+/// @param {String} $name [animate_pop_fast] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Usage
 ///   .icon {
@@ -70,10 +77,11 @@
 @mixin animate_pop_fast(
     $scale: 1.2,
     $duration: $animate_base_duration_fast,
-    $timing_function: ease-in-out
+    $timing_function: ease-in-out,
+    $name: animate_pop_fast
 ) {
-    @include animate_base(animate_pop_fast, $duration, $timing_function, 1);
-    @include keyframes_animate_pop_fast($scale);
+    @include animate_base($name, $duration, $timing_function, 1);
+    @include keyframes_animate_pop_fast($scale, $name: $name);
 }
 
 ///
@@ -85,6 +93,9 @@
 /// @param {Number} $scale [1.1] - Scale factor for the pop effect
 /// @param {Time} $duration [$animate_base_duration] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
+/// @param {String} $name [animate_pop_slow] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Usage
 ///   .soft-button {
@@ -94,10 +105,11 @@
 @mixin animate_pop_slow(
     $scale: 1.1,
     $duration: $animate_base_duration,
-    $timing_function: ease-in-out
+    $timing_function: ease-in-out,
+    $name: animate_pop_slow
 ) {
-    @include animate_base(animate_pop_slow, $duration, $timing_function, 1);
-    @include keyframes_animate_pop_slow($scale);
+    @include animate_base($name, $duration, $timing_function, 1);
+    @include keyframes_animate_pop_slow($scale, $name: $name);
 }
 
 ///
@@ -110,6 +122,9 @@
 /// @param {Angle} $rotation_angle [10deg] - Rotation angle during the pop
 /// @param {Time} $duration [$animate_base_duration_fast] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
+/// @param {String} $name [animate_pop_rotate] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Usage
 ///   .fancy-button {
@@ -120,8 +135,9 @@
     $scale: 1.2,
     $rotation_angle: 10deg,
     $duration: $animate_base_duration_fast,
-    $timing_function: ease-in-out
+    $timing_function: ease-in-out,
+    $name: animate_pop_rotate
 ) {
-    @include animate_base(animate_pop_rotate, $duration, $timing_function, 1);
-    @include keyframes_animate_pop_rotate($scale, $rotation_angle);
+    @include animate_base($name, $duration, $timing_function, 1);
+    @include keyframes_animate_pop_rotate($scale, $rotation_angle, $name: $name);
 }

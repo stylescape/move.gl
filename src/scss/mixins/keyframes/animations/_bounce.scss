@@ -30,9 +30,10 @@
 /// Standard bounce animation keyframes.
 ///
 /// @param {Length} $bounce_height [$animate_bounce_height] - Height of the bounce
+/// @param {String} $name [animate_bounce] - Keyframes name
 ///
-@mixin keyframes_bounce($bounce_height: $animate_bounce_height) {
-    @include keyframes(animate_bounce) {
+@mixin keyframes_bounce($bounce_height: $animate_bounce_height, $name: animate_bounce) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: translateY(0);
@@ -46,8 +47,10 @@
 ///
 /// Bounce animation with CSS custom property support.
 ///
-@mixin keyframes_animate_bounce($bounce_height: $animate_translate_bounce) {
-    @include keyframes(animate_bounce) {
+/// @param {String} $name [animate_bounce] - Keyframes name
+///
+@mixin keyframes_animate_bounce($bounce_height: $animate_translate_bounce, $name: animate_bounce) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: translateY(0);
@@ -73,6 +76,7 @@
 /// @param {Number} $land_scale_x [$animate_bounce_land_scale_x] - Landing squash scale X
 /// @param {Number} $land_scale_y [$animate_bounce_land_scale_y] - Landing squash scale Y
 /// @param {Length} $rebound_height [$animate_bounce_rebound] - Secondary bounce height
+/// @param {String} $name [animate_bounce_extended] - Keyframes name
 ///
 @mixin keyframes_bounce_extended(
     $start_scale_x: $animate_bounce_start_scale_x,
@@ -82,9 +86,10 @@
     $bounce_height: $animate_bounce_height_extended,
     $land_scale_x: $animate_bounce_land_scale_x,
     $land_scale_y: $animate_bounce_land_scale_y,
-    $rebound_height: $animate_bounce_rebound
+    $rebound_height: $animate_bounce_rebound,
+    $name: animate_bounce_extended
 ) {
-    @include keyframes(animate_bounce_extended) {
+    @include keyframes($name) {
         0% {
             transform: scale(1, 1) translateY(0);
         }
@@ -118,12 +123,14 @@
 ///
 /// @param {Angle} $rotation_angle [360deg] - Rotation angle during bounce
 /// @param {Length} $bounce_height [-20%] - Height of the bounce
+/// @param {String} $name [animate_bounce_rotate] - Keyframes name
 ///
 @mixin keyframes_bounce_rotate(
     $rotation_angle: $animate_angle_full,
-    $bounce_height: $animate_bounce_height
+    $bounce_height: $animate_bounce_height,
+    $name: animate_bounce_rotate
 ) {
-    @include keyframes(animate_bounce_rotate) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: translateY(0) rotate(0);
@@ -143,12 +150,14 @@
 ///
 /// @param {Length} $bounce_x [-10%] - Horizontal bounce distance
 /// @param {Length} $bounce_y [-20%] - Vertical bounce distance
+/// @param {String} $name [animate_bounce_multi] - Keyframes name
 ///
 @mixin keyframes_bounce_multi(
     $bounce_x: $animate_bounce_multi_x,
-    $bounce_y: $animate_bounce_multi_y
+    $bounce_y: $animate_bounce_multi_y,
+    $name: animate_bounce_multi
 ) {
-    @include keyframes(animate_bounce_multi) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: translate(0, 0);
@@ -173,9 +182,10 @@
 /// Elastic bounce with overshoot effect.
 ///
 /// @param {Length} $bounce_height [-30%] - Main bounce height
+/// @param {String} $name [animate_bounce_elastic] - Keyframes name
 ///
-@mixin keyframes_bounce_elastic($bounce_height: $animate_bounce_elastic_height) {
-    @include keyframes(animate_bounce_elastic) {
+@mixin keyframes_bounce_elastic($bounce_height: $animate_bounce_elastic_height, $name: animate_bounce_elastic) {
+    @include keyframes($name) {
         0%,
         100% {
             transform: translateY(0);
@@ -203,9 +213,10 @@
 /// Bounce in from bottom.
 ///
 /// @param {Length} $distance [100%] - Starting distance
+/// @param {String} $name [animate_bounce_in_up] - Keyframes name
 ///
-@mixin keyframes_bounce_in_up($distance: 100%) {
-    @include keyframes(animate_bounce_in_up) {
+@mixin keyframes_bounce_in_up($distance: 100%, $name: animate_bounce_in_up) {
+    @include keyframes($name) {
         0% {
             opacity: 0;
             transform: translateY($distance);
@@ -227,9 +238,10 @@
 /// Bounce in from top.
 ///
 /// @param {Length} $distance [-100%] - Starting distance
+/// @param {String} $name [animate_bounce_in_down] - Keyframes name
 ///
-@mixin keyframes_bounce_in_down($distance: -100%) {
-    @include keyframes(animate_bounce_in_down) {
+@mixin keyframes_bounce_in_down($distance: -100%, $name: animate_bounce_in_down) {
+    @include keyframes($name) {
         0% {
             opacity: 0;
             transform: translateY($distance);
@@ -251,9 +263,10 @@
 /// Bounce in from left.
 ///
 /// @param {Length} $distance [-100%] - Starting distance
+/// @param {String} $name [animate_bounce_in_left] - Keyframes name
 ///
-@mixin keyframes_bounce_in_left($distance: -100%) {
-    @include keyframes(animate_bounce_in_left) {
+@mixin keyframes_bounce_in_left($distance: -100%, $name: animate_bounce_in_left) {
+    @include keyframes($name) {
         0% {
             opacity: 0;
             transform: translateX($distance);
@@ -275,9 +288,10 @@
 /// Bounce in from right.
 ///
 /// @param {Length} $distance [100%] - Starting distance
+/// @param {String} $name [animate_bounce_in_right] - Keyframes name
 ///
-@mixin keyframes_bounce_in_right($distance: 100%) {
-    @include keyframes(animate_bounce_in_right) {
+@mixin keyframes_bounce_in_right($distance: 100%, $name: animate_bounce_in_right) {
+    @include keyframes($name) {
         0% {
             opacity: 0;
             transform: translateX($distance);

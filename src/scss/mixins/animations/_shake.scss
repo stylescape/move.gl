@@ -40,6 +40,9 @@
 /// @param {Time} $duration [0.5s] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_shake] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Basic usage
 ///   .error-field {
@@ -50,10 +53,11 @@
     $amplitude: $animate_angle_shake,
     $duration: 0.5s,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_shake
 ) {
-    @include animate_base(animate_shake, $duration, $timing_function, $iteration_count);
-    @include keyframes_shake($amplitude);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_shake($amplitude, $name: $name);
 }
 
 ///
@@ -66,15 +70,19 @@
 /// @param {Time} $duration [1s] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_shake_slow] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_shake_slow(
     $amplitude: $animate_angle_gentle,
     $duration: 1s,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_shake_slow
 ) {
-    @include animate_base(animate_shake_slow, $duration, $timing_function, $iteration_count);
-    @include keyframes_shake_slow($amplitude);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_shake_slow($amplitude, $name: $name);
 }
 
 ///
@@ -87,6 +95,9 @@
 /// @param {Time} $duration [0.5s] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_shake_horizontal] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 /// @example scss - Error shake
 ///   .invalid-input {
@@ -97,10 +108,11 @@
     $distance: $animate_translate_shake,
     $duration: 0.5s,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_shake_horizontal
 ) {
-    @include animate_base(animate_shake_horizontal, $duration, $timing_function, $iteration_count);
-    @include keyframes_shake_horizontal($distance);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_shake_horizontal($distance, $name: $name);
 }
 
 ///
@@ -113,15 +125,19 @@
 /// @param {Time} $duration [0.5s] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_shake_vertical] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_shake_vertical(
     $distance: $animate_translate_shake,
     $duration: 0.5s,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_shake_vertical
 ) {
-    @include animate_base(animate_shake_vertical, $duration, $timing_function, $iteration_count);
-    @include keyframes_shake_vertical($distance);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_shake_vertical($distance, $name: $name);
 }
 
 ///
@@ -135,16 +151,20 @@
 /// @param {Time} $duration [0.4s] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [1] - Iterations
+/// @param {String} $name [animate_shake_intense] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_shake_intense(
     $amplitude: $animate_angle_rapid,
     $distance: 5px,
     $duration: 0.4s,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: 1
+    $iteration_count: 1,
+    $name: animate_shake_intense
 ) {
-    @include animate_base(animate_shake_intense, $duration, $timing_function, $iteration_count);
-    @include keyframes_shake_intense($amplitude, $distance);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_shake_intense($amplitude, $distance, $name: $name);
 }
 
 ///
@@ -157,15 +177,19 @@
 /// @param {Time} $duration [0.3s] - Animation duration
 /// @param {String} $timing_function [linear] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_shake_jitter] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_shake_jitter(
     $distance: 3px,
     $duration: 0.3s,
     $timing_function: linear,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_shake_jitter
 ) {
-    @include animate_base(animate_shake_jitter, $duration, $timing_function, $iteration_count);
-    @include keyframes_shake_jitter($distance);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_shake_jitter($distance, $name: $name);
 }
 
 ///
@@ -178,13 +202,17 @@
 /// @param {Time} $duration [0.5s] - Animation duration
 /// @param {String} $timing_function [ease-in-out] - Timing function
 /// @param {Number|String} $iteration_count [$animate_base_iteration_count] - Iterations
+/// @param {String} $name [animate_shake_nod] - Keyframes name. Use a unique
+///   name per parameter set, otherwise later `@keyframes` override
+///   earlier ones.
 ///
 @mixin animate_shake_nod(
     $angle: 10deg,
     $duration: 0.5s,
     $timing_function: $animate_base_timing_function,
-    $iteration_count: $animate_base_iteration_count
+    $iteration_count: $animate_base_iteration_count,
+    $name: animate_shake_nod
 ) {
-    @include animate_base(animate_shake_nod, $duration, $timing_function, $iteration_count);
-    @include keyframes_shake_nod($angle);
+    @include animate_base($name, $duration, $timing_function, $iteration_count);
+    @include keyframes_shake_nod($angle, $name: $name);
 }
