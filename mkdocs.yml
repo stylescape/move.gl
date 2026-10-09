@@ -169,6 +169,7 @@ markdown_extensions:
 nav:
     - Introduction: 'index.md'
     - Quick Start: 'quick_start.md'
+    - Live Demo: 'demo/index.html'
     - Reference:
           - 'Sass': 'guides/scss.md'
           - 'TypeScript': 'guides/typescript.md'

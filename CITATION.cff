@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 title: move.gl
-version: 0.0.2
-date-released: 2024-08-01
+version: 0.1.0
+date-released: 2026-10-09
 url: "https://github.com/stylescape/move.gl"
 message: >-
   If you use move.gl, please cite it using

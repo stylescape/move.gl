@@ -62,7 +62,7 @@
 @include keyframes_bubble_expand;
 @include keyframes_bubble_collision;
 @include keyframes_rotation;
-@include keyframes_flip;
+@include keyframes_bubble_flip;
 
 // Rectangle keyframes
 @include keyframes_rect_flip_x;
@@ -101,7 +101,7 @@
 // Object keyframes
 @include keyframes_paddles;
 @include keyframes_ball_bounce;
-@include keyframes_heartbeat;
+@include keyframes_loader_heartbeat;
 @include keyframes_star_twinkle;
 @include keyframes_bracket_swing;
 @include keyframes_rolling_rock;

@@ -6,7 +6,7 @@
 // /vendor/stylescape/stylescape.css (see partials/_head.html.jinja and
 // vite.config.js). This file only holds:
 //
-//   1. a small integration layer for gaps in stylescape 0.4.1, and
+//   1. a small integration layer for gaps in stylescape 0.5.1, and
 //   2. the motion stages: the boxes, loaders and interactive surfaces that
 //      the animations play on, which have no stylescape equivalent.
 //
@@ -19,55 +19,31 @@
 
 
 // -----------------------------------------------------------------------------
-// Stylescape 0.4.1 Integration
+// Stylescape 0.5.1 Integration
 // -----------------------------------------------------------------------------
-// The published stylescape 0.4.1 only flips the legacy `--color_*` palette
-// for `[data-theme="dark"]`: its semantic `--ss-color-*` tokens are declared
-// on an unlayered `:root`, so the dark values it ships inside
-// `@layer ss.overrides` never win. Mirror the neutral roles of stylescape's
-// own dark theme (src/scss/33-overrides/_dark.scss) unlayered here, after
-// stylescape in source order, until a release ships them.
 
-[data-theme="dark"] {
-    color-scheme: dark;
-
-    --ss-color-background: #111111;
-    --ss-color-foreground: #f2f2f2;
-    --ss-color-surface: #1c1c1c;
-    --ss-color-surface-alt: #202020;
-    --ss-color-surface-muted: #262626;
-    --ss-color-surface-hover: #2e2e2e;
-    --ss-color-surface-1: #2a2a2a;
-    --ss-color-surface-2: #333333;
-    --ss-color-surface-3: #3d3d3d;
-    --ss-color-fill: #1c1c1c;
-    --ss-color-fill-muted: #262626;
-    --ss-color-text: #f2f2f2;
-    --ss-color-text-primary: #f2f2f2;
-    --ss-color-text-muted: #b8b8b8;
-    --ss-color-muted: #8c8c8c;
-    --ss-color-muted-foreground: #b8b8b8;
-    --ss-color-line: #3d3d3d;
-    --ss-color-line-primary: #f2f2f2;
-    --ss-color-line-secondary: #2a2a2a;
-    --ss-color-border: #474747;
-    --ss-color-primary: #f2f2f2;
-    --ss-color-secondary: #5a5a5a;
-    --ss-color-code-background: #0a0a0a;
-}
-
-// Inline code reads the legacy fill, which stays light in dark mode.
-[data-theme="dark"] code:not(pre *) {
-    background-color: var(--ss-color-surface-2);
-}
-
-// 0.4.1 always shows the moon icon; show the sun while dark is active.
+// 0.5.1 always shows the moon icon; show the sun while dark is active.
 [data-theme="dark"] .ss-c-theme-toggle .ss-c-theme-toggle__icon-light {
     display: inline;
 }
 
 [data-theme="dark"] .ss-c-theme-toggle .ss-c-theme-toggle__icon-dark {
     display: none;
+}
+
+// The footer's links and copyright use fixed greys meant for a black footer,
+// but the footer itself takes the themed surface colour, so they fall below
+// 4.5:1 in both themes. Use the themed text colours instead.
+.ss-c-footer__links a {
+    color: var(--ss-color-text-primary);
+}
+
+.ss-c-footer__links a:hover {
+    color: var(--ss-color-text-muted);
+}
+
+.ss-c-footer__copyright {
+    color: var(--ss-color-text-muted);
 }
 
 
@@ -119,6 +95,7 @@
 .demo-box {
     width: 60px;
     height: 60px;
+    color: var(--ss-color-background);
     background: var(--ss-color-accent);
     border-radius: 8px;
 }
@@ -687,7 +664,7 @@ button.mouse-box {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #666;
+    color: #a3a3a3;
 
     .icon {
         font-size: 48px;

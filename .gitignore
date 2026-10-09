@@ -1396,6 +1396,8 @@ src/html/samples/siri-simple/index.html
 
 # Build output
 dist/
+# Demo pages copied into the MkDocs site (bin/build-demo-site.mjs)
+doc/demo/
 
 # Build scripts (re-include; the Python venv rules above ignore [Bb]in)
 !/bin/

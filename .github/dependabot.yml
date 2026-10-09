@@ -128,6 +128,11 @@ updates:
       labels:
           - 'dependencies'
           - 'npm'
+      ignore:
+          # typescript-eslint supports TypeScript < 6.1, and TypeScript 7 drops
+          # the JS API that typescript-eslint and tsup's dts build rely on.
+          - dependency-name: 'typescript'
+            update-types: ['version-update:semver-major']
 
     # Rust dependencies
     # ===========================================================================

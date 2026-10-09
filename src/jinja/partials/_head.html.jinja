@@ -25,9 +25,11 @@ so that child templates can override it with {% block title %}.
     </script>
 
     <!-- Stylescape (house CSS framework): demo chrome. Served by the vite dev
-         server from node_modules/stylescape/css, never copied into dist/. -->
-    <link rel="stylesheet" href="/vendor/stylescape/stylescape.css" />
+         server from node_modules/stylescape/css, never copied into dist/;
+         bin/build-demo-site.mjs copies it next to the published demo.
+         Paths are relative so the demo works under /demo/ on www.move.gl. -->
+    <link rel="stylesheet" href="vendor/stylescape/stylescape.css" />
     <!-- Library CSS -->
-    <link rel="stylesheet" href="/css/move.gl.css" />
+    <link rel="stylesheet" href="css/move.gl.css" />
     <!-- Demo CSS (motion stages and showcase-only rules) -->
-    <link rel="stylesheet" href="/css/move.gl.docs.css" />
+    <link rel="stylesheet" href="css/move.gl.docs.css" />

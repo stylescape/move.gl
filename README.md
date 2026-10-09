@@ -106,154 +106,13 @@ const screensaver = new Screensaver({
 });
 ```
 
-## SCSS API Reference
+## Documentation
 
-### Animation Mixins
+The full references live on [www.move.gl](https://www.move.gl/):
 
-| Mixin                  | Description                     |
-| ---------------------- | ------------------------------- |
-| `animate-bounce`       | Bouncing animation              |
-| `animate-fade-in/out`  | Fade in/out animations          |
-| `animate-slide-in-up/down/left/right` | Slide in from a direction |
-| `animate-slide-out-up/down/left/right` | Slide out to a direction |
-| `animate-zoom-in/out`  | Zoom in/out effects             |
-| `animate-pulse`        | Pulsing animation               |
-| `animate-shake`        | Shake animation                 |
-| `animate-flip`         | 3D flip animation               |
-| `animate-rotate`       | Rotation animation              |
-
-### Transform Mixins
-
-| Mixin                    | Description           |
-| ------------------------ | --------------------- |
-| `scale($factor)`         | Scale transform       |
-| `transform-rotate($angle)` | Rotation transform  |
-| `translate($x, $y)`      | Translation transform |
-| `skew($x, $y)`           | Skew transform        |
-| `perspective($distance)` | 3D perspective        |
-
-### Effect Mixins
-
-| Mixin                 | Description              |
-| --------------------- | ------------------------ |
-| `box-shadow($x, $y, $blur, $spread, $color)` | Box shadow |
-| `opacity-hover($default, $hover)` | Opacity change on hover |
-| `filter-blur($radius)` | Blur filter             |
-| `filter-brightness($amount)` | Brightness filter |
-| `filter-contrast($amount)` | Contrast filter     |
-| `filter-grayscale($amount)` | Grayscale filter   |
-
-Mixin names use underscores in the source (`animate_fade_in`); Sass treats `-` and `_` as the same, so either spelling works.
-
-Each `animate_*` mixin writes a `@keyframes` block with a fixed default name. When you include the same animation more than once with different settings, pass a unique `$name` to each (`@include move.animate-shake(20deg, $name: shake-large)`), otherwise the last `@keyframes` wins for all of them.
-
-## TypeScript API Reference
-
-### Draggable
-
-Moves a positioned element by setting its `left`/`top`. Works with mouse, touch and pen.
-
-```typescript
-const draggable = new Draggable(elementId: string, {
-  constrainToParent?: boolean,   // default: true
-  dragCursor?: string,           // default: 'grabbing'
-  onDragStart?: (x: number, y: number) => void,
-  onDrag?: (x: number, y: number) => void,
-  onDragEnd?: (x: number, y: number) => void
-});
-draggable.isDragging; // boolean
-draggable.destroy(); // Clean up
-```
-
-### TouchGestureHandler
-
-```typescript
-const handler = new TouchGestureHandler(elementId: string, {
-  onTap?: () => void,
-  onSwipe?: (direction: SwipeDirection, dx: number, dy: number) => void,
-  onPinch?: (scale: number) => void,
-  onRotate?: (angle: number) => void   // degrees since the gesture started
-});
-handler.destroy(); // Clean up
-```
-
-### AdvancedGestureRecognition
-
-Pointer-event based (mouse, touch, pen); reports movement relative to where each pointer went down.
-
-```typescript
-const gesture = new AdvancedGestureRecognition(elementId: string, {
-  onGestureStart?: (event: PointerEvent) => void,
-  onGestureMove?: (dx: number, dy: number, event: PointerEvent) => void,
-  onGestureEnd?: (event: PointerEvent) => void
-});
-gesture.destroy();
-```
-
-### VirtualKeyboard
-
-Renders `<button class="key">` elements into a container and types into an input or textarea at the caret. Physical key presses are mirrored into the input while no other field has focus.
-
-```typescript
-const keyboard = new VirtualKeyboard(inputId: string, keyboardId: string, {
-  layout?: KeyboardLayout,             // { default: string[][], shift?: ..., special?: ... }
-  onKeyPress?: (key: string) => void
-});
-keyboard.switchMode('special');
-keyboard.mode; // current layout mode
-keyboard.destroy();
-```
-
-Function keys in a layout: `Backspace`, `Shift`, `CapsLock`, `Space`, `?123` (switch to `special`) and `ABC` (back to `default`).
-
-### Screensaver
-
-```typescript
-const screensaver = new Screensaver({
-  timeout: number,         // inactivity in ms before it shows
-  videoUrl?: string,
-  audioUrl?: string,
-  containerId?: string,    // default: 'screensaver'
-  videoId?: string,        // default: 'screensaverVideo'
-  audioId?: string         // default: 'screensaverAudio'
-});
-screensaver.start();       // show now; next user activity dismisses it
-screensaver.stop();        // hide and restart the inactivity timer
-screensaver.setVolume(0.5);
-screensaver.getIsActive();
-screensaver.destroy();
-```
-
-### TransparentVideoOverlay
-
-```typescript
-const overlay = new TransparentVideoOverlay(videoElementId: string, {
-  fadeTransitionDuration?: number,   // ms, default: 500
-  loop?: boolean,                    // default: true
-  initialSource?: string
-});
-overlay.showOverlay();
-overlay.hideOverlay();
-overlay.toggleOverlay();
-overlay.changeVideoSource(getOptimalVideoSource('clip.mov', 'clip.webm'));
-overlay.destroy();
-```
-
-### LoaderManager
-
-```typescript
-import { loaderManager } from 'move.gl';
-
-const loader = loaderManager.create('spinner', { container: '#app', color: '#09f', size: 32 });
-loaderManager.destroy(loader);
-
-loaderManager.showIn('dots-bounce', '#save-button'); // swaps the content for a loader
-loaderManager.hideIn('#save-button');                // restores the original content
-
-loaderManager.register({ id: 'my-loader', css: '.loader { ... }' });
-```
-
-Built-in loaders: `spinner`, `spinner-dual`, `dots-bounce`, `dots-flash`, `progress-bar`, `progress-fill`, `pulse`, `square-flip`, `skeleton-card`, `bars-wave`.
+- [Sass reference](https://www.move.gl/guides/scss/): animation, transform and effect mixins, and the `$name` parameter for `@keyframes`.
+- [TypeScript reference](https://www.move.gl/guides/typescript/): `Draggable`, `TouchGestureHandler`, `AdvancedGestureRecognition`, `VirtualKeyboard`, `Screensaver`, `TransparentVideoOverlay` and `LoaderManager`.
+- [Live demo](https://www.move.gl/demo/): every animation class, loader and interactive component.
 
 ## Browser Support
 
@@ -273,8 +132,10 @@ npm install
 # Start development server
 npm run dev
 
-# Type-check
+# Type-check, lint and test
 npm run typecheck
+npm run lint
+npm test
 
 # Build for production (CSS, JS, type declarations and dist/package.json)
 npm run build

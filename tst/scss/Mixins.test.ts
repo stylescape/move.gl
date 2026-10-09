@@ -48,3 +48,22 @@ describe('filter_hover', () => {
         expect(css).toMatch(/\.a:hover \{\s*filter: grayscale\(1\);/);
     });
 });
+
+describe('mixin names', () => {
+    it('do not clash between the public mixins and the keyframes module', () => {
+        // Forwarding two modules that define the same member is an error.
+        expect(() =>
+            compileString('@forward "mixins"; @forward "mixins/keyframes";', { loadPaths }),
+        ).not.toThrow();
+    });
+
+    it('keep the renamed loader and opacity keyframes names', () => {
+        const css = compile(`
+            @include keyframes_bubble_flip;
+            @include keyframes_loader_heartbeat;
+            @include keyframes_opacity_fade_in;
+            @include keyframes_opacity_fade_out;
+        `);
+        expect(keyframeNames(css).slice(-4)).toEqual(['flip', 'heartbeat', 'fadeIn', 'fadeOut']);
+    });
+});

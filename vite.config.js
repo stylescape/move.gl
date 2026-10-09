@@ -4,13 +4,10 @@ import path from 'path';
 import { promisify } from 'util';
 import { defineConfig } from 'vite';
 
-import { createRequire } from 'module';
 import serveStatic from 'serve-static';
-const require = createRequire(import.meta.url);
 const pathToDist = path.resolve('dist');
 
 const execAsync = promisify(exec);
-const rootDir = process.cwd();
 
 const watchGlobs = [
     'src/ts/**/*',

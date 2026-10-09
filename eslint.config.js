@@ -1,69 +1,40 @@
 import js from '@eslint/js'
 import prettier from 'eslint-config-prettier'
+import globals from 'globals'
+import tseslint from 'typescript-eslint'
 
-export default [
-    js.configs.recommended,
-    prettier,
-    {
-        languageOptions: {
-            ecmaVersion: 2021,
-            sourceType: 'module',
-            globals: {
-                // Browser globals
-                window: 'readonly',
-                document: 'readonly',
-                navigator: 'readonly',
-                console: 'readonly',
-                setTimeout: 'readonly',
-                clearTimeout: 'readonly',
-                setInterval: 'readonly',
-                clearInterval: 'readonly',
-                requestAnimationFrame: 'readonly',
-                cancelAnimationFrame: 'readonly',
-                fetch: 'readonly',
-                URL: 'readonly',
-                URLSearchParams: 'readonly',
-                FormData: 'readonly',
-                Blob: 'readonly',
-                File: 'readonly',
-                FileReader: 'readonly',
-                localStorage: 'readonly',
-                sessionStorage: 'readonly',
-                CustomEvent: 'readonly',
-                Event: 'readonly',
-                HTMLElement: 'readonly',
-                Element: 'readonly',
-                Node: 'readonly',
-                NodeList: 'readonly',
-                MutationObserver: 'readonly',
-                IntersectionObserver: 'readonly',
-                ResizeObserver: 'readonly',
-            },
-        },
-        rules: {
-            'prefer-template': 'off',
-            'no-var': 'warn',
-            'no-unused-vars': 'warn',
-            camelcase: 'warn',
-            'no-nested-ternary': 'warn',
-            'no-console': 'warn',
-            'no-template-curly-in-string': 'warn',
-            'no-self-compare': 'warn',
-            'arrow-body-style': 'warn',
-        },
-    },
+export default tseslint.config(
     {
         ignores: [
             '**/*.min.js',
-            '**/dist/**',
-            '**/vendor/**',
-            '.cache/**',
-            '.idea/**',
-            '.vscode/**',
-            'node_modules/**',
+            'dist/**',
+            'doc/demo/**',
             'coverage/**',
-            'webpack.*',
-            'vite.config.js',
+            'node_modules/**',
+            'site/**',
+            '.cache/**',
         ],
     },
-]
+    js.configs.recommended,
+    ...tseslint.configs.recommended,
+    prettier,
+    {
+        languageOptions: {
+            ecmaVersion: 2022,
+            sourceType: 'module',
+            globals: { ...globals.browser },
+        },
+        rules: {
+            'no-var': 'warn',
+            'no-nested-ternary': 'warn',
+            'no-template-curly-in-string': 'warn',
+            'no-self-compare': 'warn',
+        },
+    },
+    {
+        files: ['bin/**/*.mjs', '*.config.{js,ts}', 'tst/scss/**'],
+        languageOptions: {
+            globals: { ...globals.node },
+        },
+    },
+)

@@ -36,12 +36,6 @@ interface ScreensaverOptions {
     fadeDuration?: number;
 }
 
-interface VideoOverlayOptions {
-    opacity?: number;
-    fadeDuration?: number;
-    effect?: string;
-}
-
 
 // -----------------------------------------------------------------------------
 // Theme Toggle
@@ -481,8 +475,8 @@ class DemoKeyboard {
         '⇧': 'Shift',
         '⌫': 'Backspace',
         '↵': 'Enter',
-        '123': 'Numbers and symbols',
-        'ABC': 'Letters'
+        '123': '123, numbers and symbols',
+        'ABC': 'ABC, letters'
     };
 
     constructor(inputId: string, containerId: string) {

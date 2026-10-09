@@ -25,6 +25,20 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v7
 
+            # The demo pages are published at /demo/, next to the MkDocs site.
+            - name: Setup Node
+              uses: actions/setup-node@v7
+              with:
+                  node-version: 22
+                  cache: npm
+
+            - name: Build Demo Site
+              run: |
+                  npm ci
+                  npm run build
+                  npm run build:docs
+                  npm run build:demo-site
+
             - name: Setup Python
               uses: actions/setup-python@v7
               with:
@@ -37,6 +51,10 @@ jobs:
             - name: PIP Install mkdocstrings
               run: |
                   pip install mkdocstrings[python]>=0.18
+
+            - name: PIP Install mkdocs-mermaid2-plugin
+              run: |
+                  pip install mkdocs-mermaid2-plugin
 
             - name: MKDocs Deploy
               run: |

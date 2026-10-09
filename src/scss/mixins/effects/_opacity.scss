@@ -159,7 +159,7 @@
 ///
 /// Fade in keyframes definition.
 ///
-@mixin keyframes_fade_in {
+@mixin keyframes_opacity_fade_in {
     @keyframes fadeIn {
         from {
             opacity: 0;
@@ -175,7 +175,7 @@
 ///
 /// Fade out keyframes definition.
 ///
-@mixin keyframes_fade_out {
+@mixin keyframes_opacity_fade_out {
     @keyframes fadeOut {
         from {
             opacity: 1;
