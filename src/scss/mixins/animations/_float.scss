@@ -15,21 +15,18 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 ///
 /// Float Animation
@@ -57,18 +54,17 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_float,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_float, $duration, $timing_function, $iteration_count);
     @keyframes animate_float {
-        0%, 100% { transform: translateY($start_position); }
-        50% { transform: translateY($mid_position); }
+        0%,
+        100% {
+            transform: translateY($start_position);
+        }
+        50% {
+            transform: translateY($mid_position);
+        }
     }
 }
-
 
 ///
 /// Horizontal Float Animation
@@ -92,18 +88,17 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_float_horizontal,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_float_horizontal, $duration, $timing_function, $iteration_count);
     @keyframes animate_float_horizontal {
-        0%, 100% { transform: translateX(0); }
-        50% { transform: translateX($horizontal-distance); }
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+        50% {
+            transform: translateX($horizontal-distance);
+        }
     }
 }
-
 
 ///
 /// Float with Rotation Animation
@@ -128,14 +123,14 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_float_rotate,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_float_rotate, $duration, $timing_function, $iteration_count);
     @keyframes animate_float_rotate {
-        0%, 100% { transform: translateY(0) rotate(0); }
-        50% { transform: translateY(-10px) rotate($rotation_angle); }
+        0%,
+        100% {
+            transform: translateY(0) rotate(0);
+        }
+        50% {
+            transform: translateY(-10px) rotate($rotation_angle);
+        }
     }
 }

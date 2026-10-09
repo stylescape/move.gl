@@ -16,7 +16,8 @@ const watchGlobs = [
     'src/ts/**/*',
     'src/scss/**/*',
     'src/jinja/**/*',
-    'kist.yml'
+    'kist.yml',
+    'kist.docs.yml'
 ];
 
 let lastBuild = 0;
@@ -26,9 +27,9 @@ async function runKist(server) {
     if (now - lastBuild < 500) return;
     lastBuild = now;
 
-    console.log('[Kist] 🛠️ Running build...');
+    console.log('[Kist] Running build...');
     try {
-        const { stdout, stderr } = await execAsync('npx kist --config ./kist.yml');
+        const { stdout, stderr } = await execAsync('npm run build && npm run build:docs');
         if (stdout) console.log('[Kist] stdout:', stdout);
         if (stderr) console.error('[Kist] stderr:', stderr);
         console.log('[Kist] Build complete');
@@ -60,8 +61,11 @@ export default defineConfig({
                 runKist(server);
 
                 server.middlewares.use('/css', serveStatic(path.join(pathToDist, 'css')));
-                // Serve JS from dist root (TypeScript compiles to dist/, not dist/js/)
-                server.middlewares.use('/js', serveStatic(pathToDist));
+                server.middlewares.use('/js', serveStatic(path.join(pathToDist, 'js')));
+
+                // Stylescape (house CSS framework) styles the demo chrome. It is
+                // served straight from node_modules so it never lands in dist/.
+                server.middlewares.use('/vendor/stylescape', serveStatic(path.resolve('node_modules/stylescape/css')));
 
                 // Serve / as index.html
                 server.middlewares.use((req, res, next) => {

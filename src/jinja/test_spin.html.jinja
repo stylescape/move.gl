@@ -3,13 +3,13 @@
 {%- block title %}Spin & Rotate Animations — move.gl{%- endblock %}
 
 {%- block header %}
-<p class="eyebrow">Animations</p>
+<p class="ss-t-overline">Animations</p>
 <h1>Spin & Rotate Animations</h1>
 {%- endblock %}
 
 {%- block content %}
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Spin</h2>
     <p>Continuous rotation animations.</p>
 
@@ -37,7 +37,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Roll</h2>
     <p>Rolling entrance and exit effects.</p>
 
@@ -61,10 +61,10 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Usage</h2>
 
-    <div class="code-block"><span class="comment">// SCSS Mixin</span>
+    <pre class="ss-c-code-block">// SCSS Mixin
         .element {
         @include animate_spin;
         }
@@ -73,10 +73,9 @@
         @include animate_roll;
         }
 
-        <span class="comment">// Utility classes</span>
+        // Utility classes
         &lt;div class="animate_spin"&gt;...&lt;/div&gt;
-        &lt;div class="animate_roll"&gt;...&lt;/div&gt;
-    </div>
+        &lt;div class="animate_roll"&gt;...&lt;/div&gt;</pre>
 </section>
 
 {%- endblock %}

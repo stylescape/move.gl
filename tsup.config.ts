@@ -5,7 +5,9 @@ export default defineConfig([
     {
         entry: { 'index': 'src/ts/index.ts' },
         format: ['esm', 'cjs'],
-        dts: true,
+        // Declarations come from `tsc -p tsconfig.build.json`: tsup's dts
+        // bundler relies on the TypeScript JS API, which TypeScript 7 dropped.
+        dts: false,
         outDir: 'dist/js',
         outExtension({ format }) {
             return {

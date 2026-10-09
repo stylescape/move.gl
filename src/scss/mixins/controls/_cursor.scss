@@ -22,7 +22,9 @@
 // Use
 // ============================================================================
 
+@use "sass:list";
 @use "sass:map";
+@use "sass:math";
 @use "../../variables" as *;
 @use "../../maps" as *;
 
@@ -156,14 +158,14 @@
 
     @each $image in $images {
         $index: $index + 1;
-        $percentage: percentage($index / length($images));
-        $animation-frames: append($animation-frames, ($percentage $image), comma);
+        $percentage: math.percentage(math.div($index, list.length($images)));
+        $animation-frames: list.append($animation-frames, ($percentage $image), comma);
     }
 
     @keyframes cursor-animation {
         @each $frame in $animation-frames {
-            #{nth($frame, 1)} {
-                cursor: url(#{nth($frame, 2)}), auto;
+            #{list.nth($frame, 1)} {
+                cursor: url(#{list.nth($frame, 2)}), auto;
             }
         }
     }

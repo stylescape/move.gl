@@ -15,16 +15,14 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
@@ -52,15 +50,9 @@
     $iteration_count: $animate_base_iteration_count,
     $bounce_height: $animate_bounce_height
 ) {
-    @include animate_base(
-        animate_bounce,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_bounce, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_bounce($bounce_height);
 }
-
 
 ///
 /// Extended Bounce Animation
@@ -94,12 +86,7 @@
     $timing_function: $animate_timing_function_bounce,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_bounce_extended,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_bounce_extended, $duration, $timing_function, $iteration_count);
     @include keyframes_bounce_extended(
         $start_scale_x,
         $start_scale_y,
@@ -111,7 +98,6 @@
         $rebound_height
     );
 }
-
 
 ///
 /// Bounce with Rotation Animation
@@ -135,15 +121,9 @@
     $timing_function: $animate_timing_function_bounce,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_bounce_rotate,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_bounce_rotate, $duration, $timing_function, $iteration_count);
     @include keyframes_bounce_rotate($rotation_angle);
 }
-
 
 ///
 /// Multi-Directional Bounce Animation
@@ -165,15 +145,9 @@
     $bounce_x: -10%,
     $bounce_y: -20%
 ) {
-    @include animate_base(
-        animate_bounce_multi,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_bounce_multi, $duration, $timing_function, $iteration_count);
     @include keyframes_bounce_multi($bounce_x, $bounce_y);
 }
-
 
 ///
 /// Elastic Bounce Animation
@@ -192,15 +166,9 @@
     $timing_function: $animate_base_timing_function_elastic,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_bounce_elastic,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_bounce_elastic, $duration, $timing_function, $iteration_count);
     @include keyframes_bounce_elastic($bounce_height);
 }
-
 
 ///
 /// Bounce In Up Animation
@@ -217,16 +185,9 @@
     $duration: $animate_base_duration,
     $timing_function: $animate_timing_function_bounce
 ) {
-    @include animate_base(
-        animate_bounce_in_up,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_bounce_in_up, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_bounce_in_up($distance);
 }
-
 
 ///
 /// Bounce In Down Animation
@@ -243,16 +204,9 @@
     $duration: $animate_base_duration,
     $timing_function: $animate_timing_function_bounce
 ) {
-    @include animate_base(
-        animate_bounce_in_down,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_bounce_in_down, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_bounce_in_down($distance);
 }
-
 
 ///
 /// Bounce In Left Animation
@@ -269,16 +223,9 @@
     $duration: $animate_base_duration,
     $timing_function: $animate_timing_function_bounce
 ) {
-    @include animate_base(
-        animate_bounce_in_left,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_bounce_in_left, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_bounce_in_left($distance);
 }
-
 
 ///
 /// Bounce In Right Animation

@@ -15,21 +15,18 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 ///
 /// Twist Animation
@@ -55,16 +52,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_twist,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_twist, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_twist($scale_end, $rotation);
 }
-
-
 
 // Gentle Twist Animation
 // ----------------------------------------------------------------------------
@@ -86,16 +76,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_twist_slow,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_twist_slow, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_twist_slow($scale_end, $rotation);
 }
-
-
 
 // Rapid Twist Animation
 // ----------------------------------------------------------------------------
@@ -117,16 +100,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_twist_fast,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_twist_fast, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_twist_fast($scale_end, $rotation);
 }
-
-
 
 // Twist with Color Change
 // ----------------------------------------------------------------------------
@@ -150,13 +126,8 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count,
     $color_start: $animate_base_color_start,
-    $color_end: $animate_base_color_end,
+    $color_end: $animate_base_color_end
 ) {
-    @include animate_base(
-        animate_twist_color,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_twist_color, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_twist_color($scale_end, $rotation, $color_start, $color_end);
 }

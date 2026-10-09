@@ -15,21 +15,18 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 ///
 /// Hinge Animation
@@ -55,23 +52,20 @@
     $duration: 2s,
     $timing_function: ease-in-out
 ) {
-    @include animate_base(
-        animate_hinge,
-        $duration,
-        $timing_function,
-        1
-    );
+    @include animate_base(animate_hinge, $duration, $timing_function, 1);
     transform-origin: $origin;
     @keyframes animate_hinge {
         0% {
             transform: rotate3d(0, 0, 1, 0deg);
             opacity: 1;
         }
-        20%, 60% {
+        20%,
+        60% {
             transform: rotate3d(0, 0, 1, $swing_angle);
             opacity: 1;
         }
-        40%, 80% {
+        40%,
+        80% {
             transform: rotate3d(0, 0, 1, $swing_angle * 0.75);
             opacity: 1;
         }
@@ -81,7 +75,6 @@
         }
     }
 }
-
 
 ///
 /// Hinge Left Animation
@@ -96,12 +89,9 @@
 ///     @include animate_hinge_left;
 ///   }
 ///
-@mixin animate_hinge_left(
-    $duration: 2s
-) {
+@mixin animate_hinge_left($duration: 2s) {
     @include animate_hinge(top left, 80deg, 700px, $duration);
 }
-
 
 ///
 /// Hinge Right Animation
@@ -111,8 +101,6 @@
 /// @name animate_hinge_right
 /// @param {Time} $duration [2s] - Animation duration
 ///
-@mixin animate_hinge_right(
-    $duration: 2s
-) {
+@mixin animate_hinge_right($duration: 2s) {
     @include animate_hinge(top right, -80deg, 700px, $duration);
 }

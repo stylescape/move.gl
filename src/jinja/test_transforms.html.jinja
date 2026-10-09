@@ -3,13 +3,13 @@
 {%- block title %}Transforms — move.gl{%- endblock %}
 
 {%- block header %}
-<p class="eyebrow">Effects</p>
+<p class="ss-t-overline">Effects</p>
 <h1>Transforms</h1>
 {%- endblock %}
 
 {%- block content %}
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Flip Transforms</h2>
     <p>Flip elements horizontally, vertically, or both.</p>
 
@@ -33,7 +33,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Rotation Transforms</h2>
     <p>Rotate elements by fixed angles.</p>
 
@@ -57,7 +57,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Scale Transforms</h2>
     <p>Scale elements up or down.</p>
 
@@ -73,7 +73,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Translate & Skew Transforms</h2>
     <p>Move and skew elements.</p>
 
@@ -89,7 +89,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Interactive Transforms (Hover)</h2>
     <p>Hover over the elements to see transform effects.</p>
 
@@ -121,7 +121,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>3D Transforms (Hover)</h2>
     <p>Perspective-based 3D transforms.</p>
 
@@ -141,7 +141,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Combined Transforms (Hover)</h2>
     <p>Multiple transforms combined.</p>
 
@@ -161,19 +161,19 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Usage</h2>
 
-    <div class="code-block"><span class="comment">// Utility Classes (immediate transform)</span>
+    <pre class="ss-c-code-block">// Utility Classes (immediate transform)
         &lt;div class="transform_flip_horizontal"&gt;...&lt;/div&gt;
         &lt;div class="transform_rotate_90"&gt;...&lt;/div&gt;
         &lt;div class="scale_up"&gt;...&lt;/div&gt;
         &lt;div class="translate_xy"&gt;...&lt;/div&gt;
 
-        <span class="comment">// Dynamic rotation with CSS variable</span>
+        // Dynamic rotation with CSS variable
         &lt;div class="transform_rotate_dynamic" style="--rotate-angle: 45deg;"&gt;...&lt;/div&gt;
 
-        <span class="comment">// SCSS Mixins</span>
+        // SCSS Mixins
         .element {
         @include transform_flip_horizontal;
         }
@@ -186,13 +186,10 @@
         @include scale(1.5);
         }
 
-        <span class="comment">// Combined transforms</span>
+        // Combined transforms
         .card {
-        @include transform(
-        translateY(-10px) scale(1.05) rotate(2deg)
-        );
-        }
-    </div>
+        transform: translateY(-10px) scale(1.05) rotate(2deg);
+        }</pre>
 </section>
 
 {%- endblock %}

@@ -33,7 +33,7 @@ export interface LoaderConfig {
     content?: string;
     /** CSS styles for the loader */
     css: string;
-    /** Optional HTML markup override */
+    /** Optional HTML markup override; replaces the default `<span class="loader">` */
     html?: string;
 }
 
@@ -110,13 +110,8 @@ export class LoaderManager {
     /** Active loader instances */
     private activeLoaders: Map<HTMLElement, { id: string; shadowRoot?: ShadowRoot }> = new Map();
 
-    /** Default CSS variables for customization */
-    private defaultVars = {
-        '--loader-size': '48px',
-        '--loader-color': '#FFF',
-        '--loader-accent': '#FF3D00',
-        '--loader-speed': '1s',
-    };
+    /** Original children of elements whose content `showIn` replaced */
+    private replacedContent: WeakMap<HTMLElement, { content: DocumentFragment; loader: HTMLElement }> = new WeakMap();
 
 
     // ========================================================================
@@ -195,37 +190,22 @@ export class LoaderManager {
             wrapper.style.setProperty('--loader-accent', accentColor);
         }
 
+        // An indeterminate progressbar, so assistive tech announces loading.
+        wrapper.setAttribute('role', 'progressbar');
+        wrapper.setAttribute('aria-label', 'Loading');
+
         // Create loader content
+        const styleEl = document.createElement('style');
+        const css = this.processCSS(config.css);
         if (useShadowDOM) {
             const shadowRoot = wrapper.attachShadow({ mode: 'open' });
-
-            // Add styles
-            const styleEl = document.createElement('style');
-            styleEl.textContent = this.processCSS(config.css, options);
-            shadowRoot.appendChild(styleEl);
-
-            // Add loader element
-            const loaderEl = document.createElement('span');
-            loaderEl.className = 'loader';
-            if (config.content) {
-                loaderEl.innerHTML = config.content;
-            }
-            shadowRoot.appendChild(loaderEl);
-
+            styleEl.textContent = css;
+            shadowRoot.append(styleEl, this.createLoaderContent(config));
             this.activeLoaders.set(wrapper, { id: loaderId, shadowRoot });
         } else {
-            // Without Shadow DOM
-            const styleEl = document.createElement('style');
-            styleEl.textContent = this.scopeCSS(config.css, wrapper, loaderId);
-            wrapper.appendChild(styleEl);
-
-            const loaderEl = document.createElement('span');
-            loaderEl.className = `loader loader-${loaderId}`;
-            if (config.content) {
-                loaderEl.innerHTML = config.content;
-            }
-            wrapper.appendChild(loaderEl);
-
+            const scope = this.toScope(loaderId);
+            styleEl.textContent = this.scopeCSS(css, scope);
+            wrapper.append(styleEl, this.createLoaderContent(config, `loader-${scope}`));
             this.activeLoaders.set(wrapper, { id: loaderId });
         }
 
@@ -259,7 +239,7 @@ export class LoaderManager {
             z-index: 9999;
         `;
 
-        const loader = this.create(loaderId, { ...options, container: overlay });
+        this.create(loaderId, { ...options, container: overlay });
         document.body.appendChild(overlay);
 
         // Store reference for cleanup
@@ -284,13 +264,22 @@ export class LoaderManager {
             throw new Error(`Target element not found: ${target}`);
         }
 
-        // Store original content
-        const originalContent = targetEl.innerHTML;
-        targetEl.setAttribute('data-original-content', originalContent);
-        targetEl.innerHTML = '';
+        // Move the original nodes aside (keeping their listeners and state)
+        // rather than serialising them. A repeated showIn keeps the first
+        // saved content and only swaps the loader.
+        const saved = this.replacedContent.get(targetEl);
+        let content: DocumentFragment;
+        if (saved) {
+            this.destroy(saved.loader);
+            content = saved.content;
+        } else {
+            content = document.createDocumentFragment();
+            content.append(...Array.from(targetEl.childNodes));
+        }
 
-        // Create loader
         const loader = this.create(loaderId, { ...options, container: targetEl });
+        this.replacedContent.set(targetEl, { content, loader });
+        targetEl.setAttribute('aria-busy', 'true');
 
         return loader;
     }
@@ -306,27 +295,35 @@ export class LoaderManager {
 
         if (!targetEl) return;
 
-        const originalContent = targetEl.getAttribute('data-original-content');
-        if (originalContent !== null) {
-            targetEl.innerHTML = originalContent;
-            targetEl.removeAttribute('data-original-content');
-        }
+        const saved = this.replacedContent.get(targetEl);
+        if (!saved) return;
+
+        this.destroy(saved.loader);
+        targetEl.replaceChildren(saved.content);
+        targetEl.removeAttribute('aria-busy');
+        this.replacedContent.delete(targetEl);
     }
 
     /**
-     * Destroys a loader element.
+     * Destroys a loader element, including loaders nested inside it
+     * (such as the loader inside an overlay).
      * @param loader - The loader element to destroy
      */
     public destroy(loader: HTMLElement): void {
-        this.activeLoaders.delete(loader);
+        this.activeLoaders.forEach((_, element) => {
+            if (loader.contains(element)) {
+                this.activeLoaders.delete(element);
+            }
+        });
         loader.remove();
     }
 
     /**
-     * Destroys all active loaders.
+     * Destroys all active loaders. Content replaced by `showIn` stays
+     * hidden until `hideIn` is called for its element.
      */
     public destroyAll(): void {
-        this.activeLoaders.forEach((_, loader) => this.destroy(loader));
+        Array.from(this.activeLoaders.keys()).forEach(loader => this.destroy(loader));
     }
 
     /**
@@ -361,25 +358,60 @@ export class LoaderManager {
     // ========================================================================
 
     /**
-     * Processes CSS with variable replacements.
+     * Builds the loader markup from `config.html`, or a span with
+     * `config.content` inside.
+     * @param scopedClass - Extra class for `.loader` elements whose CSS was
+     * scoped by `scopeCSS` (non-Shadow DOM usage).
      */
-    private processCSS(css: string, options: LoaderOptions): string {
-        let processed = css;
-
-        // Replace hardcoded colors with CSS variables
-        processed = processed.replace(/#FFF\b/gi, 'var(--loader-color, #FFF)');
-        processed = processed.replace(/#FF3D00\b/gi, 'var(--loader-accent, #FF3D00)');
-        processed = processed.replace(/48px/g, 'var(--loader-size, 48px)');
-
-        return processed;
+    private createLoaderContent(config: LoaderConfig, scopedClass?: string): Node {
+        if (config.html) {
+            const template = document.createElement('template');
+            template.innerHTML = config.html;
+            if (scopedClass) {
+                template.content.querySelectorAll('.loader').forEach(el => el.classList.add(scopedClass));
+            }
+            return template.content;
+        }
+        const loaderEl = document.createElement('span');
+        loaderEl.classList.add('loader');
+        if (scopedClass) {
+            loaderEl.classList.add(scopedClass);
+        }
+        if (config.content) {
+            loaderEl.innerHTML = config.content;
+        }
+        return loaderEl;
     }
 
     /**
-     * Scopes CSS to a specific element (for non-Shadow DOM usage).
+     * Replaces the presets' hardcoded colors and size with the CSS
+     * variables that the `color`, `accentColor` and `size` options set.
      */
-    private scopeCSS(css: string, wrapper: HTMLElement, loaderId: string): string {
-        // Replace .loader with scoped selector
-        return css.replace(/\.loader/g, `.loader-${loaderId}`);
+    private processCSS(css: string): string {
+        return css
+            .replace(/#FFF(?![0-9a-f])/gi, 'var(--loader-color, #FFF)')
+            .replace(/#FF3D00(?![0-9a-f])/gi, 'var(--loader-accent, #FF3D00)')
+            .replace(/(^|[^\d.])48px/g, '$1var(--loader-size, 48px)');
+    }
+
+    /**
+     * Scopes CSS to a loader ID (for non-Shadow DOM usage), including its
+     * keyframe names so presets can't clash with page or other loader CSS.
+     */
+    private scopeCSS(css: string, scope: string): string {
+        const keyframes = Array.from(css.matchAll(/@keyframes\s+([\w-]+)/g), match => match[1]);
+        let scoped = css.replace(/\.loader(?![\w-])/g, `.loader-${scope}`);
+        keyframes.forEach(name => {
+            scoped = scoped.replace(new RegExp(`(^|[^\\w-])${name}(?![\\w-])`, 'g'), `$1${scope}--${name}`);
+        });
+        return scoped;
+    }
+
+    /**
+     * Turns a loader ID into a string that is safe inside a CSS class name.
+     */
+    private toScope(loaderId: string): string {
+        return loaderId.replace(/[^\w-]/g, '_');
     }
 
     /**

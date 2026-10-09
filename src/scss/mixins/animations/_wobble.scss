@@ -15,16 +15,14 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
@@ -52,15 +50,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_wobble,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_wobble, $duration, $timing_function, $iteration_count);
     @include keyframes_wobble($angle);
 }
-
 
 ///
 /// Gentle Wobble Animation
@@ -79,15 +71,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_wobble_slow,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_wobble_slow, $duration, $timing_function, $iteration_count);
     @include keyframes_wobble_slow($angle);
 }
-
 
 ///
 /// Rapid Wobble Animation
@@ -106,15 +92,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_wobble_fast,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_wobble_fast, $duration, $timing_function, $iteration_count);
     @include keyframes_wobble_fast($angle);
 }
-
 
 ///
 /// Wobble with Scale Animation
@@ -135,15 +115,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_wobble_scale,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_wobble_scale, $duration, $timing_function, $iteration_count);
     @include keyframes_wobble_scale($angle, $scale);
 }
-
 
 ///
 /// Advanced Wobble Animation (Animate.css style)
@@ -165,15 +139,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_wobble_advanced,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_wobble_advanced, $duration, $timing_function, $iteration_count);
     @include keyframes_wobble_advanced();
 }
-
 
 ///
 /// Horizontal Wobble Animation
@@ -192,15 +160,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_wobble_horizontal,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_wobble_horizontal, $duration, $timing_function, $iteration_count);
     @include keyframes_wobble_horizontal($distance);
 }
-
 
 ///
 /// Vertical Wobble Animation
@@ -219,15 +181,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_wobble_vertical,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_wobble_vertical, $duration, $timing_function, $iteration_count);
     @include keyframes_wobble_vertical($distance);
 }
-
 
 ///
 /// Skew Wobble Animation
@@ -246,15 +202,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_wobble_skew,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_wobble_skew, $duration, $timing_function, $iteration_count);
     @include keyframes_wobble_skew($skew);
 }
-
 
 ///
 /// Pendulum Wobble Animation
@@ -273,11 +223,6 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_wobble_pendulum,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_wobble_pendulum, $duration, $timing_function, $iteration_count);
     @include keyframes_wobble_pendulum($angle);
 }

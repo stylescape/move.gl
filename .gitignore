@@ -1393,3 +1393,6 @@ src/html/samples/ripple/index.css
 src/html/samples/ripple/index.html
 src/html/samples/siri-simple/index.css
 src/html/samples/siri-simple/index.html
+
+# Build output
+dist/

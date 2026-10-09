@@ -15,21 +15,18 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 ///
 /// Slide In Left Animation
@@ -46,16 +43,9 @@
     $duration: $animate_base_duration,
     $timing_function: ease-out
 ) {
-    @include animate_base(
-        animate_slide_in_left,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_slide_in_left, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_slide_in_left($distance);
 }
-
 
 ///
 /// Slide In Right Animation
@@ -72,16 +62,9 @@
     $duration: $animate_base_duration,
     $timing_function: ease-out
 ) {
-    @include animate_base(
-        animate_slide_in_right,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_slide_in_right, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_slide_in_right($distance);
 }
-
 
 ///
 /// Slide In Up Animation
@@ -98,16 +81,9 @@
     $duration: $animate_base_duration,
     $timing_function: ease-out
 ) {
-    @include animate_base(
-        animate_slide_in_up,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_slide_in_up, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_slide_in_up($distance);
 }
-
 
 ///
 /// Slide In Down Animation
@@ -124,16 +100,9 @@
     $duration: $animate_base_duration,
     $timing_function: ease-out
 ) {
-    @include animate_base(
-        animate_slide_in_down,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_slide_in_down, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_slide_in_down($distance);
 }
-
 
 ///
 /// Slide Out Left Animation
@@ -160,7 +129,6 @@
     @include keyframes_slide_out_left($distance);
 }
 
-
 ///
 /// Slide Out Right Animation
 /// ---------------------------------------------------------------------------
@@ -185,7 +153,6 @@
     );
     @include keyframes_slide_out_right($distance);
 }
-
 
 ///
 /// Slide Out Up Animation
@@ -212,7 +179,6 @@
     @include keyframes_slide_out_up($distance);
 }
 
-
 ///
 /// Slide Out Down Animation
 /// ---------------------------------------------------------------------------
@@ -237,7 +203,6 @@
     );
     @include keyframes_slide_out_down($distance);
 }
-
 
 ///
 /// Slide Fade In Up Animation
@@ -264,7 +229,6 @@
     @include keyframes_slide_fade_in_up($distance);
 }
 
-
 ///
 /// Slide Fade In Down Animation
 /// ---------------------------------------------------------------------------
@@ -289,7 +253,6 @@
     );
     @include keyframes_slide_fade_in_down($distance);
 }
-
 
 ///
 /// Slide Fade In Left Animation
@@ -316,7 +279,6 @@
     @include keyframes_slide_fade_in_left($distance);
 }
 
-
 ///
 /// Slide Fade In Right Animation
 /// ---------------------------------------------------------------------------
@@ -341,7 +303,6 @@
     );
     @include keyframes_slide_fade_in_right($distance);
 }
-
 
 ///
 /// Slide Loop Horizontal Animation
@@ -369,7 +330,6 @@
     @include keyframes_slide_loop_horizontal($distance);
 }
 
-
 ///
 /// Slide Loop Vertical Animation
 /// ---------------------------------------------------------------------------
@@ -396,7 +356,6 @@
     @include keyframes_slide_loop_vertical($distance);
 }
 
-
 ///
 /// Slide In Bounce Left Animation
 /// ---------------------------------------------------------------------------
@@ -421,7 +380,6 @@
     );
     @include keyframes_slide_in_bounce_left($distance);
 }
-
 
 ///
 /// Slide In Bounce Right Animation
@@ -448,7 +406,6 @@
     @include keyframes_slide_in_bounce_right($distance);
 }
 
-
 ///
 /// Slide In Bounce Up Animation
 /// ---------------------------------------------------------------------------
@@ -473,7 +430,6 @@
     );
     @include keyframes_slide_in_bounce_up($distance);
 }
-
 
 ///
 /// Slide In Bounce Down Animation

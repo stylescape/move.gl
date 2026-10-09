@@ -16,6 +16,7 @@ Main base template that all pages extend. Provides:
 
 <head>
     {%- include "partials/_head.html.jinja" %}
+    <title>{%- block title %}{{ title | default('move.gl') }}{%- endblock %}</title>
 
     {%- block head_extra %}
     {%- endblock %}
@@ -27,20 +28,17 @@ Main base template that all pages extend. Provides:
 <body class="{%- block body_class %}{%- endblock %}">
     {%- include "partials/_nav.html.jinja" %}
 
-    <main class="main">
-        <div class="container">
-            {%- block header %}
-            {%- endblock %}
+    <main class="ss-l-container ss-l-region">
+        {%- block header %}
+        {%- endblock %}
 
-            {%- block content %}
-            {%- endblock %}
-        </div>
+        {%- block content %}
+        {%- endblock %}
     </main>
 
     {%- include "partials/_footer.html.jinja" %}
 
     <!-- Core Scripts -->
-    <script type="module" src="/js/move.gl.js"></script>
     <script type="module" src="/js/demo.js"></script>
 
     {%- block scripts %}

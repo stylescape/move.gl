@@ -14,13 +14,11 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../variables" as *;
-
+@use '../../variables' as *;
 
 // ============================================================================
 // Linear Gradient Mixins
@@ -33,7 +31,11 @@
 /// @param {Color} $from [$gradient-from-default] - Start color.
 /// @param {Color} $to [$gradient-to-default] - End color.
 ///
-@mixin gradient_linear($direction: to right, $from: $gradient-from-default, $to: $gradient-to-default) {
+@mixin gradient_linear(
+    $direction: to right,
+    $from: $gradient-from-default,
+    $to: $gradient-to-default
+) {
     background: linear-gradient($direction, $from, $to);
 }
 
@@ -69,14 +71,21 @@
 
 /// Gradient to bottom right
 @mixin gradient_to_br($from: $gradient-from-default, $to: $gradient-to-default) {
-    background: linear-gradient(to bottom right, var(--gradient-from, $from), var(--gradient-to, $to));
+    background: linear-gradient(
+        to bottom right,
+        var(--gradient-from, $from),
+        var(--gradient-to, $to)
+    );
 }
 
 /// Gradient to bottom left
 @mixin gradient_to_bl($from: $gradient-from-default, $to: $gradient-to-default) {
-    background: linear-gradient(to bottom left, var(--gradient-from, $from), var(--gradient-to, $to));
+    background: linear-gradient(
+        to bottom left,
+        var(--gradient-from, $from),
+        var(--gradient-to, $to)
+    );
 }
-
 
 // ============================================================================
 // Radial Gradient Mixins
@@ -89,7 +98,11 @@
 /// @param {Color} $from [$gradient-from-default] - Start color.
 /// @param {Color} $to [$gradient-to-default] - End color.
 ///
-@mixin gradient_radial($position: circle, $from: $gradient-from-default, $to: $gradient-to-default) {
+@mixin gradient_radial(
+    $position: circle,
+    $from: $gradient-from-default,
+    $to: $gradient-to-default
+) {
     background: radial-gradient($position, var(--gradient-from, $from), var(--gradient-to, $to));
 }
 
@@ -113,7 +126,6 @@
     background: radial-gradient(at right, var(--gradient-from, $from), var(--gradient-to, $to));
 }
 
-
 // ============================================================================
 // Conic Gradient Mixins
 // ============================================================================
@@ -127,4 +139,3 @@
 @mixin gradient_conic($from: $gradient-from-default, $to: $gradient-to-default) {
     background: conic-gradient(var(--gradient-from, $from), var(--gradient-to, $to));
 }
-

@@ -15,23 +15,20 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "sass:math";
-@use "sass:list";
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use 'sass:math';
+@use 'sass:list';
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 ///
 /// Glow Animation
@@ -59,18 +56,17 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_glow,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_glow, $duration, $timing_function, $iteration_count);
     @keyframes animate_glow {
-        0%, 100% { box-shadow: 0 0 $start_shadow_size 0 $color; }
-        50% { box-shadow: 0 0 $end_shadow_size 5px $color; }
+        0%,
+        100% {
+            box-shadow: 0 0 $start_shadow_size 0 $color;
+        }
+        50% {
+            box-shadow: 0 0 $end_shadow_size 5px $color;
+        }
     }
 }
-
 
 ///
 /// Pulse Glow Animation
@@ -94,18 +90,17 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_glow_pulse,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_glow_pulse, $duration, $timing_function, $iteration_count);
     @keyframes animate_glow_pulse {
-        0%, 100% { box-shadow: 0 0 10px -5px $color; }
-        50% { box-shadow: 0 0 20px 0 $color; }
+        0%,
+        100% {
+            box-shadow: 0 0 10px -5px $color;
+        }
+        50% {
+            box-shadow: 0 0 20px 0 $color;
+        }
     }
 }
-
 
 ///
 /// Soft Glow Animation
@@ -129,22 +124,21 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_glow_soft,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_glow_soft, $duration, $timing_function, $iteration_count);
     @keyframes animate_glow_soft {
-        0%, 100% { box-shadow: 0 0 10px 0 rgba($color, 0.5); }
-        50% { box-shadow: 0 0 20px 5px rgba($color, 0.8); }
+        0%,
+        100% {
+            box-shadow: 0 0 10px 0 rgba($color, 0.5);
+        }
+        50% {
+            box-shadow: 0 0 20px 5px rgba($color, 0.8);
+        }
     }
 }
 
 .animate_glow_soft {
     @include animate_glow_soft($animate_base_color_glow_01);
 }
-
 
 ///
 /// Multi-Color Glow Animation
@@ -172,18 +166,13 @@
     $timing_function: linear,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_glow_multicolor,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_glow_multicolor, $duration, $timing_function, $iteration_count);
     $total_colors: list.length($colors);
     @keyframes animate_glow_multicolor {
         @for $i from 1 through $total_colors {
             #{math.percentage(math.div(($i - 1), $total_colors))},
             #{math.percentage(math.div($i, $total_colors))} {
-                    box-shadow: 0 0 10px 5px list.nth($colors, $i);
+                box-shadow: 0 0 10px 5px list.nth($colors, $i);
             }
         }
     }

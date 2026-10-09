@@ -58,6 +58,12 @@ $animate_base_timing_function_ease_in:  ease-in !default;
 /// ---------------------------------------------------------------------------
 $animate_base_iteration_count: infinite !default;
 
+/// Reduced Motion
+/// ---------------------------------------------------------------------------
+/// When true, the bundled animation and hover classes are neutralised for
+/// users with `prefers-reduced-motion: reduce`.
+$animate_respect_reduced_motion: true !default;
+
 /// Direction
 /// ---------------------------------------------------------------------------
 $animate_base_direction: normal !default;
@@ -262,9 +268,10 @@ $animate_jiggle_amplitude_slow: 3px !default;
 
 $animate_base_color_start:      #ffffff !default;
 $animate_base_color_end:        #000000 !default;
-$animate_base_color_glow_01:    $N2405 !default;
-$animate_base_color_glow_02:    $N3005 !default;
-$animate_base_color_glow_03:    $N3605 !default;
+// hue.gl N2405 / N3005 / N3605, inlined so move.gl doesn't load (and emit) all of hue.gl
+$animate_base_color_glow_01:    #3696c1 !default;
+$animate_base_color_glow_02:    #9582c2 !default;
+$animate_base_color_glow_03:    #c5728d !default;
 
 /// Flash colors
 $animate_color_flash_glow:      #fff !default;

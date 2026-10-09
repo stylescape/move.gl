@@ -36,15 +36,17 @@
 /// @param {Number} $rotate_z [0] - Z-axis rotation factor
 /// @param {Angle} $start_angle [0] - Starting angle
 /// @param {Angle} $end_angle [360deg] - Ending angle
+/// @param {String} $name [animate_flip] - Keyframes name
 ///
 @mixin keyframes_flip(
     $rotate_x: 0,
     $rotate_y: 1,
     $rotate_z: 0,
     $start_angle: 0,
-    $end_angle: 360deg
+    $end_angle: 360deg,
+    $name: animate_flip
 ) {
-    @include keyframes(animate_flip) {
+    @include keyframes($name) {
         0% {
             transform: rotate3d($rotate_x, $rotate_y, $rotate_z, $start_angle);
         }

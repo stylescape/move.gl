@@ -6,12 +6,14 @@ Reusable feature card component
 
 {%- macro feature_card(icon, title, description, href=None) -%}
 {%- if href %}
-<a href="{{ href }}" class="feature-card" style="text-decoration: none;">
+<a href="{{ href }}" class="ss-c-panel">
     {%- else %}
-    <div class="feature-card">
+    <div class="ss-c-panel">
         {%- endif %}
-        <h4>{{ icon }} {{ title }}</h4>
-        <p>{{ description }}</p>
+        <div class="ss-c-panel__body">
+            <h4 class="ss-t-h6 ss-u-mt-0">{{ icon }} {{ title }}</h4>
+            <p class="ss-t-meta ss-u-mb-0">{{ description }}</p>
+        </div>
         {%- if href %}
 </a>
 {%- else %}

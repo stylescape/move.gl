@@ -270,8 +270,9 @@
 @mixin opacity_hover_fade_siblings($sibling-opacity: 0.5) {
     transition: opacity 0.3s ease;
 
+    // Following siblings via `~`, preceding siblings via `:has()`.
     &:hover ~ &,
-    ~ &:not(:hover) {
+    &:has(~ &:hover) {
         opacity: $sibling-opacity;
     }
 }

@@ -1,0 +1,54 @@
+---
+
+
+# =============================================================================
+# Options
+# =============================================================================
+# Builds the demo/docs pages served by `npm run dev`. Runs after kist.yml
+# (which cleans ./dist) and is kept separate so the published package only
+# contains the library.
+
+options:
+
+    mode: development
+    logLevel: info
+
+
+# =============================================================================
+# Stages
+# =============================================================================
+
+stages:
+
+    # Docs
+    # =========================================================================
+    -
+        name: Docs
+        description: "Demo and documentation pages."
+
+        steps:
+
+            # Process Docs SCSS to CSS
+            # -----------------------------------------------------------------
+            -
+                name: ProcessDocsStyles
+                action: StyleProcessingAction
+                options:
+                    inputFile: "./src/scss/docs.scss"
+                    outputFile: "./dist/css/move.gl.docs.css"
+                    styleOption: "expanded"
+
+            # Render Templates
+            # -----------------------------------------------------------------
+            -
+                name: RenderTemplates
+                action: TemplateRenderAction
+                options:
+                    inputDir: "./src/jinja"
+                    outputDir: "./dist/html"
+                    pattern: "*.html.jinja"
+                    excludePatterns:
+                        - "_*.jinja"
+                        - "base.html.jinja"
+                        - "partials/**"
+                    stripExtension: ".jinja"

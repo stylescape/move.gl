@@ -48,35 +48,54 @@ interface VideoOverlayOptions {
 // -----------------------------------------------------------------------------
 
 /**
+ * Read the saved theme. localStorage can throw (blocked storage, some
+ * private modes), which must not abort the rest of the demo initialization.
+ */
+function getSavedTheme(): string | null {
+    try {
+        const theme = localStorage.getItem('theme');
+        return theme === 'dark' || theme === 'light' ? theme : null;
+    } catch {
+        return null;
+    }
+}
+
+function saveTheme(theme: string): void {
+    try {
+        localStorage.setItem('theme', theme);
+    } catch {
+        // Storage unavailable; the theme still applies for this page view.
+    }
+}
+
+/**
  * Initialize theme toggle functionality.
  * Handles light/dark mode switching with localStorage persistence.
  */
 function initThemeToggle(): void {
     const themeToggle = document.querySelector<HTMLButtonElement>('[data-toggle="theme"]');
     const html = document.documentElement;
+    const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    const applyTheme = (theme: string): void => {
+        html.setAttribute('data-theme', theme);
+        themeToggle?.setAttribute('aria-pressed', String(theme === 'dark'));
+    };
 
     // Load saved theme or use system preference
-    const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    if (savedTheme) {
-        html.setAttribute('data-theme', savedTheme);
-    } else if (systemPrefersDark) {
-        html.setAttribute('data-theme', 'dark');
-    }
+    applyTheme(getSavedTheme() ?? (darkQuery.matches ? 'dark' : 'light'));
 
     // Handle theme toggle click
     themeToggle?.addEventListener('click', () => {
-        const currentTheme = html.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
+        const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        applyTheme(newTheme);
+        saveTheme(newTheme);
     });
 
     // Listen for system theme changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (!localStorage.getItem('theme')) {
-            html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+    darkQuery.addEventListener('change', (e) => {
+        if (!getSavedTheme()) {
+            applyTheme(e.matches ? 'dark' : 'light');
         }
     });
 }
@@ -92,30 +111,37 @@ function initThemeToggle(): void {
  */
 function initNavDropdown(): void {
     const dropdown = document.getElementById('nav-dropdown');
-    const toggle = dropdown?.querySelector<HTMLButtonElement>('.nav__dropdown-toggle');
+    const toggle = dropdown?.querySelector<HTMLButtonElement>('[data-toggle="nav-dropdown"]');
+    const menu = document.getElementById('nav-dropdown-menu');
 
-    if (!dropdown || !toggle) return;
+    if (!dropdown || !toggle || !menu) return;
+
+    const setOpen = (open: boolean): void => {
+        menu.hidden = !open;
+        toggle.setAttribute('aria-expanded', String(open));
+    };
 
     // Toggle dropdown on click
     toggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        const isOpen = dropdown.classList.toggle('open');
-        toggle.setAttribute('aria-expanded', String(isOpen));
+        setOpen(toggle.getAttribute('aria-expanded') !== 'true');
     });
 
     // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
-        if (!dropdown.contains(e.target as Node)) {
-            dropdown.classList.remove('open');
-            toggle.setAttribute('aria-expanded', 'false');
-        }
+        if (!dropdown.contains(e.target as Node)) setOpen(false);
+    });
+
+    // Close dropdown when keyboard focus leaves it (e.g. tabbing past the last link)
+    dropdown.addEventListener('focusout', (e) => {
+        const next = e.relatedTarget as Node | null;
+        if (next && !dropdown.contains(next)) setOpen(false);
     });
 
     // Close dropdown on Escape key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && dropdown.classList.contains('open')) {
-            dropdown.classList.remove('open');
-            toggle.setAttribute('aria-expanded', 'false');
+        if (e.key === 'Escape' && !menu.hidden) {
+            setOpen(false);
             toggle.focus();
         }
     });
@@ -180,17 +206,8 @@ class LogOutput {
      */
     log(message: string, type: 'info' | 'success' | 'warning' | 'error' = 'info'): void {
         const entry = document.createElement('div');
-        entry.className = `log-entry log-entry--${type}`;
-
-        const timestamp = document.createElement('span');
-        timestamp.className = 'timestamp';
-        timestamp.textContent = new Date().toLocaleTimeString();
-
-        const text = document.createElement('span');
-        text.textContent = message;
-
-        entry.appendChild(timestamp);
-        entry.appendChild(text);
+        entry.dataset.type = type;
+        entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
 
         this.container.appendChild(entry);
 
@@ -221,6 +238,17 @@ class LogOutput {
  */
 function formatValue(value: number, unit: string): string {
     return `${value}${unit}`;
+}
+
+/**
+ * Append a log entry and keep the log bounded, scrolled to the newest entry.
+ */
+function appendLogEntry(container: HTMLElement, entry: HTMLElement, maxEntries = 50): void {
+    container.appendChild(entry);
+    while (container.children.length > maxEntries) {
+        container.removeChild(container.firstElementChild!);
+    }
+    container.scrollTop = container.scrollHeight;
 }
 
 /**
@@ -299,14 +327,18 @@ class DemoDraggable {
     private startX = 0;
     private startY = 0;
     private onDrag: DragCallback | undefined;
-    private boundRect: DOMRect | undefined;
+    private initialStyle = '';
+
+    private readonly handleStart = (e: MouseEvent | TouchEvent): void => this.startDrag(e);
+    private readonly handleMove = (e: MouseEvent | TouchEvent): void => this.drag(e);
+    private readonly handleEnd = (e: MouseEvent | TouchEvent): void => this.stopDrag(e);
 
     constructor(elementId: string, onDrag?: DragCallback) {
         this.element = document.getElementById(elementId);
         this.onDrag = onDrag;
 
         if (this.element?.parentElement) {
-            this.boundRect = this.element.parentElement.getBoundingClientRect();
+            this.initialStyle = this.element.style.cssText;
             this.attachEventListeners();
         }
     }
@@ -314,28 +346,44 @@ class DemoDraggable {
     private attachEventListeners(): void {
         if (!this.element) return;
 
-        this.element.addEventListener('mousedown', this.startDrag.bind(this));
-        this.element.addEventListener('touchstart', this.startDrag.bind(this), { passive: false });
-        document.addEventListener('mouseup', this.stopDrag.bind(this));
-        document.addEventListener('touchend', this.stopDrag.bind(this));
-        document.addEventListener('mousemove', this.drag.bind(this));
-        document.addEventListener('touchmove', this.drag.bind(this), { passive: false });
+        this.element.addEventListener('mousedown', this.handleStart);
+        this.element.addEventListener('touchstart', this.handleStart, { passive: false });
+        document.addEventListener('mouseup', this.handleEnd);
+        document.addEventListener('touchend', this.handleEnd);
+        document.addEventListener('touchcancel', this.handleEnd);
+        document.addEventListener('mousemove', this.handleMove);
+        document.addEventListener('touchmove', this.handleMove, { passive: false });
     }
 
     private getCoords(event: MouseEvent | TouchEvent): { clientX: number; clientY: number } {
-        if ('touches' in event && event.touches.length > 0) {
-            return { clientX: event.touches[0].clientX, clientY: event.touches[0].clientY };
+        if ('touches' in event) {
+            // touchend/touchcancel have no active touches; use the lifted one
+            const touch = event.touches[0] ?? event.changedTouches[0];
+            return { clientX: touch?.clientX ?? 0, clientY: touch?.clientY ?? 0 };
         }
-        return { clientX: (event as MouseEvent).clientX, clientY: (event as MouseEvent).clientY };
+        return { clientX: event.clientX, clientY: event.clientY };
     }
 
     private startDrag(event: MouseEvent | TouchEvent): void {
-        if (!this.element) return;
+        if (!this.element?.parentElement) return;
+        // Only drag with the primary mouse button
+        if (!('touches' in event) && event.button !== 0) return;
         event.preventDefault();
+
+        // Measure the rendered position (including any CSS transform such as
+        // translateX(-50%)) relative to the container's padding box, then pin
+        // the element there with left/top so it does not jump on first move.
+        const parent = this.element.parentElement;
+        const rect = this.element.getBoundingClientRect();
+        const parentRect = parent.getBoundingClientRect();
+        const left = rect.left - parentRect.left - parent.clientLeft;
+        const top = rect.top - parentRect.top - parent.clientTop;
+        this.setPosition(left, top);
+
         const coords = this.getCoords(event);
         this.isDragging = true;
-        this.startX = coords.clientX - this.element.offsetLeft;
-        this.startY = coords.clientY - this.element.offsetTop;
+        this.startX = coords.clientX - left;
+        this.startY = coords.clientY - top;
         this.onDrag?.('start', this.element.id, coords.clientX, coords.clientY);
     }
 
@@ -343,7 +391,7 @@ class DemoDraggable {
         if (this.isDragging && this.element) {
             this.isDragging = false;
             const coords = this.getCoords(event);
-            this.onDrag?.('end', this.element.id, coords.clientX || 0, coords.clientY || 0);
+            this.onDrag?.('end', this.element.id, coords.clientX, coords.clientY);
         }
     }
 
@@ -352,21 +400,44 @@ class DemoDraggable {
         event.preventDefault();
 
         const coords = this.getCoords(event);
-        const container = this.element.parentElement.getBoundingClientRect();
+        const parent = this.element.parentElement;
 
-        let newX = coords.clientX - this.startX;
-        let newY = coords.clientY - this.startY;
+        // clientWidth/clientHeight exclude the container border, so the
+        // element cannot be pushed under it.
+        const maxX = parent.clientWidth - this.element.offsetWidth;
+        const maxY = parent.clientHeight - this.element.offsetHeight;
+        const newX = Math.max(0, Math.min(coords.clientX - this.startX, maxX));
+        const newY = Math.max(0, Math.min(coords.clientY - this.startY, maxY));
 
-        newX = Math.max(0, Math.min(newX, container.width - this.element.offsetWidth));
-        newY = Math.max(0, Math.min(newY, container.height - this.element.offsetHeight));
+        this.setPosition(newX, newY);
+        this.onDrag?.('drag', this.element.id, Math.round(newX), Math.round(newY));
+    }
 
-        this.element.style.left = `${newX}px`;
-        this.element.style.top = `${newY}px`;
+    private setPosition(x: number, y: number): void {
+        if (!this.element) return;
+        this.element.style.left = `${x}px`;
+        this.element.style.top = `${y}px`;
         this.element.style.right = 'auto';
         this.element.style.bottom = 'auto';
         this.element.style.transform = 'none';
+    }
 
-        this.onDrag?.('drag', this.element.id, Math.round(newX), Math.round(newY));
+    /**
+     * Restore the element's original inline position and size.
+     */
+    reset(): void {
+        this.isDragging = false;
+        if (this.element) this.element.style.cssText = this.initialStyle;
+    }
+
+    destroy(): void {
+        this.element?.removeEventListener('mousedown', this.handleStart);
+        this.element?.removeEventListener('touchstart', this.handleStart);
+        document.removeEventListener('mouseup', this.handleEnd);
+        document.removeEventListener('touchend', this.handleEnd);
+        document.removeEventListener('touchcancel', this.handleEnd);
+        document.removeEventListener('mousemove', this.handleMove);
+        document.removeEventListener('touchmove', this.handleMove);
     }
 }
 
@@ -402,34 +473,53 @@ class DemoKeyboard {
 
     private currentMode: keyof KeyboardLayout = 'default';
     private stats = { chars: 0, words: 0, keys: 0 };
-    private input: HTMLInputElement | null;
+    private input: HTMLInputElement | HTMLTextAreaElement | null;
     private container: HTMLElement | null;
 
+    private static readonly keyLabels: Record<string, string> = {
+        ' ': 'Space',
+        '⇧': 'Shift',
+        '⌫': 'Backspace',
+        '↵': 'Enter',
+        '123': 'Numbers and symbols',
+        'ABC': 'Letters'
+    };
+
     constructor(inputId: string, containerId: string) {
-        this.input = document.getElementById(inputId) as HTMLInputElement;
+        this.input = document.getElementById(inputId) as HTMLInputElement | HTMLTextAreaElement | null;
         this.container = document.getElementById(containerId);
+
+        // One delegated listener survives re-renders of the key buttons
+        this.container?.addEventListener('click', (e) => {
+            const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.key');
+            if (btn && this.container?.contains(btn)) this.handleKey(btn.dataset.key ?? '');
+        });
+
         this.render();
     }
 
     private render(): void {
         if (!this.container) return;
 
-        const layout = this.layouts[this.currentMode];
-        this.container.innerHTML = layout.map(row =>
-            `<div class="keyboard-row">${row.map(key => {
-                let cls = 'key';
-                if (key === ' ') cls += ' key--space';
-                if (key === '⇧') cls += ' key--shift';
-                if (key === '⌫') cls += ' key--backspace';
-                if (key === '↵') cls += ' key--enter';
-                if (key === '123' || key === 'ABC') cls += ' key--mode';
-                return `<button class="${cls}" data-key="${key}">${key === ' ' ? 'space' : key}</button>`;
-            }).join('')}</div>`
-        ).join('');
-
-        this.container.querySelectorAll<HTMLButtonElement>('.key').forEach(btn => {
-            btn.addEventListener('click', () => this.handleKey(btn.dataset.key ?? ''));
+        // Build with DOM APIs: keys such as '"' would break an HTML string
+        const rows = this.layouts[this.currentMode].map(row => {
+            const rowEl = document.createElement('div');
+            rowEl.className = 'ss-u-flex ss-u-flex-wrap ss-u-justify-center ss-u-gap-6';
+            row.forEach(key => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'ss-c-kbd ss-c-kbd--lg';
+                btn.dataset.key = key;
+                btn.textContent = key === ' ' ? 'space' : key;
+                const label = DemoKeyboard.keyLabels[key];
+                if (label) btn.setAttribute('aria-label', label);
+                if (key === '⇧') btn.setAttribute('aria-pressed', String(this.currentMode === 'shift'));
+                rowEl.appendChild(btn);
+            });
+            return rowEl;
         });
+
+        this.container.replaceChildren(...rows);
     }
 
     private handleKey(key: string): void {
@@ -440,34 +530,32 @@ class DemoKeyboard {
         if (key === '⌫') {
             this.input.value = this.input.value.slice(0, -1);
         } else if (key === '↵') {
-            this.input.value += '\n';
+            // A single-line <input> silently drops line breaks
+            if (this.input instanceof HTMLTextAreaElement) this.input.value += '\n';
         } else if (key === '⇧') {
             this.switchMode(this.currentMode === 'shift' ? 'default' : 'shift');
-            return;
         } else if (key === '123') {
             this.switchMode('special');
-            return;
         } else if (key === 'ABC') {
             this.switchMode('default');
-            return;
         } else {
             this.input.value += key;
-            this.stats.chars++;
         }
 
+        this.stats.chars = this.input.value.length;
         this.stats.words = this.input.value.trim().split(/\s+/).filter(w => w).length;
         this.updateStats();
     }
 
     switchMode(mode: keyof KeyboardLayout): void {
+        if (!(mode in this.layouts)) return;
         this.currentMode = mode;
         this.render();
         document.querySelectorAll<HTMLButtonElement>('.mode-btn').forEach(btn => {
-            btn.classList.toggle('active',
-                (mode === 'default' && btn.textContent === 'ABC') ||
-                (mode === 'shift' && btn.textContent?.includes('SHIFT')) ||
-                (mode === 'special' && btn.textContent === '123')
-            );
+            const isActive = btn.dataset.mode === mode;
+            btn.classList.toggle('ss-c-button--primary', isActive);
+            btn.classList.toggle('ss-c-button--outline', !isActive);
+            btn.setAttribute('aria-pressed', String(isActive));
         });
     }
 
@@ -500,9 +588,13 @@ class DemoGesture {
     private startY = 0;
     private startTime = 0;
     private isDragging = false;
+    private feedbackTimer: ReturnType<typeof setTimeout> | null = null;
+    private indicatorTimer: ReturnType<typeof setTimeout> | null = null;
+    private onGesture: ((type: string, details: string) => void) | undefined;
 
-    constructor(elementId: string) {
+    constructor(elementId: string, onGesture?: (type: string, details: string) => void) {
         this.element = document.getElementById(elementId);
+        this.onGesture = onGesture;
         if (this.element) {
             this.attachEventListeners();
         }
@@ -512,7 +604,9 @@ class DemoGesture {
         if (!this.element) return;
 
         // Mouse events
-        this.element.addEventListener('mousedown', (e) => this.handleStart(e.clientX, e.clientY));
+        this.element.addEventListener('mousedown', (e) => {
+            if (e.button === 0) this.handleStart(e.clientX, e.clientY);
+        });
         document.addEventListener('mouseup', (e) => this.handleEnd(e.clientX, e.clientY));
 
         // Touch events
@@ -523,7 +617,7 @@ class DemoGesture {
             } else if (e.touches.length === 2) {
                 this.handlePinch();
             }
-        });
+        }, { passive: false });
 
         this.element.addEventListener('touchend', (e) => {
             if (e.changedTouches.length === 1) {
@@ -565,42 +659,49 @@ class DemoGesture {
 
     private handleTap(): void {
         this.stats.taps++;
-        this.updateUI('tap');
+        this.updateCounters();
+        this.showFeedback('Tap detected!');
+        this.onGesture?.('TAP', `at (${Math.round(this.startX)}, ${Math.round(this.startY)})`);
     }
 
-    private handleSwipe(direction: SwipeDirection, _dx: number, _dy: number): void {
+    private handleSwipe(direction: SwipeDirection, dx: number, dy: number): void {
         this.stats.swipes++;
-        this.updateUI('swipe', direction);
+        this.updateCounters();
+        const lastDirection = document.getElementById('lastDirection');
+        if (lastDirection) lastDirection.textContent = direction;
+        this.showFeedback(`Swiped ${direction}!`);
+        this.showDirectionIndicator(direction);
+        this.onGesture?.('SWIPE', `${direction} (Δx ${Math.round(dx)}, Δy ${Math.round(dy)})`);
     }
 
     private handlePinch(): void {
+        // The second finger turns this into a pinch; lifting the fingers
+        // afterwards must not also register as a tap or swipe.
+        this.isDragging = false;
         this.stats.pinches++;
-        this.updateUI('pinch');
+        this.updateCounters();
+        this.showFeedback('Pinch detected!');
+        this.onGesture?.('PINCH', 'Two-finger touch');
     }
 
-    private updateUI(type: string, direction?: SwipeDirection): void {
+    private updateCounters(): void {
         const tapCount = document.getElementById('tapCount');
         const swipeCount = document.getElementById('swipeCount');
         const pinchCount = document.getElementById('pinchCount');
-        const lastDirection = document.getElementById('lastDirection');
 
         if (tapCount) tapCount.textContent = String(this.stats.taps);
         if (swipeCount) swipeCount.textContent = String(this.stats.swipes);
         if (pinchCount) pinchCount.textContent = String(this.stats.pinches);
-        if (direction && lastDirection) lastDirection.textContent = direction;
+    }
 
-        // Show feedback
+    private showFeedback(message: string): void {
         const feedback = document.getElementById('gestureFeedback');
-        if (feedback) {
-            feedback.textContent = type === 'swipe' ? `Swiped ${direction}!` : `${type.charAt(0).toUpperCase() + type.slice(1)} detected!`;
-            feedback.classList.add('visible');
-            setTimeout(() => feedback.classList.remove('visible'), 1500);
-        }
-
-        // Show direction indicator
-        if (direction) {
-            this.showDirectionIndicator(direction);
-        }
+        if (!feedback) return;
+        feedback.textContent = message;
+        feedback.classList.add('visible');
+        // Restart the hide timer so rapid gestures don't hide the newest message early
+        if (this.feedbackTimer) clearTimeout(this.feedbackTimer);
+        this.feedbackTimer = setTimeout(() => feedback.classList.remove('visible'), 1500);
     }
 
     private showDirectionIndicator(direction: SwipeDirection): void {
@@ -608,13 +709,14 @@ class DemoGesture {
         const indicator = document.getElementById(`dir${direction.charAt(0).toUpperCase() + direction.slice(1)}`);
         if (indicator) {
             indicator.classList.add('active');
-            setTimeout(() => indicator.classList.remove('active'), 300);
+            if (this.indicatorTimer) clearTimeout(this.indicatorTimer);
+            this.indicatorTimer = setTimeout(() => indicator.classList.remove('active'), 300);
         }
     }
 
     resetStats(): void {
         this.stats = { taps: 0, swipes: 0, pinches: 0 };
-        this.updateUI('reset');
+        this.updateCounters();
         const lastDirection = document.getElementById('lastDirection');
         if (lastDirection) lastDirection.textContent = '—';
     }
@@ -655,6 +757,7 @@ class DemoScreensaver {
         this.countdown = document.getElementById('countdown');
         this.activityLog = document.getElementById('activityLog');
 
+        this.setFadeDuration(this.fadeDuration);
         this.setupEventListeners();
         this.startTimeout();
         this.updateCountdown();
@@ -670,10 +773,8 @@ class DemoScreensaver {
         if (!this.activityLog) return;
         const time = new Date().toLocaleTimeString();
         const entry = document.createElement('div');
-        entry.className = 'entry';
         entry.textContent = `[${time}] ${message}`;
-        this.activityLog.appendChild(entry);
-        this.activityLog.scrollTop = this.activityLog.scrollHeight;
+        appendLogEntry(this.activityLog, entry);
     }
 
     resetTimeout(): void {
@@ -701,16 +802,21 @@ class DemoScreensaver {
     }
 
     activate(): void {
+        if (this.isActive) return;
+        // A forced activation must not be followed by the pending timer firing again
+        if (this.timeoutId) clearTimeout(this.timeoutId);
+        this.timeoutId = null;
         this.isActive = true;
         this.screensaverContent?.classList.add('active');
         if (this.placeholder) this.placeholder.style.opacity = '0';
         this.statusDot?.classList.add('screensaver-active');
         if (this.statusText) this.statusText.textContent = 'Screensaver active';
-        if (this.countdown) this.countdown.textContent = '💤';
+        if (this.countdown) this.countdown.textContent = 'Zz';
         this.log('Screensaver activated');
     }
 
     deactivate(): void {
+        if (!this.isActive) return;
         this.isActive = false;
         this.screensaverContent?.classList.remove('active');
         if (this.placeholder) this.placeholder.style.opacity = '1';
@@ -726,9 +832,9 @@ class DemoScreensaver {
 
     setFadeDuration(duration: number): void {
         this.fadeDuration = duration;
-        if (this.screensaverContent) {
-            this.screensaverContent.style.transition = `opacity ${duration}ms ease`;
-        }
+        const transition = `opacity ${duration}ms ease`;
+        if (this.screensaverContent) this.screensaverContent.style.transition = transition;
+        if (this.placeholder) this.placeholder.style.transition = transition;
     }
 
     getEventCount(): number {
@@ -758,6 +864,7 @@ class DemoVideoOverlay {
     private opacity = 1;
     private fadeDuration = 300;
     private blurAmount = 0;
+    private fadeTimer: ReturnType<typeof setTimeout> | null = null;
 
     constructor() {
         this.overlay = document.getElementById('videoOverlay');
@@ -766,6 +873,7 @@ class DemoVideoOverlay {
         this.checkHevcSupport();
         this.setupControls();
         this.createParticles();
+        this.setEffect(this.currentEffect);
     }
 
     private checkHevcSupport(): void {
@@ -776,10 +884,10 @@ class DemoVideoOverlay {
         const canPlayHevc = video.canPlayType('video/mp4; codecs="hvc1"') !== '';
 
         if (canPlayHevc) {
-            indicator.className = 'alpha-indicator supported';
+            indicator.className = 'ss-c-badge ss-c-badge--sm ss-c-badge--success';
             indicator.textContent = '✓ HEVC Supported';
         } else {
-            indicator.className = 'alpha-indicator unsupported';
+            indicator.className = 'ss-c-badge ss-c-badge--sm ss-c-badge--error';
             indicator.textContent = '✗ HEVC Not Supported';
         }
     }
@@ -812,14 +920,13 @@ class DemoVideoOverlay {
         });
 
         document.querySelectorAll<HTMLButtonElement>('.effect-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.effect-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                this.setEffect(btn.dataset.effect ?? 'none');
-            });
+            btn.addEventListener('click', () => this.setEffect(btn.dataset.effect ?? 'none'));
         });
 
-        document.getElementById('toggleOverlay')?.addEventListener('click', () => this.toggle());
+        document.getElementById('toggleOverlay')?.addEventListener('click', () => {
+            this.cancelFadeTimer();
+            this.toggle();
+        });
         document.getElementById('fadeInOut')?.addEventListener('click', () => this.fadeInOut());
         document.getElementById('resetDemo')?.addEventListener('click', () => this.reset());
     }
@@ -840,6 +947,12 @@ class DemoVideoOverlay {
 
     setEffect(effect: string): void {
         this.currentEffect = effect;
+        document.querySelectorAll<HTMLButtonElement>('.effect-btn').forEach(b => {
+            const isActive = b.dataset.effect === effect;
+            b.classList.toggle('ss-c-button--primary', isActive);
+            b.classList.toggle('ss-c-button--outline', !isActive);
+            b.setAttribute('aria-pressed', String(isActive));
+        });
         const overlayEffect = this.overlay?.querySelector<HTMLElement>('.overlay-effect');
         if (!overlayEffect || !this.particles) return;
 
@@ -870,7 +983,9 @@ class DemoVideoOverlay {
     toggle(): void {
         this.isVisible = !this.isVisible;
         this.overlay?.classList.toggle('visible', this.isVisible);
-        if (this.isVisible && this.overlay) this.overlay.style.opacity = String(this.opacity);
+        // The inline opacity overrides the .visible class, so it must be
+        // cleared on hide or the overlay never fades out.
+        if (this.overlay) this.overlay.style.opacity = this.isVisible ? String(this.opacity) : '';
         const toggleBtn = document.getElementById('toggleOverlay');
         if (toggleBtn) toggleBtn.textContent = this.isVisible ? 'Hide Overlay' : 'Show Overlay';
     }
@@ -878,15 +993,27 @@ class DemoVideoOverlay {
     fadeInOut(): void {
         if (!this.isVisible) {
             this.toggle();
-            setTimeout(() => this.toggle(), this.fadeDuration * 3);
+            this.cancelFadeTimer();
+            this.fadeTimer = setTimeout(() => {
+                this.fadeTimer = null;
+                if (this.isVisible) this.toggle();
+            }, this.fadeDuration * 3);
         }
     }
 
+    private cancelFadeTimer(): void {
+        if (this.fadeTimer) clearTimeout(this.fadeTimer);
+        this.fadeTimer = null;
+    }
+
     reset(): void {
+        this.cancelFadeTimer();
         this.isVisible = false;
         this.overlay?.classList.remove('visible');
+        if (this.overlay) this.overlay.style.opacity = '';
         const toggleBtn = document.getElementById('toggleOverlay');
         if (toggleBtn) toggleBtn.textContent = 'Show Overlay';
+        this.setEffect('vignette');
 
         const opacitySlider = document.getElementById('opacitySlider') as HTMLInputElement;
         const opacityValue = document.getElementById('opacityValue');
@@ -928,10 +1055,8 @@ function initDraggableDemo(): void {
         if (!logOutput) return;
         const time = new Date().toLocaleTimeString();
         const entry = document.createElement('div');
-        entry.className = 'log-entry';
-        entry.innerHTML = `<span class="timestamp">[${time}]</span> ${message}`;
-        logOutput.appendChild(entry);
-        logOutput.scrollTop = logOutput.scrollHeight;
+        entry.innerHTML = `[${time}] ${message}`;
+        appendLogEntry(logOutput, entry);
     }
 
     function handleDrag(type: DragEventType, id: string, x: number, y: number): void {
@@ -945,24 +1070,18 @@ function initDraggableDemo(): void {
     }
 
     // Initialize draggable boxes
-    new DemoDraggable('box1', handleDrag);
-    new DemoDraggable('box2', handleDrag);
-    new DemoDraggable('box3', handleDrag);
+    const boxes = ['box1', 'box2', 'box3'].map(id => new DemoDraggable(id, handleDrag));
 
     // Global functions for buttons
     (window as unknown as Record<string, () => void>).resetPositions = () => {
-        const box1 = document.getElementById('box1');
-        const box2 = document.getElementById('box2');
-        const box3 = document.getElementById('box3');
-        if (box1) box1.style.cssText = 'top: 50px; left: 50px;';
-        if (box2) box2.style.cssText = 'top: 50px; right: 50px;';
-        if (box3) box3.style.cssText = 'bottom: 50px; left: 50%; transform: translateX(-50%);';
+        // Restores each box's original inline styles (including box3's size)
+        boxes.forEach(box => box.reset());
         log('Positions reset');
     };
 
     (window as unknown as Record<string, () => void>).clearLog = () => {
         if (logOutput) {
-            logOutput.innerHTML = '<div class="log-entry"><span class="timestamp">[--:--:--]</span> Log cleared</div>';
+            logOutput.innerHTML = '<div>[--:--:--] Log cleared</div>';
         }
     };
 
@@ -984,18 +1103,16 @@ function initKeyboardDemo(): void {
  * Initialize the gesture demo page.
  */
 function initGestureDemo(): void {
-    const gesture = new DemoGesture('gestureArea');
-
     function log(type: string, details: string): void {
         const gestureLog = document.getElementById('gestureLog');
         if (!gestureLog) return;
         const time = new Date().toLocaleTimeString();
         const entry = document.createElement('div');
-        entry.className = 'entry';
-        entry.innerHTML = `<span class="timestamp">${time}</span><span class="type">${type}</span><span class="details">${details}</span>`;
-        gestureLog.appendChild(entry);
-        gestureLog.scrollTop = gestureLog.scrollHeight;
+        entry.innerHTML = `${time}  <strong>${type}</strong>  ${details}`;
+        appendLogEntry(gestureLog, entry);
     }
+
+    const gesture = new DemoGesture('gestureArea', log);
 
     (window as unknown as Record<string, () => void>).resetStats = () => {
         gesture.resetStats();
@@ -1005,7 +1122,7 @@ function initGestureDemo(): void {
     (window as unknown as Record<string, () => void>).clearLog = () => {
         const gestureLog = document.getElementById('gestureLog');
         if (gestureLog) {
-            gestureLog.innerHTML = '<div class="entry"><span class="timestamp">--:--:--</span><span class="type">INIT</span><span class="details">Log cleared</span></div>';
+            gestureLog.innerHTML = '<div>--:--:--  <strong>INIT</strong>  Log cleared</div>';
         }
     };
 
@@ -1044,7 +1161,7 @@ function initScreensaverDemo(): void {
     (window as unknown as Record<string, () => void>).resetDemo = () => {
         screensaver.resetEventCount();
         const activityLog = document.getElementById('activityLog');
-        if (activityLog) activityLog.innerHTML = '<div class="entry">[--:--:--] Demo reset</div>';
+        if (activityLog) activityLog.innerHTML = '<div>[--:--:--] Demo reset</div>';
         screensaver.deactivate();
         screensaver.resetTimeout();
     };

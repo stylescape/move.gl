@@ -1,10 +1,9 @@
 {# ============================================================================
 move.gl | Head Partial
 ============================================================================
-Common
-
-<head> elements for all pages
-    ============================================================================ #}
+Common <head> elements for all pages. The <title> lives in the base templates
+so that child templates can override it with {% block title %}.
+============================================================================ #}
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,16 +11,23 @@ Common
         content="{{ description | default('Motion and Animation Library — CSS animations, transitions, keyframes, and interactive motion effects.') }}" />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
-    <title>{{ title | default('move.gl') }}</title>
 
+    <!-- Apply the saved/system theme before first paint to avoid a light-mode flash -->
+    <script>
+        (function () {
+            var theme = null;
+            try { theme = localStorage.getItem('theme'); } catch (e) { }
+            if (theme !== 'dark' && theme !== 'light') {
+                theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    <!-- Stylescape (house CSS framework): demo chrome. Served by the vite dev
+         server from node_modules/stylescape/css, never copied into dist/. -->
+    <link rel="stylesheet" href="/vendor/stylescape/stylescape.css" />
     <!-- Library CSS -->
     <link rel="stylesheet" href="/css/move.gl.css" />
-    <!-- Documentation CSS -->
+    <!-- Demo CSS (motion stages and showcase-only rules) -->
     <link rel="stylesheet" href="/css/move.gl.docs.css" />
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-        rel="stylesheet">

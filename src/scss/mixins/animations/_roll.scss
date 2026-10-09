@@ -15,21 +15,18 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 ///
 /// Roll Animation
@@ -56,15 +53,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_roll,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_roll, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_roll($translate_distance, $rotation_angle);
 }
-
 
 ///
 /// Reverse Roll Animation
@@ -91,15 +82,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_roll_reverse,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_roll_reverse, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_roll_reverse($translate-distance, $rotation_angle);
 }
-
 
 // Slow Roll Animation
 // ----------------------------------------------------------------------------
@@ -121,16 +106,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_roll_slow,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_roll_slow, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_roll_slow($translate-distance, $rotation_angle);
 }
-
-
 
 // Vertical Roll Animation
 // ----------------------------------------------------------------------------
@@ -152,18 +130,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_roll_vertical,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_roll_vertical, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_roll_vertical($translate-distance, $rotation_angle);
 }
-
-
-
-
 
 // Roll In Animation (from animate.css by Nick Pettit)
 // ----------------------------------------------------------------------------
@@ -177,19 +146,10 @@
 /// @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
 /// @param {String} $timing_function [ease-out] - The timing function.
 ///
-@mixin animate_roll_in(
-    $duration: $animate_base_duration,
-    $timing_function: ease-out
-) {
-    @include animate_base(
-        animate_roll_in,
-        $duration,
-        $timing_function,
-        1
-    );
+@mixin animate_roll_in($duration: $animate_base_duration, $timing_function: ease-out) {
+    @include animate_base(animate_roll_in, $duration, $timing_function, 1);
     @include keyframes_animate_roll_in();
 }
-
 
 // Roll Out Animation
 // ----------------------------------------------------------------------------
@@ -203,15 +163,7 @@
 /// @param {Duration} $duration [$animate_base_duration] - The duration of the animation.
 /// @param {String} $timing_function [ease-in] - The timing function.
 ///
-@mixin animate_roll_out(
-    $duration: $animate_base_duration,
-    $timing_function: ease-in
-) {
-    @include animate_base(
-        animate_roll_out,
-        $duration,
-        $timing_function,
-        1
-    );
+@mixin animate_roll_out($duration: $animate_base_duration, $timing_function: ease-in) {
+    @include animate_base(animate_roll_out, $duration, $timing_function, 1);
     @include keyframes_animate_roll_out();
 }

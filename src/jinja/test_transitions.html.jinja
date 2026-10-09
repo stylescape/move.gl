@@ -3,13 +3,13 @@
 {%- block title %}Transitions — move.gl{%- endblock %}
 
 {%- block header %}
-<p class="eyebrow">Effects</p>
+<p class="ss-t-overline">Effects</p>
 <h1>Transitions</h1>
 {%- endblock %}
 
 {%- block content %}
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Hover Transitions</h2>
     <p>Hover over the elements to see smooth transitions.</p>
 
@@ -41,7 +41,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Timing Functions</h2>
     <p>Different easing functions for transitions.</p>
 
@@ -72,31 +72,26 @@
         </div>
     </div>
 
-    <button class="btn btn--primary" onclick="runTimingDemo()">Run Demo</button>
+    <button class="ss-c-button ss-c-button--primary" onclick="runTimingDemo()">Run Demo</button>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Usage</h2>
 
-    <div class="code-block"><span class="comment">// SCSS Mixin</span>
+    <pre class="ss-c-code-block">// SCSS Mixin
         .element {
         @include transition(opacity, 0.3s, ease-out);
         }
 
-        <span class="comment">// Multiple properties</span>
+        // Multiple properties (plain CSS shorthand list)
         .card {
-        @include transition-multiple(
-        (transform, 0.3s, ease-out),
-        (opacity, 0.2s, ease-in),
-        (box-shadow, 0.3s, ease)
-        );
+        transition: transform 0.3s ease-out, opacity 0.2s ease-in, box-shadow 0.3s ease;
         }
 
-        <span class="comment">// Utility classes</span>
-        &lt;div class="transition-all"&gt;...&lt;/div&gt;
+        // Utility classes
         &lt;div class="transition-opacity"&gt;...&lt;/div&gt;
-        &lt;div class="transition-transform"&gt;...&lt;/div&gt;
-    </div>
+        &lt;div class="transition-scale"&gt;...&lt;/div&gt;
+        &lt;div class="transition-translate"&gt;...&lt;/div&gt;</pre>
 </section>
 
 <script>

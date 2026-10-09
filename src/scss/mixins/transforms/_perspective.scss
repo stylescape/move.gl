@@ -13,16 +13,23 @@
 ///
 ////
 
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../variables" as *;
+
+
 ///
 /// ---------------------------------------------------------------------------
 ///
 /// Mixin for setting perspective on elements, useful for 3D transforms.
 ///
 /// @mixin perspective
-/// @param {Number} $value [$default-perspective] - The perspective value for 3D transformations.
+/// @param {Number} $value [$perspective-default] - The perspective value for 3D transformations.
 /// @example scss - Usage
 ///   .icon-perspective { @include perspective(1000px); } // Applies a perspective of 1000px
 ///
-@mixin perspective($value: $default-perspective) {
+@mixin perspective($value: $perspective-default) {
     perspective: $value;
 }

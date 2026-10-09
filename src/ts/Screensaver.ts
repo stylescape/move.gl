@@ -49,6 +49,9 @@ export class Screensaver {
     private isActive: boolean = false;
     private readonly options: ScreensaverOptions;
 
+    /** User activity that dismisses the screensaver and restarts the timer */
+    private static readonly ACTIVITY_EVENTS = ['pointermove', 'pointerdown', 'keydown', 'wheel', 'touchstart'];
+
     /**
      * Creates a new Screensaver instance.
      * @param options - Configuration options for the screensaver.
@@ -62,10 +65,9 @@ export class Screensaver {
         };
         this.timeout = options.timeout;
         this.initializeElements();
-        if (options.videoUrl && options.audioUrl) {
-            this.loadMedia(options.videoUrl, options.audioUrl);
-        }
+        this.loadMedia(options.videoUrl, options.audioUrl);
         this.setupEventListeners();
+        this.stopScreensaver();
         this.startScreensaverTimeout();
     }
 
@@ -80,14 +82,14 @@ export class Screensaver {
 
     /**
      * Loads media sources into the video and audio elements.
-     * @param videoUrl - The source URL of the video.
-     * @param audioUrl - The source URL of the audio.
+     * @param videoUrl - The source URL of the video, if any.
+     * @param audioUrl - The source URL of the audio, if any.
      */
-    private loadMedia(videoUrl: string, audioUrl: string): void {
-        if (this.videoElement) {
+    private loadMedia(videoUrl?: string, audioUrl?: string): void {
+        if (this.videoElement && videoUrl) {
             this.videoElement.src = videoUrl;
         }
-        if (this.audioElement) {
+        if (this.audioElement && audioUrl) {
             this.audioElement.src = audioUrl;
         }
     }
@@ -95,25 +97,30 @@ export class Screensaver {
     /**
      * @notice Sets up event listeners for user interaction to prevent
      * screensaver activation.
-     * @dev Listens for 'mousemove', 'keydown', and 'touchstart' events
-     * to reset the screensaver timer.
+     * @dev Listens for pointer, keyboard, wheel and touch events to reset
+     * the screensaver timer.
      */
     private setupEventListeners() {
-        ['mousemove', 'keydown', 'touchstart'].forEach(event => {
-            document.addEventListener(event, this.resetScreensaver);
+        Screensaver.ACTIVITY_EVENTS.forEach(event => {
+            document.addEventListener(event, this.resetScreensaver, { passive: true });
         });
     }
 
     /**
      * @notice Starts or restarts the screensaver timeout.
-     * @dev Resets any existing timeout and sets a new timeout to activate
-     * the screensaver.
+     * @dev Clears any pending timeout and sets a new one to activate the
+     * screensaver. Runs on every activity event, so it only touches the timer.
      */
     private startScreensaverTimeout() {
-        this.stopScreensaver(); // Stop existing screensaver if active
-        this.timeoutId = window.setTimeout(
-            () => this.activateScreensaver(), this.timeout
-        );
+        this.clearScreensaverTimeout();
+        this.timeoutId = window.setTimeout(this.activateScreensaver, this.timeout);
+    }
+
+    private clearScreensaverTimeout() {
+        if (this.timeoutId !== undefined) {
+            clearTimeout(this.timeoutId);
+            this.timeoutId = undefined;
+        }
     }
 
     /**
@@ -132,16 +139,35 @@ export class Screensaver {
      * Activates the screensaver, displaying elements and playing media.
      */
     private activateScreensaver = (): void => {
+        this.clearScreensaverTimeout();
         if (this.screensaverElement) {
             this.screensaverElement.style.display = 'block';
         }
-        this.videoElement?.play();
-        this.audioElement?.play();
+        // play() rejects when autoplay is blocked (e.g. audio before any user
+        // gesture); the screensaver still shows, just without that media.
+        this.videoElement?.play().catch(() => undefined);
+        this.audioElement?.play().catch(() => undefined);
         this.isActive = true;
     };
 
     /**
-     * Stops the screensaver and hides its elements.
+     * Shows the screensaver immediately, without waiting for the timeout.
+     * The next user activity dismisses it as usual.
+     */
+    public start(): void {
+        this.activateScreensaver();
+    }
+
+    /**
+     * Hides the screensaver and restarts the inactivity timer.
+     */
+    public stop(): void {
+        this.resetScreensaver();
+    }
+
+    /**
+     * Stops the screensaver, hides its elements and cancels the pending
+     * timer. Use `stop()` to also restart the inactivity timer.
      */
     public stopScreensaver(): void {
         if (this.screensaverElement) {
@@ -150,11 +176,7 @@ export class Screensaver {
         this.videoElement?.pause();
         this.audioElement?.pause();
         this.isActive = false;
-
-        if (this.timeoutId !== undefined) {
-            clearTimeout(this.timeoutId);
-            this.timeoutId = undefined;
-        }
+        this.clearScreensaverTimeout();
     }
 
     /**
@@ -183,7 +205,7 @@ export class Screensaver {
      */
     public destroy(): void {
         this.stopScreensaver();
-        ['mousemove', 'keydown', 'touchstart'].forEach(event => {
+        Screensaver.ACTIVITY_EVENTS.forEach(event => {
             document.removeEventListener(event, this.resetScreensaver);
         });
     }

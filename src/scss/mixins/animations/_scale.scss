@@ -15,16 +15,14 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
@@ -54,15 +52,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_scale,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_scale, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_scale($scale_end);
 }
-
 
 ///
 /// Expand Animation
@@ -83,15 +75,9 @@
     $timing_function: ease-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_scale_expand,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_scale_expand, $duration, $timing_function, $iteration_count);
     @include keyframes_scale_expand($scale_start, $scale_end);
 }
-
 
 ///
 /// Shrink Animation
@@ -112,15 +98,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_scale_shrink,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_scale_shrink, $duration, $timing_function, $iteration_count);
     @include keyframes_scale_shrink($scale_min, $scale_max);
 }
-
 
 // ============================================================================
 // Scale In/Out Mixins
@@ -141,16 +121,9 @@
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function
 ) {
-    @include animate_base(
-        animate_scale_in,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_scale_in, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_scale_in($start_scale);
 }
-
 
 ///
 /// Scale In Center Animation
@@ -177,7 +150,6 @@
     @include keyframes_scale_in_center($start_scale);
 }
 
-
 ///
 /// Scale In Pop Animation
 /// ---------------------------------------------------------------------------
@@ -195,16 +167,9 @@
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function_elastic
 ) {
-    @include animate_base(
-        animate_scale_in_pop,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_scale_in_pop, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_scale_in_pop($start_scale, $overshoot);
 }
-
 
 ///
 /// Scale Out Animation
@@ -221,16 +186,9 @@
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function
 ) {
-    @include animate_base(
-        animate_scale_out,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_scale_out, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_scale_out($end_scale);
 }
-
 
 ///
 /// Scale Out Center Animation
@@ -257,7 +215,6 @@
     @include keyframes_scale_out_center($end_scale);
 }
 
-
 // ============================================================================
 // Scale with Bounce Mixins
 // ============================================================================
@@ -279,15 +236,9 @@
     $timing_function: $animate_timing_function_bounce,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_scale_bounce,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_scale_bounce, $duration, $timing_function, $iteration_count);
     @include keyframes_scale_bounce($scale);
 }
-
 
 // ============================================================================
 // Scale X/Y Mixins
@@ -310,15 +261,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_scale_x,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_scale_x, $duration, $timing_function, $iteration_count);
     @include keyframes_scale_x($scale_x);
 }
-
 
 ///
 /// Scale Y Animation
@@ -337,15 +282,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_scale_y,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_scale_y, $duration, $timing_function, $iteration_count);
     @include keyframes_scale_y($scale_y);
 }
-
 
 // ============================================================================
 // Scale Transition Classes

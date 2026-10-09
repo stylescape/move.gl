@@ -19,18 +19,15 @@
 /// @access public
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../../variables" as *;
-
+@use '../../../variables' as *;
 
 // ============================================================================
 // Keyframes
 // ============================================================================
-
 
 ///
 /// Roll Keyframes
@@ -38,13 +35,19 @@
 /// @param {Number|String} $translate_distance [100%] - The distance to translate.
 /// @param {Angle} $rotation_angle [360deg] - The rotation angle.
 ///
-@mixin keyframes_animate_roll($translate_distance: $animate_translate_slide, $rotation_angle: $animate_angle_full) {
+@mixin keyframes_animate_roll(
+    $translate_distance: $animate_translate_slide,
+    $rotation_angle: $animate_angle_full
+) {
     @keyframes animate_roll {
-        0% { transform: translateX(0) rotate(0deg); }
-        100% { transform: translateX($translate_distance) rotate($rotation_angle); }
+        0% {
+            transform: translateX(0) rotate(0deg);
+        }
+        100% {
+            transform: translateX($translate_distance) rotate($rotation_angle);
+        }
     }
 }
-
 
 ///
 /// Roll Reverse Keyframes
@@ -52,13 +55,19 @@
 /// @param {Number|String} $translate_distance [-100%] - The distance to translate.
 /// @param {Angle} $rotation_angle [-360deg] - The rotation angle.
 ///
-@mixin keyframes_animate_roll_reverse($translate_distance: -$animate_translate_slide, $rotation_angle: -$animate_angle_full) {
+@mixin keyframes_animate_roll_reverse(
+    $translate_distance: -$animate_translate_slide,
+    $rotation_angle: -$animate_angle_full
+) {
     @keyframes animate_roll_reverse {
-        0% { transform: translateX(0) rotate(0deg); }
-        100% { transform: translateX($translate_distance) rotate($rotation_angle); }
+        0% {
+            transform: translateX(0) rotate(0deg);
+        }
+        100% {
+            transform: translateX($translate_distance) rotate($rotation_angle);
+        }
     }
 }
-
 
 ///
 /// Roll Slow Keyframes
@@ -66,13 +75,19 @@
 /// @param {Number|String} $translate_distance [100%] - The distance to translate.
 /// @param {Angle} $rotation_angle [360deg] - The rotation angle.
 ///
-@mixin keyframes_animate_roll_slow($translate_distance: $animate_translate_slide, $rotation_angle: $animate_angle_full) {
+@mixin keyframes_animate_roll_slow(
+    $translate_distance: $animate_translate_slide,
+    $rotation_angle: $animate_angle_full
+) {
     @keyframes animate_roll_slow {
-        0% { transform: translateX(0) rotate(0deg); }
-        100% { transform: translateX($translate_distance) rotate($rotation_angle); }
+        0% {
+            transform: translateX(0) rotate(0deg);
+        }
+        100% {
+            transform: translateX($translate_distance) rotate($rotation_angle);
+        }
     }
 }
-
 
 ///
 /// Roll Vertical Keyframes
@@ -80,13 +95,19 @@
 /// @param {Number|String} $translate_distance [100%] - The distance to translate.
 /// @param {Angle} $rotation_angle [360deg] - The rotation angle.
 ///
-@mixin keyframes_animate_roll_vertical($translate_distance: $animate_translate_slide, $rotation_angle: $animate_angle_full) {
+@mixin keyframes_animate_roll_vertical(
+    $translate_distance: $animate_translate_slide,
+    $rotation_angle: $animate_angle_full
+) {
     @keyframes animate_roll_vertical {
-        0% { transform: translateY(0) rotate(0deg); }
-        100% { transform: translateY($translate_distance) rotate($rotation_angle); }
+        0% {
+            transform: translateY(0) rotate(0deg);
+        }
+        100% {
+            transform: translateY($translate_distance) rotate($rotation_angle);
+        }
     }
 }
-
 
 ///
 /// Roll In Keyframes (from animate.css by Nick Pettit)
@@ -104,7 +125,6 @@
         }
     }
 }
-
 
 ///
 /// Roll Out Keyframes

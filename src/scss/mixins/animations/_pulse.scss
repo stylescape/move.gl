@@ -242,7 +242,7 @@
         $timing_function,
         $iteration_count
     );
-    @include keyframes_pulse_fade($scale_min, $scale_max, $opacity_min);
+    @include keyframes_pulse_fade($scale_max, $opacity_min, $scale_min);
 }
 
 

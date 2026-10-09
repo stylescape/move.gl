@@ -15,16 +15,14 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
@@ -57,15 +55,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_beat,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_beat, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_beat($scale);
 }
-
 
 ///
 /// Beat Fade Animation
@@ -92,15 +84,9 @@
     $timing_function: $animate_base_timing_function_fade,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_beat_fade,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_beat_fade, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_beat_fade($opacity, $scale);
 }
-
 
 ///
 /// Double Beat Animation
@@ -127,11 +113,6 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_beat_double,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_beat_double, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_beat_double($scale_small, $scale_large);
 }

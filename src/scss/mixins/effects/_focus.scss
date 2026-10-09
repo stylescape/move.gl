@@ -13,17 +13,19 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../variables" as *;
-
+@use '../../variables' as *;
 
 // ============================================================================
 // Focus State Mixins
 // ============================================================================
+
+// The focus mixins use :focus-visible, so pointer clicks don't draw a focus
+// style. Browsers without :focus-visible drop the rule and keep their native
+// focus outline.
 
 ///
 /// Default focus style with outline.
@@ -33,7 +35,7 @@
 /// @param {Length} $offset [2px] - Outline offset.
 ///
 @mixin focus_default($color: $focus-color-default, $width: 2px, $offset: 2px) {
-    &:focus {
+    &:focus-visible {
         outline: $width solid $color;
         outline-offset: $offset;
     }
@@ -47,7 +49,7 @@
 /// @param {Length} $spread [3px] - Ring spread.
 ///
 @mixin focus_ring($color: $focus-color-default, $opacity: 0.5, $spread: 3px) {
-    &:focus {
+    &:focus-visible {
         outline: none;
         box-shadow: 0 0 0 $spread rgba($color, $opacity);
     }
@@ -61,7 +63,7 @@
 /// @param {Length} $spread [15px] - Glow spread.
 ///
 @mixin focus_glow($color: $focus-color-default, $opacity: 0.6, $spread: 15px) {
-    &:focus {
+    &:focus-visible {
         outline: none;
         box-shadow: 0 0 $spread rgba($color, $opacity);
     }
@@ -75,9 +77,8 @@
 /// @param {Length} $offset [3px] - Outline offset.
 ///
 @mixin focus_outline($color: $focus-color-purple, $width: 3px, $offset: 3px) {
-    &:focus {
+    &:focus-visible {
         outline: $width dashed $color;
         outline-offset: $offset;
     }
 }
-

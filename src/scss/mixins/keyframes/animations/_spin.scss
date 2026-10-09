@@ -241,11 +241,12 @@
 /// 3D spin on X-axis.
 ///
 /// @param {Angle} $angle [360deg] - Rotation angle
+/// @param {Angle} $start_angle [0deg] - Starting rotation angle
 ///
-@mixin keyframes_spin_x($angle: $animate_angle_full) {
+@mixin keyframes_spin_x($angle: $animate_angle_full, $start_angle: 0deg) {
     @include keyframes(animate_spin_x) {
         from {
-            transform: perspective(400px) rotateX(0deg);
+            transform: perspective(400px) rotateX($start_angle);
         }
         to {
             transform: perspective(400px) rotateX($angle);
@@ -257,11 +258,12 @@
 /// 3D spin on Y-axis.
 ///
 /// @param {Angle} $angle [360deg] - Rotation angle
+/// @param {Angle} $start_angle [0deg] - Starting rotation angle
 ///
-@mixin keyframes_spin_y($angle: $animate_angle_full) {
+@mixin keyframes_spin_y($angle: $animate_angle_full, $start_angle: 0deg) {
     @include keyframes(animate_spin_y) {
         from {
-            transform: perspective(400px) rotateY(0deg);
+            transform: perspective(400px) rotateY($start_angle);
         }
         to {
             transform: perspective(400px) rotateY($angle);

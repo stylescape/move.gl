@@ -14,7 +14,6 @@
 ///
 ////
 
-
 // ============================================================================
 // Duration Variables
 // ============================================================================
@@ -30,7 +29,6 @@ $transition-slow: 0.5s !default;
 
 /// Very slow transition duration
 $transition-slower: 0.8s !default;
-
 
 // ============================================================================
 // Timing Function Variables
@@ -51,7 +49,6 @@ $timing-ease-out: ease-out !default;
 /// Ease-in-out timing function
 $timing-ease-in-out: ease-in-out !default;
 
-
 // ============================================================================
 // Custom Easing Curves
 // ============================================================================
@@ -68,7 +65,6 @@ $easing-snap: cubic-bezier(0.4, 0, 0.6, 1) !default;
 /// Elastic easing curve
 $easing-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6) !default;
 
-
 // ============================================================================
 // Property Defaults
 // ============================================================================
@@ -77,4 +73,11 @@ $easing-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6) !default;
 $transition-property-default: all !default;
 
 /// Common transition properties list
-$transition-properties: (opacity, transform, background-color, color, border-color, box-shadow) !default;
+$transition-properties: (
+    opacity,
+    transform,
+    background-color,
+    color,
+    border-color,
+    box-shadow
+) !default;

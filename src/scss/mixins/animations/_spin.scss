@@ -289,7 +289,7 @@
         $timing_function,
         $iteration_count
     );
-    @include keyframes_spin_x($start_angle, $end_angle);
+    @include keyframes_spin_x($end_angle, $start_angle);
 }
 
 
@@ -318,5 +318,5 @@
         $timing_function,
         $iteration_count
     );
-    @include keyframes_spin_y($start_angle, $end_angle);
+    @include keyframes_spin_y($end_angle, $start_angle);
 }

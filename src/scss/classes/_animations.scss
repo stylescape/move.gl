@@ -128,7 +128,7 @@
 /// Creates a flip animation that rotates the element horizontally.
 ///
 .animate_flip_horizontal {
-    @include animate_flip(1s, ease-in-out, infinite, 0, 1, 0, 0, 360deg);
+    @include animate_flip(1s, ease-in-out, infinite, 0, 1, 0, 0, 360deg, animate_flip_horizontal);
 }
 
 
@@ -140,7 +140,7 @@
 /// Creates a flip animation that rotates the element vertically.
 ///
 .animate_flip_vertical {
-    @include animate_flip(1s, ease-in-out, infinite, 1, 0, 0, 0, 360deg);
+    @include animate_flip(1s, ease-in-out, infinite, 1, 0, 0, 0, 360deg, animate_flip_vertical);
 }
 
 
@@ -152,7 +152,7 @@
 /// Creates a flip animation that rotates the element diagonally.
 ///
 .animate_flip_diagonal {
-    @include animate_flip(1s, ease-in-out, infinite, 1, 1, 0, 0, 360deg);
+    @include animate_flip(1s, ease-in-out, infinite, 1, 1, 0, 0, 360deg, animate_flip_diagonal_spin);
 }
 
 
@@ -164,7 +164,7 @@
 /// Creates a flip animation that rotates the element horizontally by 180 degrees.
 ///
 .animate_flip_180_horizontal {
-    @include animate_flip(1s, ease-in-out, infinite, 0, 1, 0, 0, -180deg);
+    @include animate_flip(1s, ease-in-out, infinite, 0, 1, 0, 0, -180deg, animate_flip_180_horizontal);
 }
 
 ///
@@ -172,7 +172,7 @@
 /// Creates a flip animation that rotates the element vertically by 180 degrees.
 ///
 .animate_flip_180_vertical {
-    @include animate_flip(1s, ease-in-out, infinite, 1, 0, 0, 0, -180deg);
+    @include animate_flip(1s, ease-in-out, infinite, 1, 0, 0, 0, -180deg, animate_flip_180_vertical);
 }
 
 ///
@@ -180,7 +180,7 @@
 /// Creates a flip animation that rotates the element diagonally by 180 degrees.
 ///
 .animate_flip_180_diagonal {
-    @include animate_flip(1s, ease-in-out, infinite, 1, 1, 0, 0, -180deg);
+    @include animate_flip(1s, ease-in-out, infinite, 1, 1, 0, 0, -180deg, animate_flip_180_diagonal);
 }
 
 
@@ -593,3 +593,19 @@
     @include animate_zoom_fade();
 }
 
+
+
+// Reduced Motion
+// ----------------------------------------------------------------------------
+// Collapse the bundled animation classes to their end state for users who
+// prefer reduced motion. Disable with `$animate_respect_reduced_motion: false`.
+
+@if $animate_respect_reduced_motion {
+    @include prefers_reduced_motion {
+        [class*="animate_"],
+        .hover--shake:hover {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+        }
+    }
+}

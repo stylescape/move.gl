@@ -10,10 +10,10 @@ Interactive demo for the gesture handler component
 {%- set current_demo = "gesture" -%}
 
 {%- block header %}
-<header class="page-header">
-    <div class="page-header__badge">TypeScript Component</div>
-    <h1 class="page-header__title">Gesture Handler</h1>
-    <p class="page-header__description">
+<header class="ss-u-mb-8">
+    <span class="ss-c-badge">TypeScript Component</span>
+    <h1>Gesture Handler</h1>
+    <p class="ss-t-lead">
         Detect and respond to touch gestures including taps, swipes, pinches, and rotations.
         Works with both touch devices and mouse input.
     </p>
@@ -21,107 +21,107 @@ Interactive demo for the gesture handler component
 {%- endblock -%}
 
 {%- block content %}
-<section class="section">
-    <h2 class="section__title">Interactive Demo</h2>
-    <p class="section__description">
+<section class="ss-l-region ss-l-region-md">
+    <h2>Interactive Demo</h2>
+    <p class="ss-t-meta">
         <strong>Touch/Mobile:</strong> Use one finger to tap or swipe, two fingers to pinch.<br>
         <strong>Desktop:</strong> Click to tap, click and drag to swipe.
     </p>
 
     <div class="gesture-area" id="gestureArea">
-        <div class="direction-indicator left" id="dirLeft">←</div>
-        <div class="direction-indicator right" id="dirRight">→</div>
-        <div class="direction-indicator up" id="dirUp">↑</div>
-        <div class="direction-indicator down" id="dirDown">↓</div>
+        <div class="direction-indicator left" id="dirLeft" aria-hidden="true">←</div>
+        <div class="direction-indicator right" id="dirRight" aria-hidden="true">→</div>
+        <div class="direction-indicator up" id="dirUp" aria-hidden="true">↑</div>
+        <div class="direction-indicator down" id="dirDown" aria-hidden="true">↓</div>
 
-        <div class="gesture-icon" id="gestureIcon">👆</div>
+        <div class="gesture-icon" id="gestureIcon">◎</div>
         <div class="gesture-label" id="gestureLabel">Touch or Click Here</div>
         <div class="gesture-hint" id="gestureHint">Try tapping, swiping, or pinching</div>
-        <div class="gesture-feedback" id="gestureFeedback">Tap detected!</div>
+        <div class="gesture-feedback" id="gestureFeedback" role="status" aria-live="polite">Tap detected!</div>
     </div>
 
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-card__value" id="tapCount">0</div>
-            <div class="stat-card__label">Taps</div>
+    <div class="ss-l-grid ss-l-grid-auto ss-u-my-4">
+        <div class="ss-c-box ss-c-box--bordered ss-u-text-center">
+            <div class="ss-t-text-2xl ss-t-font-bold" id="tapCount">0</div>
+            <div class="ss-t-meta">Taps</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-card__value" id="swipeCount">0</div>
-            <div class="stat-card__label">Swipes</div>
+        <div class="ss-c-box ss-c-box--bordered ss-u-text-center">
+            <div class="ss-t-text-2xl ss-t-font-bold" id="swipeCount">0</div>
+            <div class="ss-t-meta">Swipes</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-card__value" id="pinchCount">0</div>
-            <div class="stat-card__label">Pinches</div>
+        <div class="ss-c-box ss-c-box--bordered ss-u-text-center">
+            <div class="ss-t-text-2xl ss-t-font-bold" id="pinchCount">0</div>
+            <div class="ss-t-meta">Pinches</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-card__value" id="lastDirection">—</div>
-            <div class="stat-card__label">Last Direction</div>
+        <div class="ss-c-box ss-c-box--bordered ss-u-text-center">
+            <div class="ss-t-text-2xl ss-t-font-bold" id="lastDirection">—</div>
+            <div class="ss-t-meta">Last Direction</div>
         </div>
     </div>
 
-    <div class="controls">
-        <button class="btn btn-secondary" onclick="resetStats()">Reset Stats</button>
-        <button class="btn btn-secondary" onclick="clearLog()">Clear Log</button>
+    <div class="ss-u-flex ss-u-flex-wrap ss-u-gap-12 ss-u-my-4">
+        <button class="ss-c-button ss-c-button--outline" onclick="resetStats()">Reset Stats</button>
+        <button class="ss-c-button ss-c-button--outline" onclick="clearLog()">Clear Log</button>
     </div>
 
-    <div class="gesture-log" id="gestureLog">
-        <div class="entry">
-            <span class="timestamp">--:--:--</span>
-            <span class="type">INIT</span>
-            <span class="details">Gesture handler ready</span>
+    <div class="ss-c-code-block demo-log" id="gestureLog" role="log" aria-label="Gesture log">
+        <div>--:--:--  INIT  Gesture handler ready</div>
+    </div>
+</section>
+
+<section class="ss-l-region ss-l-region-md">
+    <h2>Supported Gestures</h2>
+    <div class="ss-l-grid ss-l-grid-auto">
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__body">
+                <h4 class="ss-t-h6 ss-u-mt-0">Tap</h4>
+                <p class="ss-t-meta ss-u-mb-0">Single touch/click without movement. Fires onTap callback.</p>
+            </div>
+        </div>
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__body">
+                <h4 class="ss-t-h6 ss-u-mt-0">Swipe</h4>
+                <p class="ss-t-meta ss-u-mb-0">Touch and drag in any direction. Detects left, right, up, down.</p>
+            </div>
+        </div>
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__body">
+                <h4 class="ss-t-h6 ss-u-mt-0">Pinch</h4>
+                <p class="ss-t-meta ss-u-mb-0">Two-finger pinch gesture. Returns scale factor for zoom effects.</p>
+            </div>
+        </div>
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__body">
+                <h4 class="ss-t-h6 ss-u-mt-0">Rotate</h4>
+                <p class="ss-t-meta ss-u-mb-0">Two-finger rotation gesture. Returns angle for rotation effects.</p>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="section">
-    <h2 class="section__title">Supported Gestures</h2>
-    <div class="feature-grid">
-        <div class="feature-card">
-            <h4>👆 Tap</h4>
-            <p>Single touch/click without movement. Fires onTap callback.</p>
-        </div>
-        <div class="feature-card">
-            <h4>👋 Swipe</h4>
-            <p>Touch and drag in any direction. Detects left, right, up, down.</p>
-        </div>
-        <div class="feature-card">
-            <h4>🤏 Pinch</h4>
-            <p>Two-finger pinch gesture. Returns scale factor for zoom effects.</p>
-        </div>
-        <div class="feature-card">
-            <h4>🔄 Rotate</h4>
-            <p>Two-finger rotation gesture. Returns angle for rotation effects.</p>
-        </div>
-    </div>
-</section>
-
-<section class="section">
-    <h2 class="section__title">Usage</h2>
+<section class="ss-l-region ss-l-region-md">
+    <h2>Usage</h2>
 
     <h3>TouchGestureHandler</h3>
-    <div class="code-block">
-        <code><span class="keyword">import</span> { TouchGestureHandler } <span class="keyword">from</span> <span class="string">'move.gl'</span>;
+    <pre class="ss-c-code-block"><code>import { TouchGestureHandler } from 'move.gl';
 
-<span class="keyword">const</span> gesture = <span class="keyword">new</span> <span class="function">TouchGestureHandler</span>(<span class="string">'myElement'</span>, {
-    <span class="function">onTap</span>: () => console.<span class="function">log</span>(<span class="string">'Tapped!'</span>),
-    <span class="function">onSwipe</span>: (direction, deltaX, deltaY) => {
-        console.<span class="function">log</span>(<span class="string">`Swiped ${direction}`</span>);
+const gesture = new TouchGestureHandler('myElement', {
+    onTap: () => console.log('Tapped!'),
+    onSwipe: (direction, deltaX, deltaY) => {
+        console.log(`Swiped ${direction}`);
     },
-    <span class="function">onPinch</span>: (scale) => console.<span class="function">log</span>(<span class="string">`Scale: ${scale}`</span>)
-});</code>
-    </div>
+    onPinch: (scale) => console.log(`Scale: ${scale}`)
+});</code></pre>
 
     <h3>GestureCallbacks Interface</h3>
-    <div class="code-block">
-        <code><span class="keyword">interface</span> GestureCallbacks {
-    onTap?: () => <span class="keyword">void</span>;
-    onSwipe?: (direction: SwipeDirection, deltaX: <span class="keyword">number</span>, deltaY: <span class="keyword">number</span>) => <span class="keyword">void</span>;
-    onPinch?: (scale: <span class="keyword">number</span>) => <span class="keyword">void</span>;
-    onRotate?: (angle: <span class="keyword">number</span>) => <span class="keyword">void</span>;
+    <pre class="ss-c-code-block"><code>interface GestureCallbacks {
+    onTap?: () => void;
+    onSwipe?: (direction: SwipeDirection, deltaX: number, deltaY: number) => void;
+    onPinch?: (scale: number) => void;
+    onRotate?: (angle: number) => void;
 }
 
-<span class="keyword">type</span> SwipeDirection = <span class="string">'left'</span> | <span class="string">'right'</span> | <span class="string">'up'</span> | <span class="string">'down'</span>;</code>
-    </div>
+type SwipeDirection = 'left' | 'right' | 'up' | 'down';</code></pre>
 </section>
 
 {%- include "partials/_demo_links.html.jinja" %}

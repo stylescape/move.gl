@@ -2,21 +2,21 @@
 
 {%- block title %}move.gl — Motion & Animation Library{%- endblock %}
 
-{%- block header_class %}header--hero{%- endblock %}
+{%- block header_class %}ss-u-text-center{%- endblock %}
 
 {%- block header %}
-<p class="eyebrow">Motion & Animation Library</p>
+<p class="ss-t-overline">Motion & Animation Library</p>
 <h1>move.gl</h1>
-<p class="lead">A comprehensive CSS animation and motion library for creating fluid, performant, and accessible motion
+<p class="ss-t-lead ss-u-mx-auto">A comprehensive CSS animation and motion library for creating fluid, performant, and accessible motion
     experiences.</p>
-<div class="hero-actions">
-    <a href="/getting-started.html" class="btn btn--primary">
+<div class="ss-u-flex ss-u-flex-wrap ss-u-justify-center ss-u-gap-12 ss-u-mt-4">
+    <a href="/getting-started.html" class="ss-c-button ss-c-button--primary">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
         </svg>
         Get Started
     </a>
-    <a href="https://github.com/stylescape/move.gl" class="btn btn--secondary">
+    <a href="https://github.com/stylescape/move.gl" class="ss-c-button ss-c-button--outline">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
             <path
                 d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
@@ -29,194 +29,230 @@
 {%- block content %}
 
 <!-- Key Features -->
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Features</h2>
-    <div class="feature-grid">
-        <div class="feature-card">
-            <div class="feature-card__icon">⟳</div>
-            <h3 class="feature-card__title">Keyframe Animations</h3>
-            <p class="feature-card__desc">Pre-built keyframe animations for fade, slide, bounce, zoom, flip, and more.
-                Ready to use out of the box.</p>
+    <div class="ss-l-grid ss-l-grid-auto">
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__body">
+                <div class="ss-t-text-2xl" aria-hidden="true">⟳</div>
+                <h3 class="ss-t-h6 ss-u-mt-0">Keyframe Animations</h3>
+                <p class="ss-t-meta ss-u-mb-0">Pre-built keyframe animations for fade, slide, bounce, zoom, flip, and more.
+                    Ready to use out of the box.</p>
+            </div>
         </div>
-        <div class="feature-card">
-            <div class="feature-card__icon">↔</div>
-            <h3 class="feature-card__title">Transitions</h3>
-            <p class="feature-card__desc">Smooth state transitions with customizable timing functions and durations.</p>
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__body">
+                <div class="ss-t-text-2xl" aria-hidden="true">⇄</div>
+                <h3 class="ss-t-h6 ss-u-mt-0">Transitions</h3>
+                <p class="ss-t-meta ss-u-mb-0">Smooth state transitions with customizable timing functions and durations.</p>
+            </div>
         </div>
-        <div class="feature-card">
-            <div class="feature-card__icon">◇</div>
-            <h3 class="feature-card__title">Transforms</h3>
-            <p class="feature-card__desc">2D and 3D transform utilities for rotation, scaling, skewing, and translation.
-            </p>
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__body">
+                <div class="ss-t-text-2xl" aria-hidden="true">◇</div>
+                <h3 class="ss-t-h6 ss-u-mt-0">Transforms</h3>
+                <p class="ss-t-meta ss-u-mb-0">2D and 3D transform utilities for rotation, scaling, skewing, and translation.
+                </p>
+            </div>
         </div>
-        <div class="feature-card">
-            <div class="feature-card__icon">⊚</div>
-            <h3 class="feature-card__title">Loaders</h3>
-            <p class="feature-card__desc">Animated loading indicators: spinners, dots, bars, and custom patterns.</p>
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__body">
+                <div class="ss-t-text-2xl" aria-hidden="true">⊚</div>
+                <h3 class="ss-t-h6 ss-u-mt-0">Loaders</h3>
+                <p class="ss-t-meta ss-u-mb-0">Animated loading indicators: spinners, dots, bars, and custom patterns.</p>
+            </div>
         </div>
-        <div class="feature-card">
-            <div class="feature-card__icon">♿</div>
-            <h3 class="feature-card__title">Accessibility</h3>
-            <p class="feature-card__desc">Respects prefers-reduced-motion for users who prefer minimal animations.</p>
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__body">
+                <div class="ss-t-text-2xl" aria-hidden="true">Aa</div>
+                <h3 class="ss-t-h6 ss-u-mt-0">Accessibility</h3>
+                <p class="ss-t-meta ss-u-mb-0">Respects prefers-reduced-motion for users who prefer minimal animations.</p>
+            </div>
         </div>
-        <div class="feature-card">
-            <div class="feature-card__icon">⚡</div>
-            <h3 class="feature-card__title">Performance</h3>
-            <p class="feature-card__desc">GPU-accelerated animations using transform and opacity for 60fps smoothness.
-            </p>
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__body">
+                <div class="ss-t-text-2xl" aria-hidden="true">»</div>
+                <h3 class="ss-t-h6 ss-u-mt-0">Performance</h3>
+                <p class="ss-t-meta ss-u-mb-0">GPU-accelerated animations using transform and opacity for 60fps smoothness.
+                </p>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- Quick Start -->
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Quick Start</h2>
-    <div class="code-block"><span class="comment">// Install via npm</span>
+    <pre class="ss-c-code-block">// Install via npm
         npm install move.gl
 
-        <span class="comment">// Import in your SCSS</span>
+        // Import in your SCSS
         @use "move.gl" as *;
 
-        <span class="comment">// Use animation mixins</span>
+        // Use animation mixins
         .element {
-        @include <span class="class">fade-in</span>;
+        @include animate_fade_in;
         }
 
         .card {
-        @include <span class="class">slide-up</span>($duration: 0.5s);
+        @include animate_slide_in_up($duration: 0.5s);
         }
 
-        <span class="comment">// Or use utility classes directly</span>
-        &lt;div class="<span class="class">animate-fade-in</span>"&gt;...&lt;/div&gt;
-        &lt;div class="<span class="class">animate-bounce</span>"&gt;...&lt;/div&gt;
-    </div>
-    <a href="/getting-started.html" class="btn btn--secondary" style="margin-top: 16px;">Full Installation Guide →</a>
+        // Or use utility classes directly
+        &lt;div class="animate_fade_in"&gt;...&lt;/div&gt;
+        &lt;div class="animate_bounce"&gt;...&lt;/div&gt;</pre>
+    <a href="/getting-started.html" class="ss-c-button ss-c-button--outline ss-u-mt-4">Full Installation Guide →</a>
 </section>
 
 <!-- Animation Demos -->
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Animation Showcase</h2>
-    <p style="margin-bottom: 24px;"><a href="/test_overview.html" class="btn btn--primary">View All Animations →</a></p>
-    <div class="demo-grid">
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-fade-in-loop"></div>
+    <p class="ss-u-mb-6"><a href="/test_overview.html" class="ss-c-button ss-c-button--primary">View All Animations →</a></p>
+    <div class="ss-l-grid ss-l-grid-auto">
+        <div class="ss-c-panel ss-u-text-center">
+            <div class="demo-stage">
+                <div class="demo-box animate_fade demo-loop"></div>
             </div>
-            <h3 class="demo-card__title">Fade</h3>
-            <p class="demo-card__desc">Smooth opacity transitions</p>
-            <a href="/test_fade.html" class="demo-card__link">View Demo →</a>
-        </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-slide-loop"></div>
+            <div class="ss-c-panel__body">
+                <h3 class="ss-t-h6 ss-u-mt-0">Fade</h3>
+                <p class="ss-t-meta">Smooth opacity transitions</p>
+                <a href="/test_fade.html" class="ss-c-button ss-c-button--outline ss-c-button--sm">View Demo →</a>
             </div>
-            <h3 class="demo-card__title">Slide</h3>
-            <p class="demo-card__desc">Directional sliding animations</p>
-            <a href="/test_slide.html" class="demo-card__link">View Demo →</a>
         </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-bounce-loop"></div>
+        <div class="ss-c-panel ss-u-text-center">
+            <div class="demo-stage">
+                <div class="demo-box animate_slide_in_up demo-loop"></div>
             </div>
-            <h3 class="demo-card__title">Bounce</h3>
-            <p class="demo-card__desc">Playful bouncing effects</p>
-            <a href="/test_bounce.html" class="demo-card__link">View Demo →</a>
-        </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-zoom-loop"></div>
+            <div class="ss-c-panel__body">
+                <h3 class="ss-t-h6 ss-u-mt-0">Slide</h3>
+                <p class="ss-t-meta">Directional sliding animations</p>
+                <a href="/test_slide.html" class="ss-c-button ss-c-button--outline ss-c-button--sm">View Demo →</a>
             </div>
-            <h3 class="demo-card__title">Zoom</h3>
-            <p class="demo-card__desc">Scale-based animations</p>
-            <a href="/test_zoom.html" class="demo-card__link">View Demo →</a>
         </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-flip-loop"></div>
+        <div class="ss-c-panel ss-u-text-center">
+            <div class="demo-stage">
+                <div class="demo-box animate_bounce demo-loop"></div>
             </div>
-            <h3 class="demo-card__title">Flip</h3>
-            <p class="demo-card__desc">3D rotation effects</p>
-            <a href="/test_flip.html" class="demo-card__link">View Demo →</a>
-        </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-spin-loop"></div>
+            <div class="ss-c-panel__body">
+                <h3 class="ss-t-h6 ss-u-mt-0">Bounce</h3>
+                <p class="ss-t-meta">Playful bouncing effects</p>
+                <a href="/test_bounce.html" class="ss-c-button ss-c-button--outline ss-c-button--sm">View Demo →</a>
             </div>
-            <h3 class="demo-card__title">Spin & Rotate</h3>
-            <p class="demo-card__desc">Continuous rotation</p>
-            <a href="/test_spin.html" class="demo-card__link">View Demo →</a>
         </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-pulse-demo"></div>
+        <div class="ss-c-panel ss-u-text-center">
+            <div class="demo-stage">
+                <div class="demo-box animate_zoom demo-loop"></div>
             </div>
-            <h3 class="demo-card__title">Pulse</h3>
-            <p class="demo-card__desc">Scale pulsing effects</p>
-            <a href="/test_pulse.html" class="demo-card__link">View Demo →</a>
-        </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-shake-demo"></div>
+            <div class="ss-c-panel__body">
+                <h3 class="ss-t-h6 ss-u-mt-0">Zoom</h3>
+                <p class="ss-t-meta">Scale-based animations</p>
+                <a href="/test_zoom.html" class="ss-c-button ss-c-button--outline ss-c-button--sm">View Demo →</a>
             </div>
-            <h3 class="demo-card__title">Shake & Wobble</h3>
-            <p class="demo-card__desc">Attention-grabbing shakes</p>
-            <a href="/test_shake.html" class="demo-card__link">View Demo →</a>
         </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-tada-demo"></div>
+        <div class="ss-c-panel ss-u-text-center">
+            <div class="demo-stage">
+                <div class="demo-box animate_flip demo-loop"></div>
             </div>
-            <h3 class="demo-card__title">Attention</h3>
-            <p class="demo-card__desc">Tada, pop, flash & more</p>
-            <a href="/test_attention.html" class="demo-card__link">View Demo →</a>
-        </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-float-demo"></div>
+            <div class="ss-c-panel__body">
+                <h3 class="ss-t-h6 ss-u-mt-0">Flip</h3>
+                <p class="ss-t-meta">3D rotation effects</p>
+                <a href="/test_flip.html" class="ss-c-button ss-c-button--outline ss-c-button--sm">View Demo →</a>
             </div>
-            <h3 class="demo-card__title">Special Effects</h3>
-            <p class="demo-card__desc">Elastic, lightspeed, hinge</p>
-            <a href="/test_special.html" class="demo-card__link">View Demo →</a>
         </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
-                <div class="demo-box animate-scale-in-demo"></div>
+        <div class="ss-c-panel ss-u-text-center">
+            <div class="demo-stage">
+                <div class="demo-box animate_spin demo-loop"></div>
             </div>
-            <h3 class="demo-card__title">Scale</h3>
-            <p class="demo-card__desc">Scale entrance & exit</p>
-            <a href="/test_scale.html" class="demo-card__link">View Demo →</a>
+            <div class="ss-c-panel__body">
+                <h3 class="ss-t-h6 ss-u-mt-0">Spin & Rotate</h3>
+                <p class="ss-t-meta">Continuous rotation</p>
+                <a href="/test_spin.html" class="ss-c-button ss-c-button--outline ss-c-button--sm">View Demo →</a>
+            </div>
         </div>
-        <div class="demo-card">
-            <div class="demo-card__preview">
+        <div class="ss-c-panel ss-u-text-center">
+            <div class="demo-stage">
+                <div class="demo-box animate_pulse demo-loop"></div>
+            </div>
+            <div class="ss-c-panel__body">
+                <h3 class="ss-t-h6 ss-u-mt-0">Pulse</h3>
+                <p class="ss-t-meta">Scale pulsing effects</p>
+                <a href="/test_pulse.html" class="ss-c-button ss-c-button--outline ss-c-button--sm">View Demo →</a>
+            </div>
+        </div>
+        <div class="ss-c-panel ss-u-text-center">
+            <div class="demo-stage">
+                <div class="demo-box animate_shake demo-loop"></div>
+            </div>
+            <div class="ss-c-panel__body">
+                <h3 class="ss-t-h6 ss-u-mt-0">Shake & Wobble</h3>
+                <p class="ss-t-meta">Attention-grabbing shakes</p>
+                <a href="/test_shake.html" class="ss-c-button ss-c-button--outline ss-c-button--sm">View Demo →</a>
+            </div>
+        </div>
+        <div class="ss-c-panel ss-u-text-center">
+            <div class="demo-stage">
+                <div class="demo-box animate_tada demo-loop"></div>
+            </div>
+            <div class="ss-c-panel__body">
+                <h3 class="ss-t-h6 ss-u-mt-0">Attention</h3>
+                <p class="ss-t-meta">Tada, pop, flash & more</p>
+                <a href="/test_attention.html" class="ss-c-button ss-c-button--outline ss-c-button--sm">View Demo →</a>
+            </div>
+        </div>
+        <div class="ss-c-panel ss-u-text-center">
+            <div class="demo-stage">
+                <div class="demo-box animate_float demo-loop"></div>
+            </div>
+            <div class="ss-c-panel__body">
+                <h3 class="ss-t-h6 ss-u-mt-0">Special Effects</h3>
+                <p class="ss-t-meta">Elastic, lightspeed, hinge</p>
+                <a href="/test_special.html" class="ss-c-button ss-c-button--outline ss-c-button--sm">View Demo →</a>
+            </div>
+        </div>
+        <div class="ss-c-panel ss-u-text-center">
+            <div class="demo-stage">
+                <div class="demo-box animate_scale_expand demo-loop"></div>
+            </div>
+            <div class="ss-c-panel__body">
+                <h3 class="ss-t-h6 ss-u-mt-0">Scale</h3>
+                <p class="ss-t-meta">Scale entrance & exit</p>
+                <a href="/test_scale.html" class="ss-c-button ss-c-button--outline ss-c-button--sm">View Demo →</a>
+            </div>
+        </div>
+        <div class="ss-c-panel ss-u-text-center">
+            <div class="demo-stage">
                 <div class="loader loader--spinner"></div>
             </div>
-            <h3 class="demo-card__title">Loaders</h3>
-            <p class="demo-card__desc">Loading indicators</p>
-            <a href="/test_loaders.html" class="demo-card__link">View Demo →</a>
+            <div class="ss-c-panel__body">
+                <h3 class="ss-t-h6 ss-u-mt-0">Loaders</h3>
+                <p class="ss-t-meta">Loading indicators</p>
+                <a href="/test_loaders.html" class="ss-c-button ss-c-button--outline ss-c-button--sm">View Demo →</a>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- Documentation Sections -->
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Documentation</h2>
 
-    <div class="doc-sections">
-        <div class="doc-section">
-            <h3>Learn</h3>
+    <div class="ss-l-grid ss-l-grid-auto">
+        <div>
+            <h3 class="ss-c-section-title">Learn</h3>
             <ul>
                 <li><a href="/getting-started.html">Getting Started</a></li>
                 <li><a href="/core-concepts.html">Core Concepts</a></li>
             </ul>
         </div>
-        <div class="doc-section">
-            <h3>Overview</h3>
+        <div>
+            <h3 class="ss-c-section-title">Overview</h3>
             <ul>
                 <li><a href="/test_overview.html">All Animations (Looping)</a></li>
+                <li><a href="/test_animations.html">Animation Reference</a></li>
             </ul>
         </div>
-        <div class="doc-section">
-            <h3>Animations</h3>
+        <div>
+            <h3 class="ss-c-section-title">Animations</h3>
             <ul>
                 <li><a href="/test_fade.html">Fade Animations</a></li>
                 <li><a href="/test_slide.html">Slide Animations</a></li>
@@ -231,38 +267,35 @@
                 <li><a href="/test_special.html">Special Effects</a></li>
             </ul>
         </div>
-        <div class="doc-section">
-            <h3>Effects</h3>
+        <div>
+            <h3 class="ss-c-section-title">Effects</h3>
             <ul>
                 <li><a href="/test_loaders.html">Loading Animations</a></li>
                 <li><a href="/test_transitions.html">Transitions</a></li>
                 <li><a href="/test_transforms.html">Transforms</a></li>
+                <li><a href="/test_effects.html">Filter Effects</a></li>
+                <li><a href="/test_keyframes.html">Keyframes</a></li>
+                <li><a href="/test_mouse.html">Mouse Interactions</a></li>
             </ul>
         </div>
     </div>
 </section>
 
 <!-- Accessibility -->
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Accessibility First</h2>
-    <p>move.gl automatically respects the <code>prefers-reduced-motion</code> media query. Users who prefer reduced
-        motion will see static or minimal animations instead.</p>
+    <p>move.gl ships mixins for the <code>prefers-reduced-motion</code> media query, so users who prefer reduced
+        motion see static or minimal animations instead.</p>
 
-    <div class="code-block"><span class="comment">// Built-in reduced motion support</span>
-        @media (prefers-reduced-motion: reduce) {
-        .animate-* {
-        animation: none;
-        transition: none;
-        }
-        }
+    <pre class="ss-c-code-block">// Global reduced-motion reset (include once at root level)
+        @include reduced_motion_global;
 
-        <span class="comment">// Or use the accessibility mixin</span>
+        // Or only animate when the user has no motion preference
         .element {
-        @include <span class="class">motion-safe</span> {
-        @include fade-in;
+        @include respects_motion {
+        @include animate_fade_in;
         }
-        }
-    </div>
+        }</pre>
 </section>
 
 {%- endblock %}

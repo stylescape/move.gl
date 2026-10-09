@@ -16,93 +16,135 @@ export interface KeyboardLayout {
  * Virtual Keyboard Configuration Options
  */
 export interface VirtualKeyboardOptions {
-    /** Custom keyboard layout */
+    /** Custom keyboard layout; must define at least a "default" mode */
     layout?: KeyboardLayout;
     /** Callback when a key is pressed */
     onKeyPress?: (key: string) => void;
 }
 
 /**
+ * Keys with a function instead of a character, mapped to their label.
+ * "?123" and "ABC" switch between the "special" and "default" modes.
+ */
+const FUNCTION_KEYS: { [key: string]: string } = {
+    "Backspace": "⌫",
+    "Shift": "⇧",
+    "CapsLock": "⇪",
+    "Space": "Space",
+    "?123": "?123",
+    "ABC": "ABC",
+};
+
+const DEFAULT_LAYOUT: KeyboardLayout = {
+    "default": [
+        ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
+        ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+        ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+        ["Shift", "z", "x", "c", "v", "b", "n", "m", "Backspace"],
+        ["?123", "Space"]
+    ],
+    "shift": [
+        ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"],
+        ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+        ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+        ["Shift", "Z", "X", "C", "V", "B", "N", "M", "Backspace"],
+        ["?123", "Space"]
+    ],
+    "special": [
+        ["[", "]", "{", "}", "#", "%", "^", "*", "+", "="],
+        ["_", "\\", "|", "~", "<", ">", "€", "£", "¥"],
+        [".", ",", "?", "!", "'", '"', ":", ";", "Backspace"],
+        ["ABC", "Space"]
+    ]
+};
+
+/**
  * Virtual Keyboard
  *
- * Manages the rendering and interaction of a virtual keyboard on the web.
- * Supports multiple layouts (default, shift, special) and handles both
- * mouse and keyboard inputs, including touch support.
+ * Renders an on-screen keyboard that types into a linked input. Supports
+ * multiple layouts (default, shift, special), inserts at the caret, and
+ * mirrors physical key presses made while the input is not focused.
  *
  * @example
  * ```typescript
- * const keyboard = new VirtualKeyboard('textInput', 'keyboard');
+ * const keyboard = new VirtualKeyboard('textInput', 'keyboard', {
+ *     onKeyPress: (key) => console.log(key)
+ * });
  * keyboard.switchMode('special');
  * ```
  */
 export class VirtualKeyboard {
 
-    private keys: { [mode: string]: string[][] } = {
-        "default": [
-            ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
-            ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
-            ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
-            ["z", "x", "c", "v", "b", "n", "m", "Backspace"]
-        ],
-        "shift": [
-            ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"],
-            ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
-            ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
-            ["Z", "X", "C", "V", "B", "N", "M", "Backspace"]
-        ],
-        "special": [
-            ["[", "]", "{", "}", "#", "%", "^", "*", "+", "="],
-            ["_", "\\", "|", "~", "<", ">", "€", "£", "¥"],
-            [".", ",", "?", "!", "'", '"', ":", ";", "Backspace"]
-        ]
-    };
+    private keys: KeyboardLayout;
     private currentMode = "default";
-    private inputElement: HTMLInputElement;
+    private inputElement: HTMLInputElement | HTMLTextAreaElement;
     private keyboardElement: HTMLElement;
+    private onKeyPress?: (key: string) => void;
 
     /**
      * @notice Initializes the virtual keyboard with specific input and
      * keyboard element IDs.
-     * @param inputId The ID of the HTML input element to which the keyboard
-     * will be linked.
+     * @param inputId The ID of the HTML input or textarea element to which
+     * the keyboard will be linked.
      * @param keyboardId The ID of the container element where the keyboard
      * will be rendered.
+     * @param options Optional layout and key press callback.
+     * @throws Error if either element is not found.
      */
-    constructor(inputId: string, keyboardId: string) {
-        this.inputElement = document.getElementById(
-            inputId
-        ) as HTMLInputElement;
-        this.keyboardElement = document.getElementById(
-            keyboardId
-        ) as HTMLElement;
+    constructor(inputId: string, keyboardId: string, options: VirtualKeyboardOptions = {}) {
+        const inputElement = document.getElementById(inputId);
+        if (!(inputElement instanceof HTMLInputElement || inputElement instanceof HTMLTextAreaElement)) {
+            throw new Error(`Element with id "${inputId}" is not an input or textarea`);
+        }
+        const keyboardElement = document.getElementById(keyboardId);
+        if (!keyboardElement) {
+            throw new Error(`Element with id "${keyboardId}" not found`);
+        }
+        this.inputElement = inputElement;
+        this.keyboardElement = keyboardElement;
+        this.keys = options.layout ?? DEFAULT_LAYOUT;
+        if (!this.keys[this.currentMode]) {
+            throw new Error('Keyboard layout must define a "default" mode');
+        }
+        this.onKeyPress = options.onKeyPress;
         this.renderKeyboard();
         this.attachEventListeners();
     }
 
     /**
+     * Returns the active layout mode.
+     */
+    public get mode(): string {
+        return this.currentMode;
+    }
+
+    /**
      * @notice Renders the keyboard based on the current mode (default, shift,
      * or special).
-     * @dev Dynamically creates HTML for keyboard keys and appends them to the
-     * keyboardElement.
+     * @dev Keys are buttons carrying their value in `data-key`; clicks are
+     * handled by one delegated listener on the keyboard element.
      */
     private renderKeyboard() {
-        // Clear existing keys
-        this.keyboardElement.innerHTML = "";
-        this.keys[this.currentMode].forEach(row => {
+        const rows = this.keys[this.currentMode].map(row => {
             const rowElement = document.createElement("div");
             rowElement.className = "keyboard__row";
             row.forEach(key => {
-                const keyElement = document.createElement("div");
-                keyElement.textContent = key;
-                // Assign a class for easier CSS styling
-                keyElement.className = "key";
-                keyElement.addEventListener(
-                    "click", () => this.handleKeyPress(key)
-                );
+                const keyElement = document.createElement("button");
+                keyElement.type = "button";
+                keyElement.className = key in FUNCTION_KEYS ? "key key--function" : "key";
+                keyElement.dataset.key = key;
+                keyElement.textContent = FUNCTION_KEYS[key] ?? key;
+                if (key in FUNCTION_KEYS) {
+                    keyElement.setAttribute("aria-label", key);
+                }
+                if (key === "Shift" || key === "CapsLock") {
+                    keyElement.setAttribute("aria-pressed", String(this.currentMode === "shift"));
+                }
                 rowElement.appendChild(keyElement);
             });
-            this.keyboardElement.appendChild(rowElement);
+            return rowElement;
         });
+        this.keyboardElement.replaceChildren(...rows);
     }
 
     /**
@@ -112,12 +154,54 @@ export class VirtualKeyboard {
      */
     private handleKeyPress(key: string) {
         if (key === "Backspace") {
-            this.inputElement.value = this.inputElement.value.slice(0, -1);
+            this.deleteBackward();
         } else if (key === "Shift" || key === "CapsLock") {
             this.toggleShift();
+        } else if (key === "?123") {
+            this.switchMode("special");
+        } else if (key === "ABC") {
+            this.switchMode("default");
         } else {
-            this.inputElement.value += key;
+            this.insertText(key === "Space" ? " " : key);
         }
+        this.onKeyPress?.(key);
+    }
+
+    /**
+     * Inserts text at the caret (replacing any selection) and notifies
+     * listeners through a bubbling `input` event, like native typing does.
+     */
+    private insertText(text: string) {
+        const input = this.inputElement;
+        const start = input.selectionStart;
+        const end = input.selectionEnd;
+        if (start === null || end === null) {
+            // Input types such as "email" or "number" expose no selection.
+            input.value += text;
+        } else {
+            input.setRangeText(text, start, end);
+            input.setSelectionRange(start + text.length, start + text.length);
+        }
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+    }
+
+    /**
+     * Deletes the selection, or the character before the caret.
+     */
+    private deleteBackward() {
+        const input = this.inputElement;
+        const start = input.selectionStart;
+        const end = input.selectionEnd;
+        if (start === null || end === null) {
+            input.value = input.value.slice(0, -1);
+        } else if (start !== end || start > 0) {
+            const from = start === end ? start - 1 : start;
+            input.setRangeText("", from, end);
+            input.setSelectionRange(from, from);
+        } else {
+            return;
+        }
+        input.dispatchEvent(new Event("input", { bubbles: true }));
     }
 
     /**
@@ -125,48 +209,65 @@ export class VirtualKeyboard {
      * @dev This method is called when the "Shift" or "CapsLock" key is pressed.
      */
     private toggleShift() {
-        this.currentMode = this.currentMode === "default" ? "shift" : "default";
-        this.renderKeyboard();
+        this.switchMode(this.currentMode === "shift" ? "default" : "shift");
     }
 
     /**
-     * @notice Attaches necessary event listeners to handle both physical
-     * keyboard and touch inputs.
+     * @notice Attaches listeners for virtual key clicks and physical keys.
      */
     private attachEventListeners() {
-        document.addEventListener("keydown", this.handlePhysicalKeyPress);
-        this.keyboardElement.addEventListener(
-            "touchstart", this.handleTouchStart, false
-        );
+        this.keyboardElement.addEventListener("click", this.handleClick);
+        this.keyboardElement.addEventListener("pointerdown", this.preventFocusSteal);
+        document.addEventListener("keydown", this.handlePhysicalKeyDown);
+        document.addEventListener("keyup", this.handlePhysicalKeyUp);
     }
 
-    /**
-     * @notice Handles physical keyboard events and maps them to virtual key
-     * presses.
-     * @param event The keyboard event captured from the user"s physical
-     * keyboard.
-     */
-    private handlePhysicalKeyPress = (event: KeyboardEvent) => {
-        const key = event.key;
-        if (key === "Shift" || key === "CapsLock") {
-            this.toggleShift();
-            event.preventDefault();
-        } else if (key === "Enter" || key === "Tab") {
-            // Optional: Implement behavior for Enter and Tab if needed
-        } else {
-            this.handleKeyPress(key);
+    private handleClick = (event: MouseEvent) => {
+        const keyElement = (event.target as Element).closest<HTMLElement>("[data-key]");
+        if (keyElement?.dataset.key && this.keyboardElement.contains(keyElement)) {
+            this.handleKeyPress(keyElement.dataset.key);
         }
     };
 
     /**
-     * @notice Handles touch events on the keyboard element.
-     * @param event The touch event on the virtual keyboard.
+     * Keeps focus (and the caret) in the input while keys are tapped.
      */
-    private handleTouchStart = (event: TouchEvent) => {
-        event.preventDefault(); // Prevents emulating mouse events
-        const keyElement = event.target as HTMLElement;
-        if (keyElement.classList.contains("key")) {
-            this.handleKeyPress(keyElement.textContent || "");
+    private preventFocusSteal = (event: PointerEvent) => {
+        if ((event.target as Element).closest("[data-key]")) {
+            event.preventDefault();
+        }
+    };
+
+    /**
+     * @notice Mirrors physical key presses into the linked input.
+     * @dev Skipped while the user types into the input itself or any other
+     * editable field, which the browser already handles natively.
+     */
+    private handlePhysicalKeyDown = (event: KeyboardEvent) => {
+        if (event.defaultPrevented || isEditable(event.target)) return;
+
+        const key = event.key;
+        if (key === "Shift") {
+            if (!event.repeat && this.keys.shift) this.switchMode("shift");
+        } else if (key === "CapsLock") {
+            if (!event.repeat) this.toggleShift();
+        } else if (event.ctrlKey || event.metaKey || event.altKey) {
+            return;
+        } else if (key === "Backspace") {
+            this.deleteBackward();
+            this.onKeyPress?.(key);
+            event.preventDefault();
+        } else if (key.length === 1) {
+            // Single printable characters only, not "ArrowLeft", "Escape" etc.
+            this.insertText(key);
+            this.onKeyPress?.(key);
+            event.preventDefault();
+        }
+    };
+
+    private handlePhysicalKeyUp = (event: KeyboardEvent) => {
+        if (event.key === "Shift" && this.currentMode === "shift" && !event.getModifierState("CapsLock")) {
+            this.switchMode("default");
         }
     };
 
@@ -176,7 +277,7 @@ export class VirtualKeyboard {
      * ("default", "shift", or "special").
      */
     public switchMode(mode: string) {
-        if (this.keys[mode]) {
+        if (this.keys[mode] && mode !== this.currentMode) {
             this.currentMode = mode;
             this.renderKeyboard();
         }
@@ -186,10 +287,21 @@ export class VirtualKeyboard {
      * Removes all event listeners and cleans up.
      */
     public destroy(): void {
-        document.removeEventListener('keydown', this.handlePhysicalKeyPress);
-        this.keyboardElement.removeEventListener('touchstart', this.handleTouchStart);
-        this.keyboardElement.innerHTML = '';
+        this.keyboardElement.removeEventListener("click", this.handleClick);
+        this.keyboardElement.removeEventListener("pointerdown", this.preventFocusSteal);
+        document.removeEventListener("keydown", this.handlePhysicalKeyDown);
+        document.removeEventListener("keyup", this.handlePhysicalKeyUp);
+        this.keyboardElement.replaceChildren();
     }
+}
+
+function isEditable(target: EventTarget | null): boolean {
+    return target instanceof HTMLElement && (
+        target.isContentEditable ||
+        target instanceof HTMLInputElement ||
+        target instanceof HTMLTextAreaElement ||
+        target instanceof HTMLSelectElement
+    );
 }
 
 export default VirtualKeyboard;

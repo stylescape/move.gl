@@ -14,7 +14,6 @@
 ///
 ////
 
-
 // ============================================================================
 // Base Loader Variables
 // ============================================================================
@@ -23,17 +22,16 @@
 $loader-size: 48px !default;
 
 /// Default loader color
-$loader-color: #FFF !default;
+$loader-color: #fff !default;
 
 /// Default loader accent color
-$loader-accent: #FF3D00 !default;
+$loader-accent: #ff3d00 !default;
 
 /// Default loader animation speed
 $loader-speed: 1s !default;
 
 /// Default loader border width
 $loader-border: 5px !default;
-
 
 // ============================================================================
 // Spinner Variables
@@ -62,7 +60,6 @@ $spinner-animation-speed: 0.75s !default;
 
 /// Spinner vertical alignment
 $spinner-vertical-align: -0.125em !default;
-
 
 // ============================================================================
 // Skeleton Variables

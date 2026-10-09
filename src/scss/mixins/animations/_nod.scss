@@ -15,21 +15,18 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 ///
 /// Nod Animation
@@ -54,15 +51,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_nod,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_nod, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_nod($angle);
 }
-
 
 ///
 /// Slow Nod Animation
@@ -87,15 +78,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_nod_slow,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_nod_slow, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_nod_slow($angle);
 }
-
 
 ///
 /// Nod with Bounce Animation
@@ -116,15 +101,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_nod_bounce,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_nod_bounce, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_nod_bounce($angle, $bounce-height);
 }
-
 
 ///
 /// Continuous Nod
@@ -143,11 +122,6 @@
     $timing_function: linear,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_nod_continuous,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_nod_continuous, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_nod_continuous($angle);
 }

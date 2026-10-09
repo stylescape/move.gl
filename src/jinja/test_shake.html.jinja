@@ -3,13 +3,13 @@
 {%- block title %}Shake Animations — move.gl{%- endblock %}
 
 {%- block header %}
-<p class="eyebrow">Animations</p>
+<p class="ss-t-overline">Animations</p>
 <h1>Shake Animations</h1>
 {%- endblock %}
 
 {%- block content %}
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Shake</h2>
     <p>Rotation-based shake animations for attention and alerts.</p>
 
@@ -29,7 +29,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Wobble & Jiggle</h2>
     <p>Playful wobbling and jiggling effects.</p>
 
@@ -53,7 +53,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Jiggle Effects</h2>
     <p>Quick jiggling motion effects.</p>
 
@@ -77,10 +77,10 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Usage</h2>
 
-    <div class="code-block"><span class="comment">// SCSS Mixin</span>
+    <pre class="ss-c-code-block">// SCSS Mixin
         .element {
         @include animate_shake;
         }
@@ -89,10 +89,9 @@
         @include animate_wobble;
         }
 
-        <span class="comment">// Utility classes</span>
+        // Utility classes
         &lt;div class="animate_shake"&gt;...&lt;/div&gt;
-        &lt;div class="animate_wobble"&gt;...&lt;/div&gt;
-    </div>
+        &lt;div class="animate_wobble"&gt;...&lt;/div&gt;</pre>
 </section>
 
 {%- endblock %}

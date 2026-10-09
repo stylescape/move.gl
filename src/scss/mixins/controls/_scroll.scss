@@ -343,11 +343,35 @@
 /// @param {Number} $speed [0.5] - Parallax speed (0-1).
 ///
 @mixin scroll_parallax($speed: 0.5) {
+    --parallax-speed: #{$speed};
     will-change: transform;
 
     @supports (animation-timeline: scroll()) {
         animation: parallax-move linear;
         animation-timeline: scroll();
+    }
+}
+
+///
+/// Scroll fade-in keyframes (required by `scroll_fade_in`).
+///
+@mixin keyframes_scroll_fade_in {
+    @keyframes scroll-fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+}
+
+///
+/// Parallax keyframes (required by `scroll_parallax`). The travel is scaled
+/// per element by the `--parallax-speed` custom property.
+///
+/// @param {Length} $distance [100px] - Maximum travel at speed 1.
+///
+@mixin keyframes_parallax_move($distance: 100px) {
+    @keyframes parallax-move {
+        from { transform: translateY(0); }
+        to { transform: translateY(calc(var(--parallax-speed, 0.5) * #{$distance})); }
     }
 }
 

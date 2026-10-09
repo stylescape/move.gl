@@ -3,13 +3,13 @@
 {%- block title %}Fade Animations — move.gl{%- endblock %}
 
 {%- block header %}
-<p class="eyebrow">Animations</p>
+<p class="ss-t-overline">Animations</p>
 <h1>Fade Animations</h1>
 {%- endblock %}
 
 {%- block content %}
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Fade Effects</h2>
     <p>Smooth opacity transitions.</p>
 
@@ -33,7 +33,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Slide + Fade Effects</h2>
     <p>Combined slide and fade animations.</p>
 
@@ -57,10 +57,10 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Usage</h2>
 
-    <div class="code-block"><span class="comment">// SCSS Mixin</span>
+    <pre class="ss-c-code-block">// SCSS Mixin
         .element {
         @include animate_fade;
         }
@@ -69,11 +69,10 @@
         @include animate_fade_in;
         }
 
-        <span class="comment">// Utility classes</span>
+        // Utility classes
         &lt;div class="animate_fade"&gt;...&lt;/div&gt;
         &lt;div class="animate_fade_in"&gt;...&lt;/div&gt;
-        &lt;div class="animate_slide_fade_in_up"&gt;...&lt;/div&gt;
-    </div>
+        &lt;div class="animate_slide_fade_in_up"&gt;...&lt;/div&gt;</pre>
 </section>
 
 {%- endblock %}

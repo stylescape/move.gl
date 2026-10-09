@@ -15,21 +15,18 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 ///
 /// Wave Animation
@@ -53,15 +50,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_wave,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_wave, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_wave($angle);
 }
-
 
 // Gentle Wave Animation
 // ----------------------------------------------------------------------------
@@ -81,16 +72,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_wave_slow,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_wave_slow, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_wave_slow($angle);
 }
-
-
 
 // Rapid Wave Animation
 // ----------------------------------------------------------------------------
@@ -110,16 +94,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_wave_fast,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_wave_fast, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_wave_fast($angle);
 }
-
-
 
 // Wave with Fade Animation
 // ----------------------------------------------------------------------------
@@ -139,11 +116,6 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_wave_fade,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_wave_fade, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_wave_fade($angle);
 }

@@ -3,13 +3,13 @@
 {%- block title %}Mouse — move.gl{%- endblock %}
 
 {%- block header %}
-<p class="eyebrow">Mixins</p>
+<p class="ss-t-overline">Mixins</p>
 <h1>Mouse Interactions</h1>
 {%- endblock %}
 
 {%- block content %}
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Cursor Styles</h2>
     <p>Hover over each box to see the cursor change.</p>
 
@@ -71,7 +71,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Resize Cursors</h2>
     <p>Directional resize cursors.</p>
 
@@ -96,30 +96,30 @@
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="mouse-box cursor--ne-resize">↗</div>
+            <div class="mouse-box cursor--ne-resize">⇗</div>
             <p>ne-resize</p>
         </div>
         <div class="demo-item">
-            <div class="mouse-box cursor--se-resize">↘</div>
+            <div class="mouse-box cursor--se-resize">⇘</div>
             <p>se-resize</p>
         </div>
         <div class="demo-item">
-            <div class="mouse-box cursor--sw-resize">↙</div>
+            <div class="mouse-box cursor--sw-resize">⇙</div>
             <p>sw-resize</p>
         </div>
         <div class="demo-item">
-            <div class="mouse-box cursor--nw-resize">↖</div>
+            <div class="mouse-box cursor--nw-resize">⇖</div>
             <p>nw-resize</p>
         </div>
     </div>
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="mouse-box cursor--ew-resize">↔</div>
+            <div class="mouse-box cursor--ew-resize">⇄</div>
             <p>ew-resize</p>
         </div>
         <div class="demo-item">
-            <div class="mouse-box cursor--ns-resize">↕</div>
+            <div class="mouse-box cursor--ns-resize">⇅</div>
             <p>ns-resize</p>
         </div>
         <div class="demo-item">
@@ -133,7 +133,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Hover Effects</h2>
     <p>Interactive hover transitions.</p>
 
@@ -176,7 +176,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Pointer Events</h2>
     <p>Control element interactivity.</p>
 
@@ -192,21 +192,21 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Text Selection</h2>
     <p>Try selecting the text in each box.</p>
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="mouse-box selection--default">Select this text normally</div>
+            <div class="mouse-box select--text">Select this text normally</div>
             <p>default selection</p>
         </div>
         <div class="demo-item">
-            <div class="mouse-box selection--none">You cannot select this</div>
+            <div class="mouse-box select--none">You cannot select this</div>
             <p>user-select: none</p>
         </div>
         <div class="demo-item">
-            <div class="mouse-box selection--all">Click to select all</div>
+            <div class="mouse-box select--all">Click to select all</div>
             <p>user-select: all</p>
         </div>
         <div class="demo-item">
@@ -216,7 +216,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Scroll Behavior</h2>
     <p>Scrollable containers with different behaviors.</p>
 
@@ -245,7 +245,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Custom Scrollbar</h2>
     <p>Styled scrollbar appearance.</p>
 
@@ -279,7 +279,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Touch Interactions</h2>
     <p>Touch-optimized interaction styles.</p>
 
@@ -299,7 +299,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Focus States</h2>
     <p>Tab through to see focus styles.</p>
 
@@ -323,10 +323,10 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Usage</h2>
 
-    <div class="code-block"><span class="comment">// Cursor Mixins</span>
+    <pre class="ss-c-code-block">// Cursor Mixins
         .button {
         @include cursor_pointer;
         }
@@ -338,12 +338,12 @@
         }
         }
 
-        <span class="comment">// Custom cursor</span>
+        // Custom cursor
         .custom {
         @include cursor_custom('path/to/cursor.png', 'pointer');
         }
 
-        <span class="comment">// Hover Effects</span>
+        // Hover Effects
         .card {
         @include hover_scale(1.05, 0.3s);
         }
@@ -354,12 +354,12 @@
         }
         }
 
-        <span class="comment">// Pointer Events</span>
+        // Pointer Events
         .overlay {
         @include pointer_events(none);
         }
 
-        <span class="comment">// Text Selection</span>
+        // Text Selection
         .no-select {
         user-select: none;
         }
@@ -368,15 +368,14 @@
         @include custom-selection(#3b82f6, #ffffff);
         }
 
-        <span class="comment">// Scroll Behavior</span>
+        // Scroll Behavior
         .container {
         @include scroll_smooth(true, true);
         }
 
         .carousel {
         @include scroll_snap('x mandatory', 'center');
-        }
-    </div>
+        }</pre>
 </section>
 
 {%- endblock %}

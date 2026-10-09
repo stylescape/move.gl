@@ -15,17 +15,15 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "sass:math";
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use 'sass:math';
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
@@ -54,15 +52,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_shake,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_shake, $duration, $timing_function, $iteration_count);
     @include keyframes_shake($amplitude);
 }
-
 
 ///
 /// Gentle Shake Animation
@@ -81,15 +73,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_shake_slow,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_shake_slow, $duration, $timing_function, $iteration_count);
     @include keyframes_shake_slow($amplitude);
 }
-
 
 ///
 /// Horizontal Shake Animation
@@ -113,15 +99,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_shake_horizontal,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_shake_horizontal, $duration, $timing_function, $iteration_count);
     @include keyframes_shake_horizontal($distance);
 }
-
 
 ///
 /// Vertical Shake Animation
@@ -140,15 +120,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_shake_vertical,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_shake_vertical, $duration, $timing_function, $iteration_count);
     @include keyframes_shake_vertical($distance);
 }
-
 
 ///
 /// Intense Shake Animation
@@ -169,15 +143,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: 1
 ) {
-    @include animate_base(
-        animate_shake_intense,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_shake_intense, $duration, $timing_function, $iteration_count);
     @include keyframes_shake_intense($amplitude, $distance);
 }
-
 
 ///
 /// Jitter Shake Animation
@@ -196,15 +164,9 @@
     $timing_function: linear,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_shake_jitter,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_shake_jitter, $duration, $timing_function, $iteration_count);
     @include keyframes_shake_jitter($distance);
 }
-
 
 ///
 /// Nod Shake Animation
@@ -223,11 +185,6 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_shake_nod,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_shake_nod, $duration, $timing_function, $iteration_count);
     @include keyframes_shake_nod($angle);
 }

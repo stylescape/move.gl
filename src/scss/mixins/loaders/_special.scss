@@ -87,11 +87,7 @@
     100% { transform: translateY(-20px); }
 }
 
-/// Windmill rotation (uses spin from rings)
-@keyframes loader-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
+// Windmill rotation uses `loader-spin`, defined in rings.
 
 /// Battery charge animation
 @keyframes loader-battery-charge {

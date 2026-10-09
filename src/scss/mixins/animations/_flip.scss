@@ -45,6 +45,8 @@
 /// @param {Number} $rotate_z [0] - Z-axis rotation factor.
 /// @param {Angle} $rotate_start_angle [0] - Starting angle.
 /// @param {Angle} $rotate_end_angle [360deg] - Ending angle.
+/// @param {String} $name [animate_flip] - Keyframes name. Use a unique name
+///   per parameter set, otherwise later `@keyframes` override earlier ones.
 ///
 @mixin animate_flip(
     $duration: $animate_base_duration,
@@ -54,15 +56,16 @@
     $rotate_y: 1,
     $rotate_z: 0,
     $rotate_start_angle: 0,
-    $rotate_end_angle: 360deg
+    $rotate_end_angle: 360deg,
+    $name: animate_flip
 ) {
     @include animate_base(
-        animate_flip,
+        $name,
         $duration,
         $timing_function,
         $iteration_count
     );
-    @include keyframes_flip($rotate_x, $rotate_y, $rotate_z, $rotate_start_angle, $rotate_end_angle);
+    @include keyframes_flip($rotate_x, $rotate_y, $rotate_z, $rotate_start_angle, $rotate_end_angle, $name);
 }
 
 

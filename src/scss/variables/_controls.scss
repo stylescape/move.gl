@@ -14,7 +14,6 @@
 ///
 ////
 
-
 // ============================================================================
 // Hover Variables
 // ============================================================================
@@ -37,7 +36,6 @@ $hover-scale-default: 1.05 !default;
 /// Default hover lift distance
 $hover-lift-default: -4px !default;
 
-
 // ============================================================================
 // Touch Variables
 // ============================================================================
@@ -50,7 +48,6 @@ $touch-target-large: 48px !default;
 
 /// Touch feedback duration
 $touch-feedback-duration: 0.15s !default;
-
 
 // ============================================================================
 // Scroll Variables
@@ -65,14 +62,21 @@ $scroll-padding-default: 20px !default;
 /// Default snap alignment
 $scroll-snap-align-default: start !default;
 
-
 // ============================================================================
 // Cursor Variables
 // ============================================================================
 
 /// List of cursor types for utility class generation
-$cursors: ('pointer', 'text', 'wait', 'crosshair', 'not-allowed', 'zoom-in', 'grab', 'grabbing') !default;
-
+$cursors: (
+    'pointer',
+    'text',
+    'wait',
+    'crosshair',
+    'not-allowed',
+    'zoom-in',
+    'grab',
+    'grabbing'
+) !default;
 
 // ============================================================================
 // Selection Theme Variables
@@ -80,24 +84,23 @@ $cursors: ('pointer', 'text', 'wait', 'crosshair', 'not-allowed', 'zoom-in', 'gr
 
 /// Selection theme definitions
 $themes: (
-    "light": (
-        "selection-bg": #e0f7fa,
-        "selection-text": #00796b
+    'light': (
+        'selection-bg': #e0f7fa,
+        'selection-text': #00796b,
     ),
-    "dark": (
-        "selection-bg": #004d40,
-        "selection-text": #b2dfdb
-    )
+    'dark': (
+        'selection-bg': #004d40,
+        'selection-text': #b2dfdb,
+    ),
 ) !default;
 
 /// Global theme colors including selection
 $theme-colors: (
     primary: #6200ea,
     secondary: #03dac6,
-    selection-bg: #B388FF,
+    selection-bg: #b388ff,
     selection-text: #6200ea,
 ) !default;
-
 
 // ============================================================================
 // Keyboard Variables
@@ -147,7 +150,6 @@ $key-special-bg: #4d4d6c !default;
 
 /// Space key maximum width
 $key-space-max-width: 300px !default;
-
 
 // ============================================================================
 // Screensaver Variables

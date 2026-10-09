@@ -10,10 +10,10 @@ Interactive demo for the video overlay component
 {%- set current_demo = "video_overlay" -%}
 
 {%- block header %}
-<header class="page-header">
-    <div class="page-header__badge">TypeScript Component</div>
-    <h1 class="page-header__title">Video Overlay</h1>
-    <p class="page-header__description">
+<header class="ss-u-mb-8">
+    <span class="ss-c-badge">TypeScript Component</span>
+    <h1>Video Overlay</h1>
+    <p class="ss-t-lead">
         A transparent video overlay system with fade effects and HEVC alpha channel support.
         Perfect for visual effects, transitions, and decorative overlays.
     </p>
@@ -21,27 +21,26 @@ Interactive demo for the video overlay component
 {%- endblock -%}
 
 {%- block content %}
-<section class="section">
-    <h2 class="section__title">Interactive Demo</h2>
-    <p class="section__description">
+<section class="ss-l-region ss-l-region-md">
+    <h2>Interactive Demo</h2>
+    <p class="ss-t-meta">
         Toggle different overlay effects to see how they work. The checkerboard pattern shows transparency.
     </p>
 
-    <div class="demo-container" style="background: linear-gradient(135deg, #2d3436 0%, #000000 100%); color: white;">
-        <div class="info-banner"
-            style="background: rgba(102, 126, 234, 0.2); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 12px; padding: 1rem 1.5rem; margin-bottom: 1.5rem;">
-            <div class="title" style="font-weight: 600; margin-bottom: 0.5rem;">🎬 HEVC Alpha Channel Support</div>
-            <div class="description" style="font-size: 14px; opacity: 0.8;">
+    <div class="ss-c-box ss-c-box--bordered">
+        <div class="ss-c-box ss-c-box--bordered ss-u-mb-4">
+            <p class="ss-u-m-0"><strong>HEVC Alpha Channel Support</strong></p>
+            <p class="ss-t-meta ss-u-m-0">
                 This component detects and uses HEVC videos with alpha channels when available for true video
                 transparency.
-                <span class="alpha-indicator" id="alphaIndicator">Checking...</span>
-            </div>
+                <span class="ss-c-badge ss-c-badge--sm" id="alphaIndicator">Checking...</span>
+            </p>
         </div>
 
         <div class="video-preview" id="videoPreview">
             <div class="preview-content">
-                <div style="text-align: center;">
-                    <div class="icon">🎥</div>
+                <div class="ss-u-text-center">
+                    <div class="icon">▷</div>
                     <div class="text">Background Content</div>
                 </div>
             </div>
@@ -51,104 +50,108 @@ Interactive demo for the video overlay component
             </div>
         </div>
 
-        <div class="controls-panel">
-            <div class="control-group">
-                <label>Opacity</label>
-                <div class="value" id="opacityValue">100%</div>
-                <input type="range" id="opacitySlider" min="0" max="100" value="100">
+        <div class="ss-l-grid ss-l-grid-auto ss-u-mb-4">
+            <div class="ss-c-box ss-c-box--bordered">
+                <label class="ss-c-section-title ss-u-block" for="opacitySlider">Opacity</label>
+                <div class="ss-t-text-2xl ss-t-font-bold" id="opacityValue">100%</div>
+                <input type="range" class="ss-c-range ss-u-mt-2" id="opacitySlider" min="0" max="100" value="100">
             </div>
-            <div class="control-group">
-                <label>Fade Duration (ms)</label>
-                <div class="value" id="fadeValue">300</div>
-                <input type="range" id="fadeSlider" min="100" max="2000" step="100" value="300">
+            <div class="ss-c-box ss-c-box--bordered">
+                <label class="ss-c-section-title ss-u-block" for="fadeSlider">Fade Duration (ms)</label>
+                <div class="ss-t-text-2xl ss-t-font-bold" id="fadeValue">300</div>
+                <input type="range" class="ss-c-range ss-u-mt-2" id="fadeSlider" min="100" max="2000" step="100" value="300">
             </div>
-            <div class="control-group">
-                <label>Blur Amount (px)</label>
-                <div class="value" id="blurValue">0</div>
-                <input type="range" id="blurSlider" min="0" max="20" value="0">
-            </div>
-        </div>
-
-        <div class="control-group" style="margin-bottom: 1.5rem;">
-            <label>Overlay Effect</label>
-            <div class="effect-buttons">
-                <button class="effect-btn" data-effect="none">None</button>
-                <button class="effect-btn active" data-effect="vignette">Vignette</button>
-                <button class="effect-btn" data-effect="particles">Particles</button>
-                <button class="effect-btn" data-effect="gradient">Gradient</button>
-                <button class="effect-btn" data-effect="scanlines">Scanlines</button>
+            <div class="ss-c-box ss-c-box--bordered">
+                <label class="ss-c-section-title ss-u-block" for="blurSlider">Blur Amount (px)</label>
+                <div class="ss-t-text-2xl ss-t-font-bold" id="blurValue">0</div>
+                <input type="range" class="ss-c-range ss-u-mt-2" id="blurSlider" min="0" max="20" value="0">
             </div>
         </div>
 
-        <div class="button-row">
-            <button class="btn btn-primary" id="toggleOverlay">Show Overlay</button>
-            <button class="btn btn-secondary" id="fadeInOut">Fade In/Out</button>
-            <button class="btn btn-secondary" id="resetDemo">Reset</button>
+        <div class="ss-c-box ss-c-box--bordered ss-u-mb-4">
+            <label class="ss-c-section-title ss-u-block" id="effectLabel">Overlay Effect</label>
+            <div class="ss-u-flex ss-u-flex-wrap ss-u-gap-8" role="group" aria-labelledby="effectLabel">
+                <button class="effect-btn ss-c-button ss-c-button--outline ss-c-button--sm" data-effect="none">None</button>
+                <button class="effect-btn ss-c-button ss-c-button--primary ss-c-button--sm" data-effect="vignette">Vignette</button>
+                <button class="effect-btn ss-c-button ss-c-button--outline ss-c-button--sm" data-effect="particles">Particles</button>
+                <button class="effect-btn ss-c-button ss-c-button--outline ss-c-button--sm" data-effect="gradient">Gradient</button>
+                <button class="effect-btn ss-c-button ss-c-button--outline ss-c-button--sm" data-effect="scanlines">Scanlines</button>
+            </div>
+        </div>
+
+        <div class="ss-u-flex ss-u-flex-wrap ss-u-gap-12 ss-u-my-4">
+            <button class="ss-c-button ss-c-button--primary" id="toggleOverlay">Show Overlay</button>
+            <button class="ss-c-button ss-c-button--outline" id="fadeInOut">Fade In/Out</button>
+            <button class="ss-c-button ss-c-button--outline" id="resetDemo">Reset</button>
         </div>
     </div>
 </section>
 
-<section class="section">
-    <h2 class="section__title">Features</h2>
-    <div class="feature-grid">
-        <div class="feature-card">
-            <h4>🎞️ HEVC Alpha Support</h4>
-            <p>Automatic detection and use of HEVC videos with alpha channels.</p>
+<section class="ss-l-region ss-l-region-md">
+    <h2>Features</h2>
+    <div class="ss-l-grid ss-l-grid-auto">
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__body">
+                <h4 class="ss-t-h6 ss-u-mt-0">HEVC Alpha Support</h4>
+                <p class="ss-t-meta ss-u-mb-0">Automatic detection and use of HEVC videos with alpha channels.</p>
+            </div>
         </div>
-        <div class="feature-card">
-            <h4>🌟 Smooth Transitions</h4>
-            <p>Configurable fade in/out with customizable duration.</p>
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__body">
+                <h4 class="ss-t-h6 ss-u-mt-0">Smooth Transitions</h4>
+                <p class="ss-t-meta ss-u-mb-0">Configurable fade in/out with customizable duration.</p>
+            </div>
         </div>
-        <div class="feature-card">
-            <h4>🎨 Visual Effects</h4>
-            <p>Built-in effects: vignette, particles, gradients, and scanlines.</p>
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__body">
+                <h4 class="ss-t-h6 ss-u-mt-0">Visual Effects</h4>
+                <p class="ss-t-meta ss-u-mb-0">Built-in effects: vignette, particles, gradients, and scanlines.</p>
+            </div>
         </div>
-        <div class="feature-card">
-            <h4>🖥️ Full Control</h4>
-            <p>Complete API for positioning, opacity, and playback control.</p>
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__body">
+                <h4 class="ss-t-h6 ss-u-mt-0">Full Control</h4>
+                <p class="ss-t-meta ss-u-mb-0">Complete API for positioning, opacity, and playback control.</p>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="section">
-    <h2 class="section__title">Usage</h2>
-    <div class="code-block">
-        <code><span class="keyword">import</span> { VideoOverlay } <span class="keyword">from</span> <span class="string">'move.gl'</span>;
+<section class="ss-l-region ss-l-region-md">
+    <h2>Usage</h2>
+    <pre class="ss-c-code-block"><code>import { VideoOverlay } from 'move.gl';
 
-<span class="keyword">const</span> overlay = <span class="keyword">new</span> <span class="function">VideoOverlay</span>({
-    containerId: <span class="string">'overlay-container'</span>,
-    videoUrl: <span class="string">'overlay.mp4'</span>,
-    loop: <span class="keyword">true</span>,
-    autoplay: <span class="keyword">true</span>,
-    opacity: <span class="number">0.8</span>,
-    fadeInDuration: <span class="number">500</span>,
-    fadeOutDuration: <span class="number">300</span>
+const overlay = new VideoOverlay({
+    containerId: 'overlay-container',
+    videoUrl: 'overlay.mp4',
+    loop: true,
+    autoplay: true,
+    opacity: 0.8,
+    fadeInDuration: 500,
+    fadeOutDuration: 300
 });
 
-<span class="comment">// Control methods</span>
-overlay.<span class="function">show</span>();
-overlay.<span class="function">hide</span>();
-overlay.<span class="function">setOpacity</span>(<span class="number">0.5</span>);
-overlay.<span class="function">fadeIn</span>(<span class="number">1000</span>);
-overlay.<span class="function">fadeOut</span>(<span class="number">500</span>);
+// Control methods
+overlay.show();
+overlay.hide();
+overlay.setOpacity(0.5);
+overlay.fadeIn(1000);
+overlay.fadeOut(500);
 
-<span class="comment">// Check HEVC alpha support</span>
-<span class="keyword">const</span> supported = VideoOverlay.<span class="function">supportsHevcAlpha</span>();</code>
-    </div>
+// Check HEVC alpha support
+const supported = VideoOverlay.supportsHevcAlpha();</code></pre>
 </section>
 
-<section class="section">
-    <h2 class="section__title">HEVC Alpha Detection</h2>
-    <div class="code-block">
-        <code><span class="comment">// The component automatically detects HEVC alpha support</span>
-<span class="keyword">if</span> (VideoOverlay.<span class="function">supportsHevcAlpha</span>()) {
-    <span class="comment">// Use HEVC video with alpha channel</span>
-    overlay.<span class="function">setVideoUrl</span>(<span class="string">'overlay-alpha.mov'</span>);
-} <span class="keyword">else</span> {
-    <span class="comment">// Fallback to WebM with alpha or CSS effects</span>
-    overlay.<span class="function">setVideoUrl</span>(<span class="string">'overlay-alpha.webm'</span>);
-}</code>
-    </div>
+<section class="ss-l-region ss-l-region-md">
+    <h2>HEVC Alpha Detection</h2>
+    <pre class="ss-c-code-block"><code>// The component automatically detects HEVC alpha support
+if (VideoOverlay.supportsHevcAlpha()) {
+    // Use HEVC video with alpha channel
+    overlay.setVideoUrl('overlay-alpha.mov');
+} else {
+    // Fallback to WebM with alpha or CSS effects
+    overlay.setVideoUrl('overlay-alpha.webm');
+}</code></pre>
 </section>
 
 {%- include "partials/_demo_links.html.jinja" %}

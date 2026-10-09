@@ -3,40 +3,40 @@
 {%- block title %}Keyframes — move.gl{%- endblock %}
 
 {%- block header %}
-<p class="eyebrow">Animations</p>
+<p class="ss-t-overline">Animations</p>
 <h1>Keyframe Animations</h1>
 {%- endblock %}
 
 {%- block content %}
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>About Keyframes</h2>
     <p>Keyframes are the building blocks of CSS animations. In move.gl, keyframes are used internally by the
         <code>animate_*</code> utility classes. This page demonstrates how different keyframe animations look when
         applied via the animation classes.</p>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Beat Animations</h2>
     <p>Pulsing heartbeat-style animations using scale keyframes.</p>
 
     <div class="demo-row">
         <div class="demo-item">
-            <div class="demo-box animate_beat">♥</div>
+            <div class="demo-box animate_beat">●</div>
             <p>animate_beat</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate_beat_fade">♥</div>
+            <div class="demo-box animate_beat_fade">●</div>
             <p>animate_beat_fade</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate_beat_double">♥</div>
+            <div class="demo-box animate_beat_double">●</div>
             <p>animate_beat_double</p>
         </div>
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Flash Animations</h2>
     <p>Attention-grabbing flash effects using opacity keyframes.</p>
 
@@ -60,7 +60,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Pulse Animations</h2>
     <p>Rhythmic pulsing effects using scale keyframes.</p>
 
@@ -84,7 +84,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Scale Animations</h2>
     <p>Size-changing animations using transform scale keyframes.</p>
 
@@ -108,7 +108,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Rotation Animations</h2>
     <p>Spinning and rotating animations using transform rotate keyframes.</p>
 
@@ -132,7 +132,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Translate Animations</h2>
     <p>Movement-based animations using transform translate keyframes.</p>
 
@@ -146,17 +146,17 @@
             <p>animate_slide_in_down</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate_float">☁</div>
+            <div class="demo-box animate_float">○</div>
             <p>animate_float</p>
         </div>
         <div class="demo-item">
-            <div class="demo-box animate_bounce">⬆</div>
+            <div class="demo-box animate_bounce">↑</div>
             <p>animate_bounce</p>
         </div>
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Fade Animations</h2>
     <p>Opacity-based animations using fade keyframes.</p>
 
@@ -180,7 +180,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Skew & Jiggle Animations</h2>
     <p>Skewing and shearing animations using transform skew keyframes.</p>
 
@@ -204,7 +204,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>3D Animations</h2>
     <p>3D transform-based animations using perspective and rotate3d keyframes.</p>
 
@@ -228,7 +228,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Combined Animations</h2>
     <p>Complex animations combining multiple keyframe properties.</p>
 
@@ -248,15 +248,15 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Usage</h2>
 
-    <div class="code-block"><span class="comment">// Use the animate_* utility classes directly</span>
-        &lt;div class="animate_beat"&gt;♥&lt;/div&gt;
+    <pre class="ss-c-code-block">// Use the animate_* utility classes directly
+        &lt;div class="animate_beat"&gt;●&lt;/div&gt;
         &lt;div class="animate_pulse"&gt;...&lt;/div&gt;
         &lt;div class="animate_spin"&gt;...&lt;/div&gt;
 
-        <span class="comment">// Or use the SCSS mixins</span>
+        // Or use the SCSS mixins
         .my-element {
         @include animate_beat;
         }
@@ -265,7 +265,7 @@
         @include animate_pulse_slow;
         }
 
-        <span class="comment">// Custom keyframes using the mixin</span>
+        // Custom keyframes using the mixin
         @include keyframes('my-custom-animation') {
         0% { transform: translateY(0); }
         50% { transform: translateY(-30px); }
@@ -274,8 +274,7 @@
 
         .bouncing-element {
         animation: my-custom-animation 0.6s ease infinite;
-        }
-    </div>
+        }</pre>
 </section>
 
 {%- endblock %}

@@ -15,21 +15,18 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 ///
 /// Swing Animation
@@ -53,22 +50,21 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_swing,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_swing, $duration, $timing_function, $iteration_count);
     @keyframes animate_swing {
-        0%, 100% { transform: rotate(0deg); }
-        50% { transform: rotate($angle); }
+        0%,
+        100% {
+            transform: rotate(0deg);
+        }
+        50% {
+            transform: rotate($angle);
+        }
     }
 }
 
 .animate_swing {
     @include animate_swing(15deg);
 }
-
 
 // Gentle Swing Animation
 // ----------------------------------------------------------------------------
@@ -87,15 +83,15 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_swing_slow,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_swing_slow, $duration, $timing_function, $iteration_count);
     @keyframes animate_swing_slow {
-        0%, 100% { transform: rotate(0deg); }
-        50% { transform: rotate($angle); }
+        0%,
+        100% {
+            transform: rotate(0deg);
+        }
+        50% {
+            transform: rotate($angle);
+        }
     }
 }
 
@@ -103,10 +99,8 @@
     @include animate_swing_slow();
 }
 
-
 // Rapid Swing Animation
 // ----------------------------------------------------------------------------
-
 
 ///
 /// Rapid Swing Animation
@@ -123,15 +117,15 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_swing_fast,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_swing_fast, $duration, $timing_function, $iteration_count);
     @keyframes animate_swing_fast {
-        0%, 100% { transform: rotate(0deg); }
-        50% { transform: rotate($angle); }
+        0%,
+        100% {
+            transform: rotate(0deg);
+        }
+        50% {
+            transform: rotate($angle);
+        }
     }
 }
 
@@ -139,10 +133,8 @@
     @include animate_swing_fast();
 }
 
-
 // Swing with Fade Animation
 // ----------------------------------------------------------------------------
-
 
 ///
 /// Swing with Fade Animation
@@ -159,14 +151,10 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_swing_fade,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_swing_fade, $duration, $timing_function, $iteration_count);
     @keyframes animate_swing_fade {
-        0%, 100% {
+        0%,
+        100% {
             transform: rotate(0deg);
             opacity: 1;
         }
@@ -180,8 +168,6 @@
 .animate_swing_fade {
     @include animate_swing_fade();
 }
-
-
 
 // @-webkit-keyframes swing {
 //     20% {

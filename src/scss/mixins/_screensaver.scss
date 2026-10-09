@@ -18,13 +18,11 @@
 /// @access public
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../variables" as *;
-
+@use '../variables' as *;
 
 // ============================================================================
 // Screensaver Container Mixins
@@ -44,8 +42,9 @@
     justify-content: center;
     opacity: 0;
     visibility: hidden;
-    transition: opacity var(--screensaver-fade, $screensaver-fade) ease,
-                visibility var(--screensaver-fade, $screensaver-fade) ease;
+    transition:
+        opacity var(--screensaver-fade, $screensaver-fade) ease,
+        visibility var(--screensaver-fade, $screensaver-fade) ease;
 }
 
 ///
@@ -55,7 +54,6 @@
     opacity: 1;
     visibility: visible;
 }
-
 
 // ============================================================================
 // Screensaver Content Mixins
@@ -95,7 +93,6 @@
     opacity: 0.8;
 }
 
-
 // ============================================================================
 // Screensaver Animation Mixins
 // ============================================================================
@@ -108,7 +105,8 @@
 ///
 @mixin keyframes_screensaver_float($distance: -20px, $duration: 3s) {
     @keyframes screensaver-float {
-        0%, 100% {
+        0%,
+        100% {
             transform: translateY(0);
         }
         50% {
@@ -116,7 +114,6 @@
         }
     }
 }
-
 
 // ============================================================================
 // Screensaver Video Mixins
@@ -156,7 +153,6 @@
     opacity: var(--screensaver-overlay-opacity, 1);
 }
 
-
 // ============================================================================
 // Screensaver Theme Mixins
 // ============================================================================
@@ -184,7 +180,6 @@
     --screensaver-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-
 // ============================================================================
 // Screensaver Bounce Effect
 // ============================================================================
@@ -194,8 +189,9 @@
 ///
 @mixin screensaver_bounce {
     position: absolute;
-    animation: screensaver-bounce-x linear infinite,
-               screensaver-bounce-y linear infinite;
+    animation:
+        screensaver-bounce-x linear infinite,
+        screensaver-bounce-y linear infinite;
 }
 
 ///
@@ -203,7 +199,8 @@
 ///
 @mixin keyframes_screensaver_bounce_x($duration: 7s) {
     @keyframes screensaver-bounce-x {
-        0%, 100% {
+        0%,
+        100% {
             left: 0;
         }
         50% {
@@ -217,7 +214,8 @@
 ///
 @mixin keyframes_screensaver_bounce_y($duration: 5s) {
     @keyframes screensaver-bounce-y {
-        0%, 100% {
+        0%,
+        100% {
             top: 0;
         }
         50% {
@@ -225,4 +223,3 @@
         }
     }
 }
-

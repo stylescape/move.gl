@@ -11,13 +11,14 @@
     $licenseUrl: 'https://github.com/scape-agency/stylescape/blob/main/LICENSE',
     $description: 'Layout Engine',
     $repository: 'https://github.com/scape-agency/stylescape/',
+    $years: '2020-2026'
 ) {
     @at-root {
-    /*!
+        /*!
      * ============================================================================
      *
-     * Stylescape #{$file} v#{$version} (#{$website})
-     * Copyright (c) 2020-2024 #{$author} (https://www.scape.press)
+     * #{$file} v#{$version} (#{$website})
+     * Copyright (c) #{$years} #{$author} (https://www.scape.press)
      * All rights reserved under #{$license} terms.
      *
      * ============================================================================
@@ -25,7 +26,7 @@
      * @description     #{$description}
      * @author          #{$author} (https://www.scape.press)
      * @version         v#{$version}
-     * @copyright       2020-2024 #{$author} (https://www.scape.press)
+     * @copyright       #{$years} #{$author} (https://www.scape.press)
      * @website         #{$website}
      * @repository      #{$repository}
      * @license         #{$license} (#{$licenseUrl})

@@ -15,21 +15,18 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 ///
 /// Jello Animation
@@ -53,15 +50,12 @@
     $timing_function: ease-in-out,
     $iteration_count: 1
 ) {
-    @include animate_base(
-        animate_jello,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_jello, $duration, $timing_function, $iteration_count);
     transform-origin: center;
     @keyframes animate_jello {
-        0%, 11.1%, 100% {
+        0%,
+        11.1%,
+        100% {
             transform: none;
         }
         22.2% {
@@ -88,7 +82,6 @@
     }
 }
 
-
 ///
 /// Subtle Jello Animation
 /// ---------------------------------------------------------------------------
@@ -102,12 +95,9 @@
 ///     @include animate_jello_subtle;
 ///   }
 ///
-@mixin animate_jello_subtle(
-    $duration: $animate_base_duration
-) {
+@mixin animate_jello_subtle($duration: $animate_base_duration) {
     @include animate_jello(6deg, $duration);
 }
-
 
 ///
 /// Intense Jello Animation
@@ -116,8 +106,6 @@
 /// @name animate_jello_intense
 /// @param {Duration} $duration [$animate_base_duration] - The animation duration.
 ///
-@mixin animate_jello_intense(
-    $duration: $animate_base_duration
-) {
+@mixin animate_jello_intense($duration: $animate_base_duration) {
     @include animate_jello(20deg, $duration);
 }

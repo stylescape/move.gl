@@ -19,18 +19,15 @@
 /// @access public
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../../variables" as *;
-
+@use '../../../variables' as *;
 
 // ============================================================================
 // Keyframes
 // ============================================================================
-
 
 ///
 /// Wave Keyframes
@@ -39,11 +36,15 @@
 ///
 @mixin keyframes_animate_wave($angle: $animate_angle_wave) {
     @keyframes animate_wave {
-        0%, 100% { transform: rotate(0deg); }
-        50% { transform: rotate($angle); }
+        0%,
+        100% {
+            transform: rotate(0deg);
+        }
+        50% {
+            transform: rotate($angle);
+        }
     }
 }
-
 
 ///
 /// Wave Slow Keyframes
@@ -52,11 +53,15 @@
 ///
 @mixin keyframes_animate_wave_slow($angle: $animate_angle_wave_slow) {
     @keyframes animate_wave_slow {
-        0%, 100% { transform: rotate(0deg); }
-        50% { transform: rotate($angle); }
+        0%,
+        100% {
+            transform: rotate(0deg);
+        }
+        50% {
+            transform: rotate($angle);
+        }
     }
 }
-
 
 ///
 /// Wave Fast Keyframes
@@ -65,11 +70,15 @@
 ///
 @mixin keyframes_animate_wave_fast($angle: $animate_angle_wave_fast) {
     @keyframes animate_wave_fast {
-        0%, 100% { transform: rotate(0deg); }
-        50% { transform: rotate($angle); }
+        0%,
+        100% {
+            transform: rotate(0deg);
+        }
+        50% {
+            transform: rotate($angle);
+        }
     }
 }
-
 
 ///
 /// Wave Fade Keyframes
@@ -78,7 +87,8 @@
 ///
 @mixin keyframes_animate_wave_fade($angle: $animate_angle_wave) {
     @keyframes animate_wave_fade {
-        0%, 100% {
+        0%,
+        100% {
             transform: rotate(0deg);
             opacity: 1;
         }

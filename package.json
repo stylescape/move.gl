@@ -41,31 +41,35 @@
     "sass": "src/scss/index.scss",
     "style": "dist/css/move.gl.css",
     "scripts": {
-        "build": "npx kist --config ./kist.yml && npm run build:ts",
-        "build:ts": "tsup",
+        "prebuild": "node script/sync-banner-version.mjs",
+        "build": "npx kist --config ./kist.yml && npm run build:ts && npm run build:package",
+        "build:ts": "tsup && tsc -p tsconfig.build.json",
+        "build:package": "node script/write-dist-package.mjs",
+        "build:docs": "npx kist --config ./kist.docs.yml && tsup src/ts/demo.ts --format esm --target es2020 --out-dir dist/js --no-config",
+        "typecheck": "tsc --noEmit -p .",
+        "test": "vitest run",
         "watch": "npx kist --config ./kist.yml --live",
         "dev": "vite"
     },
     "engines": {
         "node": ">=20.0.0"
     },
-    "dependencies": {
-        "hue.gl": "^0.1.2",
-        "unit.gl": "^0.3.1"
-    },
     "devDependencies": {
         "@getkist/action-nunjucks": "^2.0.9",
         "@getkist/action-sass": "^1.0.4",
         "@types/node": "^26.1.2",
+        "happy-dom": "^20.14.5",
         "kist": "^0.1.60",
         "micromatch": "^4.0.8",
         "nunjucks": "^3.2.4",
         "sass": "^1.97.3",
         "serve-static": "^2.2.1",
+        "stylescape": "^0.4.1",
         "ts-node": "^10.9.2",
         "tsup": "^8.5.1",
         "typescript": "^7.0.2",
-        "vite": "^8.2.1"
+        "vite": "^8.2.1",
+        "vitest": "^5.0.3"
     },
     "files": [
         "src/**",
@@ -73,8 +77,8 @@
     ],
     "exports": {
         ".": {
-            "sass": "./src/scss/index.scss",
             "types": "./dist/js/index.d.ts",
+            "sass": "./src/scss/index.scss",
             "import": "./dist/js/index.mjs",
             "require": "./dist/js/index.cjs"
         },
@@ -85,7 +89,7 @@
     "typesVersions": {
         "*": {
             "*": [
-                "./ts/index.d.ts"
+                "./dist/js/index.d.ts"
             ]
         }
     }

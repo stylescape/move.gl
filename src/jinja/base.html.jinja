@@ -9,6 +9,7 @@ common elements using partials for DRY architecture.
 
 <head>
     {%- include "partials/_head.html.jinja" %}
+    <title>{%- block title %}{{ title | default('move.gl') }}{%- endblock %}</title>
     {%- block head_extra %}{%- endblock %}
     {%- block styles %}{%- endblock %}
 </head>
@@ -18,10 +19,10 @@ common elements using partials for DRY architecture.
     {# Navigation #}
     {%- include "partials/_nav.html.jinja" %}
 
-    <div class="container">
-        <header class="header {%- block header_class %}{%- endblock %}">
+    <div class="ss-l-container ss-l-region">
+        <header class="ss-u-mb-8 {% block header_class %}{% endblock %}">
             {%- block header %}
-            <p class="eyebrow">move.gl</p>
+            <p class="ss-t-overline">move.gl</p>
             <h1>Documentation</h1>
             {%- endblock %}
         </header>
@@ -31,13 +32,12 @@ common elements using partials for DRY architecture.
             <p>Replace this with your content.</p>
             {%- endblock %}
         </main>
-
-        {# Footer #}
-        {%- include "partials/_footer.html.jinja" %}
     </div>
 
+    {# Footer #}
+    {%- include "partials/_footer.html.jinja" %}
+
     <!-- Library JS -->
-    <script type="module" src="/js/move.gl.js"></script>
     <!-- Demo Scripts -->
     <script type="module" src="/js/demo.js"></script>
 

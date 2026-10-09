@@ -15,21 +15,18 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 ///
 /// Flash Animation
@@ -58,18 +55,17 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_flash,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_flash, $duration, $timing_function, $iteration_count);
     @keyframes animate_flash {
-        0%, 100% { opacity: $start_opacity; }
-        50% { opacity: $mid_opacity; }
+        0%,
+        100% {
+            opacity: $start_opacity;
+        }
+        50% {
+            opacity: $mid_opacity;
+        }
     }
 }
-
 
 ///
 /// Flash Fade Animation
@@ -85,21 +81,18 @@
 ///     @include animate_flash_fade;
 ///   }
 ///
-@mixin animate_flash_fade(
-    $duration: 2s,
-    $timing_function: ease-in-out
-) {
-    @include animate_base(
-        animate_flash_fade,
-        $duration,
-        $timing_function, infinite
-    );
+@mixin animate_flash_fade($duration: 2s, $timing_function: ease-in-out) {
+    @include animate_base(animate_flash_fade, $duration, $timing_function, infinite);
     @keyframes animate_flash_fade {
-        0%, 100% { opacity: 0; }
-        50% { opacity: 1; }
+        0%,
+        100% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
     }
 }
-
 
 ///
 /// Strobe Flash Animation
@@ -121,19 +114,18 @@
     $duration: $animate_base_duration,
     $timing_function: steps(1, end)
 ) {
-    @include animate_base(
-        animate_flash_strobe,
-        $duration,
-        $timing_function,
-        infinite
-    );
+    @include animate_base(animate_flash_strobe, $duration, $timing_function, infinite);
     @keyframes animate_flash_strobe {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
+        0%,
+        100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
     }
     animation-duration: $frequency;
 }
-
 
 ///
 /// Slow Fade Flash Animation
@@ -153,17 +145,14 @@
     $duration: $animate_base_duration_slow,
     $timing_function: ease-in-out
 ) {
-    @include animate_base(
-        animate_flash_fade_slow,
-        $duration,
-        $timing_function,
-        infinite
-    );
+    @include animate_base(animate_flash_fade_slow, $duration, $timing_function, infinite);
     @keyframes animate_flash_fade_slow {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
+        0%,
+        100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
     }
 }
-
-
-

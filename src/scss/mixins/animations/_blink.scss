@@ -15,21 +15,18 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 ///
 /// Blink Animation
@@ -56,15 +53,9 @@
     $start_opacity: 1,
     $blink_opacity: 0
 ) {
-    @include animate_base(
-        animate_blink,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_blink, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_blink($start_opacity, $blink_opacity);
 }
-
 
 ///
 /// Rapid Blink Animation
@@ -87,15 +78,9 @@
     $timing_function: steps(2, end),
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_blink_rapid,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_blink_rapid, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_blink_rapid();
 }
-
 
 ///
 /// Soft Blink Animation
@@ -118,15 +103,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_blink_soft,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_blink_soft, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_blink_soft();
 }
-
 
 ///
 /// Alternating Blink Animation
@@ -149,11 +128,6 @@
     $timing_function: linear,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_blink_alternate,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_blink_alternate, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_blink_alternate();
 }

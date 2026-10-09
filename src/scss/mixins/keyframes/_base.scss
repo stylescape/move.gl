@@ -21,7 +21,9 @@
 // Use
 // ============================================================================
 
+@use "sass:color";
 @use "sass:math";
+@use "sass:meta";
 @use "../../variables" as *;
 
 
@@ -33,9 +35,8 @@
 /// Keyframes Mixin
 /// ---------------------------------------------------------------------------
 ///
-/// A versatile mixin for defining CSS keyframes with vendor prefixes.
-/// This mixin allows embedding keyframe content with the ability to specify
-/// prefixes or additional settings easily.
+/// A mixin for defining CSS keyframes, so every animation's keyframes are
+/// emitted from one place.
 ///
 /// @name keyframes
 /// @param {String} $name - The name of the keyframe animation.
@@ -51,10 +52,29 @@
     @keyframes #{$name} {
         @content;
     }
+}
 
-    @-webkit-keyframes #{$name} {
-        @content;
+
+// ============================================================================
+// Color Helpers
+// ============================================================================
+
+///
+/// Apply an alpha value to a color inside keyframes.
+///
+/// Sass colors are adjusted at compile time. Runtime values such as
+/// `currentColor` or `var(--x)` (which `rgba()` cannot handle) fall back to
+/// `color-mix()`.
+///
+/// @param {Color|String} $color - Color or CSS color keyword/expression.
+/// @param {Number} $alpha - Alpha between 0 and 1.
+/// @return {Color|String}
+///
+@function keyframes_alpha($color, $alpha) {
+    @if meta.type-of($color) == "color" {
+        @return color.change($color, $alpha: $alpha);
     }
+    @return color-mix(in srgb, #{$color} #{math.percentage($alpha)}, transparent);
 }
 
 

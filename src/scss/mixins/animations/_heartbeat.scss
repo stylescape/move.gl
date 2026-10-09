@@ -15,21 +15,18 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 ///
 /// Heartbeat Animation
@@ -55,20 +52,23 @@
     $timing_function: linear,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_heartbeat,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_heartbeat, $duration, $timing_function, $iteration_count);
     @keyframes animate_heartbeat {
-        0%, 100% { transform: scale(1); }
-        25% { transform: scale($scale_min); }
-        50% { transform: scale($scale_max); }
-        75% { transform: scale($scale_min); }
+        0%,
+        100% {
+            transform: scale(1);
+        }
+        25% {
+            transform: scale($scale_min);
+        }
+        50% {
+            transform: scale($scale_max);
+        }
+        75% {
+            transform: scale($scale_min);
+        }
     }
 }
-
 
 ///
 /// Rapid Heartbeat Animation
@@ -94,20 +94,26 @@
     $timing_function: linear,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_heartbeat_fast,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_heartbeat_fast, $duration, $timing_function, $iteration_count);
     @keyframes animate_heartbeat_fast {
-        0%, 100% { transform: scale(1); }
-        14%, 86% { transform: scale($scale_min); }
-        28%, 72% { transform: scale($scale_max); }
-        42%, 58% { transform: scale($scale_min); }
+        0%,
+        100% {
+            transform: scale(1);
+        }
+        14%,
+        86% {
+            transform: scale($scale_min);
+        }
+        28%,
+        72% {
+            transform: scale($scale_max);
+        }
+        42%,
+        58% {
+            transform: scale($scale_min);
+        }
     }
 }
-
 
 ///
 /// Slow Heartbeat Animation
@@ -133,20 +139,23 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_heartbeat_slow,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_heartbeat_slow, $duration, $timing_function, $iteration_count);
     @keyframes animate_heartbeat_slow {
-        0%, 100% { transform: scale(1); }
-        25% { transform: scale($scale_min); }
-        50% { transform: scale($scale_max); }
-        75% { transform: scale($scale_min); }
+        0%,
+        100% {
+            transform: scale(1);
+        }
+        25% {
+            transform: scale($scale_min);
+        }
+        50% {
+            transform: scale($scale_max);
+        }
+        75% {
+            transform: scale($scale_min);
+        }
     }
 }
-
 
 ///
 /// Heartbeat with Color Change Animation
@@ -174,16 +183,12 @@
     $timing_function: linear,
     $iteration_count: $animate_base_iteration_count,
     $color_start: $animate_base_color_start,
-    $color_end: $animate_base_color_end,
+    $color_end: $animate_base_color_end
 ) {
-    @include animate_base(
-        animate_heartbeat_color,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_heartbeat_color, $duration, $timing_function, $iteration_count);
     @keyframes animate_heartbeat_color {
-        0%, 100% {
+        0%,
+        100% {
             transform: scale(1);
             color: $color_start;
         }

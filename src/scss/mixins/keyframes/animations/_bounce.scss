@@ -15,14 +15,12 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../../variables" as *;
-@use "../_base" as *;
-
+@use '../../../variables' as *;
+@use '../_base' as *;
 
 // ============================================================================
 // Basic Bounce Keyframes
@@ -35,7 +33,8 @@
 ///
 @mixin keyframes_bounce($bounce_height: $animate_bounce_height) {
     @include keyframes(animate_bounce) {
-        0%, 100% {
+        0%,
+        100% {
             transform: translateY(0);
         }
         50% {
@@ -49,7 +48,8 @@
 ///
 @mixin keyframes_animate_bounce($bounce_height: $animate_translate_bounce) {
     @include keyframes(animate_bounce) {
-        0%, 100% {
+        0%,
+        100% {
             transform: translateY(0);
         }
         50% {
@@ -57,7 +57,6 @@
         }
     }
 }
-
 
 // ============================================================================
 // Extended Bounce Keyframes
@@ -110,7 +109,6 @@
     }
 }
 
-
 // ============================================================================
 // Bounce with Rotation Keyframes
 // ============================================================================
@@ -121,9 +119,13 @@
 /// @param {Angle} $rotation_angle [360deg] - Rotation angle during bounce
 /// @param {Length} $bounce_height [-20%] - Height of the bounce
 ///
-@mixin keyframes_bounce_rotate($rotation_angle: $animate_angle_full, $bounce_height: $animate_bounce_height) {
+@mixin keyframes_bounce_rotate(
+    $rotation_angle: $animate_angle_full,
+    $bounce_height: $animate_bounce_height
+) {
     @include keyframes(animate_bounce_rotate) {
-        0%, 100% {
+        0%,
+        100% {
             transform: translateY(0) rotate(0);
         }
         50% {
@@ -131,7 +133,6 @@
         }
     }
 }
-
 
 // ============================================================================
 // Multi-Directional Bounce Keyframes
@@ -143,9 +144,13 @@
 /// @param {Length} $bounce_x [-10%] - Horizontal bounce distance
 /// @param {Length} $bounce_y [-20%] - Vertical bounce distance
 ///
-@mixin keyframes_bounce_multi($bounce_x: $animate_bounce_multi_x, $bounce_y: $animate_bounce_multi_y) {
+@mixin keyframes_bounce_multi(
+    $bounce_x: $animate_bounce_multi_x,
+    $bounce_y: $animate_bounce_multi_y
+) {
     @include keyframes(animate_bounce_multi) {
-        0%, 100% {
+        0%,
+        100% {
             transform: translate(0, 0);
         }
         25% {
@@ -160,7 +165,6 @@
     }
 }
 
-
 // ============================================================================
 // Elastic Bounce Keyframes
 // ============================================================================
@@ -172,7 +176,8 @@
 ///
 @mixin keyframes_bounce_elastic($bounce_height: $animate_bounce_elastic_height) {
     @include keyframes(animate_bounce_elastic) {
-        0%, 100% {
+        0%,
+        100% {
             transform: translateY(0);
         }
         40% {
@@ -189,7 +194,6 @@
         }
     }
 }
-
 
 // ============================================================================
 // Entrance/Exit Bounce Keyframes

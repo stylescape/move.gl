@@ -15,21 +15,18 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 ///
 /// Sway Animation
@@ -53,16 +50,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_sway,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_sway, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_sway($angle);
 }
-
-
 
 // Gentle Sway Animation
 // ----------------------------------------------------------------------------
@@ -82,16 +72,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_sway_slow,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_sway_slow, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_sway_slow($angle);
 }
-
-
 
 // Rapid Sway Animation
 // ----------------------------------------------------------------------------
@@ -111,16 +94,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_sway_fast,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_sway_fast, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_sway_fast($angle);
 }
-
-
 
 // Sway with Fade Animation
 // ----------------------------------------------------------------------------
@@ -140,11 +116,6 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_sway_fade,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_sway_fade, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_sway_fade($angle);
 }

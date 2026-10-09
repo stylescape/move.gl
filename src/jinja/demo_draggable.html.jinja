@@ -10,10 +10,10 @@ Interactive demo for the draggable component
 {%- set current_demo = "draggable" -%}
 
 {%- block header %}
-<header class="page-header">
-    <div class="page-header__badge">TypeScript Component</div>
-    <h1 class="page-header__title">Draggable</h1>
-    <p class="page-header__description">
+<header class="ss-u-mb-8">
+    <span class="ss-c-badge">TypeScript Component</span>
+    <h1>Draggable</h1>
+    <p class="ss-t-lead">
         Make any HTML element draggable with full mouse and touch support.
         Perfect for creating interactive interfaces, drag-and-drop features, and movable widgets.
     </p>
@@ -21,9 +21,9 @@ Interactive demo for the draggable component
 {%- endblock -%}
 
 {%- block content %}
-<section class="section">
-    <h2 class="section__title">Interactive Demo</h2>
-    <p class="section__description">Try dragging the boxes around the container. Works with both mouse and touch!</p>
+<section class="ss-l-region ss-l-region-md">
+    <h2>Interactive Demo</h2>
+    <p class="ss-t-meta">Try dragging the boxes around the container. Works with both mouse and touch!</p>
 
     <div class="drag-container" id="dragContainer">
         <div class="draggable-box" id="box1" style="top: 50px; left: 50px;">Drag Me!</div>
@@ -32,73 +32,75 @@ Interactive demo for the draggable component
             style="bottom: 50px; left: 50%; transform: translateX(-50%); width: 150px; height: 80px;">And Me!</div>
     </div>
 
-    <div class="controls">
-        <button class="btn btn-primary" onclick="resetPositions()">Reset Positions</button>
-        <button class="btn btn-secondary" onclick="clearLog()">Clear Log</button>
+    <div class="ss-u-flex ss-u-flex-wrap ss-u-gap-12 ss-u-my-4">
+        <button class="ss-c-button ss-c-button--primary" onclick="resetPositions()">Reset Positions</button>
+        <button class="ss-c-button ss-c-button--outline" onclick="clearLog()">Clear Log</button>
     </div>
 
-    <div class="log-output" id="logOutput">
-        <div class="log-entry"><span class="timestamp">[--:--:--]</span> Drag events will appear here...</div>
-    </div>
-</section>
-
-<section class="section">
-    <h2 class="section__title">Features</h2>
-    <div class="feature-grid">
-        <div class="feature-card">
-            <h4>🖱️ Mouse Support</h4>
-            <p>Full mouse drag support with mousedown, mousemove, and mouseup events.</p>
-        </div>
-        <div class="feature-card">
-            <h4>📱 Touch Support</h4>
-            <p>Native touch event handling for mobile devices and tablets.</p>
-        </div>
-        <div class="feature-card">
-            <h4>📦 Boundary Constraints</h4>
-            <p>Elements are constrained within their parent container bounds.</p>
-        </div>
-        <div class="feature-card">
-            <h4>🎯 Event Callbacks</h4>
-            <p>Hook into drag events with onDragStart, onDrag, and onDragEnd callbacks.</p>
-        </div>
+    <div class="ss-c-code-block demo-log" id="logOutput" role="log" aria-label="Drag event log">
+        <div>[--:--:--] Drag events will appear here...</div>
     </div>
 </section>
 
-<section class="section">
-    <h2 class="section__title">Usage</h2>
+<section class="ss-l-region ss-l-region-md">
+    <h2>Features</h2>
+    <div class="ss-l-grid ss-l-grid-auto">
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__body">
+                <h4 class="ss-t-h6 ss-u-mt-0">Mouse Support</h4>
+                <p class="ss-t-meta ss-u-mb-0">Full mouse drag support with mousedown, mousemove, and mouseup events.</p>
+            </div>
+        </div>
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__body">
+                <h4 class="ss-t-h6 ss-u-mt-0">Touch Support</h4>
+                <p class="ss-t-meta ss-u-mb-0">Native touch event handling for mobile devices and tablets.</p>
+            </div>
+        </div>
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__body">
+                <h4 class="ss-t-h6 ss-u-mt-0">Boundary Constraints</h4>
+                <p class="ss-t-meta ss-u-mb-0">Elements are constrained within their parent container bounds.</p>
+            </div>
+        </div>
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__body">
+                <h4 class="ss-t-h6 ss-u-mt-0">Event Callbacks</h4>
+                <p class="ss-t-meta ss-u-mb-0">Hook into drag events with onDragStart, onDrag, and onDragEnd callbacks.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ss-l-region ss-l-region-md">
+    <h2>Usage</h2>
 
     <h3>Basic Usage</h3>
-    <div class="code-block">
-        <code><span class="keyword">import</span> { Draggable } <span class="keyword">from</span> <span class="string">'move.gl'</span>;
+    <pre class="ss-c-code-block"><code>import { Draggable } from 'move.gl';
 
-<span class="comment">// Make an element draggable</span>
-<span class="keyword">const</span> draggable = <span class="keyword">new</span> <span class="function">Draggable</span>(<span class="string">'myElement'</span>);
+// Make an element draggable
+const draggable = new Draggable('myElement');
 
-<span class="comment">// Clean up when done</span>
-draggable.<span class="function">destroy</span>();</code>
-    </div>
+// Clean up when done
+draggable.destroy();</code></pre>
 
     <h3>HTML Structure</h3>
-    <div class="code-block">
-        <code><span class="comment">&lt;!-- Parent container defines boundaries --&gt;</span>
-&lt;<span class="keyword">div</span> <span class="string">class</span>=<span class="string">"container"</span>&gt;
-    &lt;<span class="keyword">div</span> <span class="string">id</span>=<span class="string">"myElement"</span> <span class="string">class</span>=<span class="string">"draggable"</span>&gt;
+    <pre class="ss-c-code-block"><code>&lt;!-- Parent container defines boundaries --&gt;
+&lt;div class="container"&gt;
+    &lt;div id="myElement" class="draggable"&gt;
         Drag me!
-    &lt;/<span class="keyword">div</span>&gt;
-&lt;/<span class="keyword">div</span>&gt;</code>
-    </div>
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
 </section>
 
-<section class="section">
-    <h2 class="section__title">API Reference</h2>
+<section class="ss-l-region ss-l-region-md">
+    <h2>API Reference</h2>
 
     <h3>Constructor</h3>
-    <div class="code-block">
-        <code><span class="keyword">new</span> <span class="function">Draggable</span>(elementId: <span class="keyword">string</span>)</code>
-    </div>
+    <pre class="ss-c-code-block"><code>new Draggable(elementId: string)</code></pre>
 
     <h3>Methods</h3>
-    <table class="api-table">
+    <table class="ss-c-table">
         <tr>
             <th>Method</th>
             <th>Description</th>

@@ -124,6 +124,12 @@
 @include keyframes_search_wobble;
 @include keyframes_gear_rotate;
 
+// Skeleton keyframes
+@include keyframes_skeleton_shimmer;
+@include keyframes_skeleton_pulse;
+@include keyframes_skeleton_wave;
+@include keyframes_skeleton_fade;
+
 
 // ============================================================================
 // Base Loader Container

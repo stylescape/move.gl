@@ -15,16 +15,14 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
@@ -52,15 +50,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_zoom,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_zoom, $duration, $timing_function, $iteration_count);
     @include keyframes_zoom($scale);
 }
-
 
 ///
 /// Gentle Zoom Animation
@@ -79,15 +71,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_zoom_slow,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_zoom_slow, $duration, $timing_function, $iteration_count);
     @include keyframes_zoom_slow($scale);
 }
-
 
 ///
 /// Rapid Zoom Animation
@@ -106,15 +92,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_zoom_fast,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_zoom_fast, $duration, $timing_function, $iteration_count);
     @include keyframes_zoom_fast($scale);
 }
-
 
 ///
 /// Zoom with Fade Animation
@@ -135,15 +115,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_zoom_fade,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_zoom_fade, $duration, $timing_function, $iteration_count);
     @include keyframes_zoom_fade($scale, $opacity_min);
 }
-
 
 ///
 /// Zoom In Animation
@@ -160,16 +134,9 @@
     $duration: $animate_base_duration,
     $timing_function: ease-out
 ) {
-    @include animate_base(
-        animate_zoom_in,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_zoom_in, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_zoom_in($start_scale);
 }
-
 
 ///
 /// Zoom Out Animation
@@ -186,16 +153,9 @@
     $duration: $animate_base_duration,
     $timing_function: ease-in
 ) {
-    @include animate_base(
-        animate_zoom_out,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_zoom_out, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_zoom_out($end_scale);
 }
-
 
 ///
 /// Zoom with Rotate Animation
@@ -216,15 +176,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_zoom_rotate,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_zoom_rotate, $duration, $timing_function, $iteration_count);
     @include keyframes_zoom_rotate($scale, $rotation);
 }
-
 
 ///
 /// Zoom In Up Animation
@@ -243,16 +197,9 @@
     $duration: $animate_base_duration,
     $timing_function: ease-out
 ) {
-    @include animate_base(
-        animate_zoom_in_up,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_zoom_in_up, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_zoom_in_up($start_scale, $distance);
 }
-
 
 ///
 /// Zoom In Down Animation
@@ -271,16 +218,9 @@
     $duration: $animate_base_duration,
     $timing_function: ease-out
 ) {
-    @include animate_base(
-        animate_zoom_in_down,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_zoom_in_down, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_zoom_in_down($start_scale, $distance);
 }
-
 
 ///
 /// Zoom In Left Animation
@@ -299,16 +239,9 @@
     $duration: $animate_base_duration,
     $timing_function: ease-out
 ) {
-    @include animate_base(
-        animate_zoom_in_left,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_zoom_in_left, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_zoom_in_left($start_scale, $distance);
 }
-
 
 ///
 /// Zoom In Right Animation
@@ -327,16 +260,9 @@
     $duration: $animate_base_duration,
     $timing_function: ease-out
 ) {
-    @include animate_base(
-        animate_zoom_in_right,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_zoom_in_right, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_zoom_in_right($start_scale, $distance);
 }
-
 
 ///
 /// Zoom Out Up Animation
@@ -364,7 +290,6 @@
     );
     @include keyframes_zoom_out_up($end_scale, $distance);
 }
-
 
 ///
 /// Zoom Out Down Animation

@@ -15,16 +15,14 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Basic Rotate Mixins
@@ -54,15 +52,9 @@
     $timing_function: linear,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_rotate,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_rotate, $duration, $timing_function, $iteration_count);
     @include keyframes_rotate($start_angle, $end_angle);
 }
-
 
 // ============================================================================
 // Rotate In Mixins
@@ -88,16 +80,9 @@
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function
 ) {
-    @include animate_base(
-        animate_rotate_in,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_rotate_in, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_rotate_in($angle);
 }
-
 
 ///
 /// Rotate In Down Left Animation
@@ -124,7 +109,6 @@
     @include keyframes_rotate_in_down_left($angle);
 }
 
-
 ///
 /// Rotate In Down Right Animation
 /// ---------------------------------------------------------------------------
@@ -149,7 +133,6 @@
     );
     @include keyframes_rotate_in_down_right($angle);
 }
-
 
 ///
 /// Rotate In Up Left Animation
@@ -176,7 +159,6 @@
     @include keyframes_rotate_in_up_left($angle);
 }
 
-
 ///
 /// Rotate In Up Right Animation
 /// ---------------------------------------------------------------------------
@@ -202,7 +184,6 @@
     @include keyframes_rotate_in_up_right($angle);
 }
 
-
 // ============================================================================
 // Rotate Out Mixins
 // ============================================================================
@@ -222,16 +203,9 @@
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function
 ) {
-    @include animate_base(
-        animate_rotate_out,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_rotate_out, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_rotate_out($angle);
 }
-
 
 ///
 /// Rotate Out Down Left Animation
@@ -258,7 +232,6 @@
     @include keyframes_rotate_out_down_left($angle);
 }
 
-
 ///
 /// Rotate Out Down Right Animation
 /// ---------------------------------------------------------------------------
@@ -283,7 +256,6 @@
     );
     @include keyframes_rotate_out_down_right($angle);
 }
-
 
 ///
 /// Rotate Out Up Left Animation
@@ -310,7 +282,6 @@
     @include keyframes_rotate_out_up_left($angle);
 }
 
-
 ///
 /// Rotate Out Up Right Animation
 /// ---------------------------------------------------------------------------
@@ -336,7 +307,6 @@
     @include keyframes_rotate_out_up_right($angle);
 }
 
-
 // ============================================================================
 // Special Rotate Mixins
 // ============================================================================
@@ -358,15 +328,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_rotate_pendulum,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_rotate_pendulum, $duration, $timing_function, $iteration_count);
     @include keyframes_rotate_pendulum($angle);
 }
-
 
 ///
 /// Wobble Rotate Animation
@@ -385,15 +349,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_rotate_wobble,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_rotate_wobble, $duration, $timing_function, $iteration_count);
     @include keyframes_rotate_wobble($angle);
 }
-
 
 // ============================================================================
 // 3D Rotate Mixins
@@ -416,15 +374,9 @@
     $timing_function: linear,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_rotate_x,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_rotate_x, $duration, $timing_function, $iteration_count);
     @include keyframes_rotate_x($angle);
 }
-
 
 ///
 /// 3D Rotate Y Animation
@@ -443,12 +395,7 @@
     $timing_function: linear,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_rotate_y,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_rotate_y, $duration, $timing_function, $iteration_count);
     @include keyframes_rotate_y($angle);
 }
 //       opacity: 1;

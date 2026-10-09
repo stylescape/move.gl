@@ -15,21 +15,18 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 ///
 /// Tada Animation
@@ -53,22 +50,29 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_tada,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_tada, $duration, $timing_function, $iteration_count);
     @keyframes animate_tada {
-        0%, 100% { transform: scale(1); }
-        10%, 20% { transform: scale(0.9) rotate(-3deg); }
-        30%, 50%, 70%, 90% { transform: scale($scale) rotate(3deg); }
-        40%, 60%, 80% { transform: scale($scale) rotate(-3deg); }
+        0%,
+        100% {
+            transform: scale(1);
+        }
+        10%,
+        20% {
+            transform: scale(0.9) rotate(-3deg);
+        }
+        30%,
+        50%,
+        70%,
+        90% {
+            transform: scale($scale) rotate(3deg);
+        }
+        40%,
+        60%,
+        80% {
+            transform: scale($scale) rotate(-3deg);
+        }
     }
 }
-
-
-
 
 // Gentle Tada Animation
 // ----------------------------------------------------------------------------
@@ -88,21 +92,29 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_tada_slow,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_tada_slow, $duration, $timing_function, $iteration_count);
     @keyframes animate_tada_slow {
-        0%, 100% { transform: scale(1); }
-        10%, 20% { transform: scale(0.95) rotate(-2deg); }
-        30%, 50%, 70%, 90% { transform: scale($scale) rotate(2deg); }
-        40%, 60%, 80% { transform: scale($scale) rotate(-2deg); }
+        0%,
+        100% {
+            transform: scale(1);
+        }
+        10%,
+        20% {
+            transform: scale(0.95) rotate(-2deg);
+        }
+        30%,
+        50%,
+        70%,
+        90% {
+            transform: scale($scale) rotate(2deg);
+        }
+        40%,
+        60%,
+        80% {
+            transform: scale($scale) rotate(-2deg);
+        }
     }
 }
-
-
 
 // Rapid Tada Animation
 // ----------------------------------------------------------------------------
@@ -122,20 +134,29 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_tada_fast,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_tada_fast, $duration, $timing_function, $iteration_count);
     @keyframes animate_tada_fast {
-        0%, 100% { transform: scale(1); }
-        10%, 20% { transform: scale(0.85) rotate(-4deg); }
-        30%, 50%, 70%, 90% { transform: scale($scale) rotate(4deg); }
-        40%, 60%, 80% { transform: scale($scale) rotate(-4deg); }
+        0%,
+        100% {
+            transform: scale(1);
+        }
+        10%,
+        20% {
+            transform: scale(0.85) rotate(-4deg);
+        }
+        30%,
+        50%,
+        70%,
+        90% {
+            transform: scale($scale) rotate(4deg);
+        }
+        40%,
+        60%,
+        80% {
+            transform: scale($scale) rotate(-4deg);
+        }
     }
 }
-
 
 // Tada with Fade Animation
 // ----------------------------------------------------------------------------
@@ -155,14 +176,10 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_tada_fade,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_tada_fade, $duration, $timing_function, $iteration_count);
     @keyframes animate_tada_fade {
-        0%, 100% {
+        0%,
+        100% {
             transform: scale(1);
             opacity: 1;
         }
@@ -172,8 +189,6 @@
         }
     }
 }
-
-
 
 // @-webkit-keyframes tada {
 //     from {

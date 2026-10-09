@@ -15,21 +15,18 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 ///
 /// Jiggle Animation
@@ -54,15 +51,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_jiggle,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_jiggle, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_jiggle($amplitude);
 }
-
 
 ///
 /// Vertical Jiggle Animation
@@ -86,16 +77,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_jiggle_vertical,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_jiggle_vertical, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_jiggle_vertical($amplitude);
 }
-
-
 
 ///
 /// Multi-Directional Jiggle Animation
@@ -120,15 +104,9 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_jiggle_multi,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_jiggle_multi, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_jiggle_multi($amplitude);
 }
-
 
 ///
 /// Gentle Jiggle Animation
@@ -152,11 +130,6 @@
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_jiggle_slow,
-        $duration,
-        $timing_function,
-        $iteration_count,
-    );
+    @include animate_base(animate_jiggle_slow, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_jiggle_slow($amplitude);
 }

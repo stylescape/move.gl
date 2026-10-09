@@ -544,6 +544,38 @@
     }
 }
 
+///
+/// Shake hover keyframes (required by `hover_shake`).
+///
+@mixin keyframes_shake_hover {
+    @keyframes shake-hover {
+        0%, 100% { transform: translateX(0); }
+        20%, 60% { transform: translateX(-4px); }
+        40%, 80% { transform: translateX(4px); }
+    }
+}
+
+///
+/// Bounce hover keyframes (required by `hover_bounce`).
+///
+@mixin keyframes_bounce_hover {
+    @keyframes bounce-hover {
+        0%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-6px); }
+        70% { transform: translateY(-2px); }
+    }
+}
+
+///
+/// Pulse hover keyframes (required by `hover_pulse`).
+///
+@mixin keyframes_pulse_hover {
+    @keyframes pulse-hover {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+}
+
 
 // ============================================================================
 // Group/Container Hover Effects

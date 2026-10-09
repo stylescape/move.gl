@@ -3,13 +3,13 @@
 {%- block title %}Special Effects — move.gl{%- endblock %}
 
 {%- block header %}
-<p class="eyebrow">Animations</p>
+<p class="ss-t-overline">Animations</p>
 <h1>Special Effects</h1>
 {%- endblock %}
 
 {%- block content %}
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Float Effects</h2>
     <p>Subtle floating animations.</p>
 
@@ -29,7 +29,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Glow Effects</h2>
     <p>Glowing box-shadow animations.</p>
 
@@ -53,7 +53,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Ripple Effects</h2>
     <p>Ripple and wave animations.</p>
 
@@ -77,7 +77,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Wave & Twist</h2>
     <p>Complex transformation animations.</p>
 
@@ -101,10 +101,10 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Usage</h2>
 
-    <div class="code-block"><span class="comment">// SCSS Mixin</span>
+    <pre class="ss-c-code-block">// SCSS Mixin
         .element {
         @include animate_float;
         }
@@ -113,11 +113,10 @@
         @include animate_glow;
         }
 
-        <span class="comment">// Utility classes</span>
+        // Utility classes
         &lt;div class="animate_float"&gt;...&lt;/div&gt;
         &lt;div class="animate_glow"&gt;...&lt;/div&gt;
-        &lt;div class="animate_ripple"&gt;...&lt;/div&gt;
-    </div>
+        &lt;div class="animate_ripple"&gt;...&lt;/div&gt;</pre>
 </section>
 
 {%- endblock %}

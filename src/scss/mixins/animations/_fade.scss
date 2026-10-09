@@ -15,16 +15,14 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../keyframes" as *;
-@use "base" as *;
-
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../keyframes' as *;
+@use 'base' as *;
 
 // ============================================================================
 // Mixins
@@ -54,15 +52,9 @@
     $timing_function: $animate_base_timing_function_fade,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_fade,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_fade, $duration, $timing_function, $iteration_count);
     @include keyframes_animate_fade($start_opacity, $mid_opacity);
 }
-
 
 ///
 /// Fade In Animation
@@ -86,16 +78,9 @@
     $duration: $animate_base_duration,
     $timing_function: ease-in
 ) {
-    @include animate_base(
-        animate_fade_in,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: forwards
-    );
+    @include animate_base(animate_fade_in, $duration, $timing_function, 1, $fill_mode: forwards);
     @include keyframes_fade_in($start_opacity, $end_opacity);
 }
-
 
 ///
 /// Fade Out Animation
@@ -119,16 +104,9 @@
     $duration: $animate_base_duration,
     $timing_function: ease-out
 ) {
-    @include animate_base(
-        animate_fade_out,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: forwards
-    );
+    @include animate_base(animate_fade_out, $duration, $timing_function, 1, $fill_mode: forwards);
     @include keyframes_fade_out($start_opacity, $end_opacity);
 }
-
 
 ///
 /// Gradual Fade Animation
@@ -149,15 +127,9 @@
     $timing_function: $animate_base_timing_function,
     $iteration_count: $animate_base_iteration_count
 ) {
-    @include animate_base(
-        animate_fade_gradual,
-        $duration,
-        $timing_function,
-        $iteration_count
-    );
+    @include animate_base(animate_fade_gradual, $duration, $timing_function, $iteration_count);
     @include keyframes_fade_gradual($start_opacity, $end_opacity);
 }
-
 
 ///
 /// Fade In Up Animation
@@ -174,16 +146,9 @@
     $duration: $animate_base_duration,
     $timing_function: ease-out
 ) {
-    @include animate_base(
-        animate_fade_in_up,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_fade_in_up, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_fade_in_up($distance);
 }
-
 
 ///
 /// Fade In Down Animation
@@ -200,16 +165,9 @@
     $duration: $animate_base_duration,
     $timing_function: ease-out
 ) {
-    @include animate_base(
-        animate_fade_in_down,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_fade_in_down, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_fade_in_down($distance);
 }
-
 
 ///
 /// Fade In Left Animation
@@ -226,16 +184,9 @@
     $duration: $animate_base_duration,
     $timing_function: ease-out
 ) {
-    @include animate_base(
-        animate_fade_in_left,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_fade_in_left, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_fade_in_left($distance);
 }
-
 
 ///
 /// Fade In Right Animation
@@ -252,16 +203,9 @@
     $duration: $animate_base_duration,
     $timing_function: ease-out
 ) {
-    @include animate_base(
-        animate_fade_in_right,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_fade_in_right, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_fade_in_right($distance);
 }
-
 
 ///
 /// Fade In with Scale Animation
@@ -278,16 +222,9 @@
     $duration: $animate_base_duration,
     $timing_function: ease-out
 ) {
-    @include animate_base(
-        animate_fade_in_scale,
-        $duration,
-        $timing_function,
-        1,
-        $fill_mode: both
-    );
+    @include animate_base(animate_fade_in_scale, $duration, $timing_function, 1, $fill_mode: both);
     @include keyframes_fade_in_scale($start_scale);
 }
-
 
 ///
 /// Fade Out Up Animation
@@ -314,7 +251,6 @@
     @include keyframes_fade_out_up($distance);
 }
 
-
 ///
 /// Fade Out Down Animation
 /// ---------------------------------------------------------------------------
@@ -340,7 +276,6 @@
     @include keyframes_fade_out_down($distance);
 }
 
-
 ///
 /// Fade Out Left Animation
 /// ---------------------------------------------------------------------------
@@ -365,7 +300,6 @@
     );
     @include keyframes_fade_out_left($distance);
 }
-
 
 ///
 /// Fade Out Right Animation

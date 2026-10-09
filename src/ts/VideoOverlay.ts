@@ -37,6 +37,7 @@ export class TransparentVideoOverlay {
     private isVisible: boolean = false;
     private fadeTransitionDuration: number;
     private loop: boolean;
+    private hideTimeoutId: number | undefined;
 
     /**
      * Creates a new TransparentVideoOverlay instance.
@@ -68,41 +69,36 @@ export class TransparentVideoOverlay {
     private setupVideo(): void {
         if (!this.videoElement) return;
 
-        if (this.loop) {
-            this.videoElement.addEventListener('ended', () => {
-                this.videoElement?.play();
-            });
-        }
-
-        this.videoElement.addEventListener('loadeddata', () => {
-            console.log('Video loaded successfully.');
-        });
-
-        this.videoElement.addEventListener('error', (e) => {
-            console.error('Error loading video:', e);
-        });
+        this.videoElement.loop = this.loop;
+        this.videoElement.addEventListener('error', this.handleError);
 
         // Set initial style for smooth transitions
         this.videoElement.style.transition = `opacity ${this.fadeTransitionDuration}ms ease`;
     }
 
+    private handleError = (): void => {
+        console.error('Error loading video:', this.videoElement?.error);
+    };
+
     /**
      * Shows the video overlay with a fade-in effect.
      */
     public showOverlay(): void {
-        if (!this.videoElement) return;
+        const video = this.videoElement;
+        if (!video) return;
 
-        this.videoElement.style.display = 'block';
-        this.videoElement.style.opacity = '0';
+        // Cancel a pending hide, or it would hide the overlay mid fade-in.
+        this.cancelPendingHide();
 
-        // Use requestAnimationFrame for smoother transition
-        requestAnimationFrame(() => {
-            if (this.videoElement) {
-                this.videoElement.style.opacity = '1';
-                this.videoElement.play().catch(err => {
-                    console.warn('Auto-play prevented:', err);
-                });
-            }
+        if (!this.isVisible || video.style.display === 'none') {
+            video.style.display = 'block';
+            video.style.opacity = '0';
+            // Flush the opacity: 0 style so the change to 1 transitions.
+            void video.offsetWidth;
+        }
+        video.style.opacity = '1';
+        video.play().catch(err => {
+            console.warn('Auto-play prevented:', err);
         });
 
         this.isVisible = true;
@@ -114,9 +110,11 @@ export class TransparentVideoOverlay {
     public hideOverlay(): void {
         if (!this.videoElement) return;
 
+        this.cancelPendingHide();
         this.videoElement.style.opacity = '0';
 
-        setTimeout(() => {
+        this.hideTimeoutId = window.setTimeout(() => {
+            this.hideTimeoutId = undefined;
             if (this.videoElement) {
                 this.videoElement.style.display = 'none';
                 this.videoElement.pause();
@@ -124,6 +122,13 @@ export class TransparentVideoOverlay {
         }, this.fadeTransitionDuration);
 
         this.isVisible = false;
+    }
+
+    private cancelPendingHide(): void {
+        if (this.hideTimeoutId !== undefined) {
+            clearTimeout(this.hideTimeoutId);
+            this.hideTimeoutId = undefined;
+        }
     }
 
     /**
@@ -164,9 +169,14 @@ export class TransparentVideoOverlay {
      * Cleans up the video overlay instance.
      */
     public destroy(): void {
+        this.cancelPendingHide();
         if (this.videoElement) {
+            this.videoElement.removeEventListener('error', this.handleError);
             this.videoElement.pause();
-            this.videoElement.src = '';
+            // Assigning src = '' would fire an error event; removing the
+            // attribute and reloading releases the media cleanly.
+            this.videoElement.removeAttribute('src');
+            this.videoElement.load();
             this.videoElement = null;
         }
     }
@@ -178,7 +188,7 @@ export class TransparentVideoOverlay {
  * @returns Whether HEVC alpha is supported.
  */
 export function supportsHEVCAlpha(): boolean {
-    const navigator = window.navigator;
+    if (typeof navigator === 'undefined') return false;
     const ua = navigator.userAgent.toLowerCase();
     const hasMediaCapabilities = !!(
         navigator.mediaCapabilities &&

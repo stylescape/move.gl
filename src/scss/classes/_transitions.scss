@@ -217,41 +217,11 @@
 }
 
 /// Shake hover effect
+@include keyframes_shake_hover;
+
 .hover--shake {
     @include hover_shake();
 }
-
-
-// ============================================================================
-// Cursor Classes
-// ============================================================================
-
-.cursor--default { @include cursor_default; }
-.cursor--pointer { @include cursor_pointer; }
-.cursor--text { @include cursor_text; }
-.cursor--move { @include cursor_move; }
-.cursor--grab { @include cursor_grab; }
-.cursor--grabbing { @include cursor_grabbing; }
-.cursor--not-allowed { @include cursor_not_allowed; }
-.cursor--wait { @include cursor_wait; }
-.cursor--help { @include cursor_help; }
-.cursor--crosshair { @include cursor_crosshair; }
-.cursor--zoom-in { @include cursor_zoom_in; }
-.cursor--zoom-out { @include cursor_zoom_out; }
-
-// Resize cursors
-.cursor--n-resize { @include cursor_n_resize; }
-.cursor--e-resize { @include cursor_e_resize; }
-.cursor--s-resize { @include cursor_s_resize; }
-.cursor--w-resize { @include cursor_w_resize; }
-.cursor--ne-resize { @include cursor_ne_resize; }
-.cursor--se-resize { @include cursor_se_resize; }
-.cursor--sw-resize { @include cursor_sw_resize; }
-.cursor--nw-resize { @include cursor_nw_resize; }
-.cursor--ew-resize { @include cursor_ew_resize; }
-.cursor--ns-resize { @include cursor_ns_resize; }
-.cursor--col-resize { @include cursor_col_resize; }
-.cursor--row-resize { @include cursor_row_resize; }
 
 
 // ============================================================================

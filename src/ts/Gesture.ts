@@ -17,6 +17,7 @@ export interface GestureCallbacks {
     onTap?: () => void;
     onSwipe?: (direction: SwipeDirection, deltaX: number, deltaY: number) => void;
     onPinch?: (scale: number) => void;
+    /** Rotation in degrees since the two-finger gesture started */
     onRotate?: (angle: number) => void;
 }
 
@@ -35,6 +36,9 @@ export interface GestureCallbacks {
  * ```
  */
 export class TouchGestureHandler {
+    /** Movement in px before a single touch counts as a swipe instead of a tap */
+    private static readonly SWIPE_THRESHOLD = 10;
+
     private element: HTMLElement;
     private startTouches: Touch[] | null = null;
     private lastTouches: Touch[] | null = null;
@@ -58,17 +62,19 @@ export class TouchGestureHandler {
     }
 
     private addTouchListeners(): void {
-        this.element.addEventListener('touchstart', this.handleTouchStart, false);
-        this.element.addEventListener('touchmove', this.handleTouchMove, false);
-        this.element.addEventListener('touchend', this.handleTouchEnd, false);
+        this.element.addEventListener('touchstart', this.handleTouchStart, { passive: true });
+        this.element.addEventListener('touchmove', this.handleTouchMove, { passive: true });
+        this.element.addEventListener('touchend', this.handleTouchEnd);
+        this.element.addEventListener('touchcancel', this.handleTouchCancel);
     }
 
     private handleTouchStart = (event: TouchEvent): void => {
-        if (event.touches.length === 1) {
-            this.startTouches = Array.from(event.touches);
-        } else if (event.touches.length > 1) {
-            this.startTouches = Array.from(event.touches);
+        // A finger added mid-gesture restarts measurement from the new set.
+        this.startTouches = Array.from(event.touches);
+        this.lastTouches = this.startTouches;
+        if (event.touches.length > 1) {
             this.isPinching = true;
+            this.isSwiping = false;
         }
     };
 
@@ -80,32 +86,49 @@ export class TouchGestureHandler {
         if (event.touches.length === 1 && !this.isPinching) {
             const dx = event.touches[0].clientX - this.startTouches[0].clientX;
             const dy = event.touches[0].clientY - this.startTouches[0].clientY;
-            if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+            const threshold = TouchGestureHandler.SWIPE_THRESHOLD;
+            if (Math.abs(dx) > threshold || Math.abs(dy) > threshold) {
                 this.isSwiping = true;
             }
         } else if (event.touches.length > 1 && this.isPinching && this.startTouches.length > 1) {
-            const startDistance = this.getDistance(this.startTouches[0], this.startTouches[1]);
-            const currentDistance = this.getDistance(event.touches[0], event.touches[1]);
-            const scale = currentDistance / startDistance;
-            this.callbacks.onPinch?.(scale);
+            const [start0, start1] = this.startTouches;
+            const [current0, current1] = [event.touches[0], event.touches[1]];
+
+            const startDistance = this.getDistance(start0, start1);
+            if (startDistance > 0) {
+                this.callbacks.onPinch?.(this.getDistance(current0, current1) / startDistance);
+            }
+            // Normalise to [-180, 180) so crossing the atan2 seam doesn't jump by 360.
+            const rotation = this.getAngle(current0, current1) - this.getAngle(start0, start1);
+            this.callbacks.onRotate?.(((rotation + 540) % 360) - 180);
         }
     };
 
-    private handleTouchEnd = (): void => {
-        if (this.isSwiping && this.startTouches && this.lastTouches) {
+    private handleTouchEnd = (event: TouchEvent): void => {
+        // Wait until every finger is lifted; lifting one finger of a pinch
+        // must not end the gesture as a tap or swipe.
+        if (event.touches.length > 0 || !this.startTouches) return;
+
+        if (this.isSwiping && this.lastTouches && this.lastTouches.length > 0) {
             const dx = this.lastTouches[0].clientX - this.startTouches[0].clientX;
             const dy = this.lastTouches[0].clientY - this.startTouches[0].clientY;
-            const direction = this.getSwipeDirection(dx, dy);
-            this.callbacks.onSwipe?.(direction, dx, dy);
-            this.isSwiping = false;
-        } else if (this.isPinching) {
-            this.isPinching = false;
-        } else {
+            this.callbacks.onSwipe?.(this.getSwipeDirection(dx, dy), dx, dy);
+        } else if (!this.isPinching) {
             this.callbacks.onTap?.();
         }
+        this.reset();
+    };
+
+    private handleTouchCancel = (): void => {
+        this.reset();
+    };
+
+    private reset(): void {
         this.startTouches = null;
         this.lastTouches = null;
-    };
+        this.isSwiping = false;
+        this.isPinching = false;
+    }
 
     /**
      * Determines swipe direction based on deltas.
@@ -121,9 +144,14 @@ export class TouchGestureHandler {
      * Calculates the distance between two touch points.
      */
     private getDistance(touch1: Touch, touch2: Touch): number {
-        const dx = touch2.clientX - touch1.clientX;
-        const dy = touch2.clientY - touch1.clientY;
-        return Math.sqrt(dx * dx + dy * dy);
+        return Math.hypot(touch2.clientX - touch1.clientX, touch2.clientY - touch1.clientY);
+    }
+
+    /**
+     * Calculates the angle in degrees of the line between two touch points.
+     */
+    private getAngle(touch1: Touch, touch2: Touch): number {
+        return Math.atan2(touch2.clientY - touch1.clientY, touch2.clientX - touch1.clientX) * 180 / Math.PI;
     }
 
     /**
@@ -133,6 +161,8 @@ export class TouchGestureHandler {
         this.element.removeEventListener('touchstart', this.handleTouchStart);
         this.element.removeEventListener('touchmove', this.handleTouchMove);
         this.element.removeEventListener('touchend', this.handleTouchEnd);
+        this.element.removeEventListener('touchcancel', this.handleTouchCancel);
+        this.reset();
     }
 }
 
@@ -180,20 +210,23 @@ export class AdvancedGestureRecognition {
     }
 
     private attachEventListeners(): void {
-        this.element.addEventListener('pointerdown', this.handleGestureStart, { passive: false });
-        this.element.addEventListener('pointermove', this.handleGestureMove, { passive: false });
-        this.element.addEventListener('pointerup', this.handleGestureEnd, { passive: false });
-        this.element.addEventListener('pointercancel', this.handleGestureEnd, { passive: false });
+        this.element.addEventListener('pointerdown', this.handleGestureStart);
+        this.element.addEventListener('pointermove', this.handleGestureMove);
+        this.element.addEventListener('pointerup', this.handleGestureEnd);
+        this.element.addEventListener('pointercancel', this.handleGestureEnd);
     }
 
     private handleGestureStart = (event: PointerEvent): void => {
         this.ongoingTouches.set(event.pointerId, event);
+        // Keep receiving move/up events when the pointer leaves the element,
+        // otherwise a release outside it leaves the gesture stuck "down".
+        this.element.setPointerCapture(event.pointerId);
         this.callbacks.onGestureStart?.(event);
     };
 
     private handleGestureMove = (event: PointerEvent): void => {
-        if (this.ongoingTouches.has(event.pointerId)) {
-            const startEvent = this.ongoingTouches.get(event.pointerId)!;
+        const startEvent = this.ongoingTouches.get(event.pointerId);
+        if (startEvent) {
             const dx = event.clientX - startEvent.clientX;
             const dy = event.clientY - startEvent.clientY;
             this.callbacks.onGestureMove?.(dx, dy, event);
@@ -201,7 +234,7 @@ export class AdvancedGestureRecognition {
     };
 
     private handleGestureEnd = (event: PointerEvent): void => {
-        this.ongoingTouches.delete(event.pointerId);
+        if (!this.ongoingTouches.delete(event.pointerId)) return;
         this.callbacks.onGestureEnd?.(event);
     };
 
@@ -213,6 +246,7 @@ export class AdvancedGestureRecognition {
         this.element.removeEventListener('pointermove', this.handleGestureMove);
         this.element.removeEventListener('pointerup', this.handleGestureEnd);
         this.element.removeEventListener('pointercancel', this.handleGestureEnd);
+        this.ongoingTouches.clear();
     }
 }
 
@@ -220,7 +254,3 @@ export default {
     TouchGestureHandler,
     AdvancedGestureRecognition
 };
-
-
-
-

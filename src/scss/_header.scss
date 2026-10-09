@@ -1,0 +1,15 @@
+// ============================================================================
+// move.gl | License Banner
+// ============================================================================
+
+@use "dev/banner" as *;
+
+@include banner(
+    "move.gl",
+    $version: "0.0.2",
+    $website: "https://www.move.gl/",
+    $license: "MIT License",
+    $licenseUrl: "https://github.com/stylescape/move.gl/blob/main/LICENSE",
+    $description: "Motion and Animation Library",
+    $repository: "https://github.com/stylescape/move.gl/"
+);

@@ -3,13 +3,13 @@
 {%- block title %}Scale Animations — move.gl{%- endblock %}
 
 {%- block header %}
-<p class="eyebrow">Animations</p>
+<p class="ss-t-overline">Animations</p>
 <h1>Scale Animations</h1>
 {%- endblock %}
 
 {%- block content %}
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Scale Effects</h2>
     <p>Scale-based animations.</p>
 
@@ -25,7 +25,7 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Zoom Effects</h2>
     <p>Zoom-based entrance and exit animations.</p>
 
@@ -49,10 +49,10 @@
     </div>
 </section>
 
-<section>
+<section class="ss-l-region ss-l-region-md">
     <h2>Usage</h2>
 
-    <div class="code-block"><span class="comment">// SCSS Mixin</span>
+    <pre class="ss-c-code-block">// SCSS Mixin
         .element {
         @include animate_scale_expand;
         }
@@ -61,10 +61,9 @@
         @include animate_zoom;
         }
 
-        <span class="comment">// Utility classes</span>
+        // Utility classes
         &lt;div class="animate_scale_expand"&gt;...&lt;/div&gt;
-        &lt;div class="animate_zoom"&gt;...&lt;/div&gt;
-    </div>
+        &lt;div class="animate_zoom"&gt;...&lt;/div&gt;</pre>
 </section>
 
 {%- endblock %}

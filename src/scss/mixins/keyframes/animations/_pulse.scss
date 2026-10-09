@@ -157,11 +157,16 @@
 ///
 /// @param {Number} $scale_max [$animate_scale_pulse_fade_max] - Maximum scale
 /// @param {Number} $opacity_min [$animate_opacity_pulse_min] - Minimum opacity
+/// @param {Number} $scale_min [1] - Resting scale
 ///
-@mixin keyframes_pulse_fade($scale_max: $animate_scale_pulse_fade_max, $opacity_min: $animate_opacity_pulse_min) {
+@mixin keyframes_pulse_fade(
+    $scale_max: $animate_scale_pulse_fade_max,
+    $opacity_min: $animate_opacity_pulse_min,
+    $scale_min: 1
+) {
     @include keyframes(animate_pulse_fade) {
         0%, 100% {
-            transform: scale(1);
+            transform: scale($scale_min);
             opacity: 1;
         }
         50% {
@@ -187,11 +192,11 @@
     @include keyframes(animate_pulse_glow) {
         0%, 100% {
             transform: scale(1);
-            box-shadow: 0 0 0 0 rgba($glow_color, 0.4);
+            box-shadow: 0 0 0 0 keyframes_alpha($glow_color, 0.4);
         }
         50% {
             transform: scale($scale_max);
-            box-shadow: 0 0 $glow_size 0 rgba($glow_color, 0);
+            box-shadow: 0 0 $glow_size 0 keyframes_alpha($glow_color, 0);
         }
     }
 }

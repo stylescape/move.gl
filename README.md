@@ -43,7 +43,7 @@
 - **Effect Mixins**: Shadows, opacity, filters (blur, brightness, contrast, etc.)
 - **Mouse Interactions**: Hover effects, cursor styles, scroll behaviors
 - **Loaders**: Spinners, progress indicators, and loading animations
-- **Accessibility**: Respects `prefers-reduced-motion` settings
+- **Accessibility**: Animation classes settle at their end state under `prefers-reduced-motion: reduce` (opt out with `$animate_respect_reduced_motion: false`)
 
 ### TypeScript Components
 
@@ -59,12 +59,16 @@
 npm install move.gl
 ```
 
+Prebuilt CSS: `move.gl/css/move.gl.css` (or `move.gl.min.css`). It contains only move.gl's own classes and keyframes — no global reset or utility classes.
+
 ## Quick Start
 
 ### Using SCSS Mixins
 
+Load it through Sass's Node package importer (`--pkg-importer=node`):
+
 ```scss
-@use 'move.gl' as move;
+@use 'pkg:move.gl' as move;
 
 .my-element {
     @include move.animate-bounce;
@@ -84,8 +88,10 @@ npm install move.gl
 ```typescript
 import { Draggable, TouchGestureHandler, Screensaver } from 'move.gl';
 
-// Make an element draggable
-const draggable = new Draggable('myElement');
+// Make an element draggable within its parent
+const draggable = new Draggable('myElement', {
+  onDragEnd: (x, y) => console.log(`Dropped at ${x}, ${y}`)
+});
 
 // Handle touch gestures
 const gesture = new TouchGestureHandler('gestureArea', {
@@ -96,7 +102,7 @@ const gesture = new TouchGestureHandler('gestureArea', {
 // Create a screensaver
 const screensaver = new Screensaver({
   videoUrl: 'screensaver.mp4',
-  inactivityTimeout: 300000 // 5 minutes
+  timeout: 300000 // 5 minutes of inactivity
 });
 ```
 
@@ -108,7 +114,8 @@ const screensaver = new Screensaver({
 | ---------------------- | ------------------------------- |
 | `animate-bounce`       | Bouncing animation              |
 | `animate-fade-in/out`  | Fade in/out animations          |
-| `animate-slide-in/out` | Slide in/out from any direction |
+| `animate-slide-in-up/down/left/right` | Slide in from a direction |
+| `animate-slide-out-up/down/left/right` | Slide out to a direction |
 | `animate-zoom-in/out`  | Zoom in/out effects             |
 | `animate-pulse`        | Pulsing animation               |
 | `animate-shake`        | Shake animation                 |
@@ -120,7 +127,7 @@ const screensaver = new Screensaver({
 | Mixin                    | Description           |
 | ------------------------ | --------------------- |
 | `scale($factor)`         | Scale transform       |
-| `rotate($angle)`         | Rotation transform    |
+| `transform-rotate($angle)` | Rotation transform  |
 | `translate($x, $y)`      | Translation transform |
 | `skew($x, $y)`           | Skew transform        |
 | `perspective($distance)` | 3D perspective        |
@@ -129,19 +136,30 @@ const screensaver = new Screensaver({
 
 | Mixin                 | Description              |
 | --------------------- | ------------------------ |
-| `shadow($params)`     | Box shadow               |
-| `opacity($value)`     | Opacity with transitions |
-| `blur($amount)`       | Blur filter              |
-| `brightness($amount)` | Brightness filter        |
-| `contrast($amount)`   | Contrast filter          |
-| `grayscale($amount)`  | Grayscale filter         |
+| `box-shadow($x, $y, $blur, $spread, $color)` | Box shadow |
+| `opacity-hover($default, $hover)` | Opacity change on hover |
+| `filter-blur($radius)` | Blur filter             |
+| `filter-brightness($amount)` | Brightness filter |
+| `filter-contrast($amount)` | Contrast filter     |
+| `filter-grayscale($amount)` | Grayscale filter   |
+
+Mixin names use underscores in the source (`animate_fade_in`); Sass treats `-` and `_` as the same, so either spelling works.
 
 ## TypeScript API Reference
 
 ### Draggable
 
+Moves a positioned element by setting its `left`/`top`. Works with mouse, touch and pen.
+
 ```typescript
-const draggable = new Draggable(elementId: string);
+const draggable = new Draggable(elementId: string, {
+  constrainToParent?: boolean,   // default: true
+  dragCursor?: string,           // default: 'grabbing'
+  onDragStart?: (x: number, y: number) => void,
+  onDrag?: (x: number, y: number) => void,
+  onDragEnd?: (x: number, y: number) => void
+});
+draggable.isDragging; // boolean
 draggable.destroy(); // Clean up
 ```
 
@@ -152,25 +170,88 @@ const handler = new TouchGestureHandler(elementId: string, {
   onTap?: () => void,
   onSwipe?: (direction: SwipeDirection, dx: number, dy: number) => void,
   onPinch?: (scale: number) => void,
-  onRotate?: (angle: number) => void
+  onRotate?: (angle: number) => void   // degrees since the gesture started
 });
 handler.destroy(); // Clean up
 ```
+
+### AdvancedGestureRecognition
+
+Pointer-event based (mouse, touch, pen); reports movement relative to where each pointer went down.
+
+```typescript
+const gesture = new AdvancedGestureRecognition(elementId: string, {
+  onGestureStart?: (event: PointerEvent) => void,
+  onGestureMove?: (dx: number, dy: number, event: PointerEvent) => void,
+  onGestureEnd?: (event: PointerEvent) => void
+});
+gesture.destroy();
+```
+
+### VirtualKeyboard
+
+Renders `<button class="key">` elements into a container and types into an input or textarea at the caret. Physical key presses are mirrored into the input while no other field has focus.
+
+```typescript
+const keyboard = new VirtualKeyboard(inputId: string, keyboardId: string, {
+  layout?: KeyboardLayout,             // { default: string[][], shift?: ..., special?: ... }
+  onKeyPress?: (key: string) => void
+});
+keyboard.switchMode('special');
+keyboard.mode; // current layout mode
+keyboard.destroy();
+```
+
+Function keys in a layout: `Backspace`, `Shift`, `CapsLock`, `Space`, `?123` (switch to `special`) and `ABC` (back to `default`).
 
 ### Screensaver
 
 ```typescript
 const screensaver = new Screensaver({
+  timeout: number,         // inactivity in ms before it shows
   videoUrl?: string,
   audioUrl?: string,
-  inactivityTimeout?: number,
-  fadeInDuration?: number,
-  fadeOutDuration?: number
+  containerId?: string,    // default: 'screensaver'
+  videoId?: string,        // default: 'screensaverVideo'
+  audioId?: string         // default: 'screensaverAudio'
 });
-screensaver.start();
-screensaver.stop();
+screensaver.start();       // show now; next user activity dismisses it
+screensaver.stop();        // hide and restart the inactivity timer
+screensaver.setVolume(0.5);
+screensaver.getIsActive();
 screensaver.destroy();
 ```
+
+### TransparentVideoOverlay
+
+```typescript
+const overlay = new TransparentVideoOverlay(videoElementId: string, {
+  fadeTransitionDuration?: number,   // ms, default: 500
+  loop?: boolean,                    // default: true
+  initialSource?: string
+});
+overlay.showOverlay();
+overlay.hideOverlay();
+overlay.toggleOverlay();
+overlay.changeVideoSource(getOptimalVideoSource('clip.mov', 'clip.webm'));
+overlay.destroy();
+```
+
+### LoaderManager
+
+```typescript
+import { loaderManager } from 'move.gl';
+
+const loader = loaderManager.create('spinner', { container: '#app', color: '#09f', size: 32 });
+loaderManager.destroy(loader);
+
+loaderManager.showIn('dots-bounce', '#save-button'); // swaps the content for a loader
+loaderManager.hideIn('#save-button');                // restores the original content
+
+loaderManager.register({ id: 'my-loader', css: '.loader { ... }' });
+```
+
+Built-in loaders: `spinner`, `spinner-dual`, `dots-bounce`, `dots-flash`, `progress-bar`, `progress-fill`, `pulse`, `square-flip`, `skeleton-card`, `bars-wave`.
 
 ## Browser Support
 
@@ -190,11 +271,11 @@ npm install
 # Start development server
 npm run dev
 
-# Build for production
-npm run build
+# Type-check
+npm run typecheck
 
-# Run tests
-npm test
+# Build for production (CSS, JS, type declarations and dist/package.json)
+npm run build
 ```
 
 ## Contributing
@@ -208,5 +289,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <p align="center">
-    <b>Made with ❤️ by <a href="https://www.scape.press" target="_blank">Scape Press</a></b>
+    <b>Made by <a href="https://www.scape.press" target="_blank">Scape Press</a></b>
 </p>
