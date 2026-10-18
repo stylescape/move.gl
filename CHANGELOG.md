@@ -5,6 +5,10 @@ All notable changes to move.gl are documented here. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- The npm publish job uses npm trusted publishing (OIDC) with provenance instead of the dead `PUBLISH_NPM_TOKEN` secret: job-level `id-token: write`, npm >= 11.5.1, `npm publish --provenance`. One-time setup on npmjs.com: move.gl > Settings > Trusted publishing > GitHub Actions, organization `stylescape`, repository `move.gl`, workflow `publish_package.yml`.
+
 ## [0.1.0] - 2026-10-09
 
 ### Breaking
