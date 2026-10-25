@@ -6,7 +6,6 @@ All components are exported from the package root:
 import { Draggable, VirtualKeyboard, loaderManager } from 'move.gl';
 ```
 
-
 ## Draggable
 
 Moves a positioned element by setting its `left`/`top`. Works with mouse, touch and pen.
@@ -114,7 +113,6 @@ loaderManager.register({ id: 'my-loader', css: '.loader { ... }' });
 Built-in loaders: `spinner`, `spinner-dual`, `dots-bounce`, `dots-flash`, `progress-bar`, `progress-fill`, `pulse`, `square-flip`, `skeleton-card`, `bars-wave`.
 
 ## Browser Support
-
 
 - Chrome 88+
 - Firefox 78+

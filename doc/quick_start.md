@@ -42,7 +42,6 @@ To turn off the reduced-motion handling:
 
 ## TypeScript
 
-
 ```typescript
 import { Draggable, TouchGestureHandler, Screensaver } from 'move.gl';
 

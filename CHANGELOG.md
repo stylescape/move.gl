@@ -55,7 +55,7 @@ All notable changes to move.gl are documented here. The format follows
 
 - The demo uses stylescape 0.5.1. Its dark theme tokens and inline-code colours replace the 0.4.1 workarounds in `docs.scss`.
 - TypeScript is pinned to `^6.0.3` (dev dependency), as in the other stylescape packages: TypeScript 7 drops the JS API that `typescript-eslint` needs. Dependabot ignores TypeScript major updates until that changes.
-- The README links to the Sass and TypeScript references on www.move.gl instead of repeating them.
+- The README links to the Sass and TypeScript references on <www.move.gl> instead of repeating them.
 
 ## [0.0.2]
 

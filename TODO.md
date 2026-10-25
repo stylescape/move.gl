@@ -9,12 +9,3 @@
 ### Verification
 
 - [ ] `Draggable`, `TouchGestureHandler` and the virtual keyboard on a real touch device. Checked on 2026-10-09 in headless Chromium with touch emulation (CDP `Input.dispatchTouchEvent`): one-finger drag stays inside its parent, tap, swipe, pinch (scale 1.5 → 3.5) and a 90° rotate are reported, and keyboard taps type, shift and switch to `?123`. Emulation cannot show real-device latency, palm rejection or browser gesture conflicts. Still open on 2026-10-10: nothing further can be checked from inside the repo; needs a physical phone or tablet (run `npm run dev` and open the demo over the LAN).
-
-## Done (2026-10-09)
-
-- Demo moved to stylescape 0.5.1; axe (headless Chromium, light and dark) reports no violations on any of the 27 pages, both from `dist/html` and from the built MkDocs site under `/demo/`. No console errors, failed requests or overflow at 375px; the theme toggle works and persists.
-- `npm run lint` (ESLint + `typescript-eslint`). TypeScript is back on 6.x because TypeScript 7 has no JS API for `typescript-eslint`; Dependabot ignores TypeScript majors.
-- Duplicate mixin names renamed in `effects` and `loaders`; a test forwards `mixins` and `mixins/keyframes` together to keep it that way.
-- `.btn-primary` / `.btn--primary`: gone since the demo moved to stylescape's `ss-c-button--primary`.
-- Demo pages published at `/demo/` via `npm run build:demo-site` and `deploy_docs.yml`, linked from the docs nav.
-- README links to the references on `www.move.gl`; `doc/guides/` is the single source.
