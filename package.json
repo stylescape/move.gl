@@ -73,7 +73,7 @@
         "serve-static": "^2.2.1",
         "stylescape": "^0.5.1",
         "ts-node": "^10.9.2",
-        "tsup": "^8.5.1",
+        "tsup": "^9.0.0",
         "typescript": "^6.0.3",
         "typescript-eslint": "^8.71.1",
         "vite": "^8.2.1",
